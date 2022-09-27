@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+      <head>
+<meta charset='utf-8'/>
+<script async='async' src='https://cdn.datacamp.com/dcl-react-dev.js.gz'></script>
+<style>
+.DCexercise .datacamp-exercise {
+     border: 2px solid #3D678D;
+     border-radius: 10px 10px 10px 10px !important;
+     }
+
+     *[class*="lm_"], .ace_gutter, textarea[class*="ace_"], .ace_scroller {
+     background-color: #F0EFF0 !important;
+     }
+
+     div[class*="Editor-module__editor"], div[class*="dcl__Footer"] {
+     background-color: #3D678D !important; 
+     } 
+
+     *[class*="lm_"] {
+     border-radius: 10px 10px 0px 0px !important;
+     }
+
+     div[class*="dcl__Footer"] {
+     border-radius: 0px 0px 10px 10px !important;
+     }
+
+     .lm_content {
+     border-radius: 0px !important;
+     }
+
+     .lm_splitter {
+     background-color: #3D678D !important; 
+     width: 3px !important;
+     }
+
+     .lm_drag_handle {
+     background: transparent !important;
+     }
+
+     div[class*="dcl__index-module"] {
+     outline-color: transparent !important;
+     border-radius: 10px !important;
+     }
+
+     button[class*="secondary-light"] {
+     background-color: #FF0000;
+     }
+</style>
+      </head>
+      <body>
+      <div data-datacamp-exercise data-lang='r' data-height =320><code data-type="sample-code">
+ # attach both packages and load the data set
+
+
+ # obtain an overview over the data set
+
+
+ # estimate the simple regression model
+
+
+ # print the summary to the console
+
+
+</code>
+<code data-type="solution">
+# attach both packages and load the data set
+library(AER)
+library(MASS)
+data("Boston")
+# obtain an overview over the data set
+summary(Boston)
+# or
+str(Boston)
+# or
+head(Boston)
+# estimate the simple regression model
+bh_mod <- lm(medv ~ lstat, data = Boston)
+# print the summary to the console
+coeftest(bh_mod, vcov. = vcovHC)
+</code>
+<code data-type="sct">
+test_function("library", index = 1)
+test_function("library", index = 2)
+test_function("data")
+
+test_or({
+test_function("head")
+},{
+test_function("summary")
+},{
+test_function("str")
+})
+
+test_function("coeftest", args=c("x", "vcov."), eval = F)
+
+test_or({
+  test_object("bh_mod")
+},{
+  f <- ex() %>% override_solution("lm(Boston$medv ~ Boston$lstat)") %>% check_function("lm")
+  f %>% check_arg("formula") %>% check_equal()
+},{
+  f <- ex() %>% override_solution("attach(Boston);lm(medv ~ lstat)") %>% check_function("lm")
+  f %>% check_arg("formula") %>% check_equal()
+})
+
+success_msg("Correct. Notice that both coefficients are highly significant.")
+
+</code></div>
+      </body>
+      </html>

@@ -1,0 +1,24 @@
+# Preface {-}
+
+### Organization of the Course {-} 
+
+All lecture material (videos, eWhiteboard, and this script) can be found at eCampus under the following link:
+
+* [https://ecampus.uni-bonn.de/bl.php?id=197335](https://ecampus.uni-bonn.de/bl.php?id=197335)
+
+
+
+
+
+### Literature {-}
+
+It's not must, but you can read any of the usual econometrics textbooks additionally to this script.
+
+* *A guide to modern econometrics*, by M. Verbeek
+* *Introduction to econometrics*, by J. Stock and M.W. Watson 
+  * E-Book: [https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983](https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983)
+* *Econometric theory and methods*, by R. Davidson and J.G. MacKinnon
+* *A primer in econometric theory*, by J. Stachurski
+* *Econometrics*, by F. Hayashi
+
+

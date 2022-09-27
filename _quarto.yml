@@ -1,0 +1,27 @@
+project:
+  type: book
+  output-dir: docs
+  
+book:
+  title: Econometrics M.Sc.
+  author: Prof. Dr. Dominik Liebl 
+  search: true
+  logo: images/Uni_Bonn_Logo.jpeg
+  number-sections: TRUE
+  crossref:
+    chapters: true
+  chapters:
+    - index.qmd
+    - 01-Introduction-to-R.qmd
+    - 02-Review-Prob_n_Stats.qmd
+    - 04-MultipleReg.qmd
+    - 05-Small-Sample-Inference.qmd
+    - 06-Asymptotics.qmd
+    - 08-Instrumental-Variables.qmd
+    # - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo

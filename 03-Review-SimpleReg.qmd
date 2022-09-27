@@ -1,0 +1,623 @@
+# Review: Simple Linear Regression {#ch:SLR}
+
+## The Simple Linear Regression Model 
+
+### The Data-Generating Process {#dgp}
+
+We assume some outcome, $Y_i\in\mathbb{R},$ and the explanatory variable, $X_i\in\mathbb{R},$ are related to each other via the following linear model:
+\begin{align}
+Y_i &=\beta_0 + \beta_1 X_{i} + \varepsilon_i,\label{eq:slreg}
+\end{align}
+where $i=1,\dots,n$ indexes the individual observations and $n$ denotes the **sample size**. 
+
+- Equation \eqref{eq:slreg} describes the \textbf{data generating process} that generates the individual observations that we observe in the data.
+- The parameters $\beta_0\in\mathbb{R}$ and $\beta_1\in\mathbb{R}$ are fixed (deterministic) parameters and their unknown values are the objects of our inquiry. 
+- The explanatory variables, $X_i$, may be either fixed (deterministic) or random (``fixed/deterministic or random design'').  While deterministic $X_i$ remain fixed in repeated samples, random $X_i$ have different realizations in repeated samples.<br>
+**Examples:**
+
+  - **Fixed Design (FD):** $X_i=$ amount of money paid out to individual $i$ in an economic laboratory experiment.
+  - **Random Design (RD):** $X_i=$ years of education of the randomly sampled individual $i$. 
+
+- The error terms $\varepsilon_1,\dots,\varepsilon_n$ are random variables representing the non-systematic and/or unobserved influences on $Y_i$.  
+- The dependent variable $Y_i$ is always random since the error terms $\varepsilon_i$ are assumed random, for all $i=1,\dots,n$. 
+
+
+#### The i.i.d. Assumption {-}
+
+Here and for the rest of the course, we assume that the observed (\say{obs}) data points $$((Y_{1,obs},X_{1,obs}),(Y_{2,obs},X_{2,obs}),\dots,(Y_{n,obs},X_{n,obs}))$$ 
+are a realizations of an \textbf{independent and identically distributed (i.i.d.)} random sample $$((Y_1,X_1),(Y_2,X_2),\dots,(Y_n,X_n)).$$
+That is, the $i$th observed data point $(Y_{i,obs},X_{i,obs})\in\mathbb{R}^{2}$ is a realization of a bivariate random variable $(Y_{i},X_{i})\in\mathbb{R}^{2}$, where $(Y_{i},X_{i})$ has the identical joint distribution as $(Y_{j},X_{j})$ for all $i=1,\dots,n$ and all $j=1,\dots,n$, and where $(Y_{i},X_{i})$ is independent of $(Y_{j},X_{j})$ for all $i\neq j=1,\dots,n$.
+
+Note that, due to the connection between $Y_i$ and $\varepsilon_i$ through Equation \eqref{eq:slreg}, the above i.i.d. assumption equivalently applies to the equivalent random sample
+random sample 
+$$((\varepsilon_1,X_1),(\varepsilon_2,X_2),\dots,(\varepsilon_n,X_n)).$$
+The i.i.d. assumption is typically adopted when randomly sampling data from a large population. 
+
+\smallskip
+
+\textbf{Caution:} Usually, we do not use a different notation for observed realizations $(\varepsilon_{i,obs},X_{i,obs})\in\mathbb{R}^2$ and for the corresponding random variable $(\varepsilon_{i},X_{i})\in\mathbb{R}^2$ since often both interpretations (random variable and its realizations) can make sense in the same statement and then it depends on the considered context whether the random variables point if view or the realization point of view applies.
+
+
+<!-- As for the explanatory variables, we assume that the $\varepsilon_i$'s are i.i.d. random variables.  -->
+
+
+### Assumptions About the Error Term {#distrerror}
+
+#### Dependency between $\varepsilon_i$ and $X_i$
+
+The above i.i.d. assumption is not as restrictive as it may seem on first sight.  It requires that $(\varepsilon_i,X_i)$ is i.i.d. across $i=1,\dots,n$, but it allows for dependence \textit{between} $\varepsilon_i$ and $X_i$ for each $i=1,\dots,n$.  That is, the error term $\varepsilon_i$ can have a conditional distribution which depends on $X_i$ (see Chapter \@ref(condDistr)). 
+However, we need to rule out one certain dependency between $\varepsilon_i$ and $X_i$; namely the conditional mean of $\varepsilon_i$ is not allowed to depend on $X_i$. This assumption is called the exogeneity assumption. 
+
+<!-- % (see Chapter \@ref(ch:MLR)) -->
+
+#### The Exogeneity Assumption $E[\varepsilon_i|X_i]=0$ {-}
+
+<!-- Since the explanatory variables $X_i$ are random variables under the random design, we need to think about possible dependencies between $X_1,\dots,X_n$ and the error terms  -->
+<!-- <!-- % $\varepsilon_1,\dots,\varepsilon_n$. That is, for the simple linear regression model in \eqref{eq:slreg} to be well-defined, we need further assumptions about the random error term --> 
+<!-- $$\varepsilon_i = Y_i - \beta_0 - \beta_1 X_i,\quad i=1,\dots,n.$$ -->
+
+An assumption of central importance is that the conditional mean of $\varepsilon_i$ given $X_i$ is zero, i.e. 
+$$
+E[\varepsilon_i|X_i]=0,\quad\text{for all}\quad i=1,\dots,n.
+$$  
+In other words, on average, the non-systematic determinants of $Y_i$ are zero -- no matter the value of $X_i$. That is, this assumption is a statement about the relationship between $\varepsilon_i$ and $X_i$. The assumption $E[\varepsilon_i|X_i]=0$ is one of the *most important* assumptions we make in econometrics. When it is violated it causes fundamental econometric problems. Unfortunately, it is generally impossible to check this assumption since we do not observe realizations of the error terms $\varepsilon_1,\dots,\varepsilon_n$. 
+
+\bigskip 
+
+\noindent\textbf{Terminology:} The exogeneity assumption $E[\varepsilon_i | X_i]=0$, for all $i=1,\dots,n$, is also known as the **orthogonality assumption**. Alternatively, one often says that $\varepsilon_i$ is **mean independent** from $X_i$ if $E[\varepsilon_i | X_i]=0$. 
+
+
+\bigskip 
+
+\noindent Implications of the exogeneity assumption:   
+\begin{itemize}
+\item The assumption that $E[\varepsilon_i | X_i]=0$, for all $i=1,\dots,n$, implies that the correlation between $X_i$ and $\varepsilon_i$ is zero for all $i=1,\dots,n$, although the converse is not true. 
+\item The assumption that $E[\varepsilon_i | X_i]=0$, for all $i=1,\dots,n$, implies also that $E[\varepsilon_i]=0$ for all $i=1,\dots,n$.
+\end{itemize}
+
+
+\paragraph*{Note:} Under a fixed design, we simply assume that $E[\varepsilon_i]=0$ for all $i=1,\dots,n$. 
+
+
+#### Homoscedastic versus Heteroscedastic Error Terms {-}
+
+The exogeneity assumption only requires that the conditional mean of $\varepsilon_i$ is independent of $X_i$. Besides this, dependency between $\varepsilon_i$ and $X_i$ is allowed. For instance, the variance of $\varepsilon_i$ can be a function of $X_i$. If this is the case, $\varepsilon_i$ is said to be **heteroscedastic**. 
+
+\begin{description}
+\item[Heteroscedastic error terms:] The conditional variances $\V(\varepsilon_i|X_i=x_i)=\sigma^2(x_i)$ are equal to a non-constant variance-function $\sigma^2(x_i)>0$ which is a function of the realization $x_i$ of $X_i$. 
+\end{description}
+
+
+\textbf{Example:} $\varepsilon_i|X_i\sim U[-0.5|X_{i2}|, 0.5|X_{i2}|]$, with $X_{i2}\sim U[-4,4]$. This error term is mean independent of $X_i$ since $\E(\varepsilon_i|X_i)=0$, but it has heteroscedastic conditional variance since $\V(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$ depends on $X_i$. 
+
+
+Sometimes, we need to be more restrictive by assuming that also the variances of the error terms $\varepsilon_i$ are independent from $X_i$. (Higher moments may still depend on $X_i$.) This assumption leads to **homoscedastic** error terms. 
+
+
+\begin{description}
+\item[Homoscedastic error terms:] The conditional variances $\V(\varepsilon_i|X_i=x_i)=\sigma^2$ are equal to some constant $\sigma^2>0$ for every possible realization $x_i$ of $X_i$. 
+\end{description}
+
+\bigskip
+
+Sometimes, we need to be even more restrictive by assuming that the error terms $\varepsilon_i$ are themselves **i.i.d.** across $i=1,\dots,n$. This is more restrictive than the assumption that the bivariate random variables $(\varepsilon_i,X_i)$ are i.i.d. across $i=1,\dots,n$ since it implies that the whole distribution (not only the frist two moments) of $\varepsilon_i$ does not depend on $X_i$. This assumption also implies  **homoscedastic** error terms since when the whole distribution of $\varepsilon_i$ does not depend on $X_i$ also its variance doesn't depend on $X_i$.
+
+\textbf{Example:} For doing small sample inference (see Chapter \@ref(ch:SSINF)), we need to assume that the error terms $\varepsilon_i$ are i.i.d. across $i=1,\dots,n$ plus the normality assumption, i.e., $\varepsilon_i\stackrel{\textrm{i.i.d.}}{\sim}{\mathcal N} (0, \sigma^2)$ for all $i=1,\dots,n$ which leads to homoscedastic variances $\V(\varepsilon_i|X_i)=\sigma^2$ for every possible realization of $X_i$. 
+
+### The Population Regression Line 
+  
+We now have settled all assumptions regarding the simple linear regression model (see Chapter \@ref(ch:MLR) for a concise overview). This allows us to think about the relationship between $Y_i$ and $X_i$ \textit{under the regime of the model assumptions}.  For instance, note that we can write
+\begin{align*}
+ E[Y_i | X_i ]&= E[\beta_0 + \beta_1 X_i + \varepsilon_i | X_i] \\
+              &=   \beta_0 + \beta_1 X_i + E[\varepsilon_i | X_i].
+\end{align*}
+Then, by our exogeneity assumption, $E[\varepsilon_i|X_i]=0$, we have that
+$$E[Y_i | X_i ] = \beta_0 + \beta_1 X_i$$
+This conditional expectation of $Y_i$ given $X_i$ defines the **population regression line** -- we do not observe this object, but want to estimate it. 
+
+
+### Terminology: Estimates versus Estimators
+  
+Our goal is to devise some way to **estimate** the unknown parameters $\beta_0\in\mathbb{R}$ and $\beta_1\in\mathbb{R}$ which define the population regression line.  We call our method or formula for estimating these parameters an **estimator**.  An estimator is a function of the \emph{random} sample $((Y_1,X_1),\dots,(Y_n,X_n))$ and, therefore, is itself a \emph{random variable} that (generally) has different realizations in repeated samples. The result of applying our estimator to specific data, i.e., to a given observed realization $((Y_1^{obs},X_1^{obs}),\dots,(Y_n^{obs},X_n^{obs}))$ of the random sample $((Y_1,X_1),\dots,(Y_n,X_n))$) is called an **estimate**.
+
+\paragraph*{Caution:} We will usually not use different notations for random variables/estimators and their realizations/estimates since often both points of views tell a necessary story. 
+
+<!-- \bigskip -->
+
+<!-- \noindent\textbf{Example:} Let us consider the following simple estimation problem:  estimating the population mean, $\mu$, of a random variable, $Y$, on the basis of an i.i.d. random sample $Y_1,\dots,Y_n\stackrel{\textrm{i.i.d.}}{\sim}Y$.  The observed data, $y_1,\dots y_n$, are a realization of the i.i.d. random variables $Y_1,\dots,Y_n$. A sensible **estimator** is the (random) sample mean, $\bar Y=n^{-1}\sum_{i=1}^n Y_i$.  We denote a result of the estimator, the **estimate** $\bar y=n^{-1}\sum_{i=1}^n y_i$. We will discuss later what we mean by a \say{sensible} or \say{good} estimator.   -->
+
+
+
+<!-- ```{r} -->
+<!-- set.seed(123) -->
+<!-- n   <- 100 # sample size -->
+<!-- mu  <-   5 # population mean (usually unknown) -->
+<!-- var <-   2 # population variance (usually unknown) -->
+<!-- # simulate a realization of an i.i.d. random  -->
+<!-- # sample (Y_1,X_1)...,(Y_n,X_n), where Y_i ~ N(0,1)  -->
+<!-- # and X_i=1, for all i=1,...,n. -->
+<!-- eps <- rnorm(n = n, mean = 0, sd = sqrt(var)) -->
+<!-- X   <- rep(1, times = n) -->
+<!-- Y   <- mu + eps -->
+<!-- # Or simpler and more directly: -->
+<!-- # Y <- rnorm(n = n, mean = mu, sd = sqrt(var))   -->
+
+<!-- # compute estimate of mu -->
+<!-- mean(Y) -->
+<!-- ``` -->
+<!-- \paragraph*{Note:} This example treats actually a special case of the simple linear regression model \eqref{eq:slreg} with $Y_i=\beta_0+\varepsilon_i$, where $\beta_0=\mu$ can be estimated directly using the sample mean $\bar{Y}$ which can be computed using the \textsf{R}-function `mean()`.  -->
+
+
+
+## Ordinary Least Squares Estimation
+
+There are many ways to estimate the parameters $\beta_0$ and $\beta_1$ of the simple linear regression model in \eqref{eq:slreg}.  In the following, we will derive the Ordinary Least Squares (OLS) estimator using a ``mechanical'' approach.  In the next chapter, we will use an alternative approach (\say{methods of moments}) which provides a perspective that is particularly interesting/useful in econometrics. You will see that the properties of the estimators for $\beta_0$ and $\beta_1$ crucially depend on our assumption regarding the error terms $\varepsilon_i$ and the explanatory variables $X_i$. 
+
+
+### Terminology: Sample Regression Line, Prediction and Residuals
+
+Let us define some necessary terms.  Call $\hat\beta_0$ our estimate of $\beta_0$ and $\hat\beta_1$ our estimate of $\beta_1$.  Now, define the **predicted value**, $\hat Y_i$, of the dependent variable, $Y_i$, to be	
+\begin{align}
+\hat Y_i&= \hat\beta_0 + \hat\beta_1 X_i\label{eq:fitted_y}
+\end{align}
+This is just the prediction of the dependent variable, $Y_i$, given the value of $X_i$ and the estimates $\hat\beta_0$ and $\hat\beta_1$. Equation \eqref{eq:fitted_y} defines the **sample regression line**.
+
+\smallskip
+
+Define the \textbf{residual}, $\hat\eps_i$, as the difference between the observed value, $Y_i$, and the predicted value, $\hat Y_i$:
+\begin{align*}
+\hat\eps_i&= Y_i - \hat Y_i \\
+          &= Y_i - \hat\beta_0 - \hat\beta_1 X_i
+\end{align*}
+The residual, $\hat\eps_i$, is the vertical distance between the observed value, $Y_i$, and the sample regression line, i.e., the prediction, $\hat{Y}_i$, of $Y_i$.  
+  
+  
+We must make an important distinction between the residuals, $\hat\eps_i$, and the errors $\varepsilon_i$.
+\begin{align*}
+\hat\eps_i        &= Y_i - \hat\beta_0 - \hat\beta_1 X_i \quad\text{(computable)}\\ 
+\varepsilon_i     &= Y_i -     \beta_0 -     \beta_1 X_i \quad\text{(unobservable)}
+\end{align*}
+Because $\beta_0$ and $\beta_1$ are unknown, we can never know the value of the error terms $\varepsilon_i$.  However, because we actually come up with the estimates $\hat\beta_0$ and $\hat\beta_1$, and because we observe $X_i$, we can calculate the residual $\hat\eps_i$ for each observation. This distinction is important to keep in mind.  
+  
+<!-- \smallskip -->
+
+<!-- \noindent Overview:   -->
+<!-- \begin{equation*} -->
+<!-- \begin{array}{lrcl} -->
+<!-- \text{Sample Regression Line:  }&  \hat y &=& \hat\beta_0 + \hat\beta_1 x \\ -->
+<!-- \text{Population Regression Line:  }&  E[Y_i|X_i] &=& \beta_0 + \beta_1 X_i \\ -->
+<!-- \text{Observed Value for $i=1$:  }&  y_1 &=& \beta_0 + \beta_1 x_1 + \varepsilon_1 \\ -->
+<!-- \text{Observed Value for $i=1$:  }&  y_1 &=& \hat\beta_0 + \hat\beta_1 x_1 + e_1 -->
+<!-- \end{array} -->
+<!-- \end{equation*}   -->
+  
+Note that we can write 
+\begin{align*}
+\varepsilon_i &= Y_i - \beta_0 - \beta_1 X_i\\
+           &= Y_i - E[Y_i | X_i].
+\end{align*}
+But for this to make sense, we needed to impose the **exogeneity assumption** that $E[\varepsilon_i | X_i]=0$, since only then we can identify the population regression line $\beta_0 + \beta_1 X_i$ using the conditional mean of $Y_i$ given $X_i$. 
+
+  
+### Deriving the Expression of the OLS Estimator {#sec:SLROLS}
+  
+The method of \textbf{ordinary least squares} (\textbf{OLS}) estimation has a long history and was first described by Legendre in 1805 -- although Karl Friedrich Gauss claimed to use OLS since 1795. In 1809 Gauss published his work on OLS which extended the work of Legendre. 
+
+The idea of OLS is to choose parameter values that \textit{minimize the sum of squared residuals}
+for a given data set.  These minimizing parameters are then the estimates of the unknown population parameters. It turns out that the OLS estimator is equipped with several desirable properties.  In a sense, OLS is a purely \say{mechanical} method.  We will see that it is equivalent to an alternative estimation method called *methods of moments* which have a more profound econometric motivation, given a certain set of (moment-)assumptions. 
+  
+\paragraph*{Deriving the OLS estimate algebraically.}  Our objective is to find the parameter values $\hat\beta_0$ and $\hat\beta_1$ that minimize the sum of squared residuals, $S_n(b_0,b_1)$, for a given sample (i.e., for given data) $((Y_1,X_1),\dots,(Y_n,X_n))$ of the random sample $((Y_1,X_1),\dots,(Y_n,X_n))$, where
+\begin{align*}
+S_n(b_0, b_1)&=\sum_{i=1}^n \hat{\eps}_i^2 \\
+             &=\sum_{i=1}^n (Y_i - \hat Y_i)^2 \\
+             &= \sum_{i=1}^n (Y_i - b_0 - b_1 X_i)^2 \\
+             &= \sum_{i=1}^n (Y_i^2 - 2 b_0 Y_i -  2b_1 Y_i X_i  + b_0^2 + 
+                                                                    2b_0 b_1 X_i + b_1^2 X_i^2).
+\end{align*}  
+Now partially differentiate the last line with respect to $b_0$ and $b_1$, respectively. 
+\begin{align*}
+\dfrac{\partial S_n(b_0,b_1)}{\partial b_0}&= \sum_{i=1}^n \left(-2Y_i + 2b_0 +2 b_1 X_i\right)\\
+\dfrac{\partial S_n(b_0,b_1)}{\partial b_1}&= \sum_{i=1}^n\left(-2Y_i X_i +  2 b_0 X_i +
+                                                              2 b_1 X_i^2\right)
+\end{align*}
+Next, we want to find the minimizing arguments
+$$(\hat\beta_0,\hat\beta_1)'=\min\arg_{(b_0,b_1)\in\mathbb{R}^2}S_n(b_0,b_1).$$
+For this we set the two partial derivatives equal to zero which gives us two equations that fully determine the values $\hat\beta_0$ and $\hat\beta_1$:
+\begin{align*}
+n\hat\beta_0 - \sum_{i=1}^n Y_i+ \hat\beta_1 \sum_{i=1}^n X_i  &=0\\      
+\sum_{i=1}^n\left(-Y_i X_i + \hat\beta_0 X_i +\hat\beta_1 X_i^2\right)&=0 
+% -\left(\sum_{i=1}^n Y_i X_i\right) + \hat\beta_1 \left( \sum_{i=1}^n X_i^2\right)&=0
+\end{align*}
+The two latter equations are known as the \textbf{least squares normal equations}.  It is easy to see from the first normal equation that the OLS estimator of $\beta_0$ is
+\begin{equation}
+\hat\beta_0 = \bar{Y} - \hat\beta_1 \bar{X}
+\end{equation}
+Substituting $\hat\beta_0$ into the second normal equation gives
+\begin{align*} 0&=\sum_{i=1}^n\left(-Y_i X_i +  ( \bar{Y} - \hat\beta_1 \bar{X}) X_i +
+                                                               \hat\beta_1 X_i^2\right) \\
+                                &= \sum_{i=1}^n\left(-X_i (Y_i - \bar{Y})+    \hat\beta_1 X_i(X_i - \bar{X})\right)\\
+                                &=-\left(\sum_{i=1}^n X_i (Y_i - \bar{Y})\right) + \hat\beta_1 \left(\sum_{i=1}^n X_i (X_i - \bar{X})\right)\\
+\end{align*}
+Solving for $\hat\beta_1$ gives
+\begin{align*}
+\hat\beta_1&=\dfrac{\sum_{i=1}^n (Y_i - \bar{Y})X_i}{\sum_{i=1}^n (X_i-\bar {X})X_i}\\\notag
+                    &=\dfrac{\sum_{i=1}^n (Y_i - \bar{Y}) (X_i- \bar{X})}{\sum_{i=1}^n (X_i-\bar {X})(X_i - \bar{X})}\\\notag
+                    &=\dfrac{\sum_{i=1}^n (X_i- \bar{X})Y_i}{\sum_{i=1}^n (X_i-\bar{X})^2}
+\end{align*}
+The last two lines follow from the \say{useful result} that will be discussed in the exercises of this chapter. 
+          
+Here is some \textsf{R}-code for computing $\hat{\beta}_0$ and $\hat{\beta}_1$ for a given realization of the random sample $((Y_1,X_1),\dots,(Y_n,X_n))$, i.e. for a given (well, here simulated) data set $((Y_1,X_1),\dots,(Y_n,X_n))$.        
+```{r, fig.align="center"}
+n     <- 25 # sample size
+## simulate data
+set.seed(3)
+X     <- runif(n, min = 1, max = 10)
+error <- rnorm(n, mean = 0, sd = 5)
+beta0 <- 1
+beta1 <- 2
+Y     <- beta0 + beta1 * X + error
+## save simulated data as data frame
+data_sim <- data.frame("Y" = Y, "X" = X)
+## OLS fit
+lm_obj   <- lm(Y~X, data = data_sim)
+##
+## Plot
+par(family = "serif")
+plot(x = data_sim$X, y = data_sim$Y, main="", axes=FALSE, 
+     pch = 16, cex = 0.8, xlab = "X", ylab = "Y")
+axis(1, tick = FALSE)
+axis(2, tick = FALSE, las = 2)
+abline(lm_obj, lty=2, lwd = 1.3, col="darkorange")
+abline(a = beta0, b = beta1, lwd=1.3, col="darkblue")
+legend("topleft",
+       col=c("darkorange", "darkblue"), 
+       legend = c("Sample Regression Line", 
+                  "Population Regression Line"), 
+       lwd=1.3, lty=c(2,1), bty="n")
+
+## Estimates 
+coef(lm_obj)
+```
+
+\paragraph*{Interpretation of the Results.} The coefficients have the usual intercept and slope interpretation.  That is, for the unknown parameters $\beta_0$ and $\beta_1$ we have that
+\begin{align*}
+\dfrac{\partial E[Y | X]}{\partial X} = \beta_1\qquad\text{with}\qquad
+E[Y | X] &= \beta_0 + \beta_1 X.
+\end{align*}
+That is, $\beta_1$ is the true (unknown) \textbf{marginal effect} of a one unit change in $X$ on $Y$. Therefore, $\hat\beta_1$ is the \textbf{estimated marginal effect} of a one unit change in $X$ on $Y$:
+\begin{align*}
+\widehat{\dfrac{\partial E[Y | X]}{\partial X}} = \hat\beta_1\qquad\text{with}\qquad
+\widehat{E[Y | X]} &= \hat\beta_0 + \hat\beta_1 X.
+\end{align*}
+
+
+### Behavior of the OLS Estimates for Resampled Data (conditionally on $X_i$)
+
+Usually, we only observe the \textbf{estimates} $\hat{\beta}_0$ and $\hat{\beta}_1$ computed for a given data set. However, in order to understand the statistical properties of the \textbf{estimators} $\hat{\beta}_0$ and $\hat{\beta}_1$ we need to view them as random variables which yield different realizations in repeated samples generated from \eqref{eq:slreg} conditionally on $X_1,\dots,X_n$. This allows us then to think about questions like: 
+\begin{itemize}
+\item \say{Is the estimator able to estimate the unknown parameter-value correctly on average (conditionally on a given set of $X_1,\dots,X_n$)?}  
+\item \say{Are the estimation results more precise if we have more data?} 
+\end{itemize}
+A first idea about the statistical properties of the estimators $\hat{\beta}_0$ and $\hat{\beta}_1$ can be gained using Monte Carlo simulations as following.
+```{r}
+## Sample sizes
+n_small      <-  10 # small sample size
+n_large      <- 100 # large sample size
+
+## True parameter values
+beta0 <- 1
+beta1 <- 1
+
+## Generate explanatory variables (random design)
+X_n_small  <- runif(n_small, min = 1, max = 10)
+X_n_large  <- runif(n_large, min = 1, max = 10)
+
+## Monte-Carlo (MC) Simulation 
+## 1. Generate data
+## 2. Compute and store estimates
+## Repeat steps 1. and 2. many times
+set.seed(3)
+## Number of Monte Carlo repetitions
+## How many samples to draw from the models
+rep          <- 1000
+
+## Containers to store the lm-results
+n_small_list <- vector(mode = "list", length = rep)
+n_large_list <- vector(mode = "list", length = rep)
+
+for(r in 1:rep){
+## Sampling from the model conditionally on X_n_small
+error_n_small     <- rnorm(n_small, mean = 0, sd = 5)
+Y_n_small         <- beta0 + beta1 * X_n_small + error_n_small
+n_small_list[[r]] <- lm(Y_n_small ~ X_n_small)  
+## Sampling from the model conditionally on X_n_large
+error_n_large     <- rnorm(n_large, mean = 0, sd = 5)
+Y_n_large         <- beta0 + beta1 * X_n_large + error_n_large
+n_large_list[[r]] <- lm(Y_n_large ~ X_n_large)  
+}
+
+## Reading out the parameter estimates
+beta0_estimates_n_small <- rep(NA, rep)
+beta1_estimates_n_small <- rep(NA, rep)
+beta0_estimates_n_large <- rep(NA, rep)
+beta1_estimates_n_large <- rep(NA, rep)
+for(r in 1:rep){
+beta0_estimates_n_small[r] <- n_small_list[[r]]$coefficients[1]
+beta1_estimates_n_small[r] <- n_small_list[[r]]$coefficients[2]
+beta0_estimates_n_large[r] <- n_large_list[[r]]$coefficients[1]
+beta1_estimates_n_large[r] <- n_large_list[[r]]$coefficients[2]
+}
+```
+
+Now, we have produced realizations of the estimators $\hat\beta_0|X$ and $\hat\beta_1|X$ conditionally on  $$X=\begin{pmatrix}1&X_1\\\vdots&\vdots\\1&X_n\end{pmatrix}$$
+and we have saved these realizations in `beta0_estimates_n_small`, `beta1_estimates_n_small`, `beta0_estimates_n_large`, and \newline
+`beta1_estimates_n_large`. This allows us to visualize the behavior of the OLS estimates for the repeatedly sampled data (conditionally on $X_i$). 
+
+```{r, fig.width=6, fig.height=4.5, out.width='\\textwidth', fig.align='center'}
+## Plotting the results
+library("scales") # alpha() produces transparent colors
+
+## Define a common y-axis range
+y_range <- range(beta0_estimates_n_small,
+                 beta1_estimates_n_small)*1.1
+
+## Generate the plot
+par(family = "serif") # Serif fonts
+## Layout of plotting area
+layout(matrix(c(1:6), 2, 3, byrow = TRUE), widths = c(3,1,1))
+## Plot 1
+plot(x=0, y=0, axes=FALSE, xlab="X", ylab="Y", type="n",
+     xlim=c(1,10), ylim=c(-5,35), main="Small Sample (n=10)")
+axis(1, tick = FALSE); axis(2, tick = FALSE, las = 2)
+for(r in 1:rep){
+abline(n_small_list[[r]], lty=2, lwd = 1.3, col="darkorange")
+}
+abline(a = beta0, b = beta1, lwd=1.3, col="darkblue")
+legend("topleft", col=c("darkorange", "darkblue"), legend=c(
+"Sample regression lines from\nrepeated samples (cond. on X)", 
+                  "Population regression line"), 
+       lwd=1.3, lty=c(2,1), bty="n")
+## Plot 2
+plot(x=rep(0,rep), y=beta0_estimates_n_small, axes=FALSE, 
+     xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
+  main=expression(hat(beta)[0]~'|'~X), col=alpha("red",0.2))
+points(x = 0, y=beta0, pch="-", cex = 1.2, col="black")
+text(x=0, y=beta0, labels = expression(beta[0]), pos = 4)
+## Plot 3
+plot(x=rep(0,rep), y=beta1_estimates_n_small, axes=FALSE, 
+     xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
+  main=expression(hat(beta)[1]~'|'~X), col=alpha("red",0.2))
+points(x = 0, y=beta1, pch="-", cex = 1.2, col="black")
+text(x=0, y=beta1, labels = expression(beta[1]), pos = 4)
+## Plot 4
+plot(x=0, y=0, axes=FALSE, xlab="X", ylab="Y", type="n",
+     xlim=c(1,10), ylim=c(-5,35), main="Large Sample (n=100)")
+axis(1, tick = FALSE); axis(2, tick = FALSE, las = 2)
+for(r in 1:rep){
+abline(n_large_list[[r]], lty=2, lwd = 1.3, col="darkorange")
+}
+abline(a = beta0, b = beta1, lwd=1.3, col="darkblue")
+## Plot 5
+plot(x=rep(0,rep), y=beta0_estimates_n_large, axes=FALSE, 
+     xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
+  main=expression(hat(beta)[0]~'|'~X), col=alpha("red",0.2))
+points(x = 0, y=beta0, pch="-", cex = 1.2, col="black")
+text(x=0, y=beta0, labels = expression(beta[0]), pos = 4)
+## Plot 6
+plot(x=rep(0,rep), y=beta1_estimates_n_large, axes=FALSE, 
+     xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
+  main=expression(hat(beta)[1]~'|'~X), col=alpha("red",0.2))
+points(x=0, y=beta1, pch="-", cex = 1.2, col="black")
+text(x=0, y=beta1, labels = expression(beta[1]), pos = 4)
+```
+
+This are promising plots: 
+\begin{itemize}
+\item The realizations of $\hat\beta_0|X$ and $\hat\beta_1|X$ are scattered around the true (unknown) parameter values $\beta_0$ and $\beta_1$ for both small and large samples.
+\item The realizations of $\hat\beta_0|X$ and $\hat\beta_1|X$ concentrate more and more around the true (unknown) parameter values $\beta_0$ and $\beta_1$ as the sample size increases. 
+\end{itemize}
+
+However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. Next we use theoretical arguments to show that these properties also hold in general. 
+
+
+## Properties of the OLS Estimator
+
+Note that we derived the OLS estimator for a given realization $((y_1,x_1),\dots,(y_n,x_n))$ of the random sample $((Y_1,X_1),\dots,(Y_n,X_n))$. So, why should OLS be a \say{good} estimator in general? Does it behave well when we consider all possible realization of the OLS estimator for conditional resamplings, given $X_1,\dots,X_n$, from all possible data generating processes described by \eqref{eq:slreg}?
+<!-- not need to make any assumptions about the error term, and in particular, about its relationship to $X$ in order to derive the estimator.  We also did not make any assumption about the variance of $\varepsilon$ or about the relationship between the error terms $\varepsilon_i$ and $\varepsilon_j$ for $i\neq j$ in order to derive this estimator. So why is OLS a ``good'' estimator?  -->
+In the following we consider the two questions:
+\begin{itemize}
+\item \say{Are the conditional means of the estimators $\hat\beta_0$ and $\hat\beta_1$, given $X$, equal to the true parameter values $\beta_0$ and $\beta_1$?} 
+\item \say{Are the conditional variances of the estimators $\hat\beta_0$ and $\hat\beta_1$, given $X$, become small as the smaple size $n$ becomes large?}
+\end{itemize}
+
+
+### Mean and Bias of the OLS Estimator 
+
+Because the estimator 
+\begin{align}
+\hat{\beta}=
+\begin{pmatrix}\hat\beta_0\\\hat\beta_1\end{pmatrix}=
+\begin{pmatrix}
+\bar Y - \hat\beta_1 \bar X\\
+\dfrac{\sum_{i=1}^n (X_i- \bar X)Y_i}{\sum_{i=1}^n (X_i-\bar X)^2}
+\end{pmatrix}
+\label{eq:OLSslreg}
+\end{align}
+is a function of the random variables in the random sample $((Y_1,X_1),\dots,(Y_n,X_n))$, it is itself a random variable. Therefore, $\hat{\beta}$ has a probability distribution, and we can talk sensibly about its expectation $E(\hat{\beta})$.
+
+
+Note that the estimator $\hat{\beta}$ in \eqref{eq:OLSslreg} contains both the $Y_i$'s and the  $X_i$'s.  Therefore, under random designs, we need to be specific which mean (or variance) of the estimator we want to consider.  For the random design, we consider *conditional* means (or variances) *given* the design matrix 
+$$X=\begin{pmatrix}1&X_1\\\vdots&\vdots\\1&X_n\end{pmatrix}.$$ 
+Using the conditional mean, $E[\hat{\beta}|X]$, we can define the \textit{conditional} bias:
+\begin{align*}
+\operatorname{Bias}(\hat{\beta}|X)=E[\hat{\beta}|X]-\beta.
+\end{align*}
+For fixed designs, conditioning on $X$ is not false but superfluous since $X$ remains anyways fixed in repeated samples and therefore $\operatorname{Bias}(\hat{\beta}|X)=\operatorname{Bias}(\hat{\beta})=E[\hat{\beta}]-\beta$.
+
+\paragraph*{Unbiasedness of OLS.} The OLS estimator is called \textbf{unbiased}, if its conditional expectation is equal to the true parameter, i.e. if 
+\begin{align*}
+E[\hat{\beta}|X]=\beta\quad
+\Leftrightarrow\quad\operatorname{Bias}(\hat\beta|X)=0
+\end{align*}
+That is, the conditional mean of the random estimator equals the true parameter value which we want to estimate.  Put another way, unbiasedness means that the conditional distribution of the estimator is centered on the true value of the parameter.  Of course, the probability of a single estimate being \textit{exactly} equal to the truth in any particular sample is zero if the error terms $\varepsilon_i$ (and therefore the $Y_i$) are continuous random variables. 
+
+
+To show that $\hat\beta_1$ is conditionally unbiased, we need to show that its conditional expectation is equal to $\beta_1$:
+\begin{align*}
+E[\hat\beta_1|X]&=E\left[\dfrac{\sum_{i=1}^n(X_i - \bar X)Y_i}{\sum_{i=1}^n(X_i - \bar X)^2}\mid X\right] 
+               =E\left[\dfrac{\sum_{i=1}^n(X_i - \bar X)(\beta_0 + \beta_1 X_i + \varepsilon_i)}{\sum_{i=1}^n(X_i - \bar X)^2}|X\right]
+\end{align*}
+In case of a deterministic design, $X$ is fixed in repeated samples which makes the conditioning on $X$  superfluous since, for instance, $\sum(X_i - \bar X)^2$ is then a constant which allows us to bring it outside of the expectation; the same applies to all other terms that involve \textit{only} deterministic quantities.  So, the *conditioning* $X$ is actually only necessary under the random design, where it allows us then to bring all terms containing \textit{only} $X$ variables (or deterministic quantities) outside of the expectation. However, interpretations then must consider the conditioning on $X$. 
+<!-- Namely, we investigate the conditional random variable $\hat\beta_1|X$ where randomness is only due to the error terms $\varepsilon_1$ -->
+
+So, we really only need to concern ourselves with the numerator, which we can write as:
+\begin{equation*}
+\beta_0 \sum_{i=1}^n(X_i - \bar X)+ 
+\beta_1 \sum_{i=1}^n(X_i - \bar X)X_i + 
+E\left[\sum_{i=1}^n(X_i - \bar X)\varepsilon_i\mid X\right]
+\end{equation*}
+For the first two terms, note that
+\begin{align*}
+\beta_0 \sum_{i=1}^n(X_i - \bar X)    &=\beta_0 \left[\left(\sum_{i=1}^n X_i \right) - n \bar X\right] = 0 \\
+\beta_1 \sum_{i=1}^n(X_i - \bar X)X_i &=\beta_1 \sum_{i=1}^n(X_i - \bar X)^2,
+\end{align*}
+where the latter result follows again from the \say{useful result} that will be discussed in the exercises of this chapter. So we are left with
+$$E[\hat\beta_1|X]= \beta_1 + \dfrac{1}{\sum_{i=1}^n(X_i-\bar X)^2}E\left[\sum_{i=1}^n(X_i - \bar X)\varepsilon_i\mid X\right]$$
+Clearly, then, we want the last term here to be zero, so that $\hat\beta_1$ is conditionally unbiased. The last term is zero if the factor $E\left[\sum(X_i - \bar X)\varepsilon_i|X\right]=0$. For fixed/random designs we have the following expressions:
+\begin{description}
+\item[Fixed design:\phantom{on}]$E\left[\sum_{i=1}^n(X_i-\bar X)\varepsilon_i|X\right]=\sum_{i=1}^n(X_i - \bar X)E\left[\varepsilon_i\right]$
+\item[Random design:]$E\left[\sum_{i=1}^n(X_i-\bar X)\varepsilon_i|X\right]=\sum_{i=1}^n(X_i-\bar X)E\left[\varepsilon_i|X_i\right]$
+\end{description}
+That is, the OLS estimator, $\hat\beta_1$, is (conditionally) unbiased if the exogeneity assumption $E[\varepsilon_i |X_i]=0$ holds (or if $E[\varepsilon_i]=0$ in case of the fixed design). We return, therefore, to the importance of the exogeneity assumption $E[\varepsilon | X_i]$ since if this assumption does not hold, the estimator is biased and remains biased even asymptotically as $n\to\infty$. 
+
+The unbiasedness of $\hat\beta_1$ implies that $\hat\beta_0=\bar{Y}-\hat\beta_1\bar{X}$ is also an unbiased estimator, since
+\begin{align*}
+E[\hat\beta_0|X]
+&=E\left[\bar Y - \hat\beta_1 \bar X|X\right]\\
+&=E\left[\dfrac{1}{n}\sum_{i=1}^n (\beta_0 + \beta_1 X_i + \varepsilon_i) - \hat\beta_1 \bar X |X\right]\\
+&=\beta_0 + \beta_1\bar X + \dfrac{1}{n}\sum_{i=1}^n E[\varepsilon_i|X_i] - E[\hat\beta_1|X] \bar X \\
+&=\beta_0
+\end{align*}
+where the last line follows from the exogeneity assumption $E[\varepsilon_i|X]=0$ and the unbiasedness of $\hat\beta_1$.
+
+
+Since the conditional means of $\hat{\beta}_0$ and $\hat{\beta}_1$, given $X$, do not depend on $X$, we have that  
+\begin{align*}
+E[\hat\beta_0|X]&=\beta_0\quad\Rightarrow\quad E[E[\hat\beta_0|X]]=\beta_0\\
+E[\hat\beta_1|X]&=\beta_1\quad\Rightarrow\quad E[E[\hat\beta_1|X]]=\beta_1.
+\end{align*}
+This implies that the conditional biases of $\hat{\beta}_0$ and $\hat{\beta}_1$, given $X$, also do not depend on $X$, 
+\begin{align*}
+\operatorname{Bias}(\hat{\beta}_0|X)&=E[\hat\beta_0|X]-\beta_0 =0\\
+\operatorname{Bias}(\hat{\beta}_1|X)&=E[\hat\beta_1|X]-\beta_1 =0.
+\end{align*}
+Consequently,  $\hat{\beta}_0$ and $\hat{\beta}_1$ are also unbiased, \textbf{unconditionally} on $X$,
+\begin{align*}
+\underbrace{E[\operatorname{Bias}(\hat{\beta}_0|X)]}_{=\operatorname{Bias}(\hat{\beta}_0)}&=E[E[\hat\beta_0|X]]-\beta_0 =0\\
+\underbrace{E[\operatorname{Bias}(\hat{\beta}_1|X)]}_{=\operatorname{Bias}(\hat{\beta}_1)}&=E[E[\hat\beta_1|X]]-\beta_1 =0.
+\end{align*}
+
+Note that the exogeneity assumption, $E[\varepsilon_i|X]=0$, is the only distributional assumption on the error terms (and the $X_i$'s) that is needed to show that the OLS estimator is unbiased. In fact, OLS remains unbiased if the error terms are heteroscedastic and/or autocorrelated. However, under the more restrictive assumption that the error terms are *homoscedastic* and *not autocorrelated*, one can show that the OLS estimator is the most efficient (lowest variance) estimator within the family of all unbiased estimators for the regression paraemters $\beta_0$ and $\beta_1$. This result is known as the Gauss-Markov Theorem and we will consider this theorem in the context of the multiple regression model in more detail (see Chapter \@ref(ch:MLR)). 
+
+
+### Variance of the OLS Estimator
+
+Remember: An unbiased estimator can still be a very imprecise estimator if it has a large variance. In order to derive the variance of the OLS estimator one needs more than only the exogeneity assumption.  One gets different variance expressions for different distributional assumptions on the error terms $\varepsilon_1,\dots,\varepsilon_n$. As we consider this in more detail for the multiple regression model, we consider in the following only the most simple case, namely, conditionally homoscedastic i.i.d. error terms. Under this simple scenario it can be shown that
+\begin{align}
+\operatorname{Var}(\hat\beta_0|X)&= \frac{1}{n} \sigma^2\cdot\frac{n^{-1}\sum_{i=1}^n X_i^2}{n^{-1}\sum_{i=1}^n\left(X_i-\bar{X} \right)^2}\label{eq:varbeta0}\\
+\operatorname{Var}(\hat\beta_1|X)&= \frac{1}{n} \sigma^2\cdot\frac{1}{n^{-1}\sum_{i=1}^n\left(X_i-\bar{X} \right)^2}, \label{eq:varbeta1}
+\end{align}
+assuming that $\operatorname{Var}(\varepsilon_i|X)=\sigma^2$. That is equations \eqref{eq:varbeta0} and \eqref{eq:varbeta1} are only sensible for the case of homoscedastic error terms. From equations \eqref{eq:varbeta0} and \eqref{eq:varbeta1} it follows that $\operatorname{Var}(\hat\beta_0|X)$ and $\operatorname{Var}(\hat\beta_1|X)$ become eventually small as $n\to\infty$ which is good since this means that the estimators become more precise as the sample size $n$ increases. 
+
+
+By contrast to the conditional biases, the conditional variances $\operatorname{Var}(\hat\beta_0|X)$ and $\operatorname{Var}(\hat\beta_1|X)$ depend on $X$. 
+
+<!-- \begin{align*} -->
+<!-- \operatorname{Var}(\hat\beta_0|X)&\to_p 0 \quad\text{as}\quad n\to\infty\\ -->
+<!-- \operatorname{Var}(\hat\beta_1|X)&\to_p 0 \quad\text{as}\quad n\to\infty -->
+<!-- \end{align*} -->
+
+
+
+<!-- Thus, generally  -->
+<!-- \begin{align*} -->
+<!-- \operatorname{Var}(\hat\beta_0)&=E[\operatorname{Var}(\hat\beta_0|X)]\neq \operatorname{Var}(\hat\beta_0|X)\\ -->
+<!-- \operatorname{Var}(\hat\beta_1)&=E[\operatorname{Var}(\hat\beta_1|X)]\neq \operatorname{Var}(\hat\beta_1|X) -->
+<!-- \end{align*} -->
+
+
+The variance expressions in \eqref{eq:varbeta0} and \eqref{eq:varbeta1} are not really useful in practice since usually we do not know the variance of the error terms $\sigma^2$. Under the i.i.d. assumption we can replace the unknown $\sigma^2$ by plugging-in reasonable estimates such as 
+\begin{align*}
+s_{ML}^2&=\frac{1}{n}\sum_{i=1}^n \hat\eps_i^2\qquad\text{or}\qquad s_{UB}^2=\frac{1}{n-2}\sum_{i=1}^n \hat\eps_i^2
+\end{align*}
+where $s^2_{UB}$ is the unbiased estimator and $s_{ML}^2$ the maximum likelihood estimator of $\sigma^2$. 
+This leads to the practically relevant variance estimators
+\begin{align*}
+\widehat{\operatorname{Var}}(\hat\beta_0|X)&= \frac{1}{n} s^2\cdot\frac{n^{-1}\sum_{i=1}^n X_i^2}{n^{-1}\sum_{i=1}^n\left(X_i-\bar{X} \right)^2}\\
+\widehat{\operatorname{Var}}(\hat\beta_1|X)&= \frac{1}{n} s^2\cdot\frac{1}{n^{-1}\sum_{i=1}^n\left(X_i-\bar{X} \right)^2},
+\end{align*}
+where $s^2=s_{ML}^2$ or $s^2=s^2_{UB}$.
+
+
+
+### Consistency of the OLS Estimator
+
+Now, we have everything together in order to show that the OLS estimators $\hat\beta_0$ and $\hat\beta_1$ are **consistent** estimators of the unknown parameter values $\beta_0$ and $\beta_1$.  Since the OLS estimator is unbiased, we do not need to bother with a possible bias-problem---provided the underlying assumptions of the simple linear regression model are true.  Moreover, since the variances of the estimators $\hat\beta_0\equiv\hat\beta_{0n}$ and $\hat\beta_1\equiv\hat\beta_{1n}$ converge to zero as $n\to\infty$, we have that the Mean Squared Error (MSE) converges to zero, i.e.
+\begin{align*}
+\operatorname{MSE}(\hat\beta_{jn}|X)&=E\left[(\hat\beta_{jn}-\beta_j)^2|X\right]\\
+&=\underbrace{\left(\operatorname{Bias}(\hat\beta_{jn}|X)\right)^2}_{=0}+\operatorname{Var}(\hat\beta_{jn}|X)\to 0\;\;\text{as}\;\;n\to\infty\;\;\text{for}\;\;j=0,1.
+\end{align*}
+This means that the estimators $\hat\beta_{0n}$ and $\hat\beta_{1n}$ \textbf{converge in mean-square} as $n\to\infty$. Fortunately, mean-square convergence implies \textbf{convergence in probability} or short $\hat\beta_{jn}\to_p\beta_j$ as $n\to\infty$ for $j=0,1$.\footnote{See, for instance,  \url{https://www.statlect.com/asymptotic-theory/relations-among-modes-of-convergence}} The latter result is exactly what we mean by saying that an estimator is (weakly) \textbf{consistent}.
+
+
+
+\paragraph*{Decomposition of the MSE.} Let $\hat\theta$ be some estimator of a univariate parameter $\theta$, then we can decompose the MSE of $\hat\theta$ as following
+\begin{align*}
+\operatorname{MSE}(\hat\theta)
+&=E\left[(\hat\theta-\theta)^2\right]\\
+&=E\left[\left(\big(\hat\theta\underbrace{-E(\hat\theta)\big)+\big(E(\hat\theta)}_{=0}-\theta\big)\right)^2\right]\\
+&=E\left[(\hat\theta-E(\hat\theta))^2+2(\hat\theta-E(\hat\theta))(E(\hat\theta)-\theta)+\overbrace{(E(\hat\theta)-\theta)^2}^{\text{deterministic}}\right]\\
+&=\underbrace{E\left[(\hat\theta-E(\hat\theta))^2\right]}_{=\V(\hat\theta)}+\underbrace{E\left[2(\hat\theta-E(\hat\theta))(E(\hat\theta)-\theta)\right]}_{=0,\;\text{\small since $E(\hat\theta)-E(\hat\theta)=0$}}+\underbrace{(E(\hat\theta)-\theta)^2}_{=(\operatorname{Bias}(\hat\theta))^2}\\
+&=\V(\hat\theta) + \left(\operatorname{Bias}(\hat\theta)\right)^2
+\end{align*}
+
+
+<!-- ## Summary of Assumptions: The Simple Linear Regression Model {#sec:SLRM} -->
+
+<!-- The simple linear regression model can be defined by the following set of assumptions: -->
+
+<!-- \paragraph*{Assumption 1: The Linear Model Assumption.} -->
+<!-- $$ -->
+<!-- Y_i=\beta_0+\beta_1 X_{i}+\varepsilon_i, \quad i=1,\dots,n. -->
+<!-- $$ -->
+<!-- Plainly spoken: \say{the simple linear model is true} (let's hope it is). Moreover, we adopt the classical sampling assumption when analyzing data that was randomly sampled from a large population: -->
+<!-- \begin{itemize} -->
+<!-- \item In case of random designs, we assume that the random variables $(Y_i,X_i)$ are i.i.d. across observations $i=1,\dots,n$.   -->
+<!-- \item In the case of fixed design, we assume that the random variables $Y_i$ are i.i.d. across observations $i=1,\dots,n$.  -->
+<!-- \end{itemize} -->
+
+<!-- \paragraph*{Assumption 2: Strict Exogeneity.} -->
+<!-- $$E(\varepsilon_i|X_i)=0\quad\text{for all }i=1,\dots,n$$ -->
+<!-- The means of the error terms $\varepsilon_1,\dots,\varepsilon_n$ are zero -- no matter the realizations of $X_1,\dots,X_n$.  -->
+
+
+<!-- In case of fixed designs, it is assumed that $E(\eps_i)=0$ for all $i=1,\dots,n$.  -->
+
+<!-- \paragraph*{Assumption 3: No perfect collinearity.} -->
+<!-- $$\rank(X)=2\quad\text{a.s.}$$ -->
+<!-- This assumption demands that the event of $(X_1,\dots,X_n)$ being linearly dependent of the constant vector $(1,\dots,1)$ occurs with a probability equal to zero. (This is the literal translation of the "almost surely (a.s.)" concept.) It implies that $n\geq 2$.  -->
+
+<!-- Note: This assumption is not so critical in the simple linear regression model, but will be a critical assumption for the multiple linear regression model.  -->
+
+<!-- \paragraph*{Assumption 4: Error distribution.} Depending on the context (estimation or hypothesis testing, small $n$ or large $n$) there are different more or less restrictive assumptions.  Some of the most common ones are the following: -->
+
+<!-- \begin{itemize} -->
+<!-- \item\textbf{i.i.d. Normal.} $\varepsilon_i\overset{\operatorname{i.i.d.}}{\sim}\mathcal{N}(0,\sigma)$ for all $i=1,\dots,n$. -->
+<!-- \item\textbf{i.i.d.} The error terms $\varepsilon_1,\dots,\varepsilon_n$ are i.i.d. -->
+<!-- \item \textbf{Spherical errors (\say{Gauss-Markov assumptions}).} The error terms $\varepsilon_1,\dots,\varepsilon_n$ might have different distributions, but their variances and covariances are such that -->
+<!-- \begin{align*} -->
+<!-- E(\varepsilon_i^2|X)        &=\sigma^2>0\quad\text{for all }i=1,\dots,n\\ -->
+<!-- E(\varepsilon_i\varepsilon_j|X)&=0,\quad\quad i\neq j. -->
+<!-- \end{align*} -->
+<!-- \paragraph*{Technical Note.} When we write that $E(\varepsilon_i^2|X)=\sigma^2$, we implicitly assume that the second moment of $\varepsilon_i$ exists and that it is finite.  -->
+<!-- \end{itemize} -->

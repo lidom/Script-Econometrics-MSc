@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Econometrics M.Sc. - 4&nbsp; Small Sample Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./06-Asymptotics.html" rel="next">
+<link href="./04-MultipleReg.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Small Sample Inference</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./Uni_Bonn_Logo.jpeg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Econometrics M.Sc.</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introduction-to-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Review-Prob_n_Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability and Statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-MultipleReg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Small-Sample-Inference.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Small Sample Inference</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Asymptotics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Large Sample Inference</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Instrumental-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Instrumental Variables Regression</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-testmultp" id="toc-sec-testmultp" class="nav-link active" data-scroll-target="#sec-testmultp"><span class="toc-section-number">4.1</span>  Hypothesis Tests about Multiple Parameters (F-Tests)</a>
+  <ul class="collapse">
+  <li><a href="#the-test-statistic-and-its-null-distribution" id="toc-the-test-statistic-and-its-null-distribution" class="nav-link" data-scroll-target="#the-test-statistic-and-its-null-distribution"><span class="toc-section-number">4.1.1</span>  The Test Statistic and its Null Distribution</a></li>
+  </ul></li>
+  <li><a href="#ch:testingsinglep" id="toc-ch:testingsinglep" class="nav-link" data-scroll-target="#ch\:testingsinglep"><span class="toc-section-number">4.2</span>  Tests about One Parameter (t-Tests)</a></li>
+  <li><a href="#testtheory" id="toc-testtheory" class="nav-link" data-scroll-target="#testtheory"><span class="toc-section-number">4.3</span>  Testtheory</a>
+  <ul class="collapse">
+  <li><a href="#significance-level-alpha" id="toc-significance-level-alpha" class="nav-link" data-scroll-target="#significance-level-alpha"><span class="toc-section-number">4.3.1</span>  Significance Level <span class="math inline">\(\alpha\)</span></a></li>
+  <li><a href="#critical-values" id="toc-critical-values" class="nav-link" data-scroll-target="#critical-values"><span class="toc-section-number">4.3.2</span>  Critical Values</a></li>
+  <li><a href="#type-ii-error-and-power" id="toc-type-ii-error-and-power" class="nav-link" data-scroll-target="#type-ii-error-and-power"><span class="toc-section-number">4.3.3</span>  Type II Error and Power</a></li>
+  <li><a href="#p-value" id="toc-p-value" class="nav-link" data-scroll-target="#p-value"><span class="toc-section-number">4.3.4</span>  <span class="math inline">\(p\)</span>-Value</a></li>
+  </ul></li>
+  <li><a href="#sec-CIsmallsample" id="toc-sec-CIsmallsample" class="nav-link" data-scroll-target="#sec-CIsmallsample"><span class="toc-section-number">4.4</span>  Confidence Intervals</a></li>
+  <li><a href="#sec-PSSI" id="toc-sec-PSSI" class="nav-link" data-scroll-target="#sec-PSSI"><span class="toc-section-number">4.5</span>  Practice: Small Sample Inference</a>
+  <ul class="collapse">
+  <li><a href="#normally-distributed-hatbetax" id="toc-normally-distributed-hatbetax" class="nav-link" data-scroll-target="#normally-distributed-hatbetax"><span class="toc-section-number">4.5.1</span>  Normally Distributed <span class="math inline">\(\hat\beta|X\)</span></a></li>
+  <li><a href="#testing-multiple-parameters" id="toc-testing-multiple-parameters" class="nav-link" data-scroll-target="#testing-multiple-parameters"><span class="toc-section-number">4.5.2</span>  Testing Multiple Parameters</a></li>
+  <li><a href="#dualty-of-confidence-intervals-and-hypothesis-tests" id="toc-dualty-of-confidence-intervals-and-hypothesis-tests" class="nav-link" data-scroll-target="#dualty-of-confidence-intervals-and-hypothesis-tests"><span class="toc-section-number">4.5.3</span>  Dualty of Confidence Intervals and Hypothesis Tests</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-SSINF" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Small Sample Inference</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>The content of this chapter is very much inspired by the book by <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>.</p>
+<p>It’s is very hard to say when a sample size <span class="math inline">\(n\)</span> is small. Often people say something like <span class="math inline">\(n&lt;30\)</span> means small samples and <span class="math inline">\(n\geq 30\)</span> large samples, but this is, of course, only a very rough rule of thumb that may fail. The core issue with small sample sizes is that we cannot do inference using the central limit theorem. Thus we need rather strict assumptions on the distribution of the error term, in order to do <strong>exact</strong> inference in finite samples.</p>
+<p><strong>Exact inference:</strong> By “exact inference” we mean correct inference for each sample size <span class="math inline">\(n\)</span>. That is, no asymptotic <span class="math inline">\((n\to\infty)\)</span> arguments will be used.</p>
+<p><strong>Assumptions:</strong> Recall that we, in general, did not impose a complete distributional assumption on <span class="math inline">\(\varepsilon\)</span> in Assumption 4 (<a href="04-MultipleReg.html"><span>Chapter&nbsp;3</span></a>); the i.i.d. normal case in Assumption 4 was only one possible <em>option</em>. However, to do exact inference, the normality Assumption on the error terms is not a mere option, but a <em>necessity</em>. So for this chapter we assume that Assumptions 1-3 from <a href="04-MultipleReg.html"><span>Chapter&nbsp;3</span></a> hold and that additionally the following assumption holds:</p>
+<p><strong>Assumption 4<span class="math inline">\(^\boldsymbol{\ast}\)</span>: Error distribution:</strong> For small sample cases, we assume that the error terms are <strong>i.i.d. normal</strong>, i.e., <span class="math inline">\(\varepsilon_i\overset{\operatorname{i.i.d.}}{\sim}\mathcal{N}(0,\sigma^2)\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> which leads to spherical errors. That is, <span class="math display">\[
+\varepsilon\sim\mathcal{N}\left(0,\sigma^2I_n\right),
+\]</span> where <span class="math inline">\(\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'\)</span>.</p>
+<div id="thm-normalbeta" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.1 (Normality of <span class="math inline">\(\hat\beta\)</span>) </strong></span>Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> we have that <span id="eq-ssnorm"><span class="math display">\[
+\hat\beta_n|X \sim \mathcal{N}\left(\beta,Var(\hat\beta_n|X)\right),
+\tag{4.1}\]</span></span> where <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}\)</span>.</p>
+</div>
+<p>This result follows from noting that <span class="math inline">\(\hat\beta_n=(X'X)^{-1}X'Y=\beta+(X'X)^{-1}X'\varepsilon\)</span> and because <span class="math inline">\((X'X)^{-1}X'\varepsilon\)</span> is just a linear combination of the normally distributed error terms <span class="math inline">\(\varepsilon\)</span> which, therefore, is again normally distributed, conditionally on <span class="math inline">\(X\)</span>.</p>
+<p><strong>Remark:</strong> The subscript <span class="math inline">\(n\)</span> in <span class="math inline">\(\hat\beta_n\)</span> is here only to emphasize that the distribution of <span class="math inline">\(\hat\beta_n\)</span> depends on <span class="math inline">\(n\)</span>; we will, however, often simply write <span class="math inline">\(\hat\beta\)</span>.</p>
+<section id="sec-testmultp" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sec-testmultp"><span class="header-section-number">4.1</span> Hypothesis Tests about Multiple Parameters (F-Tests)</h2>
+<p>Let us consider the following system of <span class="math inline">\(q\)</span>-many null hypotheses: <span class="math display">\[\begin{align*}
+H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta} - \underset{(q\times 1)}{r} = \underset{(q\times 1)}{0},
+\end{align*}\]</span> where the <span class="math inline">\((q \times K)\)</span> matrix <span class="math inline">\(R\)</span> and the <span class="math inline">\(q\)</span>-vector <span class="math inline">\(r=(r_{1},\dots,r_{q})'\)</span> are chosen by the statistician to specify her/his null hypothesis about the unknown true parameter vector <span class="math inline">\(\beta\)</span>. To make sure that there are no redundant equations, it is required that <span class="math inline">\(\operatorname{rank}(R)=q\)</span>.</p>
+<p>We must also specify the alternative against which we are testing the null hypothesis, for instance <span class="math display">\[\begin{equation*}
+H_A: R\beta -r \neq 0
+\end{equation*}\]</span></p>
+<p>The above multiple parameter hypotheses cover also the special case of single parameter hypothesis; for instance, by setting <span class="math inline">\(R=(0,1,0\dots,0)\)</span> and <span class="math inline">\(r=0\)</span> one get’s <span class="math display">\[\begin{equation*}
+\begin{array}{ll}
+H_0:  &amp; \beta_{k}=0 \\
+H_A:  &amp; \beta_{k} \ne 0 \\
+\end{array}
+\end{equation*}\]</span></p>
+<p>Under our assumptions (Assumptions 1 to 4<span class="math inline">\(^\ast\)</span>), we have that <span class="math display">\[
+(R\hat\beta_n-r)|X\sim\mathcal{N}\left(R\beta -r,RVar(\hat\beta_n|X)R'\right).
+\]</span> So, the realizations of <span class="math inline">\((R\hat\beta_n -r)|X\)</span> will scatter around the <em>unknown</em> <span class="math inline">\((R\beta -r)\)</span> in a non-systematical, Gaussian fashion. Therefore, if the null hypothesis is correct (i.e., <span class="math inline">\((R\beta-r)=0\)</span>), the realizations of <span class="math inline">\((R\hat\beta_n-r)|X\)</span> scatter around the <span class="math inline">\(q\)</span>-vector <span class="math inline">\(0\)</span>. If, however, the alternative hypothesis is correct (i.e., <span class="math inline">\((R\beta-r)=a\neq 0\)</span>), the realizations of <span class="math inline">\(R\hat\beta_n-r|X\)</span> scatter around the <span class="math inline">\(q\)</span>-vector <span class="math inline">\(a\neq 0\)</span>. So, under the alternative hypothesis, there will be a systematic location-shift of the <span class="math inline">\(q\)</span>-dimensional random variable <span class="math inline">\(R\hat\beta_n|X\)</span> away from <span class="math inline">\(r\)</span> which we try to detect using statistical hypothesis testing.</p>
+<section id="the-test-statistic-and-its-null-distribution" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="the-test-statistic-and-its-null-distribution"><span class="header-section-number">4.1.1</span> The Test Statistic and its Null Distribution</h3>
+<p>The fact that <span class="math inline">\((R\hat\beta_n-r)\in\mathbb{R}^q\)</span> is a <span class="math inline">\(q\)</span>-dimensional random variable makes it a little bothersome to use as a test-statistic. Fortunately, we can turn <span class="math inline">\((R\hat\beta_n-r)\)</span> into a scalar-valued test statistic using the following quadratic form: <span class="math display">\[\begin{align*}
+W&amp;=\underbrace{(R\hat\beta_n -r)'}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R']^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r)}_{(q\times 1)}
+\end{align*}\]</span> Note that the test statistic <span class="math inline">\(W\)</span> is simply measuring the distance (it’s a weighted L2-distance) between the vectors <span class="math inline">\(R\hat\beta_n\)</span> and <span class="math inline">\(r\)</span>. Moreover, under the null hypothesis (i.e., if the null hypothesis is true), <span class="math inline">\(W\)</span> is just a sum of <span class="math inline">\(q\)</span>-many independent squared standard normal random variables. Therefore, under the null hypothesis, <span class="math inline">\(W\)</span> is <span class="math inline">\(\chi^2(q)\)</span> distributed with <span class="math inline">\(q\)</span> degrees of freedom (see <a href="02-Review-Prob_n_Stats.html#sec-chisqdist"><span>Section&nbsp;2.2.10.3</span></a>), <span class="math display">\[\begin{equation*}
+W=(R\hat\beta_n -r)'[RVar(\hat\beta_n|X)R']^{-1}(R\hat\beta_n-r)\overset{H_0}{\sim} \chi^2(q).
+\end{equation*}\]</span></p>
+<p>Usually, we do not know <span class="math inline">\(Var(\hat\beta_n|X)\)</span> and, therefore, have to estimate this quantity. Unfortunately, in the small sample case, we can only deal with homoscedastic error terms. For truly <em>exact</em> finite sample inference, we need a variance estimator for which we can derive the <em>exact</em> small sample distribution. Therefore, we assume in Assumption 4<span class="math inline">\(^*\)</span> spherical errors (i.e., <span class="math inline">\(Var(\varepsilon|X)=I_n\sigma^2\)</span>) which yield that <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}\)</span>, and where <span class="math inline">\(\sigma^2\)</span> can be estimated by <span class="math display">\[
+s_{UB}^2=(n-K)^{-1}\sum_{i=1}^n\hat\varepsilon_i^2.
+\]</span><br>
+From the normality assumption in Assumption 4<span class="math inline">\(^*\)</span>, it follows then that <span class="math inline">\(\sigma^{-2}(n-K)s_{UB}^2\sim\chi^2(n-K)\)</span>. This then leads to the following exact null distribution of <span id="eq-Ftest"><span class="math display">\[
+F=(R\hat\beta_n -r)'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r)/q\overset{H_0}{\sim} F(q,n-K),
+\tag{4.2}\]</span></span> where <span class="math inline">\(F(q,n-K)\)</span> denotes the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\(q\)</span> numerator and <span class="math inline">\(n-K\)</span> denominator degrees of freedom (see, for instance, Chapter 1 in <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>). By contrast to <span class="math inline">\(W\)</span>, <span class="math inline">\(F\)</span> is now a practically useful test-statistic, and we can use the observed value <span class="math inline">\(F_{\text{obs}}\)</span> to measure the distance of our estimate <span class="math inline">\(R\hat\beta_n\)</span> from value <span class="math inline">\(r\)</span>. Observed values, <span class="math inline">\(F_{\text{obs}}\)</span>, that are “unusually large” under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution <span class="math inline">\(F(q,n-K)\)</span> of <span class="math inline">\(F\)</span> is used to judge what’s “unusually large” under the null hypothesis.</p>
+<p><strong>The F distribution:</strong> The F distribution is a ratio of two <span class="math inline">\(\chi^2\)</span> distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See <a href="02-Review-Prob_n_Stats.html#sec-Fdist"><span>Section&nbsp;2.2.10.6</span></a> for more information on the <span class="math inline">\(F\)</span> distribution.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ch:testingsinglep" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="ch:testingsinglep"><span class="header-section-number">4.2</span> Tests about One Parameter (t-Tests)</h2>
+<p>For testing a hypothesis about only one parameter <span class="math inline">\(\beta_k\)</span>, with <span class="math inline">\(k=1,\dots,K\)</span> <span class="math display">\[\begin{equation*}
+\begin{array}{ll}
+H_0: &amp; \beta_k=r\\
+H_A: &amp; \beta_k\ne r\\
+\end{array}
+\end{equation*}\]</span> the (<span class="math inline">\(q\times K\)</span>=<span class="math inline">\(1\times K\)</span>)-matrix <span class="math inline">\(R\)</span> equals a row-vector of zeros but with a one as the <span class="math inline">\(k\)</span>th element (e.g., for <span class="math inline">\(k=2\)</span>, <span class="math inline">\(R=(0,1,0,\dots,0)\)</span>) such that <span class="math inline">\(F\)</span> in <a href="#eq-Ftest">Equation&nbsp;<span>4.2</span></a> simplifies to <span class="math display">\[
+\frac{\left(\hat{\beta}_k-r\right)^2}{\widehat{Var}(\hat{\beta}_k|X)}\overset{H_0}{\sim}F(1,n-K),
+\]</span> where <span class="math inline">\(\widehat{Var}(\hat{\beta}_k|X)=R(s^2(X'X)^{-1})R'\)</span>. Taking square roots yields <span class="math display">\[
+t=\frac{\hat{\beta}_k-r}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)}\overset{H_0}{\sim}t_{(n-K)}.
+\]</span> Thus the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom is the appropriate reference metric for judging how ``far away’’ our estimates are from the hypothetical parameter value <span class="math inline">\(r\)</span> under the null hypothesis.</p>
+<p><strong>Note:</strong> All commonly used statistical software packages report <span class="math inline">\(t\)</span>-tests testing the null hypothesis <span class="math inline">\(H_0:\beta_k=0\)</span>, i.e., with <span class="math inline">\(r=0\)</span>. This means to test the null hypothesis that <span class="math inline">\(X_k\)</span> has “no (linear) effect” on <span class="math inline">\(Y\)</span>.</p>
+<p>The following plot illustrates that as the degrees of freedom increase, the shape of the <span class="math inline">\(t\)</span> distribution comes closer to that of a standard normal bell curve. Already for <span class="math inline">\(25\)</span> degrees of freedom we find little difference to the standard normal density. In case of small degrees of freedom values, we find the distribution to have heavier tails than a standard normal.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="testtheory" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="testtheory"><span class="header-section-number">4.3</span> Testtheory</h2>
+<section id="significance-level-alpha" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="significance-level-alpha"><span class="header-section-number">4.3.1</span> Significance Level <span class="math inline">\(\alpha\)</span></h3>
+<p>To actually test the null hypothesis (e.g., <span class="math inline">\(H_0\)</span>: <span class="math inline">\(R\beta-r=0\)</span> or <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_k=0\)</span>), we need to have a decision rule on when we will reject or not reject the null hypothesis. This amounts to deciding on a probability with which we are comfortable with committing a Type I error (<span class="math inline">\(\alpha\)</span>-error): rejecting the null hypothesis when it is in fact true. The probability of such a Type I error shall be bounded from above by a (small) significance level <span class="math inline">\(\alpha\)</span>, that is <span class="math display">\[
+P(\text{reject } H_0| H_0\text{ is true})=P(\text{Type I Error})=\alpha
+\]</span> For a given significance level (e.g., <span class="math inline">\(\alpha=0.05\)</span>) and a given alternative hypothesis, we can divide the range of all possible values of the test statistic (i.e., <span class="math inline">\(\mathbb{R}\)</span> since both <span class="math inline">\(t\in\mathbb{R}\)</span> and <span class="math inline">\(F\in\mathbb{R}\)</span>) into a <strong>rejection region</strong> and a <strong>non-rejection region</strong> by using <strong>critical values</strong> derived from the distribution of the test statistic under the null hypothesis. We can do this because the test statistics <span class="math inline">\(t\)</span> and <span class="math inline">\(F\)</span> have known distributions under the null hypothesis (<span class="math inline">\(t\overset{H_0}{\sim}t_{n-K}\)</span> and <span class="math inline">\(F\overset{H_0}{\sim}F(q,n-K)\)</span>). Indeed, under Assumption 4<span class="math inline">\(^\ast\)</span>, we know the <em>exact</em> null distributions for every sample size <span class="math inline">\(n\)</span>. Having decided on the rejection and non-rejection regions, we only need to check whether the observed (obs) sample values <span class="math inline">\(t_{obs}\)</span> or <span class="math inline">\(F_{obs}\)</span> of the test statistics <span class="math inline">\(t\)</span> or <span class="math inline">\(F\)</span> are either in the rejection or in the non-rejection region to either rejection the null hypothesis or not to rejection the null hypothesis.</p>
+<p><strong>Non-conservative versus conservative tests:</strong> Since the test statistics <span class="math inline">\(F\)</span> and <span class="math inline">\(t\)</span> are continuous random variables of which we know the <em>exact</em> distributions (under Assumptions 1-4<span class="math inline">\(^\ast\)</span>), we can find critical values such that <span class="math display">\[
+P(\text{Type I Error})=\alpha
+\]</span> We call such tests “non-conservative” since the probability of a type I error equals the significance level <span class="math inline">\(\alpha\)</span>. Test statistics with <span class="math display">\[
+P(\text{Type I Error})&lt;\alpha
+\]</span> are called <em>conservative</em> test statistics; they lead to valid inferences, but will detect a correct violation of the null hypothesis less often than a non-conservative test. A test statistic with <span class="math inline">\(P(\text{Type I Error})&gt;\alpha\)</span> leads to <em>invalid</em> inferences!</p>
+</section>
+<section id="critical-values" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="critical-values"><span class="header-section-number">4.3.2</span> Critical Values</h3>
+<section id="the-f-test" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="the-f-test">The <span class="math inline">\(F\)</span>-Test</h4>
+<p>The critical value <span class="math inline">\(c_{1-\alpha}&gt;0\)</span> defines the</p>
+<ul>
+<li>rejection region, <span class="math inline">\(]c_{1-\alpha},\infty[\)</span>, and</li>
+<li>non-rejection region, <span class="math inline">\(]0,c_{1-\alpha}]\)</span></li>
+</ul>
+<p>which together divide the range of test-statistic values (here <span class="math inline">\(\mathbb{R}^+\)</span> since <span class="math inline">\(F\in\mathbb{R}^+\)</span>) for a given significance level <span class="math inline">\(\alpha\in(0,1)\)</span>, such that <span class="math display">\[
+P(\text{Type I Error})=P_{H_0}\Big(F\in]c_{1-\alpha},\infty[\Big)=\alpha,
+\]</span> where <span class="math inline">\(c_{1-\alpha}\)</span> is here the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\((q,n-K)\)</span> degrees of freedom, and where <span class="math inline">\(P_{H_0}\)</span> means that we compute the probability under the assumption that <span class="math inline">\(H_0\)</span> is true.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>The rejection region:</strong> The rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we rarely see if the null hypothesis is true (only in at most <span class="math inline">\(\alpha \cdot 100\%\)</span> cases). If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span>, falls in this region, we will reject the null hypothesis and accept Type I error rate of <span class="math inline">\(\alpha\)</span>.</p>
+<p><strong>The non-rejection region:</strong> The non-rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we expect to see (in <span class="math inline">\((1-\alpha) \cdot 100\%\)</span> cases) if the null hypothesis is true. If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span> falls in this region, we will not reject the null hypothesis.</p>
+<p><strong>Caution:</strong> Not rejecting the null hypothesis does not mean that we can conclude that the null hypothesis is true. We only had no sufficiently strong evidence against the null hypothesis. A violation of the null hypothesis, for instance <span class="math inline">\(R\beta -r=a\neq 0\)</span>, may simply be too small (too small <span class="math inline">\(a\)</span> value) to stand out from the estimation errors (measured by the standard error) in <span class="math inline">\(\hat\beta_k\)</span>.</p>
+<p>Fortunately, you do not need to read old-school distribution tables to find the critical value <span class="math inline">\(c_{1-\alpha}\)</span>, but can simply use <code>R</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df1   <span class="ot">&lt;-</span> <span class="dv">9</span>    <span class="co"># numerator df</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df2   <span class="ot">&lt;-</span> <span class="dv">120</span>  <span class="co"># denominator df</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># significance level</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Critical value:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>crit_value <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span><span class="sc">-</span>alpha, <span class="at">df1 =</span> df1, <span class="at">df2 =</span> df2)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>crit_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.958763</code></pre>
+</div>
+</div>
+<p>Changing the significance level from <span class="math inline">\(\alpha=0.05\)</span> to <span class="math inline">\(\alpha=0.01\)</span> makes the critical value <span class="math inline">\(c_{1-\alpha}\)</span> larger and, therefore, the rejection region smaller (fewer Type I errors)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Critical value:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>crit_value <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span><span class="sc">-</span>alpha, <span class="at">df1 =</span> df1, <span class="at">df2 =</span> df2)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>crit_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.558574</code></pre>
+</div>
+</div>
+</section>
+<section id="the-t-test" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="the-t-test">The <span class="math inline">\(t\)</span>-Test</h4>
+<p>In case of the <span class="math inline">\(t\)</span>-test, we need to differentiate between two-sided and one-sided testing.</p>
+<section id="two-sided-t-test" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="two-sided-t-test">Two-Sided <span class="math inline">\(t\)</span>-Test</h5>
+<p>Two-sided hypothesis: <span class="math display">\[\begin{equation*}
+\begin{array}{ll}
+H_0: &amp; \beta_k=r \\
+H_A: &amp; \beta_k\ne r
+\end{array}
+\end{equation*}\]</span> In case of a two-sided <span class="math inline">\(t\)</span>-test, we reject the null hypothesis if the observed realization of the <span class="math inline">\(t\)</span>-test, <span class="math inline">\(t_{obs}\)</span>, is “far away” from zero either by being sufficiently smaller or greater than <span class="math inline">\(r\)</span>. The corresponding two-sided critical values are denoted by <span class="math inline">\(-c_{1-\alpha/2}=c_{\alpha/2}&lt;0\)</span> and <span class="math inline">\(c_{1-\alpha/2}&gt;0\)</span>, where <span class="math inline">\(c_{1-\alpha/2}&gt;0\)</span> is the <span class="math inline">\((1-\alpha/2)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, and where <span class="math inline">\(-c_{1-\alpha/2}=c_{\alpha/2}\)</span> due to the symmetry of the <span class="math inline">\(t\)</span>-distribution. These critical values defines the following rejection and the non-rejection regions <span class="math display">\[\begin{align*}
+\text{rejection region:}&amp;\hspace{1cm}]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[\\
+\text{non-rejection region:}&amp;\hspace{1cm}[c_{\alpha/2},c_{1-\alpha/2}].
+\end{align*}\]</span> For this rejection region it holds true that <span class="math display">\[
+P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[\Big)=\alpha.
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="one-sided-t-test" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="one-sided-t-test">One-Sided <span class="math inline">\(t\)</span>-Test</h5>
+<p>One-sided hypothesis: <span class="math display">\[\begin{equation*}
+\begin{array}{lll}
+&amp;H_0: &amp; \beta_k =r\\
+&amp;H_A: &amp; \beta_k &gt;r\\
+(\text{or}&amp;H_A: &amp; \beta_k&lt; r)
+\end{array}
+\end{equation*}\]</span> In case of a one-sided <span class="math inline">\(t\)</span>-test, we will reject the null if <span class="math inline">\(t_{obs}\)</span> is sufficiently ``far away’’ from zero in the relevant direction of <span class="math inline">\(H_A\)</span>. The corresponding critical value is either <span class="math inline">\(-c_{1-\alpha}\)</span> (<span class="math inline">\(H_A:\beta_k&lt; r\)</span>) or <span class="math inline">\(c_{1-\alpha}\)</span> (<span class="math inline">\(H_A:\beta_k&gt; r\)</span>), where <span class="math inline">\(c_{1-\alpha}\)</span> is the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, and where <span class="math inline">\(-c_{1-\alpha}=c_{\alpha}\)</span> due to the symmetry of the <span class="math inline">\(t\)</span>-distribution. The critical value <span class="math inline">\(c_{1-\alpha}\)</span> defines the following rejection and the non-rejection regions:</p>
+<p>For <span class="math inline">\(H_0: \beta_k=0\)</span> versus<span class="math inline">\(H_A: \beta_k &lt; 0\)</span>: <span class="math display">\[\begin{align*}
+\text{rejection region:}   &amp;\hspace{2cm}]-\infty,c_{\alpha}[ \\
+\text{non-rejection region:}&amp;\hspace{2cm}[c_{\alpha},\infty[
+\end{align*}\]</span> such that <span class="math display">\[
+P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha}[\Big)=\alpha.
+\]</span></p>
+<p>For <span class="math inline">\(H_0: \beta_k=0\)</span>versus<span class="math inline">\(H_A: \beta_k &gt; 0\)</span>: <span class="math display">\[\begin{align*}
+\text{rejection region:}&amp;\hspace{1cm}]c_{1-\alpha}, \infty[\\
+\text{non-rejection region:}&amp;\hspace{1cm}]-\infty,c_{1-\alpha}]
+\end{align*}\]</span> such that <span class="math display">\[
+P(\text{Type I Error})=P_{H_0}\Big(t\in\;]c_{1-\alpha}, \infty[\Big)=\alpha.
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Fortunately, you do not need to read old-school distribution tables to find the critical values, but you can simply use <code>R</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df    <span class="ot">&lt;-</span> <span class="dv">16</span>   <span class="co"># degrees of freedom </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># significance level</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## One-sided critical value (= (1-alpha) quantile):</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>c_oneSided <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="at">p =</span> <span class="dv">1</span><span class="sc">-</span>alpha, <span class="at">df =</span> df)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>c_oneSided</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.745884</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Two-sided critical value (= (1-alpha/2) quantile):</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>c_twoSided <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="at">p =</span> <span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> df)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">## lower critical value</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>c_twoSided</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.119905</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## upper critical value</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>c_twoSided</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.119905</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="type-ii-error-and-power" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="type-ii-error-and-power"><span class="header-section-number">4.3.3</span> Type II Error and Power</h3>
+<p>A Type II error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a Type II error equals one minus the probability of correctly rejecting the null hypothesis (“Power”). For instance, in the case of using the <span class="math inline">\(t\)</span>-test to test the null hypothesis <span class="math inline">\(H_0: \beta_k=0\)</span> versus the one-sided alternative hypothesis <span class="math inline">\(H_A:\beta_k&gt;0\)</span>) we have that <span class="math display">\[\begin{align*}
+P(\text{Type II Error})
+&amp;=P_{H_A}\Big(t\;\in\;\overbrace{]-\infty,c_{1-\alpha}]}^{\text{non-rejection region}}\Big)\\
+&amp;=1-\underbrace{P_{H_A}\Big(t\;\in\;\overbrace{]c_{1-\alpha},\infty[}^{\text{rejection region}}\Big)}_{\text{"Power"}},
+\end{align*}\]</span> where <span class="math inline">\(P_{H_A}\)</span> means that we compute the probability under the assumption that <span class="math inline">\(H_A\)</span> is true.</p>
+<p>There is a trade off between the probability of making a Type I error and the probability of making a Type II error: a lower significance level <span class="math inline">\(\alpha\)</span>, decreases <span class="math inline">\(P(\text{Type I Error})\)</span>, but necessarily increases <span class="math inline">\(P(\text{Type II Error})\)</span> and vice versa. Ideally, we would have some sense of the costs of making each of these errors, and would choose our significance level to minimize these total costs. However, the costs are often difficult to know. Moreover, the probability of making a Type II error is usually impossible to compute, since we usually do not know the true distribution of <span class="math inline">\(\hat\beta_k\)</span> under the alternative.</p>
+<p>For illustration purposes, consider the case of a <span class="math inline">\(t\)</span> test for a one-sided hypothesis <span class="math display">\[\begin{equation*}
+\begin{array}{ll}
+H_0:  &amp; \beta_k=0 \\
+H_A:  &amp; \beta_k&gt;0,
+\end{array}
+\end{equation*}\]</span> where the true (usually unknown) parameter value is <span class="math inline">\(\beta_k=3\)</span> and where the true (usually also unknown) standard error is <span class="math inline">\(\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span>. Only with the knowledge about these usually unknown quantities, we can derive the distribution of the <span class="math inline">\(t\)</span>-test statistic under the alternative hypothesis. The distribution of the <span class="math inline">\(t\)</span>-test statistic becomes here a standard normal distribution, since we assume <span class="math inline">\(\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span> to be a known <strong>deterministic</strong> quantity. (This completely unrealistic assumption is only used for illustrative purposes; namely to explain the probability of making a Type II error and the power (i.e.&nbsp;<span class="math inline">\(1-P(\text{Type II Error})\)</span>).)</p>
+<p>Under this setup, the distribution “under the null hypothesis” (i.e., if <span class="math inline">\(\beta_k=0\)</span> were true) is: <span class="math display">\[\begin{align*}
+t\big|X=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\Big|X\overset{H_0}{\sim}\mathcal{N}(0,1)
+\end{align*}\]</span> Likewise, the distribution “under the alternative hypothesis” (i.e., for the actual <span class="math inline">\(\beta_k=3\)</span>) is: <span class="math display">\[\begin{align*}
+t
+=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
+&amp;=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
+\Rightarrow\quad&amp;\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\substack{\sim \mathcal{N}(0,1)\\(\text{conditionally on $X$})}}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\Big|X\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
+\end{align*}\]</span></p>
+<p>So, the mean-shift <span class="math inline">\(\Delta\)</span> depends on the value of <span class="math inline">\(\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}\)</span> (here <span class="math inline">\(1.5\)</span>) and the difference between the actual parameter value (<span class="math inline">\(\beta_k=3\)</span>) and the hypothetical parameter value under the null-hypothesis (here <span class="math inline">\(0\)</span>). The following Graphic illustrates the probability of a type II error and the power for the case where <span class="math inline">\(\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span> such that <span class="math inline">\(\Delta=3/1.5=2\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="p-value" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="p-value"><span class="header-section-number">4.3.4</span> <span class="math inline">\(p\)</span>-Value</h3>
+<p>The <span class="math inline">\(p\)</span>-value of a test statistic is the significance level we would obtain if we took the sample value of the observed test statistic, <span class="math inline">\(F_{\text{obs}}\)</span> or <span class="math inline">\(t_{\text{obs}},\)</span> as the border between the rejection and non-rejection regions.</p>
+<ul>
+<li><strong><span class="math inline">\(F\)</span>-test:</strong> <span class="math inline">\(p=P_{H_0}(F\geq F_{\text{obs}})\)</span></li>
+<li><strong><span class="math inline">\(t\)</span>-test:</strong> (<span class="math inline">\(H_A:\beta_k\neq r\)</span>)] <span class="math inline">\(p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}\)</span></li>
+<li><strong><span class="math inline">\(t\)</span>-test:</strong> (<span class="math inline">\(H_A:\beta_k&gt; r\)</span>)] <span class="math inline">\(p=P_{H_0}(t\geq t_{\text{obs}})\)</span></li>
+<li><strong><span class="math inline">\(t\)</span>-test:</strong> (<span class="math inline">\(H_A:\beta_k&lt; r\)</span>)] <span class="math inline">\(p=P_{H_0}(t\leq t_{\text{obs}})\)</span></li>
+</ul>
+<p>Put another way, the <span class="math inline">\(p\)</span>-value is the greatest significance level for which we just fail to reject the null. Therefore, the <span class="math inline">\(p\)</span>-value is sometimes also called the marginal significance value.</p>
+<p>If the <span class="math inline">\(p\)</span>-value is strictly smaller than the chosen significance level <span class="math inline">\(\alpha\)</span>, we reject the null hypothesis.</p>
+</section>
+</section>
+<section id="sec-CIsmallsample" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="sec-CIsmallsample"><span class="header-section-number">4.4</span> Confidence Intervals</h2>
+<p>We define a two-sided <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> percent confidence interval for the <em>deterministic</em> (unknown) true <span class="math inline">\(\beta_k\)</span> as the <strong>random interval</strong> <span class="math inline">\(\operatorname{CI}_{1-\alpha}\)</span> for which <span class="math display">\[
+P\Big(\beta_k\in\operatorname{CI}_{1-\alpha}\Big)\geq 1-\alpha.
+\]</span> Derivation of the random interval <span class="math inline">\(\operatorname{CI}_{1-\alpha}\)</span>:</p>
+<p>Observe that <span class="math display">\[
+\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\sim t_{(n-K)}
+\]</span> Therefore, <span class="math display">\[\begin{align*}
+P\left(-t_{1-\alpha/2,n-K}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq t_{1-\alpha/2,n-K}\right)=1-\alpha,
+\end{align*}\]</span> where <span class="math inline">\(t_{1-\alpha/2,n-K}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom. Next, we can do the following equivalent transformations <span class="math display">\[\begin{align*}
+P\left(-t_{1-\alpha/2,n-K}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq t_{1-\alpha/2,n-K}\right)&amp;=1-\alpha\\
+\Leftrightarrow P\left(\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\leq \beta_k\leq\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right)&amp;=1-\alpha\\
+\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]}_{=:\operatorname{CI}_{1-\alpha}}\right)&amp;=1-\alpha
+\end{align*}\]</span> That is, the random interval <span class="math display">\[
+\operatorname{CI}_{1-\alpha}=\left[\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
+\]</span> is our <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> percent confidence interval for <span class="math inline">\(\beta_k\)</span>.</p>
+<p><strong>Interpretation:</strong> The random interval <span class="math inline">\(\operatorname{CI}_{1-\alpha}\)</span> for <span class="math inline">\(\beta_k\)</span> contains the true parameter value <span class="math inline">\(\beta_k\)</span> in <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> cases of its realizations when considering infinitely many realizations.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Unfortunately, this interpretation is not a statement about a single <span class="math inline">\(\operatorname{CI}_{1-\alpha}\)</span> computed for given data. A given, realized <span class="math inline">\(\operatorname{CI}_{1-\alpha}\)</span> will either contain the true parameter <span class="math inline">\(\beta_k\)</span> or not, and usually we do not know the answer. So, the problem with <span class="math inline">\(\operatorname{CI}\)</span>s is that they are quite hard to interpret. However, they are very well suited for a visual comparison of the estimation uncertainties in different parameter estimators, for instance, across <span class="math inline">\(\hat\beta_k\)</span>, <span class="math inline">\(k=1,\dots,K\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Meme_CI.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Try again!</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="sec-PSSI" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="sec-PSSI"><span class="header-section-number">4.5</span> Practice: Small Sample Inference</h2>
+<p>Let’s apply the above exact inference methods using <code>R</code>. First, we program a function <code>myDataGenerator()</code> which allows us to generate data from the following model, i.e., from the following fully specified data generating process: <span class="math display">\[\begin{align*}
+Y_i &amp;=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
+\beta &amp;=(\beta_1,\beta_2,\beta_3)'=(2,3,4)'\\
+X_{i2}&amp;\sim U[2,10]\\
+X_{i3}&amp;\sim U[12,22]\\
+\varepsilon_i&amp;\sim\mathcal{N}(0,3^2),
+\end{align*}\]</span> where <span class="math inline">\((Y_i,X_i)\)</span> is assumed i.i.d. across <span class="math inline">\(i=1,\dots,n\)</span>. Below, in the codes, I use <span class="math inline">\(n=10\)</span>, but, of course, other sample sizes can be considered too. Under the assumptions of this chapter, we do exact inference that is specific to any given sample size <span class="math inline">\(n\)</span>.</p>
+<p>The below function <code>myDataGenerator()</code> allows to sample new realizations of <span class="math inline">\(Y_1,\dots,Y_n\)</span> conditionally on a given data matrix <span class="math inline">\(X\)</span>. Moreover, you can provide your own values for the sample size <span class="math inline">\(n\)</span> and for the parameter vector <span class="math inline">\(\beta=(\beta_1,\beta_2,\beta_3)'\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Function to generate artificial data</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## If X=NULL: new X variables are generated</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">## If the user gives X variables, </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">## the sampling of new Y variables is conditionally on </span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">## the given X variables.</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>myDataGenerator <span class="ot">&lt;-</span> <span class="cf">function</span>(n, beta, <span class="at">X=</span><span class="cn">NULL</span>, <span class="at">sigma=</span><span class="dv">3</span>){</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(X)){</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    X   <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>, n), </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">runif</span>(n, <span class="dv">2</span>, <span class="dv">10</span>), </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">runif</span>(n,<span class="dv">12</span>, <span class="dv">22</span>))</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  eps  <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span>sigma)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  Y    <span class="ot">&lt;-</span> X <span class="sc">%*%</span> beta <span class="sc">+</span> eps</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"Y"</span><span class="ot">=</span>Y, </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"X_1"</span><span class="ot">=</span>X[,<span class="dv">1</span>], <span class="st">"X_2"</span><span class="ot">=</span>X[,<span class="dv">2</span>], <span class="st">"X_3"</span><span class="ot">=</span>X[,<span class="dv">3</span>])</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="do">##</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="do">## Define a true beta vector</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>beta_true <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Check:</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate Y and X data </span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>test_data     <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">beta=</span>beta_true)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate new Y data conditionally on X</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>X_cond <span class="ot">&lt;-</span> <span class="fu">cbind</span>(test_data<span class="sc">$</span>X_1,</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>                test_data<span class="sc">$</span>X_2,</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>                test_data<span class="sc">$</span>X_3)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>test_data_new <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> <span class="dv">10</span>, </span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">beta =</span> beta_true, </span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">X    =</span> X_cond)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="do">## compare</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data,     <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, new X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Y X_1  X_2   X_3
+1 105.59   1 7.81 20.99
+2  97.84   1 6.64 20.25
+3 105.23   1 8.42 19.58</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data_new, <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, conditionally on X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Y X_1  X_2   X_3
+1 113.97   1 7.81 20.99
+2 104.57   1 6.64 20.25
+3 108.07   1 8.42 19.58</code></pre>
+</div>
+</div>
+<section id="normally-distributed-hatbetax" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="normally-distributed-hatbetax"><span class="header-section-number">4.5.1</span> Normally Distributed <span class="math inline">\(\hat\beta|X\)</span></h3>
+<p>The above data generating process fulfills our regulatory assumptions Assumption 1-4<span class="math inline">\(^*\)</span>. So, by theory, the estimators <span class="math inline">\(\hat\beta_k|X\)</span> should be normal distributed conditionally on <span class="math inline">\(X\)</span>, <span class="math display">\[
+\hat\beta_k|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{kk}),
+\]</span> where <span class="math inline">\([(X'X)^{-1}]_{kk}\)</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\((X'X)^{-1}\)</span>. Let’s check the distribution by means of a Monte Carlo simulation for the case of <span class="math inline">\(\hat\beta_2|X\)</span> with a small sample size of <span class="math inline">\(n=10\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>n         <span class="ot">&lt;-</span> <span class="dv">10</span>       <span class="co"># a small sample size</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>beta_true <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>) <span class="co"># true data vector</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>sigma     <span class="ot">&lt;-</span> <span class="dv">3</span>        <span class="co"># true standard deviation of the error term (var=sigma^2)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Let's generate a data set from our data generating process</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>mydata  <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n =</span> n, <span class="at">beta=</span>beta_true)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>X_cond  <span class="ot">&lt;-</span> <span class="fu">cbind</span>(mydata<span class="sc">$</span>X_1, mydata<span class="sc">$</span>X_2, mydata<span class="sc">$</span>X_3)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="do">## True mean and variance of the true normal distribution </span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="do">## of beta_hat_2|X=X_cond:</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># true mean</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>beta_true_2     <span class="ot">&lt;-</span> beta_true[<span class="dv">2</span>] </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># true variance</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>var_true_beta_2 <span class="ot">&lt;-</span> sigma<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">diag</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X_cond) <span class="sc">%*%</span> X_cond))[<span class="dv">2</span>]</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Let's generate 5000 realizations from beta_hat_2 </span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="do">## conditionally on X=X_cond and check whether the empirical  </span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="do">## distribution of these 5000 realizations is close </span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="do">## to the true normal distribution of beta_hat_2:</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>rep        <span class="ot">&lt;-</span> <span class="dv">5000</span> <span class="co"># MC replications</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>beta_hat_2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times=</span>rep)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rep){</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> n, </span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>                               <span class="at">beta =</span> beta_true, </span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>                               <span class="at">X    =</span> X_cond)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    lm_obj        <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    beta_hat_2[r] <span class="ot">&lt;-</span> <span class="fu">coef</span>(lm_obj)[<span class="dv">2</span>]</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="do">## True beta_2 versus average of beta_hat_2 estimates</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(beta_true_2, <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat_2), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.0000 3.0091</code></pre>
+</div>
+</div>
+<p>The values are very close to each other, thus, on average the estimation results are basically equal to the true parameter value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">## True variance of beta_hat_2 versus </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical variance of beta_hat_2 estimates</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">round</span>(var_true_beta_2, <span class="dv">4</span>), <span class="fu">round</span>(<span class="fu">var</span>(beta_hat_2), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4160 0.4235</code></pre>
+</div>
+</div>
+<p>The values are very close to each other, thus the theoretical variance describes very well the actual variance of <span class="math inline">\(\hat\beta_2|X\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True normal distribution of beta_hat_2 versus </span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical density of beta_hat_2 estimates</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"scales"</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="at">expr =</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> beta_true_2, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sd=</span><span class="fu">sqrt</span>(var_true_beta_2)), </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>, <span class="at">col=</span><span class="fu">gray</span>(.<span class="dv">2</span>), <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim=</span><span class="fu">range</span>(beta_hat_2), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.1</span>))</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(beta_hat_2, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">35</span>), <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(beta_hat_2, <span class="at">bw =</span> <span class="fu">bw.SJ</span>(beta_hat_2)), </span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">5</span>), <span class="at">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="cn">NA</span>,<span class="dv">1</span>), <span class="at">lwd=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">3</span>), <span class="at">pch=</span><span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">15</span>,<span class="cn">NA</span>), <span class="at">pt.cex=</span><span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">2</span>,<span class="cn">NA</span>),</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="fu">gray</span>(.<span class="dv">2</span>), <span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">45</span>), <span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">5</span>)), <span class="at">bty=</span><span class="st">"n"</span>, <span class="at">legend=</span> </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">expression</span>(</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Theoretical Gaussian Density of"</span><span class="sc">~</span><span class="fu">hat</span>(beta)[<span class="dv">2</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X), </span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expression</span>(</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Histogram based on the 5000 MC realizations of"</span><span class="sc">~</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hat</span>(beta)[<span class="dv">2</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X), </span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expression</span>(</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Nonparametric Density Estimation based on the 5000 MC realizations of"</span><span class="sc">~</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hat</span>(beta)[<span class="dv">2</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Great! The nonparametric density estimation (estimated via <code>density()</code>) and the histogram computed based on the 5000 simulated realizations of <span class="math inline">\(\hat\beta_2|X\)</span> are indicating that <span class="math inline">\(\hat\beta_2|X\)</span> is really normally distributed as described by our theoretical result in Equation <a href="#eq-ssnorm">Equation&nbsp;<span>4.1</span></a>.</p>
+<p>However, what would happen if we would sample <em>unconditionally</em> on <span class="math inline">\(X\)</span>? How does the distribution of <span class="math inline">\(\hat\beta_2\)</span> would then look like?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1110</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Let's generate 5000 realizations from beta_hat_2 </span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="do">## WITHOUT conditioning on X</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>beta_hat_2_uncond <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times=</span>rep)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rep){</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> n, </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">beta =</span> beta_true)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    lm_obj               <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    beta_hat_2_uncond[r] <span class="ot">&lt;-</span> <span class="fu">coef</span>(lm_obj)[<span class="dv">2</span>]</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare:</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="do">## True beta_2 versus average of beta_hat_2 estimates</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(beta_true_2, <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat_2_uncond), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.0000 3.0078</code></pre>
+</div>
+</div>
+<p>OK, at least on average the point point estimates are basically equal to the true parameter value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare: </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">## True variance of beta_hat_2 versus </span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical variance of beta_hat_2 estimates</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">round</span>(var_true_beta_2, <span class="dv">4</span>), <span class="fu">round</span>(<span class="fu">var</span>(beta_hat_2_uncond), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4160 0.2478</code></pre>
+</div>
+</div>
+<p>Ouch! The theoretical variance of <span class="math inline">\(\hat\beta_2|X\)</span> is quite different from the actual variance of <span class="math inline">\(\hat\beta_2\)</span> (i.e.&nbsp;simulated without conditioning in <span class="math inline">\(X\)</span>). That is, we cannot simply neglect that the variance of <span class="math inline">\(\hat\beta_2\)</span> depends on the observed realization of <span class="math inline">\(X\)</span> in small samples.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Plotting the theoretical distribution of beta_hat_2|X </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="do">## versus the simulated distribution</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="at">expr =</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> beta_true_2, <span class="at">sd=</span><span class="fu">sqrt</span>(var_true_beta_2)), </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>, <span class="at">col=</span><span class="fu">gray</span>(.<span class="dv">2</span>), <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim=</span><span class="fu">range</span>(beta_hat_2_uncond), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.5</span>))</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(beta_hat_2_uncond, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">35</span>), <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(beta_hat_2_uncond, <span class="at">bw=</span><span class="fu">bw.SJ</span>(beta_hat_2_uncond)), </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">5</span>), <span class="at">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="cn">NA</span>,<span class="dv">1</span>), <span class="at">lwd=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">3</span>), <span class="at">pch=</span><span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">15</span>,<span class="cn">NA</span>), <span class="at">pt.cex=</span><span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">2</span>,<span class="cn">NA</span>),</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="fu">gray</span>(.<span class="dv">2</span>), <span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">45</span>), <span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">5</span>)), <span class="at">bty=</span><span class="st">"n"</span>, <span class="at">legend=</span> </span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">expression</span>(</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Theoretical Gaussian Density of"</span><span class="sc">~</span><span class="fu">hat</span>(beta)[<span class="dv">2</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X), </span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="fu">expression</span>(</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Histogram based on the 5000 MC realizations of"</span><span class="sc">~</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hat</span>(beta)[<span class="dv">2</span>]), </span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="fu">expression</span>(<span class="st">"Nonparam. Density Estimation based on the 5000 MC realizations of"</span><span class="sc">~</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hat</span>(beta)[<span class="dv">2</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Not so good. The theoretical distribution of <span class="math inline">\(\hat\beta_2|X\)</span> has much fatter tails than the simulated distribution of <span class="math inline">\(\hat\beta_2\)</span> (i.e.&nbsp;simulated without conditioning in <span class="math inline">\(X\)</span>). That is, we cannot simply neglect that the distribution of <span class="math inline">\(\hat\beta_2\)</span> depends on the observed realization of <span class="math inline">\(X\)</span> in small samples. In large sample, however, the effect of a given realization <span class="math inline">\(X\)</span> is (fortunately) negligible, as we will see in <a href="06-Asymptotics.html"><span>Chapter&nbsp;5</span></a>.</p>
+</section>
+<section id="testing-multiple-parameters" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="testing-multiple-parameters"><span class="header-section-number">4.5.2</span> Testing Multiple Parameters</h3>
+<p>In the following, we do inference about multiple parameters. We test <span class="math display">\[\begin{align*}
+H_0:\;&amp;\beta_2=3\quad\text{and}\quad\beta_3=4\\
+\text{versus}\quad H_A:\;&amp;\beta_2\neq 3\quad\text{and/or}\quad\beta_3\neq 4.
+\end{align*}\]</span> Or equivalently <span class="math display">\[\begin{align*}
+H_0:\;&amp;R\beta -r = 0 \\
+H_A:\;&amp;R\beta -r \neq 0,
+\end{align*}\]</span> where <span class="math display">\[
+R=\left(
+\begin{matrix}
+0&amp;1&amp;0\\
+0&amp;0&amp;1\\
+\end{matrix}\right)\quad\text{ and }\quad
+r=\left(\begin{matrix}3\\4\\\end{matrix}\right).
+\]</span> The following <code>R</code> code can be used to test this hypothesis:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">"car"</span>)) <span class="co"># for linearHyothesis()</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?linearHypothesis</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the linear regression model parameters</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>lm_obj <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> mydata)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Option 1:</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">linearHypothesis</span>(<span class="at">model =</span> lm_obj, </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">hypothesis.matrix =</span> <span class="fu">c</span>(<span class="st">"X_2=3"</span>, <span class="st">"X_3=4"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+X_2 = 3
+X_3 = 4
+
+Model 1: restricted model
+Model 2: Y ~ X_2 + X_3
+
+  Res.Df    RSS Df Sum of Sq      F  Pr(&gt;F)  
+1      9 87.285                              
+2      7 37.599  2    49.686 4.6252 0.05246 .
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>The <span class="math inline">\(p\)</span>-value is larger than the chosen significance level <span class="math inline">\(\alpha=0.05\)</span> thus we cannot reject the null hypothesis.</p>
+<p>The following codes gives an alternative, equivalent way to compute the test result:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option 2:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">linearHypothesis</span>(<span class="at">model =</span> lm_obj, </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">hypothesis.matrix =</span> R, </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rhs =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+X_2 = 3
+X_3 = 4
+
+Model 1: restricted model
+Model 2: Y ~ X_2 + X_3
+
+  Res.Df    RSS Df Sum of Sq      F  Pr(&gt;F)  
+1      9 87.285                              
+2      7 37.599  2    49.686 4.6252 0.05246 .
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Again, we cannot reject the null hypothesis at a significance level of, for instance, <span class="math inline">\(\alpha=0.05\)</span> since we actually test the true null hypothesis. However, in repeated samples we should nevertheless observe <span class="math inline">\(\alpha\cdot 100\%\)</span> type I errors (false rejections of <span class="math inline">\(H_0\)</span>). Let’s check this using the following Monte Carlo simulation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Let's generate 5000 F-test decisions and check </span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="do">## whether the empirical rate of type I errors is </span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="do">## close to the theoretical significance level. </span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>rep             <span class="ot">&lt;-</span> <span class="dv">5000</span> <span class="co"># MC replications</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>F_test_pvalues  <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times=</span>rep)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rep){</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="do">## generate new MC_data conditionally on X_cond</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> n, </span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>                               <span class="at">beta =</span> beta_true, </span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>                               <span class="at">X    =</span> X_cond)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    lm_obj            <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="do">## save the p-value</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">linearHypothesis</span>(lm_obj, </span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">c</span>(<span class="st">"X_2=3"</span>, <span class="st">"X_3=4"</span>))<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">2</span>]</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    F_test_pvalues[r] <span class="ot">&lt;-</span> p</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>signif_level <span class="ot">&lt;-</span>  <span class="fl">0.05</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>rejections   <span class="ot">&lt;-</span> F_test_pvalues[F_test_pvalues <span class="sc">&lt;</span> signif_level]</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(rejections)<span class="sc">/</span>rep, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.047</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>signif_level <span class="ot">&lt;-</span>  <span class="fl">0.01</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>rejections   <span class="ot">&lt;-</span> F_test_pvalues[F_test_pvalues <span class="sc">&lt;</span> signif_level]</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(rejections)<span class="sc">/</span>rep, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0092</code></pre>
+</div>
+</div>
+<p>Note that this is actually a very strong result. First, it means that we correctly control for the type I error rate since the type I error rate is not larger than the chosen significance level <span class="math inline">\(\alpha\)</span>. Second, it means that the test is not conservative (i.e.&nbsp;very efficient) since the empirical type I error rate is really close to the chosen significance level <span class="math inline">\(\alpha\)</span>. (In fact, if we would increase the number of Monte Carlo repetitions, the empirical type I error rate would converge to the selected significance level <span class="math inline">\(\alpha\)</span> due to the law of large numbers.)</p>
+<p>Next, we check how well the <span class="math inline">\(F\)</span> test detects certain violations of the null hypothesis. We do this by using the same data generating process, but by testing the following incorrect null hypothesis: <span class="math display">\[\begin{align*}
+H_0:\;&amp;\beta_2=4\quad\text{and}\quad\beta_3=4\\
+H_A:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
+\end{align*}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">321</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>rep             <span class="ot">&lt;-</span> <span class="dv">5000</span> <span class="co"># MC replications</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>F_test_pvalues  <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times=</span>rep)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rep){</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## generate new MC_data conditionally on X_cond</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> n, </span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">beta =</span> beta_true, </span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>                               <span class="at">X    =</span> X_cond)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    lm_obj            <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="do">## save p-values of all rep-many tests</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    F_test_pvalues[r] <span class="ot">&lt;-</span> <span class="fu">linearHypothesis</span>(lm_obj,</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">c</span>(<span class="st">"X_2=4"</span>,<span class="st">"X_3=4"</span>))<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">2</span>]</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>signif_level <span class="ot">&lt;-</span>  <span class="fl">0.05</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>rejections   <span class="ot">&lt;-</span> F_test_pvalues[F_test_pvalues <span class="sc">&lt;</span> signif_level]</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(rejections)<span class="sc">/</span>rep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3924</code></pre>
+</div>
+</div>
+<p>Indeed, we can now reject the (here false) null hypothesis in approximately <span class="math inline">\(39\%\)</span> of all resamplings from the true data generating process. <strong>Caution:</strong> This also means that we are not able to “see” the violation of the null hypothesis in <span class="math inline">\(100\%-39\%=62\%\)</span> of cases. Therefore, we can never use an insignificant test result (p-value<span class="math inline">\(\geq\alpha\)</span>) as a justification to accept the null hypothesis. Obviously, there are Type II error events, but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control the Type II error rate. We can only control the Type I error rate by using a small significance level <span class="math inline">\(\alpha\)</span>.</p>
+<p>Moreover, note that the <span class="math inline">\(F\)</span> test is not informative about which part of the null hypothesis (<span class="math inline">\(\beta_2=4\)</span> and/or <span class="math inline">\(\beta_3=4\)</span>) is violated – we only get the information that at least one of the multiple parameter hypotheses is violated:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">linearHypothesis</span>(lm_obj, <span class="fu">c</span>(<span class="st">"X_2=4"</span>, <span class="st">"X_3=4"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+X_2 = 4
+X_3 = 4
+
+Model 1: restricted model
+Model 2: Y ~ X_2 + X_3
+
+  Res.Df     RSS Df Sum of Sq      F   Pr(&gt;F)   
+1      9 141.245                                
+2      7  32.572  2    108.67 11.677 0.005889 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="dualty-of-confidence-intervals-and-hypothesis-tests" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="dualty-of-confidence-intervals-and-hypothesis-tests"><span class="header-section-number">4.5.3</span> Dualty of Confidence Intervals and Hypothesis Tests</h3>
+<p>Confidence intervals can be computed using <code>R</code> as following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>signif_level <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 95% CI for beta_2</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_obj, <span class="at">parm =</span> <span class="st">"X_2"</span>, <span class="at">level =</span> <span class="dv">1</span> <span class="sc">-</span> signif_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       2.5 %   97.5 %
+X_2 1.370315 3.563536</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 95% CI for beta_3 </span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_obj, <span class="at">parm =</span> <span class="st">"X_3"</span>, <span class="at">level =</span> <span class="dv">1</span> <span class="sc">-</span> signif_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       2.5 %   97.5 %
+X_3 3.195389 4.695134</code></pre>
+</div>
+</div>
+<p>We can use these two-sided confidence intervals to do hypothesis tests. For instance, when testing the null hypothesis <span class="math display">\[\begin{align*}
+H_0:&amp;\beta_3=4\\
+\text{versus}\quad H_A: &amp;\beta_3\neq 4
+\end{align*}\]</span> we can check whether the confidence interval <span class="math inline">\(\operatorname{CI}_{1-\alpha}\)</span> contains the hypothetical value <span class="math inline">\(4\)</span> or not. In case of <span class="math inline">\(4\in \operatorname{CI}_{1-\alpha}\)</span>, we cannot reject the null hypothesis. In case of <span class="math inline">\(4\not\in \operatorname{CI}_{1-\alpha}\)</span>, we reject the null hypothesis.</p>
+<p>If the Assumption 1-4<span class="math inline">\(^\ast\)</span> hold true, then <span class="math inline">\(\operatorname{CI}_{1-\alpha}\)</span> is an exact confidence interval. That is, under the null hypothesis, it falsely rejects the null hypothesis in only <span class="math inline">\(\alpha\cdot 100\%\)</span> of resamplings. Let’s check this in the following <code>R</code> code:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Let's generate 1000 CIs </span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>signif_level <span class="ot">&lt;-</span>  <span class="fl">0.05</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>rep          <span class="ot">&lt;-</span> <span class="dv">5000</span> <span class="co"># MC replications</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>confint_m    <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span>rep)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rep){</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="do">## generate new MC_data conditionally on X_cond</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> n, </span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>                               <span class="at">beta =</span> beta_true, </span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>                               <span class="at">X    =</span> X_cond)</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    lm_obj            <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="do">## save the p-value</span></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    CI <span class="ot">&lt;-</span> <span class="fu">confint</span>(lm_obj, <span class="at">parm=</span><span class="st">"X_2"</span>, <span class="at">level=</span><span class="dv">1</span><span class="sc">-</span>signif_level)</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>    confint_m[,r] <span class="ot">&lt;-</span> CI</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>inside_CI  <span class="ot">&lt;-</span> confint_m[<span class="dv">1</span>,] <span class="sc">&lt;=</span> beta_true_2 <span class="sc">&amp;</span> </span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>                beta_true_2 <span class="sc">&lt;=</span> confint_m[<span class="dv">2</span>,]</span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="do">## CI-lower, CI-upper, beta_true_2 inside?</span></span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">cbind</span>(<span class="fu">t</span>(confint_m), inside_CI))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        inside_CI
+[1,] 0.8555396 3.639738         1
+[2,] 0.9143542 3.270731         1
+[3,] 1.9336526 4.984167         1
+[4,] 1.9985874 3.812695         1
+[5,] 3.0108642 5.621791         0
+[6,] 2.0967675 4.716398         1</code></pre>
+</div>
+</div>
+<p>The following code computes the relative frequency of confidence intervals <strong>not containing</strong> the true parameter value <span class="math inline">\((\beta_2=3)\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(inside_CI[inside_CI <span class="sc">==</span> <span class="cn">FALSE</span>])<span class="sc">/</span>rep, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0516</code></pre>
+</div>
+</div>
+<p>That’s good! The relative frequency is basically equal to the chosen <span class="math inline">\(\alpha=0.05\)</span> value.</p>
+<p>Next, we visualize a sample of <code>nCIs &lt;- 100</code> realizations of the random confidence interval:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>nCIs <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="dv">0</span>,<span class="at">y=</span><span class="dv">0</span>,<span class="at">type=</span><span class="st">"n"</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,nCIs),<span class="at">ylim=</span><span class="fu">range</span>(confint_m[,<span class="dv">1</span><span class="sc">:</span>nCIs]),</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">""</span>, <span class="at">xlab=</span><span class="st">"Resamplings"</span>, <span class="at">main=</span><span class="st">"Confidence Intervals"</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nCIs){</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(inside_CI[r]<span class="sc">==</span><span class="cn">TRUE</span>){</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(r,r), <span class="at">y=</span><span class="fu">c</span>(confint_m[<span class="dv">1</span>,r], confint_m[<span class="dv">2</span>,r]), </span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="fu">gray</span>(.<span class="dv">5</span>,.<span class="dv">5</span>))</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span>{</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lines</span>(<span class="at">x=</span><span class="fu">c</span>(r,r), <span class="at">y=</span><span class="fu">c</span>(confint_m[<span class="dv">1</span>,r], confint_m[<span class="dv">2</span>,r]), </span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"darkred"</span>)</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">4</span>, <span class="at">at=</span>beta_true_2, <span class="at">labels =</span> <span class="fu">expression</span>(beta[<span class="dv">2</span>]))</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>beta_true_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As expected, only about <span class="math inline">\(\alpha\cdot 100\%=5\%\)</span> of all confidence intervals do not contain the true parameter value <span class="math inline">\(\beta_2=3\)</span>, but about <span class="math inline">\((1-\alpha)\cdot 100\%=95\%\)</span> of all confidence intervals contain the true parameter value <span class="math inline">\(\beta_2=3\)</span>.</p>
+</section>
+</section>
+<section id="references" class="level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Hayashi2000" class="csl-entry" role="doc-biblioentry">
+Hayashi, Fumio. 2000. <em>Econometrics</em>. Princeton University Press.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Take a look at this visualization: <a href="https://rpsychologist.com/d3/ci/">https://rpsychologist.com/d3/ci/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04-MultipleReg.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./06-Asymptotics.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Large Sample Inference</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

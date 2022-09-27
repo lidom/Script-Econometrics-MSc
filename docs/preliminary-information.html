@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Econometrics (M.Sc.)</title>
+  <meta name="description" content="Econometrics (M.Sc.)" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Econometrics (M.Sc.)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/images/mylogo.png" />
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Econometrics (M.Sc.)" />
+  
+  
+  <meta name="twitter:image" content="/images/mylogo.png" />
+
+<meta name="author" content="Prof. Dr. Dominik Liebl" />
+
+
+<meta name="date" content="2021-10-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="further-data-objects.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="preliminary-information.html"><a href="preliminary-information.html"><i class="fa fa-check"></i>Preliminary Information</a>
+<ul>
+<li class="chapter" data-level="" data-path="preliminary-information.html"><a href="preliminary-information.html#organization-of-the-course"><i class="fa fa-check"></i>Organization of the Course</a></li>
+<li class="chapter" data-level="" data-path="preliminary-information.html"><a href="preliminary-information.html#literature"><i class="fa fa-check"></i>Literature</a></li>
+<li class="chapter" data-level="0.1" data-path="further-data-objects.html"><a href="further-data-objects.html"><i class="fa fa-check"></i><b>0.1</b> Further Data Objects</a></li>
+<li class="chapter" data-level="0.2" data-path="simple-regression-analysis-using-r.html"><a href="simple-regression-analysis-using-r.html"><i class="fa fa-check"></i><b>0.2</b> Simple Regression Analysis using R</a></li>
+<li class="chapter" data-level="0.3" data-path="programming-in-r.html"><a href="programming-in-r.html"><i class="fa fa-check"></i><b>0.3</b> Programming in R</a></li>
+<li class="chapter" data-level="0.4" data-path="r-packages.html"><a href="r-packages.html"><i class="fa fa-check"></i><b>0.4</b> R-packages</a></li>
+<li class="chapter" data-level="0.5" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>0.5</b> Tidyverse</a>
+<ul>
+<li class="chapter" data-level="0.5.1" data-path="tidyverse.html"><a href="tidyverse.html#tidyverse-plotting-basics"><i class="fa fa-check"></i><b>0.5.1</b> Tidyverse: Plotting Basics</a></li>
+<li class="chapter" data-level="0.5.2" data-path="tidyverse.html"><a href="tidyverse.html#tidyverse-data-wrangling-basics"><i class="fa fa-check"></i><b>0.5.2</b> Tidyverse: Data Wrangling Basics</a></li>
+<li class="chapter" data-level="0.5.3" data-path="tidyverse.html"><a href="tidyverse.html#the-pipe-operator"><i class="fa fa-check"></i><b>0.5.3</b> The pipe operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="0.5.4" data-path="tidyverse.html"><a href="tidyverse.html#the-group_by-function"><i class="fa fa-check"></i><b>0.5.4</b> The <code>group_by()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="0.6" data-path="further-links.html"><a href="further-links.html"><i class="fa fa-check"></i><b>0.6</b> Further Links</a>
+<ul>
+<li class="chapter" data-level="0.6.1" data-path="further-links.html"><a href="further-links.html#further-r-intros"><i class="fa fa-check"></i><b>0.6.1</b> Further R-Intros</a></li>
+<li class="chapter" data-level="0.6.2" data-path="further-links.html"><a href="further-links.html#version-control-gitgithub"><i class="fa fa-check"></i><b>0.6.2</b> Version Control (Git/GitHub)</a></li>
+<li class="chapter" data-level="0.6.3" data-path="further-links.html"><a href="further-links.html#r-ladies"><i class="fa fa-check"></i><b>0.6.3</b> R-Ladies</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="review-probability-and-statistics.html"><a href="review-probability-and-statistics.html"><i class="fa fa-check"></i><b>1</b> Review: Probability and Statistics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1.1</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="probability-theory.html"><a href="probability-theory.html#sample-spaces-and-events"><i class="fa fa-check"></i><b>1.1.1</b> Sample Spaces and Events</a></li>
+<li class="chapter" data-level="1.1.2" data-path="probability-theory.html"><a href="probability-theory.html#probability"><i class="fa fa-check"></i><b>1.1.2</b> Probability</a></li>
+<li class="chapter" data-level="1.1.3" data-path="probability-theory.html"><a href="probability-theory.html#independent-events"><i class="fa fa-check"></i><b>1.1.3</b> Independent Events</a></li>
+<li class="chapter" data-level="1.1.4" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability"><i class="fa fa-check"></i><b>1.1.4</b> Conditional Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="random-variables.html"><a href="random-variables.html"><i class="fa fa-check"></i><b>1.2</b> Random Variables</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="random-variables.html"><a href="random-variables.html#univariate-distribution-and-probability-functions"><i class="fa fa-check"></i><b>1.2.1</b> Univariate Distribution and Probability Functions</a></li>
+<li class="chapter" data-level="1.2.2" data-path="random-variables.html"><a href="random-variables.html#multivariate-distribution-and-probability-functions"><i class="fa fa-check"></i><b>1.2.2</b> Multivariate Distribution and Probability Functions</a></li>
+<li class="chapter" data-level="1.2.3" data-path="random-variables.html"><a href="random-variables.html#means-and-moments"><i class="fa fa-check"></i><b>1.2.3</b> Means and Moments</a></li>
+<li class="chapter" data-level="1.2.4" data-path="random-variables.html"><a href="random-variables.html#unconditional-means"><i class="fa fa-check"></i><b>1.2.4</b> Unconditional Means</a></li>
+<li class="chapter" data-level="1.2.5" data-path="random-variables.html"><a href="random-variables.html#conditional-means"><i class="fa fa-check"></i><b>1.2.5</b> Conditional Means</a></li>
+<li class="chapter" data-level="1.2.6" data-path="random-variables.html"><a href="random-variables.html#means-of-transformed-random-variables-and-moments"><i class="fa fa-check"></i><b>1.2.6</b> Means of Transformed Random Variables and Moments</a></li>
+<li class="chapter" data-level="1.2.7" data-path="random-variables.html"><a href="random-variables.html#independent-random-variables"><i class="fa fa-check"></i><b>1.2.7</b> Independent Random Variables</a></li>
+<li class="chapter" data-level="1.2.8" data-path="random-variables.html"><a href="random-variables.html#i.i.d.-samples"><i class="fa fa-check"></i><b>1.2.8</b> I.I.D. Samples</a></li>
+<li class="chapter" data-level="1.2.9" data-path="random-variables.html"><a href="random-variables.html#some-important-discrete-random-variables"><i class="fa fa-check"></i><b>1.2.9</b> Some Important Discrete Random Variables</a></li>
+<li class="chapter" data-level="1.2.10" data-path="random-variables.html"><a href="random-variables.html#some-important-continuous-random-variables"><i class="fa fa-check"></i><b>1.2.10</b> Some Important Continuous Random Variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch:SLR.html"><a href="ch:SLR.html"><i class="fa fa-check"></i><b>2</b> Review: Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="the-simple-linear-regression-model.html"><a href="the-simple-linear-regression-model.html"><i class="fa fa-check"></i><b>2.1</b> The Simple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-simple-linear-regression-model.html"><a href="the-simple-linear-regression-model.html#the-data-generating-process"><i class="fa fa-check"></i>The Data-Generating Process</a></li>
+<li class="chapter" data-level="2.1.1" data-path="the-simple-linear-regression-model.html"><a href="the-simple-linear-regression-model.html#assumptions-about-the-error-term"><i class="fa fa-check"></i><b>2.1.1</b> Assumptions About the Error Term</a></li>
+<li class="chapter" data-level="2.1.2" data-path="the-simple-linear-regression-model.html"><a href="the-simple-linear-regression-model.html#the-population-regression-line"><i class="fa fa-check"></i><b>2.1.2</b> The Population Regression Line</a></li>
+<li class="chapter" data-level="2.1.3" data-path="the-simple-linear-regression-model.html"><a href="the-simple-linear-regression-model.html#terminology-estimates-versus-estimators"><i class="fa fa-check"></i><b>2.1.3</b> Terminology: Estimates versus Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="ordinary-least-squares-estimation.html"><a href="ordinary-least-squares-estimation.html"><i class="fa fa-check"></i><b>2.2</b> Ordinary Least Squares Estimation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="ordinary-least-squares-estimation.html"><a href="ordinary-least-squares-estimation.html#terminology-sample-regression-line-prediction-and-residuals"><i class="fa fa-check"></i><b>2.2.1</b> Terminology: Sample Regression Line, Prediction and Residuals</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ordinary-least-squares-estimation.html"><a href="ordinary-least-squares-estimation.html#sec:SLROLS"><i class="fa fa-check"></i><b>2.2.2</b> Deriving the Expression of the OLS Estimator</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ordinary-least-squares-estimation.html"><a href="ordinary-least-squares-estimation.html#behavior-of-the-ols-estimates-for-resampled-data-conditionally-on-x_i"><i class="fa fa-check"></i><b>2.2.3</b> Behavior of the OLS Estimates for Resampled Data (conditionally on <span class="math inline">\(X_i\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="properties-of-the-ols-estimator.html"><a href="properties-of-the-ols-estimator.html"><i class="fa fa-check"></i><b>2.3</b> Properties of the OLS Estimator</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="properties-of-the-ols-estimator.html"><a href="properties-of-the-ols-estimator.html#mean-and-bias-of-the-ols-estimator"><i class="fa fa-check"></i><b>2.3.1</b> Mean and Bias of the OLS Estimator</a></li>
+<li class="chapter" data-level="2.3.2" data-path="properties-of-the-ols-estimator.html"><a href="properties-of-the-ols-estimator.html#variance-of-the-ols-estimator"><i class="fa fa-check"></i><b>2.3.2</b> Variance of the OLS Estimator</a></li>
+<li class="chapter" data-level="2.3.3" data-path="properties-of-the-ols-estimator.html"><a href="properties-of-the-ols-estimator.html#consistency-of-the-ols-estimator"><i class="fa fa-check"></i><b>2.3.3</b> Consistency of the OLS Estimator</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch:MLR.html"><a href="ch:MLR.html"><i class="fa fa-check"></i><b>3</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="assumptions.html"><a href="assumptions.html"><i class="fa fa-check"></i><b>3.1</b> Assumptions</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="assumptions.html"><a href="assumptions.html#some-implications-of-the-exogeneity-assumption"><i class="fa fa-check"></i><b>3.1.1</b> Some Implications of the Exogeneity Assumption</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="deriving-the-expression-of-the-ols-estimator.html"><a href="deriving-the-expression-of-the-ols-estimator.html"><i class="fa fa-check"></i><b>3.2</b> Deriving the Expression of the OLS Estimator</a></li>
+<li class="chapter" data-level="3.3" data-path="some-quantities-of-interest.html"><a href="some-quantities-of-interest.html"><i class="fa fa-check"></i><b>3.3</b> Some Quantities of Interest</a></li>
+<li class="chapter" data-level="3.4" data-path="method-of-moments-estimator.html"><a href="method-of-moments-estimator.html"><i class="fa fa-check"></i><b>3.4</b> Method of Moments Estimator</a></li>
+<li class="chapter" data-level="3.5" data-path="unbiasedness-of-hatbetax.html"><a href="unbiasedness-of-hatbetax.html"><i class="fa fa-check"></i><b>3.5</b> Unbiasedness of <span class="math inline">\(\hat\beta|X\)</span></a></li>
+<li class="chapter" data-level="3.6" data-path="ch:VarEstBeta.html"><a href="ch:VarEstBeta.html"><i class="fa fa-check"></i><b>3.6</b> Variance of <span class="math inline">\(\hat\beta|X\)</span></a></li>
+<li class="chapter" data-level="3.7" data-path="the-gauss-markov-theorem.html"><a href="the-gauss-markov-theorem.html"><i class="fa fa-check"></i><b>3.7</b> The Gauss-Markov Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ch:SSINF.html"><a href="ch:SSINF.html"><i class="fa fa-check"></i><b>4</b> Small Sample Inference</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ch:testmultp.html"><a href="ch:testmultp.html"><i class="fa fa-check"></i><b>4.1</b> Hypothesis Tests about Multiple Parameters</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="ch:testmultp.html"><a href="ch:testmultp.html#the-test-statistic-and-its-null-distribution"><i class="fa fa-check"></i><b>4.1.1</b> The Test Statistic and its Null Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ch:testingsinglep.html"><a href="ch:testingsinglep.html"><i class="fa fa-check"></i><b>4.2</b> Tests about One Parameter</a></li>
+<li class="chapter" data-level="4.3" data-path="testtheory.html"><a href="testtheory.html"><i class="fa fa-check"></i><b>4.3</b> Testtheory</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="testtheory.html"><a href="testtheory.html#significance-level"><i class="fa fa-check"></i><b>4.3.1</b> Significance Level</a></li>
+<li class="chapter" data-level="4.3.2" data-path="testtheory.html"><a href="testtheory.html#critical-value-for-the-f-test"><i class="fa fa-check"></i><b>4.3.2</b> Critical Value for the <span class="math inline">\(F\)</span>-Test</a></li>
+<li class="chapter" data-level="4.3.3" data-path="testtheory.html"><a href="testtheory.html#critical-values-for-the-t-test"><i class="fa fa-check"></i><b>4.3.3</b> Critical Value(s) for the <span class="math inline">\(t\)</span>-Test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="type-ii-error-and-power.html"><a href="type-ii-error-and-power.html"><i class="fa fa-check"></i><b>4.4</b> Type II Error and Power</a></li>
+<li class="chapter" data-level="4.5" data-path="p-value.html"><a href="p-value.html"><i class="fa fa-check"></i><b>4.5</b> <span class="math inline">\(p\)</span>-Value</a></li>
+<li class="chapter" data-level="4.6" data-path="CIsmallsample.html"><a href="CIsmallsample.html"><i class="fa fa-check"></i><b>4.6</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="4.7" data-path="PSSI.html"><a href="PSSI.html"><i class="fa fa-check"></i><b>4.7</b> Practice: Small Sample Inference</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="PSSI.html"><a href="PSSI.html#normally-distributed-hatbetax"><i class="fa fa-check"></i><b>4.7.1</b> Normally Distributed <span class="math inline">\(\hat\beta|X\)</span></a></li>
+<li class="chapter" data-level="4.7.2" data-path="PSSI.html"><a href="PSSI.html#testing-multiple-parameters"><i class="fa fa-check"></i><b>4.7.2</b> Testing Multiple Parameters</a></li>
+<li class="chapter" data-level="4.7.3" data-path="PSSI.html"><a href="PSSI.html#dualty-of-confidence-intervals-and-hypothesis-tests"><i class="fa fa-check"></i><b>4.7.3</b> Dualty of Confidence Intervals and Hypothesis Tests</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch:LSINF.html"><a href="ch:LSINF.html"><i class="fa fa-check"></i><b>5</b> Large Sample Inference</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tools-for-asymptotic-statistics.html"><a href="tools-for-asymptotic-statistics.html"><i class="fa fa-check"></i><b>5.1</b> Tools for Asymptotic Statistics</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="tools-for-asymptotic-statistics.html"><a href="tools-for-asymptotic-statistics.html#modes-of-convergence"><i class="fa fa-check"></i><b>5.1.1</b> Modes of Convergence</a></li>
+<li class="chapter" data-level="" data-path="tools-for-asymptotic-statistics.html"><a href="tools-for-asymptotic-statistics.html#four-important-modes-of-convergence"><i class="fa fa-check"></i>Four Important Modes of Convergence</a></li>
+<li class="chapter" data-level="" data-path="tools-for-asymptotic-statistics.html"><a href="tools-for-asymptotic-statistics.html#relations-among-modes-of-convergence"><i class="fa fa-check"></i>Relations among Modes of Convergence</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tools-for-asymptotic-statistics.html"><a href="tools-for-asymptotic-statistics.html#continuous-mapping-theorem-cmt"><i class="fa fa-check"></i><b>5.1.2</b> Continuous Mapping Theorem (CMT)</a></li>
+<li class="chapter" data-level="5.1.3" data-path="tools-for-asymptotic-statistics.html"><a href="tools-for-asymptotic-statistics.html#slutsky-theorem"><i class="fa fa-check"></i><b>5.1.3</b> Slutsky Theorem</a></li>
+<li class="chapter" data-level="5.1.4" data-path="tools-for-asymptotic-statistics.html"><a href="tools-for-asymptotic-statistics.html#law-of-large-numbers-lln-and-central-limit-theorem-clt"><i class="fa fa-check"></i><b>5.1.4</b> Law of Large Numbers (LLN) and Central Limit Theorem (CLT)</a></li>
+<li class="chapter" data-level="5.1.5" data-path="tools-for-asymptotic-statistics.html"><a href="tools-for-asymptotic-statistics.html#estimators-as-a-sequences-of-random-variables"><i class="fa fa-check"></i><b>5.1.5</b> Estimators as a Sequences of Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="asymptotics-under-the-classic-regression-model.html"><a href="asymptotics-under-the-classic-regression-model.html"><i class="fa fa-check"></i><b>5.2</b> Asymptotics under the Classic Regression Model</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="asymptotics-under-the-classic-regression-model.html"><a href="asymptotics-under-the-classic-regression-model.html#the-case-of-heteroscedasticity"><i class="fa fa-check"></i><b>5.2.1</b> The Case of Heteroscedasticity</a></li>
+<li class="chapter" data-level="5.2.2" data-path="asymptotics-under-the-classic-regression-model.html"><a href="asymptotics-under-the-classic-regression-model.html#hypothesis-testing-and-confidence-intervals"><i class="fa fa-check"></i><b>5.2.2</b> Hypothesis Testing and Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="robust-confidence-intervals.html"><a href="robust-confidence-intervals.html"><i class="fa fa-check"></i><b>5.3</b> Robust Confidence Intervals</a></li>
+<li class="chapter" data-level="5.4" data-path="practice-large-sample-inference.html"><a href="practice-large-sample-inference.html"><i class="fa fa-check"></i><b>5.4</b> Practice: Large Sample Inference</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="practice-large-sample-inference.html"><a href="practice-large-sample-inference.html#normally-distributed-hatbeta-for-ntoinfty"><i class="fa fa-check"></i><b>5.4.1</b> Normally Distributed <span class="math inline">\(\hat\beta\)</span> for <span class="math inline">\(n\to\infty\)</span></a></li>
+<li class="chapter" data-level="5.4.2" data-path="practice-large-sample-inference.html"><a href="practice-large-sample-inference.html#testing-multiple-and-single-parameters"><i class="fa fa-check"></i><b>5.4.2</b> Testing Multiple and Single Parameters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html"><i class="fa fa-check"></i><b>6</b> Maximum Likelihood</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="likelihood-principle.html"><a href="likelihood-principle.html"><i class="fa fa-check"></i><b>6.1</b> Likelihood Principle</a></li>
+<li class="chapter" data-level="6.2" data-path="properties-of-maximum-likelihood-estimators.html"><a href="properties-of-maximum-likelihood-estimators.html"><i class="fa fa-check"></i><b>6.2</b> Properties of Maximum Likelihood Estimators</a></li>
+<li class="chapter" data-level="6.3" data-path="the-log-likelihood-function.html"><a href="the-log-likelihood-function.html"><i class="fa fa-check"></i><b>6.3</b> The (Log-)Likelihood Function</a></li>
+<li class="chapter" data-level="6.4" data-path="optimization-non-analytical-solutions.html"><a href="optimization-non-analytical-solutions.html"><i class="fa fa-check"></i><b>6.4</b> Optimization: Non-Analytical Solutions</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="optimization-non-analytical-solutions.html"><a href="optimization-non-analytical-solutions.html#newton-raphson-optimization"><i class="fa fa-check"></i><b>6.4.1</b> Newton-Raphson Optimization</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ols-estimation-as-ml-estimation.html"><a href="ols-estimation-as-ml-estimation.html"><i class="fa fa-check"></i><b>6.5</b> OLS-Estimation as ML-Estimation</a></li>
+<li class="chapter" data-level="6.6" data-path="variance-of-ml-estimators-hatbeta_ml-and-s2_ml.html"><a href="variance-of-ml-estimators-hatbeta_ml-and-s2_ml.html"><i class="fa fa-check"></i><b>6.6</b> Variance of ML-Estimators <span class="math inline">\(\hat\beta_{ML}\)</span> and <span class="math inline">\(s^2_{ML}\)</span></a></li>
+<li class="chapter" data-level="6.7" data-path="consistency-of-hatbeta_ml-and-s_ml2.html"><a href="consistency-of-hatbeta_ml-and-s_ml2.html"><i class="fa fa-check"></i><b>6.7</b> Consistency of <span class="math inline">\(\hat\beta_{ML}\)</span> and <span class="math inline">\(s_{ML}^2\)</span></a></li>
+<li class="chapter" data-level="6.8" data-path="asymptotic-theory-of-maximum-likelihood-estimators.html"><a href="asymptotic-theory-of-maximum-likelihood-estimators.html"><i class="fa fa-check"></i><b>6.8</b> Asymptotic Theory of Maximum-Likelihood Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ivr.html"><a href="ivr.html"><i class="fa fa-check"></i><b>7</b> Instrumental Variables Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="TIVEWASRAASI.html"><a href="TIVEWASRAASI.html"><i class="fa fa-check"></i><b>7.1</b> The IV Estimator with a Single Regressor and a Single Instrument</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="TIVEWASRAASI.html"><a href="TIVEWASRAASI.html#the-two-stage-least-squares-estimator"><i class="fa fa-check"></i><b>7.1.1</b> The Two-Stage Least Squares Estimator</a></li>
+<li class="chapter" data-level="7.1.2" data-path="TIVEWASRAASI.html"><a href="TIVEWASRAASI.html#application-demand-for-cigarettes-12"><i class="fa fa-check"></i><b>7.1.2</b> Application: Demand For Cigarettes (1/2)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="TGIVRM.html"><a href="TGIVRM.html"><i class="fa fa-check"></i><b>7.2</b> The General IV Regression Model</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="TGIVRM.html"><a href="TGIVRM.html#application-demand-for-cigarettes-22"><i class="fa fa-check"></i><b>7.2.1</b> Application: Demand for Cigarettes (2/2)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="civ.html"><a href="civ.html"><i class="fa fa-check"></i><b>7.3</b> Checking Instrument Validity</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="civ.html"><a href="civ.html#instrument-relevance"><i class="fa fa-check"></i><b>7.3.1</b> Instrument Relevance</a></li>
+<li class="chapter" data-level="7.3.2" data-path="civ.html"><a href="civ.html#instrument-validity"><i class="fa fa-check"></i><b>7.3.2</b> Instrument Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="attdfc.html"><a href="attdfc.html"><i class="fa fa-check"></i><b>7.4</b> Application to the Demand for Cigarettes</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Econometrics (M.Sc.)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Econometrics (M.Sc.)</h1>
+<p class="author"><em>Prof. Dr. Dominik Liebl</em></p>
+<p class="date"><em>2021-10-11</em></p>
+</div>
+<div id="preliminary-information" class="section level1 unnumbered">
+<h1>Preliminary Information</h1>
+<div id="organization-of-the-course" class="section level3 unnumbered">
+<h3>Organization of the Course</h3>
+<p>All lecture material (videos, eWhiteboard, and this script) can be found at eCampus under the following link:</p>
+<ul>
+<li><a href="https://ecampus.uni-bonn.de/bl.php?id=197335">https://ecampus.uni-bonn.de/bl.php?id=197335</a></li>
+</ul>
+<p>This lecture script is still under development, so please regularly check for updates.</p>
+<!-- * **Etherpad:** Throughout the course, I will use the following etherpad for collecting important links and further information (Zoom-meeting link etc.): -->
+<!-- [https://etherpad.wikimedia.org/p/8e2yF6X6FCbqep2AxW1b](https://etherpad.wikimedia.org/p/8e2yF6X6FCbqep2AxW1b) -->
+<!-- * **eWhiteboard:** Besides this script, I will use an eWhiteboard during the lecture. This material will be saved as pdf-files and provided as accompaning lecture materials.  -->
+<!-- * **Lecture Materials:** You can find all lecture materials at eCampus or directly at sciebo: -->
+<!-- [https://uni-bonn.sciebo.de/s/iOtkEDajrqWKT8v](https://uni-bonn.sciebo.de/s/iOtkEDajrqWKT8v) -->
+</div>
+<div id="literature" class="section level3 unnumbered">
+<h3>Literature</h3>
+<p>It’s not must, but you can read any of the usual econometrics textbooks additionally to this script.</p>
+<ul>
+<li><em>A guide to modern econometrics</em>, by M. Verbeek</li>
+<li><em>Introduction to econometrics</em>, by J. Stock and M.W. Watson
+<ul>
+<li>E-Book: <a href="https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983">https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983</a></li>
+</ul></li>
+<li><em>Econometric theory and methods</em>, by R. Davidson and J.G. MacKinnon</li>
+<li><em>A primer in econometric theory</em>, by J. Stachurski</li>
+<li><em>Econometrics</em>, by F. Hayashi</li>
+</ul>
+<!-- ```{r, eval=my_output == "html", results='asis', echo=FALSE} -->
+<!-- cat('<hr style="background-color:#3C6690;height:2px">') -->
+<!-- ``` -->
+<!-- This scipt is based on the book project *Introduction to Econometrics with R* by Christoph Hanck, Martin Arnold, Alexander Gerber, and Martin Schmelzer which you can find here: [www.econometrics-with-r.org](https://www.econometrics-with-r.org/) -->
+<!-- ```{r, eval=knitr::opts_knit$get("rmarkdown.pandoc.to") == "html", results='asis', echo=FALSE} -->
+<!-- cat('<br> -->
+<!-- ![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.eu.svg) -->
+<p>This book is licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.’)</p>
+<pre><code>
+&lt;!-- # Introduction --&gt;
+
+&lt;!-- ```{r, eval=knitr::opts_knit$get(&quot;rmarkdown.pandoc.to&quot;) == &quot;html&quot;, results=&#39;asis&#39;, echo=FALSE} --&gt;
+&lt;!-- cat(&#39;&lt;hr style=&quot;background-color:#3C6690;height:2px&quot;&gt;&#39;) --&gt;
+&lt;!-- ``` --&gt;
+
+
+
+&lt;!-- # A Very Short Introduction to &lt;tt&gt;R&lt;/tt&gt; and *RStudio* --&gt;
+
+&lt;!-- ```{r, fig.align=&#39;center&#39;, echo=FALSE, fig.cap=&quot;RStudio: the four panes&quot;} --&gt;
+&lt;!-- knitr::include_graphics(&#39;images/rstudio.jpg&#39;) --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- #### &lt;tt&gt;R&lt;/tt&gt; Basics {-} --&gt;
+
+&lt;!-- As mentioned before, this book is not intended to be an introduction to &lt;tt&gt;R&lt;/tt&gt; but a guide on how to use its capabilities for applications commonly encountered in undergraduate econometrics. Those having basic knowledge in &lt;tt&gt;R&lt;/tt&gt; programming will feel comfortable starting with Chapter \@ref(pt). This section, however, is meant for those who have not worked with &lt;tt&gt;R&lt;/tt&gt; or *RStudio* before. If you at least know how to create objects and call functions, you can skip it. If you would like to refresh your skills or get a feeling for how to work with *RStudio*, keep reading. --&gt;
+
+&lt;!-- First of all, start *RStudio* and open a new &lt;tt&gt;R&lt;/tt&gt; script by selecting *File*, *New File*, *R Script*. In the editor pane, type --&gt;
+
+&lt;!-- ```{r, eval = F} --&gt;
+&lt;!-- 1 + 1 --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- and click on the button labeled *Run* in the top right corner of the editor. By doing so, your line of code is sent to the console and the result of this operation should be displayed right underneath it. As you can see, &lt;tt&gt;R&lt;/tt&gt; works just like a calculator. You can do all arithmetic calculations by using the corresponding operator (&lt;tt&gt;+&lt;/tt&gt;, &lt;tt&gt;-&lt;/tt&gt;, &lt;tt&gt;*&lt;/tt&gt;, &lt;tt&gt;/&lt;/tt&gt; or &lt;tt&gt;^&lt;/tt&gt;). If you are not sure what the last operator does, try it out and check the results. --&gt;
+
+&lt;!-- #### Vectors {-} --&gt;
+
+&lt;!-- &lt;tt&gt;R&lt;/tt&gt; is of course more sophisticated than that. We can work with variables or, more generally, objects. Objects are defined by using the assignment operator &lt;tt&gt;&lt;-&lt;/tt&gt;. To create a variable named &lt;tt&gt;x&lt;/tt&gt; which contains the value &lt;tt&gt;10&lt;/tt&gt; type `x &lt;- 10` and click the button *Run* yet again. The new variable should have appeared in the environment pane on the top right. The console however did not show any results, because our line of code did not contain any call that creates output. When you now type `x` in the console and hit return, you ask &lt;tt&gt;R&lt;/tt&gt; to show you the value of &lt;tt&gt;x&lt;/tt&gt; and the corresponding value should be printed in the console. --&gt;
+
+&lt;!-- &lt;tt&gt;x&lt;/tt&gt; is a scalar, a vector of length $1$. You can easily create longer vectors by using the function &lt;tt&gt;c()&lt;/tt&gt; (*c* is for &quot;concatenate&quot; or &quot;combine&quot;). To create a vector &lt;tt&gt;y&lt;/tt&gt; containing the numbers $1$ to $5$ and print it, do the following. --&gt;
+
+&lt;!-- ```{r, eval = T} --&gt;
+&lt;!-- y &lt;- c(1, 2, 3, 4, 5) --&gt;
+&lt;!-- y --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- You can also create a vector of letters or words. For now just remember that characters have to be surrounded by quotes, else they will be parsed as object names. --&gt;
+
+&lt;!-- ```{r, eval = F} --&gt;
+&lt;!-- hello &lt;- c(&quot;Hello&quot;, &quot;World&quot;) --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- Here we have created a vector of length 2 containing the words &lt;tt&gt;Hello&lt;/tt&gt; and &lt;tt&gt;World&lt;/tt&gt;.  --&gt;
+
+&lt;!-- Do not forget to save your script! To do so, select *File*, *Save*. --&gt;
+
+&lt;!-- #### Functions {-} --&gt;
+
+&lt;!-- You have seen the function &lt;tt&gt;c()&lt;/tt&gt; that can be used to combine objects. In general, all function calls look the same: a function name is always followed by round parentheses. Sometimes, the parentheses include arguments. --&gt;
+
+&lt;!-- Here are two simple examples. --&gt;
+
+&lt;!-- ```{r, eval = T} --&gt;
+&lt;!-- # generate the vector `z` --&gt;
+&lt;!-- z &lt;- seq(from = 1, to = 5, by = 1) --&gt;
+
+&lt;!-- # compute the mean of the enries in `z` --&gt;
+&lt;!-- mean(z) --&gt;
+&lt;!-- ``` --&gt;
+
+&lt;!-- In the first line we use a function called &lt;tt&gt;seq()&lt;/tt&gt; to create the exact same vector as we did in the previous section, calling it &lt;tt&gt;z&lt;/tt&gt;. The function takes on the arguments &lt;tt&gt;from&lt;/tt&gt;, &lt;tt&gt;to&lt;/tt&gt; and &lt;tt&gt;by&lt;/tt&gt; which should be self-explanatory. --&gt;
+&lt;!-- The function &lt;tt&gt;mean()&lt;/tt&gt; computes the arithmetic mean of its argument &lt;tt&gt;x&lt;/tt&gt;. Since we pass the vector &lt;tt&gt;z&lt;/tt&gt; as the argument &lt;tt&gt;x&lt;/tt&gt;, the result is &lt;tt&gt;3&lt;/tt&gt;! --&gt;
+
+&lt;!-- If you are not sure which arguments a function expects, you may consult the function&#39;s documentation. Let&#39;s say we are not sure how the arguments required for &lt;tt&gt;seq()&lt;/tt&gt; work. We then type `?seq` in the console. By hitting return the documentation page for that function pops up in the lower right pane of *RStudio*. In there, the section *Arguments* holds the information we seek. On the bottom of almost every help page you find examples on how to use the corresponding functions. This is very helpful for beginners and we recommend to look out for those. --&gt;
+
+&lt;!-- Of course, all of the commands presented above also work in interactive widgets throughout the book. You may try them below. --&gt;
+
+&lt;!-- ```{r, echo=FALSE, results=&#39;asis&#39;} --&gt;
+&lt;!-- write_html(playground = T) --&gt;
+&lt;!-- ``` --&gt;
+
+
+
+
+
+&lt;!--chapter:end:index.Rmd--&gt;
+
+# Introduction to R
+
+
+This tutorial aims to serve as an introduction to the software package R. Other very good and much more exhaustive tutorials and useful reference-cards can be found at the following links: 
+
+*  [Reference card for R commands](http://cran.r-project.org/doc/contrib/refcard.pdf) (always useful)
+*  [Matlab/R reference card](http://www.math.umaine.edu/~hiebeler/comp/matlabR.pdf) (for those who are more familiar with Matlab)
+*  [The official Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) (very detailed)
+*  And many more at [www.r-project.org](https://www.r-project.org/other-docs.html) (see &quot;Documents&quot;)
+&lt;!-- *  An interactive introduction can be done online at: [www.datacamp.com](https://www.datacamp.com/) --&gt;
+* An R-package for learning R: [www.swirl.com](https://swirlstats.com/)
+*  An excellent book project which covers also advanced issues such as &quot;writing performant code&quot; and &quot;package development&quot;: [adv-r.had.co.nz](http://adv-r.had.co.nz/)  
+* Another excellent book: [R for Data Science](https://r4ds.had.co.nz/)
+
+Some other tutorials:
+
+*  [Introduction to data science](https://idc9.github.io/stor390/)
+*  [Scraping the web using R](https://stat4701.github.io/edav/2015/04/02/rvest_tutorial/)
+*  [Creating dynamic graphics](https://gganimate.com/)
+
+
+Why R? 
+
+*  R is **free** of charge from: [www.r-project.org](https://www.r-project.org/)
+*  The celebrated IDE **RStudio** for R is also **free** of charge: [www.rstudio.com](http://www.rstudio.com/)
+*  R is equipped with one of the most flexible and powerful graphics routines available anywhere. \
+   For instance, check out one of the following repositories: 
+    * [Clean Graphs](http://shinyapps.org/apps/RGraphCompendium/index.php) 
+    * [R graph catalog](http://shiny.stat.ubc.ca/r-graph-catalog/)
+    * [Publication Ready Plots](http://www.sthda.com/english/rpkgs/ggpubr/)
+*  Today, R is the de-facto standard for statistical science.
+
+
+
+## Short Glossary
+
+Lets start the tutorial with a (very) short glossary:
+
+* **Console**: The thing with the &quot;**&gt;**&quot; sign at the beginning.
+* **Script file**: An ordinary text file with suffix &quot;**.R**&quot;. For instance, **yourFavoritFileName.R**.
+* **Working directory**: The file-directory you are working in. Useful commands: with `getwd()` you get the location of your current working directory and `setwd()` allows you to set a new location for it. 
+* **Workspace**: This is a hidden file (stored in the working directory), where all objects you use (e.g., data, matrices, vectors, variables, functions, etc.) are stored. Useful commands: `ls()` shows all elements in our current workspace and `rm(list=ls())` deletes all elements in our current workspace.
+
+
+
+## First Steps
+
+
+A good idea is to use a script file such as **yourFavoritFileName.R** in order to store your R commands. You can send single lines or marked regions of your R-code to the console by pressing the keys **STRG+ENTER**.
+
+
+
+To begin with baby steps, do some simple computations: 
+
+```r
+2+2 # and all the others: *,/,-,^2,^3,... 
+#&gt; [1] 4</code></pre>
+<p>Note: Everything that is written after the <code>#</code>-sign is ignored by R, which is very useful to comment your code.</p>
+<p>The <strong>assignment operator</strong> will be your most often used tool. Here an example to create a <strong>scalar</strong> variable:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="preliminary-information.html#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span> </span>
+<span id="cb2-2"><a href="preliminary-information.html#cb2-2" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb2-3"><a href="preliminary-information.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb2-4"><a href="preliminary-information.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="ot">-&gt;</span> x <span class="co"># possible but unusual</span></span>
+<span id="cb2-5"><a href="preliminary-information.html#cb2-5" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb2-6"><a href="preliminary-information.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div>
+<p>Note: The R community loves the <code>&lt;-</code> assignment operator, which is a very unusual syntax. Alternatively, you can use the <code>=</code> operator.</p>
+<p>And now a more interesting object - a <strong>vector</strong>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="preliminary-information.html#cb3-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
+<span id="cb3-2"><a href="preliminary-information.html#cb3-2" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb3-3"><a href="preliminary-information.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2 7 4 1</span></span></code></pre></div>
+<p>The command <code>ls()</code> shows the total content of your current workspace, and the command <code>rm(list=ls())</code> deletes all elements of your current workspace:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="preliminary-information.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="co"># only the first 5 elements</span></span>
+<span id="cb4-2"><a href="preliminary-information.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;a&quot;         &quot;A&quot;         &quot;alpha&quot;     &quot;auto.data&quot; &quot;b&quot;</span></span>
+<span id="cb4-3"><a href="preliminary-information.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb4-4"><a href="preliminary-information.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
+<span id="cb4-5"><a href="preliminary-information.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<p>Note: RStudio’s <strong>Environment</strong> pane also lists all the elements in your current workspace. That is, the command <code>ls()</code> becomes a bit obsolete when working with RStudio.</p>
+<p>Let’s try how we can compute with vectors and scalars in R.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="preliminary-information.html#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb5-2"><a href="preliminary-information.html#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">1</span>)</span>
+<span id="cb5-3"><a href="preliminary-information.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="preliminary-information.html#cb5-4" aria-hidden="true" tabindex="-1"></a>x<span class="sc">*</span>y <span class="co"># each element in y (vector) is multiplied by x (scalar).</span></span>
+<span id="cb5-5"><a href="preliminary-information.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  8 28 16  4</span></span>
+<span id="cb5-6"><a href="preliminary-information.html#cb5-6" aria-hidden="true" tabindex="-1"></a>y<span class="sc">*</span>y <span class="co"># this is a term by term product of the elements in y</span></span>
+<span id="cb5-7"><a href="preliminary-information.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  4 49 16  1</span></span></code></pre></div>
+<p>Performing vector multiplications as you might expect from your last math-course, e.g., an outer product: <span class="math inline">\(y\,y^\top\)</span>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="preliminary-information.html#cb6-1" aria-hidden="true" tabindex="-1"></a>y <span class="sc">%*%</span> <span class="fu">t</span>(y)</span>
+<span id="cb6-2"><a href="preliminary-information.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb6-3"><a href="preliminary-information.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]    4   14    8    2</span></span>
+<span id="cb6-4"><a href="preliminary-information.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,]   14   49   28    7</span></span>
+<span id="cb6-5"><a href="preliminary-information.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,]    8   28   16    4</span></span>
+<span id="cb6-6"><a href="preliminary-information.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4,]    2    7    4    1</span></span></code></pre></div>
+<p>Or an inner product <span class="math inline">\(y^\top y\)</span>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="preliminary-information.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(y) <span class="sc">%*%</span> y</span>
+<span id="cb7-2"><a href="preliminary-information.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1]</span></span>
+<span id="cb7-3"><a href="preliminary-information.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]   70</span></span></code></pre></div>
+<p>Note: Sometimes, R’s treatment of vectors can be annoying. The product <code>y %*% y</code> is treated as the product <code>t(y) %*% y</code>.</p>
+<p>The term-by-term execution as in the above example, <code>y*y</code>, is actually a central strength of R. We can conduct many operations <strong>vector-wisely</strong>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="preliminary-information.html#cb8-1" aria-hidden="true" tabindex="-1"></a>y<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb8-2"><a href="preliminary-information.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  4 49 16  1</span></span>
+<span id="cb8-3"><a href="preliminary-information.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(y)</span>
+<span id="cb8-4"><a href="preliminary-information.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.6931472 1.9459101 1.3862944 0.0000000</span></span>
+<span id="cb8-5"><a href="preliminary-information.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(y)</span>
+<span id="cb8-6"><a href="preliminary-information.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]    7.389056 1096.633158   54.598150    2.718282</span></span>
+<span id="cb8-7"><a href="preliminary-information.html#cb8-7" aria-hidden="true" tabindex="-1"></a>y<span class="sc">-</span><span class="fu">mean</span>(y)</span>
+<span id="cb8-8"><a href="preliminary-information.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -1.5  3.5  0.5 -2.5</span></span>
+<span id="cb8-9"><a href="preliminary-information.html#cb8-9" aria-hidden="true" tabindex="-1"></a>(y<span class="sc">-</span><span class="fu">mean</span>(y))<span class="sc">/</span><span class="fu">sd</span>(y) <span class="co"># standardization </span></span>
+<span id="cb8-10"><a href="preliminary-information.html#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -0.5669467  1.3228757  0.1889822 -0.9449112</span></span></code></pre></div>
+<p>This is a central characteristic of so called matrix based languages like R (or Matlab). Other programming languages often have to use <strong>loops</strong> instead:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="preliminary-information.html#cb9-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
+<span id="cb9-2"><a href="preliminary-information.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span>N</span>
+<span id="cb9-3"><a href="preliminary-information.html#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="preliminary-information.html#cb9-4" aria-hidden="true" tabindex="-1"></a>y.sq <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
+<span id="cb9-5"><a href="preliminary-information.html#cb9-5" aria-hidden="true" tabindex="-1"></a>y.sq</span>
+<span id="cb9-6"><a href="preliminary-information.html#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="preliminary-information.html#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N){</span>
+<span id="cb9-8"><a href="preliminary-information.html#cb9-8" aria-hidden="true" tabindex="-1"></a>  y.sq[i] <span class="ot">&lt;-</span> y[i]<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb9-9"><a href="preliminary-information.html#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">==</span> N){</span>
+<span id="cb9-10"><a href="preliminary-information.html#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(y.sq)</span>
+<span id="cb9-11"><a href="preliminary-information.html#cb9-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-12"><a href="preliminary-information.html#cb9-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The <code>for()</code>-loop is the most common loop. But there is also a <code>while()</code>-loop and a <code>repeat()</code>-loop. However, loops in R can be rather slow, therefore, try to avoid them!</p>
+<!-- Try to write your own loop, which computes the element-wise logarithms of a vector `y` and finally prints these values as well as their mean!  -->
+<p>Useful commands to produce <strong>sequences</strong> of numbers:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="preliminary-information.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb10-2"><a href="preliminary-information.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">10</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb10-3"><a href="preliminary-information.html#cb10-3" aria-hidden="true" tabindex="-1"></a>?seq <span class="co"># Help for the seq()-function</span></span>
+<span id="cb10-4"><a href="preliminary-information.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>, <span class="at">to=</span><span class="dv">100</span>, <span class="at">by=</span><span class="dv">7</span>)</span></code></pre></div>
+<p>Using the sequence command <code>1:16</code>, we can go for our first <strong>matrix</strong>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="preliminary-information.html#cb11-1" aria-hidden="true" tabindex="-1"></a>?matrix</span>
+<span id="cb11-2"><a href="preliminary-information.html#cb11-2" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, <span class="at">nrow=</span><span class="dv">4</span>, <span class="at">ncol=</span><span class="dv">4</span>)</span>
+<span id="cb11-3"><a href="preliminary-information.html#cb11-3" aria-hidden="true" tabindex="-1"></a>A</span>
+<span id="cb11-4"><a href="preliminary-information.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb11-5"><a href="preliminary-information.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]    1    5    9   13</span></span>
+<span id="cb11-6"><a href="preliminary-information.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,]    2    6   10   14</span></span>
+<span id="cb11-7"><a href="preliminary-information.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,]    3    7   11   15</span></span>
+<span id="cb11-8"><a href="preliminary-information.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4,]    4    8   12   16</span></span>
+<span id="cb11-9"><a href="preliminary-information.html#cb11-9" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, <span class="dv">4</span>, <span class="dv">4</span>)</span></code></pre></div>
+<p>Note that a matrix has always two <strong>dimensions</strong>, but a vector has only one dimension:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="preliminary-information.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(A)    <span class="co"># Dimension of matrix A?</span></span>
+<span id="cb12-2"><a href="preliminary-information.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 4</span></span>
+<span id="cb12-3"><a href="preliminary-information.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(y)    <span class="co"># dim() does not operate on vectors.</span></span>
+<span id="cb12-4"><a href="preliminary-information.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
+<span id="cb12-5"><a href="preliminary-information.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(y) <span class="co"># Length of vector y?</span></span>
+<span id="cb12-6"><a href="preliminary-information.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div>
+<p>Lets play a bit with the matrix <code>A</code> and the vector <code>y</code>. As we have seen in the loop above, the <code>[]</code>-operator <strong>selects elements</strong> of vectors and matrices:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="preliminary-information.html#cb13-1" aria-hidden="true" tabindex="-1"></a>A[,<span class="dv">1</span>]</span>
+<span id="cb13-2"><a href="preliminary-information.html#cb13-2" aria-hidden="true" tabindex="-1"></a>A[<span class="dv">4</span>,<span class="dv">4</span>]</span>
+<span id="cb13-3"><a href="preliminary-information.html#cb13-3" aria-hidden="true" tabindex="-1"></a>y[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)]</span></code></pre></div>
+<p>This can be done on a more <strong>logical</strong> basis, too. For example, if you want to know which elements in the first column of matrix <code>A</code> are strictly greater than 2:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="preliminary-information.html#cb14-1" aria-hidden="true" tabindex="-1"></a>A[,<span class="dv">1</span>][A[,<span class="dv">1</span>]<span class="sc">&gt;</span><span class="dv">2</span>]</span>
+<span id="cb14-2"><a href="preliminary-information.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3 4</span></span>
+<span id="cb14-3"><a href="preliminary-information.html#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="preliminary-information.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that this give you a boolean vector:</span></span>
+<span id="cb14-5"><a href="preliminary-information.html#cb14-5" aria-hidden="true" tabindex="-1"></a>A[,<span class="dv">1</span>]<span class="sc">&gt;</span><span class="dv">2</span></span>
+<span id="cb14-6"><a href="preliminary-information.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE  TRUE</span></span>
+<span id="cb14-7"><a href="preliminary-information.html#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="preliminary-information.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># And you can use it in a non-sense relation, too:</span></span>
+<span id="cb14-9"><a href="preliminary-information.html#cb14-9" aria-hidden="true" tabindex="-1"></a>y[A[,<span class="dv">1</span>]<span class="sc">&gt;</span><span class="dv">2</span>]</span>
+<span id="cb14-10"><a href="preliminary-information.html#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 1</span></span></code></pre></div>
+<p>Note: Logical operations return so-called <strong>boolean</strong> objects, i.e., either a <code>TRUE</code> or a <code>FALSE</code>. For instance, if we ask R whether <code>1&gt;2</code> we get the answer <code>FALSE</code>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="further-data-objects.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Script_Econometrics_MSc.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

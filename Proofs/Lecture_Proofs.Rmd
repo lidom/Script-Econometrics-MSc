@@ -1,0 +1,32 @@
+---
+title: "Lecture Proofs"
+author: "Prof. Dr. Dominik Liebl" 
+date: ""
+output:
+  pdf_document:
+    includes:
+      in_header: "preamble.tex"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Review of Probability and Statistics
+
+**Theorem:** For any events $A$ and $B$, we have that 
+$$P(A \cup B)=P(A)+P(B)-P(A B)$$
+
+**PROOF.** Write $A \cup B=\left(A B^{c}\right) \cup(A B) \cup\left(A^{c} B\right)$ and note that these events are disjoint. Hence, making repeated use of the fact that $P$ is additive for disjoint events, we see that
+$$
+\begin{aligned}
+P(A \cup B) &=P\left(\left(A B^{r}\right) \cup(A B) \cup\left(A^{c} B\right)\right) \\
+&=P\left(A B^{c}\right)+P(A B)+P\left(A^{c} B\right) \\
+&=P\left(A B^{c}\right)+P(A B)+P\left(A^{c} B\right)+\Big(P(A B)-P(A B)\Big) \\
+&=P\Big(\left(A B^{r}\right) \cup(A B)\Big)+P\Big(\left(A^{c} B\right) \cup(A B)\Big)-P(A B) \\
+&=P(A)+P(B)-P(A B)
+\end{aligned}
+$$
+qed
+
