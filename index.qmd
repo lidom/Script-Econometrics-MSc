@@ -1,24 +1,43 @@
-# Preface {-}
-
-### Organization of the Course {-} 
-
-All lecture material (videos, eWhiteboard, and this script) can be found at eCampus under the following link:
-
-* [https://ecampus.uni-bonn.de/bl.php?id=197335](https://ecampus.uni-bonn.de/bl.php?id=197335)
+# Organization of the Course {-} 
 
 
+### Timetable {-}
+
+```{r, echo=FALSE}
+suppressPackageStartupMessages(library("kableExtra"))
+suppressPackageStartupMessages(library("tidyverse"))
+
+timetable <- tibble("Day"=c("Monday", "Thursday"),
+                    "Time"=c("14:15-15:45", "16:15-17:45"),
+                    "Lecture Hall" =c("	Jur / Hörsaal F", "	Jur / Hörsaal F"))
+           
+timetable %>% kbl() %>%  kable_styling()
+```
+
+
+### Lecture Material 
+
+* [eWhiteboard for lecture notes](https://uni-bonn.sciebo.de/s/utwT9e0txGVDOpP)
+* [eWhiteboard for exercises](https://uni-bonn.sciebo.de/s/Q0bER32lycuw6NV)
+* This online script can be found at [https://www.dliebl.com/Script-Econometrics-MSc/](https://www.dliebl.com/Script-Econometrics-MSc/)
+
+
+The above links to the lecture materials can also be found at [eCampus](https://ecampus.uni-bonn.de/goto_ecampus_crs_2700232.html).
 
 
 
 ### Literature {-}
 
-It's not must, but you can read any of the usual econometrics textbooks additionally to this script.
+It's not must, but you can read any of the usual econometrics textbooks additionally to this script. I can recommend the following ones, but there are many other good books: 
 
-* *A guide to modern econometrics*, by M. Verbeek
+* *Probability and Statistics for Economists*, by Bruce E. Hansen
+* *Econometrics*, by Bruce E. Hansen
+* *Econometrics*, by F. Hayashi
+<!-- * *A guide to modern econometrics*, by M. Verbeek -->
 * *Introduction to econometrics*, by J. Stock and M.W. Watson 
   * E-Book: [https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983](https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983)
 * *Econometric theory and methods*, by R. Davidson and J.G. MacKinnon
-* *A primer in econometric theory*, by J. Stachurski
-* *Econometrics*, by F. Hayashi
+<!-- * *A primer in econometric theory*, by J. Stachurski -->
+
 
 

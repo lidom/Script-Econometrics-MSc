@@ -1,0 +1,11 @@
+# Monte Carlo Simulations
+
+
+In the following parts of the lecture, we will use Monte Carlo simulations in oder to check whether a certain estimator like, for instance, the arithmetic mean  
+$$
+\bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i
+$$
+as an estimator of the population mean value $\mu$. 
+
+
+Let $X_1,\dots,X_n\overset{iid}{\sim}$
