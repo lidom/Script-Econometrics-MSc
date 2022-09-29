@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Econometrics M.Sc. - 4&nbsp; Multiple Linear Regression</title>
+<title>Econometrics M.Sc. - 3&nbsp; Multiple Linear Regression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -89,7 +89,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./05-Small-Sample-Inference.html" rel="next">
-<link href="./02-Monte-Carlo-Simulations.html" rel="prev">
+<link href="./02-Review-Prob_n_Stats.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -172,27 +172,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-Monte-Carlo-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></a>
+  <a href="./04-MultipleReg2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-MultipleReg.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
+  <a href="./05-Small-Sample-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Small Sample Inference</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-Small-Sample-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Small Sample Inference</span></a>
+  <a href="./06-Asymptotics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Large Sample Inference</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-Asymptotics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Large Sample Inference</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-Instrumental-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instrumental Variables Regression</span></a>
+  <a href="./08-Instrumental-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Instrumental Variables Regression</span></a>
   </div>
 </li>
     </ul>
@@ -204,13 +199,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#assumptions" id="toc-assumptions" class="nav-link active" data-scroll-target="#assumptions"> <span class="header-section-number">4.1</span> Assumptions</a>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link active" data-scroll-target="#assumptions"> <span class="header-section-number">3.1</span> Assumptions</a>
   <ul class="collapse">
-  <li><a href="#some-implications-of-the-exogeneity-assumption" id="toc-some-implications-of-the-exogeneity-assumption" class="nav-link" data-scroll-target="#some-implications-of-the-exogeneity-assumption"> <span class="header-section-number">4.1.1</span> Some Implications of the Exogeneity Assumption</a></li>
+  <li><a href="#some-implications-of-the-exogeneity-assumption" id="toc-some-implications-of-the-exogeneity-assumption" class="nav-link" data-scroll-target="#some-implications-of-the-exogeneity-assumption"> <span class="header-section-number">3.1.1</span> Some Implications of the Exogeneity Assumption</a></li>
   </ul></li>
-  <li><a href="#deriving-the-expression-of-the-ols-estimator" id="toc-deriving-the-expression-of-the-ols-estimator" class="nav-link" data-scroll-target="#deriving-the-expression-of-the-ols-estimator"> <span class="header-section-number">4.2</span> Deriving the Expression of the OLS Estimator</a></li>
-  <li><a href="#some-quantities-of-interest" id="toc-some-quantities-of-interest" class="nav-link" data-scroll-target="#some-quantities-of-interest"> <span class="header-section-number">4.3</span> Some Quantities of Interest</a></li>
-  <li><a href="#method-of-moments-estimator" id="toc-method-of-moments-estimator" class="nav-link" data-scroll-target="#method-of-moments-estimator"> <span class="header-section-number">4.4</span> Method of Moments Estimator</a></li>
+  <li><a href="#deriving-the-expression-of-the-ols-estimator" id="toc-deriving-the-expression-of-the-ols-estimator" class="nav-link" data-scroll-target="#deriving-the-expression-of-the-ols-estimator"> <span class="header-section-number">3.2</span> Deriving the Expression of the OLS Estimator</a></li>
+  <li><a href="#some-quantities-of-interest" id="toc-some-quantities-of-interest" class="nav-link" data-scroll-target="#some-quantities-of-interest"> <span class="header-section-number">3.3</span> Some Quantities of Interest</a></li>
+  <li><a href="#method-of-moments-estimator" id="toc-method-of-moments-estimator" class="nav-link" data-scroll-target="#method-of-moments-estimator"> <span class="header-section-number">3.4</span> Method of Moments Estimator</a></li>
   </ul>
 </nav>
     </div>
@@ -219,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-MLR" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></span></h1>
+<h1 class="title"><span id="sec-MLR" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></span></h1>
 </div>
 
 
@@ -234,8 +229,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>In the following we focus on case of random designs <span class="math inline">\(X\)</span> (i.e.&nbsp;<span class="math inline">\(X\)</span> being a random variable), since, first, this is the more relevant case in econometrics and, second, it includes the case of fixed designs (i.e.&nbsp;<span class="math inline">\(X\)</span> being deterministic) as a special case (“degenerated random variable”). Caution: A random <span class="math inline">\(X\)</span> requires us to consider conditional means and variances “given <span class="math inline">\(X\)</span>.” That is, if we would be able to resample from the model, we do so by fixing (conditioning on) the in-principle random explanatory variable <span class="math inline">\(X\)</span>.</p>
-<section id="assumptions" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">4.1</span> Assumptions</h2>
+<section id="assumptions" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">3.1</span> Assumptions</h2>
 <p>The multiple linear regression model is defined by the following assumptions:</p>
 <p><strong>Assumption 1: The Linear Model Assumption (Data Generating Process)</strong></p>
 <p><strong>Part (a): Model</strong></p>
@@ -243,9 +238,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \begin{align}
   Y_i=\sum_{k=1}^K\beta_k X_{ik}+\varepsilon_i, \quad i=1,\dots,n.
 \end{align}
-\tag{4.1}\]</span></span></p>
+\tag{3.1}\]</span></span></p>
 <p>Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>. In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.<br>
-It is convenient to write <a href="#eq-LinMod">Equation&nbsp;<span>4.1</span></a> using matrix notation <span class="math display">\[\begin{eqnarray*}
+It is convenient to write <a href="#eq-LinMod">Equation&nbsp;<span>3.1</span></a> using matrix notation <span class="math display">\[\begin{eqnarray*}
   Y_i&amp;=&amp;\underset{(1\times K)}{X_i'}\underset{(K\times 1)}{\beta} +\varepsilon_i, \quad i=1,\dots,n,
 \end{eqnarray*}\]</span> where <span class="math inline">\(X_i=(X_{i1},\dots,X_{iK})'\)</span> and <span class="math inline">\(\beta=(\beta_1,\dots,\beta_K)'\)</span>. Stacking all individual rows <span class="math inline">\(i\)</span> leads to <span class="math display">\[\begin{eqnarray*}\label{LM}
   \underset{(n\times 1)}{Y}&amp;=&amp;\underset{(n\times K)}{X}\underset{(K\times 1)}{\beta} + \underset{(n\times 1)}{\varepsilon},
@@ -262,7 +257,7 @@ Y=\left(\begin{matrix}Y_1\\ \vdots\\Y_n\end{matrix}\right),\quad X=\left(\begin{
 ((Y_{1},X_{11},\dots,X_{1K}),(Y_{2},X_{21},\dots,X_{2K}),\dots,(Y_{n},X_{n1},\dots,X_{nK}))
 \]</span></p>
 <p>That is, the <span class="math inline">\(i\)</span>th observed <span class="math inline">\(K+1\)</span> dimensional data point <span class="math inline">\((Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}\)</span> is a realization of a <span class="math inline">\(K+1\)</span> dimensional random variable <span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1},\)</span> where <span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\)</span> has the identical joint distribution as <span class="math inline">\((Y_{j},X_{j1},\dots,X_{jK})\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and all <span class="math inline">\(j=1,\dots,n\)</span>, and where <span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\)</span> is independent of <span class="math inline">\((Y_{j},X_{j1},\dots,X_{jK})\)</span> for all <span class="math inline">\(i\neq j=1,\dots,n.\)</span></p>
-<p>Note: Due to <a href="#eq-LinMod">Equation&nbsp;<span>4.1</span></a>, this i.i.d. assumption is equivalent to assuming that the multivariate random variables <span class="math inline">\((\varepsilon_i,X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1}\)</span> are i.i.d. across <span class="math inline">\(i=1,\dots,n\)</span>.</p>
+<p>Note: Due to <a href="#eq-LinMod">Equation&nbsp;<span>3.1</span></a>, this i.i.d. assumption is equivalent to assuming that the multivariate random variables <span class="math inline">\((\varepsilon_i,X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1}\)</span> are i.i.d. across <span class="math inline">\(i=1,\dots,n\)</span>.</p>
 <p><strong>Remark:</strong> Usually, we do not use a different notation for observed realizations <span class="math inline">\((Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}\)</span> and for the corresponding random variable <span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1}\)</span> since often both interpretations (random variable and its realizations) can make sense in the same statement and then it depends on the considered context whether the random variables point if view or the realization point of view applies.</p>
 <!--  That is, the multivariate distribution of $(\varepsilon_i,X_{i1},\dots,X_{iK})$ is assumed equal 
 across $i=1,\dots,n$, but the multivariate random variables $(\varepsilon_i,X_{i1},\dots,X_{iK})$ 
@@ -319,10 +314,10 @@ $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$. -->
 <!-- doesn't depend on $X_i$.  -->
 <p><strong>Example:</strong> For doing small sample inference (see <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;4</span></a>), we need to assume that the error terms <span class="math inline">\(\varepsilon_i\)</span> are i.i.d. across <span class="math inline">\(i=1,\dots,n\)</span> plus the normality assumption, i.e., <span class="math inline">\(\varepsilon_i\stackrel{\textrm{i.i.d.}}{\sim}{\mathcal N} (0, \sigma^2)\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> which leads to homoscedastic variances <span class="math inline">\(Var(\varepsilon_i|X_i)=\sigma^2\)</span> for every possible realization of <span class="math inline">\(X_i\)</span>.</p>
 </section>
-<section id="some-implications-of-the-exogeneity-assumption" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="some-implications-of-the-exogeneity-assumption"><span class="header-section-number">4.1.1</span> Some Implications of the Exogeneity Assumption</h3>
+<section id="some-implications-of-the-exogeneity-assumption" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="some-implications-of-the-exogeneity-assumption"><span class="header-section-number">3.1.1</span> Some Implications of the Exogeneity Assumption</h3>
 <div id="thm-a" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.1 (Unconditional Mean) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>, then the also the unconditional mean of the error term is zero, i.e.</p>
+<p><span class="theorem-title"><strong>Theorem 3.1 (Unconditional Mean) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>, then the also the unconditional mean of the error term is zero, i.e.</p>
 <p><span class="math display">\[
 E(\varepsilon_i)=0,\quad i=1,\dots,n.
 \]</span></p>
@@ -340,7 +335,7 @@ E[E(\varepsilon_i|X_i)]=E[0]=0
 </div>
 <p>Generally, two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are said to be <strong>orthogonal</strong> if their cross moment is zero, i.e.&nbsp;if <span class="math inline">\(E(XY)=0\)</span>. Exogeneity is sometimes also called “orthogonality,” due to the following result.</p>
 <div id="thm-b" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.2 (Orthogonality) </strong></span>Under exogeneity, i.e.&nbsp;if <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, the regressors and the error term are orthogonal to each other, i.e,</p>
+<p><span class="theorem-title"><strong>Theorem 3.2 (Orthogonality) </strong></span>Under exogeneity, i.e.&nbsp;if <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, the regressors and the error term are orthogonal to each other, i.e,</p>
 <p><span class="math display">\[
 E(X_{ik}\varepsilon_i)=0
 \]</span></p>
@@ -366,9 +361,9 @@ E(X_{ik}\varepsilon_i)=E(X_{ik}E(\varepsilon_i|X_{ik}))=E(X_{ik}0)=0
 \]</span></p>
 <p>which completes the proof. <span class="math inline">\(\square\)</span></p>
 </div>
-<p>Because the mean of the error term is zero (<span class="math inline">\(E(\varepsilon_i)=0\)</span> for all <span class="math inline">\(i\)</span> (see <a href="#thm-a">Theorem&nbsp;<span>4.1</span></a>), it follows that the orthogonality property, <span class="math inline">\(E(X_{ik}\varepsilon_i)=0,\)</span> is equivalent to a zero correlation property.</p>
+<p>Because the mean of the error term is zero (<span class="math inline">\(E(\varepsilon_i)=0\)</span> for all <span class="math inline">\(i\)</span> (see <a href="#thm-a">Theorem&nbsp;<span>3.1</span></a>), it follows that the orthogonality property, <span class="math inline">\(E(X_{ik}\varepsilon_i)=0,\)</span> is equivalent to a zero correlation property.</p>
 <div id="thm-c" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.3 (No Correlation) </strong></span></p>
+<p><span class="theorem-title"><strong>Theorem 3.3 (No Correlation) </strong></span></p>
 <p>If <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, then <span class="math display">\[\begin{eqnarray*}
   Cov(\varepsilon_i,X_{ik})&amp;=&amp;0\quad\text{for all}\quad i=1,\dots,n\quad\text{and}\quad k=1,\dots,K.
 \end{eqnarray*}\]</span></p>
@@ -384,8 +379,8 @@ E(X_{ik}\varepsilon_i)=E(X_{ik}E(\varepsilon_i|X_{ik}))=E(X_{ik}0)=0
 <!-- In this section, we take the point of view where $(Y^{obs},X^{obs})$ is an observed data-set, i.e., a given realization of the random sample $((Y_1,X_1),\dots,(Y_n,X_n))$. That is, we are not yet interested in the statistical properties of estimators, but are only in doing some linear algebra.  -->
 </section>
 </section>
-<section id="deriving-the-expression-of-the-ols-estimator" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="deriving-the-expression-of-the-ols-estimator"><span class="header-section-number">4.2</span> Deriving the Expression of the OLS Estimator</h2>
+<section id="deriving-the-expression-of-the-ols-estimator" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="deriving-the-expression-of-the-ols-estimator"><span class="header-section-number">3.2</span> Deriving the Expression of the OLS Estimator</h2>
 <p>We derive the expression for the OLS estimator <span class="math inline">\(\hat\beta=(\hat\beta_1,\dots,\hat\beta_K)'\in\mathbb{R}^K\)</span> as the vector-valued minimizing argument of the sum of squared residuals, <span class="math inline">\(S_n(b)\)</span> with <span class="math inline">\(b\in\mathbb{R}^K\)</span>, for a given sample <span class="math inline">\(((Y_1,X_1),\dots,(Y_n,X_n))\)</span>. In matrix terms this is <span class="math display">\[\begin{align*}
 S_n(b)&amp;=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
 \end{align*}\]</span> To find the minimizing argument <span class="math display">\[\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)\]</span> we compute all partial derivatives</p>
@@ -425,14 +420,14 @@ S_n(b)&amp;=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="04-MultipleReg_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04-MultipleReg2_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="some-quantities-of-interest" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="some-quantities-of-interest"><span class="header-section-number">4.3</span> Some Quantities of Interest</h2>
+<section id="some-quantities-of-interest" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="some-quantities-of-interest"><span class="header-section-number">3.3</span> Some Quantities of Interest</h2>
 <p><strong>Predicted values and residuals.</strong></p>
 <ul>
 <li>The (OLS) <strong>predicted values</strong>: <span class="math inline">\(\hat{Y}_i=X_i'\hat\beta\)</span>.<br>
@@ -479,8 +474,8 @@ Y'Y&amp;=&amp;(\hat Y+\hat\varepsilon)'(\hat Y+\hat\varepsilon)\notag\\
 \]</span></p>
 <p>is the basis for the well-known variance decomposition result for OLS regressions.</p>
 <div id="thm-vardecomp" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.4 </strong></span></p>
-<p>For the linear OLS regression model <a href="#eq-LinMod">Equation&nbsp;<span>4.1</span></a> with intercept, the total sample variance of the dependent variable <span class="math inline">\(Y_1,\dots,Y_n\)</span> can be decomposed as following: <span class="math display">\[\begin{eqnarray}
+<p><span class="theorem-title"><strong>Theorem 3.4 </strong></span></p>
+<p>For the linear OLS regression model <a href="#eq-LinMod">Equation&nbsp;<span>3.1</span></a> with intercept, the total sample variance of the dependent variable <span class="math inline">\(Y_1,\dots,Y_n\)</span> can be decomposed as following: <span class="math display">\[\begin{eqnarray}
 \underset{\text{total sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}&amp;=&amp;\underset{\text{explained sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}+\underset{\text{unexplained sample variance}}{\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2,}\label{VarDecomp}
 \end{eqnarray}\]</span> where <span class="math inline">\(\bar{Y}=\frac{1}{n}\sum_{i=1}^nY_i\)</span> and <span class="math inline">\(\bar{\hat{Y}}=\frac{1}{n}\sum_{i=1}^n\hat{Y}_i\)</span>.</p>
 </div>
@@ -527,8 +522,8 @@ R^2=\frac{\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}{\sum_{i=1}^n\left(
 \end{eqnarray*}\]</span> The adjustment is in terms of the degrees of freedom <span class="math inline">\(n-K\)</span>.</p>
 </section>
 </section>
-<section id="method-of-moments-estimator" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="method-of-moments-estimator"><span class="header-section-number">4.4</span> Method of Moments Estimator</h2>
+<section id="method-of-moments-estimator" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="method-of-moments-estimator"><span class="header-section-number">3.4</span> Method of Moments Estimator</h2>
 <p>The methods of moments estimator exploits the exogeneity assumption that <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> (Assumption 2). Remember that <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> implies that <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and all <span class="math inline">\(k=1,\dots,K\)</span>. The fundamental idea behind “method of moments estimation” is to use the sample analogues of the population moment restrictions <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span>, <span class="math inline">\(k=1,\dots,K,\)</span> for deriving the estimator:</p>
 <p><span class="math display">\[
 \begin{array}{c||c}
@@ -662,13 +657,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./02-Monte-Carlo-Simulations.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></span>
+      <a href="./02-Review-Prob_n_Stats.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability and Statistics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./05-Small-Sample-Inference.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Small Sample Inference</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Small Sample Inference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
