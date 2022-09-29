@@ -14,6 +14,7 @@ book:
     - index.qmd
     - 01-Introduction-to-R.qmd
     - 02-Review-Prob_n_Stats.qmd
+    - 02a-Monte-Carlo-Simulations.qmd
     - 04-MultipleReg.qmd
     - 05-Small-Sample-Inference.qmd
     - 06-Asymptotics.qmd

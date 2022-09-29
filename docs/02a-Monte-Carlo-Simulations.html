@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Prof.&nbsp;Dr.&nbsp;Dominik Liebl">
 
-<title>Econometrics M.Sc.</title>
+<title>Econometrics M.Sc. - 3&nbsp; Monte Carlo Simulations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,7 +25,8 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-Introduction-to-R.html" rel="next">
+<link href="./04-MultipleReg.html" rel="next">
+<link href="./02-Review-Prob_n_Stats.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -56,9 +56,7 @@ ul.task-list{list-style: none;}
   }
 }</script>
 
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -68,7 +66,7 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Econometrics M.Sc.</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -96,7 +94,7 @@ ul.task-list{list-style: none;}
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Organization of the Course</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Organization of the Course</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -111,7 +109,7 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02a-Monte-Carlo-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></a>
+  <a href="./02a-Monte-Carlo-Simulations.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -139,37 +137,20 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#organization-of-the-course" id="toc-organization-of-the-course" class="nav-link active" data-scroll-target="#organization-of-the-course">Organization of the Course</a>
-  <ul class="collapse">
-  <li><a href="#timetable" id="toc-timetable" class="nav-link" data-scroll-target="#timetable">Timetable</a></li>
-  <li><a href="#lecture-material" id="toc-lecture-material" class="nav-link" data-scroll-target="#lecture-material">Lecture Material</a></li>
-  <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature">Literature</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Econometrics M.Sc.</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Prof.&nbsp;Dr.&nbsp;Dominik Liebl </p>
-          </div>
-  </div>
     
     
   </div>
@@ -177,64 +158,31 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<section id="organization-of-the-course" class="level1 unnumbered">
-<h1 class="unnumbered">Organization of the Course</h1>
-<section id="timetable" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="timetable">Timetable</h3>
-<div class="cell">
-<div class="cell-output-display">
-
-<table class="table" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;"> Day </th>
-   <th style="text-align:left;"> Time </th>
-   <th style="text-align:left;"> Lecture Hall </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Monday </td>
-   <td style="text-align:left;"> 14:15-15:45 </td>
-   <td style="text-align:left;"> Jur / Hörsaal F </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Thursday </td>
-   <td style="text-align:left;"> 16:15-17:45 </td>
-   <td style="text-align:left;"> Jur / Hörsaal F </td>
-  </tr>
-</tbody>
-</table>
-
+<p>In the following parts of the lecture, we will use Monte Carlo simulations in oder to check whether a certain estimator is able to estimate its (usually unknown) target parameter. In this chapter, we will learn what Monte Carlo simulations are and how they can be implemented.</p>
+<p>Let’s assume that we have an iid random sample <span class="math inline">\(X_1,\dots,X_n\)</span> with <span class="math inline">\(X_i\sim f_X\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>, and let <span class="math inline">\(\theta\in\mathbb{R}\)</span> denote some parameter (e.g.&nbsp;the mean or the variance) of the density <span class="math inline">\(f_X\)</span>. An estimator <span class="math inline">\(\hat\theta_n\)</span> of <span class="math inline">\(\theta\)</span>, can (and should be) thought of as a function of the random sample <span class="math inline">\(X_1,\dots,X_n\)</span>,</p>
+<p><span class="math display">\[
+\hat\theta_n:=\hat\theta(X_1,\dots,X_n).
+\]</span></p>
+<p>Any reasonable estimator <span class="math inline">\(\hat\theta_n\)</span> should be able to approximate the (usually unknown) parameter value <span class="math inline">\(\theta\)</span></p>
+<p><span class="math display">\[
+\hat\theta_n\approx\theta,
+\]</span></p>
+<p>and the approximation should become better as the sample size increases (i.e.&nbsp;as <span class="math inline">\(n\to\infty\)</span>).</p>
+<p>Statisticians and econometricians use different metrics to assess the approximation quality of an estimator <span class="math inline">\(\hat\theta_n\)</span>.</p>
+<div id="def-bias" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.1 (Bias) </strong></span>The bias of an estimator <span class="math inline">\(\hat\theta_n\)</span> is defined as</p>
+<p><span class="math display">\[
+\operatorname{Bias}\left(\hat\theta_n\right) = \hat\theta_n
+\]</span></p>
 </div>
-</div>
-</section>
-<section id="lecture-material" class="level3">
-<h3 class="anchored" data-anchor-id="lecture-material">Lecture Material</h3>
-<ul>
-<li><a href="https://uni-bonn.sciebo.de/s/utwT9e0txGVDOpP">eWhiteboard for lecture notes</a></li>
-<li><a href="https://uni-bonn.sciebo.de/s/Q0bER32lycuw6NV">eWhiteboard for exercises</a></li>
-<li>This online script can be found at <a href="https://www.dliebl.com/Script-Econometrics-MSc/">https://www.dliebl.com/Script-Econometrics-MSc/</a></li>
-</ul>
-<p>The above links to the lecture materials can also be found at <a href="https://ecampus.uni-bonn.de/goto_ecampus_crs_2700232.html">eCampus</a>.</p>
-</section>
-<section id="literature" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="literature">Literature</h3>
-<p>It’s not must, but you can read any of the usual econometrics textbooks additionally to this script. I can recommend the following ones, but there are many other good books:</p>
-<ul>
-<li><em>Probability and Statistics for Economists</em>, by Bruce E. Hansen</li>
-<li><em>Econometrics</em>, by Bruce E. Hansen</li>
-<li><em>Econometrics</em>, by F. Hayashi <!-- * *A guide to modern econometrics*, by M. Verbeek --></li>
-<li><em>Introduction to econometrics</em>, by J. Stock and M.W. Watson
-<ul>
-<li>E-Book: <a href="https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983">https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983</a></li>
-</ul></li>
-<li><em>Econometric theory and methods</em>, by R. Davidson and J.G. MacKinnon <!-- * *A primer in econometric theory*, by J. Stachurski --></li>
-</ul>
+<p>like, for instance, the arithmetic mean</p>
+<p><span class="math display">\[
+\bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i
+\]</span></p>
+<p>as an estimator of the population mean value <span class="math inline">\(\mu\)</span>.</p>
+<p>Let <span class="math inline">\(X_1,\dots,X_n\overset{iid}{\sim}\)</span></p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -336,10 +284,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./02-Review-Prob_n_Stats.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability and Statistics</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-Introduction-to-R.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./04-MultipleReg.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
