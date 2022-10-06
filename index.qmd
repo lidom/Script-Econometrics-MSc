@@ -8,8 +8,8 @@ suppressPackageStartupMessages(library("kableExtra"))
 suppressPackageStartupMessages(library("tidyverse"))
 
 timetable <- tibble("Day"=c("Monday", "Thursday"),
-                    "Time"=c("14:15-15:45", "16:15-17:45"),
-                    "Lecture Hall" =c("	Jur / Hörsaal F", "	Jur / Hörsaal F"))
+                    "Time (UTC+2)" = c("14:15-15:45", "16:15-17:45"),
+                    "Lecture Hall" = c("Jur / Hörsaal F", "	Jur / Hörsaal F"))
            
 timetable %>% kbl() %>%  kable_styling()
 ```
@@ -19,11 +19,14 @@ timetable %>% kbl() %>%  kable_styling()
 
 * [eWhiteboard for lecture notes](https://uni-bonn.sciebo.de/s/utwT9e0txGVDOpP)
 * [eWhiteboard for exercises](https://uni-bonn.sciebo.de/s/Q0bER32lycuw6NV)
-* This online script can be found at [https://www.dliebl.com/Script-Econometrics-MSc/](https://www.dliebl.com/Script-Econometrics-MSc/)
+* [This online script](https://www.dliebl.com/Script-Econometrics-MSc/)
 
 
-The above links to the lecture materials can also be found at [eCampus](https://ecampus.uni-bonn.de/goto_ecampus_crs_2700232.html).
+The above links can also be found at [eCampus](https://ecampus.uni-bonn.de/goto_ecampus_crs_2700232.html).
 
+
+For students not yet in Bonn, I'll stream the lectures via [Zoom](
+https://uni-bonn.zoom.us/j/99283287705?pwd=UHFoRTlwYkNqb0k2ODRjdEluY2FXZz09) (Meeting-ID: 992 8328 7705, Pwd: 708587) during the first lecture weeks. 
 
 
 ### Literature {-}

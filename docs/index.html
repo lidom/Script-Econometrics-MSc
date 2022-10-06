@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -111,22 +116,27 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-MultipleReg2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
+  <a href="./02-Monte-Carlo-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-Small-Sample-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Small Sample Inference</span></a>
+  <a href="./04-MultipleReg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-Asymptotics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Large Sample Inference</span></a>
+  <a href="./05-Small-Sample-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Small Sample Inference</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-Instrumental-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Instrumental Variables Regression</span></a>
+  <a href="./06-Asymptotics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Large Sample Inference</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Instrumental-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instrumental Variables Regression</span></a>
   </div>
 </li>
     </ul>
@@ -134,7 +144,7 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
@@ -183,7 +193,7 @@ ul.task-list{list-style: none;}
  <thead>
   <tr>
    <th style="text-align:left;"> Day </th>
-   <th style="text-align:left;"> Time </th>
+   <th style="text-align:left;"> Time (UTC+2) </th>
    <th style="text-align:left;"> Lecture Hall </th>
   </tr>
  </thead>
@@ -209,9 +219,10 @@ ul.task-list{list-style: none;}
 <ul>
 <li><a href="https://uni-bonn.sciebo.de/s/utwT9e0txGVDOpP">eWhiteboard for lecture notes</a></li>
 <li><a href="https://uni-bonn.sciebo.de/s/Q0bER32lycuw6NV">eWhiteboard for exercises</a></li>
-<li>This online script can be found at <a href="https://www.dliebl.com/Script-Econometrics-MSc/">https://www.dliebl.com/Script-Econometrics-MSc/</a></li>
+<li><a href="https://www.dliebl.com/Script-Econometrics-MSc/">This online script</a></li>
 </ul>
-<p>The above links to the lecture materials can also be found at <a href="https://ecampus.uni-bonn.de/goto_ecampus_crs_2700232.html">eCampus</a>.</p>
+<p>The above links can also be found at <a href="https://ecampus.uni-bonn.de/goto_ecampus_crs_2700232.html">eCampus</a>.</p>
+<p>For students not yet in Bonn, I’ll stream the lectures via <a href="https://uni-bonn.zoom.us/j/99283287705?pwd=UHFoRTlwYkNqb0k2ODRjdEluY2FXZz09">Zoom</a> (Meeting-ID: 992 8328 7705, Pwd: 708587) during the first lecture weeks.</p>
 </section>
 <section id="literature" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="literature">Literature</h3>
@@ -301,7 +312,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
