@@ -1,4 +1,4 @@
-# Small Sample Inference {#sec-SSINF}
+# Small Sample Inference {#sec-ssinf}
 
 The content of this chapter is very much inspired by the book by @Hayashi2000. 
 
@@ -142,7 +142,7 @@ where $\widehat{Var}(\hat{\beta}_k|X)=R(s^2(X'X)^{-1})R'$. Taking square roots y
 $$
 t=\frac{\hat{\beta}_k-r}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)}\overset{H_0}{\sim}t_{(n-K)}.
 $$
-Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate reference metric for judging how ``far away'' our estimates are from the hypothetical parameter value $r$ under the null hypothesis. 
+Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate reference metric for judging how "far away" our estimates are from the hypothetical parameter value $r$ under the null hypothesis. 
 
 **Note:** All commonly used statistical software packages report $t$-tests testing the null hypothesis $H_0:\beta_k=0$, i.e., with $r=0$.  This means to test the null hypothesis that $X_k$ has "no (linear) effect" on $Y$. 
 
@@ -341,7 +341,7 @@ One-sided hypothesis:
 (\text{or}&H_A: & \beta_k< r)
 \end{array}
 \end{equation*}
-In case of a one-sided $t$-test, we will reject the null if $t_{obs}$ is sufficiently ``far away'' from zero in the relevant direction of $H_A$. The corresponding critical value is either $-c_{1-\alpha}$ ($H_A:\beta_k< r$) or $c_{1-\alpha}$ ($H_A:\beta_k> r$), where $c_{1-\alpha}$ is the $(1-\alpha)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom, and where $-c_{1-\alpha}=c_{\alpha}$ due to the symmetry of the $t$-distribution. The critical value $c_{1-\alpha}$ defines the following rejection and the non-rejection regions:
+In case of a one-sided $t$-test, we will reject the null if $t_{obs}$ is sufficiently "far away" from zero in the relevant direction of $H_A$. The corresponding critical value is either $-c_{1-\alpha}$ ($H_A:\beta_k< r$) or $c_{1-\alpha}$ ($H_A:\beta_k> r$), where $c_{1-\alpha}$ is the $(1-\alpha)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom, and where $-c_{1-\alpha}=c_{\alpha}$ due to the symmetry of the $t$-distribution. The critical value $c_{1-\alpha}$ defines the following rejection and the non-rejection regions:
 
 \bigskip
 
@@ -740,7 +740,7 @@ expression(
 expression("Nonparam. Density Estimation based on the 5000 MC realizations of"~
   hat(beta)[2])))
 ```
-Not so good. The theoretical distribution of $\hat\beta_2|X$ has much fatter tails than the simulated distribution of $\hat\beta_2$  (i.e. simulated without conditioning in $X$). That is, we cannot simply neglect that the distribution of $\hat\beta_2$ depends on the observed realization of $X$ in small samples. In large sample, however, the effect of a given realization $X$ is (fortunately) negligible, as we will see in @sec-LSINF. 
+Not so good. The theoretical distribution of $\hat\beta_2|X$ has much fatter tails than the simulated distribution of $\hat\beta_2$  (i.e. simulated without conditioning in $X$). That is, we cannot simply neglect that the distribution of $\hat\beta_2$ depends on the observed realization of $X$ in small samples. In large sample, however, the effect of a given realization $X$ is (fortunately) negligible, as we will see in @sec-lsinf. 
 
 
 ### Testing Multiple Parameters 

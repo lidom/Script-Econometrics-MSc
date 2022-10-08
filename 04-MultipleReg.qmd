@@ -157,7 +157,7 @@ Sometimes, we need to be more restrictive by assuming that also the variances of
 <!-- the whole distribution of $\varepsilon_i$ does not depend on $X_i\in\mathbb{R}^K$ also its variance  -->
 <!-- doesn't depend on $X_i$.  -->
 
-**Example:** For doing small sample inference (see @sec-SSINF), we need to assume that the error terms $\varepsilon_i$ are i.i.d. across $i=1,\dots,n$ plus the normality assumption, i.e., $\varepsilon_i\stackrel{\textrm{i.i.d.}}{\sim}{\mathcal N} (0, \sigma^2)$ for all $i=1,\dots,n$ which leads to homoscedastic variances $Var(\varepsilon_i|X_i)=\sigma^2$ for every possible realization of $X_i$. 
+**Example:** For doing small sample inference (see @sec-ssinf), we need to assume that the error terms $\varepsilon_i$ are i.i.d. across $i=1,\dots,n$ plus the normality assumption, i.e., $\varepsilon_i\stackrel{\textrm{i.i.d.}}{\sim}{\mathcal N} (0, \sigma^2)$ for all $i=1,\dots,n$ which leads to homoscedastic variances $Var(\varepsilon_i|X_i)=\sigma^2$ for every possible realization of $X_i$. 
 
 
 

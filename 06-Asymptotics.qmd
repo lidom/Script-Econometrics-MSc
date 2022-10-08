@@ -1,4 +1,4 @@
-# Large Sample Inference {#sec-LSINF}
+# Large Sample Inference {#sec-lsinf}
 
 The content of this chapter is very much inspired by the book by @Hayashi2000.
 
@@ -273,7 +273,7 @@ However, before we can formally state the asymptotic properties, we, first, need
 **Note 1:** The fourth moment of $\varepsilon_i$ is actually only needed for @thm-Consistency_s1; for the rest two moments are sufficient.
 
 
-**Note 2:** The above adjustment of Assumption 1 is far less restrictive than assuming that the error-terms $\varepsilon_i$ are i.i.d. normally distributed and independent from $X_i$ (as it's necessary for small sample inference in @sec-SSINF). 
+**Note 2:** The above adjustment of Assumption 1 is far less restrictive than assuming that the error-terms $\varepsilon_i$ are i.i.d. normally distributed and independent from $X_i$ (as it's necessary for small sample inference in @sec-ssinf). 
 
 
 **Assumption 3$^\ast$: Rank Condition (for Asymptotics)** The $(K\times K)$ matrix 

@@ -45,13 +45,18 @@ $$
 
 ## Deriving the Distribution of Estimators
 
-Usually, we do not know the distribution $F_X$ of the random sample $X_1,\dots,X_n$ and thus do not know the distribution of the estimator $\hat\theta_n=\hat\theta(X_1,\dots,X_n)$. This is a fundamental statistical problem and we need to overcome this problem in order to do statistical inference (hypothesis testing, etc.).  There are different possibilities to derive/approximate the distribution of an estimator $\hat\theta_n$.  In times when computers were expensive, statisticians mainly used mathematical derivations:  
+Usually, we do not know the distribution $F_X$ of the random sample $X_1,\dots,X_n$ and thus do not know the distribution of the estimator $\hat\theta_n=\hat\theta(X_1,\dots,X_n)$. This is a fundamental statistical problem and we need to overcome this problem in order to do statistical inference (hypothesis testing, etc.).  There are different possibilities to derive/approximate the distribution of an estimator $\hat\theta_n$.  In times when when computers were expensive, statisticians mainly used mathematical derivations:  
 
-* **Mathematical Derivation using Distributional Assumptions.** Assuming a certain distribution $F_X$ for the random sample $X_1,\dots,X_n$ allows us to derive the *exact* distribution of $\hat\theta_n$ mathematically. Of course, this option fails miserably if the distributional assumption on $F_X$ is wrong. Moreover, such mathematical derivations are often only possible for particular distributions $F_X$ like the normal distribution. (We use this option in @sec-SSINF.)
+* **Mathematical Derivation using Distributional Assumptions.** Assuming a certain distribution $F_X$ for the random sample $X_1,\dots,X_n$ allows us to derive the *exact* distribution of $\hat\theta_n$ mathematically. (We consider this option in @sec-ssinf .)
+  * Pro: If the distributional assumption is correct, one has *exact* inference for each sample size $n$. 
+  * Con: This option can fail miserably if the distributional assumption on $F_X$ is wrong. 
+  * Con: Such mathematical derivations are often only possible for particular distributions $F_X$ like the normal distribution. 
 
-* **Mathematical Derivation using Asymptotic Statistics.** Large sample $(n\to\infty)$ approximations (laws of large numbers and central limit theorems) allow us to derive the *approxmate* distribution of $\hat\theta_n$. This option uses mathematial limit considerations by letting the sample size $n$ diverge to infinity. Therefore, the derived distribution is only excact for the practically impossible case where $n\to\infty$ and can fail to approximate the exact distribution of $\hat\theta_n$ when $n$ is small. (We use this option in @sec-LSINF.)
+* **Mathematical Derivation using Asymptotic Statistics.** Large sample $(n\to\infty)$ approximations (i.e. laws of large numbers and central limit theorems) allow us to derive the *approximate* distribution of $\hat\theta_n$. This option uses mathematical limit considerations by letting the sample size $n$ diverge to infinity. (We consider this option in @sec-lsinf .) 
+  * Pro: Only a few qualitative distributional assumptions are needed. 
+  * Con: The derived asymptotic ($n\to\infty$) distribution is only exact for the practically impossible case where $n=\infty$ and thus can fail to approximate the exact distribution of $\hat\theta_n$ for given (finite) sample sizes $n$; particularly if $n$ is small. 
 
-With computers, we have further options to approximate the exact distribution of estimators using (pseudo-)random number generators:
+With computers, we have further options to approximate the exact distribution of estimators using (pseudo-)random number generators. One example are Monte Carlo simulations:
 
 * **Monte Carlo Simulations.** Using (pseudo-)random number generators, we can draw `B` many realizations 
 $$
@@ -61,10 +66,12 @@ of the random sample $X_{1},\dots,X_{n}$ from basically any distribution $F_X$ a
 $$
 \underbrace{\hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})}_{=\hat\theta_{n,1,obs}},\;\underbrace{\hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})}_{=\hat\theta_{n,2,obs}},\dots,\underbrace{\hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})}_{=\hat\theta_{n,B,obs}}
 $$ 
-of the estimator $\hat\theta_n$. This set of realizations $\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}$ allows us then to approximate the exact distribution of $\hat\theta_n$ for given sample sizes $n$ and given distributions $F_X$. (We use this option to validate theoretical statements in @sec-SSINF and @sec-LSINF.)
+of the estimator $\hat\theta_n$. This set of realizations $\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}$ allows us then to approximate the exact distribution of $\hat\theta_n$ for given sample sizes $n$ and given distributions $F_X$. (We use this option to validate theoretical statements in @sec-ssinf and @sec-lsinf .)
+  * Pro: Works for basically every distributional assumption. 
+  * Con: This option can fail miserably if the distributional assumption on $F_X$ is wrong. 
 
 
-Monte Carlo Simulations rely on distributional assumptions and thus may fail just as the first option (Mathematical Derivation using Distributional Assumptions). However, Monte Carlo Simulations are much wider applicable than since we can use computers to sample data from basically every distribution.  
+<!-- Monte Carlo Simulations rely on distributional assumptions and thus may fail just as the first option (Mathematical Derivation using Distributional Assumptions). However, Monte Carlo Simulations are much wider applicable than since we can use computers to sample data from basically every distribution.   -->
 
 
 The following `R` code generates `B` many realizations of the sample mean estimator $\hat\theta_n=\bar{X}_n$ using a random sample $X_1,\dots,X_n$, where $F_X$ is a normal distribution with mean $(\theta=)\mu=10$ and variance $\sigma^2=5$:  
@@ -81,7 +88,7 @@ n_seq         <- c(5, 15, 50)
 ## 1st Possibility: Using a for() loop ##
 ## ######################################
 
-## Set seed for the random number generator to get reproducable results
+## Set seed for the random number generator to get reproducible results
 set.seed(3)
 
 # Container for the generated estimates:
@@ -102,7 +109,7 @@ for(j in 1:length(n_seq)){
 ## 2nd Possibility: Using replicate() ##
 ## #####################################
 
-## Set seed for the random number generator to get reproducable results
+## Set seed for the random number generator to get reproducible results
 set.seed(3)
 
 ## Function that generates estimator realizations 
@@ -119,23 +126,25 @@ estimates_mat <- cbind(
 )
 ```
 
-Using histograms and density estimates based on the `B`$=10,000$ realizations of the estimator $\bar{X}_n$, we can get an idea about the distribution of $\bar{X}_n$ for random samples from a normal distribution with mean $\mu=10$ and variance $\sigma^2=5$:
+Based on the `B`$=10,000$ realizations of the estimator $\bar{X}_n$, we can compute histograms and non-parametric density estimates to get an idea about the true distribution of $\bar{X}_n$ for the case of random samples $X_1,\dots,X_n$ from a normal distribution with mean $\mu=10$ and variance $\sigma^2=5$:
 ```{r, fig.align="center", fig.cap=""}
 par(mfrow=c(1,3))
-hist(estimates_mat[,1], main="n=5", xlab="",  xlim = range(estimates_mat[,1]))
-#line(density(estimates_mat[,1]))
-hist(estimates_mat[,2], main="n=15", xlab="", xlim = range(estimates_mat[,1]))
-hist(estimates_mat[,3], main="n=50", xlab="", xlim = range(estimates_mat[,1]))
+hist(estimates_mat[,1], main="n=5", xlab="",  xlim = range(estimates_mat[,1]), prob = TRUE, ylim = c(0, 1.2))
+lines(density(estimates_mat[,1], bw = bw.SJ(estimates_mat[,1])), col="blue")
+hist(estimates_mat[,2], main="n=15", xlab="", xlim = range(estimates_mat[,1]), prob = TRUE, ylim = c(0, 1.2))
+lines(density(estimates_mat[,2], bw = bw.SJ(estimates_mat[,3])), col="blue")
+hist(estimates_mat[,3], main="n=50", xlab="", xlim = range(estimates_mat[,1]), prob = TRUE, ylim = c(0, 1.2))
+lines(density(estimates_mat[,2], bw = bw.SJ(estimates_mat[,3])), col="blue")
 ```
 
 Observations: 
 
-* At least on average, the estimates $\bar{X}_n$ are close to the target parameter $\mu=10$. So their biases should be close to zero.
+* At least on average, the estimates $\bar{X}_n$ are close to the target parameter $\mu=10$. So their biases (see below) are close to zero.
 
-* As the sample size increases, the estimates  $\bar{X}_n$  concentrate around the target parameter $\mu=10$. So the variances should decrease as $n$ gets large.
+* As the sample size increases, the distributions of the estimators $\bar{X}_n$  concentrate around the target parameter $\mu=10$. So the variances decrease as $n$ gets large.
 
 
-
+Thus here the quality of the estimator $\bar{X}_n$ gets better as $n$ gets large. To describe the quality of estimators more compactly, statisticians/econometricians use specific metrics like bias, variance and the mean squared error of the distribution of a estimator $\hat\theta$.
 
 
 ## Assessing the Quality of Estimators 
@@ -229,7 +238,7 @@ Any of the the above assessment metrics require us to compute means of random va
 
 A Monte Carlo simulation can approximate these means by using the **law of large numbers** which states that a sample mean over iid random variables is able to approximate the population mean of these random variables as the number of random variables to average over get large.[^1]
 
-[^1]: See @thm-SLLN1 in @sec-LSINF.
+[^1]: See @thm-SLLN1 in @sec-lsinf.
 
 
 Thus, to compute a very precise approximation to $E\left(\hat\theta_n\right)-\theta$, we can use a computer to execute the following algorithm:

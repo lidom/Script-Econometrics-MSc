@@ -180,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-Monte-Carlo-Simulations.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></a>
+  <a href="./03-Monte-Carlo-Simulations.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-Instrumental-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instrumental Variables Regression</span></a>
+  <a href="./07-Instrumental-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instrumental Variables Regression</span></a>
   </div>
 </li>
     </ul>
@@ -270,16 +270,16 @@ X_i\overset{iid}{\sim} F_X
 <h2 data-number="3.2" class="anchored" data-anchor-id="deriving-the-distribution-of-estimators"><span class="header-section-number">3.2</span> Deriving the Distribution of Estimators</h2>
 <p>Usually, we do not know the distribution <span class="math inline">\(F_X\)</span> of the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> and thus do not know the distribution of the estimator <span class="math inline">\(\hat\theta_n=\hat\theta(X_1,\dots,X_n)\)</span>. This is a fundamental statistical problem and we need to overcome this problem in order to do statistical inference (hypothesis testing, etc.). There are different possibilities to derive/approximate the distribution of an estimator <span class="math inline">\(\hat\theta_n\)</span>. In times when when computers were expensive, statisticians mainly used mathematical derivations:</p>
 <ul>
-<li><strong>Mathematical Derivation using Distributional Assumptions.</strong> Assuming a certain distribution <span class="math inline">\(F_X\)</span> for the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> allows us to derive the <em>exact</em> distribution of <span class="math inline">\(\hat\theta_n\)</span> mathematically. (We consider this option in <span class="quarto-unresolved-ref">?sec-SSINF</span> .)
+<li><strong>Mathematical Derivation using Distributional Assumptions.</strong> Assuming a certain distribution <span class="math inline">\(F_X\)</span> for the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> allows us to derive the <em>exact</em> distribution of <span class="math inline">\(\hat\theta_n\)</span> mathematically. (We consider this option in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a> .)
 <ul>
 <li>Pro: If the distributional assumption is correct, one has <em>exact</em> inference for each sample size <span class="math inline">\(n\)</span>.</li>
-<li>Con: This option fails miserably if the distributional assumption on <span class="math inline">\(F_X\)</span> is wrong.</li>
+<li>Con: This option can fail miserably if the distributional assumption on <span class="math inline">\(F_X\)</span> is wrong.</li>
 <li>Con: Such mathematical derivations are often only possible for particular distributions <span class="math inline">\(F_X\)</span> like the normal distribution.</li>
 </ul></li>
-<li><strong>Mathematical Derivation using Asymptotic Statistics.</strong> Large sample <span class="math inline">\((n\to\infty)\)</span> approximations (i.e.&nbsp;laws of large numbers and central limit theorems) allow us to derive the <em>approximate</em> distribution of <span class="math inline">\(\hat\theta_n\)</span>. This option uses mathematical limit considerations by letting the sample size <span class="math inline">\(n\)</span> diverge to infinity. (We consider this option in <span class="quarto-unresolved-ref">?sec-LSINF</span> .)
+<li><strong>Mathematical Derivation using Asymptotic Statistics.</strong> Large sample <span class="math inline">\((n\to\infty)\)</span> approximations (i.e.&nbsp;laws of large numbers and central limit theorems) allow us to derive the <em>approximate</em> distribution of <span class="math inline">\(\hat\theta_n\)</span>. This option uses mathematical limit considerations by letting the sample size <span class="math inline">\(n\)</span> diverge to infinity. (We consider this option in <a href="06-Asymptotics.html"><span>Chapter&nbsp;6</span></a> .)
 <ul>
-<li>Pro: No distributional assumptions are needed.</li>
-<li>Con: The derived asymptotic (<span class="math inline">\(n\to\infty\)</span>) distribution is only exact for the practically impossible case where <span class="math inline">\(n=\infty\)</span> and thus can fail to approximate the exact distribution of <span class="math inline">\(\hat\theta_n\)</span> when <span class="math inline">\(n\)</span> is small.</li>
+<li>Pro: Only a few qualitative distributional assumptions are needed.</li>
+<li>Con: The derived asymptotic (<span class="math inline">\(n\to\infty\)</span>) distribution is only exact for the practically impossible case where <span class="math inline">\(n=\infty\)</span> and thus can fail to approximate the exact distribution of <span class="math inline">\(\hat\theta_n\)</span> for given (finite) sample sizes <span class="math inline">\(n\)</span>; particularly if <span class="math inline">\(n\)</span> is small.</li>
 </ul></li>
 </ul>
 <p>With computers, we have further options to approximate the exact distribution of estimators using (pseudo-)random number generators. One example are Monte Carlo simulations:</p>
@@ -288,10 +288,10 @@ X_i\overset{iid}{\sim} F_X
 (X_{1,1,obs},\dots,X_{n,1,obs}),\; (X_{1,2,obs},\dots,X_{n,2,obs}),\dots, (X_{1,B,obs},\dots,X_{n,B,obs})
 \]</span> of the random sample <span class="math inline">\(X_{1},\dots,X_{n}\)</span> from basically any distribution <span class="math inline">\(F_X\)</span> and thus can compute <code>B</code> many realizations <span class="math display">\[
 \underbrace{\hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})}_{=\hat\theta_{n,1,obs}},\;\underbrace{\hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})}_{=\hat\theta_{n,2,obs}},\dots,\underbrace{\hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})}_{=\hat\theta_{n,B,obs}}
-\]</span> of the estimator <span class="math inline">\(\hat\theta_n\)</span>. This set of realizations <span class="math inline">\(\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}\)</span> allows us then to approximate the exact distribution of <span class="math inline">\(\hat\theta_n\)</span> for given sample sizes <span class="math inline">\(n\)</span> and given distributions <span class="math inline">\(F_X\)</span>. (We use this option to validate theoretical statements in <span class="quarto-unresolved-ref">?sec-SSINF</span> and <span class="quarto-unresolved-ref">?sec-LSINF</span> .)
+\]</span> of the estimator <span class="math inline">\(\hat\theta_n\)</span>. This set of realizations <span class="math inline">\(\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}\)</span> allows us then to approximate the exact distribution of <span class="math inline">\(\hat\theta_n\)</span> for given sample sizes <span class="math inline">\(n\)</span> and given distributions <span class="math inline">\(F_X\)</span>. (We use this option to validate theoretical statements in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a> and <a href="06-Asymptotics.html"><span>Chapter&nbsp;6</span></a> .)
 <ul>
 <li>Pro: Works for basically every distributional assumption.</li>
-<li>Con: This option fails miserably if the distributional assumption on <span class="math inline">\(F_X\)</span> is wrong.</li>
+<li>Con: This option can fail miserably if the distributional assumption on <span class="math inline">\(F_X\)</span> is wrong.</li>
 </ul></li>
 </ul>
 <!-- Monte Carlo Simulations rely on distributional assumptions and thus may fail just as the first option (Mathematical Derivation using Distributional Assumptions). However, Monte Carlo Simulations are much wider applicable than since we can use computers to sample data from basically every distribution.   -->
@@ -346,7 +346,7 @@ X_i\overset{iid}{\sim} F_X
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(B, <span class="fu">my_estimates_generator</span>(<span class="at">n =</span> n_seq[<span class="dv">3</span>]))</span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Using histograms and density estimates based on the <code>B</code><span class="math inline">\(=10,000\)</span> realizations of the estimator <span class="math inline">\(\bar{X}_n\)</span>, we can get an idea about the distribution of <span class="math inline">\(\bar{X}_n\)</span> for random samples from a normal distribution with mean <span class="math inline">\(\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>:</p>
+<p>Based on the <code>B</code><span class="math inline">\(=10,000\)</span> realizations of the estimator <span class="math inline">\(\bar{X}_n\)</span>, we can compute histograms and non-parametric density estimates to get an idea about the true distribution of <span class="math inline">\(\bar{X}_n\)</span> for the case of random samples <span class="math inline">\(X_1,\dots,X_n\)</span> from a normal distribution with mean <span class="math inline">\(\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(estimates_mat[,<span class="dv">1</span>], <span class="at">main=</span><span class="st">"n=5"</span>, <span class="at">xlab=</span><span class="st">""</span>,  <span class="at">xlim =</span> <span class="fu">range</span>(estimates_mat[,<span class="dv">1</span>]), <span class="at">prob =</span> <span class="cn">TRUE</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.2</span>))</span>
@@ -358,16 +358,17 @@ X_i\overset{iid}{\sim} F_X
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02-Monte-Carlo-Simulations_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="03-Monte-Carlo-Simulations_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Observations:</p>
 <ul>
-<li><p>At least on average, the estimates <span class="math inline">\(\bar{X}_n\)</span> are close to the target parameter <span class="math inline">\(\mu=10\)</span>. So their biases should be close to zero.</p></li>
-<li><p>As the sample size increases, the estimates <span class="math inline">\(\bar{X}_n\)</span> concentrate around the target parameter <span class="math inline">\(\mu=10\)</span>. So the variances should decrease as <span class="math inline">\(n\)</span> gets large.</p></li>
+<li><p>At least on average, the estimates <span class="math inline">\(\bar{X}_n\)</span> are close to the target parameter <span class="math inline">\(\mu=10\)</span>. So their biases (see below) are close to zero.</p></li>
+<li><p>As the sample size increases, the distributions of the estimators <span class="math inline">\(\bar{X}_n\)</span> concentrate around the target parameter <span class="math inline">\(\mu=10\)</span>. So the variances decrease as <span class="math inline">\(n\)</span> gets large.</p></li>
 </ul>
+<p>Thus here the quality of the estimator <span class="math inline">\(\bar{X}_n\)</span> gets better as <span class="math inline">\(n\)</span> gets large. To describe the quality of estimators more compactly, statisticians/econometricians use specific metrics like bias, variance and the mean squared error of the distribution of a estimator <span class="math inline">\(\hat\theta\)</span>.</p>
 </section>
 <section id="assessing-the-quality-of-estimators" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="assessing-the-quality-of-estimators"><span class="header-section-number">3.3</span> Assessing the Quality of Estimators</h2>
@@ -612,7 +613,7 @@ Var\left(\bar{X}_n\right)=Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right) = \frac{1}{
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>See <span class="quarto-unresolved-ref">?thm-SLLN1</span> in <span class="quarto-unresolved-ref">?sec-LSINF</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>See <a href="06-Asymptotics.html#thm-SLLN1">Theorem&nbsp;<span>6.2</span></a> in <a href="06-Asymptotics.html"><span>Chapter&nbsp;6</span></a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
