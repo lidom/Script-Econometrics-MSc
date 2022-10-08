@@ -270,7 +270,7 @@ X_i\overset{iid}{\sim} F_X
 <h2 data-number="3.2" class="anchored" data-anchor-id="deriving-the-distribution-of-estimators"><span class="header-section-number">3.2</span> Deriving the Distribution of Estimators</h2>
 <p>Usually, we do not know the distribution <span class="math inline">\(F_X\)</span> of the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> and thus do not know the distribution of the estimator <span class="math inline">\(\hat\theta_n=\hat\theta(X_1,\dots,X_n)\)</span>. This is a fundamental statistical problem and we need to overcome this problem in order to do statistical inference (hypothesis testing, etc.). There are different possibilities to derive/approximate the distribution of an estimator <span class="math inline">\(\hat\theta_n\)</span>. In times when when computers were expensive, statisticians mainly used mathematical derivations:</p>
 <ul>
-<li><strong>Mathematical Derivation using Distributional Assumptions.</strong> Assuming a certain distribution <span class="math inline">\(F_X\)</span> for the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> allows us to derive the <em>exact</em> distribution of <span class="math inline">\(\hat\theta_n\)</span> mathematically. (We consider this option in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a> .)
+<li><strong>Mathematical Derivation using Distributional Assumptions.</strong> Assuming a certain distribution <span class="math inline">\(F_X\)</span> for the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> allows us to derive the <em>exact</em> distribution of <span class="math inline">\(\hat\theta_n\)</span> mathematically. (We consider this option in <span class="quarto-unresolved-ref">?sec-ssinf</span> .)
 <ul>
 <li>Pro: If the distributional assumption is correct, one has <em>exact</em> inference for each sample size <span class="math inline">\(n\)</span>.</li>
 <li>Con: This option can fail miserably if the distributional assumption on <span class="math inline">\(F_X\)</span> is wrong.</li>
@@ -288,7 +288,7 @@ X_i\overset{iid}{\sim} F_X
 (X_{1,1,obs},\dots,X_{n,1,obs}),\; (X_{1,2,obs},\dots,X_{n,2,obs}),\dots, (X_{1,B,obs},\dots,X_{n,B,obs})
 \]</span> of the random sample <span class="math inline">\(X_{1},\dots,X_{n}\)</span> from basically any distribution <span class="math inline">\(F_X\)</span> and thus can compute <code>B</code> many realizations <span class="math display">\[
 \underbrace{\hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})}_{=\hat\theta_{n,1,obs}},\;\underbrace{\hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})}_{=\hat\theta_{n,2,obs}},\dots,\underbrace{\hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})}_{=\hat\theta_{n,B,obs}}
-\]</span> of the estimator <span class="math inline">\(\hat\theta_n\)</span>. This set of realizations <span class="math inline">\(\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}\)</span> allows us then to approximate the exact distribution of <span class="math inline">\(\hat\theta_n\)</span> for given sample sizes <span class="math inline">\(n\)</span> and given distributions <span class="math inline">\(F_X\)</span>. (We use this option to validate theoretical statements in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a> and <a href="06-Asymptotics.html"><span>Chapter&nbsp;6</span></a> .)
+\]</span> of the estimator <span class="math inline">\(\hat\theta_n\)</span>. This set of realizations <span class="math inline">\(\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}\)</span> allows us then to approximate the exact distribution of <span class="math inline">\(\hat\theta_n\)</span> for given sample sizes <span class="math inline">\(n\)</span> and given distributions <span class="math inline">\(F_X\)</span>. (We use this option to validate theoretical statements in <span class="quarto-unresolved-ref">?sec-ssinf</span> and <a href="06-Asymptotics.html"><span>Chapter&nbsp;6</span></a> .)
 <ul>
 <li>Pro: Works for basically every distributional assumption.</li>
 <li>Con: This option can fail miserably if the distributional assumption on <span class="math inline">\(F_X\)</span> is wrong.</li>
@@ -372,7 +372,7 @@ X_i\overset{iid}{\sim} F_X
 </section>
 <section id="assessing-the-quality-of-estimators" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="assessing-the-quality-of-estimators"><span class="header-section-number">3.3</span> Assessing the Quality of Estimators</h2>
-<p><!-- But how good is a given estimator $\hat\theta_n$ for a given sample size?  --></p>
+<!-- But how good is a given estimator $\hat\theta_n$ for a given sample size?  -->
 <p>Any reasonable estimator <span class="math inline">\(\hat\theta_n\)</span> should be able to approximate the (usually unknown) parameter value <span class="math inline">\(\theta\)</span>, <span class="math display">\[
 \hat\theta_n\approx\theta,
 \]</span> and the approximation should get better as the sample size increases (i.e.&nbsp;as <span class="math inline">\(n\to\infty\)</span>).</p>
@@ -455,7 +455,8 @@ Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^
 </ul>
 <p><span class="math display">\[
 \operatorname{MSE}\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - \theta\right)^2\right]\approx\frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \theta\right)^2
-\]</span> ## Practice</p>
+\]</span></p>
+<!-- ## Practice -->
 <p>The following <code>R</code> code contains a Monte Carlo simulation computing the bias, variance, and means squared error for the sample mean <span class="math inline">\(\hat\theta_n=\sum_{i=1}^nX_i\)</span> as the estimator of the population mean <span class="math inline">\(\mu\)</span>.</p>
 <p>To investigate the accuracy of the estimator for different sample sizes <span class="math inline">\(n\)</span> we consider a range of sample sizes <span class="math inline">\(n\in\{5,15,50\}\)</span>.</p>
 <p>The random sample <span class="math inline">\(X_i\overset{iid}{\sim}F_X\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>, is drawn from a normal distribution <span class="math inline">\(F_X=\mathcal{N}(\mu,\sigma^2)\)</span> with mean <span class="math inline">\(\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>.</p>
