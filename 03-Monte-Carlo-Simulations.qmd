@@ -281,6 +281,8 @@ $$
 $$
 \operatorname{MSE}\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - \theta\right)^2\right]\approx\frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \theta\right)^2
 $$
+
+
 ## Practice
 
 The following `R` code contains a Monte Carlo simulation computing the bias, variance, and means squared error for the sample mean $\hat\theta_n=\sum_{i=1}^nX_i$ as the estimator of the population mean $\mu$. 
