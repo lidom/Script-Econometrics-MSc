@@ -305,15 +305,18 @@ H_A:  &amp; \beta_{k} \ne 0 \\
 <h3 data-number="5.1.1" class="anchored" data-anchor-id="the-test-statistic-and-its-null-distribution"><span class="header-section-number">5.1.1</span> The Test Statistic and its Null Distribution</h3>
 <p>The fact that <span class="math inline">\((R\hat\beta_n-r)\in\mathbb{R}^q\)</span> is a <span class="math inline">\(q\)</span>-dimensional random variable makes it a little bothersome to use as a test-statistic. Fortunately, we can turn <span class="math inline">\((R\hat\beta_n-r)\)</span> into a scalar-valued test statistic using the following quadratic form: <span class="math display">\[\begin{align*}
 W&amp;=\underbrace{(R\hat\beta_n -r)'}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R']^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r)}_{(q\times 1)}
-\end{align*}\]</span> Note that the test statistic <span class="math inline">\(W\)</span> is simply measuring the distance (it’s a weighted L2-distance) between the vectors <span class="math inline">\(R\hat\beta_n\)</span> and <span class="math inline">\(r\)</span>. Moreover, under the null hypothesis (i.e., if the null hypothesis is true), <span class="math inline">\(W\)</span> is just a sum of <span class="math inline">\(q\)</span>-many independent squared standard normal random variables. Therefore, under the null hypothesis, <span class="math inline">\(W\)</span> is <span class="math inline">\(\chi^2(q)\)</span> distributed with <span class="math inline">\(q\)</span> degrees of freedom (see <span class="quarto-unresolved-ref">?sec-chisqdist</span>), <span class="math display">\[\begin{equation*}
-W=(R\hat\beta_n -r)'[RVar(\hat\beta_n|X)R']^{-1}(R\hat\beta_n-r)\overset{H_0}{\sim} \chi^2(q).
+\end{align*}\]</span> Note that the test statistic <span class="math inline">\(W\)</span> is simply measuring the distance (it’s a weighted L2-distance) between <span class="math inline">\(R\hat\beta_n\)</span> and <span class="math inline">\(r\)</span>. Moreover, conditionally on <span class="math inline">\(X\)</span> and under the null hypothesis (i.e., if the null hypothesis is true), <span class="math inline">\(W\)</span> is just a sum of <span class="math inline">\(q\)</span>-many independent squared standard normal random variables. Therefore, under the null hypothesis, <span class="math inline">\(W|X\)</span> is <span class="math inline">\(\chi^2(q)\)</span> distributed with <span class="math inline">\(q\)</span> degrees of freedom (see <span class="quarto-unresolved-ref">?sec-chisqdist</span>), <span class="math display">\[\begin{equation*}
+W|X\overset{H_0}{\sim} \chi^2(q).
 \end{equation*}\]</span></p>
-<p>Usually, we do not know <span class="math inline">\(Var(\hat\beta_n|X)\)</span> and, therefore, have to estimate this quantity. Unfortunately, in the small sample case, we can only deal with homoscedastic error terms. For truly <em>exact</em> finite sample inference, we need a variance estimator for which we can derive the <em>exact</em> small sample distribution. Therefore, we assume in Assumption 4<span class="math inline">\(^*\)</span> spherical errors (i.e., <span class="math inline">\(Var(\varepsilon|X)=I_n\sigma^2\)</span>) which yield that <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}\)</span>, and where <span class="math inline">\(\sigma^2\)</span> can be estimated by <span class="math display">\[
+<p>Usually, we do not know <span class="math inline">\(Var(\hat\beta_n|X)\)</span> and, therefore, have to estimate this quantity. Unfortunately, in the small sample case, we can only deal with homoscedastic error terms. For truly <em>exact</em> finite sample inference, we need a variance estimator for which we can derive the <em>exact</em> small sample distribution. Therefore, we assume in Assumption 4<span class="math inline">\(^*\)</span> spherical errors (i.e., <span class="math inline">\(Var(\varepsilon|X)=I_n\sigma^2\)</span>) which yields that <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}\)</span>, and where <span class="math inline">\(\sigma^2\)</span> can be estimated by <span class="math display">\[
 s_{UB}^2=(n-K)^{-1}\sum_{i=1}^n\hat\varepsilon_i^2.
 \]</span><br>
-From the normality assumption in Assumption 4<span class="math inline">\(^*\)</span>, it follows then that <span class="math inline">\(\sigma^{-2}(n-K)s_{UB}^2\sim\chi^2(n-K)\)</span>. This then leads to the following exact null distribution of <span id="eq-Ftest"><span class="math display">\[
-F=(R\hat\beta_n -r)'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r)/q\overset{H_0}{\sim} F(q,n-K),
-\tag{5.2}\]</span></span> where <span class="math inline">\(F(q,n-K)\)</span> denotes the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\(q\)</span> numerator and <span class="math inline">\(n-K\)</span> denominator degrees of freedom (see, for instance, Chapter 1 in <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>). By contrast to <span class="math inline">\(W\)</span>, <span class="math inline">\(F\)</span> is now a practically useful test-statistic, and we can use the observed value <span class="math inline">\(F_{\text{obs}}\)</span> to measure the distance of our estimate <span class="math inline">\(R\hat\beta_n\)</span> from value <span class="math inline">\(r\)</span>. Observed values, <span class="math inline">\(F_{\text{obs}}\)</span>, that are “unusually large” under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution <span class="math inline">\(F(q,n-K)\)</span> of <span class="math inline">\(F\)</span> is used to judge what’s “unusually large” under the null hypothesis.</p>
+From the normality assumption in Assumption 4<span class="math inline">\(^*\)</span>, it follows then that <span class="math inline">\(\sigma^{-2}(n-K)s_{UB}^2\sim\chi^2(n-K)\)</span>. The <span class="math inline">\(F\)</span> test statistic <span class="math display">\[
+F=(R\hat\beta_n -r)'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r)/q
+\]</span> takes into account the additional randomness in the estimator <span class="math inline">\(s_{UB}^2\)</span>, which leads to the following exact null distribution of the <span class="math inline">\(F\)</span> test <span id="eq-Ftest"><span class="math display">\[
+F|X\overset{H_0}{\sim} F(q,n-K),
+\tag{5.2}\]</span></span> where <span class="math inline">\(F(q,n-K)\)</span> denotes the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\(q\)</span> numerator and <span class="math inline">\(n-K\)</span> denominator degrees of freedom. This is cumbersome to derive and we do not go into details here, but in case you’re interested you can find the derivations in Chapter 1 of <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>.</p>
+<p>By contrast to <span class="math inline">\(W\)</span>, <span class="math inline">\(F\)</span> is now a practically useful test statistic, and we can use the observed value <span class="math inline">\(F_{\text{obs}}\)</span> to measure the distance of our estimate <span class="math inline">\(R\hat\beta_n\)</span> from value <span class="math inline">\(r\)</span>. Observed values, <span class="math inline">\(F_{\text{obs}}\)</span>, that are “unusually large” under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution <span class="math inline">\(F(q,n-K)\)</span> of <span class="math inline">\(F\)</span> is used to judge what’s “unusually large” under the null hypothesis.</p>
 <p><strong>The F distribution:</strong> The F distribution is a ratio of two <span class="math inline">\(\chi^2\)</span> distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See <span class="quarto-unresolved-ref">?sec-Fdist</span> for more information on the <span class="math inline">\(F\)</span> distribution.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -334,10 +337,12 @@ H_0: &amp; \beta_k=r\\
 H_A: &amp; \beta_k\ne r\\
 \end{array}
 \end{equation*}\]</span> the (<span class="math inline">\(q\times K\)</span>=<span class="math inline">\(1\times K\)</span>)-matrix <span class="math inline">\(R\)</span> equals a row-vector of zeros but with a one as the <span class="math inline">\(k\)</span>th element (e.g., for <span class="math inline">\(k=2\)</span>, <span class="math inline">\(R=(0,1,0,\dots,0)\)</span>) such that <span class="math inline">\(F\)</span> in <a href="#eq-Ftest">Equation&nbsp;<span>5.2</span></a> simplifies to <span class="math display">\[
-\frac{\left(\hat{\beta}_k-r\right)^2}{\widehat{Var}(\hat{\beta}_k|X)}\overset{H_0}{\sim}F(1,n-K),
-\]</span> where <span class="math inline">\(\widehat{Var}(\hat{\beta}_k|X)=R(s^2(X'X)^{-1})R'\)</span>. Taking square roots yields <span class="math display">\[
-t=\frac{\hat{\beta}_k-r}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)}\overset{H_0}{\sim}t_{(n-K)}.
-\]</span> Thus the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom is the appropriate reference metric for judging how “far away” our estimates are from the hypothetical parameter value <span class="math inline">\(r\)</span> under the null hypothesis.</p>
+F=\frac{\left(\hat{\beta}_k-r\right)^2}{\widehat{Var}(\hat{\beta}_k|X)},
+\]</span> where <span class="math inline">\(\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{kk}\)</span> and <span class="math inline">\(F|X\overset{H_0}{\sim}F(1,n-K)\)</span>. Taking square roots yields the <span class="math inline">\(t\)</span> test statistic <span class="math display">\[
+t=\frac{\hat{\beta}_k-r}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)},
+\]</span> where <span class="math inline">\(\widehat{\operatorname{SE}}(\hat{\beta}_k|X)=s_{UB}[(X'X)^{-1/2}]_{kk}\)</span>. Under the null hypothesis, the <span class="math inline">\(t\)</span> test statistic is (conditionally on <span class="math inline">\(X\)</span>) <span class="math inline">\(t\)</span>-distributed with <span class="math inline">\(n-K\)</span> degrees of freedom <span class="math display">\[
+t|X\overset{H_0}{\sim}t_{(n-K)}.
+\]</span> Thus the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom is the appropriate distribution to judge whether or not an observed value <span class="math inline">\(t_{obs}\)</span> of the test statistic is unusually small or large under the null hypothesis.</p>
 <p><strong>Note:</strong> All commonly used statistical software packages report <span class="math inline">\(t\)</span>-tests testing the null hypothesis <span class="math inline">\(H_0:\beta_k=0\)</span>, i.e., with <span class="math inline">\(r=0\)</span>. This means to test the null hypothesis that <span class="math inline">\(X_k\)</span> has “no (linear) effect” on <span class="math inline">\(Y\)</span>.</p>
 <p>The following plot illustrates that as the degrees of freedom increase, the shape of the <span class="math inline">\(t\)</span> distribution comes closer to that of a standard normal bell curve. Already for <span class="math inline">\(25\)</span> degrees of freedom we find little difference to the standard normal density. In case of small degrees of freedom values, we find the distribution to have heavier tails than a standard normal.</p>
 <div class="cell" data-layout-align="center">
@@ -509,8 +514,7 @@ H_A:  &amp; \beta_k&gt;0,
 <p>Under this setup, the distribution “under the null hypothesis” (i.e., if <span class="math inline">\(\beta_k=0\)</span> were true) is: <span class="math display">\[\begin{align*}
 t\big|X=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\Big|X\overset{H_0}{\sim}\mathcal{N}(0,1)
 \end{align*}\]</span> Likewise, the distribution “under the alternative hypothesis” (i.e., for the actual <span class="math inline">\(\beta_k=3\)</span>) is: <span class="math display">\[\begin{align*}
-t
-=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
+t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
 &amp;=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
 \Rightarrow\quad&amp;\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\substack{\sim \mathcal{N}(0,1)\\(\text{conditionally on $X$})}}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\Big|X\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
 \end{align*}\]</span></p>
@@ -609,16 +613,16 @@ X_{i3}&amp;\sim U[12,22]\\
 <span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data,     <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, new X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Y X_1  X_2   X_3
-1 82.48   1 9.55 13.11
-2 95.47   1 8.64 16.21
-3 98.01   1 5.79 19.52</code></pre>
+1 78.33   1 3.23 16.52
+2 83.67   1 2.36 19.00
+3 79.69   1 6.46 15.00</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data_new, <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, conditionally on X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Y X_1  X_2   X_3
-1 84.25   1 9.55 13.11
-2 88.65   1 8.64 16.21
-3 90.52   1 5.79 19.52</code></pre>
+1 81.19   1 3.23 16.52
+2 82.74   1 2.36 19.00
+3 80.57   1 6.46 15.00</code></pre>
 </div>
 </div>
 <section id="normally-distributed-hatbetax" class="level3" data-number="5.5.1">

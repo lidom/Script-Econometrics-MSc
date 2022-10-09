@@ -70,20 +70,26 @@ The fact that $(R\hat\beta_n-r)\in\mathbb{R}^q$ is a $q$-dimensional random vari
 \begin{align*}
 W&=\underbrace{(R\hat\beta_n -r)'}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R']^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r)}_{(q\times 1)}
 \end{align*}
-Note that the test statistic $W$ is simply measuring the distance (it's a weighted L2-distance) between the vectors $R\hat\beta_n$ and $r$. Moreover, under the null hypothesis (i.e., if the null hypothesis is true), $W$ is just a sum of $q$-many independent squared standard normal random variables. Therefore, under the null hypothesis, $W$ is $\chi^2(q)$ distributed with $q$ degrees of freedom (see @sec-chisqdist), 
+Note that the test statistic $W$ is simply measuring the distance (it's a weighted L2-distance) between $R\hat\beta_n$ and $r$. Moreover, conditionally on $X$ and under the null hypothesis (i.e., if the null hypothesis is true), $W$ is just a sum of $q$-many independent squared standard normal random variables. Therefore, under the null hypothesis, $W|X$ is $\chi^2(q)$ distributed with $q$ degrees of freedom (see @sec-chisqdist), 
 \begin{equation*}
-W=(R\hat\beta_n -r)'[RVar(\hat\beta_n|X)R']^{-1}(R\hat\beta_n-r)\overset{H_0}{\sim} \chi^2(q).
+W|X\overset{H_0}{\sim} \chi^2(q).
 \end{equation*}
 
-
-Usually, we do not know $Var(\hat\beta_n|X)$ and, therefore, have to estimate this quantity. Unfortunately, in the small sample case, we can only deal with homoscedastic error terms. For truly *exact* finite sample inference, we need a variance estimator for which we can derive the *exact* small sample distribution. Therefore, we assume in Assumption 4$^*$ spherical errors (i.e., $Var(\varepsilon|X)=I_n\sigma^2$) which yield that $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$, and where $\sigma^2$ can be estimated by $$
+Usually, we do not know $Var(\hat\beta_n|X)$ and, therefore, have to estimate this quantity. Unfortunately, in the small sample case, we can only deal with homoscedastic error terms. For truly *exact* finite sample inference, we need a variance estimator for which we can derive the *exact* small sample distribution. Therefore, we assume in Assumption 4$^*$ spherical errors (i.e., $Var(\varepsilon|X)=I_n\sigma^2$) which yields that $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$, and where $\sigma^2$ can be estimated by 
+$$
 s_{UB}^2=(n-K)^{-1}\sum_{i=1}^n\hat\varepsilon_i^2.
 $$  
-From the normality assumption in Assumption 4$^*$, it follows then that $\sigma^{-2}(n-K)s_{UB}^2\sim\chi^2(n-K)$. This then leads to the following exact null distribution of 
+From the normality assumption in Assumption 4$^*$, it follows then that $\sigma^{-2}(n-K)s_{UB}^2\sim\chi^2(n-K)$. The $F$ test statistic 
 $$
-F=(R\hat\beta_n -r)'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r)/q\overset{H_0}{\sim} F(q,n-K),
+F=(R\hat\beta_n -r)'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r)/q
+$$
+takes into account the additional randomness in the estimator $s_{UB}^2$, which leads to the following exact null distribution of the $F$ test
+$$
+F|X\overset{H_0}{\sim} F(q,n-K),
 $${#eq-Ftest}
-where $F(q,n-K)$ denotes the $F$-distribution with $q$ numerator and $n-K$ denominator degrees of freedom (see, for instance, Chapter 1 in @Hayashi2000). By contrast to $W$, $F$ is now a practically useful test-statistic, and we can use the observed value $F_{\text{obs}}$ to measure the distance of our estimate $R\hat\beta_n$ from value $r$.  Observed values, $F_{\text{obs}}$, that are "unusually large" under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution $F(q,n-K)$ of $F$ is used to judge what's "unusually large" under the null hypothesis. 
+where $F(q,n-K)$ denotes the $F$-distribution with $q$ numerator and $n-K$ denominator degrees of freedom. This is cumbersome to derive and we do not go into details here, but in case you're interested you can find the derivations in Chapter 1 of @Hayashi2000. 
+
+By contrast to $W$, $F$ is now a practically useful test statistic, and we can use the observed value $F_{\text{obs}}$ to measure the distance of our estimate $R\hat\beta_n$ from value $r$.  Observed values, $F_{\text{obs}}$, that are "unusually large" under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution $F(q,n-K)$ of $F$ is used to judge what's "unusually large" under the null hypothesis. 
 
 
 **The F distribution:** The F distribution is a ratio of two $\chi^2$ distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See @sec-Fdist for more information on the $F$ distribution. 
@@ -136,13 +142,17 @@ H_A: & \beta_k\ne r\\
 \end{equation*}
 the ($q\times K$=$1\times K$)-matrix $R$ equals a row-vector of zeros but with a one as the $k$th element (e.g., for $k=2$, $R=(0,1,0,\dots,0)$) such that $F$ in @eq-Ftest simplifies to
 $$
-\frac{\left(\hat{\beta}_k-r\right)^2}{\widehat{Var}(\hat{\beta}_k|X)}\overset{H_0}{\sim}F(1,n-K),
+F=\frac{\left(\hat{\beta}_k-r\right)^2}{\widehat{Var}(\hat{\beta}_k|X)},
 $$
-where $\widehat{Var}(\hat{\beta}_k|X)=R(s^2(X'X)^{-1})R'$. Taking square roots yields
+where $\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{kk}$ and $F|X\overset{H_0}{\sim}F(1,n-K)$. Taking square roots yields the $t$ test statistic 
 $$
-t=\frac{\hat{\beta}_k-r}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)}\overset{H_0}{\sim}t_{(n-K)}.
+t=\frac{\hat{\beta}_k-r}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)},
 $$
-Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate reference metric for judging how "far away" our estimates are from the hypothetical parameter value $r$ under the null hypothesis. 
+where $\widehat{\operatorname{SE}}(\hat{\beta}_k|X)=s_{UB}[(X'X)^{-1/2}]_{kk}$. Under the null hypothesis, the $t$ test statistic is (conditionally on $X$) $t$-distributed with $n-K$ degrees of freedom
+$$
+t|X\overset{H_0}{\sim}t_{(n-K)}.
+$$
+Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate distribution to judge whether or not an observed value $t_{obs}$ of the test statistic is unusually small or large under the null hypothesis. 
 
 **Note:** All commonly used statistical software packages report $t$-tests testing the null hypothesis $H_0:\beta_k=0$, i.e., with $r=0$.  This means to test the null hypothesis that $X_k$ has "no (linear) effect" on $Y$. 
 
@@ -343,9 +353,9 @@ One-sided hypothesis:
 \end{equation*}
 In case of a one-sided $t$-test, we will reject the null if $t_{obs}$ is sufficiently "far away" from zero in the relevant direction of $H_A$. The corresponding critical value is either $-c_{1-\alpha}$ ($H_A:\beta_k< r$) or $c_{1-\alpha}$ ($H_A:\beta_k> r$), where $c_{1-\alpha}$ is the $(1-\alpha)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom, and where $-c_{1-\alpha}=c_{\alpha}$ due to the symmetry of the $t$-distribution. The critical value $c_{1-\alpha}$ defines the following rejection and the non-rejection regions:
 
-\bigskip
 
-\noindent For $H_0: \beta_k=0$ \quad versus\quad $H_A: \beta_k < 0$:
+
+For $H_0: \beta_k=0$ \quad versus\quad $H_A: \beta_k < 0$:
 \begin{align*}
 \text{rejection region:}   &\hspace{2cm}]-\infty,c_{\alpha}[ \\
 \text{non-rejection region:}&\hspace{2cm}[c_{\alpha},\infty[
@@ -356,10 +366,8 @@ P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha}[\Big)=\alpha.
 $$
 
 
-\bigskip
 
-
-\noindent For $H_0: \beta_k=0$\quad versus\quad$H_A: \beta_k > 0$:
+For $H_0: \beta_k=0$\quad versus\quad$H_A: \beta_k > 0$:
 \begin{align*}
 \text{rejection region:}&\hspace{1cm}]c_{1-\alpha}, \infty[\\
 \text{non-rejection region:}&\hspace{1cm}]-\infty,c_{1-\alpha}]
@@ -461,8 +469,7 @@ t\big|X=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\Big|X\overset{H_0
 \end{align*}
 Likewise, the distribution "under the alternative hypothesis" (i.e., for the actual $\beta_k=3$) is:
 \begin{align*}
-t
-=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
+t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
 &=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
 \Rightarrow\quad&\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\substack{\sim \mathcal{N}(0,1)\\(\text{conditionally on $X$})}}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\Big|X\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
 \end{align*}
