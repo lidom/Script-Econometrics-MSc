@@ -587,17 +587,18 @@ is our $(1-\alpha)\cdot 100\%$ percent confidence interval for $\beta_k$.
 
 [^1]: Take a look at this visualization: [https://rpsychologist.com/d3/ci/](https://rpsychologist.com/d3/ci/)
 
-## Practice: Small Sample Inference {#sec-PSSI}
 
-Let's apply the above exact inference methods using `R`. First, we program a function `myDataGenerator()` which allows us to generate data from the following model, i.e., from the following fully specified data generating process:
+## Monte Carlo Simulations {#sec-PSSI}
+
+Let's check the above exact inference results using `R` and Monte Carlo simulations. First, we program a function `myDataGenerator()` which allows us to generate data from the following model, i.e., from the following fully specified data generating process:
 \begin{align*}
-Y_i &=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
+Y_i   &=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
 \beta &=(\beta_1,\beta_2,\beta_3)'=(2,3,4)'\\
 X_{i2}&\sim U[2,10]\\
 X_{i3}&\sim U[12,22]\\
 \varepsilon_i&\sim\mathcal{N}(0,3^2),
 \end{align*}
-where $(Y_i,X_i)$ is assumed i.i.d. across $i=1,\dots,n$. Below, in the codes, I use $n=10$, but, of course, other sample sizes can be considered too. Under the assumptions of this chapter, we do exact inference that is specific to any given sample size $n$. 
+where $(Y_i,X_i)$ is assumed i.i.d. across $i=1,\dots,n$. Below, in the codes, I use $n=10$, but, of course, other sample sizes can be considered too. 
 
 
 The below function `myDataGenerator()` allows to sample new realizations of $Y_1,\dots,Y_n$ conditionally on a given data matrix $X$.  Moreover, you can provide your own values for the sample size $n$ and for the parameter vector $\beta=(\beta_1,\beta_2,\beta_3)'$. 
@@ -607,13 +608,13 @@ The below function `myDataGenerator()` allows to sample new realizations of $Y_1
 ## If the user gives X variables, 
 ## the sampling of new Y variables is conditionally on 
 ## the given X variables.
-myDataGenerator <- function(n, beta, X=NULL, sigma=3){
+myDataGenerator <- function(n, beta, X=NULL){
   if(is.null(X)){
     X   <- cbind(rep(1, n), 
                  runif(n, 2, 10), 
                  runif(n,12, 22))
   }
-  eps  <- rnorm(n, sd=sigma)
+  eps  <- rnorm(n, sd=3)
   Y    <- X %*% beta + eps
   data <- data.frame("Y"=Y, 
                      "X_1"=X[,1], "X_2"=X[,2], "X_3"=X[,3])
@@ -621,17 +622,21 @@ myDataGenerator <- function(n, beta, X=NULL, sigma=3){
   return(data)
 }
 
+
+## Small sample size
+n           <- 8           
+
 ## Define a true beta vector
 beta_true <- c(2,3,4)
 
-## Check:
 ## Generate Y and X data 
-test_data     <- myDataGenerator(n = 10, beta=beta_true)
-## Generate new Y data conditionally on X
-X_cond <- cbind(test_data$X_1,
-                test_data$X_2,
-                test_data$X_3)
-test_data_new <- myDataGenerator(n    = 10, 
+test_data     <- myDataGenerator(n = n, beta=beta_true)
+
+## Store the X data as 'X_cond'  
+X_cond        <- as.matrix(test_data[,-1]) # as matrix allows matrix multiplications
+
+## Generate new Y data conditionally on X_cond                
+test_data_new <- myDataGenerator(n    = n, 
                                  beta = beta_true, 
                                  X    = X_cond)
 ## compare
@@ -639,69 +644,68 @@ round(head(test_data,     3), 2) # New Y, new X
 round(head(test_data_new, 3), 2) # New Y, conditionally on X
 ```
 
-### Normally Distributed $\hat\beta|X$ 
+### Check: Normally Distributed $\hat\beta|X$
 
-The above data generating process fulfills our regulatory assumptions Assumption 1-4$^*$. So, by theory, the estimators $\hat\beta_k|X$ should be normal distributed conditionally on $X$,
+The above data generating process fulfills Assumptions 1-4$^*$. So, by theory, the estimators $\hat\beta_k|X$, $k=1,\dots,K=3$, should be normal distributed conditionally on $X$,
 $$
 \hat\beta_k|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{kk}),
 $$ 
-where $[(X'X)^{-1}]_{kk}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $(X'X)^{-1}$. Let's check the distribution by means of a Monte Carlo simulation for the case of $\hat\beta_2|X$ with a small sample size of $n=10$.
+where $[(X'X)^{-1}]_{kk}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $(X'X)^{-1}$. 
+
+
+In order to check the effect of "conditioning on $X$", let us use two different Monte Carlo simulations:
+
+1. Generate `B`$=5000$ realizations of $\hat\beta_2$ conditionally on $X$.
+2. Generate `B`$=5000$ realizations of $\hat\beta_2$ **un**conditionally on $X$.
+
+Then we plot both distributions side by side:
 ```{r}
 set.seed(123)
-n         <- 10       # a small sample size
-beta_true <- c(2,3,4) # true data vector
-sigma     <- 3        # true standard deviation of the error term (var=sigma^2)
 
-## Let's generate a data set from our data generating process
-mydata  <- myDataGenerator(n = n, beta=beta_true)
-X_cond  <- cbind(mydata$X_1, mydata$X_2, mydata$X_3)
+beta_true_2 <- beta_true[2] # true beta_2
 
-## True mean and variance of the true normal distribution 
-## of beta_hat_2|X=X_cond:
-# true mean
-beta_true_2     <- beta_true[2] 
-# true variance
-var_true_beta_2 <- sigma^2 * diag(solve(t(X_cond) %*% X_cond))[2]
-
-## Let's generate 5000 realizations from beta_hat_2 
-## conditionally on X=X_cond and check whether the empirical  
-## distribution of these 5000 realizations is close 
-## to the true normal distribution of beta_hat_2:
-rep        <- 5000 # MC replications
-beta_hat_2 <- rep(NA, times=rep)
-##
-for(r in 1:rep){
-    MC_data <- myDataGenerator(n    = n, 
-                               beta = beta_true, 
-                               X    = X_cond)
-    lm_obj        <- lm(Y ~ X_2 + X_3, data = MC_data)
-    beta_hat_2[r] <- coef(lm_obj)[2]
+## A function to generate realizations of the estimator \hat{beta}_2
+## conditionally or unconditionally on X:
+hatbeta2_sim_fun <- function(conditional, X = X_cond){
+      if(conditional == TRUE){
+            data     <- myDataGenerator(n = n, beta = beta_true, X = X)
+            lm_obj   <- lm(Y ~ X_2 + X_3, data = data)
+            hatbeta2 <- coef(lm_obj)[2]
+      }
+      if(conditional == FALSE){
+            data     <- myDataGenerator(n = n, beta = beta_true)
+            lm_obj   <- lm(Y ~ X_2 + X_3, data = data)
+            hatbeta2 <- coef(lm_obj)[2]
+      }
+  return(hatbeta2)
 }
 
-## Compare
-## True beta_2 versus average of beta_hat_2 estimates
-c(beta_true_2, round(mean(beta_hat_2), 4))
-```
-The values are very close to each other, thus, on average the estimation results are basically equal to the true parameter value. 
+## Number of Monte Carlo replications
+B <- 5000
 
-```{r}
-## Compare
-## True variance of beta_hat_2 versus 
-## empirical variance of beta_hat_2 estimates
-c(round(var_true_beta_2, 4), round(var(beta_hat_2), 4))
-```
-The values are very close to each other, thus the theoretical variance describes very well the actual variance of $\hat\beta_2|X$. 
+## Draw realizations of \hat{beta}_2
+## 1. Generate \hat{beta}_2 realizations conditionally on X
+hatbeta2_sim_cond   <- replicate(B, hatbeta2_sim_fun(conditional = TRUE,  X = X_cond))
+## 2. Generate \hat{beta}_2 realizations unconditionally on X
+hatbeta2_sim_uncond <- replicate(B, hatbeta2_sim_fun(conditional = FALSE))
 
-```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
+
 ## True normal distribution of beta_hat_2 versus 
 ## empirical density of beta_hat_2 estimates
 library("scales")
+
+# standard deviation of the error term
+sigma <- 3
+# true variance
+var_true_beta_2 <- sigma^2 * diag(solve(t(X_cond) %*% X_cond))[2]
+
+par(mfrow=c(1,2))
 curve(expr = dnorm(x, mean = beta_true_2, 
                    sd=sqrt(var_true_beta_2)), 
       xlab="",ylab="", col=gray(.2), lwd=3, lty=1, 
-      xlim=range(beta_hat_2), ylim=c(0,1.1))
-hist(beta_hat_2, freq=FALSE, col=alpha("blue",.35), add=TRUE)
-lines(density(beta_hat_2, bw = bw.SJ(beta_hat_2)), 
+      xlim=c(1,5), ylim=c(0,1.5))
+#hist(hatbeta2_sim_cond, freq=FALSE, col=alpha("blue",.35), add=TRUE)
+lines(density(hatbeta2_sim_cond, bw = bw.SJ(hatbeta2_sim_cond)), 
       col=alpha("blue",.5), lwd=3)
 legend("topleft", lty=c(1,NA,1), lwd=c(3,NA,3), pch=c(NA,15,NA), pt.cex=c(NA,2,NA),
      col=c(gray(.2), alpha("blue",.45), alpha("blue",.5)), bty="n", legend= 
@@ -713,46 +717,13 @@ c(expression(
   expression(
   "Nonparametric Density Estimation based on the 5000 MC realizations of"~
   hat(beta)[2]~'|'~X)))
-```
-Great! The nonparametric density estimation (estimated via `density()`) and the histogram computed based on the 5000 simulated realizations of $\hat\beta_2|X$ are indicating that $\hat\beta_2|X$ is really normally distributed as described by our theoretical result in Equation @eq-ssnorm. 
 
-However, what would happen if we would sample *unconditionally* on $X$? How does the distribution of $\hat\beta_2$ would then look like? 
-```{r}
-set.seed(1110)
-## Let's generate 5000 realizations from beta_hat_2 
-## WITHOUT conditioning on X
-beta_hat_2_uncond <- rep(NA, times=rep)
-##
-for(r in 1:rep){
-    MC_data <- myDataGenerator(n    = n, 
-                               beta = beta_true)
-    lm_obj               <- lm(Y ~ X_2 + X_3, data = MC_data)
-    beta_hat_2_uncond[r] <- coef(lm_obj)[2]
-}
-
-## Compare:
-## True beta_2 versus average of beta_hat_2 estimates
-c(beta_true_2, round(mean(beta_hat_2_uncond), 4))
-```
-OK, at least on average the point point estimates are basically equal to the true parameter value. 
-
-```{r}
-## Compare: 
-## True variance of beta_hat_2 versus 
-## empirical variance of beta_hat_2 estimates
-c(round(var_true_beta_2, 4), round(var(beta_hat_2_uncond), 4))
-```
-Ouch! The theoretical variance of $\hat\beta_2|X$ is quite different from the actual variance of $\hat\beta_2$ (i.e. simulated without conditioning in $X$). That is, we cannot simply neglect that the variance of $\hat\beta_2$ depends on the observed realization of $X$ in small samples. 
-
-
-```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
-## Plotting the theoretical distribution of beta_hat_2|X 
-## versus the simulated distribution
+####
 curve(expr = dnorm(x, mean = beta_true_2, sd=sqrt(var_true_beta_2)), 
       xlab="",ylab="", col=gray(.2), lwd=3, lty=1, 
-      xlim=range(beta_hat_2_uncond), ylim=c(0,1.5))
-hist(beta_hat_2_uncond, freq=FALSE, col=alpha("blue",.35), add=TRUE)
-lines(density(beta_hat_2_uncond, bw=bw.SJ(beta_hat_2_uncond)), 
+      xlim=c(1,5), ylim=c(0,1.5))
+#hist(hatbeta2_sim_uncond, freq=FALSE, col=alpha("blue",.35), add=TRUE)
+lines(density(hatbeta2_sim_uncond, bw=bw.SJ(hatbeta2_sim_uncond)), 
       col=alpha("blue",.5), lwd=3)
 legend("topleft", lty=c(1,NA,1), lwd=c(3,NA,3), pch=c(NA,15,NA), pt.cex=c(NA,2,NA),
      col=c(gray(.2), alpha("blue",.45), alpha("blue",.5)), bty="n", legend= 
@@ -763,11 +734,132 @@ expression(
   hat(beta)[2]), 
 expression("Nonparam. Density Estimation based on the 5000 MC realizations of"~
   hat(beta)[2])))
+
 ```
-Not so good. The theoretical distribution of $\hat\beta_2|X$ has much fatter tails than the simulated distribution of $\hat\beta_2$  (i.e. simulated without conditioning in $X$). That is, we cannot simply neglect that the distribution of $\hat\beta_2$ depends on the observed realization of $X$ in small samples. In large sample, however, the effect of a given realization $X$ is (fortunately) negligible, as we will see in @sec-lsinf. 
+
+Core observation:
+
+* The estimated conditional distribution of $\hat{\beta}_2$ does match the theoretical conditional distribution of $\hat{\beta}_2$ given $X$
+* The estimated **un**conditional distribution of $\hat{\beta}_2$ does not match the theoretical conditional distribution of $\hat{\beta}_2$  given $X$
+
+<!-- While the unconditional distribution has a larger variance.  -->
 
 
-### Testing Multiple Parameters 
+<!-- ```{r} -->
+<!-- ## True mean and variance of the true normal distribution  -->
+<!-- ## of beta_hat_2|X=X_cond: -->
+<!-- # true mean -->
+
+<!-- # true variance -->
+<!-- var_true_beta_2 <- sigma^2 * diag(solve(t(X_cond) %*% X_cond))[2] -->
+
+<!-- ## Let's generate 5000 realizations from beta_hat_2  -->
+<!-- ## conditionally on X=X_cond and check whether the empirical   -->
+<!-- ## distribution of these 5000 realizations is close  -->
+<!-- ## to the true normal distribution of beta_hat_2: -->
+<!-- B          <- 5000 # MC replications -->
+<!-- beta_hat_2 <- rep(NA, times=rep) -->
+<!-- ## -->
+<!-- for(r in 1:B){ -->
+<!--     MC_data <- myDataGenerator(n    = n,  -->
+<!--                                beta = beta_true,  -->
+<!--                                X    = X_cond) -->
+<!--     lm_obj        <- lm(Y ~ X_2 + X_3, data = MC_data) -->
+<!--     beta_hat_2[r] <- coef(lm_obj)[2] -->
+<!-- } -->
+
+<!-- ## Compare -->
+<!-- ## True beta_2 versus average of beta_hat_2 estimates -->
+<!-- c(beta_true_2, round(mean(beta_hat_2), 4)) -->
+<!-- ``` -->
+
+
+<!-- The values are very close to each other, thus, on average the estimation results are basically equal to the true parameter value.  -->
+
+<!-- ```{r} -->
+<!-- ## Compare -->
+<!-- ## True variance of beta_hat_2 versus  -->
+<!-- ## empirical variance of beta_hat_2 estimates -->
+<!-- c(round(var_true_beta_2, 4), round(var(beta_hat_2), 4)) -->
+<!-- ``` -->
+<!-- The values are very close to each other, thus the theoretical variance describes very well the actual variance of $\hat\beta_2|X$.  -->
+
+<!-- ```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"} -->
+<!-- ## True normal distribution of beta_hat_2 versus  -->
+<!-- ## empirical density of beta_hat_2 estimates -->
+<!-- library("scales") -->
+<!-- curve(expr = dnorm(x, mean = beta_true_2,  -->
+<!--                    sd=sqrt(var_true_beta_2)),  -->
+<!--       xlab="",ylab="", col=gray(.2), lwd=3, lty=1,  -->
+<!--       xlim=range(beta_hat_2), ylim=c(0,1.1)) -->
+<!-- hist(beta_hat_2, freq=FALSE, col=alpha("blue",.35), add=TRUE) -->
+<!-- lines(density(beta_hat_2, bw = bw.SJ(beta_hat_2)),  -->
+<!--       col=alpha("blue",.5), lwd=3) -->
+<!-- legend("topleft", lty=c(1,NA,1), lwd=c(3,NA,3), pch=c(NA,15,NA), pt.cex=c(NA,2,NA), -->
+<!--      col=c(gray(.2), alpha("blue",.45), alpha("blue",.5)), bty="n", legend=  -->
+<!-- c(expression( -->
+<!--   "Theoretical Gaussian Density of"~hat(beta)[2]~'|'~X),  -->
+<!--   expression( -->
+<!--   "Histogram based on the 5000 MC realizations of"~ -->
+<!--   hat(beta)[2]~'|'~X),  -->
+<!--   expression( -->
+<!--   "Nonparametric Density Estimation based on the 5000 MC realizations of"~ -->
+<!--   hat(beta)[2]~'|'~X))) -->
+<!-- ``` -->
+<!-- Great! The nonparametric density estimation (estimated via `density()`) and the histogram computed based on the 5000 simulated realizations of $\hat\beta_2|X$ are indicating that $\hat\beta_2|X$ is really normally distributed as described by our theoretical result in Equation @eq-ssnorm.  -->
+
+<!-- However, what would happen if we would sample *unconditionally* on $X$? How does the distribution of $\hat\beta_2$ would then look like?  -->
+<!-- ```{r} -->
+<!-- set.seed(1110) -->
+<!-- ## Let's generate 5000 realizations from beta_hat_2  -->
+<!-- ## WITHOUT conditioning on X -->
+<!-- beta_hat_2_uncond <- rep(NA, times=rep) -->
+<!-- ## -->
+<!-- for(r in 1:rep){ -->
+<!--     MC_data <- myDataGenerator(n    = n,  -->
+<!--                                beta = beta_true) -->
+<!--     lm_obj               <- lm(Y ~ X_2 + X_3, data = MC_data) -->
+<!--     beta_hat_2_uncond[r] <- coef(lm_obj)[2] -->
+<!-- } -->
+
+<!-- ## Compare: -->
+<!-- ## True beta_2 versus average of beta_hat_2 estimates -->
+<!-- c(beta_true_2, round(mean(beta_hat_2_uncond), 4)) -->
+<!-- ``` -->
+<!-- OK, at least on average the point point estimates are basically equal to the true parameter value.  -->
+
+<!-- ```{r} -->
+<!-- ## Compare:  -->
+<!-- ## True variance of beta_hat_2 versus  -->
+<!-- ## empirical variance of beta_hat_2 estimates -->
+<!-- c(round(var_true_beta_2, 4), round(var(beta_hat_2_uncond), 4)) -->
+<!-- ``` -->
+<!-- Ouch! The theoretical variance of $\hat\beta_2|X$ is quite different from the actual variance of $\hat\beta_2$ (i.e. simulated without conditioning in $X$). That is, we cannot simply neglect that the variance of $\hat\beta_2$ depends on the observed realization of $X$ in small samples.  -->
+
+
+<!-- ```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"} -->
+<!-- ## Plotting the theoretical distribution of beta_hat_2|X  -->
+<!-- ## versus the simulated distribution -->
+<!-- curve(expr = dnorm(x, mean = beta_true_2, sd=sqrt(var_true_beta_2)),  -->
+<!--       xlab="",ylab="", col=gray(.2), lwd=3, lty=1,  -->
+<!--       xlim=range(beta_hat_2_uncond), ylim=c(0,1.5)) -->
+<!-- hist(beta_hat_2_uncond, freq=FALSE, col=alpha("blue",.35), add=TRUE) -->
+<!-- lines(density(beta_hat_2_uncond, bw=bw.SJ(beta_hat_2_uncond)),  -->
+<!--       col=alpha("blue",.5), lwd=3) -->
+<!-- legend("topleft", lty=c(1,NA,1), lwd=c(3,NA,3), pch=c(NA,15,NA), pt.cex=c(NA,2,NA), -->
+<!--      col=c(gray(.2), alpha("blue",.45), alpha("blue",.5)), bty="n", legend=  -->
+<!-- c(expression( -->
+<!--   "Theoretical Gaussian Density of"~hat(beta)[2]~'|'~X),  -->
+<!-- expression( -->
+<!--   "Histogram based on the 5000 MC realizations of"~ -->
+<!--   hat(beta)[2]),  -->
+<!-- expression("Nonparam. Density Estimation based on the 5000 MC realizations of"~ -->
+<!--   hat(beta)[2]))) -->
+<!-- ``` -->
+<!-- Not so good. The theoretical distribution of $\hat\beta_2|X$ has much fatter tails than the simulated distribution of $\hat\beta_2$  (i.e. simulated without conditioning in $X$). That is, we cannot simply neglect that the distribution of $\hat\beta_2$ depends on the observed realization of $X$ in small samples. In large sample, however, the effect of a given realization $X$ is (fortunately) negligible, as we will see in @sec-lsinf.  -->
+
+
+### Check: Testing Multiple Parameters 
 
 In the following, we do inference about multiple parameters. We test 
 \begin{align*}
@@ -817,30 +909,33 @@ Again, we cannot reject the null hypothesis at a significance level of, for inst
 ## Let's generate 5000 F-test decisions and check 
 ## whether the empirical rate of type I errors is 
 ## close to the theoretical significance level. 
-rep             <- 5000 # MC replications
-F_test_pvalues  <- rep(NA, times=rep)
+B               <- 5000 # MC replications
+F_test_pvalues  <- rep(NA, times=B)
 ##
-for(r in 1:rep){
-  ## generate new MC_data conditionally on X_cond
-    MC_data <- myDataGenerator(n    = n, 
-                               beta = beta_true, 
-                               X    = X_cond)
-    lm_obj            <- lm(Y ~ X_2 + X_3, data = MC_data)
-    ## save the p-value
-    p <- linearHypothesis(lm_obj, 
-                          c("X_2=3", "X_3=4"))$`Pr(>F)`[2]
-    F_test_pvalues[r] <- p
+for(r in 1:B){
+  ## generate new data 
+  MC_data <- myDataGenerator(n = n, beta = beta_true)
+  ## estimate 
+  lm_obj            <- lm(Y ~ X_2 + X_3, data = MC_data)
+  ## compute test and p-value
+  p <- linearHypothesis(lm_obj, c("X_2=3", "X_3=4"))$`Pr(>F)`[2]
+  ## save the p-value
+  F_test_pvalues[r] <- p
 }
 ##
 signif_level <-  0.05
 rejections   <- F_test_pvalues[F_test_pvalues < signif_level]
-round(length(rejections)/rep, 4)
+round(length(rejections)/B, 4)
 ## 
 signif_level <-  0.01
 rejections   <- F_test_pvalues[F_test_pvalues < signif_level]
-round(length(rejections)/rep, 4)
+round(length(rejections)/B, 4)
 ```
-Note that this is actually a very strong result. First, it means that we correctly control for the type I error rate since the type I error rate is not larger than the chosen significance level $\alpha$. Second, it means that the test is not conservative (i.e. very efficient) since the empirical type I error rate is really close to the chosen significance level $\alpha$. (In fact, if we would increase the number of Monte Carlo repetitions, the empirical type I error rate would converge to the selected significance level $\alpha$ due to the law of large numbers.)
+Note that this is actually a very strong result. 
+
+* First, it means that we correctly control for the type I error rate since the type I error rate is not larger than the chosen significance level $\alpha$. 
+* Second, it means that the test is not conservative (i.e. very efficient) since the empirical type I error rate is really close to the chosen significance level $\alpha$. (In fact, if we would increase the number of Monte Carlo repetitions, the empirical type I error rate would converge to the selected significance level $\alpha$ due to the law of large numbers.)
+* Last but not least: It works unconditionally on $X$ since the distribution of the $F$ statistic does not depend on $X$. (Thus is also works conditionally on $X$ and you may check this at home.)
 
 Next, we check how well the $F$ test detects certain violations of the null hypothesis. We do this by using the same data generating process, but by testing the following incorrect null hypothesis:
 \begin{align*}
@@ -849,25 +944,27 @@ H_A:\;&\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 \end{align*}
 ```{r}
 set.seed(321)
-rep             <- 5000 # MC replications
-F_test_pvalues  <- rep(NA, times=rep)
+B               <- 5000 # MC replications
+F_test_pvalues  <- rep(NA, times=B)
 ##
-for(r in 1:rep){
-  ## generate new MC_data conditionally on X_cond
-    MC_data <- myDataGenerator(n    = n, 
-                               beta = beta_true, 
-                               X    = X_cond)
-    lm_obj            <- lm(Y ~ X_2 + X_3, data = MC_data)
-    ## save p-values of all rep-many tests
-    F_test_pvalues[r] <- linearHypothesis(lm_obj,
-                         c("X_2=4","X_3=4"))$`Pr(>F)`[2]
+for(r in 1:B){
+  ## generate new data 
+  MC_data <- myDataGenerator(n    = n, beta = beta_true)
+  ## estimate 
+  lm_obj            <- lm(Y ~ X_2 + X_3, data = MC_data)
+  ## compute test and p-value
+  p <- linearHypothesis(lm_obj, c("X_2=4", "X_3=4"))$`Pr(>F)`[2]
+  ## save the p-value
+  F_test_pvalues[r] <- p
 }
 ##
 signif_level <-  0.05
 rejections   <- F_test_pvalues[F_test_pvalues < signif_level]
-length(rejections)/rep
+length(rejections)/B
 ```
-Indeed, we can now reject the (here false) null hypothesis in approximately $39\%$ of all resamplings from the true data generating process. **Caution:** This also means that we are not able to "see" the violation of the null hypothesis in $100\%-39\%=62\%$ of cases. Therefore, we can never use an insignificant test result (p-value$\geq\alpha$) as a justification to accept the null hypothesis. Obviously, there are Type II error events, but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control the Type II error rate. We can only control the Type I error rate by using a small significance level $\alpha$. 
+Indeed, we can now reject the (here false) null hypothesis in approximately $39\%$ of all Monte Carlo replications. 
+
+**Caution:** This also means that we are not able to "see" the violation of the null hypothesis in $100\%-39\%=62\%$ of cases. Therefore, we can never use an insignificant test result (p-value$\geq\alpha$) as a justification to accept the null hypothesis. Obviously, there are Type II error events, but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control the Type II error rate. We can only control the Type I error rate by using a small significance level $\alpha$. 
 
 Moreover, note that the $F$ test is not informative about which part of the null hypothesis ($\beta_2=4$ and/or $\beta_3=4$) is violated -- we only get the information that at least one of the multiple parameter hypotheses is violated:
 ```{r}
@@ -884,32 +981,37 @@ confint(lm_obj, parm = "X_2", level = 1 - signif_level)
 ## 95% CI for beta_3 
 confint(lm_obj, parm = "X_3", level = 1 - signif_level)
 ```
-We can use these two-sided confidence intervals to do hypothesis tests. For instance, when testing the null hypothesis
+We can use these two-sided confidence intervals to do hypothesis tests. This property of confidence intervals is called the duality of confidence intervals and hypothesis tests. 
+
+For instance, when testing the null hypothesis
 \begin{align*}
 H_0:&\beta_3=4\\
 \text{versus}\quad H_A: &\beta_3\neq 4
 \end{align*}
-we can check whether the confidence interval $\operatorname{CI}_{1-\alpha}$ contains the hypothetical value $4$ or not. In case of $4\in \operatorname{CI}_{1-\alpha}$, we cannot reject the null hypothesis. In case of $4\not\in \operatorname{CI}_{1-\alpha}$, we reject the null hypothesis. 
+we can check whether the confidence interval $\operatorname{CI}_{1-\alpha}$ contains the hypothetical value $4$ or not. 
 
-If the Assumption 1-4$^\ast$ hold true, then $\operatorname{CI}_{1-\alpha}$ is an exact confidence interval. That is, under the null hypothesis, it falsely rejects the null hypothesis in only $\alpha\cdot 100\%$ of resamplings. Let's check this in the following `R` code:
+* In case of $4\in \operatorname{CI}_{1-\alpha}$, we cannot reject the null hypothesis. 
+* In case of $4\not\in \operatorname{CI}_{1-\alpha}$, we reject the null hypothesis. 
+
+If the Assumption 1-4$^\ast$ hold true, then $\operatorname{CI}_{1-\alpha}$ is an exact confidence interval. That is, under the null hypothesis, it falsely rejects the null hypothesis in only $\alpha\cdot 100\%$ of resamplings. Let's check this in the following Monte Carlo simulation:
 ```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 ## Let's generate 1000 CIs 
 set.seed(123)
 signif_level <-  0.05
-rep          <- 5000 # MC replications
-confint_m    <- matrix(NA, nrow=2, ncol=rep)
+B            <- 5000 # MC replications
+confint_m    <- matrix(NA, nrow=2, ncol=B)
 ##
-for(r in 1:rep){
-  ## generate new MC_data conditionally on X_cond
-    MC_data <- myDataGenerator(n    = n, 
-                               beta = beta_true, 
-                               X    = X_cond)
-    lm_obj            <- lm(Y ~ X_2 + X_3, data = MC_data)
-    ## save the p-value
-    CI <- confint(lm_obj, parm="X_2", level=1-signif_level)
-    confint_m[,r] <- CI
+for(r in 1:B){
+  ## generate new data 
+  MC_data <- myDataGenerator(n = n, beta = beta_true)
+  ## estimate
+  lm_obj  <- lm(Y ~ X_2 + X_3, data = MC_data)
+  ## compute confidence interval 
+  CI <- confint(lm_obj, parm="X_2", level=1-signif_level)
+  ## save confidence interval
+  confint_m[,r] <- CI
 }
-##
+## check whether true parameter is inside the CI
 inside_CI  <- confint_m[1,] <= beta_true_2 & 
                 beta_true_2 <= confint_m[2,]
 
@@ -919,7 +1021,7 @@ head(cbind(t(confint_m), inside_CI))
 
 The following code computes the relative frequency of confidence intervals **not containing** the true parameter value $(\beta_2=3)$:
 ```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
-round(length(inside_CI[inside_CI == FALSE])/rep, 4)
+round(length(inside_CI[inside_CI == FALSE])/B, 4)
 ```
 That's good! The relative frequency is basically equal to the chosen $\alpha=0.05$ value. 
 
@@ -943,6 +1045,21 @@ abline(h=beta_true_2)
 ```
 
 As expected, only about $\alpha\cdot 100\%=5\%$ of all confidence intervals do not contain the true parameter value $\beta_2=3$, but about $(1-\alpha)\cdot 100\%=95\%$ of all confidence intervals contain the true parameter value $\beta_2=3$. 
+
+
+## Real Data Practice 
+
+```{r}
+## The AER package contains a lot of datasets 
+suppressPackageStartupMessages(library(AER))
+## Attach the DoctorVisits data to make it usable
+data("DoctorVisits")
+
+lm_obj <- lm(visits ~ gender + age + income, data = DoctorVisits)
+
+summary(lm_obj)
+```
+
 
 # References {-} 
 
