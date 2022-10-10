@@ -11,14 +11,14 @@
     "href": "01-Introduction-to-R.html",
     "title": "1  Introduction to R",
     "section": "",
-    "text": "This tutorial aims to serve as an introduction to the software package R. Other very good and much more exhaustive tutorials and useful reference-cards can be found at the following links:\nSome other tutorials:\nWhy R?"
+    "text": "This tutorial aims to serve as an introduction to the software package R. Other very good and much more exhaustive tutorials and useful reference-cards can be found at the following links:\nWhy R?"
   },
   {
     "objectID": "01-Introduction-to-R.html#short-glossary",
     "href": "01-Introduction-to-R.html#short-glossary",
     "title": "1  Introduction to R",
     "section": "1.1 Short Glossary",
-    "text": "1.1 Short Glossary\nLets start the tutorial with a (very) short glossary:\n\nConsole: The thing with the “>” sign at the beginning.\nScript file: An ordinary text file with suffix “.R”. For instance, yourFavoritFileName.R.\nWorking directory: The file-directory you are working in. Useful commands: with getwd() you get the location of your current working directory and setwd() allows you to set a new location for it.\nWorkspace: This is a hidden file (stored in the working directory), where all objects you use (e.g., data, matrices, vectors, variables, functions, etc.) are stored. Useful commands: ls() shows all elements in our current workspace and rm(list=ls()) deletes all elements in our current workspace."
+    "text": "1.1 Short Glossary\nLets start the tutorial with a (very) short glossary:\n\nConsole: The thing with the > sign at the beginning.\nScript file: An ordinary text file with suffix .R. For instance, yourFavoritFileName.R.\nWorking directory: The file-directory you are working in. Useful commands: with getwd() you get the location of your current working directory and setwd() allows you to set a new location for it.\nWorkspace: This is a hidden file (stored in the working directory), where all objects you use (e.g., data, matrices, vectors, variables, functions, etc.) are stored. Useful commands: ls() shows all elements in our current workspace and rm(list=ls()) deletes all elements in our current workspace."
   },
   {
     "objectID": "01-Introduction-to-R.html#first-steps",

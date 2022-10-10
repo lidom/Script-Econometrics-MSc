@@ -248,18 +248,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This tutorial aims to serve as an introduction to the software package R. Other very good and much more exhaustive tutorials and useful reference-cards can be found at the following links:</p>
 <ul>
 <li><a href="http://cran.r-project.org/doc/contrib/refcard.pdf">Reference card for R commands</a> (always useful)</li>
-<li><a href="http://www.math.umaine.edu/~hiebeler/comp/matlabR.pdf">Matlab/R reference card</a> (for those who are more familiar with Matlab)</li>
 <li><a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf">The official Introduction to R</a> (very detailed)</li>
 <li>And many more at <a href="https://www.r-project.org/other-docs.html">www.r-project.org</a> (see “Documents”) <!-- *  An interactive introduction can be done online at: [www.datacamp.com](https://www.datacamp.com/) --></li>
 <li>An R-package for learning R: <a href="https://swirlstats.com/">www.swirl.com</a></li>
 <li>An excellent book project which covers also advanced issues such as “writing performant code” and “package development”: <a href="http://adv-r.had.co.nz/">adv-r.had.co.nz</a><br>
 </li>
 <li>Another excellent book: <a href="https://r4ds.had.co.nz/">R for Data Science</a></li>
-</ul>
-<p>Some other tutorials:</p>
-<ul>
 <li><a href="https://idc9.github.io/stor390/">Introduction to data science</a></li>
-<li><a href="https://stat4701.github.io/edav/2015/04/02/rvest_tutorial/">Scraping the web using R</a></li>
 <li><a href="https://gganimate.com/">Creating dynamic graphics</a></li>
 </ul>
 <p>Why R?</p>
@@ -279,15 +274,15 @@ For instance, check out one of the following repositories:
 <h2 data-number="1.1" class="anchored" data-anchor-id="short-glossary"><span class="header-section-number">1.1</span> Short Glossary</h2>
 <p>Lets start the tutorial with a (very) short glossary:</p>
 <ul>
-<li><strong>Console</strong>: The thing with the “<strong>&gt;</strong>” sign at the beginning.</li>
-<li><strong>Script file</strong>: An ordinary text file with suffix “<strong>.R</strong>”. For instance, <strong>yourFavoritFileName.R</strong>.</li>
+<li><strong>Console</strong>: The thing with the <code>&gt;</code> sign at the beginning.</li>
+<li><strong>Script file</strong>: An ordinary text file with suffix <code>.R</code>. For instance, <code>yourFavoritFileName.R</code>.</li>
 <li><strong>Working directory</strong>: The file-directory you are working in. Useful commands: with <code>getwd()</code> you get the location of your current working directory and <code>setwd()</code> allows you to set a new location for it.</li>
 <li><strong>Workspace</strong>: This is a hidden file (stored in the working directory), where all objects you use (e.g., data, matrices, vectors, variables, functions, etc.) are stored. Useful commands: <code>ls()</code> shows all elements in our current workspace and <code>rm(list=ls())</code> deletes all elements in our current workspace.</li>
 </ul>
 </section>
 <section id="first-steps" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="first-steps"><span class="header-section-number">1.2</span> First Steps</h2>
-<p>A good idea is to use a script file such as <strong>yourFavoritFileName.R</strong> in order to store your R commands. You can send single lines or marked regions of your R-code to the console by pressing the keys <strong>STRG+ENTER</strong>.</p>
+<p>A good idea is to use a script file such as <code>yourFavoritFileName.R</code> in order to store your <code>R</code> commands. You can send single lines or marked regions of your R-code to the console by pressing the keys <code>STRG+ENTER</code>.</p>
 <p>To begin with baby steps, do some simple computations:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span> <span class="co"># and all the others: *,/,-,^2,^3,... </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

@@ -4,19 +4,15 @@
 This tutorial aims to serve as an introduction to the software package R. Other very good and much more exhaustive tutorials and useful reference-cards can be found at the following links: 
 
 *  [Reference card for R commands](http://cran.r-project.org/doc/contrib/refcard.pdf) (always useful)
-*  [Matlab/R reference card](http://www.math.umaine.edu/~hiebeler/comp/matlabR.pdf) (for those who are more familiar with Matlab)
 *  [The official Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) (very detailed)
 *  And many more at [www.r-project.org](https://www.r-project.org/other-docs.html) (see "Documents")
 <!-- *  An interactive introduction can be done online at: [www.datacamp.com](https://www.datacamp.com/) -->
 * An R-package for learning R: [www.swirl.com](https://swirlstats.com/)
 *  An excellent book project which covers also advanced issues such as "writing performant code" and "package development": [adv-r.had.co.nz](http://adv-r.had.co.nz/)  
 * Another excellent book: [R for Data Science](https://r4ds.had.co.nz/)
-
-Some other tutorials:
-
 *  [Introduction to data science](https://idc9.github.io/stor390/)
-*  [Scraping the web using R](https://stat4701.github.io/edav/2015/04/02/rvest_tutorial/)
 *  [Creating dynamic graphics](https://gganimate.com/)
+
 
 
 Why R? 
@@ -36,8 +32,8 @@ Why R?
 
 Lets start the tutorial with a (very) short glossary:
 
-* **Console**: The thing with the "**>**" sign at the beginning.
-* **Script file**: An ordinary text file with suffix "**.R**". For instance, **yourFavoritFileName.R**.
+* **Console**: The thing with the `>` sign at the beginning.
+* **Script file**: An ordinary text file with suffix `.R`. For instance, `yourFavoritFileName.R`.
 * **Working directory**: The file-directory you are working in. Useful commands: with `getwd()` you get the location of your current working directory and `setwd()` allows you to set a new location for it. 
 * **Workspace**: This is a hidden file (stored in the working directory), where all objects you use (e.g., data, matrices, vectors, variables, functions, etc.) are stored. Useful commands: `ls()` shows all elements in our current workspace and `rm(list=ls())` deletes all elements in our current workspace.
 
@@ -46,7 +42,7 @@ Lets start the tutorial with a (very) short glossary:
 ## First Steps
 
 
-A good idea is to use a script file such as **yourFavoritFileName.R** in order to store your R commands. You can send single lines or marked regions of your R-code to the console by pressing the keys **STRG+ENTER**.
+A good idea is to use a script file such as `yourFavoritFileName.R` in order to store your `R` commands. You can send single lines or marked regions of your R-code to the console by pressing the keys `STRG+ENTER`.
 
 
 
@@ -76,8 +72,7 @@ y
 ```
 
 
-
- The command `ls()` shows the total content of your current workspace, and the command `rm(list=ls())` deletes all elements of your current workspace:
+The command `ls()` shows the total content of your current workspace, and the command `rm(list=ls())` deletes all elements of your current workspace:
 ```{r}
 ls()[1:5] # only the first 5 elements
 rm(list=ls())
@@ -85,7 +80,6 @@ ls()
 
 ```
 Note: RStudio's **Environment** pane also lists all the elements in your current workspace. That is, the command `ls()` becomes a bit obsolete when working with RStudio.
-
 
 
 Let's try how we can compute with vectors and scalars in R. 
