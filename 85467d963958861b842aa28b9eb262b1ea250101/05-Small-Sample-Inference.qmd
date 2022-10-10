@@ -76,7 +76,7 @@ Under the null hypothesis (i.e., if the null hypothesis is true), $W$ is just a 
 $$
 W\overset{H_0}{\sim} \chi^2_{(q)}.
 $$
-Note that the distribution of $W$ conditional on $X$ does not depend on $X$; i.e. $W|X\overset{H_0}{\sim}\chi^2_{(q)}$, but $\chi^2_{(q)}$ does not depend on $X$, thus we can write $W\overset{H_0}{\sim} \chi^2_{(q)}.$
+Note that the distribution of $W$ conditional on $X$ does not depend on $X$; i.e. $W|X\overset{H_0}{\sim}\chi^2_{(q)},$ but $\chi^2_{(q)}$ does here not depend on $X$, thus we can write $W\overset{H_0}{\sim} \chi^2_{(q)}.$
 
 
 Usually, we do not know $Var(\hat\beta_n|X)$ , but need to estimate this quantity from the data. Unfortunately, in the small sample case, we can only deal with homoskedastic error terms. For truly exact finite sample inference, we need a variance estimator for which we can derive the exact small sample distribution. Therefore, we assume in Assumption 4$^*$ spherical errors (i.e., $Var(\varepsilon|X)=I_n\sigma^2$) which yields that $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$, and where $\sigma^2$ can be estimated by the unbiased ($UB$) variance estimator  
@@ -96,7 +96,7 @@ takes into account the additional randomness due to the estimator $s_{UB}^2$, wh
 $$
 F\overset{H_0}{\sim} F_{(q,n-K)},
 $${#eq-Ftest}
-where $F_{(q,n-K)}$ denotes the $F$-distribution with $q$ numerator and $n-K$ denominator degrees of freedom. As in the case of $W$, the distribution of $F$ conditional on $X$ does not depend on $X$; i.e. $F|X\overset{H_0}{\sim}F_{(q,n-K)}$, but $F_{(q,n-K)}$ does not depend on $X$, thus we can write $F\overset{H_0}{\sim}F_{(q,n-K)}.$
+where $F_{(q,n-K)}$ denotes the $F$-distribution with $q$ numerator and $n-K$ denominator degrees of freedom. As in the case of $W$, the distribution of $F$ conditional on $X$ does not depend on $X$; i.e. $F|X\overset{H_0}{\sim}F_{(q,n-K)},$ but $F_{(q,n-K)}$ does here not depend on $X$, thus we can write $F\overset{H_0}{\sim}F_{(q,n-K)}.$
 
 The distributional statements in @eq-distsquared and @eq-Ftest are a little cumbersome to derive and we do not go into details here, but in case you're interested you can find some more details in Chapter 1 of @Hayashi2000. 
 
