@@ -74,26 +74,33 @@ Note that the test statistic $W$ is simply measuring the distance (it's a weight
 
 Under the null hypothesis (i.e., if the null hypothesis is true), $W$ is just a sum of $q$-many independent squared standard normal random variables. Therefore, under the null hypothesis, $W$ is chi-square distributed with $q$ degrees of freedom (see @sec-chisqdist), 
 $$
-W\overset{H_0}{\sim} \chi^2(q).
+W\overset{H_0}{\sim} \chi^2_{(q)}.
 $$
-Note that the distribution of $W$ conditional on $X$ does not depend on $X$; i.e. $W|X\overset{H_0}{\sim}\chi^2(q)$, but $\chi^2(q)$ does not depend on $X$, thus we can write $W\overset{H_0}{\sim} \chi^2(q).$
+Note that the distribution of $W$ conditional on $X$ does not depend on $X$; i.e. $W|X\overset{H_0}{\sim}\chi^2_{(q)}$, but $\chi^2_{(q)}$ does not depend on $X$, thus we can write $W\overset{H_0}{\sim} \chi^2_{(q)}.$
 
 
-Usually, we do not know $Var(\hat\beta_n|X)$ , but need to estimate this quantity from the data. Unfortunately, in the small sample case, we can only deal with homoskedastic error terms. For truly *exact* finite sample inference, we need a variance estimator for which we can derive the *exact* small sample distribution. Therefore, we assume in Assumption 4$^*$ spherical errors (i.e., $Var(\varepsilon|X)=I_n\sigma^2$) which yields that $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$, and where $\sigma^2$ can be estimated by the unbiased (UB) variance estimator  
+Usually, we do not know $Var(\hat\beta_n|X)$ , but need to estimate this quantity from the data. Unfortunately, in the small sample case, we can only deal with homoskedastic error terms. For truly exact finite sample inference, we need a variance estimator for which we can derive the exact small sample distribution. Therefore, we assume in Assumption 4$^*$ spherical errors (i.e., $Var(\varepsilon|X)=I_n\sigma^2$) which yields that $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$, and where $\sigma^2$ can be estimated by the unbiased ($UB$) variance estimator  
 $$
 s_{UB}^2=(n-K)^{-1}\sum_{i=1}^n\hat\varepsilon_i^2.
 $$  
-From the normality assumption in Assumption 4$^*$, it follows then that $\sigma^{-2}(n-K)s_{UB}^2\sim\chi^2(n-K)$. The $F$ test statistic 
+From the normality assumption in Assumption 4$^*$, it follows then that 
+$$
+\frac{(n-K)}{\sigma^{2}}s_{UB}^2\sim\chi^2_{(n-K)}.
+$${#eq-distsquared} 
+
+The $F$ test statistic 
 $$
 F=(R\hat\beta_n -r)'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r)/q
 $$
 takes into account the additional randomness due to the estimator $s_{UB}^2$, which leads to the following exact null distribution of the $F$ test
 $$
-F|X\overset{H_0}{\sim} F(q,n-K),
+F\overset{H_0}{\sim} F_{(q,n-K)},
 $${#eq-Ftest}
-where $F(q,n-K)$ denotes the $F$-distribution with $q$ numerator and $n-K$ denominator degrees of freedom. This is cumbersome to derive and we do not go into details here, but in case you're interested you can find the derivations in Chapter 1 of @Hayashi2000. 
+where $F_{(q,n-K)}$ denotes the $F$-distribution with $q$ numerator and $n-K$ denominator degrees of freedom. As in the case of $W$, the distribution of $F$ conditional on $X$ does not depend on $X$; i.e. $F|X\overset{H_0}{\sim}F_{(q,n-K)}$, but $F_{(q,n-K)}$ does not depend on $X$, thus we can write $F\overset{H_0}{\sim}F_{(q,n-K)}.$
 
-By contrast to $W$, $F$ is now a practically useful test statistic, and we can use the observed value $F_{\text{obs}}$ to measure the distance of our estimate $R\hat\beta_n$ from value $r$.  Observed values, $F_{\text{obs}}$, that are "unusually large" under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution $F(q,n-K)$ of $F$ is used to judge what's "unusually large" under the null hypothesis. 
+The distributional statements in @eq-distsquared and @eq-Ftest are a little cumbersome to derive and we do not go into details here, but in case you're interested you can find some more details in Chapter 1 of @Hayashi2000. 
+
+By contrast to $W$, $F$ is now a practically useful test statistic, and we can use the observed value $F_{\text{obs}}$ to measure the distance of our estimate $R\hat\beta_n$ from value $r$.  Observed values, $F_{\text{obs}}$, that are "unusually large" under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution $F_{(q,n-K)}$ of $F$ is used to judge what's "unusually large" under the null hypothesis. 
 
 
 **The F distribution:** The F distribution is a ratio of two $\chi^2$ distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See @sec-Fdist for more information on the $F$ distribution. 
@@ -144,17 +151,21 @@ H_0: & \beta_k=r\\
 H_A: & \beta_k\ne r\\
 \end{array}
 \end{equation*}
-the ($q\times K$=$1\times K$)-matrix $R$ equals a row-vector of zeros but with a one as the $k$th element (e.g., for $k=2$, $R=(0,1,0,\dots,0)$) such that $F$ in @eq-Ftest simplifies to
+the $(q\times K)=(1\times K)$-matrix $R$ equals a row-vector of zeros but with a one as the $k$th element; e.g., for $k=2$ we have $R=(0,1,0,\dots,0).$ Thus, the $F$ test statistic simplifies to
 $$
 F=\frac{\left(\hat{\beta}_k-r\right)^2}{\widehat{Var}(\hat{\beta}_k|X)},
 $$
-where $\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{kk}$ and $F|X\overset{H_0}{\sim}F(1,n-K)$. Taking square roots yields the $t$ test statistic 
+where $\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{kk}.$ 
+
+Taking square roots yields the $t$ test statistic 
 $$
 t=\frac{\hat{\beta}_k-r}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)},
 $$
-where $\widehat{\operatorname{SE}}(\hat{\beta}_k|X)=s_{UB}[(X'X)^{-1/2}]_{kk}$. Under the null hypothesis, the $t$ test statistic is (conditionally on $X$) $t$-distributed with $n-K$ degrees of freedom
+where $\widehat{\operatorname{SE}}(\hat{\beta}_k|X)=s_{UB}[(X'X)^{-1/2}]_{kk}.$
+
+Under the null hypothesis, the $t$ test statistic is $t$-distributed with $n-K$ degrees of freedom
 $$
-t|X\overset{H_0}{\sim}t_{(n-K)}.
+t\overset{H_0}{\sim}t_{(n-K)}.
 $$
 Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate distribution to judge whether or not an observed value $t_{obs}$ of the test statistic is unusually small or large under the null hypothesis. 
 
@@ -203,7 +214,9 @@ To actually test the null hypothesis (e.g., $H_0$: $R\beta-r=0$ or $H_0$: $\beta
 $$
 P(\text{reject } H_0| H_0\text{ is true})=P(\text{Type I Error})=\alpha
 $$
-For a given significance level (e.g., $\alpha=0.05$) and a given alternative hypothesis, we can divide the range of all possible values of the test statistic (i.e., $\mathbb{R}$ since both $t\in\mathbb{R}$ and $F\in\mathbb{R}$) into a **rejection region** and a **non-rejection region** by using **critical values** derived from the distribution of the test statistic under the null hypothesis.  We can do this because the test statistics $t$ and $F$ have known distributions under the null hypothesis ($t\overset{H_0}{\sim}t_{n-K}$ and $F\overset{H_0}{\sim}F(q,n-K)$). Indeed, under Assumption 4$^\ast$, we know the *exact* null distributions for every sample size $n$. Having decided on the rejection and non-rejection regions, we only need to check whether the observed (obs) sample values $t_{obs}$ or $F_{obs}$ of the test statistics $t$ or $F$ are either in the rejection or in the non-rejection region to either rejection the null hypothesis or not to rejection the null hypothesis. 
+For a given significance level (e.g., $\alpha=0.05$) and a given alternative hypothesis, we can divide the range of all possible values of the test statistic (i.e., $\mathbb{R}$ since both $t\in\mathbb{R}$ and $F\in\mathbb{R}$) into a **rejection region** and a **non-rejection region** by using **critical values** derived from the distribution of the test statistic under the null hypothesis.  We can do this because the test statistics $t$ and $F$ have known distributions under the null hypothesis ($t\overset{H_0}{\sim}t_{n-K}$ and $F\overset{H_0}{\sim}F_{(q,n-K)}$). 
+
+Indeed, under Assumption 4$^\ast$, we know the *exact* null distributions for every sample size $n$. Having decided on the rejection and non-rejection regions, we only need to check whether the observed (obs) sample values $t_{obs}$ or $F_{obs}$ of the test statistics $t$ or $F$ are either in the rejection or in the non-rejection region to either rejection the null hypothesis or not to rejection the null hypothesis. 
 
 
 **Non-conservative versus conservative tests:** Since the test statistics $F$ and $t$ are continuous random variables of which we know the *exact* distributions (under Assumptions 1-4$^\ast$), we can find critical values such that 
@@ -268,7 +281,7 @@ text(x = q, y = .65, labels = expression(c[1-alpha]==1.9588))
 **The non-rejection region:** The non-rejection region describes a range of values of the test statistic $F$ which we expect to see (in $(1-\alpha) \cdot 100\%$ cases) if the null hypothesis is true. If the observed value of the test statistic, $F_{\text{obs}}$ falls in this region, we will not reject the null hypothesis. 
 
 
-**Caution:** Not rejecting the null hypothesis does not mean that we can conclude that the null hypothesis is true. We only had no sufficiently strong evidence against the null hypothesis. A violation of the null hypothesis, for instance $R\beta -r=a\neq 0$, may simply be too small (too small $a$ value) to stand out from the estimation errors (measured by the standard error) in $\hat\beta_k$. 
+**Caution:** Not rejecting the null hypothesis does not mean that we can conclude that the null hypothesis is true. We only had no sufficiently strong evidence against the null hypothesis. A violation of the null hypothesis, for instance $R\beta -r=a\neq 0$, may simply be too small (too small $a$ value) to stand out from the estimation errors (measured by the standard error) in $\hat\beta_k.$
 
 
 Fortunately, you do not need to read old-school distribution tables to find the critical value $c_{1-\alpha}$, but can simply use `R`
@@ -467,15 +480,15 @@ H_A:  & \beta_k>0,
 \end{equation*}
 where the true (usually unknown) parameter value is $\beta_k=3$ and where the true (usually also unknown) standard error is $\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$. Only with the knowledge about these usually unknown quantities, we can derive the distribution of the $t$-test statistic under the alternative hypothesis. The distribution of the $t$-test statistic becomes here a standard normal distribution, since we assume $\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$ to be a known **deterministic** quantity. (This completely unrealistic assumption is only used for illustrative purposes; namely to explain the probability of making a Type II error and the power (i.e. $1-P(\text{Type II Error})$).)  
 
-Under this setup, the distribution "under the null hypothesis" (i.e., if $\beta_k=0$ were true) is:
-\begin{align*}
-t\big|X=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\Big|X\overset{H_0}{\sim}\mathcal{N}(0,1)
-\end{align*}
-Likewise, the distribution "under the alternative hypothesis" (i.e., for the actual $\beta_k=3$) is:
+Under this setup, the distribution under the null hypothesis (i.e., if $\beta_k=0$ were true) is:
+$$
+t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\overset{H_0}{\sim}\mathcal{N}(0,1)
+$$
+Likewise, the distribution under the alternative hypothesis (i.e., for the actual $\beta_k=3$) is:
 \begin{align*}
 t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
 &=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
-\Rightarrow\quad&\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\substack{\sim \mathcal{N}(0,1)\\(\text{conditionally on $X$})}}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\Big|X\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
+\Rightarrow\quad&\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
 \end{align*}
 
 So, the mean-shift $\Delta$ depends on the value of $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}$ (here $1.5$) and the difference between the actual parameter value ($\beta_k=3$) and the hypothetical parameter value under the null-hypothesis (here $0$). The following Graphic illustrates the probability of a type II error and the power for the case where $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$ such that $\Delta=3/1.5=2$. 
