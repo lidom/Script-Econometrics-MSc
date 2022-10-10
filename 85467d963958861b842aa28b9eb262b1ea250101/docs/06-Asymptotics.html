@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Econometrics M.Sc. - 6&nbsp; Large Sample Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./07-Instrumental-Variables.html" rel="next">
+<link href="./05-Small-Sample-Inference.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Large Sample Inference</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./images/Uni_Bonn_Logo.jpeg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Econometrics M.Sc.</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Organization of the Course</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Introduction-to-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Review-Prob_n_Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability and Statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Monte-Carlo-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-MultipleReg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Small-Sample-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Small Sample Inference</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Asymptotics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Large Sample Inference</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Instrumental-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instrumental Variables Regression</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#tools-for-asymptotic-statistics" id="toc-tools-for-asymptotic-statistics" class="nav-link active" data-scroll-target="#tools-for-asymptotic-statistics"> <span class="header-section-number">6.1</span> Tools for Asymptotic Statistics</a>
+  <ul class="collapse">
+  <li><a href="#modes-of-convergence" id="toc-modes-of-convergence" class="nav-link" data-scroll-target="#modes-of-convergence"> <span class="header-section-number">6.1.1</span> Modes of Convergence</a></li>
+  <li><a href="#four-important-modes-of-convergence" id="toc-four-important-modes-of-convergence" class="nav-link" data-scroll-target="#four-important-modes-of-convergence">Four Important Modes of Convergence</a></li>
+  <li><a href="#relations-among-modes-of-convergence" id="toc-relations-among-modes-of-convergence" class="nav-link" data-scroll-target="#relations-among-modes-of-convergence">Relations among Modes of Convergence</a></li>
+  <li><a href="#continuous-mapping-theorem-cmt" id="toc-continuous-mapping-theorem-cmt" class="nav-link" data-scroll-target="#continuous-mapping-theorem-cmt"> <span class="header-section-number">6.1.2</span> Continuous Mapping Theorem (CMT)</a></li>
+  <li><a href="#slutsky-theorem" id="toc-slutsky-theorem" class="nav-link" data-scroll-target="#slutsky-theorem"> <span class="header-section-number">6.1.3</span> Slutsky Theorem</a></li>
+  <li><a href="#law-of-large-numbers-lln-and-central-limit-theorem-clt" id="toc-law-of-large-numbers-lln-and-central-limit-theorem-clt" class="nav-link" data-scroll-target="#law-of-large-numbers-lln-and-central-limit-theorem-clt"> <span class="header-section-number">6.1.4</span> Law of Large Numbers (LLN) and Central Limit Theorem (CLT)</a></li>
+  <li><a href="#estimators-as-a-sequences-of-random-variables" id="toc-estimators-as-a-sequences-of-random-variables" class="nav-link" data-scroll-target="#estimators-as-a-sequences-of-random-variables"> <span class="header-section-number">6.1.5</span> Estimators as a Sequences of Random Variables</a></li>
+  </ul></li>
+  <li><a href="#asymptotics-under-the-classic-regression-model" id="toc-asymptotics-under-the-classic-regression-model" class="nav-link" data-scroll-target="#asymptotics-under-the-classic-regression-model"> <span class="header-section-number">6.2</span> Asymptotics under the Classic Regression Model</a>
+  <ul class="collapse">
+  <li><a href="#the-case-of-heteroscedasticity" id="toc-the-case-of-heteroscedasticity" class="nav-link" data-scroll-target="#the-case-of-heteroscedasticity"> <span class="header-section-number">6.2.1</span> The Case of Heteroscedasticity</a></li>
+  <li><a href="#hypothesis-testing-and-confidence-intervals" id="toc-hypothesis-testing-and-confidence-intervals" class="nav-link" data-scroll-target="#hypothesis-testing-and-confidence-intervals"> <span class="header-section-number">6.2.2</span> Hypothesis Testing and Confidence Intervals</a></li>
+  </ul></li>
+  <li><a href="#practice-large-sample-inference" id="toc-practice-large-sample-inference" class="nav-link" data-scroll-target="#practice-large-sample-inference"> <span class="header-section-number">6.3</span> Practice: Large Sample Inference</a>
+  <ul class="collapse">
+  <li><a href="#normally-distributed-hatbeta-for-ntoinfty" id="toc-normally-distributed-hatbeta-for-ntoinfty" class="nav-link" data-scroll-target="#normally-distributed-hatbeta-for-ntoinfty"> <span class="header-section-number">6.3.1</span> Normally Distributed <span class="math inline">\(\hat\beta\)</span> for <span class="math inline">\(n\to\infty\)</span></a></li>
+  <li><a href="#testing-multiple-and-single-parameters" id="toc-testing-multiple-and-single-parameters" class="nav-link" data-scroll-target="#testing-multiple-and-single-parameters"> <span class="header-section-number">6.3.2</span> Testing Multiple and Single Parameters</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-lsinf" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Large Sample Inference</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>The content of this chapter is very much inspired by the book by <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>.</p>
+<section id="tools-for-asymptotic-statistics" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="tools-for-asymptotic-statistics"><span class="header-section-number">6.1</span> Tools for Asymptotic Statistics</h2>
+<section id="modes-of-convergence" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="modes-of-convergence"><span class="header-section-number">6.1.1</span> Modes of Convergence</h3>
+<p>In the following we will discuss the four most important convergence concepts for sequences of random variables <span class="math inline">\((z_1,z_2,\dots,z_n)\)</span> shortly denoted by <span class="math inline">\(\{z_n\}\)</span>. Non-random scalars (or vectors or matrices) will be denoted by Greek letters such as <span class="math inline">\(\alpha\)</span>.</p>
+<!-- Sequences of random vectors (or matrices) will be denoted by $\{\mathbf{z}_n\}$.  -->
+<!-- % Vector-Convergence if and only if element-wise converegence:  -->
+<!-- %https://www.statlect.com/asymptotic-theory/mean-square-convergence#:~:text=The%20concept%20of%20mean%2Dsquare,difference%20is%20on%20average%20small. -->
+</section>
+<section id="four-important-modes-of-convergence" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="four-important-modes-of-convergence">Four Important Modes of Convergence</h3>
+<div id="def-conv_prop" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 6.1 (Convergence in Probability) </strong></span></p>
+<p>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in probability</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if, for any (arbitrarily small) <span class="math inline">\(\varepsilon&gt;0\)</span>, <span class="math display">\[\begin{eqnarray*}
+  \lim_{n\to\infty} P\left(|z_n-\alpha|&gt;\varepsilon\right)=0.
+\end{eqnarray*}\]</span> We write: <span class="math inline">\(\operatorname{plim}_{n\to\infty}z_n=\alpha\)</span>, or <span class="math inline">\(z_n\to_{p}\alpha\)</span>. Convergence in probability of a sequence of random vectors (or matrices) <span class="math inline">\(\{z_n\}\)</span> to a constant vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> convergence in probability.</p>
+</div>
+<div id="def-conv_as" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 6.2 (Almost Sure Convergence) </strong></span></p>
+<p>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges almost surely</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[\begin{eqnarray*}
+P\left(\lim_{n\to\infty}z_n=\alpha\right)=1.
+\end{eqnarray*}\]</span> We write: <span class="math inline">\(z_n\to_{as}\alpha\)</span>. Almost sure convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{z_n\}\)</span> to a constant vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> almost sure convergence.</p>
+</div>
+<p>Almost sure convergence is (usually) rather hard to derive, since the probability is about an event concerning an infinite sequence. Fortunately, however, there are established strong laws of large numbers that we can use for showing almost sure convergence.</p>
+<div id="def-conv_ms" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 6.3 (Convergence in Mean Square) </strong></span></p>
+<p>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in mean square</strong> (or <strong>in quadratic mean</strong>) to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[\begin{eqnarray*}
+  \lim_{n\to\infty}E\left((z_n-\alpha)^2\right)=0
+\end{eqnarray*}\]</span> We write: <span class="math inline">\(z_n\to_{ms}\alpha\)</span>. If <span class="math inline">\(z_n\)</span> is an estimator (e.g., <span class="math inline">\(z_n=\hat\beta_{k,n}\)</span>) the expression <span class="math inline">\(E\left((z_n-\alpha)^2\right)\)</span> is termed the <strong>mean squared error</strong>: <span class="math inline">\(\text{MSE}(z_n)=E\left((z_n-\alpha)^2\right)\)</span>. Mean square convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{z_n\}\)</span> to a deterministic vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> mean square convergence.</p>
+</div>
+<!-- **Convergence to a Random Variable:**The above presented definitions of convergence can be also applied to limits that are random variables. We say that a sequence of random vectors $\{\mathbf{z}_n\}$ converges to a random vector $\mathbf{z}$ and write $\mathbf{z}_n\to_{p}\mathbf{z}$ if the sequence $\{\mathbf{z}_n-\mathbf{z}\}$ converges to $\mathbf{0}$. Similarly, for $\mathbf{z}_n\to_{as}\mathbf{z}$ and $\mathbf{z}_n\to_{ms}\mathbf{z}$.  -->
+<div id="def-conv_distr" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 6.4 (Convergence in Distribution) </strong></span></p>
+<p>Let <span class="math inline">\(F_n\)</span> be the cumulative distribution function (cdf) of <span class="math inline">\(z_n\)</span> and <span class="math inline">\(F\)</span> the cdf of <span class="math inline">\(z\)</span>. A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in distribution</strong> to a random scalar <span class="math inline">\(z\)</span> if for all <span class="math inline">\(t\)</span> such that <span class="math inline">\(F(t)\)</span> is continuous at <span class="math inline">\(t\)</span>, <span class="math display">\[\begin{eqnarray*}
+  \lim_{n\to\infty}F_n(t)=F(t).
+\end{eqnarray*}\]</span> We write: <span class="math inline">\(z_n\to_{d} z\)</span> and call <span class="math inline">\(F\)</span> the <strong>asymptotic</strong> (or <strong>limit</strong>) <strong>distribution</strong> of <span class="math inline">\(z_n\)</span>. Sometimes you will see statements like <span class="math inline">\(z_n\to_{d} N(0,1)\)</span> or <span class="math inline">\(z_n\overset{a}{\sim}N(0,1)\)</span>, which should be read as <span class="math inline">\(z_n\to_{d} z\)</span>, where <span class="math inline">\(z\sim N(0,1)\)</span>.</p>
+</div>
+<p>A stochastic sequence <span class="math inline">\(\{z_n\}\)</span> can also convergence in distribution to a <strong>deterministic scalar</strong> <span class="math inline">\(\alpha\)</span>. In this case <span class="math inline">\(\alpha\)</span> is treated as a degenerated random variable with cdf</p>
+<p><span class="math display">\[
+F_\alpha(t)=\left\{\begin{matrix}0&amp;\text{if}\;\;t&lt;\alpha\\ 1&amp;\text{if}\;\;t\geq\alpha\end{matrix}\right.
+\]</span></p>
+<div id="def-conv_multdistr" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 6.5 (Multivariate Convergence in Distribution) </strong></span>Let <span class="math inline">\(z_n,z\in\mathbb{R}^K\)</span> be <span class="math inline">\(K\)</span>-dimensional random variables, then</p>
+<p><span class="math display">\[
+z_n\to_{d} z\text{\quad if and only if \quad}\lambda'z_n\to_{d}\lambda'z
+\]</span></p>
+<p>for any <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>.</p>
+</div>
+<p>This statement is known as the <strong>Cramer Wold Device</strong>. It is needed since element-wise convergence in distribution does generally not imply convergence of the <em>joint</em> distribution of <span class="math inline">\(z_n\)</span> to the <em>joint</em> distribution of <span class="math inline">\(z\)</span>; except, if all elements are independent from each other.</p>
+<!-- **Remark:**Note that convergence in distribution, as the name suggests, only involves the distributions of the random variables. Thus, the random variables need not even be defined on the same probability space (that is, they need not be defined for the same random experiment), and indeed we don't even need the random variables at all. (But all this is just thought provoking \dots typically, we'll only consider cases with a common probability space.) -->
+</section>
+<section id="relations-among-modes-of-convergence" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="relations-among-modes-of-convergence">Relations among Modes of Convergence</h3>
+<div id="lem-Relations" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 6.1 (Relationship among the four modes of convergence) </strong></span>The following relationships hold:</p>
+<ol type="i">
+<li><span class="math inline">\(z_n\to_{ms}\alpha\Rightarrow z_n\to_{p}\alpha.\)</span></li>
+<li><span class="math inline">\(z_n\to_{as}\alpha\Rightarrow z_n\to_{p}\alpha.\)</span></li>
+<li><span class="math inline">\(z_n\to_{d}\alpha\Leftrightarrow z_n\to_{p}\alpha.\)</span> I.e., if the limiting random variable is a constant (i.e., a degenerated random variable), then convergence in distribution is equivalent to convergence in probability.</li>
+</ol>
+</div>
+<p>Proofs can be found, e.g., here: <a href="https://www.statlect.com/asymptotic-theory/relations-among-modes-of-convergence">https://www.statlect.com/asymptotic-theory/relations-among-modes-of-convergence</a></p>
+</section>
+<section id="continuous-mapping-theorem-cmt" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="continuous-mapping-theorem-cmt"><span class="header-section-number">6.1.2</span> Continuous Mapping Theorem (CMT)</h3>
+<div id="lem-Preserv" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 6.2 (Preservation of convergence for continuous transformations (or “continuous mapping theorem (CMT)”)) </strong></span>Suppose <span class="math inline">\(\{z_n\}\)</span> is a stochastic sequence of random scalars, vectors, or matrices and that <span class="math inline">\(a(\cdot)\)</span> is a continuous function that does not depended on <span class="math inline">\(n\)</span>. Then</p>
+<ol type="i">
+<li><span class="math inline">\(z_n\to_{p}\alpha\Rightarrow a(z_n)\to_{p} a(\alpha)\)</span></li>
+<li><span class="math inline">\(z_n\to_{as} \alpha\Rightarrow a(z_n)\to_{as} a(\alpha)\)</span></li>
+<li><span class="math inline">\(z_n\to_{d}\alpha\Rightarrow a(z_n)\to_{d} a(\alpha)\)</span></li>
+</ol>
+</div>
+<p>Proof can be found, e.g., in <em>Asymptotic Statistics</em>, van der Vaart (1998), Theorem 2.3. Or here: <a href="https://www.statlect.com/asymptotic-theory/continuous-mapping-theorem">https://www.statlect.com/asymptotic-theory/continuous-mapping-theorem</a></p>
+<p><strong>Note:</strong> The CMT does <em>not</em> hold for m.s.-convergence except for the case where <span class="math inline">\(a(.)\)</span> is linear.<br>
+<!-- %This is easily seen using the expression %$\E[(z_n-\alpha)^2]=Var(z_n)+(\E(z_n)-\alpha)^2$ and the  --> <!-- %application of Jensen's inequality (see below). --></p>
+<p><strong>Examples:</strong> As a consequence of the CMT (<a href="#lem-Preserv">Lemma&nbsp;<span>6.2</span></a>) we have that the usual arithmetic operations preserve convergence in probability (equivalently for almost sure convergence and convergence in distribution):</p>
+<ul>
+<li>If <span class="math inline">\(x_n\to_{p} \beta\)</span> and <span class="math inline">\(y_n\to_{p} \gamma\)</span> then <span class="math inline">\(x_n+y_n\to_{p} \beta+\gamma\)</span></li>
+<li>If <span class="math inline">\(x_n\to_{p} \beta\)</span> and <span class="math inline">\(y_n\to_{p} \gamma\)</span> then <span class="math inline">\(x_n\cdot y_n\to_{p} \beta\cdot\gamma\)</span></li>
+<li>If <span class="math inline">\(x_n\to_{p} \beta\)</span> and <span class="math inline">\(y_n\to_{p} \gamma\)</span> then <span class="math inline">\(x_n/y_n\to_{p} \beta/\gamma\)</span>, provided that <span class="math inline">\(\gamma\neq 0\)</span></li>
+<li>If <span class="math inline">\(X_n'X_n\to_{p} \Sigma_{X'X}\)</span> then <span class="math inline">\((X_n'X_n)^{-1}\to_{p} \Sigma_{X'X}^{-1}\)</span>, provided <span class="math inline">\(\Sigma_{X'X}\)</span> is a nonsingular matrix.</li>
+</ul>
+<!-- The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n, y_n\right)'$, $\boldsymbol\alpha=\left(\beta, \gamma\right)'$, and $\mathbf{a}(\boldsymbol\alpha)=(1,1)\boldsymbol\alpha$, similarly for all others.  -->
+</section>
+<section id="slutsky-theorem" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="slutsky-theorem"><span class="header-section-number">6.1.3</span> Slutsky Theorem</h3>
+<p>The following results are concerned with combinations of convergence in probability and convergence in distribution. These are particularly important for the derivation of the asymptotic distribution of estimators.</p>
+<div id="lem-Slutsky" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 6.3 (Slutsky Theorem) </strong></span>Let <span class="math inline">\(x_n\)</span> and <span class="math inline">\(y_n\)</span> denote sequences of random scalars or vectors and let <span class="math inline">\(A_n\)</span> denote a sequences of random matrices. Moreover, <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(A\)</span> are deterministic limits of appropriate dimensions and <span class="math inline">\(x\)</span> is a random limit of appropriate dimension.</p>
+<ol type="i">
+<li>If <span class="math inline">\(x_n\to_{d} x\)</span>and <span class="math inline">\(y_n\to_{p} \alpha\)</span> then;; <span class="math inline">\(x_n+y_n\to_{d} x+\alpha\)</span></li>
+<li>If <span class="math inline">\(x_n\to_{d} x\)</span>and <span class="math inline">\(y_n\to_{p} 0\)</span> then;; <span class="math inline">\(x_n'y_n\to_{p} 0\)</span></li>
+<li>If <span class="math inline">\(x_n\to_{d} x\)</span>and <span class="math inline">\(A_n\to_{p} A\)</span> then;; <span class="math inline">\(A_nx_n\to_{d} Ax\)</span>, where it is assumed that <span class="math inline">\(A_n\)</span> and <span class="math inline">\(x_n\)</span> are “conformable”(i.e., the matrix- and vector-dimensions fit to each other).</li>
+</ol>
+<p>Important special case:</p>
+<p>If <span class="math inline">\(x_n\to_{d} N(0,\Sigma)\)</span>and <span class="math inline">\(A_n\to_{p} A\)</span> then;; <span class="math inline">\(A_nx_n\to_{d} N(0,A\Sigma A')\)</span></p>
+</div>
+<p>Proofs can be found, e.g., in <em>Asymptotic Statistics</em>, van der Vaart, Theorem 2.8. Or here: <a href="https://www.statlect.com/asymptotic-theory/Slutsky-theorem">https://www.statlect.com/asymptotic-theory/Slutsky-theorem</a></p>
+<p><strong>Note:</strong> Sometimes, only parts <em>(i)</em> and <em>(ii)</em> of <a href="#lem-Slutsky">Lemma&nbsp;<span>6.3</span></a> are called “Slutsky’s theorem.”</p>
+</section>
+<section id="law-of-large-numbers-lln-and-central-limit-theorem-clt" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="law-of-large-numbers-lln-and-central-limit-theorem-clt"><span class="header-section-number">6.1.4</span> Law of Large Numbers (LLN) and Central Limit Theorem (CLT)</h3>
+<p>So far, we discussed the definitions of the four most important convergence modes, their relations among each other, and basic theorems (CMT and Slutsky) about functionals of stochastic sequences. Though, we still lack of tools that allow us to actually show that a stochastic sequence convergences (in some of the discussed modes) to some limit.</p>
+<p>In the following we consider the stochastic sequences <span class="math inline">\(\{\bar{z}_n\}\)</span> of sample means <span class="math inline">\(\bar{z}_n=n^{-1}\sum_{i=1}^nz_i\)</span>, where <span class="math inline">\(z_i\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>, are (scalar, vector, or matrix-valued) <em>random variables</em>. Remember: the sample mean <span class="math inline">\(\bar{z}_n\)</span> is an estimator of the deterministic population mean <span class="math inline">\(\mu\)</span>.</p>
+<p>Weak LLNs, strong LLNs, and CLTs tell us conditions under which arithmetic means <span class="math inline">\(\bar{z}_n=n^{-1}\sum_{i=1}^nz_i\)</span> converge: <span class="math display">\[\begin{eqnarray*}
+  \bar{z}_n&amp;\to_{p}&amp;\mu\quad\text{(weak LLN)}\\
+  \bar{z}_n&amp;\to_{as}&amp;\mu\quad\text{(strong LLN)}\\
+  \sqrt{n}(\bar{z}_n-\mu)&amp;\to_{d}&amp;N(0,\sigma^2)\quad\text{(CLT)}
+\end{eqnarray*}\]</span></p>
+<p>In the following we introduce the most well-known versions of the weak, the strong LLN, and the CLT.</p>
+<div id="thm-WLLN1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 6.1 (Weak LLN (Chebychev)) </strong></span></p>
+<p>If <span class="math inline">\(\lim_{n\to\infty} E(\bar{z}_n)=\mu\)</span> and <span class="math inline">\(\lim_{n\to\infty}Var(\bar{z}_n)=0\)</span> then <span class="math inline">\(\bar{z}_n\to_{p}\mu.\)</span></p>
+</div>
+<p>Proof can be found, for instance, here: <a href="https://www.statlect.com/asymptotic-theory/law-of-large-numbers">https://www.statlect.com/asymptotic-theory/law-of-large-numbers</a></p>
+<div id="thm-SLLN1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 6.2 (Strong LLN (Kolmogorov)) </strong></span></p>
+<p>If <span class="math inline">\(\{z_i\}\)</span> is an iid sequence and <span class="math inline">\(E(z_i)=\mu\)</span> then <span class="math inline">\(\bar{z}_n\to_{as}\mu.\)</span></p>
+</div>
+<p>Proof can be found, e.g., in <em>Linear Statistical Inference and Its Applications</em>, Rao (1973), pp.&nbsp;112-114.</p>
+<p><strong>Note:</strong> The weak and the strong LLN for random vectors follow from requiring element-by-element convergence.</p>
+<div id="thm-CLT1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 6.3 (CLT (Lindeberg-Levy)) </strong></span>If <span class="math inline">\(\{z_i\}\)</span> is an iid sequence and <span class="math inline">\(E(z_i)=\mu\)</span> and <span class="math inline">\(Var(z_i)=\sigma^2\)</span> then</p>
+<p><span class="math display">\[
+\sqrt{n}(\bar{z}_n-\mu)\to_{d} N(0,\sigma^2)\quad\text{as}\quad n\to\infty
+\]</span></p>
+</div>
+<p>Proof can be found, e.g., in <em>Asymptotic Statistics</em>, van der Vaart (1998), Theorem 2.17.</p>
+<p>The Lindeberg-Levy CLT for <span class="math inline">\(K\)</span>-dimensional random vectors follows from our above discussion on “Multivariate Convergence in Distribution.”From this we know that if <span class="math inline">\(\bar{z}_n\in\mathbb{R}^K\)</span> and <span class="math inline">\(\mu\in\mathbb{R}^K\)</span>, then</p>
+<p><span class="math display">\[\sqrt{n}(\bar{z}_n-\mu)\to_{d} \mathcal{N}(0,\Sigma)\quad\Leftrightarrow\quad \sqrt{n}(\lambda'\bar{z}_n-\lambda'\mu)\to_{d} \mathcal{N}(0,\lambda'\Sigma\lambda),\]</span></p>
+<p>for any <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>.</p>
+<p>That is, to apply the Lindeberg-Levy CLT (<a href="#thm-CLT1">Theorem&nbsp;<span>6.3</span></a>) to multivariate (e.g., <span class="math inline">\(K\)</span>-dimensional) stochastic sequences, we need to check whether the univariate stochastic sequence <span class="math inline">\(\{\lambda'z_i\}\)</span> is i.i.d. with <span class="math inline">\(E(\lambda'z_i)=\lambda'\mu\)</span> and <span class="math inline">\(Var(\lambda'z_i)=\lambda'\Sigma\lambda\)</span> for any <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>. This is the case if the multivariate (<span class="math inline">\(K\)</span>-dimensional) stochastic sequence <span class="math inline">\(\{z_i\}\)</span> is an i.i.d. sequence with <span class="math inline">\(E(z_i)=\mu\)</span> and <span class="math inline">\(Var(z_i)=\Sigma\)</span>.</p>
+<p><strong>Note:</strong> The LLNs and the CLT are stated with respect to sequences of sample means <span class="math inline">\(\{\bar{z}_n\}\)</span>; i.e., the simplest estimators you probably can think of. We will see, however, that this is all we need in order to analyze also more complicated estimators such as the OLS estimator.</p>
+</section>
+<section id="estimators-as-a-sequences-of-random-variables" class="level3" data-number="6.1.5">
+<h3 data-number="6.1.5" class="anchored" data-anchor-id="estimators-as-a-sequences-of-random-variables"><span class="header-section-number">6.1.5</span> Estimators as a Sequences of Random Variables</h3>
+<p>Our concepts above readily apply to general scalar-valued (univariate) or vector-valued (<span class="math inline">\(K\)</span>-dimensional) estimators, say <span class="math inline">\(\hat\theta_n\in\mathbb{R}^K\)</span>, that are computed from i.i.d. random samples.</p>
+<!-- **Note:**Under the asymptotic perspective ($n\to\infty$) it's not necessary anymore to condition on $X$ since as $n\to\infty$ the stochastic influence of $X$ on  vanishes  -->
+<p><strong>(Weak) Consistency:</strong> We say that an estimator <span class="math inline">\(\hat\theta_n\)</span> is <em>(weakly) consistent for <span class="math inline">\(\theta\)</span></em> if</p>
+<p><span class="math display">\[\hat\theta_n\to_{p}\theta\quad\text{as}\quad n\to\infty\]</span></p>
+<p><strong>Asymptotic Bias:</strong> The <em>asymptotic bias</em> of an estimator <span class="math inline">\(\hat\theta_n\)</span> of some true parameter <span class="math inline">\(\theta\)</span> is defined as:</p>
+<p><span class="math display">\[\text{ABias}(\hat\theta_n)=\lim_{n\to\infty}E(\hat\theta_n)-\theta\]</span></p>
+<p>If <span class="math inline">\(\text{ABias}(\hat\theta_n)=0\)</span>, then <span class="math inline">\(\hat\theta\)</span> is called an <strong>asymptotically unbiased</strong>.</p>
+<p><strong>Asymptotic Normality:</strong> A consistent estimator <span class="math inline">\(\hat\theta_n\)</span> is <em>asymptotically normal distributed</em> if</p>
+<p><span class="math display">\[\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\Sigma)\quad\text{as}\quad n\to\infty\]</span></p>
+<p>where <span class="math inline">\(\lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))=\lim_{n\to\infty}Var(\sqrt{n}\hat\theta_n)=\Sigma\)</span> as called the asymptotic variance of <span class="math inline">\(\sqrt{n}(\hat\theta_n-\theta)\)</span>.</p>
+<p><strong><span class="math inline">\(\sqrt{n}\)</span>-consistent:</strong> Consistent estimators <span class="math inline">\(\hat{\theta}_n\to_{p}\theta\)</span> are called *<span class="math inline">\(\sqrt{n*\)</span>-consistent} if</p>
+<p><span class="math display">\[\sqrt{n}(\hat\theta_n-\theta)\to_{d} z \quad\text{as}\quad n\to\infty\]</span></p>
+<p>If additionally the random vector <span class="math inline">\(z\)</span> is normal distributed, then <span class="math inline">\(\hat\theta_n\)</span> is often called <em>consistent and asymptotically normal.</em></p>
+</section>
+</section>
+<section id="asymptotics-under-the-classic-regression-model" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="asymptotics-under-the-classic-regression-model"><span class="header-section-number">6.2</span> Asymptotics under the Classic Regression Model</h2>
+<p>Given the above introduced machinery on asymptotic concepts and results, we can now proof that the OLS estimators <span class="math inline">\(\hat\beta\)</span> and <span class="math inline">\(s_{UB}^2\)</span> applied to the classic regression model (defined by Assumptions 1-4 in <a href="04-MultipleReg.html"><span>Chapter&nbsp;4</span></a> are both consistent, and that <span class="math inline">\(\hat\beta\)</span> is asymptotically normal distributed as <span class="math inline">\(n\to\infty\)</span>. That is, we can drop the unrealistic normality and spherical errors assumption (Assumption 4<span class="math inline">\(^\ast\)</span>), but still use the usual test statistics (<span class="math inline">\(t\)</span>-test, <span class="math inline">\(F\)</span>-test); as long as the sample size <span class="math inline">\(n\)</span> is “large.”</p>
+<p>However, before we can formally state the asymptotic properties, we, first, need to adjust our “data generating process”assumption (Assumption 1) such that we can apply Kolmogorov’s strong LLN and Lindeberg-Levy’s CLT. Second, we need to adjust the rank assumption (Assumption 3), such that the full column rank of <span class="math inline">\(X\)</span> is guaranteed for the limiting case as <span class="math inline">\(n\to\infty\)</span>, too. Assumptions 2 and 4 from <a href="04-MultipleReg.html"><span>Chapter&nbsp;4</span></a> are assumed to hold (and do not need to be changed).</p>
+<p><strong>Assumption 1<span class="math inline">\(^\ast\)</span>: Data Generating Process (for Asymptotics)</strong> Assumption 1 of <a href="04-MultipleReg.html"><span>Chapter&nbsp;4</span></a> applies, but <em>additionally</em> we assume that <span class="math inline">\((\varepsilon_i, X_i)\in\mathbb{R}^{K+1}\)</span> (or equivalently <span class="math inline">\((Y_i,X_i)\in\mathbb{R}^{K+1}\)</span>) is jointly i.i.d. for all <span class="math inline">\(i=1,\dots,n\)</span>, with existing and finite second moments for <span class="math inline">\(X_i\)</span> and fourth moments for <span class="math inline">\(\varepsilon_i\)</span>.</p>
+<p><strong>Note 1:</strong> The fourth moment of <span class="math inline">\(\varepsilon_i\)</span> is actually only needed for <a href="#thm-Consistency_s1">Theorem&nbsp;<span>6.7</span></a>; for the rest two moments are sufficient.</p>
+<p><strong>Note 2:</strong> The above adjustment of Assumption 1 is far less restrictive than assuming that the error-terms <span class="math inline">\(\varepsilon_i\)</span> are i.i.d. normally distributed and independent from <span class="math inline">\(X_i\)</span> (as it’s necessary for small sample inference in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a>).</p>
+<p><strong>Assumption 3<span class="math inline">\(^\ast\)</span>: Rank Condition (for Asymptotics)</strong> The <span class="math inline">\((K\times K)\)</span> matrix</p>
+<p><span class="math display">\[\Sigma_{X'X}:=E(S_{X'X})=E(n^{-1}X'X)=E(X_iX_i')\]</span></p>
+<!-- $$ -->
+<!-- n^{-1}X'X=S_{X'X}\to_{p}\Sigma_{X'X}\quad\text{as}\quad n\to\infty -->
+<!-- $$ -->
+<p>has full rank <span class="math inline">\(K\)</span>. I.e., <span class="math inline">\(\Sigma_{X'X}\)</span> is nonsingular and invertible. <!-- (Note, this assumption does not assume that $S_{X'X}\to_{p}\Sigma_{X'X}$, but if this convergence hold, it assumes that the limiting matrix is of full rank $K$.) --></p>
+<!-- **Note:**The crucial part of Assumption 3$^\ast$ is that the limit matrix has full rank $K$. The convergence in probability statement ($S_{X'X}\to_{p}\Sigma_{X'X}$) follows already from Assumption 1$^\ast$.   -->
+<!-- **Note:** Assumption 3$^\ast$ implies the existence and finiteness of the first two moments of $X_i$ (even without Assumption 1$^\ast$). -->
+<!-- % Under the Assumptions 1$^\ast$, 2, 3$^\ast$, and 4, we can show the following results. -->
+<div id="thm-Sxx1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 6.4 (Consistency of <span class="math inline">\(S_{X'X}^{-1}\)</span>) </strong></span>Under Assumption 1<span class="math inline">\(^\ast\)</span> and 3<span class="math inline">\(^\ast\)</span> we have that</p>
+<p><span class="math display">\[\left(\frac{1}{n}X'X\right)^{-1}=S_{X'X}^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1}\quad\text{as}\quad n\to\infty\]</span></p>
+</div>
+<p>Proof is done in the lecture.</p>
+<div id="thm-bconsistent1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 6.5 (Consistency of <span class="math inline">\(\hat\beta\)</span>) </strong></span>Under Assumption 1<span class="math inline">\(^\ast\)</span>, 2 and 3<span class="math inline">\(^\ast\)</span> we have that</p>
+<p><span class="math display">\[\hat\beta_n\to_{p}\beta\quad\text{as}\quad n\to\infty\]</span></p>
+</div>
+<p>Proof is done in the lecture.</p>
+<p>Furthermore, we can show that the appropriately scaled (by <span class="math inline">\(\sqrt{n}\)</span>) sampling error <span class="math inline">\(\hat\beta-\beta\)</span> of the OLS estimator is asymptotically normal distributed.</p>
+<div id="thm-OLSnormality1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 6.6 (Sampling error limiting normality (the classic case)) </strong></span>For simplicity, we consider here the special case of spherical errors (<span class="math inline">\(Var(\varepsilon|X)=\sigma^2I_n\)</span>). Under Assumption 1<span class="math inline">\(^\ast\)</span>, 2 and 3<span class="math inline">\(^\ast\)</span> we then have that</p>
+<p><span class="math display">\[\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right)\quad\text{as}\quad n\to\infty\]</span></p>
+</div>
+<p>Proof is done in the lecture.</p>
+<p>In principle, we can derive the usual test statistics from the latter result. Though, as long as we do not know (we usually don’t) <span class="math inline">\(\sigma^2\)</span> and <span class="math inline">\(\Sigma_{X'X}\)</span> we need to plug-in the (consistent!) estimators <span class="math inline">\(S_{X'X}^{-1}\)</span> and <span class="math inline">\(s_{UB}^2\)</span>, where the consistency of the former estimator is provided by <a href="#thm-Sxx1">Theorem&nbsp;<span>6.4</span></a> and the consistency of <span class="math inline">\(s_{UB}^2\)</span> is provided by the following result.</p>
+<div id="thm-Consistency_s1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 6.7 (Consistency of <span class="math inline">\(s^2_{UB}\)</span>) </strong></span></p>
+<p><span class="math display">\[s_{UB}^2\to_{p}\sigma^2\quad\text{as}\quad n\to\infty\]</span></p>
+</div>
+<p>Proof is skipped, but a detailed proof can be found here: <a href="https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties">https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties</a></p>
+<section id="the-case-of-heteroscedasticity" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="the-case-of-heteroscedasticity"><span class="header-section-number">6.2.1</span> The Case of Heteroscedasticity</h3>
+<p><a href="#thm-OLSnormality1">Theorem&nbsp;<span>6.6</span></a> can also be stated and proofed for conditionally heteroscedastic error terms. In this case one gets</p>
+<p><span id="eq-OLSnormality1Rob"><span class="math display">\[
+\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)\quad\text{as}\quad n\to\infty
+\tag{6.1}\]</span></span></p>
+<p>where <span class="math inline">\(\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}\)</span> (i.e., the asymptotic variance of <span class="math inline">\(\sqrt{n}(\hat\beta_n-\beta)\)</span>) is usually unknown and needs to be estimated from the data by</p>
+<p><span class="math display">\[
+S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\to_{p} \Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\quad\text{as}\quad n\to\infty,
+\]</span></p>
+<p>where <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')\)</span> denotes some consistent estimator of <span class="math inline">\(E(\varepsilon^2X_iX_i')\)</span> such as one of the following choices:</p>
+<ul>
+<li>HC0: <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2X_iX_i'\)</span></li>
+<li>HC1: <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{n}{n-K}\hat\varepsilon_i^2X_iX_i'\)</span></li>
+<li>HC2: <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{1-h_{i}}X_iX_i'\)</span></li>
+<li>HC3: <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{2}}X_iX_i'\text{\quad($\leftarrow$ Most often used)}\)</span></li>
+<li>HC4: <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{\delta_{i}}}X_iX_i'\)</span></li>
+</ul>
+<!-- (These are the heteroscedasticity-consistent robust estimators from Chapter \ref{ch:VarEstBeta}.  -->
+<!-- \begin{align*} -->
+<!-- \hspace*{-2cm}\text{HC0:}\quad & \hat v_{i}=\hat{\varepsilon}_{i}^{2} \\ -->
+<!-- \text{HC1:}\quad & \hat v_{i}=\frac{n}{n-K} \hat{\varepsilon}_{i}^{2} \\ -->
+<!-- \text{HC2:}\quad & \hat v_{i}=\frac{\hat{\varepsilon}_{i}^{2}}{1-h_{i}} \\ -->
+<!-- \text{HC3:}\quad & \hat v_{i}=\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{2}}\text{\quad($\leftarrow$ Most often used)} \\ -->
+<!-- \text{HC4:}\quad & \hat v_{i}=\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{\delta_{i}}} -->
+<!-- \end{align*} -->
+<p><strong>Note:</strong> In order to show that any of the above versions (HC0-4) of <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')\)</span> is a consistent estimator of <span class="math inline">\(E(\varepsilon^2_iX_iX_i')\)</span> we actually need to assume that the explanatory variables in <span class="math inline">\(X\)</span> have finite <em>fourth</em> moments (see Chapter 2.5 of <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>). So, for this, we would need to make our Assumption 1<span class="math inline">\(^\ast\)</span> more restrictive (so far, only two moments are assumed for <span class="math inline">\(X\)</span>).</p>
+<!-- see Hayashi  Chapter 2.5 -->
+</section>
+<section id="hypothesis-testing-and-confidence-intervals" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="hypothesis-testing-and-confidence-intervals"><span class="header-section-number">6.2.2</span> Hypothesis Testing and Confidence Intervals</h3>
+<p>From our asymptotic results under the classic regression model (Assumptions 1<span class="math inline">\(^\ast\)</span>, 2, 3<span class="math inline">\(^\ast\)</span>, and 4) we get the following results important for testing statistical hypothesis.</p>
+<section id="robust-hypothesis-testing-multiple-parameters" class="level4" data-number="6.2.2.1">
+<h4 data-number="6.2.2.1" class="anchored" data-anchor-id="robust-hypothesis-testing-multiple-parameters"><span class="header-section-number">6.2.2.1</span> Robust Hypothesis Testing: Multiple Parameters</h4>
+<p>Let us reconsider the following system of <span class="math inline">\(q\)</span>-many null hypotheses: <span class="math display">\[\begin{align*}
+H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta} - \underset{(q\times 1)}{r} = \underset{(q\times 1)}{0},
+\end{align*}\]</span> where the <span class="math inline">\((q \times K)\)</span> matrix <span class="math inline">\(R\)</span> and the <span class="math inline">\(q\)</span>-vector <span class="math inline">\(r=(r_{1},\dots,r_{q})'\)</span> are chosen by the statistician to specify her/his null hypothesis about the unknown true parameter vector <span class="math inline">\(\beta\)</span>. To make sure that there are no redundant equations, it is required that <span class="math inline">\(\operatorname{rank}(R)=q\)</span>.</p>
+<p>By contrast to the multiple parameter tests for small samples (see <a href="05-Small-Sample-Inference.html#sec-testmultp"><span>Section&nbsp;5.1</span></a>), we can work here with a heterosedasticity robust test statistic which is applicable for heteroscedastic error terms:</p>
+<p><span id="eq-Ftestasymp"><span class="math display">\[
+W=n(R\hat\beta_n -r)'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r)\overset{H_0}{\to}_d\chi^2(q)
+\tag{6.2}\]</span></span></p>
+<p>as <span class="math inline">\(n\to\infty\)</span>. The price to pay is that the distribution of the test statistic under the null hypothesis is only valid asymptotically for large <span class="math inline">\(n\)</span>. That is, the critical values taken from the asymptotic distribution will be useful only for “large”samples sizes. In case of homoscedastic error terms, one can substitute <span class="math inline">\(S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\)</span> by <span class="math inline">\(s_{UB}^2S_{X'X}^{-1}\)</span>.</p>
+<p><strong>Finite-sample correction:</strong> In order to improve the finite-sample performance of this test, one usually uses the <span class="math inline">\(F_{q,n-K}\)</span> distribution with <span class="math inline">\(q\)</span> and <span class="math inline">\(n-K\)</span> degrees of freedoms instead of the <span class="math inline">\(\chi^2(q)\)</span> distribution. Asymptotically (<span class="math inline">\(n\to\infty\)</span>), <span class="math inline">\(F_{q,n-K}\)</span> is equivalent to <span class="math inline">\(\chi^2(q)\)</span>. However, for finite sample sizes <span class="math inline">\(n\)</span> (i.e., the practically relevant case) <span class="math inline">\(F_{q,n-K}\)</span> leads to larger critical values which helps to account for the estimation errors in <span class="math inline">\(S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\)</span> (or in <span class="math inline">\(s_{UB}^2S_{X'X}^{-1}\)</span>) which are otherwise neglected by the pure asymptotic perspective.</p>
+</section>
+<section id="robust-hypothesis-testing-single-parameters" class="level4" data-number="6.2.2.2">
+<h4 data-number="6.2.2.2" class="anchored" data-anchor-id="robust-hypothesis-testing-single-parameters"><span class="header-section-number">6.2.2.2</span> Robust Hypothesis Testing: Single Parameters</h4>
+<p>Let us reconsider the case of hypotheses about only one parameter <span class="math inline">\(\beta_k\)</span>, with <span class="math inline">\(k=1,\dots,K\)</span> <span class="math display">\[\begin{equation*}
+\begin{array}{ll}
+H_0: &amp; \beta_k=r\\
+H_A: &amp; \beta_k\ne r\\
+\end{array}
+\end{equation*}\]</span> We can selecting the <span class="math inline">\(k\)</span>th diagonal element of the test-statistic in <a href="#eq-Ftestasymp">Equation&nbsp;<span>6.2</span></a> and taking the square root yields</p>
+<p><span class="math display">\[
+t=\frac{\sqrt{n}\left(\hat{\beta}_k-r\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{kk}}}\overset{H_0}{\to}_d\mathcal{N}(0,1).
+\]</span></p>
+<p>This <span class="math inline">\(t\)</span> test statistic allows for heteroscedastic error terms. In case of homoscedastic error terms, one can substitute <span class="math inline">\([S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}\)</span> by <span class="math inline">\(s_{UB}^2[S_{X'X}^{-1}]_{kk}\)</span>.</p>
+<p><strong>Finite-sample correction:</strong> In order to improve the finite-sample performance of this <span class="math inline">\(t\)</span> test, one usually uses the <span class="math inline">\(t_{(n-K)}\)</span> distribution with <span class="math inline">\(n-K\)</span> degrees of freedoms instead of the <span class="math inline">\(\mathcal{N}(0,1)\)</span> distribution. Asymptotically (<span class="math inline">\(n\to\infty\)</span>), <span class="math inline">\(t_{(n-K)}\)</span> is equivalent to <span class="math inline">\(\mathcal{N}(0,1)\)</span>. However, for finite sample sizes <span class="math inline">\(n\)</span> (i.e., the practically relevant case) <span class="math inline">\(t_{n-K}\)</span> leads to larger critical values which helps to account for the estimation errors in <span class="math inline">\([S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}\)</span> (or in <span class="math inline">\(s_{UB}^2[S_{X'X}^{-1}]_{kk}\)</span>) which are otherwise neglected by the pure asymptotic perspective.</p>
+</section>
+<section id="robust-confidence-intervals" class="level4" data-number="6.2.2.3">
+<h4 data-number="6.2.2.3" class="anchored" data-anchor-id="robust-confidence-intervals"><span class="header-section-number">6.2.2.3</span> Robust Confidence Intervals</h4>
+<p>Following the derivations in Chapter <a href="05-Small-Sample-Inference.html#sec-CIsmallsample"><span>Section&nbsp;5.4</span></a>, but using the expression for the robust standard errors, we get the following heteroscedasticity robust (random) <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> confidence interval</p>
+<p><span class="math display">\[
+\operatorname{CI}_{1-\alpha}=
+\left[\hat\beta_k\pm t_{1-\alpha/2,n-K}\sqrt{n^{-1}[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}}\right].
+\]</span></p>
+<p>Here, the coverage probability is an asymptotic coverage probability with <span class="math inline">\(P(\beta_k\in\operatorname{CI}_{1-\alpha})\to 1-\alpha\)</span> as <span class="math inline">\(n\to\infty\)</span>.</p>
+</section>
+</section>
+</section>
+<section id="practice-large-sample-inference" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="practice-large-sample-inference"><span class="header-section-number">6.3</span> Practice: Large Sample Inference</h2>
+<p>Let’s apply the above asymptotic inference methods using <code>R</code>. As in Chapter <a href="05-Small-Sample-Inference.html#sec-PSSI"><span>Section&nbsp;5.5</span></a> we, first, program a function <code>myDataGenerator()</code> which allows us to generate data from the following model, i.e., from the following fully specified data generating process: <span class="math display">\[\begin{align*}
+Y_i &amp;=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
+\beta &amp;=(\beta_1,\beta_2,\beta_3)'=(2,3,4)'\\
+X_{i2}&amp;\sim U[-4,4]\\
+X_{i3}&amp;\sim U[-5,5]\\
+\varepsilon_i|X_i&amp;\sim U[-0.5 |X_{i2}|, 0.5 |X_{i2}|],
+\end{align*}\]</span> where <span class="math inline">\((Y_i,X_i)\)</span> is assumed i.i.d. across <span class="math inline">\(i=1,\dots,n\)</span> with <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> being independent of each other. Note that, by contrast to Chapter <a href="05-Small-Sample-Inference.html#sec-PSSI"><span>Section&nbsp;5.5</span></a>, the error terms are conditionally heteroscedastic (<span class="math inline">\(Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2\)</span>) and not Gaussian.</p>
+<p>As a side note: The unconditional variance follows by the law of total variance and is given by <span class="math display">\[\begin{align*}
+Var(\varepsilon_i)
+&amp;=E(Var(\varepsilon_i|X_i))+Var(E(\varepsilon_i|X_i))\\
+&amp;=E\left(\frac{1}{12}X_{i2}^2\right)+0\\
+&amp;=\frac{1}{12}\left(\frac{1}{12}(4-(-4))^2\right)=\frac{4}{9}.
+\end{align*}\]</span></p>
+<p>Moreover, by contrast to <a href="05-Small-Sample-Inference.html#sec-PSSI"><span>Section&nbsp;5.5</span></a>, we here do not need to sample new realizations of <span class="math inline">\(Y_i\)</span> <em>conditionally</em> on a given data matrix <span class="math inline">\(X\)</span> since the asymptotically (for large <span class="math inline">\(n\)</span>) the distribution of <span class="math inline">\(\hat\beta\)</span> does not depend on a random realization of <span class="math inline">\(X\)</span>. (Therefore, the large sample normality result in <a href="#eq-OLSnormality1Rob">Equation&nbsp;<span>6.1</span></a> does not need a conditioning on <span class="math inline">\(X\)</span>.) Consequently, the option to condition on <span class="math inline">\(X\)</span> is removed in the following <code>R</code>-function <code>myDataGenerator()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Function to generate artificial data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>myDataGenerator <span class="ot">&lt;-</span> <span class="cf">function</span>(n, beta){</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">##</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  X   <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>, n), </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">runif</span>(n, <span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">runif</span>(n, <span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">##</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  eps  <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">abs</span>(X[,<span class="dv">2</span>]), <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">abs</span>(X[,<span class="dv">2</span>]))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  Y    <span class="ot">&lt;-</span> X <span class="sc">%*%</span> beta <span class="sc">+</span> eps</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"Y"</span><span class="ot">=</span>Y, <span class="st">"X_1"</span><span class="ot">=</span>X[,<span class="dv">1</span>], <span class="st">"X_2"</span><span class="ot">=</span>X[,<span class="dv">2</span>], <span class="st">"X_3"</span><span class="ot">=</span>X[,<span class="dv">3</span>])</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="do">##</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="normally-distributed-hatbeta-for-ntoinfty" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="normally-distributed-hatbeta-for-ntoinfty"><span class="header-section-number">6.3.1</span> Normally Distributed <span class="math inline">\(\hat\beta\)</span> for <span class="math inline">\(n\to\infty\)</span></h3>
+<p>The above data generating process fulfills our regulatory assumptions Assumption 1<span class="math inline">\(^*\)</span>, 2, 3<span class="math inline">\(^*\)</span>, and 4. So, by theory, the estimators <span class="math inline">\(\hat\beta_k\)</span> should be normal distributed for large sample sizes <span class="math inline">\(n\)</span> – unconditionally on <span class="math inline">\(X\)</span> and even for heteroscedastic error terms.</p>
+<p><span class="math display">\[
+\sqrt{n}\left(\hat\beta_k-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
+\]</span></p>
+<p>Or:</p>
+<p><span class="math display">\[
+\hat\beta_k\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
+\]</span></p>
+<p>Mathematically, the latter is a bit sloppy since the right hand side of <span class="math inline">\(\to_d\)</span> depends on <span class="math inline">\(n\)</span>, i.e., is not the stable limit object for <span class="math inline">\(n\to\infty\)</span>. However, this sloppiness is nevertheless instructive since it gives us the approximative distribution for given largish sample sizes like <span class="math inline">\(n=100\)</span>.</p>
+<div class="cell">
+
+</div>
+<p>For our above specified data generating process, we have</p>
+<ul>
+<li>From the assumed distributions of <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> we have that:</li>
+</ul>
+<p><span class="math display">\[
+\Sigma_{X'X}=E(S_{X'X})=E(X_iX_i')
+=\left(\begin{matrix}1&amp;0&amp;0\\0&amp;E(X_{i2}^2)&amp;0\\0&amp;0&amp;E(X_{i3}^2)\end{matrix}\right)
+=\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)
+\]</span></p>
+<p>The above result follows from observing that <span class="math inline">\(E(X^2)=Var(X)\)</span> if <span class="math inline">\(X\)</span> has mean zero, and that the variance of uniform <span class="math inline">\(U[a,b]\)</span> distributed random variables is given by <span class="math inline">\(\frac{1}{12}(b-a)^2\)</span>.</p>
+<ul>
+<li>Moreover, <span class="math inline">\(E(\varepsilon^2_iX_iX_i')=E(X_iX_i'E(\varepsilon^2_i|X_i))=E\left(X_iX_i'\left(\frac{1}{12}X_{i2}^2\right)\right)\)</span> such that <span class="math display">\[\begin{align*}
+E(\varepsilon^2_iX_iX_i')
+&amp;=\left(\begin{matrix}E\left(\frac{1}{12}X_{i2}^2\right)&amp;0&amp;0\\
+                 0&amp;E\left(X_{i2}^2\cdot\frac{1}{12}X_{i2}^2\right)&amp;0\\0&amp;0&amp;E\left(X_{i3}^2\cdot\frac{1}{12}X_{i2}^2\right)
+    \end{matrix}\right)\\
+&amp;=\left(\begin{matrix}\frac{1}{12}E\left(X_{i2}^2\right)&amp;0&amp;0\\
+     0&amp;\frac{1}{12}E\left(X_{i2}^4\right)&amp;0\\0&amp;0&amp;\frac{1}{12}E\left(X_{i2}^2\right)\,E\left(X_{i3}^2\right)
+\end{matrix}\right)\\      
+&amp;=\left(\begin{matrix}\frac{1}{12}\frac{16}{3}&amp;0&amp;0\\
+                    0&amp;\frac{1}{12}\frac{256}{5}&amp;0\\
+                    0&amp;0&amp;\frac{1}{12}\frac{16}{3}\frac{25}{3}\end{matrix}\right)
+=\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)
+\end{align*}\]</span> The above result follow from observing that for <span class="math inline">\(X\sim U[a,b]\)</span> one has <span class="math inline">\(E(X^k)=\frac{b^{k+1}-a^{k+1}}{(k+1)(b-a)}\)</span>, <span class="math inline">\(k=1,2,\dots\)</span>; see, for instance, <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">Wikipedia</a>.</li>
+</ul>
+<p>So, for instance, for <span class="math inline">\(\hat{\beta}_2\)</span> we have the following theoretical large sample distribution:</p>
+<p><span class="math display">\[
+\hat\beta_2\to_d\mathcal{N}\left(\beta_2, \;n^{-1}\;\left[\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)
+\]</span></p>
+<p>Let’s use a Monte Carlo simulation to check how well the theoretical large sample (<span class="math inline">\(n\to\infty\)</span>) distribution of <span class="math inline">\(\hat\beta_2\)</span> works as an approximative distribution for a practical largish sample size of <span class="math inline">\(n=100\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n           <span class="ot">&lt;-</span> <span class="dv">100</span>      <span class="co"># a largish sample size</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>beta_true   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>) <span class="co"># true data vector</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Mean and variance of the true asymptotic </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">## normal distribution of beta_hat_2:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># true mean</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>beta_true_2     <span class="ot">&lt;-</span> beta_true[<span class="dv">2</span>] </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># true variance</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>var_true_beta_2 <span class="ot">&lt;-</span> (<span class="fu">solve</span>(<span class="fu">diag</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">16</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">25</span><span class="sc">/</span><span class="dv">3</span>)))    <span class="sc">%*%</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">diag</span>(<span class="fu">c</span>(<span class="dv">4</span><span class="sc">/</span><span class="dv">9</span>, <span class="dv">64</span><span class="sc">/</span><span class="dv">15</span>, <span class="dv">100</span><span class="sc">/</span><span class="dv">27</span>))<span class="sc">%*%</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">solve</span>(<span class="fu">diag</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">16</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">25</span><span class="sc">/</span><span class="dv">3</span>))))[<span class="dv">2</span>,<span class="dv">2</span>]<span class="sc">/</span>n</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Let's generate 5000 realizations from beta_hat_2, and check </span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="do">## whether their distribution is close to the true normal </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="do">## distribution.</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="do">## (We don't condition on X since the theoretical limit </span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="do">## distribution is unconditional on X)</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>rep        <span class="ot">&lt;-</span> <span class="dv">5000</span> <span class="co"># MC replications</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>beta_hat_2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times=</span>rep)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rep){</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> n, </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                               <span class="at">beta =</span> beta_true)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    lm_obj        <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    beta_hat_2[r] <span class="ot">&lt;-</span> <span class="fu">coef</span>(lm_obj)[<span class="dv">2</span>]</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare:</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="do">## True beta_2 versus average of beta_hat_2 estimates</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(beta_true_2, <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat_2), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.0000 2.9998</code></pre>
+</div>
+</div>
+<p>Good! As expected, the average of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span> is basically equal to the theoretical true mean <span class="math inline">\(E(\hat\beta_2)=\beta_2=3\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True variance of beta_hat_2 versus </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical variance of beta_hat_2 estimates</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">round</span>(var_true_beta_2, <span class="dv">5</span>), <span class="fu">round</span>(<span class="fu">var</span>(beta_hat_2), <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00150 0.00147</code></pre>
+</div>
+</div>
+<p>Great! The variance of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span> is basically equal to the theoretical true variance <span class="math inline">\(Var(\hat\beta_2)=0.0015\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True normal distribution of beta_hat_2 versus </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical density of beta_hat_2 estimates</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"scales"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="at">expr =</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> beta_true_2, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sd=</span><span class="fu">sqrt</span>(var_true_beta_2)), </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>, <span class="at">col=</span><span class="fu">gray</span>(.<span class="dv">2</span>), <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">xlim=</span><span class="fu">range</span>(beta_hat_2),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">14.1</span>),<span class="at">main=</span><span class="fu">paste0</span>(<span class="st">"n="</span>,n))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(beta_hat_2, <span class="at">bw =</span> <span class="fu">bw.SJ</span>(beta_hat_2)), </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">5</span>), <span class="at">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">lwd=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="fu">gray</span>(.<span class="dv">2</span>), <span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">5</span>)), <span class="at">bty=</span><span class="st">"n"</span>, <span class="at">legend=</span> </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">expression</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Theoretical (Asymptotic) Gaussian Density of"</span><span class="sc">~</span><span class="fu">hat</span>(beta)[<span class="dv">2</span>]), </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expression</span>(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Empirical Density Estimation based on MC realizations from"</span><span class="sc">~</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hat</span>(beta)[<span class="dv">2</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06-Asymptotics_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Great! The nonparametric density estimation (estimated via <code>density()</code>) computed from the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span> is indicating that <span class="math inline">\(\hat\beta_2\)</span> is really normally distributed as described by our theoretical results in <a href="#thm-OLSnormality1">Theorem&nbsp;<span>6.6</span></a> (homoscedastic case) and in Equation <a href="#eq-OLSnormality1Rob">Equation&nbsp;<span>6.1</span></a> (heteroscedastic case).</p>
+<p>However, is the asymptotic distribution of <span class="math inline">\(\hat\beta_2\)</span> also usable for (very) small samples like <span class="math inline">\(n=5\)</span>? Let’s check that:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n           <span class="ot">&lt;-</span> <span class="dv">5</span>       <span class="co"># a small sample size</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>beta_true   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>) <span class="co"># true data vector</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Mean and variance of the true asymptotic </span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">## normal distribution of beta_hat_2:</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># true mean</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>beta_true_2     <span class="ot">&lt;-</span> beta_true[<span class="dv">2</span>] </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># true variance</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>var_true_beta_2 <span class="ot">&lt;-</span> (<span class="fu">solve</span>(<span class="fu">diag</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">16</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">25</span><span class="sc">/</span><span class="dv">3</span>)))<span class="sc">%*%</span> </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">diag</span>(<span class="fu">c</span>(<span class="dv">4</span><span class="sc">/</span><span class="dv">9</span>, <span class="dv">64</span><span class="sc">/</span><span class="dv">15</span>, <span class="dv">100</span><span class="sc">/</span><span class="dv">27</span>))<span class="sc">%*%</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">solve</span>(<span class="fu">diag</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">16</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">25</span><span class="sc">/</span><span class="dv">3</span>))))[<span class="dv">2</span>,<span class="dv">2</span>]<span class="sc">/</span>n</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Let's generate 5000 realizations from beta_hat_2, and check </span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="do">## whether their distribution is close to the true normal </span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="do">## distribution.</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="do">## (We don't condition on X since the theoretical limit </span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="do">## distribution is unconditional on X)</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>rep        <span class="ot">&lt;-</span> <span class="dv">5000</span> <span class="co"># MC replications</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>beta_hat_2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times=</span>rep)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rep){</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> n, </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                               <span class="at">beta =</span> beta_true)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    lm_obj        <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    beta_hat_2[r] <span class="ot">&lt;-</span> <span class="fu">coef</span>(lm_obj)[<span class="dv">2</span>]</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Compare:</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="do">## True beta_2 versus average of beta_hat_2 estimates</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(beta_true_2, <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat_2), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.0000 2.9963</code></pre>
+</div>
+</div>
+<p>OK, at least on average the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span> are basically equal to the true mean <span class="math inline">\(E(\hat\beta_2)=\beta_2=3\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True variance of beta_hat_2 versus </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical variance of beta_hat_2 estimates</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">round</span>(var_true_beta_2, <span class="dv">4</span>), <span class="fu">round</span>(<span class="fu">var</span>(beta_hat_2), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0300 0.0562</code></pre>
+</div>
+</div>
+<p>Ouch! The theoretical large sample variance <span class="math inline">\(Var(\hat\beta_2)=0.03\)</span> is about 50% smaller than the actual (small sample) variance of <span class="math inline">\(\hat\beta_2\)</span> approximated by the empirical variance of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span>. That is, we cannot simply use a large sample result in small samples.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True normal distribution of beta_hat_2 versus </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical density of beta_hat_2 estimates</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"scales"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="at">expr =</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> beta_true_2, </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sd=</span><span class="fu">sqrt</span>(var_true_beta_2)), </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>, <span class="at">col=</span><span class="fu">gray</span>(.<span class="dv">2</span>), <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>),<span class="at">main=</span><span class="fu">paste0</span>(<span class="st">"n="</span>,n))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(beta_hat_2, <span class="at">bw =</span> <span class="fu">bw.SJ</span>(beta_hat_2)), </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">5</span>), <span class="at">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">lwd=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="fu">gray</span>(.<span class="dv">2</span>), <span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">5</span>)), <span class="at">bty=</span><span class="st">"n"</span>, <span class="at">legend=</span> </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">expression</span>(</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Theoretical (Asymptotic) Gaussian Density of"</span><span class="sc">~</span><span class="fu">hat</span>(beta)[<span class="dv">2</span>]), </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expression</span>(</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Empirical Density Estimation based on MC realizations from"</span><span class="sc">~</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hat</span>(beta)[<span class="dv">2</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06-Asymptotics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Not good. The actual distribution has substantially fatter tails. That is, if we would use the quantiles of the asymptotic distribution, we would falsely reject the null-hypothesis too often (probability of type I errors would be larger than the significance level).</p>
+<!-- Fortunately, asymptotics are kicking in pretty fast here.  things become much more reliable already for $n\approx 15$.  -->
+</section>
+<section id="testing-multiple-and-single-parameters" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="testing-multiple-and-single-parameters"><span class="header-section-number">6.3.2</span> Testing Multiple and Single Parameters</h3>
+<p>In the following, we do inference about multiple parameters. We test the (false) null hypothesis <span class="math display">\[\begin{align*}
+H_0:\;&amp;\beta_2=3\quad\text{and}\quad\beta_3=5\\
+\text{versus}\quad H_A:\;&amp;\beta_2\neq 3\quad\text{and/or}\quad\beta_3\neq 5.
+\end{align*}\]</span> Or equivalently <span class="math display">\[\begin{align*}
+H_0:\;&amp;R\beta -r = 0 \\
+H_A:\;&amp;R\beta -r \neq 0,
+\end{align*}\]</span> where</p>
+<p><span class="math display">\[
+R=\left(
+\begin{matrix}
+0&amp;1&amp;0\\
+0&amp;0&amp;1\\
+\end{matrix}\right)\quad\text{ and }\quad
+r=\left(\begin{matrix}3\\5\\\end{matrix}\right).
+\]</span></p>
+<p>The following <code>R</code> code can be used to test this hypothesis. Note that we use HC3 robust variance estimation <code>sandwich::vcovHC(lm_obj, type="HC3")</code> to take into account that the error terms are heteroscedastic.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">"car"</span>)) <span class="co"># for linearHyothesis()</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?linearHypothesis</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"sandwich"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate data</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> <span class="dv">100</span>, </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">beta =</span> beta_true)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the linear regression model parameters</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>lm_obj <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>vcovHC3_mat <span class="ot">&lt;-</span> sandwich<span class="sc">::</span><span class="fu">vcovHC</span>(lm_obj, <span class="at">type=</span><span class="st">"HC3"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Option 1:</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">linearHypothesis</span>(<span class="at">model =</span> lm_obj, </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                      <span class="at">hypothesis.matrix =</span> <span class="fu">c</span>(<span class="st">"X_2=3"</span>, <span class="st">"X_3=5"</span>), </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                      <span class="at">vcov=</span>vcovHC3_mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+X_2 = 3
+X_3 = 5
+
+Model 1: restricted model
+Model 2: Y ~ X_2 + X_3
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1     99                        
+2     97  2 1150.4 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option 2:</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">linearHypothesis</span>(<span class="at">model =</span> lm_obj, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">hypothesis.matrix =</span> R, </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rhs =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">vcov=</span>vcovHC3_mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+X_2 = 3
+X_3 = 5
+
+Model 1: restricted model
+Model 2: Y ~ X_2 + X_3
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1     99                        
+2     97  2 1150.4 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>The <span class="math inline">\(p\)</span>-value is very small and allows us to reject the (false) null-hypothesis at any of the usual significance levels.</p>
+<p>Next, we do inference about a single parameter. We test <span class="math display">\[\begin{align*}
+H_0:&amp;\beta_3=5\\
+\text{versus}\quad H_A:&amp;\beta_3\neq 5.
+\end{align*}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lmtest"</span>)   <span class="co"># for coeftest()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: zoo</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'zoo'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"sandwich"</span>) <span class="co"># for vcovHC()</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate data</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> n, </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">beta =</span> beta_true)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the linear regression model parameters</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>lm_obj <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Robust t test</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Robust standard error for \hat{\beta}_3:</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>SE_rob <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcovHC</span>(lm_obj, <span class="at">type =</span> <span class="st">"HC3"</span>)[<span class="dv">3</span>,<span class="dv">3</span>])</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="do">## hypothetical (H0) value of \beta_3:</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>beta_3_H0 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="do">## estimate for beta_3:</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>beta_3_hat <span class="ot">&lt;-</span> <span class="fu">coef</span>(lm_obj)[<span class="dv">3</span>]</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="do">## robust t-test statistic</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>t_test_stat <span class="ot">&lt;-</span> (beta_3_hat <span class="sc">-</span> beta_3_H0)<span class="sc">/</span>SE_rob</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="do">## p-value</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">coef</span>(lm_obj))</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">min</span>(   <span class="fu">pt</span>(<span class="at">q =</span> t_test_stat, <span class="at">df =</span> n <span class="sc">-</span> K), </span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">1</span><span class="sc">-</span> <span class="fu">pt</span>(<span class="at">q =</span> t_test_stat, <span class="at">df =</span> n <span class="sc">-</span> K))</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.330845e-65</code></pre>
+</div>
+</div>
+<p>Again, the <span class="math inline">\(p\)</span>-value is very small and allows us to reject the (false) null-hypothesis at any of the usual significance levels.</p>
+</section>
+</section>
+<section id="references" class="level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Hayashi2000" class="csl-entry" role="doc-biblioentry">
+Hayashi, Fumio. 2000. <em>Econometrics</em>. Princeton University Press.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-Small-Sample-Inference.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Small Sample Inference</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./07-Instrumental-Variables.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instrumental Variables Regression</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
