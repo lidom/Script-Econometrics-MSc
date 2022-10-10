@@ -432,6 +432,7 @@ for(r in 1:rep){
   ## generate new MC_data conditionally on X_cond
     MC_data <- myDataGenerator(n    = n, 
                                beta = beta_true, 
+                               X    = NULL)
                                X    = X_cond)
     lm_obj            <- lm(Y ~ X_2 + X_3, data = MC_data)
     ## save the p-value
@@ -493,7 +494,8 @@ for(r in 1:rep){
   ## generate new MC_data conditionally on X_cond
     MC_data <- myDataGenerator(n    = n, 
                                beta = beta_true, 
-                               X    = X_cond)
+                               #X    = NULL)
+                               X = X_cond)
     lm_obj            <- lm(Y ~ X_2 + X_3, data = MC_data)
     ## save the p-value
     CI <- confint(lm_obj, parm="X_2", level=1-signif_level)
@@ -506,7 +508,7 @@ inside_CI  <- confint_m[1,] <= beta_true_2 &
 ## CI-lower, CI-upper, beta_true_2 inside?
 head(cbind(t(confint_m), inside_CI))
 
-round(length(inside_CI[inside_CI == FALSE])/rep, 2)
+round(length(inside_CI[inside_CI == FALSE])/rep, 4)
 
 nCIs <- 100
 plot(x=0,y=0,type="n",xlim=c(0,nCIs),ylim=range(confint_m[,1:nCIs]),
