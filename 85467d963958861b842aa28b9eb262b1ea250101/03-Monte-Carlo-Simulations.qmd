@@ -67,6 +67,7 @@ $$
 \underbrace{\hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})}_{=\hat\theta_{n,1,obs}},\;\underbrace{\hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})}_{=\hat\theta_{n,2,obs}},\dots,\underbrace{\hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})}_{=\hat\theta_{n,B,obs}}
 $$ 
 of the estimator $\hat\theta_n$. This set of realizations $\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}$ allows us then to approximate the exact distribution of $\hat\theta_n$ for given sample sizes $n$ and given distributions $F_X$. (We use this option to validate theoretical statements in @sec-ssinf and @sec-lsinf.)
+
   * Pro: Works for basically every distributional assumption. 
   * Con: This option can fail miserably if the distributional assumption on $F_X$ is wrong. 
 
