@@ -104,6 +104,7 @@ By contrast to $W$, $F$ is now a practically useful test statistic, and we can u
 
 
 **The F distribution:** The F distribution is a ratio of two $\chi^2$ distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See @sec-Fdist for more information on the $F$ distribution. 
+
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 # When fixing rate (lambda) and changing shape (r) for Gamma Distribution,
 # When the shape (r) increases, based on the formula, 
@@ -142,6 +143,7 @@ legend(x = "topright", legend = c("F(1,30)", "F(3,30)", "F(15,30)"),
 ```
 
 
+
 ## Tests about One Parameter (t-Tests) {#ch:testingsinglep}
 
 For testing a hypothesis about only one parameter $\beta_k$, with $k=1,\dots,K$
@@ -172,6 +174,7 @@ Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate distr
 **Note:** All commonly used statistical software packages report $t$-tests testing the null hypothesis $H_0:\beta_k=0$, i.e., with $r=0$.  This means to test the null hypothesis that $X_k$ has "no (linear) effect" on $Y$. 
 
 The following plot illustrates that as the degrees of freedom increase, the shape of the $t$ distribution comes closer to that of a standard normal bell curve. Already for $25$ degrees of freedom we find little difference to the standard normal density. In case of small degrees of freedom values, we find the distribution to have heavier tails than a standard normal.
+
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"} 
 # plot the standard normal density
 curve(dnorm(x), 
@@ -205,6 +208,7 @@ legend("topright", bty="n",
        col = 1:4, 
        lty = c(2, 1, 1, 1))
 ```
+
 
 ## Testtheory
 
@@ -244,6 +248,7 @@ $$
 P(\text{Type I Error})=P_{H_0}\Big(F\in]c_{1-\alpha},\infty[\Big)=\alpha,
 $$
 where $c_{1-\alpha}$ is here the $(1-\alpha)$ quantile of the $F$-distribution with $(q,n-K)$ degrees of freedom, and where $P_{H_0}$ means that we compute the probability under the assumption that $H_0$ is true.  
+
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 library("scales")
 curve(expr = df(x = x, df1 = 9, df2 = 120),
@@ -276,6 +281,7 @@ lines(x=c(q,q), y=c(0,.6),lwd=2,lty=2)
 text(x = q, y = .65, labels = expression(c[1-alpha]==1.9588))
 ```
 
+
 **The rejection region:** The rejection region describes a range of values of the test statistic $F$ which we rarely see if the null hypothesis is true (only in at most $\alpha \cdot 100\%$ cases). If the observed value of the test statistic, $F_{\text{obs}}$, falls in this region, we will reject the null  hypothesis and accept Type I error rate of $\alpha$. 
 
 **The non-rejection region:** The non-rejection region describes a range of values of the test statistic $F$ which we expect to see (in $(1-\alpha) \cdot 100\%$ cases) if the null hypothesis is true. If the observed value of the test statistic, $F_{\text{obs}}$ falls in this region, we will not reject the null hypothesis. 
@@ -285,6 +291,7 @@ text(x = q, y = .65, labels = expression(c[1-alpha]==1.9588))
 
 
 Fortunately, you do not need to read old-school distribution tables to find the critical value $c_{1-\alpha}$, but can simply use `R`
+
 ```{r}
 df1   <- 9    # numerator df
 df2   <- 120  # denominator df
@@ -293,13 +300,16 @@ alpha <- 0.05 # significance level
 crit_value <- qf(p = 1-alpha, df1 = df1, df2 = df2)
 crit_value
 ```
+
 \noindent Changing the significance level from $\alpha=0.05$ to $\alpha=0.01$ makes the critical value $c_{1-\alpha}$ larger and, therefore, the  rejection region smaller (fewer Type I errors)
+
 ```{r}
 alpha <- 0.01
 ## Critical value:
 crit_value <- qf(p = 1-alpha, df1 = df1, df2 = df2)
 crit_value
 ```
+
 
 
 #### The $t$-Test {-}
@@ -324,6 +334,7 @@ For this rejection region it holds true that
 $$
 P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[\Big)=\alpha.
 $$
+
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 library("scales")
 curve(expr = dt(x = x, df = 12),
@@ -357,6 +368,7 @@ lines(x=c(-q,-q), y=c(0,.35),lwd=2,lty=2)
 text(x =  q, y = .45, labels = expression(c[1-alpha/2]==2.18))
 text(x = -q, y = .45, labels = expression(c[alpha/2]==-2.18))
 ```
+
 
 ##### One-Sided $t$-Test {-}
 
@@ -393,6 +405,7 @@ such that
 $$
 P(\text{Type I Error})=P_{H_0}\Big(t\in\;]c_{1-\alpha}, \infty[\Big)=\alpha.
 $$
+
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 library("scales")
 alpha <- 0.05
@@ -442,7 +455,9 @@ par(mfrow=c(1,1))
 ```
 
 
+
 Fortunately, you do not need to read old-school distribution tables to find the critical values, but you can simply use `R`
+
 ```{r}
 df    <- 16   # degrees of freedom 
 alpha <- 0.05 # significance level
@@ -456,6 +471,7 @@ c_twoSided <- qt(p = 1-alpha/2, df = df)
 ## upper critical value
 c_twoSided
 ```
+
 
 
 ### Type II Error and Power
@@ -492,6 +508,7 @@ t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
 \end{align*}
 
 So, the mean-shift $\Delta$ depends on the value of $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}$ (here $1.5$) and the difference between the actual parameter value ($\beta_k=3$) and the hypothetical parameter value under the null-hypothesis (here $0$). The following Graphic illustrates the probability of a type II error and the power for the case where $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$ such that $\Delta=3/1.5=2$. 
+
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 library("scales") # transperent color
 mean.alt <- 2
@@ -538,6 +555,7 @@ legend(x=-4.5,y=.65, title=NULL, bty="n",
    c(expression("Null Distribution"~"N(0,1)"),"P(Type II Error)","P(Type I Error)", expression(paste("Power")))[-3], 
     fill=c(alpha("grey", 0.5), alpha("darkblue", 0.25), alpha("red", 0.25), alpha("green", 0.5))[-3], horiz=FALSE)
 ```
+
 
 
 ### $p$-Value 
@@ -610,6 +628,7 @@ where $(Y_i,X_i)$ is assumed i.i.d. across $i=1,\dots,n$. Below, in the codes, I
 
 
 The below function `myDataGenerator()` allows to sample new realizations of $Y_1,\dots,Y_n$ conditionally on a given data matrix $X$.  Moreover, you can provide your own values for the sample size $n$ and for the parameter vector $\beta=(\beta_1,\beta_2,\beta_3)'$. 
+
 ```{r}
 ## Function to generate artificial data
 ## If X=NULL: new X variables are generated
@@ -653,6 +672,7 @@ round(head(test_data_new, 3), 2) # New Y, conditionally on X
 ```
 
 
+
 ### Check: Distribution of $\hat\beta|X$ vs Distribution of $\hat\beta$
 
 The above data generating process fulfills Assumptions 1-4$^*$. So, by theory, the estimators $\hat\beta_k|X$, $k=1,\dots,K=3$, should be normal distributed conditionally on $X$,
@@ -668,6 +688,7 @@ In order to check the effect of "conditioning on $X$", let us focus on $\hat\bet
 2. Generate `B`$=10000$ realizations of $\hat\beta_2$ **un**conditionally on $X$.
 
 Then estimate the distributons from both Monte Carlo samples and compare them with the theoretical distribution $\hat\beta_2|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{22})$:
+
 ```{r}
 set.seed(11100) # seed of the random number generator
 
@@ -719,6 +740,7 @@ c(expression("Theoretical Gaussian Density of"~hat(beta)[2]~'|'~X),
   expression("Empirical Density based on the 5000 MC realizations of"~hat(beta)[2]~'|'~X),
   expression("Empirical Density based on the 5000 MC realizations of"~hat(beta)[2])))
 ```
+
 
 Core observations on the densities:
 
@@ -879,6 +901,7 @@ R=\left(
 r=\left(\begin{matrix}3\\4\\\end{matrix}\right).
 $$
 The following `R` code can be used to test this hypothesis:
+
 ```{r}
 ## Library containing the function 'linearHyothesis()' 
 ## for testing multiple parameters 
@@ -897,9 +920,11 @@ test_result <- car::linearHypothesis(
       hypothesis.matrix = c("X_2=3", "X_3=4"))   
 test_result        
 ```
+
 The $p$-value $p=$ `r round(test_result[[6]][2],4)` is larger than the chosen significance level $\alpha=0.05$ thus we cannot reject the null hypothesis "$H_0:\;\beta_2=3$ and $\beta_3=4.$" 
 
 The following codes gives an alternative, equivalent way to compute the test result:
+
 ```{r, echo=TRUE, eval=FALSE}
 ## Option 2:
 R <- rbind(c(0,1,0),
@@ -910,7 +935,9 @@ car::linearHypothesis(model = lm_obj,
 ```
 
 
+
 Here, we simulated data "under the null hypothesis" and thus it is not surpising that we cannot reject the null hypothesis at a significance level of, for instance, $\alpha=0.05$. However, in repeated samples we should nevertheless observe $\alpha\cdot 100\%$ type I errors (false rejections of $H_0$) under the null hypothesis. Let's check the type I error rate using the following Monte Carlo simulation:
+
 ```{r}
 ## Let's generate 5000 F-test decisions and check 
 ## whether the empirical rate of type I errors is 
@@ -937,6 +964,7 @@ signif_level <-  0.01
 rejections   <- F_test_pvalues[F_test_pvalues < signif_level]
 round(length(rejections)/B, 4)
 ```
+
 Note that this is actually a very strong result. 
 
 * First, we correctly control for the Type I error rate since the empirical type I error rate is not larger than the chosen significance level $\alpha$ (the nominal Type I error rate). 
@@ -949,6 +977,7 @@ Next, we check how well the $F$ test detects certain **violations of the null hy
 H_0:\;&{\color{red}\beta_2=4}\quad\text{and}\quad\beta_3=4\\
 H_A:\;&\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 \end{align*}
+
 ```{r}
 B               <- 5000 # MC replications
 F_test_pvalues  <- rep(NA, times=B)
@@ -971,6 +1000,7 @@ rejections   <- F_test_pvalues[F_test_pvalues < signif_level]
 length(rejections)/B
 ```
 
+
 We can now correctly reject the false null hypothesis in approximately `r length(rejections)/B *100` % of all Monte Carlo replications. 
 
 **Caution:** This also means that we are not able to detect the violation of the null hypothesis in `r 100 - length(rejections)/B *100` % of cases. Therefore, we can never use an insignificant test result ($p$-value $\geq\alpha$) as a confirmation of the null hypothesis. Obviously, there are Type II error events (false none rejections), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control this Type II error rate. We can only control the Type I error rate by using a small significance level $\alpha$. 
@@ -981,6 +1011,7 @@ Moreover, note that the $F$ test is not informative about which part of the null
 ### Dualty of Confidence Intervals and Hypothesis Tests
 
 Confidence intervals can be computed using `R` as following:
+
 ```{r}
 ## Significance level
 signif_level <- 0.05
@@ -992,6 +1023,7 @@ confint(lm_obj, parm = "X_2", level = conf_level)
 ## 95% CI for beta_3 
 confint(lm_obj, parm = "X_3", level = conf_level)
 ```
+
 We can use these two-sided confidence intervals to conduct hypotheses tests. This property of confidence intervals is called the **duality of confidence intervals and hypothesis tests**. 
 
 For instance, when testing the null hypothesis
@@ -1005,6 +1037,7 @@ we can check whether the confidence interval $\operatorname{CI}_{1-\alpha}$ cont
 * In case of $4\not\in \operatorname{CI}_{1-\alpha}$, we reject the null hypothesis. 
 
 If the Assumption 1-4$^\ast$ hold true, then $\operatorname{CI}_{1-\alpha}$ is an exact confidence interval. That is, under the null hypothesis, it falsely rejects the null hypothesis in only $\alpha\cdot 100\%$ of resamplings. Let's check this in the following Monte Carlo simulation:
+
 ```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 signif_level <- 0.05
 confint_m    <- matrix(NA, nrow=2, ncol=B)
@@ -1027,14 +1060,18 @@ inside_CI  <- confint_m[1,] <= beta_true_2 &
 head(cbind(t(confint_m), inside_CI))
 ```
 
+
 The following code computes the relative frequency of confidence intervals **not containing** the true parameter value $(\beta_2=3)$:
+
 ```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 round(length(inside_CI[inside_CI == FALSE])/B, 4)
 ```
+
 That's good! The relative frequency is basically equal to the chosen $\alpha=0.05$ value. 
 
 
 Next, we visualize a sample of `nCIs <- 100` realizations of the random confidence interval: 
+
 ```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 nCIs <- 100
 plot(x=0,y=0,type="n",xlim=c(0,nCIs),ylim=range(confint_m[,1:nCIs]),
@@ -1052,10 +1089,12 @@ axis(4, at=beta_true_2, labels = expression(beta[2]))
 abline(h=beta_true_2)
 ```
 
+
 As expected, only about $\alpha\cdot 100\%=5\%$ of all confidence intervals do not contain the true parameter value $\beta_2=3$, but about $(1-\alpha)\cdot 100\%=95\%$ of all confidence intervals contain the true parameter value $\beta_2=3$. 
 
 
 ## Real Data Example 
+
 
 ```{r}
 ## The AER package contains a lot of datasets 
@@ -1066,6 +1105,7 @@ data("DoctorVisits")
 
 lm_obj <- lm(visits ~ gender + age + income, data = DoctorVisits)
 ```
+
 
 
 The above `R` codes estimate the following regression model
@@ -1082,10 +1122,12 @@ where $i=1,\dots,n$ and
 
 
 The following `R` codes produces the classic regression output table (simular tables are produced by all statistical/econometric software packages):
+
 ```{r, echo=TRUE, eval=TRUE}
 lm_obj_summary <- summary(lm_obj)
 lm_obj_summary
 ```
+
 
 The above regression output table contains the following information:
 
@@ -1128,11 +1170,13 @@ $H_0$: $\beta_{gender}=\beta_{age}=\beta_{income}=0$<br>
 versus<br> 
 $H_A$: At least one parameter is not zero.<br><br>
 You can replicate this test result using the following `R` code:
+
 ```{r, eval=FALSE, echo=TRUE}
 car::linearHypothesis(
       model = lm_obj, 
       hypothesis.matrix = c("genderfemale=0", "age=0", "income=0"))  
 ```
+
 
 <!-- #### Interpretation of $\hat\beta_{gender}$ {-} -->
 
@@ -1142,15 +1186,19 @@ car::linearHypothesis(
 
 A more beautiful and "publication ready" regression output can be produced using the `R` package `stargazer` and its function `stargazer()`:
 
+
 ```{r, echo=FALSE, eval=TRUE}
 suppressPackageStartupMessages(library(stargazer))
 ```
 
+
 <center>
+
 ```{r, ech=TRUE, eval=TRUE, results='asis'}
 # Hint: use type = "latex" to produce a latex table
 stargazer(lm_obj, type="html")
 ```
+
 </center>
 
 
@@ -1160,13 +1208,16 @@ The above real data analysis does **not** fit into the small sample inference fr
 
 1. The dependent variable $Y_i$ `visits` is a *categorial* variable taking finitely many discrete values `unique(DoctorVisits$visits)` = `r unique(DoctorVisits$visits)`. Consequently, the error term $\varepsilon_i$ **cannot be normal distributed**. 
 2. The diagnostic plot ("Residuals versus Fitted") indicates a possible issue **violation of the homoskedasticity assumption**. In case of homokedastic variances, the data points $(\hat\varepsilon_i,\hat{Y}_i)$, $i=1,\dots,n$ should roughly show a homogenous scattering across the fitted values $\hat{Y}_i=X\hat\beta$. This seems not to be the case here.
+
 ```{r}
 plot(lm_obj, which = 1)
 ```
+
 
 
 Lukily, the data set `DoctorVisits` has a really **large sample size** of $n=$ `r nrow(DoctorVisits)` and thus there is a way out of this problem: The large sample inference framework introduced in the next chapter. 
 
 
 # References {-} 
+
 

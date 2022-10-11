@@ -248,7 +248,10 @@ div.csl-indent {
   <li><a href="#check-testing-multiple-parameters" id="toc-check-testing-multiple-parameters" class="nav-link" data-scroll-target="#check-testing-multiple-parameters"><span class="toc-section-number">5.5.3</span>  Check: Testing Multiple Parameters</a></li>
   <li><a href="#dualty-of-confidence-intervals-and-hypothesis-tests" id="toc-dualty-of-confidence-intervals-and-hypothesis-tests" class="nav-link" data-scroll-target="#dualty-of-confidence-intervals-and-hypothesis-tests"><span class="toc-section-number">5.5.4</span>  Dualty of Confidence Intervals and Hypothesis Tests</a></li>
   </ul></li>
-  <li><a href="#real-data-practice" id="toc-real-data-practice" class="nav-link" data-scroll-target="#real-data-practice"><span class="toc-section-number">5.6</span>  Real Data Practice</a></li>
+  <li><a href="#real-data-example" id="toc-real-data-example" class="nav-link" data-scroll-target="#real-data-example"><span class="toc-section-number">5.6</span>  Real Data Example</a>
+  <ul class="collapse">
+  <li><a href="#critical-discussion-of-the-regression-results" id="toc-critical-discussion-of-the-regression-results" class="nav-link" data-scroll-target="#critical-discussion-of-the-regression-results"><span class="toc-section-number">5.6.1</span>  Critical Discussion of the Regression Results</a></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -628,16 +631,16 @@ X_{i3}&amp;\sim U[12,22]\\
 <span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data,     <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, new X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Y X_1  X_2   X_3
-1  82.09   1 7.48 13.78
-2 100.23   1 8.63 17.71
-3  80.38   1 8.89 12.36</code></pre>
+1  64.58   1 3.61 12.57
+2  70.56   1 4.60 12.94
+3 101.85   1 6.46 19.06</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data_new, <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, conditionally on X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Y X_1  X_2   X_3
-1 80.30   1 7.48 13.78
-2 99.41   1 8.63 17.71
-3 81.40   1 8.89 12.36</code></pre>
+1 60.61   1 3.61 12.57
+2 72.11   1 4.60 12.94
+3 98.43   1 6.46 19.06</code></pre>
 </div>
 </div>
 <section id="check-distribution-of-hatbetax-vs-distribution-of-hatbeta" class="level3" data-number="5.5.1">
@@ -647,12 +650,12 @@ X_{i3}&amp;\sim U[12,22]\\
 \]</span> where <span class="math inline">\([(X'X)^{-1}]_{kk}\)</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\((X'X)^{-1}\)</span>.</p>
 <p>In order to check the effect of “conditioning on <span class="math inline">\(X\)</span>”, let us focus on <span class="math inline">\(\hat\beta_2\)</span> and use two different Monte Carlo simulations:</p>
 <ol type="1">
-<li>Generate <code>B</code><span class="math inline">\(=5000\)</span> realizations of <span class="math inline">\(\hat\beta_2\)</span> conditionally on <span class="math inline">\(X\)</span>.</li>
-<li>Generate <code>B</code><span class="math inline">\(=5000\)</span> realizations of <span class="math inline">\(\hat\beta_2\)</span> <strong>un</strong>conditionally on <span class="math inline">\(X\)</span>.</li>
+<li>Generate <code>B</code><span class="math inline">\(=10000\)</span> realizations of <span class="math inline">\(\hat\beta_2\)</span> conditionally on <span class="math inline">\(X\)</span>.</li>
+<li>Generate <code>B</code><span class="math inline">\(=10000\)</span> realizations of <span class="math inline">\(\hat\beta_2\)</span> <strong>un</strong>conditionally on <span class="math inline">\(X\)</span>.</li>
 </ol>
 <p>Then estimate the distributons from both Monte Carlo samples and compare them with the theoretical distribution <span class="math inline">\(\hat\beta_2|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{22})\)</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1011</span>) <span class="co"># seed of the random number generator</span></span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11100</span>) <span class="co"># seed of the random number generator</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## A function to generate realizations of the estimator \hat{beta}_2</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## conditionally or unconditionally on X:</span></span>
@@ -671,7 +674,7 @@ X_{i3}&amp;\sim U[12,22]\\
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of Monte Carlo replications</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Draw realizations of \hat{beta}_2</span></span>
 <span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 1. Generate \hat{beta}_2 realizations conditionally on X</span></span>
@@ -713,10 +716,14 @@ X_{i3}&amp;\sim U[12,22]\\
 </section>
 <section id="check-variance-of-hatbetax-vs-variance-of-hatbeta" class="level3" data-number="5.5.2">
 <h3 data-number="5.5.2" class="anchored" data-anchor-id="check-variance-of-hatbetax-vs-variance-of-hatbeta"><span class="header-section-number">5.5.2</span> Check: Variance of <span class="math inline">\(\hat\beta|X\)</span> vs Variance of <span class="math inline">\(\hat\beta\)</span></h3>
+<p>The theoretical variance of <span class="math inline">\(\hat{\beta}_2|X\)</span> is:<br></p>
+<center>
+<span class="math inline">\(Var(\hat{\beta}_2|X)=\sigma^2[(X'X)^{-1}]_{22}=\)</span> <code>var_true_beta_2</code> <span class="math inline">\(=\)</span> 0.801.
+</center>
+<p><br></p>
 <ul>
-<li>The theoretical variance of <span class="math inline">\(\hat{\beta}_2|X\)</span> is <span class="math inline">\(\sigma^2[(X'X)^{-1}]_{22}=\)</span> <code>var_true_beta_2</code> <span class="math inline">\(=\)</span> 0.2665004.</li>
-<li>The Monte Carlo approximation to the true variance of <span class="math inline">\(\hat{\beta}_2|X\)</span> is <code>var(hatbeta2_sim_cond)</code> <span class="math inline">\(=\)</span> 0.2712712</li>
-<li>The Monte Carlo approximation to the true variance of <span class="math inline">\(\hat{\beta}_2\)</span> is <code>var(hatbeta2_sim_uncond)</code> <span class="math inline">\(=\)</span> 0.3728238</li>
+<li>The Monte Carlo approximation to the true variance of <span class="math inline">\(\hat{\beta}_2|X\)</span> is <code>var(hatbeta2_sim_cond)</code> <span class="math inline">\(=\)</span> 0.798 and thus close to the theoretical counterpart.</li>
+<li>The Monte Carlo approximation to the true variance of <span class="math inline">\(\hat{\beta}_2\)</span> is <code>var(hatbeta2_sim_uncond)</code> <span class="math inline">\(=\)</span> 0.355 and thus clearly larger than the theoretical counterpart.</li>
 </ul>
 <!-- While the unconditional distribution has a larger variance.  -->
 <!-- ```{r} -->
@@ -842,8 +849,8 @@ r=\left(\begin{matrix}3\\4\\\end{matrix}\right).
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">"car"</span>)) </span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">## See ?linearHypothesis</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate one Monte Carlo sample</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>data     <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n =</span> n, <span class="at">beta =</span> beta_true)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate one Monte Carlo sample (under H0)</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>data   <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n =</span> n, <span class="at">beta =</span> beta_true)</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimate the linear regression model parameters</span></span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>lm_obj <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> data)</span>
@@ -863,14 +870,12 @@ X_3 = 4
 Model 1: restricted model
 Model 2: Y ~ X_2 + X_3
 
-  Res.Df    RSS Df Sum of Sq     F  Pr(&gt;F)  
-1      7 89.979                             
-2      5 15.709  2    74.271 11.82 0.01273 *
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+1      7 22.178                           
+2      5 22.112  2  0.065545 0.0074 0.9926</code></pre>
 </div>
 </div>
-<p>The <span class="math inline">\(p\)</span>-value <span class="math inline">\(p=\)</span> 0.0127 is larger than the chosen significance level <span class="math inline">\(\alpha=0.05\)</span> thus we cannot reject the null hypothesis “<span class="math inline">\(H_0:\;\beta_2=3\)</span> and <span class="math inline">\(\beta_3=4.\)</span>”</p>
+<p>The <span class="math inline">\(p\)</span>-value <span class="math inline">\(p=\)</span> 0.9926 is larger than the chosen significance level <span class="math inline">\(\alpha=0.05\)</span> thus we cannot reject the null hypothesis “<span class="math inline">\(H_0:\;\beta_2=3\)</span> and <span class="math inline">\(\beta_3=4.\)</span>”</p>
 <p>The following codes gives an alternative, equivalent way to compute the test result:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option 2:</span></span>
@@ -889,12 +894,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>F_test_pvalues  <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times=</span>B)</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="do">## generate new data </span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="do">## generate new data (under H0)</span></span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n =</span> n, <span class="at">beta =</span> beta_true)</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="do">## estimate </span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  lm_obj            <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  lm_obj  <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="do">## compute test and p-value</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">linearHypothesis</span>(lm_obj, <span class="fu">c</span>(<span class="st">"X_2=3"</span>, <span class="st">"X_3=4"</span>))<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">2</span>]</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  p       <span class="ot">&lt;-</span> <span class="fu">linearHypothesis</span>(lm_obj, <span class="fu">c</span>(<span class="st">"X_2=3"</span>, <span class="st">"X_3=4"</span>))<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">2</span>]</span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="do">## save the p-value</span></span>
 <span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  F_test_pvalues[r] <span class="ot">&lt;-</span> p</span>
 <span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -903,14 +908,14 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>rejections   <span class="ot">&lt;-</span> F_test_pvalues[F_test_pvalues <span class="sc">&lt;</span> signif_level]</span>
 <span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(rejections)<span class="sc">/</span>B, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0466</code></pre>
+<pre><code>[1] 0.051</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>signif_level <span class="ot">&lt;-</span>  <span class="fl">0.01</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>rejections   <span class="ot">&lt;-</span> F_test_pvalues[F_test_pvalues <span class="sc">&lt;</span> signif_level]</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(rejections)<span class="sc">/</span>B, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0092</code></pre>
+<pre><code>[1] 0.0108</code></pre>
 </div>
 </div>
 <p>Note that this is actually a very strong result.</p>
@@ -935,7 +940,7 @@ H_A:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> n, <span class="at">beta =</span> beta_true)</span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## estimate </span></span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  lm_obj  <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## compute test and p-value</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## compute test and p-value (for a false H0)</span></span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  p       <span class="ot">&lt;-</span> <span class="fu">linearHypothesis</span>(lm_obj, <span class="fu">c</span>(<span class="st">"X_2=4"</span>, <span class="st">"X_3=4"</span>))<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">2</span>]</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="do">## save the p-value</span></span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  F_test_pvalues[r] <span class="ot">&lt;-</span> p</span>
@@ -947,11 +952,11 @@ H_A:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 <span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Rate of H0 rejections:</span></span>
 <span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(rejections)<span class="sc">/</span>B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.255</code></pre>
+<pre><code>[1] 0.2534</code></pre>
 </div>
 </div>
-<p>We can now correctly reject the false null hypothesis in approximately 25.5 % of all Monte Carlo replications.</p>
-<p><strong>Caution:</strong> This also means that we are not able to detect the violation of the null hypothesis in 74.5 % of cases. Therefore, we can never use an insignificant test result (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\geq\alpha\)</span>) as a confirmation of the null hypothesis. Obviously, there are Type II error events (false none rejections), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control this Type II error rate. We can only control the Type I error rate by using a small significance level <span class="math inline">\(\alpha\)</span>.</p>
+<p>We can now correctly reject the false null hypothesis in approximately 25.34 % of all Monte Carlo replications.</p>
+<p><strong>Caution:</strong> This also means that we are not able to detect the violation of the null hypothesis in 74.66 % of cases. Therefore, we can never use an insignificant test result (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\geq\alpha\)</span>) as a confirmation of the null hypothesis. Obviously, there are Type II error events (false none rejections), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control this Type II error rate. We can only control the Type I error rate by using a small significance level <span class="math inline">\(\alpha\)</span>.</p>
 <p>Moreover, note that the <span class="math inline">\(F\)</span> test is not informative about which part of the null hypothesis (<span class="math inline">\(\beta_2=4\)</span> and/or <span class="math inline">\(\beta_3=4\)</span>) is violated – we only get the information that at least one of the multiple parameter hypotheses is violated.</p>
 </section>
 <section id="dualty-of-confidence-intervals-and-hypothesis-tests" class="level3" data-number="5.5.4">
@@ -966,14 +971,14 @@ H_A:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 95% CI for beta_2</span></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_obj, <span class="at">parm =</span> <span class="st">"X_2"</span>, <span class="at">level =</span> conf_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        2.5 %  97.5 %
-X_2 0.3999099 5.14696</code></pre>
+<pre><code>       2.5 %   97.5 %
+X_2 4.328595 6.747891</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 95% CI for beta_3 </span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_obj, <span class="at">parm =</span> <span class="st">"X_3"</span>, <span class="at">level =</span> conf_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       2.5 %   97.5 %
-X_3 1.652692 6.312093</code></pre>
+X_3 2.705582 4.190266</code></pre>
 </div>
 </div>
 <p>We can use these two-sided confidence intervals to conduct hypotheses tests. This property of confidence intervals is called the <strong>duality of confidence intervals and hypothesis tests</strong>.</p>
@@ -987,42 +992,40 @@ H_0:&amp;\beta_3=4\\
 </ul>
 <p>If the Assumption 1-4<span class="math inline">\(^\ast\)</span> hold true, then <span class="math inline">\(\operatorname{CI}_{1-\alpha}\)</span> is an exact confidence interval. That is, under the null hypothesis, it falsely rejects the null hypothesis in only <span class="math inline">\(\alpha\cdot 100\%\)</span> of resamplings. Let’s check this in the following Monte Carlo simulation:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Let's generate 1000 CIs </span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>signif_level <span class="ot">&lt;-</span>  <span class="fl">0.05</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>B            <span class="ot">&lt;-</span> <span class="dv">5000</span> <span class="co"># MC replications</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>confint_m    <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span>B)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## generate new data </span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n =</span> n, <span class="at">beta =</span> beta_true)</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## estimate</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  lm_obj  <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="do">## compute confidence interval </span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  CI <span class="ot">&lt;-</span> <span class="fu">confint</span>(lm_obj, <span class="at">parm=</span><span class="st">"X_2"</span>, <span class="at">level=</span><span class="dv">1</span><span class="sc">-</span>signif_level)</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="do">## save confidence interval</span></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  confint_m[,r] <span class="ot">&lt;-</span> CI</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="do">## check whether true parameter is inside the CI</span></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>inside_CI  <span class="ot">&lt;-</span> confint_m[<span class="dv">1</span>,] <span class="sc">&lt;=</span> beta_true_2 <span class="sc">&amp;</span> </span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>                beta_true_2 <span class="sc">&lt;=</span> confint_m[<span class="dv">2</span>,]</span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="do">## CI-lower, CI-upper, beta_true_2 inside?</span></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">cbind</span>(<span class="fu">t</span>(confint_m), inside_CI))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>signif_level <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>confint_m    <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span>B)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## generate new data </span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  MC_data <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n =</span> n, <span class="at">beta =</span> beta_true)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## estimate</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  lm_obj  <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> MC_data)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## compute confidence interval </span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  CI <span class="ot">&lt;-</span> <span class="fu">confint</span>(lm_obj, <span class="at">parm=</span><span class="st">"X_2"</span>, <span class="at">level=</span><span class="dv">1</span><span class="sc">-</span>signif_level)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="do">## save confidence interval</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  confint_m[,r] <span class="ot">&lt;-</span> CI</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="do">## check whether true parameter is inside the CI</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>inside_CI  <span class="ot">&lt;-</span> confint_m[<span class="dv">1</span>,] <span class="sc">&lt;=</span> beta_true_2 <span class="sc">&amp;</span> </span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>                beta_true_2 <span class="sc">&lt;=</span> confint_m[<span class="dv">2</span>,]</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="do">## CI-lower, CI-upper, beta_true_2 inside?</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">cbind</span>(<span class="fu">t</span>(confint_m), inside_CI))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                       inside_CI
-[1,] 1.669186 4.019998         1
-[2,] 2.384144 4.059586         1
-[3,] 1.107914 3.045658         1
-[4,] 2.376630 4.634009         1
-[5,] 1.227155 3.512342         1
-[6,] 2.026513 3.728312         1</code></pre>
+[1,] 2.112011 4.324384         1
+[2,] 1.799873 3.583575         1
+[3,] 1.079170 3.578387         1
+[4,] 1.060780 3.772007         1
+[5,] 1.855253 4.479890         1
+[6,] 1.205334 4.216992         1</code></pre>
 </div>
 </div>
 <p>The following code computes the relative frequency of confidence intervals <strong>not containing</strong> the true parameter value <span class="math inline">\((\beta_2=3)\)</span>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(inside_CI[inside_CI <span class="sc">==</span> <span class="cn">FALSE</span>])<span class="sc">/</span>B, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.052</code></pre>
+<pre><code>[1] 0.048</code></pre>
 </div>
 </div>
 <p>That’s good! The relative frequency is basically equal to the chosen <span class="math inline">\(\alpha=0.05\)</span> value.</p>
@@ -1053,12 +1056,12 @@ H_0:&amp;\beta_3=4\\
 <p>As expected, only about <span class="math inline">\(\alpha\cdot 100\%=5\%\)</span> of all confidence intervals do not contain the true parameter value <span class="math inline">\(\beta_2=3\)</span>, but about <span class="math inline">\((1-\alpha)\cdot 100\%=95\%\)</span> of all confidence intervals contain the true parameter value <span class="math inline">\(\beta_2=3\)</span>.</p>
 </section>
 </section>
-<section id="real-data-practice" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="real-data-practice"><span class="header-section-number">5.6</span> Real Data Practice</h2>
+<section id="real-data-example" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="real-data-example"><span class="header-section-number">5.6</span> Real Data Example</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="do">## The AER package contains a lot of datasets </span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(AER))</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(stargazer))</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Attach the DoctorVisits data to make it usable</span></span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"DoctorVisits"</span>)</span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -1068,56 +1071,269 @@ H_0:&amp;\beta_3=4\\
 Y_i = \beta_1 + \beta_{gender} X_{gender,i}
               + \beta_{age} X_{age,i}
               + \beta_{income} X_{income,i} + \varepsilon_i,
-\]</span> where</p>
+\]</span> where <span class="math inline">\(i=1,\dots,n\)</span> and</p>
 <ul>
-<li><span class="math inline">\(X_{age,i}=1\)</span> if the <span class="math inline">\(i\)</span>th subject is a woman and <span class="math inline">\(X_{age,i}=0\)</span> if the <span class="math inline">\(i\)</span>th subject is a man</li>
-<li><span class="math inline">\(X_{age,i}\)</span> is the age of subject <span class="math inline">\(i\)</span> measured in years divided by <span class="math inline">\(100\)</span>.</li>
+<li><span class="math inline">\(X_{gender,i}=1\)</span> if the <span class="math inline">\(i\)</span>th subject is a woman and <span class="math inline">\(X_{gender,i}=0\)</span> if the <span class="math inline">\(i\)</span>th subject is a man</li>
+<li><span class="math inline">\(X_{age,i}\)</span> is the age of subject <span class="math inline">\(i\)</span> measured in years divided by <span class="math inline">\(100\)</span></li>
 <li><span class="math inline">\(X_{income,i}\)</span> is the annual income of subject <span class="math inline">\(i\)</span> in tens of thousands of dollars</li>
 </ul>
 <p>The following <code>R</code> codes produces the classic regression output table (simular tables are produced by all statistical/econometric software packages):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-ech="false">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(lm_obj, <span class="at">type=</span><span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>lm_obj_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(lm_obj)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>lm_obj_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan="1" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;visits&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;genderfemale&lt;/td&gt;&lt;td&gt;0.062&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.023)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;age&lt;/td&gt;&lt;td&gt;0.402&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.057)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;income&lt;/td&gt;&lt;td&gt;-0.082&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.032)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Constant&lt;/td&gt;&lt;td&gt;0.154&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.036)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Observations&lt;/td&gt;&lt;td&gt;5,190&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.019&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.018&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Residual Std. Error&lt;/td&gt;&lt;td&gt;0.791 (df = 5186)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;F Statistic&lt;/td&gt;&lt;td&gt;33.218&lt;sup&gt;***&lt;/sup&gt; (df = 3; 5186)&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td style="text-align:right"&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</code></pre>
+Call:
+lm(formula = visits ~ gender + age + income, data = DoctorVisits)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.5009 -0.3435 -0.2306 -0.1682  8.6174 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   0.15371    0.03607   4.262 2.07e-05 ***
+genderfemale  0.06245    0.02345   2.662  0.00778 ** 
+age           0.40235    0.05713   7.043 2.13e-12 ***
+income       -0.08231    0.03167  -2.599  0.00938 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.7908 on 5186 degrees of freedom
+Multiple R-squared:  0.01885,   Adjusted R-squared:  0.01829 
+F-statistic: 33.22 on 3 and 5186 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p>The above regression output table contains a lot of information:</p>
+<p>The above regression output table contains the following information:</p>
 <ul>
-<li><p><strong>Estimate:</strong> The column “Estimate” containes the estimates <span class="math inline">\(\hat\beta_{1}\)</span>, <span class="math inline">\(\hat\beta_{gender}\)</span>, <span class="math inline">\(\hat\beta_{age}\)</span>, <span class="math inline">\(\hat\beta_{income}\)</span> of the unknown parameters <span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_{gender}\)</span>, <span class="math inline">\(\beta_{age}\)</span>, <span class="math inline">\(\beta_{income}\)</span></p></li>
-<li><p><strong>Std. Error:</strong> The column “Std. Error” containes the estimates <span class="math inline">\(\widehat{\operatorname{SE}}(\hat\beta_{1}|X)\)</span> <span class="math inline">\(\widehat{\operatorname{SE}}(\hat\beta_{gender}|X)\)</span>, <span class="math inline">\(\widehat{\operatorname{SE}}(\hat\beta_{age})\)</span>, and <span class="math inline">\(\widehat{\operatorname{SE}}(\hat\beta_{income})\)</span>.</p></li>
+<li><p><strong>Estimate:</strong> The column “Estimate” containes the estimates <span class="math display">\[
+\hat\beta_{j},\quad j\in\{1,gender, age, income\}
+\]</span> You can extract them using <code>coef(lm_obj)</code>.</p></li>
+<li><p><strong>Std. Error:</strong> The column “Std. Error” containes the estimates <span class="math display">\[
+\widehat{\operatorname{SE}}(\hat\beta_{j}|X),\quad j\in\{1,gender, age, income\}
+\]</span></p>
+<ul>
+<li>You can extract the total <span class="math inline">\((K\times K)=(4\times 4)\)</span> variance-covariance matrix estimate <span class="math inline">\(\widehat{Var}(\hat\beta|X)\)</span> using <code>vcov(lm_obj)</code>.</li>
+<li>The diagonal <code>diag(vcov(lm_obj))</code> contains the variance estimates <span class="math inline">\(\widehat{Var}(\hat\beta_j|X)\)</span>, <span class="math inline">\(j\in\{1,gender, age, income\}\)</span>.</li>
+<li>The square root of the diagonal <code>sqrt(diag(vcov(lm_obj)))</code> allows you to compute the estimated standard errors shown in the regression table.</li>
+</ul></li>
 <li><p><strong>t value:</strong> The column “t value” contains the observed <span class="math inline">\(t\)</span> test statistics <span class="math display">\[
-t_{obs,j}=\frac{\hat\beta_{j}}{\widehat{\operatorname{SE}}(\hat\beta_{j}|X)}\quad j\in\{1,gender, age, income\}
-\]</span></p></li>
+t_{obs,j}=\frac{\hat\beta_{j}}{\widehat{\operatorname{SE}}(\hat\beta_{j}|X)},\quad j\in\{1,gender, age, income\}
+\]</span> You can extract the values using <code>lm_obj_summary$coefficients[,3]</code>.</p></li>
 <li><p><strong>Pr(&gt;|t|):</strong> The column “Pr(&gt;|t|)” contains the <span class="math inline">\(p\)</span> values <span class="math display">\[
-P_{H_0}(|t|&gt;t_{obs,j})\quad j\in\{1,gender, age, income\}
-\]</span></p></li>
+P_{H_0}(|t|&gt;t_{obs,j}),\quad j\in\{1,gender, age, income\}
+\]</span> You can extract the values using <code>lm_obj_summary$coefficients[,4]</code>.</p></li>
+<li><p><strong>Residual standard error</strong> <span class="math inline">\(\sqrt{\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon^2_i}=\)</span> <code>sqrt(sum(resid(lm_obj)^2)/(n-4))</code> <span class="math inline">\(=\)</span> 0.7908</p></li>
+<li><p><strong>Multiple R-squared:</strong> <span class="math inline">\(R^2=\)</span> <code>lm_obj_summary$r.squared</code> <span class="math inline">\(=\)</span> 0.01885</p></li>
+<li><p><strong>Adjusted R-squared:</strong> <span class="math inline">\(\bar{R}^2=\)</span> <code>lm_obj_summary$adj.r.squared</code> <span class="math inline">\(=\)</span> 0.01829</p></li>
+<li><p><strong>F-statistic:</strong> This is a standard <span class="math inline">\(F\)</span> test that tests the null hypothesis that all parameters except the intercept are zero; i.e.<br> <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_{gender}=\beta_{age}=\beta_{income}=0\)</span><br> versus<br> <span class="math inline">\(H_A\)</span>: At least one parameter is not zero.<br> So, this is equivalent to:</p></li>
 </ul>
-<p>Discuss why the above inference results cannot be expected to be realistic/robust.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">linearHypothesis</span>(</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">model =</span> lm_obj, </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">hypothesis.matrix =</span> <span class="fu">c</span>(<span class="st">"genderfemale=0"</span>, <span class="st">"age=0"</span>, <span class="st">"income=0"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- #### Interpretation of $\hat\beta_{gender}$ {-} -->
+<!-- Since $X_{gender,i}$ is a dummy variable,  -->
+<section id="r-package-stargazer" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="r-package-stargazer"><code>R</code> Package Stargazer</h4>
+<p>A more beautiful and “publication ready” regression output can be produced using the <code>R</code> package <code>stargazer</code> and its function <code>stargazer()</code>:</p>
+<div class="cell">
+
+</div>
+<center>
+<div class="cell" data-ech="true">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(lm_obj, <span class="at">type=</span><span class="st">"html"</span>) <span class="co"># Hint: use type = "latex" to produce a latex table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<table style="text-align:center">
+<tbody><tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+visits
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+genderfemale
+</td>
+<td>
+0.062<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.023)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+age
+</td>
+<td>
+0.402<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.057)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+income
+</td>
+<td>
+-0.082<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.032)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.154<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.036)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+5,190
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.019
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.018
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.791 (df = 5186)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+33.218<sup>***</sup> (df = 3; 5186)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+</div>
+</center>
+</section>
+<section id="critical-discussion-of-the-regression-results" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="critical-discussion-of-the-regression-results"><span class="header-section-number">5.6.1</span> Critical Discussion of the Regression Results</h3>
+<p>The above real data analysis does <strong>not</strong> fit into the small sample inference framework we introduced in this chapter.</p>
+<ol type="1">
+<li>The dependent variable <span class="math inline">\(Y_i\)</span> <code>visits</code> is a <em>categorial</em> variable taking finitely many discrete values <code>unique(DoctorVisits$visits)</code> = 1, 2, 3, 4, 8, 5, 7, 6, 9, 0. Consequently, the error term <span class="math inline">\(\varepsilon_i\)</span> <strong>cannot be normal distributed</strong>.</li>
+<li>The diagnostic plot (“Residuals versus Fitted”) indicates a possible issue <strong>violation of the homoskedasticity assumption</strong>. In case of homokedastic variances, the data points <span class="math inline">\((\hat\varepsilon_i,\hat{Y}_i)\)</span>, <span class="math inline">\(i=1,\dots,n\)</span> should roughly show a homogenous scattering across the fitted values <span class="math inline">\(\hat{Y}_i=X\hat\beta\)</span>. This seems not to be the case here.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_obj, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Lukily, the data set <code>DoctorVisits</code> has a really large sample size of <span class="math inline">\(n=\)</span> 5190 and thus there is a way out of this problem: The large sample inference framework introduced in the next chapter.</p>
+</section>
 </section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
