@@ -669,7 +669,7 @@ In order to check the effect of "conditioning on $X$", let us focus on $\hat\bet
 
 Then estimate the distributons from both Monte Carlo samples and compare them with the theoretical distribution $\hat\beta_2|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{22})$:
 ```{r}
-set.seed(1011) # seed of the random number generator
+set.seed(11100) # seed of the random number generator
 
 ## A function to generate realizations of the estimator \hat{beta}_2
 ## conditionally or unconditionally on X:
@@ -728,9 +728,11 @@ Core observations on the densities:
 
 ### Check: Variance of $\hat\beta|X$ vs Variance of $\hat\beta$
 
-* The theoretical variance of $\hat{\beta}_2|X$ is $\sigma^2[(X'X)^{-1}]_{22}=$ `var_true_beta_2` $=$ `r var_true_beta_2`.
-* The Monte Carlo approximation to the true variance of $\hat{\beta}_2|X$ is `var(hatbeta2_sim_cond)` $=$ `r var(hatbeta2_sim_cond)`
-* The Monte Carlo approximation to the true variance of $\hat{\beta}_2$ is `var(hatbeta2_sim_uncond)` $=$ `r var(hatbeta2_sim_uncond)`
+The theoretical variance of $\hat{\beta}_2|X$ is:<br> 
+$Var(\hat{\beta}_2|X)=\sigma^2[(X'X)^{-1}]_{22}=$ `var_true_beta_2` $=$ `r round(var_true_beta_2,3)`.
+
+* The Monte Carlo approximation to the true variance of $\hat{\beta}_2|X$ is `var(hatbeta2_sim_cond)` $=$ `r round(var(hatbeta2_sim_cond),3)` and thus essentially equal to the theoretical counterpart.
+* The Monte Carlo approximation to the true variance of $\hat{\beta}_2$ is `var(hatbeta2_sim_uncond)` $=$ `r round(var(hatbeta2_sim_uncond),3)` and thus larger than the theoretical counterpart.
 
 
 <!-- While the unconditional distribution has a larger variance.  -->
