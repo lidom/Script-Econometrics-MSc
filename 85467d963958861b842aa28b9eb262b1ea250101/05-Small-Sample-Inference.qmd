@@ -716,14 +716,22 @@ lines(density(hatbeta2_sim_uncond, bw=bw.SJ(hatbeta2_sim_uncond)), col=alpha("re
 legend("topleft", lty=c(1,1,1), lwd=c(3,3,3),
      col=c(gray(.2), alpha("blue",.45), alpha("red",.5)), bty="n", legend= 
 c(expression("Theoretical Gaussian Density of"~hat(beta)[2]~'|'~X), 
-  expression("Estimated Density based on the 5000 MC realizations of"~hat(beta)[2]~'|'~X),
-  expression("Estimated Density based on the 5000 MC realizations of"~hat(beta)[2])))
+  expression("Empirical Density based on the 5000 MC realizations of"~hat(beta)[2]~'|'~X),
+  expression("Empirical Density based on the 5000 MC realizations of"~hat(beta)[2])))
 ```
 
-Core observations:
+Core observations on the densities:
 
-* The estimated conditional distribution of $\hat{\beta}_2|X$  matches with the theoretical conditional distribution of $\hat{\beta}_2|X$.
-* The estimated **un**conditional distribution of $\hat{\beta}_2$ does not match with the theoretical conditional distribution of $\hat{\beta}_2|X$.
+* The empirical conditional distribution of $\hat{\beta}_2|X$ matches with the theoretical conditional distribution of $\hat{\beta}_2|X$.
+* The empirical **un**conditional distribution of $\hat{\beta}_2$ does not match with the theoretical conditional distribution of $\hat{\beta}_2|X$.
+
+
+Core observations on the variances:
+
+* The theoretical variance of $\hat{\beta}_2|X$ is `var_true_beta_2` $=$ `r var_true_beta_2`.
+* The Monte Carlo approximation to the true variance of $\hat{\beta}_2|X$ is `var(hatbeta2_sim_cond)` $=$ `r var(hatbeta2_sim_cond)`
+* The Monte Carlo approximation to the true variance of $\hat{\beta}_2$ is `var(hatbeta2_sim_uncond)` $=$ `r var(hatbeta2_sim_uncond)`
+
 
 <!-- While the unconditional distribution has a larger variance.  -->
 
