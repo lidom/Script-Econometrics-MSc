@@ -244,8 +244,9 @@ div.csl-indent {
   <li><a href="#sec-PSSI" id="toc-sec-PSSI" class="nav-link" data-scroll-target="#sec-PSSI"><span class="toc-section-number">5.5</span>  Monte Carlo Simulations</a>
   <ul class="collapse">
   <li><a href="#check-distribution-of-hatbetax-vs-distribution-of-hatbeta" id="toc-check-distribution-of-hatbetax-vs-distribution-of-hatbeta" class="nav-link" data-scroll-target="#check-distribution-of-hatbetax-vs-distribution-of-hatbeta"><span class="toc-section-number">5.5.1</span>  Check: Distribution of <span class="math inline">\(\hat\beta|X\)</span> vs Distribution of <span class="math inline">\(\hat\beta\)</span></a></li>
-  <li><a href="#check-testing-multiple-parameters" id="toc-check-testing-multiple-parameters" class="nav-link" data-scroll-target="#check-testing-multiple-parameters"><span class="toc-section-number">5.5.2</span>  Check: Testing Multiple Parameters</a></li>
-  <li><a href="#dualty-of-confidence-intervals-and-hypothesis-tests" id="toc-dualty-of-confidence-intervals-and-hypothesis-tests" class="nav-link" data-scroll-target="#dualty-of-confidence-intervals-and-hypothesis-tests"><span class="toc-section-number">5.5.3</span>  Dualty of Confidence Intervals and Hypothesis Tests</a></li>
+  <li><a href="#check-variance-of-hatbetax-vs-variance-of-hatbeta" id="toc-check-variance-of-hatbetax-vs-variance-of-hatbeta" class="nav-link" data-scroll-target="#check-variance-of-hatbetax-vs-variance-of-hatbeta"><span class="toc-section-number">5.5.2</span>  Check: Variance of <span class="math inline">\(\hat\beta|X\)</span> vs Variance of <span class="math inline">\(\hat\beta\)</span></a></li>
+  <li><a href="#check-testing-multiple-parameters" id="toc-check-testing-multiple-parameters" class="nav-link" data-scroll-target="#check-testing-multiple-parameters"><span class="toc-section-number">5.5.3</span>  Check: Testing Multiple Parameters</a></li>
+  <li><a href="#dualty-of-confidence-intervals-and-hypothesis-tests" id="toc-dualty-of-confidence-intervals-and-hypothesis-tests" class="nav-link" data-scroll-target="#dualty-of-confidence-intervals-and-hypothesis-tests"><span class="toc-section-number">5.5.4</span>  Dualty of Confidence Intervals and Hypothesis Tests</a></li>
   </ul></li>
   <li><a href="#real-data-practice" id="toc-real-data-practice" class="nav-link" data-scroll-target="#real-data-practice"><span class="toc-section-number">5.6</span>  Real Data Practice</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -627,16 +628,16 @@ X_{i3}&amp;\sim U[12,22]\\
 <span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data,     <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, new X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Y X_1  X_2   X_3
-1  81.78   1 7.91 14.28
-2 104.85   1 7.33 19.22
-3  63.96   1 3.64 12.65</code></pre>
+1  82.09   1 7.48 13.78
+2 100.23   1 8.63 17.71
+3  80.38   1 8.89 12.36</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data_new, <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, conditionally on X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       Y X_1  X_2   X_3
-1  77.60   1 7.91 14.28
-2 104.48   1 7.33 19.22
-3  65.57   1 3.64 12.65</code></pre>
+<pre><code>      Y X_1  X_2   X_3
+1 80.30   1 7.48 13.78
+2 99.41   1 8.63 17.71
+3 81.40   1 8.89 12.36</code></pre>
 </div>
 </div>
 <section id="check-distribution-of-hatbetax-vs-distribution-of-hatbeta" class="level3" data-number="5.5.1">
@@ -651,7 +652,7 @@ X_{i3}&amp;\sim U[12,22]\\
 </ol>
 <p>Then estimate the distributons from both Monte Carlo samples and compare them with the theoretical distribution <span class="math inline">\(\hat\beta_2|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{22})\)</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># seed of the random number generator</span></span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1011</span>) <span class="co"># seed of the random number generator</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## A function to generate realizations of the estimator \hat{beta}_2</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## conditionally or unconditionally on X:</span></span>
@@ -698,16 +699,24 @@ X_{i3}&amp;\sim U[12,22]\\
 <span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">lwd=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>),</span>
 <span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="fu">gray</span>(.<span class="dv">2</span>), <span class="fu">alpha</span>(<span class="st">"blue"</span>,.<span class="dv">45</span>), <span class="fu">alpha</span>(<span class="st">"red"</span>,.<span class="dv">5</span>)), <span class="at">bty=</span><span class="st">"n"</span>, <span class="at">legend=</span> </span>
 <span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">expression</span>(<span class="st">"Theoretical Gaussian Density of"</span><span class="sc">~</span><span class="fu">hat</span>(beta)[<span class="dv">2</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X), </span>
-<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expression</span>(<span class="st">"Estimated Density based on the 5000 MC realizations of"</span><span class="sc">~</span><span class="fu">hat</span>(beta)[<span class="dv">2</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X),</span>
-<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expression</span>(<span class="st">"Estimated Density based on the 5000 MC realizations of"</span><span class="sc">~</span><span class="fu">hat</span>(beta)[<span class="dv">2</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expression</span>(<span class="st">"Empirical Density based on the 5000 MC realizations of"</span><span class="sc">~</span><span class="fu">hat</span>(beta)[<span class="dv">2</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X),</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expression</span>(<span class="st">"Empirical Density based on the 5000 MC realizations of"</span><span class="sc">~</span><span class="fu">hat</span>(beta)[<span class="dv">2</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Core observations:</p>
+<p>Core observations on the densities:</p>
 <ul>
-<li>The estimated conditional distribution of <span class="math inline">\(\hat{\beta}_2|X\)</span> matches with the theoretical conditional distribution of <span class="math inline">\(\hat{\beta}_2|X\)</span>.</li>
-<li>The estimated <strong>un</strong>conditional distribution of <span class="math inline">\(\hat{\beta}_2\)</span> does not match with the theoretical conditional distribution of <span class="math inline">\(\hat{\beta}_2|X\)</span>.</li>
+<li>The empirical conditional distribution of <span class="math inline">\(\hat{\beta}_2|X\)</span> matches with the theoretical conditional distribution of <span class="math inline">\(\hat{\beta}_2|X\)</span>.</li>
+<li>The empirical <strong>un</strong>conditional distribution of <span class="math inline">\(\hat{\beta}_2\)</span> does not match with the theoretical conditional distribution of <span class="math inline">\(\hat{\beta}_2|X\)</span>.</li>
+</ul>
+</section>
+<section id="check-variance-of-hatbetax-vs-variance-of-hatbeta" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="check-variance-of-hatbetax-vs-variance-of-hatbeta"><span class="header-section-number">5.5.2</span> Check: Variance of <span class="math inline">\(\hat\beta|X\)</span> vs Variance of <span class="math inline">\(\hat\beta\)</span></h3>
+<ul>
+<li>The theoretical variance of <span class="math inline">\(\hat{\beta}_2|X\)</span> is <span class="math inline">\(\sigma^2[(X'X)^{-1}]_{22}=\)</span> <code>var_true_beta_2</code> <span class="math inline">\(=\)</span> 0.2665004.</li>
+<li>The Monte Carlo approximation to the true variance of <span class="math inline">\(\hat{\beta}_2|X\)</span> is <code>var(hatbeta2_sim_cond)</code> <span class="math inline">\(=\)</span> 0.2712712</li>
+<li>The Monte Carlo approximation to the true variance of <span class="math inline">\(\hat{\beta}_2\)</span> is <code>var(hatbeta2_sim_uncond)</code> <span class="math inline">\(=\)</span> 0.3728238</li>
 </ul>
 <!-- While the unconditional distribution has a larger variance.  -->
 <!-- ```{r} -->
@@ -811,8 +820,8 @@ X_{i3}&amp;\sim U[12,22]\\
 <!-- ``` -->
 <!-- Not so good. The theoretical distribution of $\hat\beta_2|X$ has much fatter tails than the simulated distribution of $\hat\beta_2$  (i.e. simulated without conditioning in $X$). That is, we cannot simply neglect that the distribution of $\hat\beta_2$ depends on the observed realization of $X$ in small samples. In large sample, however, the effect of a given realization $X$ is (fortunately) negligible, as we will see in @sec-lsinf.  -->
 </section>
-<section id="check-testing-multiple-parameters" class="level3" data-number="5.5.2">
-<h3 data-number="5.5.2" class="anchored" data-anchor-id="check-testing-multiple-parameters"><span class="header-section-number">5.5.2</span> Check: Testing Multiple Parameters</h3>
+<section id="check-testing-multiple-parameters" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="check-testing-multiple-parameters"><span class="header-section-number">5.5.3</span> Check: Testing Multiple Parameters</h3>
 <p>In the following, we do inference about multiple parameters. We test <span class="math display">\[\begin{align*}
 H_0:\;&amp;\beta_2=3\quad\text{and}\quad\beta_3=4\\
 \text{versus}\quad H_A:\;&amp;\beta_2\neq 3\quad\text{and/or}\quad\beta_3\neq 4.
@@ -854,12 +863,14 @@ X_3 = 4
 Model 1: restricted model
 Model 2: Y ~ X_2 + X_3
 
-  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
-1      7 50.957                           
-2      5 40.517  2     10.44 0.6442 0.5637</code></pre>
+  Res.Df    RSS Df Sum of Sq     F  Pr(&gt;F)  
+1      7 89.979                             
+2      5 15.709  2    74.271 11.82 0.01273 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>The <span class="math inline">\(p\)</span>-value <span class="math inline">\(p=\)</span> 0.5637 is larger than the chosen significance level <span class="math inline">\(\alpha=0.05\)</span> thus we cannot reject the null hypothesis “<span class="math inline">\(H_0:\;\beta_2=3\)</span> and <span class="math inline">\(\beta_3=4.\)</span>”</p>
+<p>The <span class="math inline">\(p\)</span>-value <span class="math inline">\(p=\)</span> 0.0127 is larger than the chosen significance level <span class="math inline">\(\alpha=0.05\)</span> thus we cannot reject the null hypothesis “<span class="math inline">\(H_0:\;\beta_2=3\)</span> and <span class="math inline">\(\beta_3=4.\)</span>”</p>
 <p>The following codes gives an alternative, equivalent way to compute the test result:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option 2:</span></span>
@@ -892,14 +903,14 @@ Model 2: Y ~ X_2 + X_3
 <span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>rejections   <span class="ot">&lt;-</span> F_test_pvalues[F_test_pvalues <span class="sc">&lt;</span> signif_level]</span>
 <span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(rejections)<span class="sc">/</span>B, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.057</code></pre>
+<pre><code>[1] 0.0466</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>signif_level <span class="ot">&lt;-</span>  <span class="fl">0.01</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>rejections   <span class="ot">&lt;-</span> F_test_pvalues[F_test_pvalues <span class="sc">&lt;</span> signif_level]</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(rejections)<span class="sc">/</span>B, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0102</code></pre>
+<pre><code>[1] 0.0092</code></pre>
 </div>
 </div>
 <p>Note that this is actually a very strong result.</p>
@@ -936,15 +947,15 @@ H_A:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 <span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Rate of H0 rejections:</span></span>
 <span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(rejections)<span class="sc">/</span>B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2636</code></pre>
+<pre><code>[1] 0.255</code></pre>
 </div>
 </div>
-<p>We can now correctly reject the false null hypothesis in approximately 26.36 % of all Monte Carlo replications.</p>
-<p><strong>Caution:</strong> This also means that we are not able to detect the violation of the null hypothesis in 73.64 % of cases. Therefore, we can never use an insignificant test result (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\geq\alpha\)</span>) as a confirmation of the null hypothesis. Obviously, there are Type II error events (false none rejections), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control this Type II error rate. We can only control the Type I error rate by using a small significance level <span class="math inline">\(\alpha\)</span>.</p>
+<p>We can now correctly reject the false null hypothesis in approximately 25.5 % of all Monte Carlo replications.</p>
+<p><strong>Caution:</strong> This also means that we are not able to detect the violation of the null hypothesis in 74.5 % of cases. Therefore, we can never use an insignificant test result (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\geq\alpha\)</span>) as a confirmation of the null hypothesis. Obviously, there are Type II error events (false none rejections), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control this Type II error rate. We can only control the Type I error rate by using a small significance level <span class="math inline">\(\alpha\)</span>.</p>
 <p>Moreover, note that the <span class="math inline">\(F\)</span> test is not informative about which part of the null hypothesis (<span class="math inline">\(\beta_2=4\)</span> and/or <span class="math inline">\(\beta_3=4\)</span>) is violated – we only get the information that at least one of the multiple parameter hypotheses is violated.</p>
 </section>
-<section id="dualty-of-confidence-intervals-and-hypothesis-tests" class="level3" data-number="5.5.3">
-<h3 data-number="5.5.3" class="anchored" data-anchor-id="dualty-of-confidence-intervals-and-hypothesis-tests"><span class="header-section-number">5.5.3</span> Dualty of Confidence Intervals and Hypothesis Tests</h3>
+<section id="dualty-of-confidence-intervals-and-hypothesis-tests" class="level3" data-number="5.5.4">
+<h3 data-number="5.5.4" class="anchored" data-anchor-id="dualty-of-confidence-intervals-and-hypothesis-tests"><span class="header-section-number">5.5.4</span> Dualty of Confidence Intervals and Hypothesis Tests</h3>
 <p>Confidence intervals can be computed using <code>R</code> as following:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Significance level</span></span>
@@ -955,14 +966,14 @@ H_A:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 95% CI for beta_2</span></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_obj, <span class="at">parm =</span> <span class="st">"X_2"</span>, <span class="at">level =</span> conf_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        2.5 %   97.5 %
-X_2 0.5861448 5.730749</code></pre>
+<pre><code>        2.5 %  97.5 %
+X_2 0.3999099 5.14696</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 95% CI for beta_3 </span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_obj, <span class="at">parm =</span> <span class="st">"X_3"</span>, <span class="at">level =</span> conf_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       2.5 %  97.5 %
-X_3 2.292231 4.89252</code></pre>
+<pre><code>       2.5 %   97.5 %
+X_3 1.652692 6.312093</code></pre>
 </div>
 </div>
 <p>We can use these two-sided confidence intervals to conduct hypotheses tests. This property of confidence intervals is called the <strong>duality of confidence intervals and hypothesis tests</strong>.</p>
@@ -998,20 +1009,20 @@ H_0:&amp;\beta_3=4\\
 <span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="do">## CI-lower, CI-upper, beta_true_2 inside?</span></span>
 <span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">cbind</span>(<span class="fu">t</span>(confint_m), inside_CI))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                        inside_CI
-[1,] 1.7081824 5.355243         1
-[2,] 1.3820454 3.301196         1
-[3,] 1.3726051 3.684785         1
-[4,] 0.3707079 4.099438         1
-[5,] 1.1464341 4.130428         1
-[6,] 0.3601332 4.240248         1</code></pre>
+<pre><code>                       inside_CI
+[1,] 1.669186 4.019998         1
+[2,] 2.384144 4.059586         1
+[3,] 1.107914 3.045658         1
+[4,] 2.376630 4.634009         1
+[5,] 1.227155 3.512342         1
+[6,] 2.026513 3.728312         1</code></pre>
 </div>
 </div>
 <p>The following code computes the relative frequency of confidence intervals <strong>not containing</strong> the true parameter value <span class="math inline">\((\beta_2=3)\)</span>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(inside_CI[inside_CI <span class="sc">==</span> <span class="cn">FALSE</span>])<span class="sc">/</span>B, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0462</code></pre>
+<pre><code>[1] 0.052</code></pre>
 </div>
 </div>
 <p>That’s good! The relative frequency is basically equal to the chosen <span class="math inline">\(\alpha=0.05\)</span> value.</p>

@@ -726,9 +726,9 @@ Core observations on the densities:
 * The empirical **un**conditional distribution of $\hat{\beta}_2$ does not match with the theoretical conditional distribution of $\hat{\beta}_2|X$.
 
 
-Core observations on the variances:
+### Check: Variance of $\hat\beta|X$ vs Variance of $\hat\beta$
 
-* The theoretical variance of $\hat{\beta}_2|X$ is `var_true_beta_2` $=$ `r var_true_beta_2`.
+* The theoretical variance of $\hat{\beta}_2|X$ is $\sigma^2[(X'X)^{-1}]_{22}=$ `var_true_beta_2` $=$ `r var_true_beta_2`.
 * The Monte Carlo approximation to the true variance of $\hat{\beta}_2|X$ is `var(hatbeta2_sim_cond)` $=$ `r var(hatbeta2_sim_cond)`
 * The Monte Carlo approximation to the true variance of $\hat{\beta}_2$ is `var(hatbeta2_sim_uncond)` $=$ `r var(hatbeta2_sim_uncond)`
 
