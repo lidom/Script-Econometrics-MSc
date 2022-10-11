@@ -524,15 +524,21 @@ P(\text{Type II Error})
 H_0:  &amp; \beta_k=0 \\
 H_A:  &amp; \beta_k&gt;0,
 \end{array}
-\end{equation*}\]</span> where the true (usually unknown) parameter value is <span class="math inline">\(\beta_k=3\)</span> and where the true (usually also unknown) standard error is <span class="math inline">\(\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span>. Only with the knowledge about these usually unknown quantities, we can derive the distribution of the <span class="math inline">\(t\)</span>-test statistic under the alternative hypothesis. The distribution of the <span class="math inline">\(t\)</span>-test statistic becomes here a standard normal distribution, since we assume <span class="math inline">\(\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span> to be a known <strong>deterministic</strong> quantity. (This completely unrealistic assumption is only used for illustrative purposes; namely to explain the probability of making a Type II error and the power (i.e.&nbsp;<span class="math inline">\(1-P(\text{Type II Error})\)</span>).)</p>
+\end{equation*}\]</span> where the true (usually unknown) parameter value is <span class="math inline">\(\beta_k=3\)</span> and where the true (usually also unknown) standard error is <span class="math inline">\(\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span>. Only with the knowledge about these usually unknown quantities, we can derive the distribution of the <span class="math inline">\(t\)</span>-test statistic under the alternative hypothesis. The distribution of the <span class="math inline">\(t\)</span>-test statistic becomes here a standard normal distribution, since we assume <span class="math inline">\(\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span> to be a <strong>known</strong> quantity for some given sample size <span class="math inline">\(n\)</span>. (This completely unrealistic assumption is only used for illustrative purposes to explain the probability of making a Type II error and the power (i.e.&nbsp;<span class="math inline">\(1-P(\text{Type II Error})\)</span>).)</p>
 <p>Under this setup, the distribution under the null hypothesis (i.e., if <span class="math inline">\(\beta_k=0\)</span> were true) is: <span class="math display">\[
 t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\overset{H_0}{\sim}\mathcal{N}(0,1)
 \]</span> Likewise, the distribution under the alternative hypothesis (i.e., for the actual <span class="math inline">\(\beta_k=3\)</span>) is: <span class="math display">\[\begin{align*}
 t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
 &amp;=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
-\Rightarrow\quad&amp;\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
+&amp;=\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
 \end{align*}\]</span></p>
-<p>So, the mean-shift <span class="math inline">\(\Delta\)</span> depends on the value of <span class="math inline">\(\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}\)</span> (here <span class="math inline">\(1.5\)</span>) and the difference between the actual parameter value (<span class="math inline">\(\beta_k=3\)</span>) and the hypothetical parameter value under the null-hypothesis (here <span class="math inline">\(0\)</span>). The following Graphic illustrates the probability of a type II error and the power for the case where <span class="math inline">\(\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span> such that <span class="math inline">\(\Delta=3/1.5=2\)</span>.</p>
+<p>So, the mean-shift <span class="math inline">\(\Delta\)</span> depends on:</p>
+<ul>
+<li>The value of <span class="math inline">\(\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}\)</span> (here <span class="math inline">\(1.5\)</span>).<br>
+</li>
+<li>The difference between the actual parameter value <span class="math inline">\((\beta_k=3)\)</span> and the hypothetical parameter <span class="math inline">\((r=0)\)</span> value under the null-hypothesis.</li>
+</ul>
+<p>The following Graphic illustrates the probability of a type II error and the power for the case where <span class="math inline">\(\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span> such that <span class="math inline">\(\Delta=3/1.5=2\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -550,12 +556,12 @@ t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
 <li><strong><span class="math inline">\(F\)</span>-test:</strong> <span class="math inline">\(p=P_{H_0}(F\geq F_{\text{obs}})\)</span></li>
 <li><strong><span class="math inline">\(t\)</span>-test:</strong>
 <ul>
-<li>Two sided alternative <span class="math inline">\(H_A:\beta_k\neq r\)</span>: <br> <span class="math inline">\(p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|&gt;t_{obs})\)</span></li>
-<li>One sided alternative <span class="math inline">\(H_A:\beta_k&gt; r\)</span>: <br> <span class="math inline">\(p=P_{H_0}(t\geq t_{\text{obs}})\)</span></li>
-<li>One sided alternative <span class="math inline">\(H_A:\beta_k&lt; r\)</span>: <br> <span class="math inline">\(p=P_{H_0}(t\leq t_{\text{obs}})\)</span></li>
+<li>Two sided, i.e., <span class="math inline">\(H_0:\beta_k = r\)</span> vs.&nbsp;<span class="math inline">\(H_A:\beta_k\neq r\)</span>: <br> <span class="math inline">\(p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|&gt;|t_{obs}|)\)</span> <br> The latter equality holds since the <span class="math inline">\(t\)</span> distrbution is symmetric.</li>
+<li>One sided, i.e., <span class="math inline">\(H_0:\beta_k \leq r\)</span> vs.&nbsp;<span class="math inline">\(H_A:\beta_k&gt; r\)</span>: <br> <span class="math inline">\(p=P_{H_0}(t\geq t_{\text{obs}})\)</span></li>
+<li>One sided, i.e., <span class="math inline">\(H_0:\beta_k \geq r\)</span> vs.&nbsp;<span class="math inline">\(H_A:\beta_k&lt; r\)</span>: <br> <span class="math inline">\(p=P_{H_0}(t\leq t_{\text{obs}})\)</span></li>
 </ul></li>
 </ul>
-<p>Put another way, the <span class="math inline">\(p\)</span>-value is the greatest significance level for which we just fail to reject the null. Therefore, the <span class="math inline">\(p\)</span>-value is sometimes also called the marginal significance value.</p>
+<p>Put another way, the <span class="math inline">\(p\)</span>-value is the greatest significance level for which we just fail to reject the null. Therefore, the <span class="math inline">\(p\)</span>-value is sometimes also called “marginal significance value”.</p>
 <p>If the <span class="math inline">\(p\)</span>-value is strictly smaller than the chosen significance level <span class="math inline">\(\alpha\)</span>, we reject the null hypothesis.</p>
 </section>
 </section>
@@ -576,9 +582,13 @@ P\left(-t_{1-\alpha/2,n-K}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{
 \operatorname{CI}_{k,1-\alpha}=\left[\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
 \]</span> is our <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> percent confidence interval for <span class="math inline">\(\beta_k\)</span>.</p>
 <p><strong>Interpretation:</strong> The random interval <span class="math inline">\(\operatorname{CI}_{k,1-\alpha}\)</span> for <span class="math inline">\(\beta_k\)</span> contains the true parameter value <span class="math inline">\(\beta_k\)</span> in <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> cases of its realizations when considering infinitely many realizations. It’s best to take a look at dynamic viszualizations like this one:</p>
-<p><a href="https://rpsychologist.com/d3/ci/">https://rpsychologist.com/d3/ci/</a></p>
+<center>
+<a href="https://rpsychologist.com/d3/ci/">https://rpsychologist.com/d3/ci/</a>
+</center>
 <p>Unfortunately, this “frequentist” interpretation is not a statement about a single given <span class="math inline">\(\operatorname{CI}_{k,1-\alpha}\)</span> realization computed for a given data set. A given, realized <span class="math inline">\(\operatorname{CI}_{k,1-\alpha}\)</span> will either contain the true parameter <span class="math inline">\(\beta_k\)</span> or not, and usually we do not know the answer. So, confidence intervals are quite hard to interpret. However, they are very well suited as a tool to visualize estimation uncertainties in different parameter estimators, for instance, across <span class="math inline">\(\hat\beta_k\)</span>, <span class="math inline">\(k=1,\dots,K\)</span>.</p>
-<p><img src="images/Meme_CI_2.jpg" class="img-fluid"></p>
+<center>
+<img src="images/Meme_CI_2.jpg" class="img-fluid">
+</center>
 </section>
 <section id="sec-PSSI" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="sec-PSSI"><span class="header-section-number">5.5</span> Monte Carlo Simulations</h2>
@@ -623,24 +633,24 @@ X_{i3}&amp;\sim U[12,22]\\
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Store the X data as 'X_cond'  </span></span>
 <span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>X_cond        <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(test_data[,<span class="sc">-</span><span class="dv">1</span>]) <span class="co"># as matrix allows matrix multiplications</span></span>
 <span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate new Y data conditionally on X_cond                </span></span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>test_data_new <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> n, </span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate new Y data conditionally on X            </span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>test_data_X_cond <span class="ot">&lt;-</span> <span class="fu">myDataGenerator</span>(<span class="at">n    =</span> n, </span>
 <span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">beta =</span> beta_true, </span>
 <span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">X    =</span> X_cond)</span>
 <span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="do">## compare</span></span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data,     <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, new X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data,     <span class="dv">3</span>), <span class="dv">2</span>)    <span class="co"># New Y, new X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Y X_1  X_2   X_3
-1 117.95   1 7.17 21.78
-2  87.37   1 6.35 17.38
-3  86.57   1 3.14 19.85</code></pre>
+1  95.07   1 2.92 20.68
+2 102.36   1 6.62 19.94
+3  87.36   1 8.71 15.76</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data_new, <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, conditionally on X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data_X_cond, <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, old X (conditionally on X)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       Y X_1  X_2   X_3
-1 108.06   1 7.17 21.78
-2  92.86   1 6.35 17.38
-3  91.13   1 3.14 19.85</code></pre>
+<pre><code>      Y X_1  X_2   X_3
+1 93.86   1 2.92 20.68
+2 99.37   1 6.62 19.94
+3 93.50   1 8.71 15.76</code></pre>
 </div>
 </div>
 <section id="check-distribution-of-hatbetax-vs-distribution-of-hatbeta" class="level3" data-number="5.5.1">
@@ -718,12 +728,12 @@ X_{i3}&amp;\sim U[12,22]\\
 <h3 data-number="5.5.2" class="anchored" data-anchor-id="check-variance-of-hatbetax-vs-variance-of-hatbeta"><span class="header-section-number">5.5.2</span> Check: Variance of <span class="math inline">\(\hat\beta|X\)</span> vs Variance of <span class="math inline">\(\hat\beta\)</span></h3>
 <p>The theoretical variance of <span class="math inline">\(\hat{\beta}_2|X\)</span> is:<br></p>
 <center>
-<span class="math inline">\(Var(\hat{\beta}_2|X)=\sigma^2[(X'X)^{-1}]_{22}=\)</span> <code>var_true_beta_2</code> <span class="math inline">\(=\)</span> 0.672.
+<span class="math inline">\(Var(\hat{\beta}_2|X)=\sigma^2[(X'X)^{-1}]_{22}=\)</span> <code>var_true_beta_2</code> <span class="math inline">\(=\)</span> 0.428.
 </center>
 <p><br></p>
 <ul>
-<li>The Monte Carlo approximation to the true variance of <span class="math inline">\(\hat{\beta}_2|X\)</span> is <code>var(hatbeta2_sim_cond)</code> <span class="math inline">\(=\)</span> 0.683 and thus close to the theoretical counterpart.</li>
-<li>The Monte Carlo approximation to the true variance of <span class="math inline">\(\hat{\beta}_2\)</span> is <code>var(hatbeta2_sim_uncond)</code> <span class="math inline">\(=\)</span> 0.355 and thus clearly larger than the theoretical counterpart.</li>
+<li>The Monte Carlo approximation to the true variance of <span class="math inline">\(\hat{\beta}_2|X\)</span> is <code>var(hatbeta2_sim_cond)</code> <span class="math inline">\(=\)</span> 0.43 and thus close to the theoretical counterpart.</li>
+<li>The Monte Carlo approximation to the true variance of <span class="math inline">\(\hat{\beta}_2\)</span> is <code>var(hatbeta2_sim_uncond)</code> <span class="math inline">\(=\)</span> 0.355 and thus clearly different to the theoretical counterpart.</li>
 </ul>
 <!-- While the unconditional distribution has a larger variance.  -->
 <!-- ```{r} -->
@@ -957,7 +967,7 @@ H_A:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 </div>
 <p>We can now correctly reject the false null hypothesis in approximately 25.34 % of all Monte Carlo replications.</p>
 <p><strong>Caution:</strong> This also means that we are not able to detect the violation of the null hypothesis in 74.66 % of cases. Therefore, we can never use an insignificant test result (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\geq\alpha\)</span>) as a confirmation of the null hypothesis. Obviously, there are Type II error events (false none rejections), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control this Type II error rate. We can only control the Type I error rate by using a small significance level <span class="math inline">\(\alpha\)</span>.</p>
-<p>Moreover, note that the <span class="math inline">\(F\)</span> test is not informative about which part of the null hypothesis (<span class="math inline">\(\beta_2=4\)</span> and/or <span class="math inline">\(\beta_3=4\)</span>) is violated – we only get the information that at least one of the multiple parameter hypotheses is violated.</p>
+<p>Moreover, note that the <span class="math inline">\(F\)</span> test is not informative about which part of the null hypothesis (<span class="math inline">\(\beta_2=4\)</span> and/or <span class="math inline">\(\beta_3=4\)</span>) is violated. We only get the information that at least one of the multiple parameter hypotheses is violated.</p>
 </section>
 <section id="dualty-of-confidence-intervals-and-hypothesis-tests" class="level3" data-number="5.5.4">
 <h3 data-number="5.5.4" class="anchored" data-anchor-id="dualty-of-confidence-intervals-and-hypothesis-tests"><span class="header-section-number">5.5.4</span> Dualty of Confidence Intervals and Hypothesis Tests</h3>

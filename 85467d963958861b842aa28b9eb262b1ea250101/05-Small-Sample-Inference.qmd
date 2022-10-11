@@ -478,7 +478,7 @@ H_0:  & \beta_k=0 \\
 H_A:  & \beta_k>0,
 \end{array}
 \end{equation*}
-where the true (usually unknown) parameter value is $\beta_k=3$ and where the true (usually also unknown) standard error is $\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$. Only with the knowledge about these usually unknown quantities, we can derive the distribution of the $t$-test statistic under the alternative hypothesis. The distribution of the $t$-test statistic becomes here a standard normal distribution, since we assume $\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$ to be a known **deterministic** quantity. (This completely unrealistic assumption is only used for illustrative purposes; namely to explain the probability of making a Type II error and the power (i.e. $1-P(\text{Type II Error})$).)  
+where the true (usually unknown) parameter value is $\beta_k=3$ and where the true (usually also unknown) standard error is $\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$. Only with the knowledge about these usually unknown quantities, we can derive the distribution of the $t$-test statistic under the alternative hypothesis. The distribution of the $t$-test statistic becomes here a standard normal distribution, since we assume $\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$ to be a **known** quantity for some given sample size $n$. (This completely unrealistic assumption is only used for illustrative purposes to explain the probability of making a Type II error and the power (i.e. $1-P(\text{Type II Error})$).)  
 
 Under this setup, the distribution under the null hypothesis (i.e., if $\beta_k=0$ were true) is:
 $$
@@ -488,10 +488,15 @@ Likewise, the distribution under the alternative hypothesis (i.e., for the actua
 \begin{align*}
 t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
 &=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
-\Rightarrow\quad&\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
+&=\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
 \end{align*}
 
-So, the mean-shift $\Delta$ depends on the value of $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}$ (here $1.5$) and the difference between the actual parameter value ($\beta_k=3$) and the hypothetical parameter value under the null-hypothesis (here $0$). The following Graphic illustrates the probability of a type II error and the power for the case where $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$ such that $\Delta=3/1.5=2$. 
+So, the mean-shift $\Delta$ depends on:
+
+* The value of $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}$ (here $1.5$).  
+* The difference between the actual parameter value $(\beta_k=3)$ and the hypothetical parameter $(r=0)$ value under the null-hypothesis. 
+
+The following Graphic illustrates the probability of a type II error and the power for the case where $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$ such that $\Delta=3/1.5=2$. 
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 library("scales") # transperent color
 mean.alt <- 2
@@ -546,14 +551,15 @@ The $p$-value of a test statistic is the significance level we would obtain if w
 
 * **$F$-test:** $p=P_{H_0}(F\geq F_{\text{obs}})$
 * **$t$-test:** 
-   * Two sided alternative $H_A:\beta_k\neq r$: <br> 
-    $p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|>t_{obs})$
-   * One sided alternative $H_A:\beta_k> r$: <br> 
+   * Two sided, i.e.,  $H_0:\beta_k = r$ vs. $H_A:\beta_k\neq r$: <br> 
+    $p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|>|t_{obs}|)$ <br>
+    The latter equality holds since the $t$ distrbution is symmetric. 
+   * One sided, i.e., $H_0:\beta_k \leq r$ vs. $H_A:\beta_k> r$: <br> 
      $p=P_{H_0}(t\geq t_{\text{obs}})$
-   * One sided alternative $H_A:\beta_k< r$: <br> 
+   * One sided, i.e., $H_0:\beta_k \geq r$ vs. $H_A:\beta_k< r$: <br> 
      $p=P_{H_0}(t\leq t_{\text{obs}})$
 
-Put another way, the $p$-value is the greatest significance level for which we just fail to reject the null. Therefore, the $p$-value is sometimes also called the marginal significance value. 
+Put another way, the $p$-value is the greatest significance level for which we just fail to reject the null. Therefore, the $p$-value is sometimes also called "marginal significance value". 
 
 If the $p$-value is strictly smaller than the chosen significance level $\alpha$, we reject the null hypothesis. 
 
@@ -587,13 +593,16 @@ is our $(1-\alpha)\cdot 100\%$ percent confidence interval for $\beta_k$.
 
 **Interpretation:** The random interval  $\operatorname{CI}_{k,1-\alpha}$ for $\beta_k$ contains the true parameter value $\beta_k$ in $(1-\alpha)\cdot 100\%$ cases of its realizations when considering infinitely many realizations. It's best to take a look at dynamic viszualizations like this one: 
 
+<center>
 [https://rpsychologist.com/d3/ci/](https://rpsychologist.com/d3/ci/)
+</center>
 
 
 Unfortunately, this "frequentist" interpretation is not a statement about a single given $\operatorname{CI}_{k,1-\alpha}$ realization computed for a given data set. A given, realized $\operatorname{CI}_{k,1-\alpha}$ will either contain the true parameter $\beta_k$ or not, and usually we do not know the answer. So, confidence intervals are quite hard to interpret. However, they are very well suited as a tool to visualize estimation uncertainties in different parameter estimators, for instance, across $\hat\beta_k$, $k=1,\dots,K$.   
 
+<center>
 ![](images/Meme_CI_2.jpg)
-
+</center>
 
 
 ## Monte Carlo Simulations {#sec-PSSI}
@@ -643,13 +652,13 @@ test_data     <- myDataGenerator(n = n, beta=beta_true)
 ## Store the X data as 'X_cond'  
 X_cond        <- as.matrix(test_data[,-1]) # as matrix allows matrix multiplications
 
-## Generate new Y data conditionally on X_cond                
-test_data_new <- myDataGenerator(n    = n, 
+## Generate new Y data conditionally on X            
+test_data_X_cond <- myDataGenerator(n    = n, 
                                  beta = beta_true, 
                                  X    = X_cond)
 ## compare
-round(head(test_data,     3), 2) # New Y, new X
-round(head(test_data_new, 3), 2) # New Y, conditionally on X
+round(head(test_data,     3), 2)    # New Y, new X
+round(head(test_data_X_cond, 3), 2) # New Y, old X (conditionally on X)
 ```
 
 
@@ -737,7 +746,7 @@ $Var(\hat{\beta}_2|X)=\sigma^2[(X'X)^{-1}]_{22}=$ `var_true_beta_2` $=$ `r round
 <br>
 
 * The Monte Carlo approximation to the true variance of $\hat{\beta}_2|X$ is `var(hatbeta2_sim_cond)` $=$ `r round(var(hatbeta2_sim_cond),3)` and thus close to the theoretical counterpart.
-* The Monte Carlo approximation to the true variance of $\hat{\beta}_2$ is `var(hatbeta2_sim_uncond)` $=$ `r round(var(hatbeta2_sim_uncond),3)` and thus clearly larger than the theoretical counterpart.
+* The Monte Carlo approximation to the true variance of $\hat{\beta}_2$ is `var(hatbeta2_sim_uncond)` $=$ `r round(var(hatbeta2_sim_uncond),3)` and thus clearly different to the theoretical counterpart.
 
 
 <!-- While the unconditional distribution has a larger variance.  -->
@@ -975,7 +984,7 @@ We can now correctly reject the false null hypothesis in approximately `r length
 
 **Caution:** This also means that we are not able to detect the violation of the null hypothesis in `r 100 - length(rejections)/B *100` % of cases. Therefore, we can never use an insignificant test result ($p$-value $\geq\alpha$) as a confirmation of the null hypothesis. Obviously, there are Type II error events (false none rejections), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control this Type II error rate. We can only control the Type I error rate by using a small significance level $\alpha$. 
 
-Moreover, note that the $F$ test is not informative about which part of the null hypothesis ($\beta_2=4$ and/or $\beta_3=4$) is violated -- we only get the information that at least one of the multiple parameter hypotheses is violated.
+Moreover, note that the $F$ test is not informative about which part of the null hypothesis ($\beta_2=4$ and/or $\beta_3=4$) is violated. We only get the information that at least one of the multiple parameter hypotheses is violated.
 
 
 ### Dualty of Confidence Intervals and Hypothesis Tests
