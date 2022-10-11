@@ -669,7 +669,7 @@ In order to check the effect of "conditioning on $X$", let us focus on $\hat\bet
 
 Then estimate the distributons from both Monte Carlo samples and compare them with the theoretical distribution $\hat\beta_2|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{22})$:
 ```{r}
-set.seed(4321) # seed of the random number generator
+set.seed(1011) # seed of the random number generator
 
 ## A function to generate realizations of the estimator \hat{beta}_2
 ## conditionally or unconditionally on X:
