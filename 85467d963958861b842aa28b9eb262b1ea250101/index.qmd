@@ -14,7 +14,7 @@ timetable <- tibble("Day"=c("Monday", "Thursday"),
 timetable %>% kbl() %>%  kable_styling()
 ```
 
-### Lecture Material 
+### Lecture Material  
 
 * [eWhiteboard for lecture notes](https://uni-bonn.sciebo.de/s/utwT9e0txGVDOpP)
 * [eWhiteboard for exercises](https://uni-bonn.sciebo.de/s/Q0bER32lycuw6NV)
