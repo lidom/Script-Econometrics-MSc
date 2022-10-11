@@ -544,10 +544,14 @@ legend(x=-4.5,y=.65, title=NULL, bty="n",
 
 The $p$-value of a test statistic is the significance level we would obtain if we took the sample value of the observed test statistic, $F_{\text{obs}}$ or $t_{\text{obs}},$ as the border between the rejection and non-rejection regions. 
 
-- **$F$-test:** $p=P_{H_0}(F\geq F_{\text{obs}})$
-- **$t$-test:** ($H_A:\beta_k\neq r$)] $p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}$
-- **$t$-test:** ($H_A:\beta_k> r$)] $p=P_{H_0}(t\geq t_{\text{obs}})$
-- **$t$-test:** ($H_A:\beta_k< r$)] $p=P_{H_0}(t\leq t_{\text{obs}})$
+* **$F$-test:** $p=P_{H_0}(F\geq F_{\text{obs}})$
+* **$t$-test:** 
+   * Two sided alternative $H_A:\beta_k\neq r$: <br> 
+    $p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|>t_{obs})$
+   * One sided alternative $H_A:\beta_k> r$: <br> 
+     $p=P_{H_0}(t\geq t_{\text{obs}})$
+   * One sided alternative $H_A:\beta_k< r$: <br> 
+     $p=P_{H_0}(t\leq t_{\text{obs}})$
 
 Put another way, the $p$-value is the greatest significance level for which we just fail to reject the null. Therefore, the $p$-value is sometimes also called the marginal significance value. 
 
@@ -555,11 +559,11 @@ If the $p$-value is strictly smaller than the chosen significance level $\alpha$
 
 ## Confidence Intervals {#sec-CIsmallsample}
 
-We define a two-sided $(1-\alpha)\cdot 100\%$ percent confidence interval for the *deterministic* (unknown) true $\beta_k$ as the **random interval** $\operatorname{CI}_{1-\alpha}$ for which 
+We define a two-sided $(1-\alpha)\cdot 100\%$ percent confidence interval for the *deterministic* (unknown) true $\beta_k$ as the **random interval** $\operatorname{CI}_{k,1-\alpha}$ for which 
 $$
-P\Big(\beta_k\in\operatorname{CI}_{1-\alpha}\Big)\geq 1-\alpha.
+P\Big(\beta_k\in\operatorname{CI}_{k,1-\alpha}\Big)\geq 1-\alpha.
 $$
-Derivation of the random interval $\operatorname{CI}_{1-\alpha}$: 
+Derivation of the random interval $\operatorname{CI}_{k,1-\alpha}$: 
 
 Observe that
 $$
@@ -573,19 +577,23 @@ where $t_{1-\alpha/2,n-K}$ denotes the $(1-\alpha)$ quantile of the $t$-distribu
 \begin{align*}
 P\left(-t_{1-\alpha/2,n-K}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq t_{1-\alpha/2,n-K}\right)&=1-\alpha\\
 \Leftrightarrow P\left(\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\leq \beta_k\leq\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right)&=1-\alpha\\
-\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]}_{=:\operatorname{CI}_{1-\alpha}}\right)&=1-\alpha
+\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]}_{=:\operatorname{CI}_{k,1-\alpha}}\right)&=1-\alpha
 \end{align*}
 That is, the random interval 
 $$
-\operatorname{CI}_{1-\alpha}=\left[\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
+\operatorname{CI}_{k,1-\alpha}=\left[\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
 $$
 is our $(1-\alpha)\cdot 100\%$ percent confidence interval for $\beta_k$.
 
-**Interpretation:** The random interval  $\operatorname{CI}_{1-\alpha}$ for $\beta_k$ contains the true parameter value $\beta_k$ in $(1-\alpha)\cdot 100\%$ cases of its realizations when considering infinitely many realizations.[^1]  Unfortunately, this interpretation is not a statement about a single $\operatorname{CI}_{1-\alpha}$ computed for given data. A given, realized $\operatorname{CI}_{1-\alpha}$ will either contain the true parameter $\beta_k$ or not, and usually we do not know the answer. So, the problem with $\operatorname{CI}$s is that they are quite hard to interpret. However, they are very well suited for a visual comparison of the estimation uncertainties in different parameter estimators, for instance, across $\hat\beta_k$, $k=1,\dots,K$.   
+**Interpretation:** The random interval  $\operatorname{CI}_{k,1-\alpha}$ for $\beta_k$ contains the true parameter value $\beta_k$ in $(1-\alpha)\cdot 100\%$ cases of its realizations when considering infinitely many realizations. It's best to take a look at dynamic viszualizations like this one: 
 
-![Try again!](images/Meme_CI.jpg)
+[https://rpsychologist.com/d3/ci/](https://rpsychologist.com/d3/ci/)
 
-[^1]: Take a look at this visualization: [https://rpsychologist.com/d3/ci/](https://rpsychologist.com/d3/ci/)
+
+Unfortunately, this "frequentist" interpretation is not a statement about a single given $\operatorname{CI}_{k,1-\alpha}$ realization computed for a given data set. A given, realized $\operatorname{CI}_{k,1-\alpha}$ will either contain the true parameter $\beta_k$ or not, and usually we do not know the answer. So, confidence intervals are quite hard to interpret. However, they are very well suited as a tool to visualize estimation uncertainties in different parameter estimators, for instance, across $\hat\beta_k$, $k=1,\dots,K$.   
+
+![](images/Meme_CI_2.jpg)
+
 
 
 ## Monte Carlo Simulations {#sec-PSSI}
@@ -644,7 +652,8 @@ round(head(test_data,     3), 2) # New Y, new X
 round(head(test_data_new, 3), 2) # New Y, conditionally on X
 ```
 
-### Check: Normally Distributed $\hat\beta|X$
+
+### Check: Distribution of $\hat\beta|X$ vs Distribution of $\hat\beta$
 
 The above data generating process fulfills Assumptions 1-4$^*$. So, by theory, the estimators $\hat\beta_k|X$, $k=1,\dots,K=3$, should be normal distributed conditionally on $X$,
 $$
@@ -653,16 +662,14 @@ $$
 where $[(X'X)^{-1}]_{kk}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $(X'X)^{-1}$. 
 
 
-In order to check the effect of "conditioning on $X$", let us use two different Monte Carlo simulations:
+In order to check the effect of "conditioning on $X$", let us focus on $\hat\beta_2$ and use two different Monte Carlo simulations:
 
 1. Generate `B`$=5000$ realizations of $\hat\beta_2$ conditionally on $X$.
 2. Generate `B`$=5000$ realizations of $\hat\beta_2$ **un**conditionally on $X$.
 
-Then we plot both distributions side by side:
+Then estimate the distributons from both Monte Carlo samples and compare them with the theoretical distribution $\hat\beta_2|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{22})$:
 ```{r}
-set.seed(123)
-
-beta_true_2 <- beta_true[2] # true beta_2
+set.seed(123) # seed of the random number generator
 
 ## A function to generate realizations of the estimator \hat{beta}_2
 ## conditionally or unconditionally on X:
@@ -690,57 +697,33 @@ hatbeta2_sim_cond   <- replicate(B, hatbeta2_sim_fun(conditional = TRUE,  X = X_
 hatbeta2_sim_uncond <- replicate(B, hatbeta2_sim_fun(conditional = FALSE))
 
 
-## True normal distribution of beta_hat_2 versus 
-## empirical density of beta_hat_2 estimates
+## Theoretical normal distribution of beta_hat_2 versus 
+## estimated densities based on the two Monte Carlo samples
 library("scales")
 
-# standard deviation of the error term
-sigma <- 3
-# true variance
+## true beta_2
+beta_true_2     <- beta_true[2] 
+## true standard deviation of the error term
+sigma           <- 3
+## true variance
 var_true_beta_2 <- sigma^2 * diag(solve(t(X_cond) %*% X_cond))[2]
 
-par(mfrow=c(1,2))
-curve(expr = dnorm(x, mean = beta_true_2, 
-                   sd=sqrt(var_true_beta_2)), 
-      xlab="",ylab="", col=gray(.2), lwd=3, lty=1, 
-      xlim=c(1,5), ylim=c(0,1.5))
-#hist(hatbeta2_sim_cond, freq=FALSE, col=alpha("blue",.35), add=TRUE)
-lines(density(hatbeta2_sim_cond, bw = bw.SJ(hatbeta2_sim_cond)), 
-      col=alpha("blue",.5), lwd=3)
-legend("topleft", lty=c(1,NA,1), lwd=c(3,NA,3), pch=c(NA,15,NA), pt.cex=c(NA,2,NA),
-     col=c(gray(.2), alpha("blue",.45), alpha("blue",.5)), bty="n", legend= 
-c(expression(
-  "Theoretical Gaussian Density of"~hat(beta)[2]~'|'~X), 
-  expression(
-  "Histogram based on the 5000 MC realizations of"~
-  hat(beta)[2]~'|'~X), 
-  expression(
-  "Nonparametric Density Estimation based on the 5000 MC realizations of"~
-  hat(beta)[2]~'|'~X)))
-
-####
+## Plot
 curve(expr = dnorm(x, mean = beta_true_2, sd=sqrt(var_true_beta_2)), 
-      xlab="",ylab="", col=gray(.2), lwd=3, lty=1, 
-      xlim=c(1,5), ylim=c(0,1.5))
-#hist(hatbeta2_sim_uncond, freq=FALSE, col=alpha("blue",.35), add=TRUE)
-lines(density(hatbeta2_sim_uncond, bw=bw.SJ(hatbeta2_sim_uncond)), 
-      col=alpha("blue",.5), lwd=3)
-legend("topleft", lty=c(1,NA,1), lwd=c(3,NA,3), pch=c(NA,15,NA), pt.cex=c(NA,2,NA),
-     col=c(gray(.2), alpha("blue",.45), alpha("blue",.5)), bty="n", legend= 
-c(expression(
-  "Theoretical Gaussian Density of"~hat(beta)[2]~'|'~X), 
-expression(
-  "Histogram based on the 5000 MC realizations of"~
-  hat(beta)[2]), 
-expression("Nonparam. Density Estimation based on the 5000 MC realizations of"~
-  hat(beta)[2])))
-
+xlab="", ylab="", col=gray(.2), lwd=3, lty=1, xlim=c(1,5), ylim=c(0,1.5))
+lines(density(hatbeta2_sim_cond, bw = bw.SJ(hatbeta2_sim_cond)), col=alpha("blue",.5), lwd=3)
+lines(density(hatbeta2_sim_uncond, bw=bw.SJ(hatbeta2_sim_uncond)), col=alpha("red",.5), lwd=3)
+legend("topleft", lty=c(1,1,1), lwd=c(3,3,3),
+     col=c(gray(.2), alpha("blue",.45), alpha("red",.5)), bty="n", legend= 
+c(expression("Theoretical Gaussian Density of"~hat(beta)[2]~'|'~X), 
+  expression("Estimated Density based on the 5000 MC realizations of"~hat(beta)[2]~'|'~X),
+  expression("Estimated Density based on the 5000 MC realizations of"~hat(beta)[2])))
 ```
 
-Core observation:
+Core observations:
 
-* The estimated conditional distribution of $\hat{\beta}_2$ does match the theoretical conditional distribution of $\hat{\beta}_2$ given $X$
-* The estimated **un**conditional distribution of $\hat{\beta}_2$ does not match the theoretical conditional distribution of $\hat{\beta}_2$  given $X$
+* The estimated conditional distribution of $\hat{\beta}_2|X$  matches with the theoretical conditional distribution of $\hat{\beta}_2|X$.
+* The estimated **un**conditional distribution of $\hat{\beta}_2$ does not match with the theoretical conditional distribution of $\hat{\beta}_2|X$.
 
 <!-- While the unconditional distribution has a larger variance.  -->
 
@@ -882,21 +865,27 @@ r=\left(\begin{matrix}3\\4\\\end{matrix}\right).
 $$
 The following `R` code can be used to test this hypothesis:
 ```{r}
-suppressMessages(library("car")) # for linearHyothesis()
-# ?linearHypothesis
+## Library containing the function 'linearHyothesis()' 
+## for testing multiple parameters 
+suppressMessages(library("car")) 
+## See ?linearHypothesis
+
+## Generate one Monte Carlo sample
+data     <- myDataGenerator(n = n, beta = beta_true)
 
 ## Estimate the linear regression model parameters
-lm_obj <- lm(Y ~ X_2 + X_3, data = mydata)
+lm_obj <- lm(Y ~ X_2 + X_3, data = data)
 
 ## Option 1:
-car::linearHypothesis(model = lm_obj, 
-                      hypothesis.matrix = c("X_2=3", "X_3=4"))
-
+test_result <- car::linearHypothesis(
+      model = lm_obj, 
+      hypothesis.matrix = c("X_2=3", "X_3=4"))   
+test_result        
 ```
-The $p$-value is larger than the chosen significance level $\alpha=0.05$ thus we cannot reject the null hypothesis. 
+The $p$-value $p=$ `r round(test_result[[6]][2],4)` is larger than the chosen significance level $\alpha=0.05$ thus we cannot reject the null hypothesis "$H_0:\;\beta_2=3$ and $\beta_3=4.$" 
 
 The following codes gives an alternative, equivalent way to compute the test result:
-```{r}
+```{r, echo=TRUE, eval=FALSE}
 ## Option 2:
 R <- rbind(c(0,1,0),
            c(0,0,1))
@@ -904,7 +893,9 @@ car::linearHypothesis(model = lm_obj,
                       hypothesis.matrix = R, 
                       rhs = c(3,4))
 ```
-Again, we cannot reject the null hypothesis at a significance level of, for instance, $\alpha=0.05$ since we actually test the true null hypothesis. However, in repeated samples we should nevertheless observe $\alpha\cdot 100\%$ type I errors (false rejections of $H_0$).  Let's check this using the following Monte Carlo simulation:
+
+
+Here, we simulated data "under the null hypothesis" and thus it is not surpising that we cannot reject the null hypothesis at a significance level of, for instance, $\alpha=0.05$. However, in repeated samples we should nevertheless observe $\alpha\cdot 100\%$ type I errors (false rejections of $H_0$) under the null hypothesis. Let's check the type I error rate using the following Monte Carlo simulation:
 ```{r}
 ## Let's generate 5000 F-test decisions and check 
 ## whether the empirical rate of type I errors is 
@@ -933,17 +924,17 @@ round(length(rejections)/B, 4)
 ```
 Note that this is actually a very strong result. 
 
-* First, it means that we correctly control for the type I error rate since the type I error rate is not larger than the chosen significance level $\alpha$. 
-* Second, it means that the test is not conservative (i.e. very efficient) since the empirical type I error rate is really close to the chosen significance level $\alpha$. (In fact, if we would increase the number of Monte Carlo repetitions, the empirical type I error rate would converge to the selected significance level $\alpha$ due to the law of large numbers.)
+* First, we correctly control for the Type I error rate since the empirical type I error rate is not larger than the chosen significance level $\alpha$ (the nominal Type I error rate). 
+* Second, the test is not conservative since the empirical type I error rate essentially matches the chosen significance level $\alpha$  (the nominal Type I error rate). 
+   * In fact, if we would increase the number of Monte Carlo repetitions, the empirical type I error rate would converge to the nominal Type I error rate $\alpha$ due to the law of large numbers.
 * Last but not least: It works unconditionally on $X$ since the distribution of the $F$ statistic does not depend on $X$. (Thus is also works conditionally on $X$ and you may check this at home.)
 
-Next, we check how well the $F$ test detects certain violations of the null hypothesis. We do this by using the same data generating process, but by testing the following incorrect null hypothesis:
+Next, we check how well the $F$ test detects certain **violations of the null hypothesis**. We do this by using the same data generating process, but by testing the following incorrect (red) null hypothesis:
 \begin{align*}
-H_0:\;&\beta_2=4\quad\text{and}\quad\beta_3=4\\
+H_0:\;&{\color{red}\beta_2=4}\quad\text{and}\quad\beta_3=4\\
 H_A:\;&\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 \end{align*}
 ```{r}
-set.seed(321)
 B               <- 5000 # MC replications
 F_test_pvalues  <- rep(NA, times=B)
 ##
@@ -951,37 +942,42 @@ for(r in 1:B){
   ## generate new data 
   MC_data <- myDataGenerator(n    = n, beta = beta_true)
   ## estimate 
-  lm_obj            <- lm(Y ~ X_2 + X_3, data = MC_data)
+  lm_obj  <- lm(Y ~ X_2 + X_3, data = MC_data)
   ## compute test and p-value
-  p <- linearHypothesis(lm_obj, c("X_2=4", "X_3=4"))$`Pr(>F)`[2]
+  p       <- linearHypothesis(lm_obj, c("X_2=4", "X_3=4"))$`Pr(>F)`[2]
   ## save the p-value
   F_test_pvalues[r] <- p
 }
 ##
 signif_level <-  0.05
 rejections   <- F_test_pvalues[F_test_pvalues < signif_level]
+
+## Rate of H0 rejections:
 length(rejections)/B
 ```
-Indeed, we can now reject the (here false) null hypothesis in approximately $39\%$ of all Monte Carlo replications. 
 
-**Caution:** This also means that we are not able to "see" the violation of the null hypothesis in $100\%-39\%=62\%$ of cases. Therefore, we can never use an insignificant test result (p-value$\geq\alpha$) as a justification to accept the null hypothesis. Obviously, there are Type II error events, but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control the Type II error rate. We can only control the Type I error rate by using a small significance level $\alpha$. 
+We can now correctly reject the false null hypothesis in approximately `r length(rejections)/B *100` % of all Monte Carlo replications. 
 
-Moreover, note that the $F$ test is not informative about which part of the null hypothesis ($\beta_2=4$ and/or $\beta_3=4$) is violated -- we only get the information that at least one of the multiple parameter hypotheses is violated:
-```{r}
-car::linearHypothesis(lm_obj, c("X_2=4", "X_3=4"))
-```
+**Caution:** This also means that we are not able to detect the violation of the null hypothesis in `r 100 - length(rejections)/B *100` % of cases. Therefore, we can never use an insignificant test result ($p$-value $\geq\alpha$) as a confirmation of the null hypothesis. Obviously, there are Type II error events (false none rejections), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control this Type II error rate. We can only control the Type I error rate by using a small significance level $\alpha$. 
+
+Moreover, note that the $F$ test is not informative about which part of the null hypothesis ($\beta_2=4$ and/or $\beta_3=4$) is violated -- we only get the information that at least one of the multiple parameter hypotheses is violated.
+
 
 ### Dualty of Confidence Intervals and Hypothesis Tests
 
 Confidence intervals can be computed using `R` as following:
 ```{r}
+## Significance level
 signif_level <- 0.05
+## Confidence level
+conf_level   <- 1 - signif_level
+
 ## 95% CI for beta_2
-confint(lm_obj, parm = "X_2", level = 1 - signif_level)
+confint(lm_obj, parm = "X_2", level = conf_level)
 ## 95% CI for beta_3 
-confint(lm_obj, parm = "X_3", level = 1 - signif_level)
+confint(lm_obj, parm = "X_3", level = conf_level)
 ```
-We can use these two-sided confidence intervals to do hypothesis tests. This property of confidence intervals is called the duality of confidence intervals and hypothesis tests. 
+We can use these two-sided confidence intervals to conduct hypotheses tests. This property of confidence intervals is called the **duality of confidence intervals and hypothesis tests**. 
 
 For instance, when testing the null hypothesis
 \begin{align*}
@@ -996,7 +992,6 @@ we can check whether the confidence interval $\operatorname{CI}_{1-\alpha}$ cont
 If the Assumption 1-4$^\ast$ hold true, then $\operatorname{CI}_{1-\alpha}$ is an exact confidence interval. That is, under the null hypothesis, it falsely rejects the null hypothesis in only $\alpha\cdot 100\%$ of resamplings. Let's check this in the following Monte Carlo simulation:
 ```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 ## Let's generate 1000 CIs 
-set.seed(123)
 signif_level <-  0.05
 B            <- 5000 # MC replications
 confint_m    <- matrix(NA, nrow=2, ncol=B)
@@ -1052,13 +1047,59 @@ As expected, only about $\alpha\cdot 100\%=5\%$ of all confidence intervals do n
 ```{r}
 ## The AER package contains a lot of datasets 
 suppressPackageStartupMessages(library(AER))
+suppressPackageStartupMessages(library(stargazer))
 ## Attach the DoctorVisits data to make it usable
 data("DoctorVisits")
 
 lm_obj <- lm(visits ~ gender + age + income, data = DoctorVisits)
+```
 
+
+The above `R` codes estimate the following regression model
+$$
+Y_i = \beta_1 + \beta_{gender} X_{gender,i} 
+              + \beta_{age} X_{age,i}
+              + \beta_{income} X_{income,i} + \varepsilon_i,
+$$
+where 
+
+* $X_{age,i}=1$ if the $i$th subject is a woman and $X_{age,i}=0$ if the $i$th subject is a man
+* $X_{age,i}$ is the age of subject $i$ measured in years divided by $100$.
+* $X_{income,i}$ is the annual income of subject $i$ in tens of thousands of dollars
+
+
+The following `R` codes produces the classic regression output table (simular tables are produced by all statistical/econometric software packages):
+```{r, echo=TRUE, eval=FALSE}
 summary(lm_obj)
 ```
+
+
+```{r, ech=FALSE, eval=TRUE}
+stargazer(lm_obj, type="html")
+```
+
+The above regression output table contains a lot of information:
+
+
+* **Estimate:** The column "Estimate" containes the estimates $\hat\beta_{1}$, $\hat\beta_{gender}$, $\hat\beta_{age}$, $\hat\beta_{income}$ of the unknown parameters $\beta_1$, $\beta_{gender}$, $\beta_{age}$, $\beta_{income}$
+
+
+* **Std. Error:** The column "Std. Error" containes the estimates 
+$\widehat{\operatorname{SE}}(\hat\beta_{1}|X)$ $\widehat{\operatorname{SE}}(\hat\beta_{gender}|X)$, $\widehat{\operatorname{SE}}(\hat\beta_{age})$, and $\widehat{\operatorname{SE}}(\hat\beta_{income})$.
+
+
+* **t value:** The column "t value" contains the observed $t$ test statistics 
+$$
+t_{obs,j}=\frac{\hat\beta_{j}}{\widehat{\operatorname{SE}}(\hat\beta_{j}|X)}\quad j\in\{1,gender, age, income\}
+$$
+
+* **Pr(>|t|):** The column "Pr(>|t|)" contains the $p$ values
+$$
+P_{H_0}(|t|>t_{obs,j})\quad j\in\{1,gender, age, income\}
+$$
+
+
+Discuss why the above inference results cannot be expected to be realistic/robust. 
 
 
 # References {-} 
