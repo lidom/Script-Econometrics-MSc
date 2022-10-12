@@ -267,19 +267,19 @@ By law of large numbers this approximation gets arbitrarily precise as $B \to \i
 * The bias of $\hat\theta_n$ can be approximated by 
 
 $$
-\operatorname{Bias}\left(\hat\theta_n\right)=E\left(\hat\theta_n\right)-\theta\approx\left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right) - \theta
+\operatorname{Bias}\left(\hat\theta_n\right)=E\left(\hat\theta_n\right)-\theta\approx\left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right) - \theta = \widehat{\operatorname{Bias}}_{MC}\left(\hat\theta_n\right)
 $$
 
 * The variance of $\hat\theta_n$ can be approximated by
 
 $$
-Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^2\right]\approx \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right)\right)^2
+Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^2\right]\approx \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right)\right)^2 = \widehat{Var}_{MC}\left(\hat\theta_n\right)
 $$
 
 * The mean squared error of $\hat\theta_n$ can be approximated by 
 
 $$
-\operatorname{MSE}\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - \theta\right)^2\right]\approx\frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \theta\right)^2
+\operatorname{MSE}\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - \theta\right)^2\right]\approx\frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \theta\right)^2 = \widehat{\operatorname{MSE}}_{MC}\left(\hat\theta_n\right)
 $$
 
 
