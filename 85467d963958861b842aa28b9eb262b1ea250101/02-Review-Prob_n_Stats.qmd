@@ -1,8 +1,8 @@
-# Review: Probability and Statistics {#ReviewStats}
+# Review: Probability {#ReviewStats}
 
 The content of this chapter follows closely (often verbatim) the fantastic book by @Wasserman2004. 
 
-## Probability Theory
+## Basics in Probability Theory
 
 Probability is the mathematical language for quantifying uncertainty. We can apply probability theory to a diverse set of problems, from coin flipping to the analysis of econometric problems. The starting point is to specify the **sample space**, that is, the set of possible outcomes.
 
@@ -12,7 +12,7 @@ The **sample space** $\Omega,$ is the set of possible outcomes of an experiment.
 
 
 
-**Example:** If we toss a coin twice then $\Omega=\{H H, H T, T H, T T\} .$ The event that the first toss is heads is $A=\{H H, H T\}.$
+**Example:** If we toss a coin twice then $\Omega=\{H H, H T, T H, T T\}.$ The event that the first toss is heads is $A=\{H H, H T\}.$
 
 
 **Example:** Let $\omega$ be the outcome of a measurement of some physical quantity, for example, temperature. Then $\Omega=\mathbb{R}=(-\infty, \infty).$ The event that the measurement is larger than 10 but less than or equal to 23 is $A=(10,23].$

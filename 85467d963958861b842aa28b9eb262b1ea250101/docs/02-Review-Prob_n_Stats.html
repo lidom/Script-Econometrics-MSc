@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Econometrics M.Sc. - 2&nbsp; Review: Probability and Statistics</title>
+<title>Econometrics M.Sc. - 2&nbsp; Review: Probability</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -153,7 +153,7 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability and Statistics</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -191,7 +191,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-Review-Prob_n_Stats.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability and Statistics</span></a>
+  <a href="./02-Review-Prob_n_Stats.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -228,7 +228,7 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#probability-theory" id="toc-probability-theory" class="nav-link active" data-scroll-target="#probability-theory"><span class="toc-section-number">2.1</span>  Probability Theory</a>
+  <li><a href="#basics-in-probability-theory" id="toc-basics-in-probability-theory" class="nav-link active" data-scroll-target="#basics-in-probability-theory"><span class="toc-section-number">2.1</span>  Basics in Probability Theory</a>
   <ul class="collapse">
   <li><a href="#sample-spaces-and-elementary-events" id="toc-sample-spaces-and-elementary-events" class="nav-link" data-scroll-target="#sample-spaces-and-elementary-events"><span class="toc-section-number">2.1.1</span>  Sample Spaces and (Elementary) Events</a></li>
   <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability"><span class="toc-section-number">2.1.2</span>  Probability</a></li>
@@ -257,7 +257,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="ReviewStats" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability and Statistics</span></span></h1>
+<h1 class="title"><span id="ReviewStats" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability</span></span></h1>
 </div>
 
 
@@ -272,13 +272,13 @@ div.csl-indent {
 </header>
 
 <p>The content of this chapter follows closely (often verbatim) the fantastic book by <span class="citation" data-cites="Wasserman2004">Wasserman (<a href="#ref-Wasserman2004" role="doc-biblioref">2004</a>)</span>.</p>
-<section id="probability-theory" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="probability-theory"><span class="header-section-number">2.1</span> Probability Theory</h2>
+<section id="basics-in-probability-theory" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="basics-in-probability-theory"><span class="header-section-number">2.1</span> Basics in Probability Theory</h2>
 <p>Probability is the mathematical language for quantifying uncertainty. We can apply probability theory to a diverse set of problems, from coin flipping to the analysis of econometric problems. The starting point is to specify the <strong>sample space</strong>, that is, the set of possible outcomes.</p>
 <section id="sample-spaces-and-elementary-events" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="sample-spaces-and-elementary-events"><span class="header-section-number">2.1.1</span> Sample Spaces and (Elementary) Events</h3>
 <p>The <strong>sample space</strong> <span class="math inline">\(\Omega,\)</span> is the set of possible outcomes of an experiment. Points <span class="math inline">\(\omega\)</span> in <span class="math inline">\(\Omega\)</span> are called <strong>sample outcomes</strong> or <strong>realizations</strong> or <strong>elementary events</strong>. <strong>Events</strong> are subsets of <span class="math inline">\(\Omega\)</span>.</p>
-<p><strong>Example:</strong> If we toss a coin twice then <span class="math inline">\(\Omega=\{H H, H T, T H, T T\} .\)</span> The event that the first toss is heads is <span class="math inline">\(A=\{H H, H T\}.\)</span></p>
+<p><strong>Example:</strong> If we toss a coin twice then <span class="math inline">\(\Omega=\{H H, H T, T H, T T\}.\)</span> The event that the first toss is heads is <span class="math inline">\(A=\{H H, H T\}.\)</span></p>
 <p><strong>Example:</strong> Let <span class="math inline">\(\omega\)</span> be the outcome of a measurement of some physical quantity, for example, temperature. Then <span class="math inline">\(\Omega=\mathbb{R}=(-\infty, \infty).\)</span> The event that the measurement is larger than 10 but less than or equal to 23 is <span class="math inline">\(A=(10,23].\)</span></p>
 <p><strong>Example:</strong> If we toss a coin forever then the sample space is the infinite set <span class="math inline">\(\Omega=\left\{\omega=\left(\omega_{1}, \omega_{2}, \omega_{3}, \ldots,\right)|\omega_{i} \in\{H, T\}\right\}\)</span> Let <span class="math inline">\(A\)</span> be the event that the first head appears on the third toss. Then <span class="math inline">\(A=\left\{\left(\omega_{1}, \omega_{2}, \omega_{3}, \ldots,\right)| \omega_{1}=T, \omega_{2}=T, \omega_{3}=H, \omega_{i} \in\{H, T\} \text { for } i&gt;3\right\}.\)</span></p>
 <p>Given an event <span class="math inline">\(A,\)</span> let <span class="math inline">\(A^{c}=\{\omega \in \Omega ; \omega \notin A\}\)</span> denote the <strong>complement</strong> of <span class="math inline">\(A\)</span>. Informally, <span class="math inline">\(A^{c}\)</span> can be read as “not <span class="math inline">\(A\)</span>.” The complement of <span class="math inline">\(\Omega\)</span> is the empty set <span class="math inline">\(\emptyset\)</span>. The <strong>union</strong> of events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined as <span class="math display">\[
@@ -332,7 +332,7 @@ A \subset B &amp;\text{ set inclusion }(A \text{ is a subset of or equal to }B)\
 <p><span class="math display">\[
 P\left(\bigcup_{i=1}^{\infty} A_{i}\right)=\sum_{i=1}^{\infty} P\left(A_{i}\right).
 \]</span></p>
-<p><strong>Note:</strong> It is not always possible to assign a probability to every event <span class="math inline">\(A\)</span> if the sample space is large, such as, for instance, the whole real line, <span class="math inline">\(\Omega=\mathbb{R}\)</span>. In case of <span class="math inline">\(\Omega=\mathbb{R}\)</span> strange things can happen. There are pathological sets that simply break down the mathematics. An example of one of these pathological sets, also known as non-measurable sets because they literally can’t be measured (i.e.&nbsp;we cannot assign probabilities to them), are the Vitali sets. Therefore, in such cases like <span class="math inline">\(\Omega=\mathbb{R}\)</span>, we assign probabilities to a <em>limited</em> class of sets called a <strong><span class="math inline">\(\sigma\)</span>-field</strong> or <strong><span class="math inline">\(\sigma\)</span>-algebra</strong>. For <span class="math inline">\(\Omega=\mathbb{R}\)</span>, the canonical <strong><span class="math inline">\(\sigma\)</span>-algebra</strong> is the <strong>Borel <span class="math inline">\(\sigma\)</span>-algebra</strong>. The Borel <span class="math inline">\(\sigma\)</span>-algebra on <span class="math inline">\(\mathbb{R}\)</span> is generated by the collection of all open subsets of <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<p><strong>Note:</strong> It is not always possible to assign a probability to every event <span class="math inline">\(A\)</span> if the sample space is large, such as, for instance, the whole real line, <span class="math inline">\(\Omega=\mathbb{R}\)</span>. In case of <span class="math inline">\(\Omega=\mathbb{R}\)</span> strange things can happen. There are pathological sets that simply break down the mathematics. An example of one of these pathological sets, also known as non-measurable sets because they literally can’t be measured (i.e.&nbsp;we cannot assign probabilities to them), are the Vitali sets. Therefore, in such cases like <span class="math inline">\(\Omega=\mathbb{R}\)</span>, we assign probabilities to a <em>limited</em> class of sets called a <strong><span class="math inline">\(\sigma\)</span>-field</strong> or <strong><span class="math inline">\(\sigma\)</span>-algebra</strong>. For <span class="math inline">\(\Omega=\mathbb{R}\)</span>, the canonical <strong><span class="math inline">\(\sigma\)</span>-algebra</strong> is the <strong>Borel <span class="math inline">\(\sigma\)</span>-algebra</strong>. The Borel <span class="math inline">\(\sigma\)</span>-algebra on <span class="math inline">\(\mathbb{R}\)</span> is generated by the collection of all open subsets of <span class="math inline">\(\mathbb{R}\)</span>. In this course, we use the Borel <span class="math inline">\(\sigma\)</span>-algebra, and fortunately, we do not have to bother with it. (It’s there in the background making things work for us.)</p>
 <p>One can derive many properties of <span class="math inline">\(P\)</span> from the axioms. Here are a few:</p>
 <ul>
 <li><span class="math inline">\(P(\emptyset)=0\)</span></li>
