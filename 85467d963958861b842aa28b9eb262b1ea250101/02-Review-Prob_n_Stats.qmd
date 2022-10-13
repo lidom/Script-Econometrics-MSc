@@ -117,7 +117,9 @@ P\left(H_{1} \cup H_{2}\right)=P\left(H_{1}\right)+P\left(H_{2}\right)-P\left(H_
 $$
 
 
-**Probabilities as frequencies:** One can interpret $P(A)$ in terms of **frequencies**. That is, $P(A)$ is the (infinitely) long run proportion of times that $A$ is true in repetitions. For example, if we say that the probability of heads is $1 / 2$, i.e $P(H)=1/2$ we mean that if we flip the coin many times then the proportion of times we get heads tends to $1 / 2$ as the number of tosses increases.  An infinitely long, unpredictable sequence of tosses whose limiting proportion tends to a constant is an idealization, much like the idea of a straight line in geometry. \newline
+#### Probabilities as frequencies {-}
+
+One can interpret $P(A)$ in terms of **frequencies**. That is, $P(A)$ is the (infinitely) long run proportion of times that $A$ is true in repetitions. For example, if we say that the probability of heads is $1 / 2$, i.e $P(H)=1/2$ we mean that if we flip the coin many times then the proportion of times we get heads tends to $1 / 2$ as the number of tosses increases.  An infinitely long, unpredictable sequence of tosses whose limiting proportion tends to a constant is an idealization, much like the idea of a straight line in geometry. \newline
 The following \textsf{R} codes approximates the probability $P(H)=1/2$ using 5, 50 and 5,000 many (pseudo) random coin flips:
 ```{r}
 set.seed(869)
