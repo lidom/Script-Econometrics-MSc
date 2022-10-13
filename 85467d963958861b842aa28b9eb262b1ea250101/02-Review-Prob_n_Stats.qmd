@@ -305,7 +305,7 @@ You might wonder why we bother to define the cdf. The reason is that it effectiv
 about the random variable. Indeed, let $X\in\mathbb{R}$ have cdf $F$ and let $Y\in\mathbb{R}$ have cdf $G$.  If $F(x)=G(x)$ for all $x\in\mathbb{R}$ then $P(X \in A)=P(Y \in A)$ for all $A\subset\mathbb{R}$. In order to denote that two random variables, here $X$ and $Y$, have the same distribution, one can write shortly $X\overset{d}{=}Y$. 
 
 
-**Caution:** Equality in distribution, $X\overset{d}{=}Y$, does generally **not** mean equality in realizations, that is $X\overset{d}{=}Y \not\Rightarrow X(\omega)=Y(\omega)$ for all $\omega\in\Omega$. 
+<!-- **Caution:** Equality in distribution, $X\overset{d}{=}Y$, does generally **not** mean equality in realizations, that is $X\overset{d}{=}Y \not\Rightarrow X(\omega)=Y(\omega)$ for all $\omega\in\Omega$.  -->
 
 
 **The defining properties of a cdf:** A function $F$ mapping the real line to $[0,1]$, short $F:\mathbb{R}\to[0,1],$ is called a cdf for some probability measure $P$ if and only if it satisfies the following three properties:
