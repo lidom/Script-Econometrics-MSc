@@ -11,7 +11,7 @@ book:
   comments: 
     hypothesis:
       theme: clean
-      openSidebar: false
+      openSidebar: true
 
   chapters:
     - index.qmd
