@@ -287,7 +287,8 @@ A\cup B=\{\omega \in \Omega|\omega\in A\text{ or }\omega \in B\text{ or }\omega\
 \bigcup_{i=1}^{\infty} A_{i}=\left\{\omega \in \Omega: \omega \in A_{i} \text { for at least one i }\right\}.
 \]</span> The <strong>intersection</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined as <span class="math display">\[
 A \cap B=\{\omega \in \Omega ; \omega \in A\text{ and }\omega \in B\}
-\]</span> which reads as “<span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.” Often <span class="math inline">\(A \cap B\)</span> is also written shortly as <span class="math inline">\(AB\)</span>. If <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> is a sequence of sets then <span class="math display">\[
+\]</span> which reads as “<span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.” Often <span class="math inline">\(A \cap B\)</span> is also written shortly as “<span class="math inline">\(AB\)</span>” or as “<span class="math inline">\(A,B.\)</span>”</p>
+<p>If <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> is a sequence of sets then <span class="math display">\[
 \bigcap_{i=1}^{\infty} A_{i}=\left\{\omega \in \Omega: \omega \in A_{i} \text { for all i }\right\}.
 \]</span></p>
 <p>If every element of <span class="math inline">\(A\)</span> is also contained in <span class="math inline">\(B\)</span> we write <span class="math inline">\(A \subset B\)</span> or, equivalently, <span class="math inline">\(B \supset A\)</span>. If <span class="math inline">\(A\)</span> is a finite set, let <span class="math inline">\(|A|\)</span> denote the number of elements in <span class="math inline">\(A .\)</span> We say that <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> are <strong>disjoint</strong> or <strong>mutually exclusive</strong> if <span class="math inline">\(A_{i} \cap A_{j}=\emptyset\)</span> whenever <span class="math inline">\(i \neq j\)</span>. For example, <span class="math inline">\(A_{1}=[0,1), A_{2}=[1,2), A_{3}=[2,3), \ldots\)</span> are disjoint. A <strong>partition</strong> of <span class="math inline">\(\Omega\)</span> is a sequence of disjoint sets <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> such that <span class="math inline">\(\bigcup_{i=1}^{\infty} A_{i}=\Omega\)</span>.</p>
@@ -300,7 +301,7 @@ A      &amp; \text { event (subset of } \Omega) \\
 |A|    &amp; \text { number of points in } A \text { (if } A \text { is finite) }\\
 A^{c}  &amp; \text { complement of } A (\operatorname{not} A)\\
 A \cup B &amp;\text{ union }(A\text{ or }B)\\
-A \cap B &amp;\text{ intersection }(A \text { and } B);\text{ short notation: }AB\\
+A \cap B &amp;\text{ intersection }(A \text { and } B);\text{ short notation: }AB\text{ or }A,B\\
 A \subset B &amp;\text{ set inclusion }(A \text{ is a subset of or equal to }B)\\
 \emptyset   &amp;\text{ null event (always false)}\\
 \Omega      &amp;\text{ true event (always true)}
@@ -349,7 +350,9 @@ P\left(\left\{H_{1}, H_{2}\right\}\right)=P\left(\left\{H_{1}, T_{2}\right\}\rig
 \]</span> then <span class="math display">\[
 P\left(H_{1} \cup H_{2}\right)=P\left(H_{1}\right)+P\left(H_{2}\right)-P\left(H_{1} H_{2}\right)=\frac{1}{2}+\frac{1}{2}-\frac{1}{4}=\frac{3}{4}.
 \]</span></p>
-<p><strong>Probabilities as frequencies:</strong> One can interpret <span class="math inline">\(P(A)\)</span> in terms of <strong>frequencies</strong>. That is, <span class="math inline">\(P(A)\)</span> is the (infinitely) long run proportion of times that <span class="math inline">\(A\)</span> is true in repetitions. For example, if we say that the probability of heads is <span class="math inline">\(1 / 2\)</span>, i.e <span class="math inline">\(P(H)=1/2\)</span> we mean that if we flip the coin many times then the proportion of times we get heads tends to <span class="math inline">\(1 / 2\)</span> as the number of tosses increases. An infinitely long, unpredictable sequence of tosses whose limiting proportion tends to a constant is an idealization, much like the idea of a straight line in geometry. The following codes approximates the probability <span class="math inline">\(P(H)=1/2\)</span> using 5, 50 and 5,000 many (pseudo) random coin flips:</p>
+<section id="probabilities-as-frequencies" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="probabilities-as-frequencies">Probabilities as frequencies</h4>
+<p>One can interpret <span class="math inline">\(P(A)\)</span> in terms of <strong>frequencies</strong>. That is, <span class="math inline">\(P(A)\)</span> is the (infinitely) long run proportion of times that <span class="math inline">\(A\)</span> is true in repetitions. For example, if we say that the probability of heads is <span class="math inline">\(1 / 2\)</span>, i.e <span class="math inline">\(P(H)=1/2\)</span> we mean that if we flip the coin many times then the proportion of times we get heads tends to <span class="math inline">\(1 / 2\)</span> as the number of tosses increases. An infinitely long, unpredictable sequence of tosses whose limiting proportion tends to a constant is an idealization, much like the idea of a straight line in geometry. The following <code>R</code> codes approximates the probability <span class="math inline">\(P(H)=1/2\)</span> using 5, 50 and 5,000 many (pseudo) random coin flips:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">869</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 (fair) coin-flip:</span></span>
@@ -375,6 +378,7 @@ P\left(H_{1} \cup H_{2}\right)=P\left(H_{1}\right)+P\left(H_{2}\right)-P\left(H_
 </div>
 </div>
 </section>
+</section>
 <section id="independent-events" class="level3" data-number="2.1.3">
 <h3 data-number="2.1.3" class="anchored" data-anchor-id="independent-events"><span class="header-section-number">2.1.3</span> Independent Events</h3>
 <p>If we flip a fair coin twice, then the probability of two heads is <span class="math inline">\(\frac{1}{2} \times \frac{1}{2}\)</span>. We multiply the probabilities because we regard the two tosses as independent. Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are called <strong>independent</strong> if</p>
@@ -390,11 +394,11 @@ P\left(\bigcap_{i \in J} A_{i}\right)=\prod_{i \in J}P\left(A_{i}\right)
 <span class="math display">\[
 P(A B)=\frac{2}{6}=P(A)P(B)=\frac{1}{2}\cdot \frac{2}{3}
 \]</span> and so <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent. In this case, we didn’t assume that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent it just turned out that they were.</p>
-<p><strong>Cautionary Notes:</strong> Suppose that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>disjoint events</strong> (i.e.&nbsp;<span class="math inline">\(AB=\emptyset\)</span>), each with positive probability (i.e.&nbsp;<span class="math inline">\(P(A)&gt;0\)</span> and <span class="math inline">\(P(B)&gt;0\)</span>). Can they be independent? No! This follows since</p>
+<p><strong>Cautionary Note:</strong> Suppose that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>disjoint events</strong>, i.e.&nbsp;<span class="math inline">\(AB=\emptyset,\)</span> each with positive probability <span class="math inline">\(P(A)&gt;0\)</span> and <span class="math inline">\(P(B)&gt;0.\)</span> Can they be independent? No! This follows since</p>
 <p><span class="math display">\[
 P(A B)=P(\emptyset)=0\neq P(A)P(B)&gt;0.
 \]</span> Except in this special case, there is no way to judge (in-)dependence by looking at the sets in a Venn diagram.</p>
-<p><strong>Summary:</strong> Independence</p>
+<p><strong>Summary:</strong> Independent Events</p>
 <ol type="1">
 <li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if <span class="math inline">\(P(A B)=P(A) P(B)\)</span>.</li>
 <li>Independence is sometimes assumed and sometimes derived.</li>
@@ -407,11 +411,16 @@ P(A B)=P(\emptyset)=0\neq P(A)P(B)&gt;0.
 P(A \mid B)=\frac{P(A B)}{P(B)}.
 \]</span> Think of <span class="math inline">\(P(A \mid B)\)</span> as the fraction of times <span class="math inline">\(A\)</span> occurs among those in which <span class="math inline">\(B\)</span> occurs. Here are some facts about conditional probabilities:</p>
 <ul>
-<li>he rules of probability apply to events on the left of the bar “<span class="math inline">\(\mid\)</span>”. That is, for any fixed <span class="math inline">\(B\)</span> such that <span class="math inline">\(P(B)&gt;0, P(\cdot \mid B)\)</span> is a probability i.e.&nbsp;it satisfies the three axioms of probability: <span class="math inline">\(P(A \mid B) \geq 0, P(\Omega \mid B)=1\)</span> and if <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> are disjoint then <span class="math inline">\(P\left(\bigcup_{i=1}^{\infty} A_{i} \mid B\right)=\sum_{i=1}^{\infty} P\left(A_{i} \mid B\right)\)</span>.</li>
-<li>But it’s generally not true that <span class="math inline">\(P(A \mid B \cup C)=P(A \mid B)+P(A \mid C)\)</span>.</li>
+<li>The rules of probability apply to events on the left of the bar “<span class="math inline">\(\mid\)</span>”. That is, for any fixed <span class="math inline">\(B\)</span> such that <span class="math inline">\(P(B)&gt;0,\)</span> <span class="math inline">\(P(\cdot \mid B)\)</span> is a probability i.e.&nbsp;it satisfies the three axioms of probability:
+<ul>
+<li><span class="math inline">\(P(A \mid B) \geq 0\)</span></li>
+<li><span class="math inline">\(P(\Omega \mid B)=1\)</span></li>
+<li>If <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> are disjoint then <span class="math inline">\(P\left(\bigcup_{i=1}^{\infty} A_{i} \mid B\right)=\sum_{i=1}^{\infty} P\left(A_{i} \mid B\right).\)</span></li>
+</ul></li>
+<li>But it’s generally <strong>not true</strong> that <span class="math inline">\(P(A \mid B \cup C)=P(A \mid B)+P(A \mid C).\)</span></li>
 </ul>
-<p>In general it is also <strong>not</strong> the case that <span class="math inline">\(P(A \mid B)=P(B \mid A)\)</span>. People get this confused all the time. For example, the probability of spots given you have measles is 1 but the probability that you have measles given that you have spots is not <span class="math inline">\(1 .\)</span> In this case, the difference between <span class="math inline">\(P(A \mid B)\)</span> and <span class="math inline">\(P(B \mid A)\)</span> is obvious but there are cases where it is less obvious. This mistake is made often enough in legal cases that it is sometimes called the “prosecutor’s fallacy”.</p>
-<p><strong>Example:</strong> A medical test for a disease <span class="math inline">\(D\)</span> has outcomes <span class="math inline">\(+\)</span> and <span class="math inline">\(-\)</span>. The probabilities are:</p>
+<p>In general it is also not the case that <span class="math inline">\(P(A \mid B)=P(B \mid A)\)</span>. People get this confused all the time. For example, the probability of spots given you have measles is 1 but the probability that you have measles given that you have spots is not <span class="math inline">\(1 .\)</span> In this case, the difference between <span class="math inline">\(P(A \mid B)\)</span> and <span class="math inline">\(P(B \mid A)\)</span> is obvious but there are cases where it is less obvious. This mistake is made often enough in legal cases that it is sometimes called the <strong>“prosecutor’s fallacy”</strong>.</p>
+<p><strong>Example:</strong> A medical test for a disease <span class="math inline">\(D\)</span> has outcomes <span class="math inline">\(+\)</span> and <span class="math inline">\(-.\)</span> The probabilities are:</p>
 <p><span class="math display">\[
 \begin{array}{c|cc|c}
 &amp; D &amp; D^{c} \\
@@ -426,14 +435,17 @@ P(A \mid B)=\frac{P(A B)}{P(B)}.
 <li>Sensitivity of the test: <span class="math display">\[P(+\mid D)=P(+\cap D) / P(D)=0.0081 /(0.0081+0.0009)=0.9\]</span></li>
 <li>Specificity of the test: <span class="math display">\[P(-\mid D^{c})=P(-\cap D^{c}) / P(D^{c})=0.9010/(0.9010+0.0900)\approx 0.9\]</span></li>
 </ul>
-<p>Apparently, the test is fairly accurate. Sick people yield a positive test result 90 percent of the time and healthy people yield a negative test result about 90 percent of the time. Suppose you go for a test and get a positive result. What is the probability you have the disease? Most people answer <span class="math inline">\(0.90=90\%\)</span>. The correct answer is <span class="math inline">\(P(D \mid+)=P(+\cap D) / P(+)=0.0081 /(0.0081+0.0900)=0.08\)</span>. The lesson here is that you need to compute the answer numerically. Don’t trust your intuition.</p>
+<p>Apparently, the test is fairly accurate. Sick people yield a positive test result 90 percent of the time and healthy people yield a negative test result about 90 percent of the time. Suppose you go for a test and get a positive result. What is the probability you have the disease? Most people answer <span class="math inline">\(0.90=90\%\)</span>. The correct answer is <span class="math inline">\(P(D \mid+)=P(+\cap D) / P(+)=0.0081 /(0.0081+0.0900)=0.08.\)</span> The lesson here is that you need to compute the answer numerically. Don’t trust your intuition.</p>
+<section id="independence-via-conditional-probabilities" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="independence-via-conditional-probabilities">Independence via Conditional Probabilities</h4>
 <p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>independent events</strong> then <span class="math display">\[
 P(A \mid B)=\frac{P(A B)}{P(B)}=\frac{P(A) P(B)}{P(B)}=P(A)
 \]</span> So another <strong>interpretation of independence</strong> is that knowing <span class="math inline">\(B\)</span> doesn’t change the probability of <span class="math inline">\(A\)</span>.</p>
 <p>From the definition of conditional probability we can write <span class="math display">\[
-P(A B)=P(A \mid B) P(B)\quad\text{and also}\quad P(A B)=P(B \mid A) P(A).
+P(A B)=P(A \mid B) P(B)
+\]</span> and also <span class="math display">\[
+P(A B)=P(B \mid A) P(A).
 \]</span> Often, these formulas give us a convenient way to compute <span class="math inline">\(P(A B)\)</span> when <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not independent.</p>
-<p>Note, sometimes <span class="math inline">\(P(A B)\)</span> is written as <span class="math inline">\(P(A,B)\)</span>.</p>
 <p><strong>Example:</strong> Draw two cards from a deck, without replacement. Let <span class="math inline">\(A\)</span> be the event that the first draw is Ace of Clubs and let <span class="math inline">\(B\)</span> be the event that the second draw is Queen of Diamonds. Then <span class="math inline">\(P(A, B)=P(A) P(B \mid A)=(1 / 52) \times(1 / 51)\)</span></p>
 <p><strong>Summary:</strong> Conditional Probability</p>
 <ol type="1">
@@ -442,6 +454,7 @@ P(A B)=P(A \mid B) P(B)\quad\text{and also}\quad P(A B)=P(B \mid A) P(A).
 <li>In general, <span class="math inline">\(P(A \mid B) \neq P(B \mid A)\)</span>.</li>
 <li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if and only if <span class="math inline">\(P(A \mid B)=P(A)\)</span>.</li>
 </ol>
+</section>
 </section>
 </section>
 <section id="random-variables" class="level2" data-number="2.2">
@@ -845,7 +858,7 @@ f(x)=\frac{1}{\sigma \sqrt{2 \pi}} \exp \left\{-\frac{1}{2 \sigma^{2}}(x-\mu)^{2
 \sum_{i=1}^{n} X_{i} \sim N\left(\sum_{i=1}^{n} \mu_{i}, \sum_{i=1}^{n} \sigma_{i}^{2}\right).
 \]</span></p></li>
 </ol>
-<p>The following -codes plots the standard Normal density function:</p>
+<p>The following <code>R</code>-codes plots the standard Normal density function:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a plot of the N(0,1) PDF</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),</span>
@@ -1022,7 +1035,7 @@ f(x)=\frac{1}{\pi\left(1+x^{2}\right)}.
 <p>Another ratio of random variables important to econometricians is the ratio of two independent <span class="math inline">\(\chi^2\)</span> distributed random variables that are divided by their degrees of freedom <span class="math inline">\(M\)</span> and <span class="math inline">\(n\)</span>. The quantity</p>
 <p><span class="math display">\[ \frac{W/M}{V/n} \sim F_{M,n} \ \ \text{with} \ \ W \sim \chi^2_M \ \ , \ \ V \sim \chi^2_n \]</span> follows an <span class="math inline">\(F\)</span> distribution with numerator degrees of freedom <span class="math inline">\(M\)</span> and denominator degrees of freedom <span class="math inline">\(n\)</span>, denoted <span class="math inline">\(F_{M,n}\)</span>. The distribution was first derived by George Snedecor but was named in honor of <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Sir Ronald Fisher</a>.</p>
 <p>By definition, the support of both PDF and CDF of an <span class="math inline">\(F_{M,n}\)</span> distributed random variable is <span class="math inline">\(\mathbb{R}_{\geq0}\)</span>.</p>
-<p>Say we have an <span class="math inline">\(F\)</span> distributed random variable <span class="math inline">\(Y\)</span> with numerator degrees of freedom <span class="math inline">\(3\)</span> and denominator degrees of freedom <span class="math inline">\(14\)</span> and are interested in <span class="math inline">\(P(Y \geq 2)\)</span>. This can be computed with help of the function <code>"pf()"</code>. By setting the argument <code>"lower.tail"</code> to <code>"FALSE"</code> we ensure that computes <span class="math inline">\(1- P(Y \leq 2)\)</span>, i.e,the probability mass in the tail right of <span class="math inline">\(2\)</span>.</p>
+<p>Say we have an <span class="math inline">\(F\)</span> distributed random variable <span class="math inline">\(Y\)</span> with numerator degrees of freedom <span class="math inline">\(3\)</span> and denominator degrees of freedom <span class="math inline">\(14\)</span> and are interested in <span class="math inline">\(P(Y \geq 2)\)</span>. This can be computed with help of the function <code>"pf()"</code>. By setting the argument <code>"lower.tail"</code> to <code>"FALSE"</code> we ensure that <code>R</code> computes <span class="math inline">\(1- P(Y \leq 2)\)</span>, i.e,the probability mass in the tail right of <span class="math inline">\(2\)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="dv">2</span>, <span class="at">df1 =</span> <span class="dv">3</span>, <span class="at">df2 =</span> <span class="dv">14</span>, <span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
