@@ -107,8 +107,11 @@ $$
 P(A \cup B)=P(A)+P(B)-P(A B).
 $$
 
-**Example:** Two consecutive coin tosses. Let $H_{1}$ be the event that heads occurs on toss 1 and let $H_{2}$ be the event that heads occurs on toss 2. If all outcomes are equally likely, that is, $P\left(\left\{H_{1}, H_{2}\right\}\right)=P\left(\left\{H_{1}, T_{2}\right\}\right)=P\left(\left\{T_{1}, H_{2}\right\}\right)=P\left(\left\{T_{1}, T_{2}\right\}\right)=1 / 4$, then 
-
+**Example:** Two consecutive coin tosses. Let $H_{1}$ be the event that heads occurs on toss 1 and let $H_{2}$ be the event that heads occurs on toss 2. If all outcomes are equally likely, that is, 
+$$
+P\left(\left\{H_{1}, H_{2}\right\}\right)=P\left(\left\{H_{1}, T_{2}\right\}\right)=P\left(\left\{T_{1}, H_{2}\right\}\right)=P\left(\left\{T_{1}, T_{2}\right\}\right)=1 / 4,
+$$ 
+then 
 $$
 P\left(H_{1} \cup H_{2}\right)=P\left(H_{1}\right)+P\left(H_{2}\right)-P\left(H_{1} H_{2}\right)=\frac{1}{2}+\frac{1}{2}-\frac{1}{4}=\frac{3}{4}.
 $$
