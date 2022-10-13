@@ -95,11 +95,11 @@ $$
 
 One can derive many properties of $P$ from the axioms. Here are a few: 
 
-- $P(\emptyset)=0$
-- $A \subset B\Rightarrow P(A) \leq P(B)$
-- $0 \leq P(A) \leq 1$
-- $P\left(A^{c}\right)=1-P(A)$
-- $A \cap B=\emptyset \Rightarrow P(A \cup B)=P(A)+P(B)$
+* $P(\emptyset)=0$
+* $A \subset B\Rightarrow P(A) \leq P(B)$
+* $0 \leq P(A) \leq 1$
+* $P\left(A^{c}\right)=1-P(A)$
+* $A \cap B=\emptyset \Rightarrow P(A \cup B)=P(A)+P(B)$
 
 A less obvious property is given in the following: For any events $A$ and $B$ we have that, 
 
