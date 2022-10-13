@@ -34,7 +34,7 @@ The **intersection** of $A$ and $B$ is defined as
 $$
 A \cap B=\{\omega \in \Omega ; \omega \in A\text{ and }\omega \in B\}
 $$ 
-which reads as "$A$ and $B$." Often $A \cap B$ is also written shortly as "$AB$" or as "$A,B.$"  
+which reads as "$A$ and $B$." Often $A \cap B$ is also written shortly as $AB$ or as $A,B.$  
 
 If $A_{1}, A_{2}, \ldots$ is a sequence of sets then
 $$
