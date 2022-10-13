@@ -8,10 +8,10 @@ book:
   search: true
   logo: images/Uni_Bonn_Logo.jpeg
   number-depth: 3
-  comments: 
-    hypothesis:
-      theme: clean
-      openSidebar: true
+  # comments: 
+  #   hypothesis:
+  #     theme: clean
+  #     openSidebar: true
 
   chapters:
     - index.qmd
