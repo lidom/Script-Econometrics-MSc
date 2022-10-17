@@ -194,7 +194,7 @@ P(A \mid B)=\frac{P(A B)}{P(B)}.
 $$
 Think of $P(A \mid B)$ as the fraction of times $A$ occurs among those in which $B$ occurs. Here are some facts about conditional probabilities: 
 
-* The rules of probability apply to events on the left of the bar "$\mid$". That is, for any fixed $B$ such that $P(B)>0,$ $P(\cdot \mid B)$ is a probability i.e. it satisfies the three axioms of probability: 
+* The rules of probability apply to events on the left of the bar "$\mid$". That is, for any fixed $B$ such that $P(B)>0,$ $P(\cdot \mid B)$ is a probability, i.e., it satisfies the three axioms of probability: 
    * $P(A \mid B) \geq 0$ 
    * $P(\Omega \mid B)=1$ 
    * If $A_{1}, A_{2}, \ldots$ are disjoint then $P\left(\bigcup_{i=1}^{\infty} A_{i} \mid B\right)=\sum_{i=1}^{\infty} P\left(A_{i} \mid B\right).$
@@ -352,11 +352,14 @@ $$
 
 A random variable $X$ is \textit{continuous} if there exists a function $f_{X}$ such that 
 
--$f_{X}(x)\geq 0$ for all $x$
+- $f_{X}(x)\geq 0$ for all $x$
 - $\int_{-\infty}^{\infty}f_{X}(x)dx=1$ and 
 - $\mathbb{P}(a<X<b)=\int_{a}^{b} f_{X}(x) dx$ for every $a\leq b$.
 
-The function $f_{X}$ is called the **probability density function (pdf)** or short **density function**. We have that
+The function $f_{X}$ is called the **probability density function (pdf)** or short **density function**. 
+
+
+For density functions, we have that
 $$
 F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) dt\quad\text{and}\quad f_{X}(x)=F_{X}^{\prime}(x)
 $$
@@ -410,7 +413,7 @@ P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=
 \begin{align*}
 P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=\int\limits_{a_d}^{b_d}\dots \int\limits _{a_1}^{b_1}f(x_1,\dots,x_d)dx_1\dots dx_d.
 \end{align*}
-In the following we focus only on continuous random vectors -- the discrete cases are treated analogously. Properties of **multivariate density** functions: 
+In the following we focus only on continuous random vectors, but the discrete cases are treated analogously. Properties of **multivariate density** functions: 
 
 - $\displaystyle f(x_1,\dots,x_d)\geq 0$\par
 - $\displaystyle \int_{-\infty}^{\infty}\dots \int_{-\infty}^{\infty}f(x_1,\dots,x_d)dx_1\dots dx_d=1$
@@ -434,9 +437,7 @@ persp(x, y, z, theta = -30, phi = 25,
 
 
 
-
-
-#### Marginal Distribution and Density Functions 
+#### Marginal Distribution Functions and Marginal Density Functions 
 
 
 Each random element, $X_j$, with $j=1,\dots,d$, of the random vector $X$ has its own **marginal distribution** $F_j$. This is just the univariate distribution of $X_j$ when ignoring all other random variables in $X$. Formally we have:

@@ -411,7 +411,7 @@ P(A B)=P(\emptyset)=0\neq P(A)P(B)&gt;0.
 P(A \mid B)=\frac{P(A B)}{P(B)}.
 \]</span> Think of <span class="math inline">\(P(A \mid B)\)</span> as the fraction of times <span class="math inline">\(A\)</span> occurs among those in which <span class="math inline">\(B\)</span> occurs. Here are some facts about conditional probabilities:</p>
 <ul>
-<li>The rules of probability apply to events on the left of the bar “<span class="math inline">\(\mid\)</span>”. That is, for any fixed <span class="math inline">\(B\)</span> such that <span class="math inline">\(P(B)&gt;0,\)</span> <span class="math inline">\(P(\cdot \mid B)\)</span> is a probability i.e.&nbsp;it satisfies the three axioms of probability:
+<li>The rules of probability apply to events on the left of the bar “<span class="math inline">\(\mid\)</span>”. That is, for any fixed <span class="math inline">\(B\)</span> such that <span class="math inline">\(P(B)&gt;0,\)</span> <span class="math inline">\(P(\cdot \mid B)\)</span> is a probability, i.e., it satisfies the three axioms of probability:
 <ul>
 <li><span class="math inline">\(P(A \mid B) \geq 0\)</span></li>
 <li><span class="math inline">\(P(\Omega \mid B)=1\)</span></li>
@@ -551,8 +551,13 @@ f_{X}(x)=\mathbb{P}(X=x)\quad\text{for all}\quad x\in\{x_1,x_2,\dots\}
 <section id="density-functions-for-continuous-random-variables" class="level4" data-number="2.2.1.3">
 <h4 data-number="2.2.1.3" class="anchored" data-anchor-id="density-functions-for-continuous-random-variables"><span class="header-section-number">2.2.1.3</span> Density Functions for Continuous Random Variables</h4>
 <p>A random variable <span class="math inline">\(X\)</span> is if there exists a function <span class="math inline">\(f_{X}\)</span> such that</p>
-<p>-<span class="math inline">\(f_{X}(x)\geq 0\)</span> for all <span class="math inline">\(x\)</span> - <span class="math inline">\(\int_{-\infty}^{\infty}f_{X}(x)dx=1\)</span> and - <span class="math inline">\(\mathbb{P}(a&lt;X&lt;b)=\int_{a}^{b} f_{X}(x) dx\)</span> for every <span class="math inline">\(a\leq b\)</span>.</p>
-<p>The function <span class="math inline">\(f_{X}\)</span> is called the <strong>probability density function (pdf)</strong> or short <strong>density function</strong>. We have that <span class="math display">\[
+<ul>
+<li><span class="math inline">\(f_{X}(x)\geq 0\)</span> for all <span class="math inline">\(x\)</span></li>
+<li><span class="math inline">\(\int_{-\infty}^{\infty}f_{X}(x)dx=1\)</span> and</li>
+<li><span class="math inline">\(\mathbb{P}(a&lt;X&lt;b)=\int_{a}^{b} f_{X}(x) dx\)</span> for every <span class="math inline">\(a\leq b\)</span>.</li>
+</ul>
+<p>The function <span class="math inline">\(f_{X}\)</span> is called the <strong>probability density function (pdf)</strong> or short <strong>density function</strong>.</p>
+<p>For density functions, we have that <span class="math display">\[
 F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) dt\quad\text{and}\quad f_{X}(x)=F_{X}^{\prime}(x)
 \]</span> at all points <span class="math inline">\(x\)</span> at which <span class="math inline">\(F_{X}\)</span> is differentiable.</p>
 </section>
@@ -599,7 +604,7 @@ P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=
 <h4 data-number="2.2.2.3" class="anchored" data-anchor-id="multidimensional-density-function"><span class="header-section-number">2.2.2.3</span> Multidimensional Density Function</h4>
 <p><strong>Continuous random vectors:</strong> <span class="math inline">\(X\)</span> takes values in <span class="math inline">\(\mathbb{R}^d\)</span> and has a <strong>multidimensional density function</strong> <span class="math inline">\(f(x_1,\dots,x_d)\)</span>. That is, <span class="math display">\[\begin{align*}
 P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=\int\limits_{a_d}^{b_d}\dots \int\limits _{a_1}^{b_1}f(x_1,\dots,x_d)dx_1\dots dx_d.
-\end{align*}\]</span> In the following we focus only on continuous random vectors – the discrete cases are treated analogously. Properties of <strong>multivariate density</strong> functions:</p>
+\end{align*}\]</span> In the following we focus only on continuous random vectors, but the discrete cases are treated analogously. Properties of <strong>multivariate density</strong> functions:</p>
 <ul>
 <li><span class="math inline">\(\displaystyle f(x_1,\dots,x_d)\geq 0\)</span></li>
 <li><span class="math inline">\(\displaystyle \int_{-\infty}^{\infty}\dots \int_{-\infty}^{\infty}f(x_1,\dots,x_d)dx_1\dots dx_d=1\)</span></li>
@@ -627,8 +632,8 @@ P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=\int\limits_{a_d}^{b_d}\dots \int\l
 </div>
 </div>
 </section>
-<section id="marginal-distribution-and-density-functions" class="level4" data-number="2.2.2.4">
-<h4 data-number="2.2.2.4" class="anchored" data-anchor-id="marginal-distribution-and-density-functions"><span class="header-section-number">2.2.2.4</span> Marginal Distribution and Density Functions</h4>
+<section id="marginal-distribution-functions-and-marginal-density-functions" class="level4" data-number="2.2.2.4">
+<h4 data-number="2.2.2.4" class="anchored" data-anchor-id="marginal-distribution-functions-and-marginal-density-functions"><span class="header-section-number">2.2.2.4</span> Marginal Distribution Functions and Marginal Density Functions</h4>
 <p>Each random element, <span class="math inline">\(X_j\)</span>, with <span class="math inline">\(j=1,\dots,d\)</span>, of the random vector <span class="math inline">\(X\)</span> has its own <strong>marginal distribution</strong> <span class="math inline">\(F_j\)</span>. This is just the univariate distribution of <span class="math inline">\(X_j\)</span> when ignoring all other random variables in <span class="math inline">\(X\)</span>. Formally we have:</p>
 <ul>
 <li><strong>Marginal distribution function:</strong> <span class="math inline">\(F_j(x)=P(X_j\leq x)\)</span></li>
