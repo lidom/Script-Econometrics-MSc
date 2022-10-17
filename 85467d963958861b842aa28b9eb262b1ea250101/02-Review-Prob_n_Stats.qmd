@@ -436,7 +436,6 @@ persp(x, y, z, theta = -30, phi = 25,
 ```
 
 
-
 #### Marginal Distribution Functions and Marginal Density Functions 
 
 
@@ -470,7 +469,7 @@ x2 <- seq(-3, 3, length.out=50)
 z     <- bivariate.normal(t(expand.grid(x1,x2)),mu,Sigma)
 dim(z)<-c(length(x1),length(x2))
 contour(x1, x2, z, col="#4545FF", drawlabels=FALSE, nlevels=5,
-        xlab=expression(X[1]), ylab=expression(X[2]),  lwd=1,xlim=c(-3,4),ylim=range(x2),frame.plot=FALSE,axes=FALSE,xaxs = "i", yaxs = "i")
+        xlab=expression(X[2]), ylab=expression(X[1]),  lwd=1,xlim=c(-3,4),ylim=range(x2),frame.plot=FALSE,axes=FALSE,xaxs = "i", yaxs = "i")
 image(x1, x2, z, col=gray(seq(1,.2,len=10)), add=TRUE)
 contour(x1, x2, z, col=alpha("darkblue", 0.5), drawlabels=FALSE, nlevels=5, add=TRUE)
 #box(lwd=.5)
@@ -537,7 +536,7 @@ x2 <- seq(-3, 3, length.out=50)
 z     <- bivariate.normal(t(expand.grid(x1,x2)),mu,Sigma)
 dim(z)<-c(length(x1),length(x2))
 contour(x1, x2, z, col="#4545FF", drawlabels=FALSE, nlevels=5,
-        xlab=expression(X[1]), ylab=expression(X[2]),  lwd=1,xlim=c(-3,4),ylim=range(x2),frame.plot=FALSE,axes=FALSE,xaxs = "i", yaxs = "i")
+        xlab=expression(X[2]), ylab=expression(X[1]),  lwd=1,xlim=c(-3,4),ylim=range(x2),frame.plot=FALSE,axes=FALSE,xaxs = "i", yaxs = "i")
 image(x1, x2, z, col=gray(seq(1,.2,len=10)), add=TRUE)
 contour(x1, x2, z, col=alpha("darkblue", 0.5), drawlabels=FALSE, nlevels=5, add=TRUE)
 
@@ -545,7 +544,7 @@ contour(x1, x2, z, col=alpha("darkblue", 0.5), drawlabels=FALSE, nlevels=5, add=
 axis(1,labels=FALSE,lwd.ticks=1)
 axis(2,labels=FALSE,lwd.ticks=1)
 abline(v=.7, col=1, lwd=1.1, lty=2)
-text(2, -2, labels=expression(x[1]==0.7))
+text(2, -2, labels=expression(x[2]==0.7))
 
 # Dotted
 f    <- function(x1,x2) bivariate.normal(t(cbind(x1,x2)),mu,Sigma)
@@ -554,8 +553,8 @@ vals <- f(x1=0.7,x2=x.s)
 lines(vals-abs(min(x1)),x.s,lty=2,lwd=1.2, col="darkgreen")
 
 
-marginal.x1<-function(x)  exp((-(x-mu[1])^2)/2*(Sigma[1,2]^2)) / (Sigma[1,2]*sqrt(2*pi))
-marginal.x2<-function(x)  exp((-(x-mu[1])^2)/2*(Sigma[2,1]^2)) / (Sigma[2,1]*sqrt(2*pi))
+marginal.x1<-function(x) exp((-(x-mu[1])^2)/2*(Sigma[1,2]^2)) / (Sigma[1,2]*sqrt(2*pi))
+marginal.x2<-function(x) exp((-(x-mu[1])^2)/2*(Sigma[2,1]^2)) / (Sigma[2,1]*sqrt(2*pi))
 
 # Left side solid
 vals<-marginal.x2(x.s)
@@ -567,7 +566,8 @@ lines(x.s,vals-abs(min(x2)),lty=1,lwd=1, col=gray(.5, 0.5))
 
 # legend("topright", col=c("darkred","darkorange"), lty=1, legend = c(expression(f[1]),expression(f[2])), bty="n",
 #        title = "Marginal Densities")
-legend("topleft", col="darkgreen", lty=2.1, lwd=.98, legend = expression(f(x[2]~ "|" ~ x[1]==0.7)), bty="n",
+legend("topleft", col="darkgreen", lty=2.1, lwd=.98, 
+legend = expression(f(x[1]~ "|" ~ x[2]==0.7)), bty="n",
        title = "Conditional Density")
 ```
 
