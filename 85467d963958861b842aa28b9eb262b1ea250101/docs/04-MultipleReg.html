@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -167,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-Review-Prob_n_Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability and Statistics</span></a>
+  <a href="./02-Review-Prob_n_Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -200,17 +205,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#assumptions" id="toc-assumptions" class="nav-link active" data-scroll-target="#assumptions"> <span class="header-section-number">4.1</span> Assumptions</a>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link active" data-scroll-target="#assumptions"><span class="toc-section-number">4.1</span>  Assumptions</a>
   <ul class="collapse">
-  <li><a href="#some-implications-of-the-exogeneity-assumption" id="toc-some-implications-of-the-exogeneity-assumption" class="nav-link" data-scroll-target="#some-implications-of-the-exogeneity-assumption"> <span class="header-section-number">4.1.1</span> Some Implications of the Exogeneity Assumption</a></li>
+  <li><a href="#some-implications-of-the-exogeneity-assumption" id="toc-some-implications-of-the-exogeneity-assumption" class="nav-link" data-scroll-target="#some-implications-of-the-exogeneity-assumption"><span class="toc-section-number">4.1.1</span>  Some Implications of the Exogeneity Assumption</a></li>
   </ul></li>
-  <li><a href="#deriving-the-expression-of-the-ols-estimator" id="toc-deriving-the-expression-of-the-ols-estimator" class="nav-link" data-scroll-target="#deriving-the-expression-of-the-ols-estimator"> <span class="header-section-number">4.2</span> Deriving the Expression of the OLS Estimator</a></li>
-  <li><a href="#some-quantities-of-interest" id="toc-some-quantities-of-interest" class="nav-link" data-scroll-target="#some-quantities-of-interest"> <span class="header-section-number">4.3</span> Some Quantities of Interest</a></li>
-  <li><a href="#method-of-moments-estimator" id="toc-method-of-moments-estimator" class="nav-link" data-scroll-target="#method-of-moments-estimator"> <span class="header-section-number">4.4</span> Method of Moments Estimator</a></li>
+  <li><a href="#deriving-the-expression-of-the-ols-estimator" id="toc-deriving-the-expression-of-the-ols-estimator" class="nav-link" data-scroll-target="#deriving-the-expression-of-the-ols-estimator"><span class="toc-section-number">4.2</span>  Deriving the Expression of the OLS Estimator</a></li>
+  <li><a href="#some-quantities-of-interest" id="toc-some-quantities-of-interest" class="nav-link" data-scroll-target="#some-quantities-of-interest"><span class="toc-section-number">4.3</span>  Some Quantities of Interest</a></li>
+  <li><a href="#method-of-moments-estimator" id="toc-method-of-moments-estimator" class="nav-link" data-scroll-target="#method-of-moments-estimator"><span class="toc-section-number">4.4</span>  Method of Moments Estimator</a></li>
+  <li><a href="#practice-non-linearity-of-the-regression-line" id="toc-practice-non-linearity-of-the-regression-line" class="nav-link" data-scroll-target="#practice-non-linearity-of-the-regression-line"><span class="toc-section-number">4.5</span>  Practice: (Non-)Linearity of the Regression Line</a></li>
   </ul>
 </nav>
     </div>
@@ -243,8 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \begin{align}
   Y_i=\sum_{k=1}^K\beta_k X_{ik}+\varepsilon_i, \quad i=1,\dots,n.
 \end{align}
-\tag{4.1}\]</span></span></p>
-<p>Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>. In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.<br>
+\tag{4.1}\]</span></span> Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>. In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.<br>
 It is convenient to write <a href="#eq-LinMod">Equation&nbsp;<span>4.1</span></a> using matrix notation <span class="math display">\[\begin{eqnarray*}
   Y_i&amp;=&amp;\underset{(1\times K)}{X_i'}\underset{(K\times 1)}{\beta} +\varepsilon_i, \quad i=1,\dots,n,
 \end{eqnarray*}\]</span> where <span class="math inline">\(X_i=(X_{i1},\dots,X_{iK})'\)</span> and <span class="math inline">\(\beta=(\beta_1,\dots,\beta_K)'\)</span>. Stacking all individual rows <span class="math inline">\(i\)</span> leads to <span class="math display">\[\begin{eqnarray*}\label{LM}
@@ -253,12 +258,9 @@ It is convenient to write <a href="#eq-LinMod">Equation&nbsp;<span>4.1</span></a
 Y=\left(\begin{matrix}Y_1\\ \vdots\\Y_n\end{matrix}\right),\quad X=\left(\begin{matrix}X_{11}&amp;\dots&amp;X_{1K}\\\vdots&amp;\ddots&amp;\vdots\\ X_{n1}&amp;\dots&amp;X_{nK}\\\end{matrix}\right),\quad\text{and}\quad \varepsilon=\left(\begin{matrix}\varepsilon_1\\ \vdots\\ \varepsilon_n\end{matrix}\right).
 \end{equation*}\]</span></p>
 <p><strong>Part (b): Random Sampling</strong></p>
-<p>Moreover, we assume that the observed (“obs”) data points</p>
-<p><span class="math display">\[
+<p>Moreover, we assume that the observed (“obs”) data points <span class="math display">\[
 ((Y_{1,obs},X_{11,obs},\dots,X_{1K,obs}),(Y_{2,obs},X_{21,obs},\dots,X_{2K,obs}),\dots,(Y_{n,obs},X_{n1,obs},\dots,X_{nK,obs}))
-\]</span></p>
-<p>are a realizations of an <strong>independent and identically distributed (i.i.d.)</strong> random sample</p>
-<p><span class="math display">\[
+\]</span> are a realizations of an <strong>independent and identically distributed (i.i.d.)</strong> random sample <span class="math display">\[
 ((Y_{1},X_{11},\dots,X_{1K}),(Y_{2},X_{21},\dots,X_{2K}),\dots,(Y_{n},X_{n1},\dots,X_{nK}))
 \]</span></p>
 <p>That is, the <span class="math inline">\(i\)</span>th observed <span class="math inline">\(K+1\)</span> dimensional data point <span class="math inline">\((Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}\)</span> is a realization of a <span class="math inline">\(K+1\)</span> dimensional random variable <span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1},\)</span> where <span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\)</span> has the identical joint distribution as <span class="math inline">\((Y_{j},X_{j1},\dots,X_{jK})\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and all <span class="math inline">\(j=1,\dots,n\)</span>, and where <span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\)</span> is independent of <span class="math inline">\((Y_{j},X_{j1},\dots,X_{jK})\)</span> for all <span class="math inline">\(i\neq j=1,\dots,n.\)</span></p>
@@ -269,14 +271,11 @@ across $i=1,\dots,n$, but the multivariate random variables $(\varepsilon_i,X_{i
 and $(\varepsilon_j,X_{j1},\dots,X_{jK})$ are independent for all $i\neq j$. -->
 <!-- **Note.:** Of course, in principle, Assumption 1 can be violated; however, in classic econometrics one usually does not bother with a possibly violated model assumption (Assumption 1). In modern econometrics, this is a big deal.  -->
 <!-- The following assumptions are the so-called *classic assumptions* and we will be often concerned about violations of these assumptions.  -->
-<p><strong>Assumption 2: Exogeneity</strong></p>
-<p><span class="math display">\[E(\varepsilon_i|X_i)=0,\quad i=1,\dots,n\]</span></p>
-<p>This assumption demands that the mean of the random error term <span class="math inline">\(\varepsilon_i\)</span> is zero irrespective of the realizations of <span class="math inline">\(X_i\)</span>. Note that together with the random sampling assumption (in Assumption 1) this assumption implies even <strong>strict</strong> exogeneity <span class="math inline">\(E(\varepsilon_i|X) = 0\)</span> since we have independence across <span class="math inline">\(i=1,\dots,n\)</span>. Under strict exogeneity, the mean of <span class="math inline">\(\varepsilon_i\)</span> is zero irrespective of the realizations of <span class="math inline">\(X_1,\dots,X_n\)</span>. The exogeneity assumption is also called “orthogonality assumption” or “mean independence assumption”.</p>
+<p><strong>Assumption 2: Exogeneity</strong> <span class="math display">\[E(\varepsilon_i|X_i)=0,\quad i=1,\dots,n\]</span> This assumption demands that the mean of the random error term <span class="math inline">\(\varepsilon_i\)</span> is zero irrespective of the realizations of <span class="math inline">\(X_i\)</span>. Note that together with the random sampling assumption (in Assumption 1) this assumption implies even <strong>strict</strong> exogeneity <span class="math inline">\(E(\varepsilon_i|X) = 0\)</span> since we have independence across <span class="math inline">\(i=1,\dots,n\)</span>. Under strict exogeneity, the mean of <span class="math inline">\(\varepsilon_i\)</span> is zero irrespective of the realizations of <span class="math inline">\(X_1,\dots,X_n\)</span>. The exogeneity assumption is also called “orthogonality assumption” or “mean independence assumption”.</p>
 <!-- For one example, it cannot be fulfilled when the regressors include lagged dependent variables. -->
 <!-- Notice that in the presence of a constant explanatory variable, setting the expectation to zero is a normalization.  -->
 <p><strong>Assumption 3: Rank Condition (no perfect multicollinearity)</strong></p>
-<p><span class="math display">\[\operatorname{rank}(X)=K\quad\text{a.s.}\]</span></p>
-<p>This assumption demands that the event of one explanatory variable being linearly dependent on the others occurs with a probability equal to zero. (This is the literal translation of the “almost surely (a.s.)” concept.) The assumption implies that <span class="math inline">\(n\geq K\)</span>.</p>
+<p><span class="math display">\[\operatorname{rank}(X)=K\quad\text{a.s.}\]</span> This assumption demands that the event of one explanatory variable being linearly dependent on the others occurs with a probability equal to zero. (This is the literal translation of the “almost surely (a.s.)” concept.) The assumption implies that <span class="math inline">\(n\geq K\)</span>.</p>
 <p>This assumption is a bit dicey and its violation belongs to one of the classic problems in applied econometrics (keywords: multicollinearity, dummy variable trap, variance inflation). The violation of this assumption harms any economic interpretation as we cannot disentangle the explanatory variables’ individual effects on <span class="math inline">\(Y\)</span>. Therefore, this assumption is also often called an <strong>identification assumption</strong>.</p>
 <p><strong>Assumption 4: Error distribution</strong></p>
 <p>Depending on the context (i.e., parameter estimation vs.&nbsp;hypothesis testing and small <span class="math inline">\(n\)</span> vs.&nbsp;large <span class="math inline">\(n\)</span>) there are different more or less restrictive assumptions. Some of the most common ones are the following:</p>
@@ -322,29 +321,22 @@ $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$. -->
 <section id="some-implications-of-the-exogeneity-assumption" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="some-implications-of-the-exogeneity-assumption"><span class="header-section-number">4.1.1</span> Some Implications of the Exogeneity Assumption</h3>
 <div id="thm-a" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.1 (Unconditional Mean) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>, then the also the unconditional mean of the error term is zero, i.e.</p>
-<p><span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 4.1 (Unconditional Mean) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>, then the also the unconditional mean of the error term is zero, i.e. <span class="math display">\[
 E(\varepsilon_i)=0,\quad i=1,\dots,n.
 \]</span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>Using the <em>Law of Total Expectations</em> (i.e., <span class="math inline">\(E[E(Z|X)]=E(Z)\)</span>) we can rewrite <span class="math inline">\(E(\varepsilon_i)\)</span> as</p>
-<p><span class="math display">\[
+<p><span class="proof-title"><em>Proof</em>. </span>Using the <em>Law of Total Expectations</em> (i.e., <span class="math inline">\(E[E(Z|X)]=E(Z)\)</span>) we can rewrite <span class="math inline">\(E(\varepsilon_i)\)</span> as <span class="math display">\[
 E(\varepsilon_i)=E[E(\varepsilon_i|X_i)]
-\]</span></p>
-<p>for all <span class="math inline">\(i=1,\dots,n.\)</span> But the exogeneity assumption yields</p>
-<p><span class="math display">\[
+\]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> But the exogeneity assumption yields <span class="math display">\[
 E[E(\varepsilon_i|X_i)]=E[0]=0
-\]</span></p>
-<p>for all <span class="math inline">\(i=1,\dots,n,\)</span> which completes the proof. <span class="math inline">\(\square\)</span></p>
+\]</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> which completes the proof. <span class="math inline">\(\square\)</span></p>
 </div>
 <p>Generally, two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are said to be <strong>orthogonal</strong> if their cross moment is zero, i.e.&nbsp;if <span class="math inline">\(E(XY)=0\)</span>. Exogeneity is sometimes also called “orthogonality,” due to the following result.</p>
 <div id="thm-b" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.2 (Orthogonality) </strong></span>Under exogeneity, i.e.&nbsp;if <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, the regressors and the error term are orthogonal to each other, i.e,</p>
-<p><span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 4.2 (Orthogonality) </strong></span>Under exogeneity, i.e.&nbsp;if <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, the regressors and the error term are orthogonal to each other, i.e, <span class="math display">\[
 E(X_{ik}\varepsilon_i)=0
-\]</span></p>
-<p>for all <span class="math inline">\(i=1,\dots,n\)</span> and <span class="math inline">\(k=1,\dots,K\)</span>.</p>
+\]</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and <span class="math inline">\(k=1,\dots,K\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><span class="math display">\[\begin{align*}
@@ -352,24 +344,17 @@ E(X_{ik}\varepsilon_i)
 &amp;=E(E(X_{ik}\varepsilon_i|X_{ik}))\quad{\small\text{(By the Law of Total Expectations)}}\\
 &amp;=E(X_{ik}E(\varepsilon_i|X_{ik}))\quad{\small\text{(By the linearity of cond.~expectations)}}
 \end{align*}\]</span> Now, to show that <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span>, we need to show that <span class="math inline">\(E(\varepsilon_i|X_{ik})=0,\)</span> which is done in the following:</p>
-<p>Since <span class="math inline">\(X_{ik}\)</span> is an element of <span class="math inline">\(X_i,\)</span> a slightly more sophisticated use of the <em>Law of Total Expectations</em> (i.e., <span class="math inline">\(E(Y|X)=E(E(Y|X,Z)|X)\)</span>) implies that</p>
-<p><span class="math display">\[
+<p>Since <span class="math inline">\(X_{ik}\)</span> is an element of <span class="math inline">\(X_i,\)</span> a slightly more sophisticated use of the <em>Law of Total Expectations</em> (i.e., <span class="math inline">\(E(Y|X)=E(E(Y|X,Z)|X)\)</span>) implies that <span class="math display">\[
 E(\varepsilon_i|X_{ik})=E(E(\varepsilon_i|X_i)|X_{ik}).
-\]</span></p>
-<p>So, the exogeneity assumption, <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> yields</p>
-<p><span class="math display">\[
+\]</span> So, the exogeneity assumption, <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> yields <span class="math display">\[
 E(\varepsilon_i|X_{ik})=E(\underbrace{E(\varepsilon_i|X_i)}_{=0}|X_{ik})=E(0|X_{ik})=0.
-\]</span></p>
-<p>I.e., we have that <span class="math inline">\(E(\varepsilon_i|X_{ik})=0\)</span> which allows us to conclude that</p>
-<p><span class="math display">\[
+\]</span> I.e., we have that <span class="math inline">\(E(\varepsilon_i|X_{ik})=0\)</span> which allows us to conclude that <span class="math display">\[
 E(X_{ik}\varepsilon_i)=E(X_{ik}E(\varepsilon_i|X_{ik}))=E(X_{ik}0)=0
-\]</span></p>
-<p>which completes the proof. <span class="math inline">\(\square\)</span></p>
+\]</span> which completes the proof. <span class="math inline">\(\square\)</span></p>
 </div>
 <p>Because the mean of the error term is zero (<span class="math inline">\(E(\varepsilon_i)=0\)</span> for all <span class="math inline">\(i\)</span> (see <a href="#thm-a">Theorem&nbsp;<span>4.1</span></a>), it follows that the orthogonality property, <span class="math inline">\(E(X_{ik}\varepsilon_i)=0,\)</span> is equivalent to a zero correlation property.</p>
 <div id="thm-c" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.3 (No Correlation) </strong></span></p>
-<p>If <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, then <span class="math display">\[\begin{eqnarray*}
+<p><span class="theorem-title"><strong>Theorem 4.3 (No Correlation) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, then <span class="math display">\[\begin{eqnarray*}
   Cov(\varepsilon_i,X_{ik})&amp;=&amp;0\quad\text{for all}\quad i=1,\dots,n\quad\text{and}\quad k=1,\dots,K.
 \end{eqnarray*}\]</span></p>
 </div>
@@ -388,20 +373,15 @@ E(X_{ik}\varepsilon_i)=E(X_{ik}E(\varepsilon_i|X_{ik}))=E(X_{ik}0)=0
 <h2 data-number="4.2" class="anchored" data-anchor-id="deriving-the-expression-of-the-ols-estimator"><span class="header-section-number">4.2</span> Deriving the Expression of the OLS Estimator</h2>
 <p>We derive the expression for the OLS estimator <span class="math inline">\(\hat\beta=(\hat\beta_1,\dots,\hat\beta_K)'\in\mathbb{R}^K\)</span> as the vector-valued minimizing argument of the sum of squared residuals, <span class="math inline">\(S_n(b)\)</span> with <span class="math inline">\(b\in\mathbb{R}^K\)</span>, for a given sample <span class="math inline">\(((Y_1,X_1),\dots,(Y_n,X_n))\)</span>. In matrix terms this is <span class="math display">\[\begin{align*}
 S_n(b)&amp;=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
-\end{align*}\]</span> To find the minimizing argument <span class="math display">\[\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)\]</span> we compute all partial derivatives</p>
-<p><span class="math display">\[
+\end{align*}\]</span> To find the minimizing argument <span class="math display">\[\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)\]</span> we compute all partial derivatives <span class="math display">\[
 \begin{aligned}
 \underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &amp;=-2\left(X^{\prime}Y -X^{\prime} Xb\right).
 \end{aligned}
-\]</span></p>
-<p>and set them equal to zero which leads to <span class="math inline">\(K\)</span> linear equations (the “normal equations”) in <span class="math inline">\(K\)</span> unknowns. This system of equations defines the OLS estimates, <span class="math inline">\(\hat{\beta}\)</span>, for a given data-set:</p>
-<p><span class="math display">\[
+\]</span> and set them equal to zero which leads to <span class="math inline">\(K\)</span> linear equations (the “normal equations”) in <span class="math inline">\(K\)</span> unknowns. This system of equations defines the OLS estimates, <span class="math inline">\(\hat{\beta}\)</span>, for a given data-set: <span class="math display">\[
 \begin{aligned}
 -2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)=\underset{(K\times 1)}{0}.
 \end{aligned}
-\]</span></p>
-<p>From our rank assumption (Assumption 3) it follows that <span class="math inline">\(X^{\prime}X\)</span> is an invertible matrix which allows us to solve the equation system by</p>
-<p><span class="math display">\[
+\]</span> From our rank assumption (Assumption 3) it follows that <span class="math inline">\(X^{\prime}X\)</span> is an invertible matrix which allows us to solve the equation system by <span class="math display">\[
 \begin{aligned}
 \underset{(K\times 1)}{\hat{\beta}} &amp;=\left(X^{\prime} X\right)^{-1} X^{\prime} Y
 \end{aligned}
@@ -440,15 +420,11 @@ In matrix notation: <span class="math inline">\(\hat Y=X\underbrace{(X'X)^{-1}X'
 <li>The (OLS) <strong>residuals</strong>: <span class="math inline">\(\hat\varepsilon_i=Y_i-\hat{Y}_i\)</span>. In matrix notation: <span class="math inline">\(\hat\varepsilon=Y-\hat{Y}=\left(I_n-X(X'X)^{-1}X'\right)Y=M_X Y\)</span></li>
 </ul>
 <p><strong>Projection matrices.</strong></p>
-<p>The matrix</p>
-<p><span class="math display">\[
+<p>The matrix <span class="math display">\[
 P_X=X(X'X)^{-1}X'
-\]</span></p>
-<p>is the <span class="math inline">\((n\times n)\)</span> <strong>projection matrix</strong> that projects any vector from <span class="math inline">\(\mathbb{R}^n\)</span> into the column space spanned by the column vectors of <span class="math inline">\(X\)</span> and</p>
-<p><span class="math display">\[
+\]</span> is the <span class="math inline">\((n\times n)\)</span> <strong>projection matrix</strong> that projects any vector from <span class="math inline">\(\mathbb{R}^n\)</span> into the column space spanned by the column vectors of <span class="math inline">\(X\)</span> and <span class="math display">\[
 M_X=I_n-X(X'X)^{-1}X'=I_n-P_X
-\]</span></p>
-<p>is the associated <span class="math inline">\((n\times n)\)</span> <strong>orthogonal projection matrix</strong> that projects any vector from <span class="math inline">\(\mathbb{R}^n\)</span> into the vector space that is orthogonal to that spanned by <span class="math inline">\(X\)</span>.</p>
+\]</span> is the associated <span class="math inline">\((n\times n)\)</span> <strong>orthogonal projection matrix</strong> that projects any vector from <span class="math inline">\(\mathbb{R}^n\)</span> into the vector space that is orthogonal to that spanned by <span class="math inline">\(X\)</span>.</p>
 <p>The projection matrices <span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> have some nice properties:</p>
 <ol type="a">
 <li><span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> are <strong>symmetric</strong>, i.e.&nbsp;<span class="math inline">\(P_X=P_X'\)</span> and <span class="math inline">\(M_X=M_X'\)</span>.</li>
@@ -473,14 +449,11 @@ Y'Y&amp;=&amp;(\hat Y+\hat\varepsilon)'(\hat Y+\hat\varepsilon)\notag\\
   &amp;=&amp;(Y'P_X'+Y'M_X')(P_XY+M_XY)\notag\\
   &amp;=&amp;Y'P_X'P_XY+Y'M_X'M_XY+0\notag\\
   &amp;=&amp;\hat{Y}'\hat{Y}+\hat\varepsilon'\hat\varepsilon
-\end{eqnarray*}\]</span> The decomposition</p>
-<p><span class="math display">\[
+\end{eqnarray*}\]</span> The decomposition <span class="math display">\[
 \hat{Y}'\hat{Y}+\hat\varepsilon'\hat\varepsilon
-\]</span></p>
-<p>is the basis for the well-known variance decomposition result for OLS regressions.</p>
+\]</span> is the basis for the well-known variance decomposition result for OLS regressions.</p>
 <div id="thm-vardecomp" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.4 </strong></span></p>
-<p>For the linear OLS regression model <a href="#eq-LinMod">Equation&nbsp;<span>4.1</span></a> with intercept, the total sample variance of the dependent variable <span class="math inline">\(Y_1,\dots,Y_n\)</span> can be decomposed as following: <span class="math display">\[\begin{eqnarray}
+<p><span class="theorem-title"><strong>Theorem 4.4 </strong></span>For the linear OLS regression model <a href="#eq-LinMod">Equation&nbsp;<span>4.1</span></a> with intercept, the total sample variance of the dependent variable <span class="math inline">\(Y_1,\dots,Y_n\)</span> can be decomposed as following: <span class="math display">\[\begin{eqnarray}
 \underset{\text{total sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}&amp;=&amp;\underset{\text{explained sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}+\underset{\text{unexplained sample variance}}{\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2,}\label{VarDecomp}
 \end{eqnarray}\]</span> where <span class="math inline">\(\bar{Y}=\frac{1}{n}\sum_{i=1}^nY_i\)</span> and <span class="math inline">\(\bar{\hat{Y}}=\frac{1}{n}\sum_{i=1}^n\hat{Y}_i\)</span>.</p>
 </div>
@@ -529,8 +502,7 @@ R^2=\frac{\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}{\sum_{i=1}^n\left(
 </section>
 <section id="method-of-moments-estimator" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="method-of-moments-estimator"><span class="header-section-number">4.4</span> Method of Moments Estimator</h2>
-<p>The methods of moments estimator exploits the exogeneity assumption that <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> (Assumption 2). Remember that <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> implies that <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and all <span class="math inline">\(k=1,\dots,K\)</span>. The fundamental idea behind “method of moments estimation” is to use the sample analogues of the population moment restrictions <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span>, <span class="math inline">\(k=1,\dots,K,\)</span> for deriving the estimator:</p>
-<p><span class="math display">\[
+<p>The methods of moments estimator exploits the exogeneity assumption that <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> (Assumption 2). Remember that <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> implies that <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and all <span class="math inline">\(k=1,\dots,K\)</span>. The fundamental idea behind “method of moments estimation” is to use the sample analogues of the population moment restrictions <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span>, <span class="math inline">\(k=1,\dots,K,\)</span> for deriving the estimator: <span class="math display">\[
 \begin{array}{c||c}
 \text{$K$ population moment restrictions\quad}&amp;\text{$K$ sample moment restrictions}\\[2ex]
 \left.\begin{array}{c}
@@ -552,13 +524,182 @@ E(X_{iK}\varepsilon_i)=0
 \right\}\Leftrightarrow \displaystyle\frac{1}{n}\sum_{i=1}^nX_i\hat\varepsilon_i=\underset{(K\times 1)}{0}
 \end{array}
 \]</span></p>
+</section>
+<section id="practice-non-linearity-of-the-regression-line" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="practice-non-linearity-of-the-regression-line"><span class="header-section-number">4.5</span> Practice: (Non-)Linearity of the Regression Line</h2>
+<p>Diagnostic plots</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Base <code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Tidyverse <code>R</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>car_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"https://cdn.rawgit.com/lidom/Teaching_Repo/bc692b56/autodata.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>my_car_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MPG"</span>   <span class="ot">=</span> car_data<span class="sc">$</span>MPG.city,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"HP"</span>    <span class="ot">=</span> car_data<span class="sc">$</span>Horsepower,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"HP_sq"</span> <span class="ot">=</span> car_data<span class="sc">$</span>Horsepower<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>lm_obj_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(MPG <span class="sc">~</span> HP, <span class="at">data =</span> my_car_df)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>lm_obj_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(MPG <span class="sc">~</span> HP <span class="sc">+</span> HP_sq, <span class="at">data =</span> my_car_df)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">y=</span>my_car_df<span class="sc">$</span>MPG, <span class="at">x=</span>my_car_df<span class="sc">$</span>HP, </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Simple Linear Regression"</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Horse Power"</span>, </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Miles per Gallon"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(lm_obj_1)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_obj_1, <span class="at">which=</span><span class="dv">1</span>, </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Simple Linear Regression"</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">y=</span>my_car_df<span class="sc">$</span>MPG, <span class="at">x=</span>my_car_df<span class="sc">$</span>HP,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Polynomial Regression (Degree: 2)"</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Horse Power"</span>, </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Miles per Gallon"</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>X_seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">min</span>(my_car_df<span class="sc">$</span>HP), </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>             <span class="at">to   =</span> <span class="fu">max</span>(my_car_df<span class="sc">$</span>HP), <span class="at">len =</span> <span class="dv">25</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">y =</span> <span class="fu">predict</span>(lm_obj_2, </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                  <span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="st">"HP"</span>    <span class="ot">=</span> X_seq, </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"HP_sq"</span> <span class="ot">=</span> X_seq<span class="sc">^</span><span class="dv">2</span>)), </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> X_seq)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_obj_2, <span class="at">which=</span><span class="dv">1</span>, </span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Polynomial Regression (Degree: 2)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-MultipleReg_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("tidyverse")</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("ggfortify")</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("ggfortify")</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(<span class="st">"tidyverse"</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggfortify"</span>) <span class="co"># tidy diagnostic plots</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>car_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"https://cdn.rawgit.com/lidom/Teaching_Repo/bc692b56/autodata.csv"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>my_car_df <span class="ot">&lt;-</span> car_data <span class="sc">|&gt;</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a> dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MPG"</span>   <span class="ot">=</span> MPG.city, </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"HP"</span>    <span class="ot">=</span> Horsepower, </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"HP_sq"</span> <span class="ot">=</span> Horsepower<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple Linear Regression</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>lm_obj_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(MPG <span class="sc">~</span> HP, <span class="at">data =</span> my_car_df)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot: Simple Linear Regression</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>my_car_df <span class="sc">|&gt;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>HP, <span class="at">y=</span>MPG)) <span class="sc">+</span> </span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">formula =</span> y<span class="sc">~</span>x) <span class="sc">+</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Horse Power"</span>, <span class="at">y =</span> <span class="st">"Miles per Gallon"</span>, </span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Simple Linear Regression"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-MultipleReg_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Diagnostic Plot: Simple Linear Regression </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(lm_obj_1, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-MultipleReg_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Polynomial Regression</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>lm_obj_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(MPG <span class="sc">~</span> HP <span class="sc">+</span> HP_sq, <span class="at">data =</span> my_car_df)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot: Polynomial Regression</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>my_car_df <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>HP, <span class="at">y=</span>MPG)) <span class="sc">+</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">'lm'</span>, <span class="at">formula =</span> y<span class="sc">~</span><span class="fu">poly</span>(x, <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Horse Power"</span>, <span class="at">y =</span> <span class="st">"Miles per Gallon"</span>, </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Polynomial Regression"</span>, </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Polynomial Degree: 2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-MultipleReg_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Diagnostic Plot: Polynomial Regression</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(lm_obj_2, <span class="at">which =</span> <span class="dv">1</span>)     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-MultipleReg_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 
+
+
+::: {.cell}
+
+```{.r .cell-code}
+## install.packages("AER")
+suppressPackageStartupMessages(library("AER"))
+## attach data to R session
+data("HousePrices")
+## names(HousePrices) ## gives variables names
+
+Y     <- HousePrices$price
+Y_log <- log(HousePrices$price)
+
+par(mfrow=c(1,2))
+plot(density(Y), main="", xlab="House Prices")
+curve(dnorm(x, mean=mean(Y), sd(Y)), add=TRUE, col="blue", lwd=1.3)
+legend("topleft", 
+       legend=c("Nonparametric Density Estimate", 
+                "Normal Density Estimate"), col=c("black", "blue"), lwd=1.3)
+plot(density(Y_log), main="", xlab="Log of House Prices")
+curve(dnorm(x, mean=mean(Y_log), sd(Y_log)), add=TRUE, col="blue", lwd=1.3)
+```
+
+::: {.cell-output-display}
+![](04-MultipleReg_files/figure-html/unnamed-chunk-5-1.png){width=672}
+:::
+
+```{.r .cell-code}
+## adding the house prices in logs to the dataset:
+HousePrices$price_log <- Y_log
+
+pairs(HousePrices)
+```
+
+::: {.cell-output-display}
+![](04-MultipleReg_files/figure-html/unnamed-chunk-5-2.png){width=672}
+:::
+:::
+
+
+The following code reads on the `HousePrices` dataset of the `R`-package `AER` and transforms the dependent variable $Y$ to a log-scale, $\log(Y)$, to make it close to normal distributed. 
+
+
+Next we estimate the linear regression model
+
+$$
+\log(Y)_i = \beta_1 + \beta_{lotsize} X_{lotsize,i} + \beta_{bathrooms} + X_{bathrooms,i} + \varepsilon_i
+$$
+
+
+
+
+lm_obj <- lm(price_log ~ lotsize + bathrooms, data = HousePrices)
+
+par(mfrow=c(2,2))
+plot(lm_obj)
+``` -->
 
 
 </section>
-<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1" role="doc-endnote"><p>The <span class="math inline">\(K\)</span> linear restrictions follow from the fact that <span class="math inline">\(X'\hat\varepsilon=0\)</span> are <span class="math inline">\(K\)</span> equations <span class="math inline">\(\sum_{i=1}^nX_{ik}\hat\varepsilon_i=0\)</span> for <span class="math inline">\(k=1,\dots,K\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>The <span class="math inline">\(K\)</span> linear restrictions follow from the fact that <span class="math inline">\(X'\hat\varepsilon=0\)</span> are <span class="math inline">\(K\)</span> equations <span class="math inline">\(\sum_{i=1}^nX_{ik}\hat\varepsilon_i=0\)</span> for <span class="math inline">\(k=1,\dots,K\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -632,7 +773,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

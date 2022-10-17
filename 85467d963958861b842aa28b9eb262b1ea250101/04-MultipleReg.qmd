@@ -451,4 +451,150 @@ $$
 
 
 
+## Practice: (Non-)Linearity of the Regression Line
 
+Diagnostic plots 
+
+::: {.panel-tabset}
+
+## Base `R`
+
+```{r}
+car_data <- read.csv(file = "https://cdn.rawgit.com/lidom/Teaching_Repo/bc692b56/autodata.csv")
+
+my_car_df <- data.frame(
+    "MPG"   = car_data$MPG.city,
+    "HP"    = car_data$Horsepower,
+    "HP_sq" = car_data$Horsepower^2
+)
+
+lm_obj_1 <- lm(MPG ~ HP, data = my_car_df)
+lm_obj_2 <- lm(MPG ~ HP + HP_sq, data = my_car_df)
+
+par(mfrow=c(2,2))
+plot(y=my_car_df$MPG, x=my_car_df$HP, 
+     main = "Simple Linear Regression",
+     xlab = "Horse Power", 
+     ylab = "Miles per Gallon")
+abline(lm_obj_1)
+plot(lm_obj_1, which=1, 
+       main = "Simple Linear Regression")
+plot(y=my_car_df$MPG, x=my_car_df$HP,
+     main = "Polynomial Regression (Degree: 2)",
+     xlab = "Horse Power", 
+     ylab = "Miles per Gallon")
+X_seq <- seq(from = min(my_car_df$HP), 
+             to   = max(my_car_df$HP), len = 25)
+lines(y = predict(lm_obj_2, 
+                  newdata=data.frame("HP"    = X_seq, 
+                                     "HP_sq" = X_seq^2)), 
+      x = X_seq)
+plot(lm_obj_2, which=1, 
+       main = "Polynomial Regression (Degree: 2)")
+```
+
+
+## Tidyverse `R`
+
+```{r}
+## install.packages("tidyverse")
+## install.packages("ggfortify")
+## install.packages("ggfortify")
+suppressPackageStartupMessages(library("tidyverse"))
+library("ggfortify") # tidy diagnostic plots
+
+car_data <- readr::read_csv(
+  file = "https://cdn.rawgit.com/lidom/Teaching_Repo/bc692b56/autodata.csv",
+  show_col_types = FALSE)
+
+
+my_car_df <- car_data |> 
+ dplyr::mutate(
+  "MPG"   = MPG.city, 
+  "HP"    = Horsepower, 
+  "HP_sq" = Horsepower^2
+)
+
+## Simple Linear Regression
+
+lm_obj_1 <- lm(MPG ~ HP, data = my_car_df)
+
+## Plot: Simple Linear Regression
+my_car_df |>
+ggplot(aes(x=HP, y=MPG)) + 
+    geom_point(alpha=0.8, size=3)+
+    stat_smooth(method='lm', formula = y~x) +
+    theme_classic() + 
+    labs(x = "Horse Power", y = "Miles per Gallon", 
+         title = "Simple Linear Regression")
+
+## Diagnostic Plot: Simple Linear Regression 
+autoplot(lm_obj_1, which = 1)
+
+
+## Polynomial Regression
+
+lm_obj_2 <- lm(MPG ~ HP + HP_sq, data = my_car_df)
+
+## Plot: Polynomial Regression
+my_car_df |>
+ggplot(aes(x=HP, y=MPG)) + 
+    geom_point(alpha=0.8, size=3)+
+    stat_smooth(method='lm', formula = y~poly(x, 2, raw = TRUE)) +
+    theme_classic() + 
+    labs(x = "Horse Power", y = "Miles per Gallon", 
+         title = "Polynomial Regression", 
+         subtitle = "Polynomial Degree: 2")
+
+## Diagnostic Plot: Polynomial Regression
+autoplot(lm_obj_2, which = 1)     
+```
+
+
+:::
+
+<!-- 
+
+```{r}
+## install.packages("AER")
+suppressPackageStartupMessages(library("AER"))
+## attach data to R session
+data("HousePrices")
+## names(HousePrices) ## gives variables names
+
+Y     <- HousePrices$price
+Y_log <- log(HousePrices$price)
+
+par(mfrow=c(1,2))
+plot(density(Y), main="", xlab="House Prices")
+curve(dnorm(x, mean=mean(Y), sd(Y)), add=TRUE, col="blue", lwd=1.3)
+legend("topleft", 
+       legend=c("Nonparametric Density Estimate", 
+                "Normal Density Estimate"), col=c("black", "blue"), lwd=1.3)
+plot(density(Y_log), main="", xlab="Log of House Prices")
+curve(dnorm(x, mean=mean(Y_log), sd(Y_log)), add=TRUE, col="blue", lwd=1.3)
+
+
+## adding the house prices in logs to the dataset:
+HousePrices$price_log <- Y_log
+
+pairs(HousePrices)
+```
+
+The following code reads on the `HousePrices` dataset of the `R`-package `AER` and transforms the dependent variable $Y$ to a log-scale, $\log(Y)$, to make it close to normal distributed. 
+
+
+Next we estimate the linear regression model
+
+$$
+\log(Y)_i = \beta_1 + \beta_{lotsize} X_{lotsize,i} + \beta_{bathrooms} + X_{bathrooms,i} + \varepsilon_i
+$$
+
+
+
+```{r}
+lm_obj <- lm(price_log ~ lotsize + bathrooms, data = HousePrices)
+
+par(mfrow=c(2,2))
+plot(lm_obj)
+``` -->
