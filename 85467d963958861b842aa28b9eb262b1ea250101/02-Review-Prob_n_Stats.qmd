@@ -49,12 +49,12 @@ If every element of $A$ is also contained in $B$ we write $A \subset B$ or, equi
 $$
 \begin{array}{ll}
 \Omega & \text { sample space } \\
-\omega & \text { outcome }\\
+\omega & \text { outcome, elementary event, realization}\\
 A      & \text { event (subset of } \Omega) \\
 |A|    & \text { number of points in } A \text { (if } A \text { is finite) }\\
 A^{c}  & \text { complement of } A (\operatorname{not} A)\\
 A \cup B &\text{ union }(A\text{ or }B)\\
-A \cap B &\text{ intersection }(A \text { and } B);\text{ short notation: }AB\text{ or }A,B\\
+A \cap B &\text{ intersection }(A \text { and } B);\text{ short notations: }AB\text{ or }A,B\\
 A \subset B &\text{ set inclusion }(A \text{ is a subset of or equal to }B)\\
 \emptyset   &\text{ null event (always false)}\\
 \Omega      &\text{ true event (always true)}
