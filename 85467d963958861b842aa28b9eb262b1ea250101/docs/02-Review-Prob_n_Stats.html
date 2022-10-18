@@ -244,7 +244,7 @@ div.csl-indent {
   <li><a href="#conditional-means" id="toc-conditional-means" class="nav-link" data-scroll-target="#conditional-means"><span class="toc-section-number">2.2.5</span>  Conditional Means</a></li>
   <li><a href="#means-of-transformed-random-variables-and-moments" id="toc-means-of-transformed-random-variables-and-moments" class="nav-link" data-scroll-target="#means-of-transformed-random-variables-and-moments"><span class="toc-section-number">2.2.6</span>  Means of Transformed Random Variables and Moments</a></li>
   <li><a href="#independent-random-variables" id="toc-independent-random-variables" class="nav-link" data-scroll-target="#independent-random-variables"><span class="toc-section-number">2.2.7</span>  Independent Random Variables</a></li>
-  <li><a href="#i.i.d.-samples" id="toc-i.i.d.-samples" class="nav-link" data-scroll-target="#i.i.d.-samples"><span class="toc-section-number">2.2.8</span>  I.I.D. Samples</a></li>
+  <li><a href="#random-samples" id="toc-random-samples" class="nav-link" data-scroll-target="#random-samples"><span class="toc-section-number">2.2.8</span>  Random Samples</a></li>
   <li><a href="#some-important-discrete-random-variables" id="toc-some-important-discrete-random-variables" class="nav-link" data-scroll-target="#some-important-discrete-random-variables"><span class="toc-section-number">2.2.9</span>  Some Important Discrete Random Variables</a></li>
   <li><a href="#some-important-continuous-random-variables" id="toc-some-important-continuous-random-variables" class="nav-link" data-scroll-target="#some-important-continuous-random-variables"><span class="toc-section-number">2.2.10</span>  Some Important Continuous Random Variables</a></li>
   </ul></li>
@@ -352,7 +352,8 @@ P\left(H_{1} \cup H_{2}\right)=P\left(H_{1}\right)+P\left(H_{2}\right)-P\left(H_
 \]</span></p>
 <section id="probabilities-as-frequencies" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="probabilities-as-frequencies">Probabilities as frequencies</h4>
-<p>One can interpret <span class="math inline">\(P(A)\)</span> in terms of <strong>frequencies</strong>. That is, <span class="math inline">\(P(A)\)</span> is the (infinitely) long run proportion of times that <span class="math inline">\(A\)</span> is true in repetitions. For example, if we say that the probability of heads is <span class="math inline">\(1 / 2\)</span>, i.e <span class="math inline">\(P(H)=1/2\)</span> we mean that if we flip the coin many times then the proportion of times we get heads tends to <span class="math inline">\(1 / 2\)</span> as the number of tosses increases. An infinitely long, unpredictable sequence of tosses whose limiting proportion tends to a constant is an idealization, much like the idea of a straight line in geometry. The following <code>R</code> codes approximates the probability <span class="math inline">\(P(H)=1/2\)</span> using 5, 50 and 5,000 many (pseudo) random coin flips:</p>
+<p>One can interpret <span class="math inline">\(P(A)\)</span> in terms of <strong>frequencies</strong>. That is, <span class="math inline">\(P(A)\)</span> is the (infinitely) long run proportion of times that <span class="math inline">\(A\)</span> is true in repetitions. For example, if we say that the probability of heads is <span class="math inline">\(1 / 2\)</span>, i.e <span class="math inline">\(P(H)=1/2\)</span> we mean that if we flip the coin many times then the proportion of times we get heads tends to <span class="math inline">\(1 / 2\)</span> as the number of tosses increases. An infinitely long, unpredictable sequence of tosses whose limiting proportion tends to a constant is an idealization, much like the idea of a straight line in geometry.</p>
+<p>The following <code>R</code> codes approximates the probability <span class="math inline">\(P(H)=1/2\)</span> using 5, 50 and 5,000 many (pseudo) random coin flips:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">869</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 (fair) coin-flip:</span></span>
@@ -711,19 +712,22 @@ E(r(X))=\int r(x) f_{X}(x)dx.
 \mu^c_{k}=\mathrm{E}\left[(X-\mathrm{E}[X])^{k}\right]=\int_{-\infty}^{+\infty}(x-\mu)^{k} f_X(x)d x,
 \]</span> where <span class="math inline">\(\mu=E(X)\)</span>.</p></li>
 </ul>
-<p><strong>Note:</strong> Moments determine the tail of a distribution (but not much else); see <span class="citation" data-cites="LB2000">Lindsay and Basak (<a href="#ref-LB2000" role="doc-biblioref">2000</a>)</span>. Roughly: The more moments a distribution has the faster converge its tails to zero. Distributions with compact supports (e.g.&nbsp;the uniform distribution <span class="math inline">\(U[a,b]\)</span>) have infinitely many moments. The Normal distribution has also infinitely many moments – even though this distribution has not a compact support since <span class="math inline">\(\phi(x)&gt;0\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>. .</p>
+<p><strong>Note:</strong> Moments determine the tail of a distribution (but not much else); see <span class="citation" data-cites="LB2000">Lindsay and Basak (<a href="#ref-LB2000" role="doc-biblioref">2000</a>)</span>. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g.&nbsp;the uniform distribution <span class="math inline">\(U[a,b]\)</span>) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support since <span class="math inline">\(\phi(x)&gt;0\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>.</p>
 <section id="law-of-total-expectation" class="level4" data-number="2.2.6.1">
 <h4 data-number="2.2.6.1" class="anchored" data-anchor-id="law-of-total-expectation"><span class="header-section-number">2.2.6.1</span> Law of Total Expectation</h4>
 <p>As long as we do not fix the values of the conditioning variables, <span class="math inline">\(X_2,\dots,X_d\)</span>, they are random variables. Consequently, the conditional mean is generally itself a random variable <span class="math display">\[
-E(X_1|X_2,\ldots,X_d)=\int x_1 f(x_1\mid X_2,\ldots,X_d)dx_1.
-\]</span> Note that <span class="math inline">\(f(x_1\mid X_2,\ldots,X_d)\)</span> is just a transformation of the random variables <span class="math inline">\(X_2,\dots,X_d\)</span>. So we can easily compute the unconditional mean <span class="math inline">\(E(X_1)\)</span> by taking the mean of <span class="math inline">\(E(X_1|X_2,\ldots,X_d)\)</span> as following, <span class="math display">\[\begin{align*}
+E(X_1|X_2,\ldots,X_d)=\int x_1 f(x_1\mid X_2,\ldots,X_d)dx_1
+\]</span> due to the randomness in <span class="math inline">\(X_2,\ldots,X_d\)</span>.</p>
+<p>Note that <span class="math inline">\(f(x_1\mid X_2,\ldots,X_d)\)</span> is just a transformation of the random variables <span class="math inline">\(X_2,\dots,X_d\)</span>. So we can easily compute the unconditional mean <span class="math inline">\(E(X_1)\)</span> by taking the mean of <span class="math inline">\(E(X_1|X_2,\ldots,X_d)\)</span> as following, <span class="math display">\[\begin{align*}
 &amp;E\big({\color{RedViolet}E(X_1|X_2,\ldots,X_d)}\big)=\\
 &amp;=\int\dots\int\;{\color{RedViolet}\int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1}\;f_{X_2,\dots,X_d}(x_2,\ldots,x_d)dx_2\dots dx_d\\
-&amp;=\int x_1 \left(\int\dots\int f(x_1,{\color{blue}x_2,\ldots,x_d}){\color{blue}dx_2\dots dx_d}\right)dx_1\\
-&amp;=\int x_1 f_{X_1}(x_1)dx_1\\
+&amp;=\int x_1 \left({\color{blue}\int\dots\int f(x_1,x_2,\ldots,x_d)dx_2\dots dx_d}\right)dx_1\\
+&amp;=\int x_1 {\color{blue}f_{X_1}(x_1)}dx_1\\
 &amp;=E(X_1).
 \end{align*}\]</span></p>
-<p>The result that <span class="math inline">\(E\big(E(X_1|X_2,\ldots,X_d)\big)=E(X_1)\)</span> is called <strong>law of total expectation</strong> or <strong>law of iterated expectation</strong>.</p>
+<p>The result that <span class="math display">\[
+E\big(E(X_1|X_2,\ldots,X_d)\big)=E(X_1)
+\]</span> is called <strong>law of total expectation</strong> or <strong>law of iterated expectation</strong>.</p>
 </section>
 </section>
 <section id="independent-random-variables" class="level3" data-number="2.2.7">
@@ -735,14 +739,22 @@ E(X_1|X_2,\ldots,X_d)=\int x_1 f(x_1\mid X_2,\ldots,X_d)dx_1.
 <p>The following holds true:</p>
 <ul>
 <li>Two real-valued random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent from each other the marginal density of <span class="math inline">\(X\)</span> equals the conditional density of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span>, <span class="math display">\[f_X(x)=f_{X|Y}(x\mid y)\quad \text{ for all } y\in\mathbb{R}.\]</span> Of course, the same statement applies to the marginal density of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X=x\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>. That is, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are two independent real-valued random variables <span class="math inline">\(f_Y(y)=f_{Y|X}(y\mid x)\)</span> for all <span class="math inline">\(x\in\mathbb{R}.\)</span></li>
-<li>If a real-valued random variable <span class="math inline">\(X\)</span> is independent from a real-valued random variable <span class="math inline">\(Y\)</span>, then the conditional mean of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> equals the unconditional mean of <span class="math inline">\(X\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span> (i.e.&nbsp;the regression function becomes a constant) <span class="math display">\[E(X\mid Y=y)=E(X)\quad \text{ for all } y\in\mathbb{R}.\]</span> Of course, the same statement applies to the conditional mean of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X=x\)</span> for all <span class="math inline">\(x\in\mathbb{R};\)</span> i.e., if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are two independent random variables, then <span class="math inline">\(E(Y\mid X=x)=E(Y)\quad \text{ for all } x\in\mathbb{R}.\)</span> <strong>Cautionary note:</strong> The properties that <span class="math inline">\(E(X\mid Y=y)=E(X)\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span> or that <span class="math inline">\(E(Y\mid X=x)=E(Y)\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>, do <strong>not</strong> imply that <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are independent.</li>
+<li>If a real-valued random variable <span class="math inline">\(X\)</span> is independent from a real-valued random variable <span class="math inline">\(Y\)</span>, then the conditional mean of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> equals the unconditional mean of <span class="math inline">\(X\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span> <span class="math display">\[
+E(X\mid Y=y)=E(X)
+\]</span> and likewise <span class="math display">\[
+E(Y\mid X=x)=E(Y)
+\]</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>.</li>
 </ul>
+<p><strong>Note:</strong> The properties that <span class="math inline">\(E(X\mid Y=y)=E(X)\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span> or that <span class="math inline">\(E(Y\mid X=x)=E(Y)\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>, do <strong>not</strong> imply that <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are independent. It only means that <span class="math inline">\(Y\)</span> has no effect on the mean of <span class="math inline">\(X\)</span>, but it may have, for instance, an effect on the variance of <span class="math inline">\(X\)</span>.</p>
 </section>
-<section id="i.i.d.-samples" class="level3" data-number="2.2.8">
-<h3 data-number="2.2.8" class="anchored" data-anchor-id="i.i.d.-samples"><span class="header-section-number">2.2.8</span> I.I.D. Samples</h3>
-<p>Tradition dictates that the sample size is denoted by the natural number <span class="math inline">\(n\in\{1,2,\dots\}\)</span>. A random sample is a collection <span class="math inline">\(X=(X_{1}, \ldots, X_{n})\)</span> of random variables <span class="math inline">\(X_{1}, \ldots, X_{n}\)</span>. If <span class="math inline">\(X_{1}, \ldots, X_{n}\)</span> are all <strong>independent</strong> from each other and if each random variable has the same marginal distribution, we say that the random sample <span class="math display">\[
-X=(X_{1}, \ldots, X_{n}).
-\]</span> is <strong>i.i.d. (independent and identically distributed).</strong></p>
+<section id="random-samples" class="level3" data-number="2.2.8">
+<h3 data-number="2.2.8" class="anchored" data-anchor-id="random-samples"><span class="header-section-number">2.2.8</span> Random Samples</h3>
+<p>Tradition dictates that the sample size is denoted by the natural number <span class="math inline">\(n\in\{1,2,\dots\}\)</span>. A collection of random variables <span class="math inline">\((X_{1}, \ldots, X_{n})\)</span> is called a <strong>random sample</strong> if its random variables are <strong>i.i.d. (independent and identically distributed)</strong>, i.e., if</p>
+<ol type="1">
+<li><span class="math inline">\(X_{1}, \ldots, X_{n}\)</span> are all <strong>independent</strong> from each other and</li>
+<li><span class="math inline">\(X_{1}, \ldots, X_{n}\)</span> have <strong>identical</strong> marginal distributions, i.e., <span class="math inline">\(X_i\sim F_X\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>.</li>
+</ol>
+<p>In micro-econometrics, random samples are the default sampling scheme. That is, we consider the collected data as a realization of an underlying random sample.</p>
 </section>
 <section id="some-important-discrete-random-variables" class="level3" data-number="2.2.9">
 <h3 data-number="2.2.9" class="anchored" data-anchor-id="some-important-discrete-random-variables"><span class="header-section-number">2.2.9</span> Some Important Discrete Random Variables</h3>

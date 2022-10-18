@@ -121,7 +121,9 @@ $$
 
 #### Probabilities as frequencies {-}
 
-One can interpret $P(A)$ in terms of **frequencies**. That is, $P(A)$ is the (infinitely) long run proportion of times that $A$ is true in repetitions. For example, if we say that the probability of heads is $1 / 2$, i.e $P(H)=1/2$ we mean that if we flip the coin many times then the proportion of times we get heads tends to $1 / 2$ as the number of tosses increases.  An infinitely long, unpredictable sequence of tosses whose limiting proportion tends to a constant is an idealization, much like the idea of a straight line in geometry. \newline
+One can interpret $P(A)$ in terms of **frequencies**. That is, $P(A)$ is the (infinitely) long run proportion of times that $A$ is true in repetitions. For example, if we say that the probability of heads is $1 / 2$, i.e $P(H)=1/2$ we mean that if we flip the coin many times then the proportion of times we get heads tends to $1 / 2$ as the number of tosses increases.  An infinitely long, unpredictable sequence of tosses whose limiting proportion tends to a constant is an idealization, much like the idea of a straight line in geometry. 
+
+
 The following `R` codes approximates the probability $P(H)=1/2$ using 5, 50 and 5,000 many (pseudo) random coin flips:
 ```{r}
 set.seed(869)
@@ -567,7 +569,7 @@ lines(x.s,vals-abs(min(x2)),lty=1,lwd=1, col=gray(.5, 0.5))
 # legend("topright", col=c("darkred","darkorange"), lty=1, legend = c(expression(f[1]),expression(f[2])), bty="n",
 #        title = "Marginal Densities")
 legend("topleft", col="darkgreen", lty=2.1, lwd=.98, 
-legend = expression(f(x[1]~ "|" ~ x[2]==0.7)), bty="n",
+legend = expression(f(x[1]~ "|" ~ X[2]==0.7)), bty="n",
        title = "Conditional Density")
 ```
 
@@ -625,24 +627,32 @@ $$
 where $\mu=E(X)$. 
 
 
-**Note:** Moments determine the tail of a distribution (but not much else); see @LB2000. Roughly: The more moments a distribution has the faster converge its tails to zero. Distributions with compact supports (e.g. the uniform distribution $U[a,b]$) have infinitely many moments. The Normal distribution has also infinitely many moments -- even though this distribution has not a compact support since $\phi(x)>0$ for all $x\in\mathbb{R}$. .
+**Note:** Moments determine the tail of a distribution (but not much else); see @LB2000. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g. the uniform distribution $U[a,b]$) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support since $\phi(x)>0$ for all $x\in\mathbb{R}$. 
+
 
 #### Law of Total Expectation
 
 As long as we do not fix the values of the conditioning variables, $X_2,\dots,X_d$, they are random variables.  Consequently, the conditional mean is generally itself a random variable 
 $$
-E(X_1|X_2,\ldots,X_d)=\int x_1 f(x_1\mid X_2,\ldots,X_d)dx_1. 
+E(X_1|X_2,\ldots,X_d)=\int x_1 f(x_1\mid X_2,\ldots,X_d)dx_1 
 $$
+due to the randomness in $X_2,\ldots,X_d$. 
+
+
 Note that $f(x_1\mid X_2,\ldots,X_d)$ is just a transformation of the random variables $X_2,\dots,X_d$. So we can easily compute the unconditional mean $E(X_1)$ by taking the mean of $E(X_1|X_2,\ldots,X_d)$ as following, 
 \begin{align*}
 &E\big({\color{RedViolet}E(X_1|X_2,\ldots,X_d)}\big)=\\
 &=\int\dots\int\;{\color{RedViolet}\int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1}\;f_{X_2,\dots,X_d}(x_2,\ldots,x_d)dx_2\dots dx_d\\
-&=\int x_1 \left(\int\dots\int f(x_1,{\color{blue}x_2,\ldots,x_d}){\color{blue}dx_2\dots dx_d}\right)dx_1\\
-&=\int x_1 f_{X_1}(x_1)dx_1\\
+&=\int x_1 \left({\color{blue}\int\dots\int f(x_1,x_2,\ldots,x_d)dx_2\dots dx_d}\right)dx_1\\
+&=\int x_1 {\color{blue}f_{X_1}(x_1)}dx_1\\
 &=E(X_1).
 \end{align*}
 
-The result that $E\big(E(X_1|X_2,\ldots,X_d)\big)=E(X_1)$ is called **law of total expectation** or **law of iterated expectation**. 
+The result that 
+$$
+E\big(E(X_1|X_2,\ldots,X_d)\big)=E(X_1)
+$$ 
+is called **law of total expectation** or **law of iterated expectation**. 
 
 
 
@@ -660,23 +670,32 @@ The following holds true:
 $$f_X(x)=f_{X|Y}(x\mid y)\quad \text{ for all } y\in\mathbb{R}.$$
 Of course, the same statement applies to the marginal density of $Y$ given $X=x$ for all $x\in\mathbb{R}$. That is, $X$ and $Y$ are two independent real-valued random variables \textit{if and only if} 
 $f_Y(y)=f_{Y|X}(y\mid x)$ for all $x\in\mathbb{R}.$
-- If a real-valued random variable $X$ is independent from a real-valued random variable $Y$, then the conditional mean of $X$ given $Y=y$ equals the unconditional mean of $X$ for all $y\in\mathbb{R}$ (i.e. the regression function becomes a constant)
-$$E(X\mid Y=y)=E(X)\quad \text{ for all } y\in\mathbb{R}.$$
-Of course, the same statement applies to the conditional mean of $Y$ given $X=x$ for all $x\in\mathbb{R};$ i.e., if $X$ and $Y$ are two independent random variables, then 
-$E(Y\mid X=x)=E(Y)\quad \text{ for all } x\in\mathbb{R}.$\newline
-**Cautionary note:** The properties that $E(X\mid Y=y)=E(X)$ for all $y\in\mathbb{R}$ or that $E(Y\mid X=x)=E(Y)$ for all $x\in\mathbb{R}$, do **not** imply that $Y$ and $X$ are independent. 
-
-
-
-
-
-### I.I.D. Samples 
-
-Tradition dictates that the sample size is denoted by the natural number $n\in\{1,2,\dots\}$. A random sample is a collection $X=(X_{1}, \ldots, X_{n})$ of random variables $X_{1}, \ldots, X_{n}$. If $X_{1}, \ldots, X_{n}$ are all **independent** from each other and if each random variable has the same marginal distribution, we say that the random sample 
+- If a real-valued random variable $X$ is independent from a real-valued random variable $Y$, then the conditional mean of $X$ given $Y=y$ equals the unconditional mean of $X$ for all $y\in\mathbb{R}$ 
 $$
-X=(X_{1}, \ldots, X_{n}). 
+E(X\mid Y=y)=E(X)
 $$
-is **i.i.d. (independent and identically distributed).**
+and likewise
+$$
+E(Y\mid X=x)=E(Y)
+$$
+for all $x\in\mathbb{R}$. 
+
+
+**Note:** The properties that $E(X\mid Y=y)=E(X)$ for all $y\in\mathbb{R}$ or that $E(Y\mid X=x)=E(Y)$ for all $x\in\mathbb{R}$, do **not** imply that $Y$ and $X$ are independent. It only means that $Y$ has no effect on the mean of $X$, but it may have, for instance, an effect on the variance of $X$. 
+
+
+
+
+
+### Random Samples 
+
+Tradition dictates that the sample size is denoted by the natural number $n\in\{1,2,\dots\}$. A collection of random variables $(X_{1}, \ldots, X_{n})$ is called a **random sample** if its random variables are **i.i.d. (independent and identically distributed)**, i.e., if
+
+1. $X_{1}, \ldots, X_{n}$ are all **independent** from each other and 
+2. $X_{1}, \ldots, X_{n}$ have **identical** marginal distributions, i.e., $X_i\sim F_X$ for all $i=1,\dots,n$. 
+
+In micro-econometrics, random samples are the default sampling scheme. That is, we consider the collected data as a realization of an underlying random sample. 
+
 
 ### Some Important Discrete Random Variables
 
