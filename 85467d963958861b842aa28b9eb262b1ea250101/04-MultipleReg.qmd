@@ -10,9 +10,9 @@ the in-principle random explanatory variable $X$.
 
 ## Assumptions
 
-The multiple linear regression model is defined by the following assumptions:
+The multiple linear regression model is defined by the following assumptions which together describe the relevant theoretical aspects of the underlying data generating process:
 
-**Assumption 1: Data Generating Process**
+**Assumption 1: Model and Sampling**
 
 **Part (a): Linear Model**
 
