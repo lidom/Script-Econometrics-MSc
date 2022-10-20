@@ -12,9 +12,9 @@ the in-principle random explanatory variable $X$.
 
 The multiple linear regression model is defined by the following assumptions:
 
-**Assumption 1: The Linear Model Assumption (Data Generating Process)**
+**Assumption 1: Data Generating Process**
 
-**Part (a): Model**
+**Part (a): Linear Model**
 
 $$
 \begin{align}
