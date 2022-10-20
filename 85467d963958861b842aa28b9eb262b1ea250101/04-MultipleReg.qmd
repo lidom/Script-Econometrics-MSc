@@ -148,6 +148,7 @@ The exogeneity assumption (Assumption 2: Exogeneity) requires that the condition
 **Example:** $\varepsilon_i|X_i\sim U[-0.5|X_{i2}|, 0.5|X_{i2}|],$ with $X_{i2}\sim U[-4,4]$. This error term is mean independent of $X_i$ since $E(\varepsilon_i|X_i)=0$, but it has a heteroskedastic conditional variance since $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$ depends on $X_i$. 
 
 
+
 Sometimes, we need to be more restrictive by assuming that also the variances of the error terms $\varepsilon_i$ are independent from $X_i$. (Higher moments may still depend on $X_i$.) This assumption leads to "homoskedastic" error terms. 
 
 
