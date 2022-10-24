@@ -1053,4 +1053,11 @@ $$
 W/M \sim F_{M,\infty} \quad\text{with}\quad W \sim \chi^2_M.
 $$
 
-# References {-}
+
+## Exercises
+
+The following link downloads a PDF-file containing the exercises for this chapter. 
+
+[Exercises of Chapter 2]("Exercises/Ch2_Exercises.pdf")
+
+## References {-}
