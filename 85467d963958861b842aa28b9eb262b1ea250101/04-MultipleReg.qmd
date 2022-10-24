@@ -103,7 +103,7 @@ This exogeneity assumption is also called "orthogonality assumption" or "mean in
 $$\operatorname{rank}(X)=K\quad\text{a.s.}$$
 This assumption demands that the event of one explanatory variable being linearly dependent on the others occurs with a probability equal to zero. (This is the literal translation of the "almost surely (a.s.)" concept.) The assumption implies that $n\geq K$. 
 
-This assumption is a bit dicey and its violation belongs to one of the classic problems in applied econometrics (keywords: multicollinearity, dummy variable trap, variance inflation).  The violation of this assumption harms any economic interpretation as we cannot disentangle the explanatory variables' individual effects on $Y$. Therefore, this assumption is also often called an "identification assumption."
+This assumption is a bit dicey and its violation belongs to one of the classic problems in applied econometrics (keywords: dummy variable trap, multicollinearity, variance inflation).  The violation of this assumption harms any economic interpretation as we cannot disentangle the explanatory variables' individual effects on $Y$. Therefore, this assumption is also often called an "identification assumption."
 
 
 **Assumption 4: Error distribution** 
@@ -112,9 +112,9 @@ Depending on the context (i.e., parameter estimation vs. hypothesis testing and 
 
 - **Conditional Distribution:** $\varepsilon_i|X_i \sim f_{\varepsilon|X}$ for all $i=1,\dots,n$ and for any distribution $f_{\varepsilon|X}$ such that $\varepsilon_i|X_i$ has two (or more) finite moments.
 - **Conditional Normal Distribution:** $\varepsilon_i|X_i \sim \mathcal{N}(0,\sigma^2(X_i))$ for all $i=1,\dots,n$.
-- **i.i.d.:** $\varepsilon_i\overset{\operatorname{i.i.d.}}{\sim}f_\varepsilon$  for all $i=1,\dots,n$ and for any distribution $f_\varepsilon$ such that $\varepsilon_i$ has two (or more) finite moments. Assuming that the error terms $\varepsilon_i$ are themselves i.i.d. across $i=1,\dots,n$ implies that they do not depend on $X_i$. 
-- **i.i.d. Normal:** As above, but with $f=\mathcal{N}(0,1)$, i.e., $\varepsilon_i\overset{\operatorname{i.i.d.}}{\sim}\mathcal{N}(0,\sigma^2)$ for all $i=1,\dots,n$. 
-- **Spherical errors ("Gauss-Markov assumptions"):** The conditional distributions of  $\varepsilon_i|X_i$ may generally depend on $X_i$, but without affecting the second moments such that
+- **Independence between error and predictors:** $\varepsilon_i\sim f_\varepsilon$ such that $f_\varepsilon=f_{\varepsilon|X}$ and such that $f_\varepsilon$ has two (or more) finite moments.  
+- **Independence between error and predictors and normal:** As above, but with $f_\varepsilon=\mathcal{N}(0,\sigma^2)$. 
+- **Spherical errors ("Gauss-Markov assumptions"):** The conditional distributions of  $\varepsilon_i|X_i$ may generally depend on $X_i$, but such that
 \begin{align*}
 E(\varepsilon_i^2|X_i)         &=\sigma^2>0\quad\text{for all }i=1,\dots,n\\
 E(\varepsilon_i\varepsilon_j|X)&=0\quad\text{for all }i\neq j\quad\text{with}\quad i=1,\dots,n\quad\text{and}\quad j=1,\dots,n.
@@ -372,7 +372,7 @@ $$
 is the basis for the well-known variance decomposition result for OLS regressions. 
 
 ::: {#thm-vardecomp}
-For the linear OLS regression model @eq-LinMod with intercept, the total sample variance of the dependent variable $Y_1,\dots,Y_n$ can be decomposed as following:
+For the linear regression model with intercept (@eq-LinMod), the total sample variance of the dependent variable $Y_1,\dots,Y_n$ can be decomposed as following:
 \begin{eqnarray}
 \underset{\text{total sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}&=&\underset{\text{explained sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}+\underset{\text{unexplained sample variance}}{\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2,}\label{VarDecomp}
 \end{eqnarray}
@@ -406,10 +406,10 @@ R^2=\frac{\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}{\sum_{i=1}^n\left(
 Obviously, we have that $0\leq R^2\leq 1$. The closer $R^2$ lies to $1$, the better is the fit of the model to the observed data. However, a high/low $R^2$ does not mean a validation/falsification of the estimated model. Any relation (i.e., model assumption) needs a plausible explanation from relevant economic theory.  The most often criticized disadvantage of the $R^2$ is that additional regressors (relevant or not) will always increase the $R^2$. Here is an example of the problem.
 ```{r}
 set.seed(123)
-n     <- 100               # Sample size
-X     <- runif(n, 0, 10)   # Relevant X variable
-X_ir  <- runif(n, 5, 20)   # Irrelevant X variable
-error <- rt(n, df = 10)*10  # True error
+n     <- 100                  # Sample size
+X     <- runif(n, 0, 10)      # Relevant X variable
+X_ir  <- runif(n, 5, 20)      # Irrelevant X variable
+error <- rt(n, df = 10)*10    # True error
 Y     <- 1 + 5 * X + error    # Y variable
 lm1   <- summary(lm(Y~X))     # Correct OLS regression 
 lm2   <- summary(lm(Y~X+X_ir))# OLS regression with X_ir 
@@ -430,35 +430,222 @@ The adjustment is in terms of the degrees of freedom $n-K$.
 
 ## Method of Moments Estimator
 
-The methods of moments estimator exploits the exogeneity assumption that $E(\varepsilon_i|X_i)=0$ for all $i=1,\dots,n$ (Assumption 2). Remember that $E(\varepsilon_i|X_i)=0$ implies that $E(X_{ik}\varepsilon_i)=0$ for all $i=1,\dots,n$ and all $k=1,\dots,K$.  The fundamental idea behind "method of moments estimation" is to use the sample analogues of the population moment restrictions $E(X_{ik}\varepsilon_i)=0$, $k=1,\dots,K,$ for deriving the estimator: 
+Remember that the exogeneity assumption (Assumption 2), $E(\varepsilon_i|X_i)=0,$ implies that $E(X_{ik}\varepsilon_i)=0$ for all $k=1,\dots,K$. Thus, the exogeneity assumption gives us a system of $K$ linear equations:
 $$
-\begin{array}{c||c}
-\text{$K$ population moment restrictions\quad}&\text{$K$ sample moment restrictions}\\[2ex]
-\left.\begin{array}{c}
-E(\varepsilon_i)=0\\
-E(X_{i2}\varepsilon_i)=0\\
-\vdots\\
-E(X_{iK}\varepsilon_i)=0
-\end{array}
-\right\}\Leftrightarrow E(X_i\varepsilon_i)=\underset{(K\times 1)}{0} &
-\left.\begin{array}{c}
-\displaystyle
-\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i=0\\
-\displaystyle
-\frac{1}{n}\sum_{i=1}^nX_{i2}\hat\varepsilon_i=0\\
-\vdots\\
-\displaystyle
-\frac{1}{n}\sum_{i=1}^nX_{iK}\hat\varepsilon_i=0\\
-\end{array}
-\right\}\Leftrightarrow \displaystyle\frac{1}{n}\sum_{i=1}^nX_i\hat\varepsilon_i=\underset{(K\times 1)}{0}
-\end{array}
+\left.
+  \begin{array}{c}
+  E(\varepsilon_i)=0\\
+  E(X_{i2}\varepsilon_i)=0\\
+  \vdots\\
+  E(X_{iK}\varepsilon_i)=0
+  \end{array}
+\right\}\Leftrightarrow \underset{(K\times 1)}{E(X_i\varepsilon_i)}=\underset{(K\times 1)}{0}
 $$
 
+The linear equation system
+$$
+\underset{(K\times 1)}{E(X_i\varepsilon_i)}=\underset{(K\times 1)}{0}
+$$ 
+allows us to identify the unknown parameter vector $\beta\in\mathbb{R}^K$ in terms of population moments:
+$$
+\begin{align*}
+E(X_i(\overbrace{Y_i - X_i'\beta}^{=\varepsilon_i})) &= 0\\
+%\Leftrightarrow \hspace{1.5cm}
+E(X_iY_i) - E(X_iX_i')\beta & = 0\\
+E(X_iX_i')\beta & =  E(X_iY_i)  \\
+\beta & = \left(E(X_iX_i')\right)^{-1} E(X_iY_i)  \\
+\end{align*}
+$$
+The fundamental idea behind "method of moments estimation" is to define an estimator by substituting population moments by sample moment analogues (sample means):
+$$
+\begin{align*}
+\hat\beta_{mm} 
+& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i,
+\end{align*}
+$$
+where $\hat\beta_{mm}$ can be simplified as following:
+$$
+\begin{align*}
+\hat\beta_{mm} 
+& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i  \\
+& = \left(\sum_{i=1}^n X_iX_i'\right)^{-1} \sum_{i=1}^n X_iY_i\\ 
+& = \left(X'X\right)^{-1} X'Y.\\ 
+\end{align*}
+$$
+
+Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS estimator.
 
 
-## Practice: (Non-)Linearity of the Regression Line
 
-Diagnostic plots 
+
+
+## Practice
+
+
+### Factor Variables and the Dummy-Variable Trap
+
+In the following, we consider simple linear regression model that aims to predict wages in the year 2008 using gender as the only predictor. We use data provided in the accompanying materials of Stock and Watson's *Introduction to Econometrics* textbook [@stock2015]. You can download the data stored as an xlsx-file `cps_ch3.xlsx` [HERE](https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps92_12.xlsx). 
+
+
+Let us first prepare the dataset:
+```{r}
+## load the 'tidyverse' package
+suppressPackageStartupMessages(library("tidyverse"))
+## load the 'readxl' package
+library("readxl")
+
+## import the data into R
+cps <- read_excel(path = "data/cps_ch3.xlsx")
+
+# names(cps)
+# range(cps$year)
+# range(cps$a_sex) # 1 = male, 2 = female
+
+cps_2008 <- cps %>% 
+  mutate(
+    wage   = ahe08,
+    gender = fct_recode(as_factor(a_sex), "male" = "1", "female" = "2") 
+  ) %>%  
+  filter(year == 2008) %>%
+  select(wage, gender) 
+```
+
+The first six lines of the dataset look as following:
+```{r, echo=FALSE}
+suppressPackageStartupMessages(library("kableExtra"))
+head(cps_2008) %>% kbl() %>%  kable_styling()
+
+```
+
+Computing the estimation results:
+```{r, echo=TRUE, eval=FALSE}
+lm_obj <- lm(wage ~ gender, data = cps_2008)
+
+coef(lm_obj)
+```
+
+```{r, echo=FALSE, eval=TRUE}
+lm_obj <- lm(wage ~ gender, data = cps_2008)
+```
+
+gives
+
+* $\hat\beta_1=$ `r round(coef(lm_obj)[1], 2)`
+* $\hat\beta_2=$ `r round(coef(lm_obj)[2], 2)`
+
+To compute these estimation results, one needs to assign a numeric 0/1 coding to the factor levels `male` and `female` of the factor variable `gender`. To see the numeric values used by `R` one can take a look at `model.matrix(lm_obj)`:
+```{r}
+X <- model.matrix(lm_obj) # this is the internally used X-matrix
+X[1:6,]
+
+cps_2008$gender[1:6]
+```
+
+Thus `R` internally codes `female` subjects by a 1 and `male` subjects by a 0, such that
+$$
+\hat\beta_1  + \hat\beta_2 X_{i,gender}=\left\{\begin{array}{ll}\hat\beta_1&\text{ if }X_{i,gender}=\text{male}\\\hat\beta_1 + \hat\beta_2&\text{ if }X_{i,gender}=\text{female}\end{array} \right.
+$$
+
+Interpretation: 
+
+* The average wage of male workers in 2008 was $\hat{\beta}_1=$ `r round(coef(lm_obj)[1], 2)` (USD/Hour).
+* The average wage of female workers in 2008 was $\hat{\beta}_1 + \hat{\beta}_2=$ `r round(sum(coef(lm_obj)), 2)` (USD/Hour).
+* The difference in the earnings between male and female works in 2008 is $\hat{\beta}_2=$ `r round(coef(lm_obj)[2], 2)` (USD/Hour).
+
+
+### Dummy-Variable Trap {-}
+
+Above, we used `R`'s internal handling of factor variables which you should always do. If you construct a dummy variable for each of the levels of a factor yourself, however, you may blundered into the dummy variable trap:
+```{r}
+## Intercept variable
+X_1      <- rep(1, times = nrow(cps_2008))
+
+## 1. Dummy variable for 'female'
+X_female <- ifelse(cps_2008$gender == "female", 1, 0)
+
+## 2. Dummy variable for 'male'
+X_male   <- ifelse(cps_2008$gender == "male", 1, 0)
+
+## Construct the model matrix 'X'
+X        <- cbind(X_1, X_female, X_male)
+```
+
+```{r, echo = FALSE, eval = TRUE}
+## Dependent variable
+Y        <- cps_2008$wage
+```
+
+Computing the estimation result for $\beta$ "by hand" yields
+
+```{r, echo=TRUE, eval=FALSE}
+## Dependent variable
+Y        <- cps_2008$wage
+
+## Computing the estimator
+beta_hat <- solve(t(X) %*% X) %*% t(X) %*% Y
+```
+
+```{r, echo=TRUE, eval=FALSE}
+Error in solve.default(X %*% t(X)) : 
+  Lapack routine dgesv: system is exactly singular: U[3,3] = 0
+Calls: .main ... eval_with_user_handlers -> eval -> eval -> solve -> solve.default
+Execution halted
+```
+
+<font color="#FF0000">An error message!</font> We blundered into the dummy variable trap 🤬 
+
+The estimation result is not computable since $(X'X)$ is not invertible due to the perfect multicollinearity between the intercept and the two dummy variables `X_female` and `X_male` 
+<center>
+`X_1` = `X_female` $+$ `X_male` 
+</center>
+which violates Assumption 3 (no perfect multicollinearity). 
+
+
+**Solution:** Use one dummy-variable less than factor levels. I.e., in this example you can either drop `X_female` or `X_male`. 
+
+```{r}
+## New model matrix after dropping X_male:
+X        <- cbind(X_1, X_female)
+
+## Computing the estimator
+beta_hat <- solve(t(X) %*% X) %*% t(X) %*% Y
+beta_hat
+```
+
+This give the same result as computed by `R`'s `lm()` function using the factor variable `gender`.
+
+
+### Detecting Heteroskedasticity
+
+A very simple, but highly effective way to check for heteroskedastic error terms is to plot the residuals. If we have the correct model (hopefully we have), then (and only then) the residuals are good approximations to the realizations of the error terms $\varepsilon_i$. Thus a plot of the residuals can be used to check for heteroskedasticity. 
+
+You can use `R`'s internal diagnostic plots that can be called using the `plot()` method for `lm`-objects:
+
+```{r}
+# install.packages("devtools")
+# library(devtools)
+# install_git("https://github.com/ccolonescu/PoEdata")
+
+library(PoEdata) #for PoE4 datasets)
+
+data("food")
+
+lm_object <- lm(food_exp ~ income, data = food)
+
+plot(lm_object, which = 1)
+```
+
+Interpretation: 
+
+* The diagnostic plot indicates that the variance increases with income.
+
+The plot shows the residuals $\hat{\varepsilon}_i$ plotted against the fitted values $\hat{Y}_i$. Plotting against the fitted values is actually a quite smart idea since this also works for multiple predictors $X_{i1},\dots,X_{iK}$ with $K\geq 3$. 
+
+
+
+### Checking (Non-)Linearity of the Regression Line
+
+To check whether there are non-linear relationships between the outcome and the predictors, on should take a look at the data, using a pairs-plot function that procures scatter plots for all pairs of variables in a dataset. 
 
 ::: {.panel-tabset}
 
@@ -469,21 +656,97 @@ car_data <- read.csv(file = "https://cdn.rawgit.com/lidom/Teaching_Repo/bc692b56
 
 my_car_df <- data.frame(
     "MPG"   = car_data$MPG.city,
-    "HP"    = car_data$Horsepower,
-    "HP_sq" = car_data$Horsepower^2
-)
+    "HP"    = car_data$Horsepower
+    )
 
+pairs(my_car_df)
+```
+
+
+## Tidyverse `R`
+
+```{r}
+## install.packages("tidyverse")
+## install.packages("GGally")
+suppressPackageStartupMessages(library("tidyverse"))
+suppressPackageStartupMessages(library("GGally")) # nice pairs plot 
+
+car_data <- readr::read_csv(
+  file = "https://cdn.rawgit.com/lidom/Teaching_Repo/bc692b56/autodata.csv",
+  show_col_types = FALSE)
+
+my_car_df <- car_data %>% 
+ dplyr::mutate(
+  "MPG"   = MPG.city, 
+  "HP"    = Horsepower) %>%
+ select("MPG", "HP")
+
+ggpairs(my_car_df) + theme_bw()
+```
+:::
+
+The plots indicate a positive, but non-linear relationship between the outcome variable `MPG` (gasoline consumption in milles per gallon) and the predictor `HP` (power of the mashing in horsepower). 
+
+If we do not take this into account, we get bad model fits as indicated by diagnostic plots:
+
+::: {.panel-tabset}
+
+## Base `R`
+
+```{r, fig.dim = c(5, 10)}
 lm_obj_1 <- lm(MPG ~ HP, data = my_car_df)
-lm_obj_2 <- lm(MPG ~ HP + HP_sq, data = my_car_df)
 
-par(mfrow=c(2,2))
+par(mfrow=c(1,2))
 plot(y=my_car_df$MPG, x=my_car_df$HP, 
      main = "Simple Linear Regression",
      xlab = "Horse Power", 
      ylab = "Miles per Gallon")
 abline(lm_obj_1)
+##
 plot(lm_obj_1, which=1, 
        main = "Simple Linear Regression")
+```
+
+
+## Tidyverse `R`
+
+```{r}
+## install.packages("tidyverse")
+## install.packages("ggfortify")
+suppressPackageStartupMessages(library("tidyverse"))
+library("ggfortify") # tidy diagnostic plots
+
+lm_obj_1 <- lm(MPG ~ HP, data = my_car_df)
+
+## Plot: Simple Linear Regression
+my_car_df %>%
+ggplot(aes(x=HP, y=MPG)) + 
+    geom_point(alpha=0.8, size=3)+
+    stat_smooth(method='lm', formula = y~x) +
+    theme_classic() + 
+    labs(x = "Horse Power", y = "Miles per Gallon", 
+         title = "Simple Linear Regression")
+
+## Diagnostic Plot: Simple Linear Regression 
+autoplot(lm_obj_1, which = 1)
+```
+:::
+
+
+A polynomial regression model with polynomial degree 2 improves the model fit.
+
+
+::: {.panel-tabset}
+
+## Base `R`
+
+```{r, fig.dim = c(5, 10)}
+## Adding new variable HP squared:
+my_car_df$HP_sq <- car_data$Horsepower^2
+
+lm_obj_2 <- lm(MPG ~ HP + HP_sq, data = my_car_df)
+
+par(mfrow=c(2,1))
 plot(y=my_car_df$MPG, x=my_car_df$HP,
      main = "Polynomial Regression (Degree: 2)",
      xlab = "Horse Power", 
@@ -504,45 +767,21 @@ plot(lm_obj_2, which=1,
 ```{r}
 ## install.packages("tidyverse")
 ## install.packages("ggfortify")
-## install.packages("ggfortify")
 suppressPackageStartupMessages(library("tidyverse"))
 library("ggfortify") # tidy diagnostic plots
 
-car_data <- readr::read_csv(
-  file = "https://cdn.rawgit.com/lidom/Teaching_Repo/bc692b56/autodata.csv",
-  show_col_types = FALSE)
-
-
-my_car_df <- car_data |> 
+## Adding new variable HP squared:
+my_car_df <- my_car_df %>% 
  dplyr::mutate(
-  "MPG"   = MPG.city, 
-  "HP"    = Horsepower, 
-  "HP_sq" = Horsepower^2
+  "HP_sq" = HP^2
 )
-
-## Simple Linear Regression
-
-lm_obj_1 <- lm(MPG ~ HP, data = my_car_df)
-
-## Plot: Simple Linear Regression
-my_car_df |>
-ggplot(aes(x=HP, y=MPG)) + 
-    geom_point(alpha=0.8, size=3)+
-    stat_smooth(method='lm', formula = y~x) +
-    theme_classic() + 
-    labs(x = "Horse Power", y = "Miles per Gallon", 
-         title = "Simple Linear Regression")
-
-## Diagnostic Plot: Simple Linear Regression 
-autoplot(lm_obj_1, which = 1)
-
 
 ## Polynomial Regression
 
 lm_obj_2 <- lm(MPG ~ HP + HP_sq, data = my_car_df)
 
 ## Plot: Polynomial Regression
-my_car_df |>
+my_car_df %>%
 ggplot(aes(x=HP, y=MPG)) + 
     geom_point(alpha=0.8, size=3)+
     stat_smooth(method='lm', formula = y~poly(x, 2, raw = TRUE)) +
@@ -555,8 +794,9 @@ ggplot(aes(x=HP, y=MPG)) +
 autoplot(lm_obj_2, which = 1)     
 ```
 
-
 :::
+
+
 
 <!-- 
 
@@ -603,3 +843,6 @@ lm_obj <- lm(price_log ~ lotsize + bathrooms, data = HousePrices)
 par(mfrow=c(2,2))
 plot(lm_obj)
 ``` -->
+
+
+## References {-}

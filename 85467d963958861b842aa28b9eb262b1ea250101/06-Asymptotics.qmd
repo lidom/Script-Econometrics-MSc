@@ -733,4 +733,12 @@ p_value
 Again, the $p$-value is very small and allows us to reject the (false) null-hypothesis at any of the usual significance levels. 
 
 
+
+<!-- 
+### Variance Inflation
+
+https://online.stat.psu.edu/stat462/node/180/
+ -->
+
+
 # References {-}
