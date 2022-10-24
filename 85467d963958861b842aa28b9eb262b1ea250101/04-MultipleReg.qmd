@@ -799,7 +799,7 @@ autoplot(lm_obj_2, which = 1)
 
 ### Behavior of the OLS Estimates for Resampled Data 
 
-**Simplify this regarding conditioning on X:**
+<!-- **Simplify this: Only one sample size, no conditioning on X, and less text** -->
 
 Usually, we only observe *one* estimates $\hat{\beta}$ computed based on *one* given data set. However, in order to understand the statistical properties of the estimators $\hat{\beta}$ we need to view them as random variables which yield different realizations in repeated samples generated from Model @eq-LinMod. This allows us then to think about questions like: 
 
