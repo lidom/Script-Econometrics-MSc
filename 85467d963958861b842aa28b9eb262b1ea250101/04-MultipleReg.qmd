@@ -696,7 +696,7 @@ If we do not take this into account, we get bad model fits as indicated by diagn
 ```{r, fig.dim = c(5, 10)}
 lm_obj_1 <- lm(MPG ~ HP, data = my_car_df)
 
-par(mfrow=c(1,2))
+par(mfrow=c(2,1))
 plot(y=my_car_df$MPG, x=my_car_df$HP, 
      main = "Simple Linear Regression",
      xlab = "Horse Power", 
@@ -797,52 +797,141 @@ autoplot(lm_obj_2, which = 1)
 :::
 
 
+### Behavior of the OLS Estimates for Resampled Data 
 
-<!-- 
+**Simplify this regarding conditioning on X:**
 
+Usually, we only observe *one* estimates $\hat{\beta}$ computed based on *one* given data set. However, in order to understand the statistical properties of the estimators $\hat{\beta}$ we need to view them as random variables which yield different realizations in repeated samples generated from Model @eq-LinMod. This allows us then to think about questions like: 
+
+* Is the estimator able to estimate the unknown parameter-value correctly on average?  
+* Are the estimation results more precise if we have more data?
+
+A first idea about the statistical properties of the estimator $\hat{\beta}$ can be gained using Monte Carlo simulations as following.
 ```{r}
-## install.packages("AER")
-suppressPackageStartupMessages(library("AER"))
-## attach data to R session
-data("HousePrices")
-## names(HousePrices) ## gives variables names
+## Sample sizes
+n_small      <-  10 # small sample size
+n_large      <- 100 # large sample size
 
-Y     <- HousePrices$price
-Y_log <- log(HousePrices$price)
+## True parameter values
+beta0 <- 1
+beta1 <- 1
 
-par(mfrow=c(1,2))
-plot(density(Y), main="", xlab="House Prices")
-curve(dnorm(x, mean=mean(Y), sd(Y)), add=TRUE, col="blue", lwd=1.3)
-legend("topleft", 
-       legend=c("Nonparametric Density Estimate", 
-                "Normal Density Estimate"), col=c("black", "blue"), lwd=1.3)
-plot(density(Y_log), main="", xlab="Log of House Prices")
-curve(dnorm(x, mean=mean(Y_log), sd(Y_log)), add=TRUE, col="blue", lwd=1.3)
+## Generate explanatory variables (random design)
+X_n_small  <- runif(n_small, min = 1, max = 10)
+X_n_large  <- runif(n_large, min = 1, max = 10)
 
+## Monte-Carlo (MC) Simulation 
+## 1. Generate data
+## 2. Compute and store estimates
+## Repeat steps 1. and 2. many times
+set.seed(3)
+## Number of Monte Carlo repetitions
+## How many samples to draw from the models
+rep          <- 1000
 
-## adding the house prices in logs to the dataset:
-HousePrices$price_log <- Y_log
+## Containers to store the lm-results
+n_small_list <- vector(mode = "list", length = rep)
+n_large_list <- vector(mode = "list", length = rep)
 
-pairs(HousePrices)
+for(r in 1:rep){
+## Sampling from the model conditionally on X_n_small
+error_n_small     <- rnorm(n_small, mean = 0, sd = 5)
+Y_n_small         <- beta0 + beta1 * X_n_small + error_n_small
+n_small_list[[r]] <- lm(Y_n_small ~ X_n_small)  
+## Sampling from the model conditionally on X_n_large
+error_n_large     <- rnorm(n_large, mean = 0, sd = 5)
+Y_n_large         <- beta0 + beta1 * X_n_large + error_n_large
+n_large_list[[r]] <- lm(Y_n_large ~ X_n_large)  
+}
+
+## Reading out the parameter estimates
+beta0_estimates_n_small <- rep(NA, rep)
+beta1_estimates_n_small <- rep(NA, rep)
+beta0_estimates_n_large <- rep(NA, rep)
+beta1_estimates_n_large <- rep(NA, rep)
+for(r in 1:rep){
+beta0_estimates_n_small[r] <- n_small_list[[r]]$coefficients[1]
+beta1_estimates_n_small[r] <- n_small_list[[r]]$coefficients[2]
+beta0_estimates_n_large[r] <- n_large_list[[r]]$coefficients[1]
+beta1_estimates_n_large[r] <- n_large_list[[r]]$coefficients[2]
+}
 ```
 
-The following code reads on the `HousePrices` dataset of the `R`-package `AER` and transforms the dependent variable $Y$ to a log-scale, $\log(Y)$, to make it close to normal distributed. 
-
-
-Next we estimate the linear regression model
-
+Now, we have produced realizations of the estimators $\hat\beta_0|X$ and $\hat\beta_1|X$ conditionally on  
 $$
-\log(Y)_i = \beta_1 + \beta_{lotsize} X_{lotsize,i} + \beta_{bathrooms} + X_{bathrooms,i} + \varepsilon_i
+X=\begin{pmatrix}1&X_1\\\vdots&\vdots\\1&X_n\end{pmatrix}
 $$
+and we have saved these realizations in `beta0_estimates_n_small`, `beta1_estimates_n_small`, `beta0_estimates_n_large`, and 
+`beta1_estimates_n_large`. 
 
 
+These artificially generated realizations allow us to visualize the behavior of the OLS estimates for the repeatedly sampled data. 
 
-```{r}
-lm_obj <- lm(price_log ~ lotsize + bathrooms, data = HousePrices)
+```{r, fig.width=6, fig.height=4.5, fig.align='center'}
+## Plotting the results
+library("scales") # alpha() produces transparent colors
 
-par(mfrow=c(2,2))
-plot(lm_obj)
-``` -->
+## Define a common y-axis range
+y_range <- range(beta0_estimates_n_small,
+                 beta1_estimates_n_small)*1.1
+
+## Generate the plot
+par(family = "serif") # Serif fonts
+## Layout of plotting area
+layout(matrix(c(1:6), 2, 3, byrow = TRUE), widths = c(3,1,1))
+## Plot 1
+plot(x=0, y=0, axes=FALSE, xlab="X", ylab="Y", type="n",
+     xlim=c(1,10), ylim=c(-5,35), main="Small Sample (n=10)")
+axis(1, tick = FALSE); axis(2, tick = FALSE, las = 2)
+for(r in 1:rep){
+abline(n_small_list[[r]], lty=2, lwd = 1.3, col="darkorange")
+}
+abline(a = beta0, b = beta1, lwd=1.3, col="darkblue")
+legend("topleft", col=c("darkorange", "darkblue"), legend=c(
+"Sample regression lines from\nrepeated samples (cond. on X)", 
+                  "Population regression line"), 
+       lwd=1.3, lty=c(2,1), bty="n")
+## Plot 2
+plot(x=rep(0,rep), y=beta0_estimates_n_small, axes=FALSE, 
+     xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
+  main=expression(hat(beta)[0]~'|'~X), col=alpha("red",0.2))
+points(x = 0, y=beta0, pch="-", cex = 1.2, col="black")
+text(x=0, y=beta0, labels = expression(beta[0]), pos = 4)
+## Plot 3
+plot(x=rep(0,rep), y=beta1_estimates_n_small, axes=FALSE, 
+     xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
+  main=expression(hat(beta)[1]~'|'~X), col=alpha("red",0.2))
+points(x = 0, y=beta1, pch="-", cex = 1.2, col="black")
+text(x=0, y=beta1, labels = expression(beta[1]), pos = 4)
+## Plot 4
+plot(x=0, y=0, axes=FALSE, xlab="X", ylab="Y", type="n",
+     xlim=c(1,10), ylim=c(-5,35), main="Large Sample (n=100)")
+axis(1, tick = FALSE); axis(2, tick = FALSE, las = 2)
+for(r in 1:rep){
+abline(n_large_list[[r]], lty=2, lwd = 1.3, col="darkorange")
+}
+abline(a = beta0, b = beta1, lwd=1.3, col="darkblue")
+## Plot 5
+plot(x=rep(0,rep), y=beta0_estimates_n_large, axes=FALSE, 
+     xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
+  main=expression(hat(beta)[0]~'|'~X), col=alpha("red",0.2))
+points(x = 0, y=beta0, pch="-", cex = 1.2, col="black")
+text(x=0, y=beta0, labels = expression(beta[0]), pos = 4)
+## Plot 6
+plot(x=rep(0,rep), y=beta1_estimates_n_large, axes=FALSE, 
+     xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
+  main=expression(hat(beta)[1]~'|'~X), col=alpha("red",0.2))
+points(x=0, y=beta1, pch="-", cex = 1.2, col="black")
+text(x=0, y=beta1, labels = expression(beta[1]), pos = 4)
+```
+
+This are promising plots: 
+
+* The realizations of $\hat\beta_0|X$ and $\hat\beta_1|X$ are scattered around the true (unknown) parameter values $\beta_0$ and $\beta_1$ for both small and large samples.
+* The realizations of $\hat\beta_0|X$ and $\hat\beta_1|X$ concentrate more and more around the true (unknown) parameter values $\beta_0$ and $\beta_1$ as the sample size increases. 
+
+However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. Next we use theoretical arguments to show that these properties also hold in general. 
+
 
 
 ## References {-}

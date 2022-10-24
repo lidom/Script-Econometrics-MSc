@@ -244,6 +244,7 @@ div.csl-indent {
   <li><a href="#dummy-variable-trap" id="toc-dummy-variable-trap" class="nav-link" data-scroll-target="#dummy-variable-trap">Dummy-Variable Trap</a></li>
   <li><a href="#detecting-heteroskedasticity" id="toc-detecting-heteroskedasticity" class="nav-link" data-scroll-target="#detecting-heteroskedasticity"><span class="toc-section-number">4.5.2</span>  Detecting Heteroskedasticity</a></li>
   <li><a href="#checking-non-linearity-of-the-regression-line" id="toc-checking-non-linearity-of-the-regression-line" class="nav-link" data-scroll-target="#checking-non-linearity-of-the-regression-line"><span class="toc-section-number">4.5.3</span>  Checking (Non-)Linearity of the Regression Line</a></li>
+  <li><a href="#behavior-of-the-ols-estimates-for-resampled-data" id="toc-behavior-of-the-ols-estimates-for-resampled-data" class="nav-link" data-scroll-target="#behavior-of-the-ols-estimates-for-resampled-data"><span class="toc-section-number">4.5.4</span>  Behavior of the OLS Estimates for Resampled Data</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -820,7 +821,7 @@ X_female -4.103626</code></pre>
 <div class="cell" data-fig.dim="[5,10]">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lm_obj_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(MPG <span class="sc">~</span> HP, <span class="at">data =</span> my_car_df)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">y=</span>my_car_df<span class="sc">$</span>MPG, <span class="at">x=</span>my_car_df<span class="sc">$</span>HP, </span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Simple Linear Regression"</span>,</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Horse Power"</span>, </span>
@@ -930,65 +931,154 @@ X_female -4.103626</code></pre>
 </div>
 </div>
 </div>
-<!-- 
+</section>
+<section id="behavior-of-the-ols-estimates-for-resampled-data" class="level3" data-number="4.5.4">
+<h3 data-number="4.5.4" class="anchored" data-anchor-id="behavior-of-the-ols-estimates-for-resampled-data"><span class="header-section-number">4.5.4</span> Behavior of the OLS Estimates for Resampled Data</h3>
+<p><strong>Simplify this regarding conditioning on X:</strong></p>
+<p>Usually, we only observe <em>one</em> estimates <span class="math inline">\(\hat{\beta}\)</span> computed based on <em>one</em> given data set. However, in order to understand the statistical properties of the estimators <span class="math inline">\(\hat{\beta}\)</span> we need to view them as random variables which yield different realizations in repeated samples generated from Model <a href="#eq-LinMod">Equation&nbsp;<span>4.1</span></a>. This allows us then to think about questions like:</p>
+<ul>
+<li>Is the estimator able to estimate the unknown parameter-value correctly on average?<br>
+</li>
+<li>Are the estimation results more precise if we have more data?</li>
+</ul>
+<p>A first idea about the statistical properties of the estimator <span class="math inline">\(\hat{\beta}\)</span> can be gained using Monte Carlo simulations as following.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Sample sizes</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>n_small      <span class="ot">&lt;-</span>  <span class="dv">10</span> <span class="co"># small sample size</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>n_large      <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># large sample size</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="do">## True parameter values</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>beta0 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>beta1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate explanatory variables (random design)</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>X_n_small  <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_small, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>X_n_large  <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_large, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">10</span>)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Monte-Carlo (MC) Simulation </span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 1. Generate data</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 2. Compute and store estimates</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Repeat steps 1. and 2. many times</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of Monte Carlo repetitions</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="do">## How many samples to draw from the models</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>rep          <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Containers to store the lm-results</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>n_small_list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">"list"</span>, <span class="at">length =</span> rep)</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>n_large_list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">"list"</span>, <span class="at">length =</span> rep)</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rep){</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Sampling from the model conditionally on X_n_small</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>error_n_small     <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_small, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>)</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>Y_n_small         <span class="ot">&lt;-</span> beta0 <span class="sc">+</span> beta1 <span class="sc">*</span> X_n_small <span class="sc">+</span> error_n_small</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>n_small_list[[r]] <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_n_small <span class="sc">~</span> X_n_small)  </span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Sampling from the model conditionally on X_n_large</span></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>error_n_large     <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_large, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>)</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>Y_n_large         <span class="ot">&lt;-</span> beta0 <span class="sc">+</span> beta1 <span class="sc">*</span> X_n_large <span class="sc">+</span> error_n_large</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>n_large_list[[r]] <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_n_large <span class="sc">~</span> X_n_large)  </span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Reading out the parameter estimates</span></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>beta0_estimates_n_small <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, rep)</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>beta1_estimates_n_small <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, rep)</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>beta0_estimates_n_large <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, rep)</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>beta1_estimates_n_large <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, rep)</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rep){</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>beta0_estimates_n_small[r] <span class="ot">&lt;-</span> n_small_list[[r]]<span class="sc">$</span>coefficients[<span class="dv">1</span>]</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>beta1_estimates_n_small[r] <span class="ot">&lt;-</span> n_small_list[[r]]<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>beta0_estimates_n_large[r] <span class="ot">&lt;-</span> n_large_list[[r]]<span class="sc">$</span>coefficients[<span class="dv">1</span>]</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>beta1_estimates_n_large[r] <span class="ot">&lt;-</span> n_large_list[[r]]<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, we have produced realizations of the estimators <span class="math inline">\(\hat\beta_0|X\)</span> and <span class="math inline">\(\hat\beta_1|X\)</span> conditionally on<br>
+<span class="math display">\[
+X=\begin{pmatrix}1&amp;X_1\\\vdots&amp;\vdots\\1&amp;X_n\end{pmatrix}
+\]</span> and we have saved these realizations in <code>beta0_estimates_n_small</code>, <code>beta1_estimates_n_small</code>, <code>beta0_estimates_n_large</code>, and <code>beta1_estimates_n_large</code>.</p>
+<p>These artificially generated realizations allow us to visualize the behavior of the OLS estimates for the repeatedly sampled data.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Plotting the results</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"scales"</span>) <span class="co"># alpha() produces transparent colors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'scales'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
 
+    discard</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:readr':
 
-::: {.cell}
-
-```{.r .cell-code}
-## install.packages("AER")
-suppressPackageStartupMessages(library("AER"))
-## attach data to R session
-data("HousePrices")
-## names(HousePrices) ## gives variables names
-
-Y     <- HousePrices$price
-Y_log <- log(HousePrices$price)
-
-par(mfrow=c(1,2))
-plot(density(Y), main="", xlab="House Prices")
-curve(dnorm(x, mean=mean(Y), sd(Y)), add=TRUE, col="blue", lwd=1.3)
-legend("topleft", 
-       legend=c("Nonparametric Density Estimate", 
-                "Normal Density Estimate"), col=c("black", "blue"), lwd=1.3)
-plot(density(Y_log), main="", xlab="Log of House Prices")
-curve(dnorm(x, mean=mean(Y_log), sd(Y_log)), add=TRUE, col="blue", lwd=1.3)
-```
-
-::: {.cell-output-display}
-![](04-MultipleReg_files/figure-html/unnamed-chunk-20-1.png){width=672}
-:::
-
-```{.r .cell-code}
-## adding the house prices in logs to the dataset:
-HousePrices$price_log <- Y_log
-
-pairs(HousePrices)
-```
-
-::: {.cell-output-display}
-![](04-MultipleReg_files/figure-html/unnamed-chunk-20-2.png){width=672}
-:::
-:::
-
-
-The following code reads on the `HousePrices` dataset of the `R`-package `AER` and transforms the dependent variable $Y$ to a log-scale, $\log(Y)$, to make it close to normal distributed. 
-
-
-Next we estimate the linear regression model
-
-$$
-\log(Y)_i = \beta_1 + \beta_{lotsize} X_{lotsize,i} + \beta_{bathrooms} + X_{bathrooms,i} + \varepsilon_i
-$$
-
-
-
-
-lm_obj <- lm(price_log ~ lotsize + bathrooms, data = HousePrices)
-
-par(mfrow=c(2,2))
-plot(lm_obj)
-``` -->
+    col_factor</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Define a common y-axis range</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>y_range <span class="ot">&lt;-</span> <span class="fu">range</span>(beta0_estimates_n_small,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                 beta1_estimates_n_small)<span class="sc">*</span><span class="fl">1.1</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate the plot</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family =</span> <span class="st">"serif"</span>) <span class="co"># Serif fonts</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Layout of plotting area</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>), <span class="dv">2</span>, <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>), <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot 1</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">axes=</span><span class="cn">FALSE</span>, <span class="at">xlab=</span><span class="st">"X"</span>, <span class="at">ylab=</span><span class="st">"Y"</span>, <span class="at">type=</span><span class="st">"n"</span>,</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">35</span>), <span class="at">main=</span><span class="st">"Small Sample (n=10)"</span>)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">tick =</span> <span class="cn">FALSE</span>); <span class="fu">axis</span>(<span class="dv">2</span>, <span class="at">tick =</span> <span class="cn">FALSE</span>, <span class="at">las =</span> <span class="dv">2</span>)</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rep){</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(n_small_list[[r]], <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.3</span>, <span class="at">col=</span><span class="st">"darkorange"</span>)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> beta0, <span class="at">b =</span> beta1, <span class="at">lwd=</span><span class="fl">1.3</span>, <span class="at">col=</span><span class="st">"darkblue"</span>)</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"darkblue"</span>), <span class="at">legend=</span><span class="fu">c</span>(</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="st">"Sample regression lines from</span><span class="sc">\n</span><span class="st">repeated samples (cond. on X)"</span>, </span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Population regression line"</span>), </span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd=</span><span class="fl">1.3</span>, <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="at">bty=</span><span class="st">"n"</span>)</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot 2</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="fu">rep</span>(<span class="dv">0</span>,rep), <span class="at">y=</span>beta0_estimates_n_small, <span class="at">axes=</span><span class="cn">FALSE</span>, </span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">""</span>, <span class="at">ylab=</span><span class="st">""</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="fl">1.2</span>, <span class="at">ylim=</span>y_range,</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">main=</span><span class="fu">expression</span>(<span class="fu">hat</span>(beta)[<span class="dv">0</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X), <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"red"</span>,<span class="fl">0.2</span>))</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y=</span>beta0, <span class="at">pch=</span><span class="st">"-"</span>, <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">col=</span><span class="st">"black"</span>)</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span>beta0, <span class="at">labels =</span> <span class="fu">expression</span>(beta[<span class="dv">0</span>]), <span class="at">pos =</span> <span class="dv">4</span>)</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot 3</span></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="fu">rep</span>(<span class="dv">0</span>,rep), <span class="at">y=</span>beta1_estimates_n_small, <span class="at">axes=</span><span class="cn">FALSE</span>, </span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">""</span>, <span class="at">ylab=</span><span class="st">""</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="fl">1.2</span>, <span class="at">ylim=</span>y_range,</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">main=</span><span class="fu">expression</span>(<span class="fu">hat</span>(beta)[<span class="dv">1</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X), <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"red"</span>,<span class="fl">0.2</span>))</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y=</span>beta1, <span class="at">pch=</span><span class="st">"-"</span>, <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">col=</span><span class="st">"black"</span>)</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span>beta1, <span class="at">labels =</span> <span class="fu">expression</span>(beta[<span class="dv">1</span>]), <span class="at">pos =</span> <span class="dv">4</span>)</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot 4</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">axes=</span><span class="cn">FALSE</span>, <span class="at">xlab=</span><span class="st">"X"</span>, <span class="at">ylab=</span><span class="st">"Y"</span>, <span class="at">type=</span><span class="st">"n"</span>,</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">35</span>), <span class="at">main=</span><span class="st">"Large Sample (n=100)"</span>)</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">tick =</span> <span class="cn">FALSE</span>); <span class="fu">axis</span>(<span class="dv">2</span>, <span class="at">tick =</span> <span class="cn">FALSE</span>, <span class="at">las =</span> <span class="dv">2</span>)</span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>rep){</span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(n_large_list[[r]], <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd =</span> <span class="fl">1.3</span>, <span class="at">col=</span><span class="st">"darkorange"</span>)</span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> beta0, <span class="at">b =</span> beta1, <span class="at">lwd=</span><span class="fl">1.3</span>, <span class="at">col=</span><span class="st">"darkblue"</span>)</span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot 5</span></span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="fu">rep</span>(<span class="dv">0</span>,rep), <span class="at">y=</span>beta0_estimates_n_large, <span class="at">axes=</span><span class="cn">FALSE</span>, </span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">""</span>, <span class="at">ylab=</span><span class="st">""</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="fl">1.2</span>, <span class="at">ylim=</span>y_range,</span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">main=</span><span class="fu">expression</span>(<span class="fu">hat</span>(beta)[<span class="dv">0</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X), <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"red"</span>,<span class="fl">0.2</span>))</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y=</span>beta0, <span class="at">pch=</span><span class="st">"-"</span>, <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">col=</span><span class="st">"black"</span>)</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span>beta0, <span class="at">labels =</span> <span class="fu">expression</span>(beta[<span class="dv">0</span>]), <span class="at">pos =</span> <span class="dv">4</span>)</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot 6</span></span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="fu">rep</span>(<span class="dv">0</span>,rep), <span class="at">y=</span>beta1_estimates_n_large, <span class="at">axes=</span><span class="cn">FALSE</span>, </span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">""</span>, <span class="at">ylab=</span><span class="st">""</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="fl">1.2</span>, <span class="at">ylim=</span>y_range,</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">main=</span><span class="fu">expression</span>(<span class="fu">hat</span>(beta)[<span class="dv">1</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X), <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"red"</span>,<span class="fl">0.2</span>))</span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span>beta1, <span class="at">pch=</span><span class="st">"-"</span>, <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">col=</span><span class="st">"black"</span>)</span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span>beta1, <span class="at">labels =</span> <span class="fu">expression</span>(beta[<span class="dv">1</span>]), <span class="at">pos =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="04-MultipleReg_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This are promising plots:</p>
+<ul>
+<li>The realizations of <span class="math inline">\(\hat\beta_0|X\)</span> and <span class="math inline">\(\hat\beta_1|X\)</span> are scattered around the true (unknown) parameter values <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> for both small and large samples.</li>
+<li>The realizations of <span class="math inline">\(\hat\beta_0|X\)</span> and <span class="math inline">\(\hat\beta_1|X\)</span> concentrate more and more around the true (unknown) parameter values <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> as the sample size increases.</li>
+</ul>
+<p>However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. Next we use theoretical arguments to show that these properties also hold in general.</p>
 </section>
 </section>
 <section id="references" class="level2 unnumbered">
