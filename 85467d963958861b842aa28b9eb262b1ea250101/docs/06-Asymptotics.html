@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -186,17 +191,17 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-Review-Prob_n_Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability and Statistics</span></a>
+  <a href="./02-Review-Prob_n_Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-Monte-Carlo-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></a>
+  <a href="./03-MultipleReg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-MultipleReg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
+  <a href="./04-Monte-Carlo-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -219,29 +224,29 @@ div.csl-indent {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#tools-for-asymptotic-statistics" id="toc-tools-for-asymptotic-statistics" class="nav-link active" data-scroll-target="#tools-for-asymptotic-statistics"> <span class="header-section-number">6.1</span> Tools for Asymptotic Statistics</a>
+  <li><a href="#tools-for-asymptotic-statistics" id="toc-tools-for-asymptotic-statistics" class="nav-link active" data-scroll-target="#tools-for-asymptotic-statistics"><span class="toc-section-number">6.1</span>  Tools for Asymptotic Statistics</a>
   <ul class="collapse">
-  <li><a href="#modes-of-convergence" id="toc-modes-of-convergence" class="nav-link" data-scroll-target="#modes-of-convergence"> <span class="header-section-number">6.1.1</span> Modes of Convergence</a></li>
+  <li><a href="#modes-of-convergence" id="toc-modes-of-convergence" class="nav-link" data-scroll-target="#modes-of-convergence"><span class="toc-section-number">6.1.1</span>  Modes of Convergence</a></li>
   <li><a href="#four-important-modes-of-convergence" id="toc-four-important-modes-of-convergence" class="nav-link" data-scroll-target="#four-important-modes-of-convergence">Four Important Modes of Convergence</a></li>
   <li><a href="#relations-among-modes-of-convergence" id="toc-relations-among-modes-of-convergence" class="nav-link" data-scroll-target="#relations-among-modes-of-convergence">Relations among Modes of Convergence</a></li>
-  <li><a href="#continuous-mapping-theorem-cmt" id="toc-continuous-mapping-theorem-cmt" class="nav-link" data-scroll-target="#continuous-mapping-theorem-cmt"> <span class="header-section-number">6.1.2</span> Continuous Mapping Theorem (CMT)</a></li>
-  <li><a href="#slutsky-theorem" id="toc-slutsky-theorem" class="nav-link" data-scroll-target="#slutsky-theorem"> <span class="header-section-number">6.1.3</span> Slutsky Theorem</a></li>
-  <li><a href="#law-of-large-numbers-lln-and-central-limit-theorem-clt" id="toc-law-of-large-numbers-lln-and-central-limit-theorem-clt" class="nav-link" data-scroll-target="#law-of-large-numbers-lln-and-central-limit-theorem-clt"> <span class="header-section-number">6.1.4</span> Law of Large Numbers (LLN) and Central Limit Theorem (CLT)</a></li>
-  <li><a href="#estimators-as-a-sequences-of-random-variables" id="toc-estimators-as-a-sequences-of-random-variables" class="nav-link" data-scroll-target="#estimators-as-a-sequences-of-random-variables"> <span class="header-section-number">6.1.5</span> Estimators as a Sequences of Random Variables</a></li>
+  <li><a href="#continuous-mapping-theorem-cmt" id="toc-continuous-mapping-theorem-cmt" class="nav-link" data-scroll-target="#continuous-mapping-theorem-cmt"><span class="toc-section-number">6.1.2</span>  Continuous Mapping Theorem (CMT)</a></li>
+  <li><a href="#slutsky-theorem" id="toc-slutsky-theorem" class="nav-link" data-scroll-target="#slutsky-theorem"><span class="toc-section-number">6.1.3</span>  Slutsky Theorem</a></li>
+  <li><a href="#law-of-large-numbers-lln-and-central-limit-theorem-clt" id="toc-law-of-large-numbers-lln-and-central-limit-theorem-clt" class="nav-link" data-scroll-target="#law-of-large-numbers-lln-and-central-limit-theorem-clt"><span class="toc-section-number">6.1.4</span>  Law of Large Numbers (LLN) and Central Limit Theorem (CLT)</a></li>
+  <li><a href="#estimators-as-a-sequences-of-random-variables" id="toc-estimators-as-a-sequences-of-random-variables" class="nav-link" data-scroll-target="#estimators-as-a-sequences-of-random-variables"><span class="toc-section-number">6.1.5</span>  Estimators as a Sequences of Random Variables</a></li>
   </ul></li>
-  <li><a href="#asymptotics-under-the-classic-regression-model" id="toc-asymptotics-under-the-classic-regression-model" class="nav-link" data-scroll-target="#asymptotics-under-the-classic-regression-model"> <span class="header-section-number">6.2</span> Asymptotics under the Classic Regression Model</a>
+  <li><a href="#asymptotics-under-the-classic-regression-model" id="toc-asymptotics-under-the-classic-regression-model" class="nav-link" data-scroll-target="#asymptotics-under-the-classic-regression-model"><span class="toc-section-number">6.2</span>  Asymptotics under the Classic Regression Model</a>
   <ul class="collapse">
-  <li><a href="#the-case-of-heteroscedasticity" id="toc-the-case-of-heteroscedasticity" class="nav-link" data-scroll-target="#the-case-of-heteroscedasticity"> <span class="header-section-number">6.2.1</span> The Case of Heteroscedasticity</a></li>
-  <li><a href="#hypothesis-testing-and-confidence-intervals" id="toc-hypothesis-testing-and-confidence-intervals" class="nav-link" data-scroll-target="#hypothesis-testing-and-confidence-intervals"> <span class="header-section-number">6.2.2</span> Hypothesis Testing and Confidence Intervals</a></li>
+  <li><a href="#the-case-of-heteroscedasticity" id="toc-the-case-of-heteroscedasticity" class="nav-link" data-scroll-target="#the-case-of-heteroscedasticity"><span class="toc-section-number">6.2.1</span>  The Case of Heteroscedasticity</a></li>
+  <li><a href="#hypothesis-testing-and-confidence-intervals" id="toc-hypothesis-testing-and-confidence-intervals" class="nav-link" data-scroll-target="#hypothesis-testing-and-confidence-intervals"><span class="toc-section-number">6.2.2</span>  Hypothesis Testing and Confidence Intervals</a></li>
   </ul></li>
-  <li><a href="#practice-large-sample-inference" id="toc-practice-large-sample-inference" class="nav-link" data-scroll-target="#practice-large-sample-inference"> <span class="header-section-number">6.3</span> Practice: Large Sample Inference</a>
+  <li><a href="#practice-large-sample-inference" id="toc-practice-large-sample-inference" class="nav-link" data-scroll-target="#practice-large-sample-inference"><span class="toc-section-number">6.3</span>  Practice: Large Sample Inference</a>
   <ul class="collapse">
-  <li><a href="#normally-distributed-hatbeta-for-ntoinfty" id="toc-normally-distributed-hatbeta-for-ntoinfty" class="nav-link" data-scroll-target="#normally-distributed-hatbeta-for-ntoinfty"> <span class="header-section-number">6.3.1</span> Normally Distributed <span class="math inline">\(\hat\beta\)</span> for <span class="math inline">\(n\to\infty\)</span></a></li>
-  <li><a href="#testing-multiple-and-single-parameters" id="toc-testing-multiple-and-single-parameters" class="nav-link" data-scroll-target="#testing-multiple-and-single-parameters"> <span class="header-section-number">6.3.2</span> Testing Multiple and Single Parameters</a></li>
+  <li><a href="#normally-distributed-hatbeta-for-ntoinfty" id="toc-normally-distributed-hatbeta-for-ntoinfty" class="nav-link" data-scroll-target="#normally-distributed-hatbeta-for-ntoinfty"><span class="toc-section-number">6.3.1</span>  Normally Distributed <span class="math inline">\(\hat\beta\)</span> for <span class="math inline">\(n\to\infty\)</span></a></li>
+  <li><a href="#testing-multiple-and-single-parameters" id="toc-testing-multiple-and-single-parameters" class="nav-link" data-scroll-target="#testing-multiple-and-single-parameters"><span class="toc-section-number">6.3.2</span>  Testing Multiple and Single Parameters</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -279,41 +284,34 @@ div.csl-indent {
 <section id="four-important-modes-of-convergence" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="four-important-modes-of-convergence">Four Important Modes of Convergence</h3>
 <div id="def-conv_prop" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.1 (Convergence in Probability) </strong></span></p>
-<p>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in probability</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if, for any (arbitrarily small) <span class="math inline">\(\varepsilon&gt;0\)</span>, <span class="math display">\[\begin{eqnarray*}
+<p><span class="theorem-title"><strong>Definition 6.1 (Convergence in Probability) </strong></span>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in probability</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if, for any (arbitrarily small) <span class="math inline">\(\varepsilon&gt;0\)</span>, <span class="math display">\[\begin{eqnarray*}
   \lim_{n\to\infty} P\left(|z_n-\alpha|&gt;\varepsilon\right)=0.
 \end{eqnarray*}\]</span> We write: <span class="math inline">\(\operatorname{plim}_{n\to\infty}z_n=\alpha\)</span>, or <span class="math inline">\(z_n\to_{p}\alpha\)</span>. Convergence in probability of a sequence of random vectors (or matrices) <span class="math inline">\(\{z_n\}\)</span> to a constant vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> convergence in probability.</p>
 </div>
 <div id="def-conv_as" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.2 (Almost Sure Convergence) </strong></span></p>
-<p>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges almost surely</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[\begin{eqnarray*}
+<p><span class="theorem-title"><strong>Definition 6.2 (Almost Sure Convergence) </strong></span>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges almost surely</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[\begin{eqnarray*}
 P\left(\lim_{n\to\infty}z_n=\alpha\right)=1.
 \end{eqnarray*}\]</span> We write: <span class="math inline">\(z_n\to_{as}\alpha\)</span>. Almost sure convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{z_n\}\)</span> to a constant vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> almost sure convergence.</p>
 </div>
 <p>Almost sure convergence is (usually) rather hard to derive, since the probability is about an event concerning an infinite sequence. Fortunately, however, there are established strong laws of large numbers that we can use for showing almost sure convergence.</p>
 <div id="def-conv_ms" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.3 (Convergence in Mean Square) </strong></span></p>
-<p>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in mean square</strong> (or <strong>in quadratic mean</strong>) to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[\begin{eqnarray*}
+<p><span class="theorem-title"><strong>Definition 6.3 (Convergence in Mean Square) </strong></span>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in mean square</strong> (or <strong>in quadratic mean</strong>) to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[\begin{eqnarray*}
   \lim_{n\to\infty}E\left((z_n-\alpha)^2\right)=0
 \end{eqnarray*}\]</span> We write: <span class="math inline">\(z_n\to_{ms}\alpha\)</span>. If <span class="math inline">\(z_n\)</span> is an estimator (e.g., <span class="math inline">\(z_n=\hat\beta_{k,n}\)</span>) the expression <span class="math inline">\(E\left((z_n-\alpha)^2\right)\)</span> is termed the <strong>mean squared error</strong>: <span class="math inline">\(\text{MSE}(z_n)=E\left((z_n-\alpha)^2\right)\)</span>. Mean square convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{z_n\}\)</span> to a deterministic vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> mean square convergence.</p>
 </div>
 <!-- **Convergence to a Random Variable:**The above presented definitions of convergence can be also applied to limits that are random variables. We say that a sequence of random vectors $\{\mathbf{z}_n\}$ converges to a random vector $\mathbf{z}$ and write $\mathbf{z}_n\to_{p}\mathbf{z}$ if the sequence $\{\mathbf{z}_n-\mathbf{z}\}$ converges to $\mathbf{0}$. Similarly, for $\mathbf{z}_n\to_{as}\mathbf{z}$ and $\mathbf{z}_n\to_{ms}\mathbf{z}$.  -->
 <div id="def-conv_distr" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.4 (Convergence in Distribution) </strong></span></p>
-<p>Let <span class="math inline">\(F_n\)</span> be the cumulative distribution function (cdf) of <span class="math inline">\(z_n\)</span> and <span class="math inline">\(F\)</span> the cdf of <span class="math inline">\(z\)</span>. A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in distribution</strong> to a random scalar <span class="math inline">\(z\)</span> if for all <span class="math inline">\(t\)</span> such that <span class="math inline">\(F(t)\)</span> is continuous at <span class="math inline">\(t\)</span>, <span class="math display">\[\begin{eqnarray*}
+<p><span class="theorem-title"><strong>Definition 6.4 (Convergence in Distribution) </strong></span>Let <span class="math inline">\(F_n\)</span> be the cumulative distribution function (cdf) of <span class="math inline">\(z_n\)</span> and <span class="math inline">\(F\)</span> the cdf of <span class="math inline">\(z\)</span>. A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in distribution</strong> to a random scalar <span class="math inline">\(z\)</span> if for all <span class="math inline">\(t\)</span> such that <span class="math inline">\(F(t)\)</span> is continuous at <span class="math inline">\(t\)</span>, <span class="math display">\[\begin{eqnarray*}
   \lim_{n\to\infty}F_n(t)=F(t).
 \end{eqnarray*}\]</span> We write: <span class="math inline">\(z_n\to_{d} z\)</span> and call <span class="math inline">\(F\)</span> the <strong>asymptotic</strong> (or <strong>limit</strong>) <strong>distribution</strong> of <span class="math inline">\(z_n\)</span>. Sometimes you will see statements like <span class="math inline">\(z_n\to_{d} N(0,1)\)</span> or <span class="math inline">\(z_n\overset{a}{\sim}N(0,1)\)</span>, which should be read as <span class="math inline">\(z_n\to_{d} z\)</span>, where <span class="math inline">\(z\sim N(0,1)\)</span>.</p>
 </div>
-<p>A stochastic sequence <span class="math inline">\(\{z_n\}\)</span> can also convergence in distribution to a <strong>deterministic scalar</strong> <span class="math inline">\(\alpha\)</span>. In this case <span class="math inline">\(\alpha\)</span> is treated as a degenerated random variable with cdf</p>
-<p><span class="math display">\[
+<p>A stochastic sequence <span class="math inline">\(\{z_n\}\)</span> can also convergence in distribution to a <strong>deterministic scalar</strong> <span class="math inline">\(\alpha\)</span>. In this case <span class="math inline">\(\alpha\)</span> is treated as a degenerated random variable with cdf <span class="math display">\[
 F_\alpha(t)=\left\{\begin{matrix}0&amp;\text{if}\;\;t&lt;\alpha\\ 1&amp;\text{if}\;\;t\geq\alpha\end{matrix}\right.
 \]</span></p>
 <div id="def-conv_multdistr" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.5 (Multivariate Convergence in Distribution) </strong></span>Let <span class="math inline">\(z_n,z\in\mathbb{R}^K\)</span> be <span class="math inline">\(K\)</span>-dimensional random variables, then</p>
-<p><span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 6.5 (Multivariate Convergence in Distribution) </strong></span>Let <span class="math inline">\(z_n,z\in\mathbb{R}^K\)</span> be <span class="math inline">\(K\)</span>-dimensional random variables, then <span class="math display">\[
 z_n\to_{d} z\text{\quad if and only if \quad}\lambda'z_n\to_{d}\lambda'z
-\]</span></p>
-<p>for any <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>.</p>
+\]</span> for any <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>.</p>
 </div>
 <p>This statement is known as the <strong>Cramer Wold Device</strong>. It is needed since element-wise convergence in distribution does generally not imply convergence of the <em>joint</em> distribution of <span class="math inline">\(z_n\)</span> to the <em>joint</em> distribution of <span class="math inline">\(z\)</span>; except, if all elements are independent from each other.</p>
 <!-- **Remark:**Note that convergence in distribution, as the name suggests, only involves the distributions of the random variables. Thus, the random variables need not even be defined on the same probability space (that is, they need not be defined for the same random experiment), and indeed we don't even need the random variables at all. (But all this is just thought provoking \dots typically, we'll only consider cases with a common probability space.) -->
@@ -379,26 +377,21 @@ z_n\to_{d} z\text{\quad if and only if \quad}\lambda'z_n\to_{d}\lambda'z
 \end{eqnarray*}\]</span></p>
 <p>In the following we introduce the most well-known versions of the weak, the strong LLN, and the CLT.</p>
 <div id="thm-WLLN1" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 6.1 (Weak LLN (Chebychev)) </strong></span></p>
-<p>If <span class="math inline">\(\lim_{n\to\infty} E(\bar{z}_n)=\mu\)</span> and <span class="math inline">\(\lim_{n\to\infty}Var(\bar{z}_n)=0\)</span> then <span class="math inline">\(\bar{z}_n\to_{p}\mu.\)</span></p>
+<p><span class="theorem-title"><strong>Theorem 6.1 (Weak LLN (Chebychev)) </strong></span>If <span class="math inline">\(\lim_{n\to\infty} E(\bar{z}_n)=\mu\)</span> and <span class="math inline">\(\lim_{n\to\infty}Var(\bar{z}_n)=0\)</span> then <span class="math inline">\(\bar{z}_n\to_{p}\mu.\)</span></p>
 </div>
 <p>Proof can be found, for instance, here: <a href="https://www.statlect.com/asymptotic-theory/law-of-large-numbers">https://www.statlect.com/asymptotic-theory/law-of-large-numbers</a></p>
 <div id="thm-SLLN1" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 6.2 (Strong LLN (Kolmogorov)) </strong></span></p>
-<p>If <span class="math inline">\(\{z_i\}\)</span> is an iid sequence and <span class="math inline">\(E(z_i)=\mu\)</span> then <span class="math inline">\(\bar{z}_n\to_{as}\mu.\)</span></p>
+<p><span class="theorem-title"><strong>Theorem 6.2 (Strong LLN (Kolmogorov)) </strong></span>If <span class="math inline">\(\{z_i\}\)</span> is an iid sequence and <span class="math inline">\(E(z_i)=\mu\)</span> then <span class="math inline">\(\bar{z}_n\to_{as}\mu.\)</span></p>
 </div>
 <p>Proof can be found, e.g., in <em>Linear Statistical Inference and Its Applications</em>, Rao (1973), pp.&nbsp;112-114.</p>
 <p><strong>Note:</strong> The weak and the strong LLN for random vectors follow from requiring element-by-element convergence.</p>
 <div id="thm-CLT1" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 6.3 (CLT (Lindeberg-Levy)) </strong></span>If <span class="math inline">\(\{z_i\}\)</span> is an iid sequence and <span class="math inline">\(E(z_i)=\mu\)</span> and <span class="math inline">\(Var(z_i)=\sigma^2\)</span> then</p>
-<p><span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 6.3 (CLT (Lindeberg-Levy)) </strong></span>If <span class="math inline">\(\{z_i\}\)</span> is an iid sequence and <span class="math inline">\(E(z_i)=\mu\)</span> and <span class="math inline">\(Var(z_i)=\sigma^2\)</span> then <span class="math display">\[
 \sqrt{n}(\bar{z}_n-\mu)\to_{d} N(0,\sigma^2)\quad\text{as}\quad n\to\infty
 \]</span></p>
 </div>
 <p>Proof can be found, e.g., in <em>Asymptotic Statistics</em>, van der Vaart (1998), Theorem 2.17.</p>
-<p>The Lindeberg-Levy CLT for <span class="math inline">\(K\)</span>-dimensional random vectors follows from our above discussion on “Multivariate Convergence in Distribution.”From this we know that if <span class="math inline">\(\bar{z}_n\in\mathbb{R}^K\)</span> and <span class="math inline">\(\mu\in\mathbb{R}^K\)</span>, then</p>
-<p><span class="math display">\[\sqrt{n}(\bar{z}_n-\mu)\to_{d} \mathcal{N}(0,\Sigma)\quad\Leftrightarrow\quad \sqrt{n}(\lambda'\bar{z}_n-\lambda'\mu)\to_{d} \mathcal{N}(0,\lambda'\Sigma\lambda),\]</span></p>
-<p>for any <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>.</p>
+<p>The Lindeberg-Levy CLT for <span class="math inline">\(K\)</span>-dimensional random vectors follows from our above discussion on “Multivariate Convergence in Distribution.”From this we know that if <span class="math inline">\(\bar{z}_n\in\mathbb{R}^K\)</span> and <span class="math inline">\(\mu\in\mathbb{R}^K\)</span>, then <span class="math display">\[\sqrt{n}(\bar{z}_n-\mu)\to_{d} \mathcal{N}(0,\Sigma)\quad\Leftrightarrow\quad \sqrt{n}(\lambda'\bar{z}_n-\lambda'\mu)\to_{d} \mathcal{N}(0,\lambda'\Sigma\lambda),\]</span> for any <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>.</p>
 <p>That is, to apply the Lindeberg-Levy CLT (<a href="#thm-CLT1">Theorem&nbsp;<span>6.3</span></a>) to multivariate (e.g., <span class="math inline">\(K\)</span>-dimensional) stochastic sequences, we need to check whether the univariate stochastic sequence <span class="math inline">\(\{\lambda'z_i\}\)</span> is i.i.d. with <span class="math inline">\(E(\lambda'z_i)=\lambda'\mu\)</span> and <span class="math inline">\(Var(\lambda'z_i)=\lambda'\Sigma\lambda\)</span> for any <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>. This is the case if the multivariate (<span class="math inline">\(K\)</span>-dimensional) stochastic sequence <span class="math inline">\(\{z_i\}\)</span> is an i.i.d. sequence with <span class="math inline">\(E(z_i)=\mu\)</span> and <span class="math inline">\(Var(z_i)=\Sigma\)</span>.</p>
 <p><strong>Note:</strong> The LLNs and the CLT are stated with respect to sequences of sample means <span class="math inline">\(\{\bar{z}_n\}\)</span>; i.e., the simplest estimators you probably can think of. We will see, however, that this is all we need in order to analyze also more complicated estimators such as the OLS estimator.</p>
 </section>
@@ -406,68 +399,48 @@ z_n\to_{d} z\text{\quad if and only if \quad}\lambda'z_n\to_{d}\lambda'z
 <h3 data-number="6.1.5" class="anchored" data-anchor-id="estimators-as-a-sequences-of-random-variables"><span class="header-section-number">6.1.5</span> Estimators as a Sequences of Random Variables</h3>
 <p>Our concepts above readily apply to general scalar-valued (univariate) or vector-valued (<span class="math inline">\(K\)</span>-dimensional) estimators, say <span class="math inline">\(\hat\theta_n\in\mathbb{R}^K\)</span>, that are computed from i.i.d. random samples.</p>
 <!-- **Note:**Under the asymptotic perspective ($n\to\infty$) it's not necessary anymore to condition on $X$ since as $n\to\infty$ the stochastic influence of $X$ on  vanishes  -->
-<p><strong>(Weak) Consistency:</strong> We say that an estimator <span class="math inline">\(\hat\theta_n\)</span> is <em>(weakly) consistent for <span class="math inline">\(\theta\)</span></em> if</p>
-<p><span class="math display">\[\hat\theta_n\to_{p}\theta\quad\text{as}\quad n\to\infty\]</span></p>
-<p><strong>Asymptotic Bias:</strong> The <em>asymptotic bias</em> of an estimator <span class="math inline">\(\hat\theta_n\)</span> of some true parameter <span class="math inline">\(\theta\)</span> is defined as:</p>
-<p><span class="math display">\[\text{ABias}(\hat\theta_n)=\lim_{n\to\infty}E(\hat\theta_n)-\theta\]</span></p>
-<p>If <span class="math inline">\(\text{ABias}(\hat\theta_n)=0\)</span>, then <span class="math inline">\(\hat\theta\)</span> is called an <strong>asymptotically unbiased</strong>.</p>
-<p><strong>Asymptotic Normality:</strong> A consistent estimator <span class="math inline">\(\hat\theta_n\)</span> is <em>asymptotically normal distributed</em> if</p>
-<p><span class="math display">\[\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\Sigma)\quad\text{as}\quad n\to\infty\]</span></p>
-<p>where <span class="math inline">\(\lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))=\lim_{n\to\infty}Var(\sqrt{n}\hat\theta_n)=\Sigma\)</span> as called the asymptotic variance of <span class="math inline">\(\sqrt{n}(\hat\theta_n-\theta)\)</span>.</p>
-<p><strong><span class="math inline">\(\sqrt{n}\)</span>-consistent:</strong> Consistent estimators <span class="math inline">\(\hat{\theta}_n\to_{p}\theta\)</span> are called *<span class="math inline">\(\sqrt{n*\)</span>-consistent} if</p>
-<p><span class="math display">\[\sqrt{n}(\hat\theta_n-\theta)\to_{d} z \quad\text{as}\quad n\to\infty\]</span></p>
-<p>If additionally the random vector <span class="math inline">\(z\)</span> is normal distributed, then <span class="math inline">\(\hat\theta_n\)</span> is often called <em>consistent and asymptotically normal.</em></p>
+<p><strong>(Weak) Consistency:</strong> We say that an estimator <span class="math inline">\(\hat\theta_n\)</span> is <em>(weakly) consistent for <span class="math inline">\(\theta\)</span></em> if <span class="math display">\[\hat\theta_n\to_{p}\theta\quad\text{as}\quad n\to\infty\]</span></p>
+<p><strong>Asymptotic Bias:</strong> The <em>asymptotic bias</em> of an estimator <span class="math inline">\(\hat\theta_n\)</span> of some true parameter <span class="math inline">\(\theta\)</span> is defined as: <span class="math display">\[\text{ABias}(\hat\theta_n)=\lim_{n\to\infty}E(\hat\theta_n)-\theta\]</span> If <span class="math inline">\(\text{ABias}(\hat\theta_n)=0\)</span>, then <span class="math inline">\(\hat\theta\)</span> is called an <strong>asymptotically unbiased</strong>.</p>
+<p><strong>Asymptotic Normality:</strong> A consistent estimator <span class="math inline">\(\hat\theta_n\)</span> is <em>asymptotically normal distributed</em> if <span class="math display">\[\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\Sigma)\quad\text{as}\quad n\to\infty\]</span> where <span class="math inline">\(\lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))=\lim_{n\to\infty}Var(\sqrt{n}\hat\theta_n)=\Sigma\)</span> as called the asymptotic variance of <span class="math inline">\(\sqrt{n}(\hat\theta_n-\theta)\)</span>.</p>
+<p><strong><span class="math inline">\(\sqrt{n}\)</span>-consistent:</strong> Consistent estimators <span class="math inline">\(\hat{\theta}_n\to_{p}\theta\)</span> are called <em><span class="math inline">\(\sqrt{n*\)</span>-consistent} if <span class="math display">\[\sqrt{n}(\hat\theta_n-\theta)\to_{d} z \quad\text{as}\quad n\to\infty\]</span> If additionally the random vector <span class="math inline">\(z\)</span> is normal distributed, then <span class="math inline">\(\hat\theta_n\)</span> is often called </em>consistent and asymptotically normal.*</p>
 </section>
 </section>
 <section id="asymptotics-under-the-classic-regression-model" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="asymptotics-under-the-classic-regression-model"><span class="header-section-number">6.2</span> Asymptotics under the Classic Regression Model</h2>
-<p>Given the above introduced machinery on asymptotic concepts and results, we can now proof that the OLS estimators <span class="math inline">\(\hat\beta\)</span> and <span class="math inline">\(s_{UB}^2\)</span> applied to the classic regression model (defined by Assumptions 1-4 in <a href="04-MultipleReg.html"><span>Chapter&nbsp;4</span></a> are both consistent, and that <span class="math inline">\(\hat\beta\)</span> is asymptotically normal distributed as <span class="math inline">\(n\to\infty\)</span>. That is, we can drop the unrealistic normality and spherical errors assumption (Assumption 4<span class="math inline">\(^\ast\)</span>), but still use the usual test statistics (<span class="math inline">\(t\)</span>-test, <span class="math inline">\(F\)</span>-test); as long as the sample size <span class="math inline">\(n\)</span> is “large.”</p>
-<p>However, before we can formally state the asymptotic properties, we, first, need to adjust our “data generating process”assumption (Assumption 1) such that we can apply Kolmogorov’s strong LLN and Lindeberg-Levy’s CLT. Second, we need to adjust the rank assumption (Assumption 3), such that the full column rank of <span class="math inline">\(X\)</span> is guaranteed for the limiting case as <span class="math inline">\(n\to\infty\)</span>, too. Assumptions 2 and 4 from <a href="04-MultipleReg.html"><span>Chapter&nbsp;4</span></a> are assumed to hold (and do not need to be changed).</p>
-<p><strong>Assumption 1<span class="math inline">\(^\ast\)</span>: Data Generating Process (for Asymptotics)</strong> Assumption 1 of <a href="04-MultipleReg.html"><span>Chapter&nbsp;4</span></a> applies, but <em>additionally</em> we assume that <span class="math inline">\((\varepsilon_i, X_i)\in\mathbb{R}^{K+1}\)</span> (or equivalently <span class="math inline">\((Y_i,X_i)\in\mathbb{R}^{K+1}\)</span>) is jointly i.i.d. for all <span class="math inline">\(i=1,\dots,n\)</span>, with existing and finite second moments for <span class="math inline">\(X_i\)</span> and fourth moments for <span class="math inline">\(\varepsilon_i\)</span>.</p>
+<p>Given the above introduced machinery on asymptotic concepts and results, we can now proof that the OLS estimators <span class="math inline">\(\hat\beta\)</span> and <span class="math inline">\(s_{UB}^2\)</span> applied to the classic regression model (defined by Assumptions 1-4 in <a href="03-MultipleReg.html"><span>Chapter&nbsp;3</span></a> are both consistent, and that <span class="math inline">\(\hat\beta\)</span> is asymptotically normal distributed as <span class="math inline">\(n\to\infty\)</span>. That is, we can drop the unrealistic normality and spherical errors assumption (Assumption 4<span class="math inline">\(^\ast\)</span>), but still use the usual test statistics (<span class="math inline">\(t\)</span>-test, <span class="math inline">\(F\)</span>-test); as long as the sample size <span class="math inline">\(n\)</span> is “large.”</p>
+<p>However, before we can formally state the asymptotic properties, we, first, need to adjust our “data generating process”assumption (Assumption 1) such that we can apply Kolmogorov’s strong LLN and Lindeberg-Levy’s CLT. Second, we need to adjust the rank assumption (Assumption 3), such that the full column rank of <span class="math inline">\(X\)</span> is guaranteed for the limiting case as <span class="math inline">\(n\to\infty\)</span>, too. Assumptions 2 and 4 from <a href="03-MultipleReg.html"><span>Chapter&nbsp;3</span></a> are assumed to hold (and do not need to be changed).</p>
+<p><strong>Assumption 1<span class="math inline">\(^\ast\)</span>: Data Generating Process (for Asymptotics)</strong> Assumption 1 of <a href="03-MultipleReg.html"><span>Chapter&nbsp;3</span></a> applies, but <em>additionally</em> we assume that <span class="math inline">\((\varepsilon_i, X_i)\in\mathbb{R}^{K+1}\)</span> (or equivalently <span class="math inline">\((Y_i,X_i)\in\mathbb{R}^{K+1}\)</span>) is jointly i.i.d. for all <span class="math inline">\(i=1,\dots,n\)</span>, with existing and finite second moments for <span class="math inline">\(X_i\)</span> and fourth moments for <span class="math inline">\(\varepsilon_i\)</span>.</p>
 <p><strong>Note 1:</strong> The fourth moment of <span class="math inline">\(\varepsilon_i\)</span> is actually only needed for <a href="#thm-Consistency_s1">Theorem&nbsp;<span>6.7</span></a>; for the rest two moments are sufficient.</p>
 <p><strong>Note 2:</strong> The above adjustment of Assumption 1 is far less restrictive than assuming that the error-terms <span class="math inline">\(\varepsilon_i\)</span> are i.i.d. normally distributed and independent from <span class="math inline">\(X_i\)</span> (as it’s necessary for small sample inference in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a>).</p>
-<p><strong>Assumption 3<span class="math inline">\(^\ast\)</span>: Rank Condition (for Asymptotics)</strong> The <span class="math inline">\((K\times K)\)</span> matrix</p>
-<p><span class="math display">\[\Sigma_{X'X}:=E(S_{X'X})=E(n^{-1}X'X)=E(X_iX_i')\]</span></p>
-<!-- $$ -->
-<!-- n^{-1}X'X=S_{X'X}\to_{p}\Sigma_{X'X}\quad\text{as}\quad n\to\infty -->
-<!-- $$ -->
-<p>has full rank <span class="math inline">\(K\)</span>. I.e., <span class="math inline">\(\Sigma_{X'X}\)</span> is nonsingular and invertible. <!-- (Note, this assumption does not assume that $S_{X'X}\to_{p}\Sigma_{X'X}$, but if this convergence hold, it assumes that the limiting matrix is of full rank $K$.) --></p>
+<p><strong>Assumption 3<span class="math inline">\(^\ast\)</span>: Rank Condition (for Asymptotics)</strong> The <span class="math inline">\((K\times K)\)</span> matrix <span class="math display">\[\Sigma_{X'X}:=E(S_{X'X})=E(n^{-1}X'X)=E(X_iX_i')\]</span> <!-- $$ --> <!-- n^{-1}X'X=S_{X'X}\to_{p}\Sigma_{X'X}\quad\text{as}\quad n\to\infty --> <!-- $$ --> has full rank <span class="math inline">\(K\)</span>. I.e., <span class="math inline">\(\Sigma_{X'X}\)</span> is nonsingular and invertible. <!-- (Note, this assumption does not assume that $S_{X'X}\to_{p}\Sigma_{X'X}$, but if this convergence hold, it assumes that the limiting matrix is of full rank $K$.) --></p>
 <!-- **Note:**The crucial part of Assumption 3$^\ast$ is that the limit matrix has full rank $K$. The convergence in probability statement ($S_{X'X}\to_{p}\Sigma_{X'X}$) follows already from Assumption 1$^\ast$.   -->
 <!-- **Note:** Assumption 3$^\ast$ implies the existence and finiteness of the first two moments of $X_i$ (even without Assumption 1$^\ast$). -->
 <!-- % Under the Assumptions 1$^\ast$, 2, 3$^\ast$, and 4, we can show the following results. -->
 <div id="thm-Sxx1" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 6.4 (Consistency of <span class="math inline">\(S_{X'X}^{-1}\)</span>) </strong></span>Under Assumption 1<span class="math inline">\(^\ast\)</span> and 3<span class="math inline">\(^\ast\)</span> we have that</p>
-<p><span class="math display">\[\left(\frac{1}{n}X'X\right)^{-1}=S_{X'X}^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1}\quad\text{as}\quad n\to\infty\]</span></p>
+<p><span class="theorem-title"><strong>Theorem 6.4 (Consistency of <span class="math inline">\(S_{X'X}^{-1}\)</span>) </strong></span>Under Assumption 1<span class="math inline">\(^\ast\)</span> and 3<span class="math inline">\(^\ast\)</span> we have that <span class="math display">\[\left(\frac{1}{n}X'X\right)^{-1}=S_{X'X}^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1}\quad\text{as}\quad n\to\infty\]</span></p>
 </div>
 <p>Proof is done in the lecture.</p>
 <div id="thm-bconsistent1" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 6.5 (Consistency of <span class="math inline">\(\hat\beta\)</span>) </strong></span>Under Assumption 1<span class="math inline">\(^\ast\)</span>, 2 and 3<span class="math inline">\(^\ast\)</span> we have that</p>
-<p><span class="math display">\[\hat\beta_n\to_{p}\beta\quad\text{as}\quad n\to\infty\]</span></p>
+<p><span class="theorem-title"><strong>Theorem 6.5 (Consistency of <span class="math inline">\(\hat\beta\)</span>) </strong></span>Under Assumption 1<span class="math inline">\(^\ast\)</span>, 2 and 3<span class="math inline">\(^\ast\)</span> we have that <span class="math display">\[\hat\beta_n\to_{p}\beta\quad\text{as}\quad n\to\infty\]</span></p>
 </div>
 <p>Proof is done in the lecture.</p>
 <p>Furthermore, we can show that the appropriately scaled (by <span class="math inline">\(\sqrt{n}\)</span>) sampling error <span class="math inline">\(\hat\beta-\beta\)</span> of the OLS estimator is asymptotically normal distributed.</p>
 <div id="thm-OLSnormality1" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 6.6 (Sampling error limiting normality (the classic case)) </strong></span>For simplicity, we consider here the special case of spherical errors (<span class="math inline">\(Var(\varepsilon|X)=\sigma^2I_n\)</span>). Under Assumption 1<span class="math inline">\(^\ast\)</span>, 2 and 3<span class="math inline">\(^\ast\)</span> we then have that</p>
-<p><span class="math display">\[\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right)\quad\text{as}\quad n\to\infty\]</span></p>
+<p><span class="theorem-title"><strong>Theorem 6.6 (Sampling error limiting normality (the classic case)) </strong></span>For simplicity, we consider here the special case of spherical errors (<span class="math inline">\(Var(\varepsilon|X)=\sigma^2I_n\)</span>). Under Assumption 1<span class="math inline">\(^\ast\)</span>, 2 and 3<span class="math inline">\(^\ast\)</span> we then have that <span class="math display">\[\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right)\quad\text{as}\quad n\to\infty\]</span></p>
 </div>
 <p>Proof is done in the lecture.</p>
 <p>In principle, we can derive the usual test statistics from the latter result. Though, as long as we do not know (we usually don’t) <span class="math inline">\(\sigma^2\)</span> and <span class="math inline">\(\Sigma_{X'X}\)</span> we need to plug-in the (consistent!) estimators <span class="math inline">\(S_{X'X}^{-1}\)</span> and <span class="math inline">\(s_{UB}^2\)</span>, where the consistency of the former estimator is provided by <a href="#thm-Sxx1">Theorem&nbsp;<span>6.4</span></a> and the consistency of <span class="math inline">\(s_{UB}^2\)</span> is provided by the following result.</p>
 <div id="thm-Consistency_s1" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 6.7 (Consistency of <span class="math inline">\(s^2_{UB}\)</span>) </strong></span></p>
-<p><span class="math display">\[s_{UB}^2\to_{p}\sigma^2\quad\text{as}\quad n\to\infty\]</span></p>
+<p><span class="theorem-title"><strong>Theorem 6.7 (Consistency of <span class="math inline">\(s^2_{UB}\)</span>) </strong></span><span class="math display">\[s_{UB}^2\to_{p}\sigma^2\quad\text{as}\quad n\to\infty\]</span></p>
 </div>
 <p>Proof is skipped, but a detailed proof can be found here: <a href="https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties">https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties</a></p>
 <section id="the-case-of-heteroscedasticity" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="the-case-of-heteroscedasticity"><span class="header-section-number">6.2.1</span> The Case of Heteroscedasticity</h3>
-<p><a href="#thm-OLSnormality1">Theorem&nbsp;<span>6.6</span></a> can also be stated and proofed for conditionally heteroscedastic error terms. In this case one gets</p>
-<p><span id="eq-OLSnormality1Rob"><span class="math display">\[
+<p><a href="#thm-OLSnormality1">Theorem&nbsp;<span>6.6</span></a> can also be stated and proofed for conditionally heteroscedastic error terms. In this case one gets <span id="eq-OLSnormality1Rob"><span class="math display">\[
 \sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)\quad\text{as}\quad n\to\infty
-\tag{6.1}\]</span></span></p>
-<p>where <span class="math inline">\(\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}\)</span> (i.e., the asymptotic variance of <span class="math inline">\(\sqrt{n}(\hat\beta_n-\beta)\)</span>) is usually unknown and needs to be estimated from the data by</p>
-<p><span class="math display">\[
+\tag{6.1}\]</span></span> where <span class="math inline">\(\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}\)</span> (i.e., the asymptotic variance of <span class="math inline">\(\sqrt{n}(\hat\beta_n-\beta)\)</span>) is usually unknown and needs to be estimated from the data by <span class="math display">\[
 S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\to_{p} \Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\quad\text{as}\quad n\to\infty,
-\]</span></p>
-<p>where <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')\)</span> denotes some consistent estimator of <span class="math inline">\(E(\varepsilon^2X_iX_i')\)</span> such as one of the following choices:</p>
+\]</span> where <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')\)</span> denotes some consistent estimator of <span class="math inline">\(E(\varepsilon^2X_iX_i')\)</span> such as one of the following choices:</p>
 <ul>
 <li>HC0: <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2X_iX_i'\)</span></li>
 <li>HC1: <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{n}{n-K}\hat\varepsilon_i^2X_iX_i'\)</span></li>
@@ -494,11 +467,9 @@ S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\to_{p} \Sigma_{X'X}^
 <p>Let us reconsider the following system of <span class="math inline">\(q\)</span>-many null hypotheses: <span class="math display">\[\begin{align*}
 H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta} - \underset{(q\times 1)}{r} = \underset{(q\times 1)}{0},
 \end{align*}\]</span> where the <span class="math inline">\((q \times K)\)</span> matrix <span class="math inline">\(R\)</span> and the <span class="math inline">\(q\)</span>-vector <span class="math inline">\(r=(r_{1},\dots,r_{q})'\)</span> are chosen by the statistician to specify her/his null hypothesis about the unknown true parameter vector <span class="math inline">\(\beta\)</span>. To make sure that there are no redundant equations, it is required that <span class="math inline">\(\operatorname{rank}(R)=q\)</span>.</p>
-<p>By contrast to the multiple parameter tests for small samples (see <a href="05-Small-Sample-Inference.html#sec-testmultp"><span>Section&nbsp;5.1</span></a>), we can work here with a heterosedasticity robust test statistic which is applicable for heteroscedastic error terms:</p>
-<p><span id="eq-Ftestasymp"><span class="math display">\[
+<p>By contrast to the multiple parameter tests for small samples (see <a href="05-Small-Sample-Inference.html#sec-testmultp"><span>Section&nbsp;5.1</span></a>), we can work here with a heterosedasticity robust test statistic which is applicable for heteroscedastic error terms: <span id="eq-Ftestasymp"><span class="math display">\[
 W=n(R\hat\beta_n -r)'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r)\overset{H_0}{\to}_d\chi^2(q)
-\tag{6.2}\]</span></span></p>
-<p>as <span class="math inline">\(n\to\infty\)</span>. The price to pay is that the distribution of the test statistic under the null hypothesis is only valid asymptotically for large <span class="math inline">\(n\)</span>. That is, the critical values taken from the asymptotic distribution will be useful only for “large”samples sizes. In case of homoscedastic error terms, one can substitute <span class="math inline">\(S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\)</span> by <span class="math inline">\(s_{UB}^2S_{X'X}^{-1}\)</span>.</p>
+\tag{6.2}\]</span></span> as <span class="math inline">\(n\to\infty\)</span>. The price to pay is that the distribution of the test statistic under the null hypothesis is only valid asymptotically for large <span class="math inline">\(n\)</span>. That is, the critical values taken from the asymptotic distribution will be useful only for “large”samples sizes. In case of homoscedastic error terms, one can substitute <span class="math inline">\(S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\)</span> by <span class="math inline">\(s_{UB}^2S_{X'X}^{-1}\)</span>.</p>
 <p><strong>Finite-sample correction:</strong> In order to improve the finite-sample performance of this test, one usually uses the <span class="math inline">\(F_{q,n-K}\)</span> distribution with <span class="math inline">\(q\)</span> and <span class="math inline">\(n-K\)</span> degrees of freedoms instead of the <span class="math inline">\(\chi^2(q)\)</span> distribution. Asymptotically (<span class="math inline">\(n\to\infty\)</span>), <span class="math inline">\(F_{q,n-K}\)</span> is equivalent to <span class="math inline">\(\chi^2(q)\)</span>. However, for finite sample sizes <span class="math inline">\(n\)</span> (i.e., the practically relevant case) <span class="math inline">\(F_{q,n-K}\)</span> leads to larger critical values which helps to account for the estimation errors in <span class="math inline">\(S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\)</span> (or in <span class="math inline">\(s_{UB}^2S_{X'X}^{-1}\)</span>) which are otherwise neglected by the pure asymptotic perspective.</p>
 </section>
 <section id="robust-hypothesis-testing-single-parameters" class="level4" data-number="6.2.2.2">
@@ -508,21 +479,17 @@ W=n(R\hat\beta_n -r)'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{
 H_0: &amp; \beta_k=r\\
 H_A: &amp; \beta_k\ne r\\
 \end{array}
-\end{equation*}\]</span> We can selecting the <span class="math inline">\(k\)</span>th diagonal element of the test-statistic in <a href="#eq-Ftestasymp">Equation&nbsp;<span>6.2</span></a> and taking the square root yields</p>
-<p><span class="math display">\[
+\end{equation*}\]</span> We can selecting the <span class="math inline">\(k\)</span>th diagonal element of the test-statistic in <a href="#eq-Ftestasymp">Equation&nbsp;<span>6.2</span></a> and taking the square root yields <span class="math display">\[
 t=\frac{\sqrt{n}\left(\hat{\beta}_k-r\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{kk}}}\overset{H_0}{\to}_d\mathcal{N}(0,1).
-\]</span></p>
-<p>This <span class="math inline">\(t\)</span> test statistic allows for heteroscedastic error terms. In case of homoscedastic error terms, one can substitute <span class="math inline">\([S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}\)</span> by <span class="math inline">\(s_{UB}^2[S_{X'X}^{-1}]_{kk}\)</span>.</p>
+\]</span> This <span class="math inline">\(t\)</span> test statistic allows for heteroscedastic error terms. In case of homoscedastic error terms, one can substitute <span class="math inline">\([S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}\)</span> by <span class="math inline">\(s_{UB}^2[S_{X'X}^{-1}]_{kk}\)</span>.</p>
 <p><strong>Finite-sample correction:</strong> In order to improve the finite-sample performance of this <span class="math inline">\(t\)</span> test, one usually uses the <span class="math inline">\(t_{(n-K)}\)</span> distribution with <span class="math inline">\(n-K\)</span> degrees of freedoms instead of the <span class="math inline">\(\mathcal{N}(0,1)\)</span> distribution. Asymptotically (<span class="math inline">\(n\to\infty\)</span>), <span class="math inline">\(t_{(n-K)}\)</span> is equivalent to <span class="math inline">\(\mathcal{N}(0,1)\)</span>. However, for finite sample sizes <span class="math inline">\(n\)</span> (i.e., the practically relevant case) <span class="math inline">\(t_{n-K}\)</span> leads to larger critical values which helps to account for the estimation errors in <span class="math inline">\([S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}\)</span> (or in <span class="math inline">\(s_{UB}^2[S_{X'X}^{-1}]_{kk}\)</span>) which are otherwise neglected by the pure asymptotic perspective.</p>
 </section>
 <section id="robust-confidence-intervals" class="level4" data-number="6.2.2.3">
 <h4 data-number="6.2.2.3" class="anchored" data-anchor-id="robust-confidence-intervals"><span class="header-section-number">6.2.2.3</span> Robust Confidence Intervals</h4>
-<p>Following the derivations in Chapter <a href="05-Small-Sample-Inference.html#sec-CIsmallsample"><span>Section&nbsp;5.4</span></a>, but using the expression for the robust standard errors, we get the following heteroscedasticity robust (random) <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> confidence interval</p>
-<p><span class="math display">\[
+<p>Following the derivations in Chapter <a href="05-Small-Sample-Inference.html#sec-CIsmallsample"><span>Section&nbsp;5.4</span></a>, but using the expression for the robust standard errors, we get the following heteroscedasticity robust (random) <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> confidence interval <span class="math display">\[
 \operatorname{CI}_{1-\alpha}=
 \left[\hat\beta_k\pm t_{1-\alpha/2,n-K}\sqrt{n^{-1}[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}}\right].
-\]</span></p>
-<p>Here, the coverage probability is an asymptotic coverage probability with <span class="math inline">\(P(\beta_k\in\operatorname{CI}_{1-\alpha})\to 1-\alpha\)</span> as <span class="math inline">\(n\to\infty\)</span>.</p>
+\]</span> Here, the coverage probability is an asymptotic coverage probability with <span class="math inline">\(P(\beta_k\in\operatorname{CI}_{1-\alpha})\to 1-\alpha\)</span> as <span class="math inline">\(n\to\infty\)</span>.</p>
 </section>
 </section>
 </section>
@@ -559,30 +526,22 @@ Var(\varepsilon_i)
 </div>
 <section id="normally-distributed-hatbeta-for-ntoinfty" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="normally-distributed-hatbeta-for-ntoinfty"><span class="header-section-number">6.3.1</span> Normally Distributed <span class="math inline">\(\hat\beta\)</span> for <span class="math inline">\(n\to\infty\)</span></h3>
-<p>The above data generating process fulfills our regulatory assumptions Assumption 1<span class="math inline">\(^*\)</span>, 2, 3<span class="math inline">\(^*\)</span>, and 4. So, by theory, the estimators <span class="math inline">\(\hat\beta_k\)</span> should be normal distributed for large sample sizes <span class="math inline">\(n\)</span> – unconditionally on <span class="math inline">\(X\)</span> and even for heteroscedastic error terms.</p>
-<p><span class="math display">\[
+<p>The above data generating process fulfills our regulatory assumptions Assumption 1<span class="math inline">\(^*\)</span>, 2, 3<span class="math inline">\(^*\)</span>, and 4. So, by theory, the estimators <span class="math inline">\(\hat\beta_k\)</span> should be normal distributed for large sample sizes <span class="math inline">\(n\)</span> – unconditionally on <span class="math inline">\(X\)</span> and even for heteroscedastic error terms. <span class="math display">\[
 \sqrt{n}\left(\hat\beta_k-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
-\]</span></p>
-<p>Or:</p>
-<p><span class="math display">\[
+\]</span> Or: <span class="math display">\[
 \hat\beta_k\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
-\]</span></p>
-<p>Mathematically, the latter is a bit sloppy since the right hand side of <span class="math inline">\(\to_d\)</span> depends on <span class="math inline">\(n\)</span>, i.e., is not the stable limit object for <span class="math inline">\(n\to\infty\)</span>. However, this sloppiness is nevertheless instructive since it gives us the approximative distribution for given largish sample sizes like <span class="math inline">\(n=100\)</span>.</p>
+\]</span> Mathematically, the latter is a bit sloppy since the right hand side of <span class="math inline">\(\to_d\)</span> depends on <span class="math inline">\(n\)</span>, i.e., is not the stable limit object for <span class="math inline">\(n\to\infty\)</span>. However, this sloppiness is nevertheless instructive since it gives us the approximative distribution for given largish sample sizes like <span class="math inline">\(n=100\)</span>.</p>
 <div class="cell">
 
 </div>
 <p>For our above specified data generating process, we have</p>
 <ul>
-<li>From the assumed distributions of <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> we have that:</li>
-</ul>
-<p><span class="math display">\[
+<li><p>From the assumed distributions of <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> we have that: <span class="math display">\[
 \Sigma_{X'X}=E(S_{X'X})=E(X_iX_i')
 =\left(\begin{matrix}1&amp;0&amp;0\\0&amp;E(X_{i2}^2)&amp;0\\0&amp;0&amp;E(X_{i3}^2)\end{matrix}\right)
 =\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)
-\]</span></p>
-<p>The above result follows from observing that <span class="math inline">\(E(X^2)=Var(X)\)</span> if <span class="math inline">\(X\)</span> has mean zero, and that the variance of uniform <span class="math inline">\(U[a,b]\)</span> distributed random variables is given by <span class="math inline">\(\frac{1}{12}(b-a)^2\)</span>.</p>
-<ul>
-<li>Moreover, <span class="math inline">\(E(\varepsilon^2_iX_iX_i')=E(X_iX_i'E(\varepsilon^2_i|X_i))=E\left(X_iX_i'\left(\frac{1}{12}X_{i2}^2\right)\right)\)</span> such that <span class="math display">\[\begin{align*}
+\]</span> The above result follows from observing that <span class="math inline">\(E(X^2)=Var(X)\)</span> if <span class="math inline">\(X\)</span> has mean zero, and that the variance of uniform <span class="math inline">\(U[a,b]\)</span> distributed random variables is given by <span class="math inline">\(\frac{1}{12}(b-a)^2\)</span>.</p></li>
+<li><p>Moreover, <span class="math inline">\(E(\varepsilon^2_iX_iX_i')=E(X_iX_i'E(\varepsilon^2_i|X_i))=E\left(X_iX_i'\left(\frac{1}{12}X_{i2}^2\right)\right)\)</span> such that <span class="math display">\[\begin{align*}
 E(\varepsilon^2_iX_iX_i')
 &amp;=\left(\begin{matrix}E\left(\frac{1}{12}X_{i2}^2\right)&amp;0&amp;0\\
                  0&amp;E\left(X_{i2}^2\cdot\frac{1}{12}X_{i2}^2\right)&amp;0\\0&amp;0&amp;E\left(X_{i3}^2\cdot\frac{1}{12}X_{i2}^2\right)
@@ -594,13 +553,11 @@ E(\varepsilon^2_iX_iX_i')
                     0&amp;\frac{1}{12}\frac{256}{5}&amp;0\\
                     0&amp;0&amp;\frac{1}{12}\frac{16}{3}\frac{25}{3}\end{matrix}\right)
 =\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)
-\end{align*}\]</span> The above result follow from observing that for <span class="math inline">\(X\sim U[a,b]\)</span> one has <span class="math inline">\(E(X^k)=\frac{b^{k+1}-a^{k+1}}{(k+1)(b-a)}\)</span>, <span class="math inline">\(k=1,2,\dots\)</span>; see, for instance, <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">Wikipedia</a>.</li>
+\end{align*}\]</span> The above result follow from observing that for <span class="math inline">\(X\sim U[a,b]\)</span> one has <span class="math inline">\(E(X^k)=\frac{b^{k+1}-a^{k+1}}{(k+1)(b-a)}\)</span>, <span class="math inline">\(k=1,2,\dots\)</span>; see, for instance, <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">Wikipedia</a>.</p></li>
 </ul>
-<p>So, for instance, for <span class="math inline">\(\hat{\beta}_2\)</span> we have the following theoretical large sample distribution:</p>
-<p><span class="math display">\[
+<p>So, for instance, for <span class="math inline">\(\hat{\beta}_2\)</span> we have the following theoretical large sample distribution: <span class="math display">\[
 \hat\beta_2\to_d\mathcal{N}\left(\beta_2, \;n^{-1}\;\left[\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)
-\]</span></p>
-<p>Let’s use a Monte Carlo simulation to check how well the theoretical large sample (<span class="math inline">\(n\to\infty\)</span>) distribution of <span class="math inline">\(\hat\beta_2\)</span> works as an approximative distribution for a practical largish sample size of <span class="math inline">\(n=100\)</span>.</p>
+\]</span> Let’s use a Monte Carlo simulation to check how well the theoretical large sample (<span class="math inline">\(n\to\infty\)</span>) distribution of <span class="math inline">\(\hat\beta_2\)</span> works as an approximative distribution for a practical largish sample size of <span class="math inline">\(n=100\)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n           <span class="ot">&lt;-</span> <span class="dv">100</span>      <span class="co"># a largish sample size</span></span>
@@ -756,16 +713,14 @@ H_0:\;&amp;\beta_2=3\quad\text{and}\quad\beta_3=5\\
 \end{align*}\]</span> Or equivalently <span class="math display">\[\begin{align*}
 H_0:\;&amp;R\beta -r = 0 \\
 H_A:\;&amp;R\beta -r \neq 0,
-\end{align*}\]</span> where</p>
-<p><span class="math display">\[
+\end{align*}\]</span> where <span class="math display">\[
 R=\left(
 \begin{matrix}
 0&amp;1&amp;0\\
 0&amp;0&amp;1\\
 \end{matrix}\right)\quad\text{ and }\quad
 r=\left(\begin{matrix}3\\5\\\end{matrix}\right).
-\]</span></p>
-<p>The following <code>R</code> code can be used to test this hypothesis. Note that we use HC3 robust variance estimation <code>sandwich::vcovHC(lm_obj, type="HC3")</code> to take into account that the error terms are heteroscedastic.</p>
+\]</span> The following <code>R</code> code can be used to test this hypothesis. Note that we use HC3 robust variance estimation <code>sandwich::vcovHC(lm_obj, type="HC3")</code> to take into account that the error terms are heteroscedastic.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">"car"</span>)) <span class="co"># for linearHyothesis()</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?linearHypothesis</span></span>
@@ -879,6 +834,11 @@ Attaching package: 'zoo'</code></pre>
 </div>
 </div>
 <p>Again, the <span class="math inline">\(p\)</span>-value is very small and allows us to reject the (false) null-hypothesis at any of the usual significance levels.</p>
+<!-- 
+### Variance Inflation
+
+https://online.stat.psu.edu/stat462/node/180/
+ -->
 </section>
 </section>
 <section id="references" class="level1 unnumbered">
@@ -962,7 +922,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

@@ -247,7 +247,6 @@ auto.data <- read.csv(file   = "C:/your_path/autodata.csv",
 head(auto.data)
 ```
 
-\
 
 
 If you have problems to read the data into R, go on with these commands. (For this you need a working internet connection!):
@@ -513,7 +512,7 @@ Store the data locally:
 ChickWeight %>%
   select(Chick, Diet, Time, weight) %>% 
   arrange(Chick, Diet, Time) %>% 
-  write_csv("ChickWeight.csv")
+  write_csv("data/ChickWeight.csv")
 ```
 
 
@@ -522,22 +521,21 @@ function from the `readr` package (part of the `tidyverse`). The first thing to 
 outside of R, is to open the file `ChickWeight.csv` to check what it contains and that 
 it makes sense. Now we can import the data as follows:
 ```{r readCW}
-CW <- read_csv("ChickWeight.csv")
+CW <- read_csv("data/ChickWeight.csv")
 ```
 
 
-If all goes well then the data is now stored in an R object called `CW`. If you get the
+If all goes well then the data is now stored in an `R` object called `CW`. If you get the
 following error message then you need to change the working directory to where the data is
 stored.
 ```
 Error: 'ChickWeight.csv' does not exist in current
 working directory ...
 ```
+
 **Changing the working directory:** 
 In RStudio you can use the menu bar ("Session - Set Working Directory - Choose Directory..."). Alternatively, you can use the function `setwd()`.
 
-
-\
 
 
 **Looking at the Dataset:**
@@ -563,7 +561,7 @@ View(CW)
 ### Tidyverse: Plotting Basics
 
 
-To **visualise** the chick weight data, we will use the `ggplot2` package (part of the
+To **visualize** the chick weight data, we will use the `ggplot2` package (part of the
 `tidyverse`). Our interest is in seeing how the *weight changes over time for the chicks by
 diet*. For the moment don't worry too much about the details just try to build your own 
 understanding and logic. To learn more try different things even if you get an error
@@ -629,7 +627,6 @@ ggplot(CW, aes(Time, weight, colour=Diet)) +
 
 **Interpretation:** Diet 4 has the least variability but we can't really say anything about the mean effect
 of each diet although diet 3 seems to have the highest.
-
 
 
 Next we will plot the **mean changes** over time for each diet using the `stat_summary()` function:

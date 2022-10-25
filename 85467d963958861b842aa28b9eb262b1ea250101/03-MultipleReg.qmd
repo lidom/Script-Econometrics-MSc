@@ -799,9 +799,7 @@ autoplot(lm_obj_2, which = 1)
 
 ### Behavior of the OLS Estimates for Resampled Data 
 
-<!-- **Simplify this: Only one sample size, no conditioning on X, and less text** -->
-
-Usually, we only observe *one* estimates $\hat{\beta}$ computed based on *one* given data set. However, in order to understand the statistical properties of the estimators $\hat{\beta}$ we need to view them as random variables which yield different realizations in repeated samples generated from Model @eq-LinMod. This allows us then to think about questions like: 
+Usually, we only observe *one* estimate $\hat{\beta}$ of $\beta$ computed based on *one* given dataset (one realization of the random sample). However, in order to understand the statistical properties of the estimators $\hat{\beta}$ we need to view them as random variables which yield different realizations in repeated realizations of the random sample from Model (@eq-LinMod). This allows us then to think about questions like: 
 
 * Is the estimator able to estimate the unknown parameter-value correctly on average?  
 * Are the estimation results more precise if we have more data?
@@ -809,16 +807,12 @@ Usually, we only observe *one* estimates $\hat{\beta}$ computed based on *one* g
 A first idea about the statistical properties of the estimator $\hat{\beta}$ can be gained using Monte Carlo simulations as following.
 ```{r}
 ## Sample sizes
-n_small      <-  10 # small sample size
-n_large      <- 100 # large sample size
+n_small      <-  30 # smallish sample size
+n_large      <- 100 # largish sample size
 
 ## True parameter values
 beta0 <- 1
 beta1 <- 1
-
-## Generate explanatory variables (random design)
-X_n_small  <- runif(n_small, min = 1, max = 10)
-X_n_large  <- runif(n_large, min = 1, max = 10)
 
 ## Monte-Carlo (MC) Simulation 
 ## 1. Generate data
@@ -827,49 +821,48 @@ X_n_large  <- runif(n_large, min = 1, max = 10)
 set.seed(3)
 ## Number of Monte Carlo repetitions
 ## How many samples to draw from the models
-rep          <- 1000
+B          <- 1000
 
-## Containers to store the lm-results
-n_small_list <- vector(mode = "list", length = rep)
-n_large_list <- vector(mode = "list", length = rep)
+## Containers to store the estimation results
+beta0_estimates_n_small <- numeric(B)
+beta1_estimates_n_small <- numeric(B)
+beta0_estimates_n_large <- numeric(B)
+beta1_estimates_n_large <- numeric(B)
 
-for(r in 1:rep){
-## Sampling from the model conditionally on X_n_small
+for(b in 1:B){
+## Generate artificial samples (n_small)
 error_n_small     <- rnorm(n_small, mean = 0, sd = 5)
+X_n_small         <- runif(n_small, min = 1, max = 10)
 Y_n_small         <- beta0 + beta1 * X_n_small + error_n_small
-n_small_list[[r]] <- lm(Y_n_small ~ X_n_small)  
-## Sampling from the model conditionally on X_n_large
-error_n_large     <- rnorm(n_large, mean = 0, sd = 5)
-Y_n_large         <- beta0 + beta1 * X_n_large + error_n_large
-n_large_list[[r]] <- lm(Y_n_large ~ X_n_large)  
-}
+lm_obj            <- lm(Y_n_small ~ X_n_small) 
+## Save estimation results 
+beta0_estimates_n_small[b] <- lm_obj$coefficients[1]
+beta1_estimates_n_small[b] <- lm_obj$coefficients[2]
 
-## Reading out the parameter estimates
-beta0_estimates_n_small <- rep(NA, rep)
-beta1_estimates_n_small <- rep(NA, rep)
-beta0_estimates_n_large <- rep(NA, rep)
-beta1_estimates_n_large <- rep(NA, rep)
-for(r in 1:rep){
-beta0_estimates_n_small[r] <- n_small_list[[r]]$coefficients[1]
-beta1_estimates_n_small[r] <- n_small_list[[r]]$coefficients[2]
-beta0_estimates_n_large[r] <- n_large_list[[r]]$coefficients[1]
-beta1_estimates_n_large[r] <- n_large_list[[r]]$coefficients[2]
+## Generate artificial samples (n_large)
+error_n_large     <- rnorm(n_large, mean = 0, sd = 5)
+X_n_large         <- runif(n_large, min = 1, max = 10)
+Y_n_large         <- beta0 + beta1 * X_n_large + error_n_large
+lm_obj            <- lm(Y_n_large ~ X_n_large)
+## Save estimation results 
+beta0_estimates_n_large[b] <- lm_obj$coefficients[1]
+beta1_estimates_n_large[b] <- lm_obj$coefficients[2] 
 }
 ```
 
-Now, we have produced realizations of the estimators $\hat\beta_0|X$ and $\hat\beta_1|X$ conditionally on  
-$$
-X=\begin{pmatrix}1&X_1\\\vdots&\vdots\\1&X_n\end{pmatrix}
-$$
-and we have saved these realizations in `beta0_estimates_n_small`, `beta1_estimates_n_small`, `beta0_estimates_n_large`, and 
-`beta1_estimates_n_large`. 
+Now, we have produced `B=1000` realizations of the estimators $\hat\beta_0$ and $\hat\beta_1$ and saved these realizations in the vectors 
+
+* `beta0_estimates_n_small`
+* `beta1_estimates_n_small`
+* `beta0_estimates_n_large` 
+* `beta1_estimates_n_large` 
 
 
 These artificially generated realizations allow us to visualize the behavior of the OLS estimates for the repeatedly sampled data. 
 
-```{r, fig.width=6, fig.height=4.5, fig.align='center'}
+```{r, fig.width=6, fig.height=4.5, fig.align='center', echo=FALSE}
 ## Plotting the results
-library("scales") # alpha() produces transparent colors
+suppressPackageStartupMessages(library("scales")) # alpha() produces transparent colors
 
 ## Define a common y-axis range
 y_range <- range(beta0_estimates_n_small,
@@ -881,57 +874,58 @@ par(family = "serif") # Serif fonts
 layout(matrix(c(1:6), 2, 3, byrow = TRUE), widths = c(3,1,1))
 ## Plot 1
 plot(x=0, y=0, axes=FALSE, xlab="X", ylab="Y", type="n",
-     xlim=c(1,10), ylim=c(-5,35), main="Small Sample (n=10)")
+     xlim=c(1,10), ylim=c(-5,35), main="Small Sample (n=30)")
 axis(1, tick = FALSE); axis(2, tick = FALSE, las = 2)
-for(r in 1:rep){
-abline(n_small_list[[r]], lty=2, lwd = 1.3, col="darkorange")
+for(b in 1:B){
+abline(a=beta0_estimates_n_small[b], 
+       b=beta1_estimates_n_small[b], lty=2, lwd = 1.3, col="darkorange")
 }
 abline(a = beta0, b = beta1, lwd=1.3, col="darkblue")
 legend("topleft", col=c("darkorange", "darkblue"), legend=c(
-"Sample regression lines from\nrepeated samples (cond. on X)", 
+"Sample regression lines from repeated samples", 
                   "Population regression line"), 
        lwd=1.3, lty=c(2,1), bty="n")
 ## Plot 2
-plot(x=rep(0,rep), y=beta0_estimates_n_small, axes=FALSE, 
+plot(x=rep(0,B), y=beta0_estimates_n_small, axes=FALSE, 
      xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
-  main=expression(hat(beta)[0]~'|'~X), col=alpha("red",0.2))
+  main=expression(hat(beta)[0]), col=alpha("red",0.2))
 points(x = 0, y=beta0, pch="-", cex = 1.2, col="black")
 text(x=0, y=beta0, labels = expression(beta[0]), pos = 4)
 ## Plot 3
-plot(x=rep(0,rep), y=beta1_estimates_n_small, axes=FALSE, 
+plot(x=rep(0,B), y=beta1_estimates_n_small, axes=FALSE, 
      xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
-  main=expression(hat(beta)[1]~'|'~X), col=alpha("red",0.2))
+  main=expression(hat(beta)[1]), col=alpha("red",0.2))
 points(x = 0, y=beta1, pch="-", cex = 1.2, col="black")
 text(x=0, y=beta1, labels = expression(beta[1]), pos = 4)
 ## Plot 4
 plot(x=0, y=0, axes=FALSE, xlab="X", ylab="Y", type="n",
      xlim=c(1,10), ylim=c(-5,35), main="Large Sample (n=100)")
 axis(1, tick = FALSE); axis(2, tick = FALSE, las = 2)
-for(r in 1:rep){
-abline(n_large_list[[r]], lty=2, lwd = 1.3, col="darkorange")
+for(b in 1:B){
+abline(a=beta0_estimates_n_large[b], 
+       b=beta1_estimates_n_large[b], lty=2, lwd = 1.3, col="darkorange")
 }
 abline(a = beta0, b = beta1, lwd=1.3, col="darkblue")
 ## Plot 5
-plot(x=rep(0,rep), y=beta0_estimates_n_large, axes=FALSE, 
+plot(x=rep(0, B), y=beta0_estimates_n_large, axes=FALSE, 
      xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
-  main=expression(hat(beta)[0]~'|'~X), col=alpha("red",0.2))
+  main=expression(hat(beta)[0]), col=alpha("red",0.2))
 points(x = 0, y=beta0, pch="-", cex = 1.2, col="black")
 text(x=0, y=beta0, labels = expression(beta[0]), pos = 4)
 ## Plot 6
-plot(x=rep(0,rep), y=beta1_estimates_n_large, axes=FALSE, 
+plot(x=rep(0, B), y=beta1_estimates_n_large, axes=FALSE, 
      xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
-  main=expression(hat(beta)[1]~'|'~X), col=alpha("red",0.2))
+  main=expression(hat(beta)[1]), col=alpha("red",0.2))
 points(x=0, y=beta1, pch="-", cex = 1.2, col="black")
 text(x=0, y=beta1, labels = expression(beta[1]), pos = 4)
 ```
 
 This are promising plots: 
 
-* The realizations of $\hat\beta_0|X$ and $\hat\beta_1|X$ are scattered around the true (unknown) parameter values $\beta_0$ and $\beta_1$ for both small and large samples.
-* The realizations of $\hat\beta_0|X$ and $\hat\beta_1|X$ concentrate more and more around the true (unknown) parameter values $\beta_0$ and $\beta_1$ as the sample size increases. 
+* The realizations of $\hat\beta_0$ and $\hat\beta_1$ are scattered around the true (unknown) parameter values $\beta_0$ and $\beta_1$. This indicates unbiasdness of the estimators. 
+* In the case of a larger sample size, the realizations of $\hat\beta_0$ and $\hat\beta_1$ concentrate stronger around the true (unknown) parameter values $\beta_0$ and $\beta_1$. This indicates consistency of the estimators.  
 
-However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. Next we use theoretical arguments to show that these properties also hold in general. 
-
+However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. In the following chapters, we use theoretical arguments to investigate under which assumptions these properties (unbiasedness, consistency, etc.) also hold in general. 
 
 
 ## References {-}
