@@ -925,7 +925,7 @@ This are promising plots:
 * The realizations of $\hat\beta_0$ and $\hat\beta_1$ are scattered around the true (unknown) parameter values $\beta_0$ and $\beta_1$. This indicates unbiasdness of the estimators. 
 * In the case of a larger sample size, the realizations of $\hat\beta_0$ and $\hat\beta_1$ concentrate stronger around the true (unknown) parameter values $\beta_0$ and $\beta_1$. This indicates consistency of the estimators.  
 
-However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. In the following chapters, we use theoretical arguments to investigate under which assumptions these properties (unbiasedness, consistency, etc.) also hold in general. 
+However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. In the following chapters, we use theoretical arguments to investigate under which assumptions we can make *general* statements about the distributional properties of the estimator $\hat\beta.$ 
 
 
 ## References {-}
