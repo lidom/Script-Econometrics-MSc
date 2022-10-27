@@ -1060,4 +1060,6 @@ The following link downloads a PDF-file containing the exercises for this chapte
 
 [Exercises of Chapter 2](Exercises/Ch2_Exercises.pdf)
 
+[Exercises of Chapter 2 with solultions](Exercises/Ch2_Exercises_with_Solutions.pdf)
+
 ## References {-}
