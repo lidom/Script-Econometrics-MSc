@@ -113,7 +113,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./04-Monte-Carlo-Simulations.html" rel="next">
-<link href="./02-Review-Prob_n_Stats.html" rel="prev">
+<link href="./02-Probability.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -194,12 +194,12 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-Review-Prob_n_Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability</span></a>
+  <a href="./02-Probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-MultipleReg.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
+  <a href="./03-Multiple-Linear-Regression.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -329,7 +329,7 @@ E(\varepsilon_i\varepsilon_j|X)&amp;=0\quad\text{for all }i\neq j\quad\text{with
 <!-- **Technical Note:** When we write that $Var(\varepsilon_i|X)=\sigma^2$ or $Var(\varepsilon_i|X_i)=\sigma^2_i,$ we implicitly assume that these second moments exists and that they are finite.  -->
 <section id="homoskedastic-versus-heteroskedastic-error-terms" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="homoskedastic-versus-heteroskedastic-error-terms">Homoskedastic versus Heteroskedastic Error Terms</h4>
-<p>The i.i.d. assumption is not as restrictive as it may seem on first sight. It allows for dependence between <span class="math inline">\(\varepsilon_i\)</span> and <span class="math inline">\((X_{i1},\dots,X_{iK})\in\mathbb{R}^K\)</span>. That is, the error term <span class="math inline">\(\varepsilon_i\)</span> can have a conditional distribution which depends on <span class="math inline">\((X_{i1},\dots,X_{iK})\)</span>; see <a href="02-Review-Prob_n_Stats.html#sec-condDistr"><span>Section&nbsp;2.2.2.5</span></a>.</p>
+<p>The i.i.d. assumption is not as restrictive as it may seem on first sight. It allows for dependence between <span class="math inline">\(\varepsilon_i\)</span> and <span class="math inline">\((X_{i1},\dots,X_{iK})\in\mathbb{R}^K\)</span>. That is, the error term <span class="math inline">\(\varepsilon_i\)</span> can have a conditional distribution which depends on <span class="math inline">\((X_{i1},\dots,X_{iK})\)</span>; see <a href="02-Probability.html#sec-condDistr"><span>Section&nbsp;2.2.2.5</span></a>.</p>
 <!-- However, we need to rule out one certain 
 dependency between $\varepsilon_i$ and $X_i$; namely the conditional mean of $\varepsilon_i$ is not 
 allowed to depend on $X_i$ (see Assumption 2: Exogeneity). -->
@@ -424,7 +424,7 @@ S_n(b)&amp;=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\
 \end{aligned}
 \]</span></p>
 <p>The following codes computes the estimate <span class="math inline">\(\hat{\beta}\)</span> for a given realization <span class="math inline">\((Y,X)\)</span> of the random sample <span class="math inline">\((Y,X)\)</span>.</p>
-<div class="cell" data-layout-align="center" data-hash="03-MultipleReg_cache/html/unnamed-chunk-1_bb2568b6cc858922aef20bb7b0c8b49f">
+<div class="cell" data-layout-align="center" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-1_1a4d86829d00a600e8253262f853e082">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some given data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>X_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.8</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">4.4</span>,<span class="fl">4.6</span>,<span class="fl">1.6</span>,<span class="fl">5.5</span>,<span class="fl">3.4</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>X_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">66</span>, <span class="dv">62</span>, <span class="dv">64</span>, <span class="dv">61</span>, <span class="dv">63</span>, <span class="dv">70</span>, <span class="dv">68</span>, <span class="dv">62</span>, <span class="dv">68</span>, <span class="dv">66</span>)</span>
@@ -442,7 +442,7 @@ S_n(b)&amp;=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="03-MultipleReg_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -512,7 +512,7 @@ Y'Y&amp;=&amp;(\hat Y+\hat\varepsilon)'(\hat Y+\hat\varepsilon)\notag\\
 <p>The larger the proportion of the explained variance, the better is the fit of the model. This motivates the definition of the so-called <span class="math inline">\(R^2\)</span> coefficient of determination: <span class="math display">\[\begin{eqnarray*}
 R^2=\frac{\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}{\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}\;=\;1-\frac{\sum_{i=1}^n\hat{\varepsilon}_i^2}{\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}
 \end{eqnarray*}\]</span> Obviously, we have that <span class="math inline">\(0\leq R^2\leq 1\)</span>. The closer <span class="math inline">\(R^2\)</span> lies to <span class="math inline">\(1\)</span>, the better is the fit of the model to the observed data. However, a high/low <span class="math inline">\(R^2\)</span> does not mean a validation/falsification of the estimated model. Any relation (i.e., model assumption) needs a plausible explanation from relevant economic theory. The most often criticized disadvantage of the <span class="math inline">\(R^2\)</span> is that additional regressors (relevant or not) will always increase the <span class="math inline">\(R^2\)</span>. Here is an example of the problem.</p>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-2_8835fcb261dbf9dfdc383a6207cd7231">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-2_3ff44c46b0649c92e7c42e596014387e">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">100</span>                  <span class="co"># Sample size</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X     <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">10</span>)      <span class="co"># Relevant X variable</span></span>
@@ -580,7 +580,7 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="factor-variables-and-the-dummy-variable-trap"><span class="header-section-number">3.5.1</span> Factor Variables and the Dummy-Variable Trap</h3>
 <p>In the following, we consider simple linear regression model that aims to predict wages in the year 2008 using gender as the only predictor. We use data provided in the accompanying materials of Stock and Watson’s <em>Introduction to Econometrics</em> textbook <span class="citation" data-cites="stock2015">(<a href="#ref-stock2015" role="doc-biblioref">Stock and Watson 2015</a>)</span>. You can download the data stored as an xlsx-file <code>cps_ch3.xlsx</code> <a href="https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps92_12.xlsx">HERE</a>.</p>
 <p>Let us first prepare the dataset:</p>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-3_0bd436448946d8ef2107af7a58ba725c">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-3_eb7feef06a115e06d54ae9e7a6b20b83">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## load the 'tidyverse' package</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(<span class="st">"tidyverse"</span>))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## load the 'readxl' package</span></span>
@@ -602,7 +602,7 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wage, gender) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The first six lines of the dataset look as following:</p>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-4_0caa8aafcfc2d7fb8e437d4b6f37b17d">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-4_27413be44bb6c056df652ba27ee212ad">
 <div class="cell-output-display">
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -643,12 +643,12 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 </div>
 </div>
 <p>Computing the estimation results:</p>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-5_8e1faf1926dbe657cd1ea5dea4b56be3">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-5_877108424879d3eac01d8bf52ac2e9f8">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lm_obj <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> gender, <span class="at">data =</span> cps_2008)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(lm_obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-6_b0926e644b44ad82463741674aac13f5">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-6_fd7c006ff664cff07755d1264b87297a">
 
 </div>
 <p>gives</p>
@@ -657,7 +657,7 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 <li><span class="math inline">\(\hat\beta_2=\)</span> -4.1</li>
 </ul>
 <p>To compute these estimation results, one needs to assign a numeric 0/1 coding to the factor levels <code>male</code> and <code>female</code> of the factor variable <code>gender</code>. To see the numeric values used by <code>R</code> one can take a look at <code>model.matrix(lm_obj)</code>:</p>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-7_36fb3060f91541a0c24be36cb7d2a633">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-7_20a0ff58ad1a0c7076b5f41cae8fb62b">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(lm_obj) <span class="co"># this is the internally used X-matrix</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>X[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -688,7 +688,7 @@ Levels: male female</code></pre>
 <section id="dummy-variable-trap" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="dummy-variable-trap">Dummy-Variable Trap</h3>
 <p>Above, we used <code>R</code>’s internal handling of factor variables which you should always do. If you construct a dummy variable for each of the levels of a factor yourself, however, you may blundered into the dummy variable trap:</p>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-8_70cc29166f61e78df33994c8a7738275">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-8_d7fec53c9f32daa1eee01b705c5cb6cf">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Intercept variable</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>X_1      <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="at">times =</span> <span class="fu">nrow</span>(cps_2008))</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -701,18 +701,18 @@ Levels: male female</code></pre>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Construct the model matrix 'X'</span></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>X        <span class="ot">&lt;-</span> <span class="fu">cbind</span>(X_1, X_female, X_male)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-9_7c3dbbcd394087f5e19da1d1cb52c213">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-9_37c0172edeef216da6968245ff6e96f8">
 
 </div>
 <p>Computing the estimation result for <span class="math inline">\(\beta\)</span> “by hand” yields</p>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-10_3d149f4c2e1675ba57eae704f43029fa">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-10_c1bd6d064322736e695bd5701e6aac1c">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Dependent variable</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Y        <span class="ot">&lt;-</span> cps_2008<span class="sc">$</span>wage</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Computing the estimator</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>beta_hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> Y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-11_344ce40189b27b04bfa34fe54d106d32">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-11_a671a25c43fc8ac2b62cfb58e79c69e1">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">solve.default</span>(X <span class="sc">%*%</span> <span class="fu">t</span>(X)) <span class="sc">:</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  Lapack routine dgesv<span class="sc">:</span> system is exactly singular<span class="sc">:</span> U[<span class="dv">3</span>,<span class="dv">3</span>] <span class="ot">=</span> <span class="dv">0</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Calls<span class="sc">:</span> .main ... eval_with_user_handlers <span class="ot">-&gt;</span> eval <span class="ot">-&gt;</span> eval <span class="ot">-&gt;</span> solve <span class="ot">-&gt;</span> solve.default</span>
@@ -725,7 +725,7 @@ The estimation result is not computable since <span class="math inline">\((X'X)\
 </center>
 <p>which violates Assumption 3 (no perfect multicollinearity).</p>
 <p><strong>Solution:</strong> Use one dummy-variable less than factor levels. I.e., in this example you can either drop <code>X_female</code> or <code>X_male</code>.</p>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-12_e81476da71cf34b700ccc65f95039d9d">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-12_56b7d6c82377088dc4b8ef36745c31b9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## New model matrix after dropping X_male:</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>X        <span class="ot">&lt;-</span> <span class="fu">cbind</span>(X_1, X_female)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -744,7 +744,7 @@ X_female -4.103626</code></pre>
 <h3 data-number="3.5.2" class="anchored" data-anchor-id="detecting-heteroskedasticity"><span class="header-section-number">3.5.2</span> Detecting Heteroskedasticity</h3>
 <p>A very simple, but highly effective way to check for heteroskedastic error terms is to plot the residuals. If we have the correct model (hopefully we have), then (and only then) the residuals are good approximations to the realizations of the error terms <span class="math inline">\(\varepsilon_i\)</span>. Thus a plot of the residuals can be used to check for heteroskedasticity.</p>
 <p>You can use <code>R</code>’s internal diagnostic plots that can be called using the <code>plot()</code> method for <code>lm</code>-objects:</p>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-13_7cfecff1869aaa0bbac09c9477af178f">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-13_3bd831aeb67613bc6bbac26f6756c2d5">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("devtools")</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(devtools)</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install_git("https://github.com/ccolonescu/PoEdata")</span></span>
@@ -757,7 +757,7 @@ X_female -4.103626</code></pre>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_object, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="03-MultipleReg_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Interpretation:</p>
@@ -773,7 +773,7 @@ X_female -4.103626</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Base <code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Tidyverse <code>R</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-14_5e2625debef52d680cf832f991d53268">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-14_cfbdf8bf337ed1eb1396e256aa795fc0">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>car_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"https://cdn.rawgit.com/lidom/Teaching_Repo/bc692b56/autodata.csv"</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>my_car_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
@@ -783,12 +783,12 @@ X_female -4.103626</code></pre>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(my_car_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="03-MultipleReg_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-15_13c9f92dd3699e04739f9081545106ad">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-15_2eb3b03848a7029b32db62f5d6cdf2d1">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("tidyverse")</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("GGally")</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(<span class="st">"tidyverse"</span>))</span>
@@ -806,7 +806,7 @@ X_female -4.103626</code></pre>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(my_car_df) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="03-MultipleReg_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
@@ -818,7 +818,7 @@ X_female -4.103626</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Base <code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Tidyverse <code>R</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell" data-fig.dim="[5,10]" data-hash="03-MultipleReg_cache/html/unnamed-chunk-16_77068871b87eb3ad59f9797047aecd91">
+<div class="cell" data-fig.dim="[5,10]" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-16_4c32b32dc0ba6c59c2881737fd0829b5">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lm_obj_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(MPG <span class="sc">~</span> HP, <span class="at">data =</span> my_car_df)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
@@ -831,12 +831,12 @@ X_female -4.103626</code></pre>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_obj_1, <span class="at">which=</span><span class="dv">1</span>, </span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Simple Linear Regression"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="03-MultipleReg_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="480"></p>
+<p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="480"></p>
 </div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-17_99e82eb3ce03eda1f6b2b1a0a4c33873">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-17_238cb196e7105f9bdec1a0ceb8857233">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("tidyverse")</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("ggfortify")</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(<span class="st">"tidyverse"</span>))</span>
@@ -853,12 +853,12 @@ X_female -4.103626</code></pre>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Horse Power"</span>, <span class="at">y =</span> <span class="st">"Miles per Gallon"</span>, </span>
 <span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Simple Linear Regression"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="03-MultipleReg_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Diagnostic Plot: Simple Linear Regression </span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(lm_obj_1, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="03-MultipleReg_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid" width="672"></p>
+<p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
@@ -869,7 +869,7 @@ X_female -4.103626</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Base <code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Tidyverse <code>R</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="cell" data-fig.dim="[5,10]" data-hash="03-MultipleReg_cache/html/unnamed-chunk-18_9d74bf877af606e98d5a6591538677a5">
+<div class="cell" data-fig.dim="[5,10]" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-18_01ec51261172059eb2db4ffa87b76f10">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Adding new variable HP squared:</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>my_car_df<span class="sc">$</span>HP_sq <span class="ot">&lt;-</span> car_data<span class="sc">$</span>Horsepower<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -889,12 +889,12 @@ X_female -4.103626</code></pre>
 <span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_obj_2, <span class="at">which=</span><span class="dv">1</span>, </span>
 <span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Polynomial Regression (Degree: 2)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="03-MultipleReg_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="480"></p>
+<p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="480"></p>
 </div>
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-19_c995efbcbe2c7fa841e5216634cd5acc">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-19_e85b6aad66392d5c29f371608d9656d6">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("tidyverse")</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">## install.packages("ggfortify")</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(<span class="st">"tidyverse"</span>))</span>
@@ -920,12 +920,12 @@ X_female -4.103626</code></pre>
 <span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Polynomial Regression"</span>, </span>
 <span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Polynomial Degree: 2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="03-MultipleReg_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Diagnostic Plot: Polynomial Regression</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(lm_obj_2, <span class="at">which =</span> <span class="dv">1</span>)     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="03-MultipleReg_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid" width="672"></p>
+<p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
@@ -941,7 +941,7 @@ X_female -4.103626</code></pre>
 <li>Are the estimation results more precise if we have more data?</li>
 </ul>
 <p>A first idea about the statistical properties of the estimator <span class="math inline">\(\hat{\beta}\)</span> can be gained using Monte Carlo simulations as following.</p>
-<div class="cell" data-hash="03-MultipleReg_cache/html/unnamed-chunk-20_5ba0027f3dadd41830aee968e5502e82">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-20_91f2af9dd12074ccf206ca1bc4c8422d">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Sample sizes</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>n_small      <span class="ot">&lt;-</span>  <span class="dv">30</span> <span class="co"># smallish sample size</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>n_large      <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># largish sample size</span></span>
@@ -993,11 +993,11 @@ X_female -4.103626</code></pre>
 <li><code>beta1_estimates_n_large</code></li>
 </ul>
 <p>These artificially generated realizations allow us to visualize the behavior of the OLS estimates for the repeatedly sampled data.</p>
-<div class="cell" data-layout-align="center" data-hash="03-MultipleReg_cache/html/unnamed-chunk-21_5dc24457f1606db6852fc5ebd17d27be">
+<div class="cell" data-layout-align="center" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-21_5955009c913f6cef6cd58dd7bee99581">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="03-MultipleReg_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1128,8 +1128,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./02-Review-Prob_n_Stats.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability</span></span>
+      <a href="./02-Probability.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

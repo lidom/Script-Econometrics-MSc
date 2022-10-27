@@ -11,8 +11,8 @@ book:
   chapters:
     - index.qmd
     - 01-Introduction-to-R.qmd
-    - 02-Review-Prob_n_Stats.qmd
-    - 03-MultipleReg.qmd
+    - 02-Probability.qmd
+    - 03-Multiple-Linear-Regression.qmd
     - 04-Monte-Carlo-Simulations.qmd
     - 05-Small-Sample-Inference.qmd
     - 06-Asymptotics.qmd

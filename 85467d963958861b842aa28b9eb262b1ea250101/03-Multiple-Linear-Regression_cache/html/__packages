@@ -1,0 +1,16 @@
+scatterplot3d
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+readxl
+kableExtra
+PoEdata
+GGally
+ggfortify
+scales

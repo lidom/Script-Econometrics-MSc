@@ -1,4 +1,4 @@
-# Review: Probability {#ReviewStats}
+# Probability {#ReviewStats}
 
 The content of this chapter follows closely (often verbatim) the fantastic book by @Wasserman2004. 
 
@@ -1056,10 +1056,10 @@ $$
 
 ## Exercises
 
-The following link downloads a PDF-file containing the exercises for this chapter. 
+<!-- The following link(s) downloads a PDF-file containing the exercises for this chapter.  -->
 
-[Exercises of Chapter 2](Exercises/Ch2_Exercises.pdf)
+* [Exercises of Chapter 2](Exercises/Ch2_Exercises.pdf)
 
-[Exercises of Chapter 2 with solultions](Exercises/Ch2_Exercises_with_Solutions.pdf)
+* [Exercises of Chapter 2 with Solultions](Exercises/Ch2_Exercises_with_Solutions.pdf)
 
 ## References {-}
