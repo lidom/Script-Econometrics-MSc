@@ -266,7 +266,7 @@ S_n(b)&=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prim
 To find the minimizing argument $$\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)$$ we compute all partial derivatives
 $$
 \begin{aligned}
-\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &=-2\left(X^{\prime}Y -X^{\prime} Xb\right).
+\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &=-2\left(X^{\prime}Y -X^{\prime} Xb\right)
 \end{aligned}
 $$
 and set them equal to zero which leads to $K$ linear equations (the "normal equations") in $K$ unknowns. This system of equations defines the OLS estimates, $\hat{\beta}$, for a given data-set:
@@ -278,28 +278,30 @@ $$
 From our rank assumption (Assumption 3) it follows that $X^{\prime}X$ is an invertible matrix which allows us to solve the equation system by 
 $$
 \begin{aligned}
-\underset{(K\times 1)}{\hat{\beta}} &=\left(X^{\prime} X\right)^{-1} X^{\prime} Y
+\underset{(K\times 1)}{\hat{\beta}} &=\left(X^{\prime} X\right)^{-1} X^{\prime} Y.
 \end{aligned}
 $$
 
 
-The following codes computes the estimate $\hat{\beta}$ for a given realization $(Y,X)$ of the random sample $(Y,X)$. 
+The following codes computes the estimate $\hat{\beta}$ for a given realization $(Y,X)$ of the random sample $(Y,X)$ with $X_i\in\mathbb{R}^3$. 
 
 ```{r, fig.align="center"}
 # Some given data
-X_1 <- c(1.9,0.8,1.1,0.1,-0.1,4.4,4.6,1.6,5.5,3.4)
-X_2 <- c(66, 62, 64, 61, 63, 70, 68, 62, 68, 66)
-Y   <- c(0.7,-1.0,-0.2,-1.2,-0.1,3.4,0.0,0.8,3.7,2.0)
-dataset <-  cbind.data.frame(X_1,X_2,Y)
+X_2     <- c(1.9,0.8,1.1,0.1,-0.1,4.4,4.6,1.6,5.5,3.4)
+X_3     <- c(66, 62, 64, 61, 63, 70, 68, 62, 68, 66)
+Y       <- c(0.7,-1.0,-0.2,-1.2,-0.1,3.4,0.0,0.8,3.7,2.0)
+dataset <-  data.frame("X_2" = X_2, "X_3" = X_3, "Y" = Y)
 ## Compute the OLS estimation
-my.lm <- lm(Y ~ X_1 + X_2, data = dataset)
+lmobj   <- lm(Y ~ X_2 + X_3, data = dataset)
 ## Plot sample regression surface
 library("scatterplot3d") # library for 3d plots
-plot3d <- scatterplot3d(x = X_1, y = X_2, z = Y,
-          angle=33, scale.y=0.8, pch=16,
-          color ="red", main ="OLS Regression Surface")
-plot3d$plane3d(my.lm, lty.box = "solid", col=gray(.5), 
-          draw_polygon=TRUE)
+plot3d  <- scatterplot3d(x = X_2, y = X_3, z = Y,
+            angle = 33, scale.y = 0.8, pch = 16,
+            color ="red", 
+            xlab = expression(X[2]),
+            ylab = expression(X[3]),
+            main ="OLS Regression Surface")
+plot3d$plane3d(lmobj, lty.box = "solid", col=gray(.5), draw_polygon=TRUE)
 ```
 
 
@@ -334,11 +336,11 @@ The projection matrices $P_X$ and $M_X$ have some nice properties:
 (b) $P_X$ and $M_X$ are **idempotent**, i.e. $P_XP_X=P_X$ and $M_X M_X=M_X$.
 (c) Moreover, we have that $X'P_X=X'$, $P_XX=X$, $X'M_X=0$, $M_XX=0$, and $P_XM_X=0$.
 
-All of these properties follow directly from the definitions of $P_X$ and $M_X$ (check it out).  Using these properties one can show that the residual vector $\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'$ is orthogonal to each of the column vectors in $X$, i.e 
+The properties (a)-(c) follow directly from the definitions of $P_X$ and $M_X$ (check it out).  Using these properties one can show that the residual vector $\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'$ is orthogonal to each of the column vectors in $X$, i.e 
 \begin{eqnarray}
 X'\hat\varepsilon&=&X'M_XY\quad\text{\small(By Def.~of $M_X$)}\\
 \Leftrightarrow X'\hat\varepsilon&=&\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad\text{\small(since $X'M_X=0$)}\\
-\Leftrightarrow X'\hat\varepsilon&=&\underset{(K\times 1)}{0}
+\Leftrightarrow X'\hat\varepsilon&=&\underset{(K\times 1)}{0}.
 \end{eqnarray}
 <!-- \begin{align} -->
 <!-- X'\hat\varepsilon=\underset{(K\times 1)}{0}.\label{eq:orthXe} -->

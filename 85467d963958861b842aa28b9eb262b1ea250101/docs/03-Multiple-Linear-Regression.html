@@ -412,7 +412,7 @@ E(X_{ik}\varepsilon_i)=E(X_{ik}E(\varepsilon_i|X_{ik}))=E(X_{ik}0)=0
 S_n(b)&amp;=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
 \end{align*}\]</span> To find the minimizing argument <span class="math display">\[\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)\]</span> we compute all partial derivatives <span class="math display">\[
 \begin{aligned}
-\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &amp;=-2\left(X^{\prime}Y -X^{\prime} Xb\right).
+\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &amp;=-2\left(X^{\prime}Y -X^{\prime} Xb\right)
 \end{aligned}
 \]</span> and set them equal to zero which leads to <span class="math inline">\(K\)</span> linear equations (the “normal equations”) in <span class="math inline">\(K\)</span> unknowns. This system of equations defines the OLS estimates, <span class="math inline">\(\hat{\beta}\)</span>, for a given data-set: <span class="math display">\[
 \begin{aligned}
@@ -420,25 +420,27 @@ S_n(b)&amp;=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\
 \end{aligned}
 \]</span> From our rank assumption (Assumption 3) it follows that <span class="math inline">\(X^{\prime}X\)</span> is an invertible matrix which allows us to solve the equation system by <span class="math display">\[
 \begin{aligned}
-\underset{(K\times 1)}{\hat{\beta}} &amp;=\left(X^{\prime} X\right)^{-1} X^{\prime} Y
+\underset{(K\times 1)}{\hat{\beta}} &amp;=\left(X^{\prime} X\right)^{-1} X^{\prime} Y.
 \end{aligned}
 \]</span></p>
-<p>The following codes computes the estimate <span class="math inline">\(\hat{\beta}\)</span> for a given realization <span class="math inline">\((Y,X)\)</span> of the random sample <span class="math inline">\((Y,X)\)</span>.</p>
-<div class="cell" data-layout-align="center" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-1_1a4d86829d00a600e8253262f853e082">
+<p>The following codes computes the estimate <span class="math inline">\(\hat{\beta}\)</span> for a given realization <span class="math inline">\((Y,X)\)</span> of the random sample <span class="math inline">\((Y,X)\)</span> with <span class="math inline">\(X_i\in\mathbb{R}^3\)</span>.</p>
+<div class="cell" data-layout-align="center" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-1_f7ee0e7f24558bf3fb1f3125126248b4">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some given data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>X_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.8</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">4.4</span>,<span class="fl">4.6</span>,<span class="fl">1.6</span>,<span class="fl">5.5</span>,<span class="fl">3.4</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>X_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">66</span>, <span class="dv">62</span>, <span class="dv">64</span>, <span class="dv">61</span>, <span class="dv">63</span>, <span class="dv">70</span>, <span class="dv">68</span>, <span class="dv">62</span>, <span class="dv">68</span>, <span class="dv">66</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Y   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="sc">-</span><span class="fl">1.0</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">1.2</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">3.4</span>,<span class="fl">0.0</span>,<span class="fl">0.8</span>,<span class="fl">3.7</span>,<span class="fl">2.0</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span>  <span class="fu">cbind.data.frame</span>(X_1,X_2,Y)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>X_2     <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.8</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">4.4</span>,<span class="fl">4.6</span>,<span class="fl">1.6</span>,<span class="fl">5.5</span>,<span class="fl">3.4</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>X_3     <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">66</span>, <span class="dv">62</span>, <span class="dv">64</span>, <span class="dv">61</span>, <span class="dv">63</span>, <span class="dv">70</span>, <span class="dv">68</span>, <span class="dv">62</span>, <span class="dv">68</span>, <span class="dv">66</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Y       <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="sc">-</span><span class="fl">1.0</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">1.2</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">3.4</span>,<span class="fl">0.0</span>,<span class="fl">0.8</span>,<span class="fl">3.7</span>,<span class="fl">2.0</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="st">"X_2"</span> <span class="ot">=</span> X_2, <span class="st">"X_3"</span> <span class="ot">=</span> X_3, <span class="st">"Y"</span> <span class="ot">=</span> Y)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute the OLS estimation</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>my.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_1 <span class="sc">+</span> X_2, <span class="at">data =</span> dataset)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>lmobj   <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3, <span class="at">data =</span> dataset)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot sample regression surface</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"scatterplot3d"</span>) <span class="co"># library for 3d plots</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plot3d <span class="ot">&lt;-</span> <span class="fu">scatterplot3d</span>(<span class="at">x =</span> X_1, <span class="at">y =</span> X_2, <span class="at">z =</span> Y,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">angle=</span><span class="dv">33</span>, <span class="at">scale.y=</span><span class="fl">0.8</span>, <span class="at">pch=</span><span class="dv">16</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span><span class="st">"red"</span>, <span class="at">main =</span><span class="st">"OLS Regression Surface"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plot3d<span class="sc">$</span><span class="fu">plane3d</span>(my.lm, <span class="at">lty.box =</span> <span class="st">"solid"</span>, <span class="at">col=</span><span class="fu">gray</span>(.<span class="dv">5</span>), </span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">draw_polygon=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plot3d  <span class="ot">&lt;-</span> <span class="fu">scatterplot3d</span>(<span class="at">x =</span> X_2, <span class="at">y =</span> X_3, <span class="at">z =</span> Y,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">angle =</span> <span class="dv">33</span>, <span class="at">scale.y =</span> <span class="fl">0.8</span>, <span class="at">pch =</span> <span class="dv">16</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span><span class="st">"red"</span>, </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlab =</span> <span class="fu">expression</span>(X[<span class="dv">2</span>]),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">ylab =</span> <span class="fu">expression</span>(X[<span class="dv">3</span>]),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span><span class="st">"OLS Regression Surface"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plot3d<span class="sc">$</span><span class="fu">plane3d</span>(lmobj, <span class="at">lty.box =</span> <span class="st">"solid"</span>, <span class="at">col=</span><span class="fu">gray</span>(.<span class="dv">5</span>), <span class="at">draw_polygon=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -468,10 +470,10 @@ M_X=I_n-X(X'X)^{-1}X'=I_n-P_X
 <li><span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> are <strong>idempotent</strong>, i.e.&nbsp;<span class="math inline">\(P_XP_X=P_X\)</span> and <span class="math inline">\(M_X M_X=M_X\)</span>.</li>
 <li>Moreover, we have that <span class="math inline">\(X'P_X=X'\)</span>, <span class="math inline">\(P_XX=X\)</span>, <span class="math inline">\(X'M_X=0\)</span>, <span class="math inline">\(M_XX=0\)</span>, and <span class="math inline">\(P_XM_X=0\)</span>.</li>
 </ol>
-<p>All of these properties follow directly from the definitions of <span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> (check it out). Using these properties one can show that the residual vector <span class="math inline">\(\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'\)</span> is orthogonal to each of the column vectors in <span class="math inline">\(X\)</span>, i.e <span class="math display">\[\begin{eqnarray}
+<p>The properties (a)-(c) follow directly from the definitions of <span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> (check it out). Using these properties one can show that the residual vector <span class="math inline">\(\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'\)</span> is orthogonal to each of the column vectors in <span class="math inline">\(X\)</span>, i.e <span class="math display">\[\begin{eqnarray}
 X'\hat\varepsilon&amp;=&amp;X'M_XY\quad\text{\small(By Def.~of $M_X$)}\\
 \Leftrightarrow X'\hat\varepsilon&amp;=&amp;\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad\text{\small(since $X'M_X=0$)}\\
-\Leftrightarrow X'\hat\varepsilon&amp;=&amp;\underset{(K\times 1)}{0}
+\Leftrightarrow X'\hat\varepsilon&amp;=&amp;\underset{(K\times 1)}{0}.
 \end{eqnarray}\]</span> <!-- \begin{align} --> <!-- X'\hat\varepsilon=\underset{(K\times 1)}{0}.\label{eq:orthXe} --> <!-- \end{align} --> Note that, in the case with intercept, the result <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies that <span class="math inline">\(\sum_{i=1}^n\hat\varepsilon_i=0\)</span>. Moreover, the equation <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies also that the residual vector <span class="math inline">\(\hat{\varepsilon}\)</span> is orthogonal to the predicted values vector, since <span class="math display">\[\begin{align*}
 X'\hat\varepsilon&amp;=0\\
 \Rightarrow\;\hat\beta'X'\hat\varepsilon&amp;=\hat\beta'0\\
