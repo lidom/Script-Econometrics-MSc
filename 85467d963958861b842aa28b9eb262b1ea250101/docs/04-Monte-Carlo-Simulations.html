@@ -299,7 +299,7 @@ X_i\overset{iid}{\sim} F_X
 </ul>
 <!-- Monte Carlo Simulations rely on distributional assumptions and thus may fail just as the first option (Mathematical Derivation using Distributional Assumptions). However, Monte Carlo Simulations are much wider applicable than since we can use computers to sample data from basically every distribution.   -->
 <p>The following <code>R</code> code generates <code>B</code> many realizations of the sample mean estimator <span class="math inline">\(\hat\theta_n=\bar{X}_n\)</span> using a random sample <span class="math inline">\(X_1,\dots,X_n\)</span>, where <span class="math inline">\(F_X\)</span> is a normal distribution with mean <span class="math inline">\((\theta=)\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>:</p>
-<div class="cell">
+<div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/unnamed-chunk-1_d8725870e7304dc65a49a232d5f7c08e">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True parameter value </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mu            <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of Monte Carlo repetitions:</span></span>
@@ -350,7 +350,7 @@ X_i\overset{iid}{\sim} F_X
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Based on the <code>B</code><span class="math inline">\(=10,000\)</span> realizations of the estimator <span class="math inline">\(\bar{X}_n\)</span>, we can compute histograms and non-parametric density estimates to get an idea about the true distribution of <span class="math inline">\(\bar{X}_n\)</span> for the case of random samples <span class="math inline">\(X_1,\dots,X_n\)</span> from a normal distribution with mean <span class="math inline">\(\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>:</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="04-Monte-Carlo-Simulations_cache/html/fig-histdensplots_be57df1d977058a7fbb84d68b7a7c34e">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(estimates_mat[,<span class="dv">1</span>], <span class="at">main=</span><span class="st">"n=5"</span>, <span class="at">xlab=</span><span class="st">""</span>,  <span class="at">xlim =</span> <span class="fu">range</span>(estimates_mat[,<span class="dv">1</span>]), <span class="at">prob =</span> <span class="cn">TRUE</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.2</span>))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(estimates_mat[,<span class="dv">1</span>], <span class="at">bw =</span> <span class="fu">bw.SJ</span>(estimates_mat[,<span class="dv">1</span>])), <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">lwd=</span><span class="fl">1.5</span>)</span>
@@ -463,7 +463,7 @@ Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^
 <section id="example-sample-mean" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="example-sample-mean">Example: Sample Mean</h3>
 <p>The following <code>R</code> code contains a Monte Carlo simulation ( <code>B = 10000</code> replications) computing the bias, variance, and means squared error for the sample mean <span class="math inline">\((\hat\theta_n=)\bar{X}_n=\sum_{i=1}^nX_i\)</span> as the estimator of the population mean <span class="math inline">\((\theta=)\mu\)</span>. The random sample <span class="math inline">\(X_i\overset{iid}{\sim}F_X\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>, is drawn from a normal distribution <span class="math inline">\(F_X=\mathcal{N}(\mu,\sigma^2)\)</span> with mean <span class="math inline">\(\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>. We investigate the accuracy of the estimator for different sample sizes <span class="math inline">\(n\in\{5,15,50\}\)</span>. <!-- The following `R` codes generated `B = 10000` realizations of the estimator $\bar{X}_n$ for each sample size $n\in\{5,15,50\}$ and stores all these realizations in a $10000\times 3$ matrix `estimates_mat`: --></p>
-<div class="cell">
+<div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/unnamed-chunk-3_354ac7468ad519dc54bd7db1ae80bda4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set seed for the random number generator to get reproducible results</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">## True parameter value ('theta' here 'mu')</span></span>
@@ -487,7 +487,7 @@ Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following <code>R</code> code computes the Monte Carlo (MC) approximations for the bias, variance, and mean squared error of <span class="math inline">\(\bar{X}_n\)</span>. The results should capture our observations.</p>
-<div class="cell">
+<div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/unnamed-chunk-4_f02744dfb75eef4164247f67d2e8e938">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Bias of the sample mean for different sample sizes n</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>MC_Bias_n_seq <span class="ot">&lt;-</span> <span class="fu">apply</span>(estimates_mat, <span class="dv">2</span>, mean) <span class="sc">-</span> mu</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -498,7 +498,7 @@ Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>MC_MSE_n_seq  <span class="ot">&lt;-</span> <span class="fu">apply</span>(estimates_mat, <span class="dv">2</span>, <span class="cf">function</span>(x){<span class="fu">mean</span>((x <span class="sc">-</span> mu)<span class="sc">^</span><span class="dv">2</span>)})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The table shows the numerical values of the Monte Carlo <em>approximations</em> for the true bias, true variance, and true mean squared error of <span class="math inline">\(\bar{X}_n\)</span>:</p>
-<div class="cell">
+<div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/tbl-mcbvmse_07b8bdadee294249ff048ff8ba61710e">
 <div class="cell-output-display">
 <div id="tbl-mcbvmse" class="anchored">
 
@@ -558,7 +558,7 @@ Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^
 <p><span class="math display">\[
 Var\left(\bar{X}_n\right)=Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right) = \frac{1}{n^2} \sum_{i=1}^nVar\left(X_i\right) = \frac{n}{n^2}\sigma^2 = \frac{5}{n}
 \]</span> The following table shows the true bias, true variance and true mean squared error values:</p>
-<div class="cell">
+<div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/tbl-truebvmse_e9f85c5e8f5afa2143757c6a020a4f0a">
 <div class="cell-output-display">
 <div id="tbl-truebvmse" class="anchored">
 

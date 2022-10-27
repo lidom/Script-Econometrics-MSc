@@ -509,7 +509,7 @@ Var(\varepsilon_i)
 &amp;=\frac{1}{12}\left(\frac{1}{12}(4-(-4))^2\right)=\frac{4}{9}.
 \end{align*}\]</span></p>
 <p>Moreover, by contrast to <a href="05-Small-Sample-Inference.html#sec-PSSI"><span>Section&nbsp;5.5</span></a>, we here do not need to sample new realizations of <span class="math inline">\(Y_i\)</span> <em>conditionally</em> on a given data matrix <span class="math inline">\(X\)</span> since the asymptotically (for large <span class="math inline">\(n\)</span>) the distribution of <span class="math inline">\(\hat\beta\)</span> does not depend on a random realization of <span class="math inline">\(X\)</span>. (Therefore, the large sample normality result in <a href="#eq-OLSnormality1Rob">Equation&nbsp;<span>6.1</span></a> does not need a conditioning on <span class="math inline">\(X\)</span>.) Consequently, the option to condition on <span class="math inline">\(X\)</span> is removed in the following <code>R</code>-function <code>myDataGenerator()</code>.</p>
-<div class="cell">
+<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-1_e6c6a59031c65ce7ac53fcac0645cc81">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Function to generate artificial data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>myDataGenerator <span class="ot">&lt;-</span> <span class="cf">function</span>(n, beta){</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">##</span></span>
@@ -531,7 +531,7 @@ Var(\varepsilon_i)
 \]</span> Or: <span class="math display">\[
 \hat\beta_k\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
 \]</span> Mathematically, the latter is a bit sloppy since the right hand side of <span class="math inline">\(\to_d\)</span> depends on <span class="math inline">\(n\)</span>, i.e., is not the stable limit object for <span class="math inline">\(n\to\infty\)</span>. However, this sloppiness is nevertheless instructive since it gives us the approximative distribution for given largish sample sizes like <span class="math inline">\(n=100\)</span>.</p>
-<div class="cell">
+<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-2_953265d857127e8ed3d5d2e8ee69acec">
 
 </div>
 <p>For our above specified data generating process, we have</p>
@@ -558,7 +558,7 @@ E(\varepsilon^2_iX_iX_i')
 <p>So, for instance, for <span class="math inline">\(\hat{\beta}_2\)</span> we have the following theoretical large sample distribution: <span class="math display">\[
 \hat\beta_2\to_d\mathcal{N}\left(\beta_2, \;n^{-1}\;\left[\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)
 \]</span> Let’s use a Monte Carlo simulation to check how well the theoretical large sample (<span class="math inline">\(n\to\infty\)</span>) distribution of <span class="math inline">\(\hat\beta_2\)</span> works as an approximative distribution for a practical largish sample size of <span class="math inline">\(n=100\)</span>.</p>
-<div class="cell">
+<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-3_508bb2551114ec05a08ae40b1e710634">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n           <span class="ot">&lt;-</span> <span class="dv">100</span>      <span class="co"># a largish sample size</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>beta_true   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>) <span class="co"># true data vector</span></span>
@@ -595,7 +595,7 @@ E(\varepsilon^2_iX_iX_i')
 </div>
 </div>
 <p>Good! As expected, the average of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span> is basically equal to the theoretical true mean <span class="math inline">\(E(\hat\beta_2)=\beta_2=3\)</span>.</p>
-<div class="cell">
+<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-4_ae0c116d5f465a85afd08d659d7c9fad">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True variance of beta_hat_2 versus </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical variance of beta_hat_2 estimates</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">round</span>(var_true_beta_2, <span class="dv">5</span>), <span class="fu">round</span>(<span class="fu">var</span>(beta_hat_2), <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -604,7 +604,7 @@ E(\varepsilon^2_iX_iX_i')
 </div>
 </div>
 <p>Great! The variance of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span> is basically equal to the theoretical true variance <span class="math inline">\(Var(\hat\beta_2)=0.0015\)</span>.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="06-Asymptotics_cache/html/unnamed-chunk-5_5c58151341b199c777a170dcc6c8c10b">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True normal distribution of beta_hat_2 versus </span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical density of beta_hat_2 estimates</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"scales"</span>)</span>
@@ -631,7 +631,7 @@ E(\varepsilon^2_iX_iX_i')
 </div>
 <p>Great! The nonparametric density estimation (estimated via <code>density()</code>) computed from the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span> is indicating that <span class="math inline">\(\hat\beta_2\)</span> is really normally distributed as described by our theoretical results in <a href="#thm-OLSnormality1">Theorem&nbsp;<span>6.6</span></a> (homoscedastic case) and in Equation <a href="#eq-OLSnormality1Rob">Equation&nbsp;<span>6.1</span></a> (heteroscedastic case).</p>
 <p>However, is the asymptotic distribution of <span class="math inline">\(\hat\beta_2\)</span> also usable for (very) small samples like <span class="math inline">\(n=5\)</span>? Let’s check that:</p>
-<div class="cell">
+<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-6_6e694432b69e7837de48f6efb8f60a42">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n           <span class="ot">&lt;-</span> <span class="dv">5</span>       <span class="co"># a small sample size</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>beta_true   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>) <span class="co"># true data vector</span></span>
@@ -668,7 +668,7 @@ E(\varepsilon^2_iX_iX_i')
 </div>
 </div>
 <p>OK, at least on average the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span> are basically equal to the true mean <span class="math inline">\(E(\hat\beta_2)=\beta_2=3\)</span>.</p>
-<div class="cell">
+<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-7_b9a22318c10a899ca92e35959b955a02">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True variance of beta_hat_2 versus </span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical variance of beta_hat_2 estimates</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">round</span>(var_true_beta_2, <span class="dv">4</span>), <span class="fu">round</span>(<span class="fu">var</span>(beta_hat_2), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -677,7 +677,7 @@ E(\varepsilon^2_iX_iX_i')
 </div>
 </div>
 <p>Ouch! The theoretical large sample variance <span class="math inline">\(Var(\hat\beta_2)=0.03\)</span> is about 50% smaller than the actual (small sample) variance of <span class="math inline">\(\hat\beta_2\)</span> approximated by the empirical variance of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span>. That is, we cannot simply use a large sample result in small samples.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="06-Asymptotics_cache/html/unnamed-chunk-8_c79cd0a937e8179b7597dc02a0c9266f">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True normal distribution of beta_hat_2 versus </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical density of beta_hat_2 estimates</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"scales"</span>)</span>
@@ -721,7 +721,7 @@ R=\left(
 \end{matrix}\right)\quad\text{ and }\quad
 r=\left(\begin{matrix}3\\5\\\end{matrix}\right).
 \]</span> The following <code>R</code> code can be used to test this hypothesis. Note that we use HC3 robust variance estimation <code>sandwich::vcovHC(lm_obj, type="HC3")</code> to take into account that the error terms are heteroscedastic.</p>
-<div class="cell">
+<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-9_12dbf498d28541b360cadfb589deb2c4">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">"car"</span>)) <span class="co"># for linearHyothesis()</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?linearHypothesis</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"sandwich"</span>)</span>
@@ -788,7 +788,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 H_0:&amp;\beta_3=5\\
 \text{versus}\quad H_A:&amp;\beta_3\neq 5.
 \end{align*}\]</span></p>
-<div class="cell">
+<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-10_1b38dfe8e7ef5597585c20e22417734d">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lmtest"</span>)   <span class="co"># for coeftest()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">

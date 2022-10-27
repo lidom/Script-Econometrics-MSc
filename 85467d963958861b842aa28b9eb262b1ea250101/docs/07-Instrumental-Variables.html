@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -185,17 +190,17 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-Review-Prob_n_Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability and Statistics</span></a>
+  <a href="./02-Review-Prob_n_Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Review: Probability</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-Monte-Carlo-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></a>
+  <a href="./03-MultipleReg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-MultipleReg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></a>
+  <a href="./04-Monte-Carlo-Simulations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Monte Carlo Simulations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -218,25 +223,25 @@ div.csl-indent {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#TIVEWASRAASI" id="toc-TIVEWASRAASI" class="nav-link active" data-scroll-target="#TIVEWASRAASI"> <span class="header-section-number">7.1</span> The IV Estimator with a Single Regressor and a Single Instrument</a>
+  <li><a href="#TIVEWASRAASI" id="toc-TIVEWASRAASI" class="nav-link active" data-scroll-target="#TIVEWASRAASI"><span class="toc-section-number">7.1</span>  The IV Estimator with a Single Regressor and a Single Instrument</a>
   <ul class="collapse">
-  <li><a href="#the-two-stage-least-squares-estimator" id="toc-the-two-stage-least-squares-estimator" class="nav-link" data-scroll-target="#the-two-stage-least-squares-estimator"> <span class="header-section-number">7.1.1</span> The Two-Stage Least Squares Estimator</a></li>
-  <li><a href="#application-demand-for-cigarettes-12" id="toc-application-demand-for-cigarettes-12" class="nav-link" data-scroll-target="#application-demand-for-cigarettes-12"> <span class="header-section-number">7.1.2</span> Application: Demand For Cigarettes (1/2)</a></li>
+  <li><a href="#the-two-stage-least-squares-estimator" id="toc-the-two-stage-least-squares-estimator" class="nav-link" data-scroll-target="#the-two-stage-least-squares-estimator"><span class="toc-section-number">7.1.1</span>  The Two-Stage Least Squares Estimator</a></li>
+  <li><a href="#application-demand-for-cigarettes-12" id="toc-application-demand-for-cigarettes-12" class="nav-link" data-scroll-target="#application-demand-for-cigarettes-12"><span class="toc-section-number">7.1.2</span>  Application: Demand For Cigarettes (1/2)</a></li>
   </ul></li>
-  <li><a href="#TGIVRM" id="toc-TGIVRM" class="nav-link" data-scroll-target="#TGIVRM"> <span class="header-section-number">7.2</span> The General IV Regression Model</a>
+  <li><a href="#TGIVRM" id="toc-TGIVRM" class="nav-link" data-scroll-target="#TGIVRM"><span class="toc-section-number">7.2</span>  The General IV Regression Model</a>
   <ul class="collapse">
-  <li><a href="#application-demand-for-cigarettes-22" id="toc-application-demand-for-cigarettes-22" class="nav-link" data-scroll-target="#application-demand-for-cigarettes-22"> <span class="header-section-number">7.2.1</span> Application: Demand for Cigarettes (2/2)</a></li>
+  <li><a href="#application-demand-for-cigarettes-22" id="toc-application-demand-for-cigarettes-22" class="nav-link" data-scroll-target="#application-demand-for-cigarettes-22"><span class="toc-section-number">7.2.1</span>  Application: Demand for Cigarettes (2/2)</a></li>
   </ul></li>
-  <li><a href="#civ" id="toc-civ" class="nav-link" data-scroll-target="#civ"> <span class="header-section-number">7.3</span> Checking Instrument Validity</a>
+  <li><a href="#civ" id="toc-civ" class="nav-link" data-scroll-target="#civ"><span class="toc-section-number">7.3</span>  Checking Instrument Validity</a>
   <ul class="collapse">
-  <li><a href="#instrument-relevance" id="toc-instrument-relevance" class="nav-link" data-scroll-target="#instrument-relevance"> <span class="header-section-number">7.3.1</span> Instrument Relevance</a></li>
-  <li><a href="#instrument-validity" id="toc-instrument-validity" class="nav-link" data-scroll-target="#instrument-validity"> <span class="header-section-number">7.3.2</span> Instrument Validity</a></li>
+  <li><a href="#instrument-relevance" id="toc-instrument-relevance" class="nav-link" data-scroll-target="#instrument-relevance"><span class="toc-section-number">7.3.1</span>  Instrument Relevance</a></li>
+  <li><a href="#instrument-validity" id="toc-instrument-validity" class="nav-link" data-scroll-target="#instrument-validity"><span class="toc-section-number">7.3.2</span>  Instrument Validity</a></li>
   </ul></li>
-  <li><a href="#attdfc" id="toc-attdfc" class="nav-link" data-scroll-target="#attdfc"> <span class="header-section-number">7.4</span> Application to the Demand for Cigarettes</a></li>
+  <li><a href="#attdfc" id="toc-attdfc" class="nav-link" data-scroll-target="#attdfc"><span class="toc-section-number">7.4</span>  Application to the Demand for Cigarettes</a></li>
   </ul>
 </nav>
     </div>
@@ -271,11 +276,9 @@ div.csl-indent {
 <section id="the-two-stage-least-squares-estimator" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="the-two-stage-least-squares-estimator"><span class="header-section-number">7.1.1</span> The Two-Stage Least Squares Estimator</h3>
 <p>As can be guessed from its name, TSLS proceeds in two stages. In the first stage, the variation in the endogenous regressor <span class="math inline">\(X_i\)</span> is decomposed into a component that is explained by the (exogenous) instrument <span class="math inline">\(Z_i\)</span> and a problematic component that is correlated with the error <span class="math inline">\(\eps_i\)</span>. The second stage uses the problem-free component of the variation in <span class="math inline">\(X_i\)</span> to estimate <span class="math inline">\(\beta_2\)</span>.</p>
-<p>The first stage regression model is</p>
-<p><span class="math display">\[
+<p>The first stage regression model is <span class="math display">\[
 X_i = \pi_0 + \pi_1 Z_i + \nu_i,
-\]</span></p>
-<p>where <span class="math inline">\(\pi_0 + \pi_1 Z_i\)</span> is the component of <span class="math inline">\(X_i\)</span> that is explained by <span class="math inline">\(Z_i\)</span> while <span class="math inline">\(\nu_i\)</span> is the component (an error term) that cannot be explained by <span class="math inline">\(Z_i\)</span> and exhibits correlation with <span class="math inline">\(\eps_i\)</span>.</p>
+\]</span> where <span class="math inline">\(\pi_0 + \pi_1 Z_i\)</span> is the component of <span class="math inline">\(X_i\)</span> that is explained by <span class="math inline">\(Z_i\)</span> while <span class="math inline">\(\nu_i\)</span> is the component (an error term) that cannot be explained by <span class="math inline">\(Z_i\)</span> and exhibits correlation with <span class="math inline">\(\eps_i\)</span>.</p>
 <p>Using the OLS estimates <span class="math inline">\(\widehat{\pi}_0\)</span> and <span class="math inline">\(\widehat{\pi}_1\)</span> we obtain predicted values <span class="math inline">\(\widehat{X}_i=\hat\pi_0+\hat\pi_1 Z_i,\ i=1,\dots,n\)</span>. If <span class="math inline">\(Z_i\)</span> is a valid instrument, the <span class="math inline">\(\widehat{X}_i\)</span> are problem-free in the sense that <span class="math inline">\(\widehat{X}_i\)</span> is in a regression of <span class="math inline">\(Y_i\)</span> on <span class="math inline">\(\widehat{X}_i\)</span> which is done in the second stage regression. The second stage produces <span class="math inline">\(\widehat{\beta}_1^{TSLS}\)</span> and <span class="math inline">\(\widehat{\beta}_2^{TSLS}\)</span>, the TSLS estimates of <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>.</p>
 <p>For the case of a single instrument one can show that the TSLS estimator of <span class="math inline">\(\beta_2\)</span> is <span class="math display">\[\begin{align}
 \widehat{\beta}_2^{TSLS} = \frac{s_{ZY}}{s_{ZX}} = \frac{\frac{1}{n-1}\sum_{i=1}^n(Y_i - \overline{Y})(Z_i - \overline{Z})}{\frac{1}{n-1}\sum_{i=1}^n(X_i - \overline{X})(Z_i - \overline{Z})}, \label{eq:simpletsls}
@@ -287,13 +290,13 @@ X_i = \pi_0 + \pi_1 Z_i + \nu_i,
 <p>The relation between the demand for and the price of commodities is a simple yet widespread problem in economics. Health economics is concerned with the study of how health-affecting behavior of individuals is influenced by the health-care system and regulation policy. Probably the most prominent example in public policy debates is smoking as it is related to many illnesses and negative externalities.</p>
 <p>It is plausible that cigarette consumption can be reduced by taxing cigarettes more heavily. The question is by <em>how much</em> taxes must be increased to reach a certain reduction in cigarette consumption. Economists use elasticities to answer this kind of question. Since the price elasticity for the demand of cigarettes is unknown, it must be estimated. A simple OLS regression of log quantity on log price cannot be used to estimate the effect of interest since there is simultaneous causality between demand and supply. Instead, IV regression can be used.</p>
 <p>We use the data set <code>CigarettesSW</code> which comes with the package <code>AER</code>. It is a panel data set that contains observations on cigarette consumption and several economic indicators for all 48 continental federal states of the U.S. from 1985 to 1995. In the following, however, we consider data for the cross section of states in 1995 only – that is, we transform the panel data to a cross-sectional data set. We start by loading the package, attaching the data set. An overview about summary statistics for each of the variables is returned by <code>summary(CigarettesSW)</code>. Use <code>?CigarettesSW</code> for a detailed description of the variables.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-1_bfdea332595e7ef8f8381936bd6270bf">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data set and get an overview</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"AER"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"CigarettesSW"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(CigarettesSW)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-2_89ddc5f761f69920c8c95686a108de87">
 <div class="cell-output cell-output-stdout">
 <pre><code>     state      year         cpi          population           packs       
  AL     : 2   1985:48   Min.   :1.076   Min.   :  478447   Min.   : 49.27  
@@ -318,7 +321,7 @@ X_i = \pi_0 + \pi_1 Z_i + \nu_i,
 \end{align}\]</span> where <span class="math inline">\(Q_i^{cigarettes}\)</span> is the number of cigarette packs per capita sold and <span class="math inline">\(P_i^{cigarettes}\)</span> is the after-tax average real price per pack of cigarettes in state <span class="math inline">\(i=1,\dots,n=48\)</span>.</p>
 The instrumental variable we are going to use for instrumenting the endogenous regressor <span class="math inline">\(\log(P_i^{cigarettes})\)</span> is <span class="math inline">\(SalesTax\)</span>, the portion of taxes on cigarettes arising from the general sales tax. <span class="math inline">\(SalesTax\)</span> is measured in dollars per pack. The idea is that:
 <p>In the following, we perform some transformations in order to obtain deflated cross section data for the year 1995. We also compute the sample correlation between the sales tax and price per pack. The sample correlation is a consistent estimator of the population correlation. The estimate of approximately <span class="math inline">\(0.614\)</span> indicates that <span class="math inline">\(SalesTax\)</span> and <span class="math inline">\(P_i^{cigarettes}\)</span> exhibit positive correlation which meets our expectations: higher sales taxes lead to higher prices. However, a correlation analysis like this is not sufficient for checking whether the instrument is relevant. We will later come back to the issue of checking whether an instrument is relevant and exogenous; see Chapter @ref(civ).</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-3_997f7ac0a6749febe0ea51c5018d9206">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute real per capita prices</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>CigarettesSW<span class="sc">$</span>rprice <span class="ot">&lt;-</span> <span class="fu">with</span>(CigarettesSW, price <span class="sc">/</span> cpi)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -333,12 +336,10 @@ The instrumental variable we are going to use for instrumenting the endogenous r
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a subset for the year 1995</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>c1995 <span class="ot">&lt;-</span> <span class="fu">subset</span>(CigarettesSW, year <span class="sc">==</span> <span class="st">"1995"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The first stage regression is</p>
-<p><span class="math display">\[
+<p>The first stage regression is <span class="math display">\[
 \log(P_i^{cigarettes}) = \pi_0 + \pi_1 SalesTax_i + \nu_i.
-\]</span></p>
-<p>We estimate this model in using <code>lm()</code>. In the second stage we run a regression of <span class="math inline">\(\log(Q_i^{cigarettes})\)</span> on <span class="math inline">\(\widehat{\log(P_i^{cigarettes})}\)</span> to obtain <span class="math inline">\(\widehat{\beta}_1^{TSLS}\)</span> and <span class="math inline">\(\widehat{\beta}_2^{TSLS}\)</span>.</p>
-<div class="cell">
+\]</span> We estimate this model in using <code>lm()</code>. In the second stage we run a regression of <span class="math inline">\(\log(Q_i^{cigarettes})\)</span> on <span class="math inline">\(\widehat{\log(P_i^{cigarettes})}\)</span> to obtain <span class="math inline">\(\widehat{\beta}_1^{TSLS}\)</span> and <span class="math inline">\(\widehat{\beta}_2^{TSLS}\)</span>.</p>
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-4_fd9720a9aa260f4b2c64d0258bd64ca1">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform the first stage regression</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cig_s1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rprice) <span class="sc">~</span> salestax, <span class="at">data =</span> c1995)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -354,12 +355,10 @@ salestax    0.0307289  0.0048354   6.3549 8.489e-08 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>The first stage regression is</p>
-<p><span class="math display">\[
+<p>The first stage regression is <span class="math display">\[
 \widehat{\log(P_i^{cigarettes})} = \underset{(0.03)}{4.62} + \underset{(0.005)}{0.031}\; SalesTax_i
-\]</span></p>
-<p>which predicts the relation between sales tax price per cigarettes to be positive. How much of the observed variation in <span class="math inline">\(\log(P^{cigarettes})\)</span> is explained by the instrument <span class="math inline">\(SalesTax\)</span>? This can be answered by looking at the regression’s <span class="math inline">\(R^2\)</span> which states that about <span class="math inline">\(47\%\)</span> of the variation in after tax prices is explained by the variation of the sales tax across states.</p>
-<div class="cell">
+\]</span> which predicts the relation between sales tax price per cigarettes to be positive. How much of the observed variation in <span class="math inline">\(\log(P^{cigarettes})\)</span> is explained by the instrument <span class="math inline">\(SalesTax\)</span>? This can be answered by looking at the regression’s <span class="math inline">\(R^2\)</span> which states that about <span class="math inline">\(47\%\)</span> of the variation in after tax prices is explained by the variation of the sales tax across states.</p>
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-5_f6020307a32e72afdc44dd41f22f3a56">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the R^2 of the first stage regression</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cig_s1)<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -367,12 +366,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <p>We next store <span class="math inline">\(\widehat{\log(P_i^{cigarettes})}\)</span>, the fitted values obtained by the first stage regression <code>cig_s1</code>, in the variable <code>lcigp_pred</code>.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-6_4f5939accda5bd4a859483298a90ca23">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store the predicted values</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>lcigp_pred <span class="ot">&lt;-</span> cig_s1<span class="sc">$</span>fitted.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we run the second stage regression which gives us the TSLS estimates we seek.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-7_bd6c43dc42d1e2f538a1c28945b98226">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the stage 2 regression</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>cig_s2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(c1995<span class="sc">$</span>packs) <span class="sc">~</span> lcigp_pred)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(cig_s2, <span class="at">vcov =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -391,7 +390,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   \widehat{\log(Q_i^{cigarettes})} = \underset{(1.60)}{9.72} - \underset{(0.33)}{1.08} \widehat{\log(P_i^{cigarettes})}, \label{eq:ecigstsls}
 \end{align}\]</span></p>
 <p>The function <code>ivreg()</code> from the package <code>AER</code> carries out TSLS procedure automatically. It is used similarly as <code>lm()</code>. Instruments can be added to the usual specification of the regression formula using a vertical bar separating the model equation from the instruments. Thus, for the regression at hand the correct formula is <code>log(packs) ~ log(rprice) | salestax</code>.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-8_41603fe7c3e459ef6ee0a3cce7868d8a">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform TSLS using 'ivreg()'</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cig_ivreg <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(<span class="fu">log</span>(packs) <span class="sc">~</span> <span class="fu">log</span>(rprice) <span class="sc">|</span> salestax, </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> c1995)</span>
@@ -418,11 +417,9 @@ The simple IV regression model is easily extended to a multiple regression model
   Y_i = \beta_1 + \beta_2 X_{2i} + \dots + \beta_K X_{Ki} + \beta_{K+1} W_{1i} + \dots + \beta_{K+r} W_{ri} + \eps_i, \label{eq:givmodel}
 \end{align}\]</span> with <span class="math inline">\(i=1,\dots,n\)</span> is the general instrumental variables regression model where
 <p>The coefficients are if <span class="math inline">\(m&gt;(K-1)\)</span>. If <span class="math inline">\(m&lt;(K-1)\)</span>, the coefficients are and when <span class="math inline">\(m=(K-1)\)</span> they are . For estimation of the IV regression model we require exact identification or overidentification.</p>
-<p>Estimating regression models with TSLS using multiple instruments by means of <code>ivreg()</code> is straightforward. There are, however, some subtleties in correctly specifying the regression formula. Assume that you want to estimate the model</p>
-<p><span class="math display">\[
+<p>Estimating regression models with TSLS using multiple instruments by means of <code>ivreg()</code> is straightforward. There are, however, some subtleties in correctly specifying the regression formula. Assume that you want to estimate the model <span class="math display">\[
 Y_i = \beta_1 + \beta_2 X_{2i} + \beta_3 X_{3i} + \beta_4 W_{1i} + \eps_i
-\]</span></p>
-<p>where <span class="math inline">\(X_{2i}\)</span> and <span class="math inline">\(X_{3i}\)</span> are endogenous regressors that shall be instrumented by <span class="math inline">\(Z_{1i}\)</span>, <span class="math inline">\(Z_{2i}\)</span> and <span class="math inline">\(Z_{3i}\)</span>, and where <span class="math inline">\(W_{1i}\)</span> is an exogenous regressor. Say the corresponding data is available in a <code>data.frame</code> with column names <code>y</code>, <code>x2</code>, <code>x3</code>, <code>w1</code>, <code>z1</code>, <code>z2</code> and <code>z3</code>. It might be tempting to specify the argument <code>formula</code> in your call of <code>ivreg()</code> as <code>y ~ x2 + x3 + w1 | z1 + z2 + z3</code> which is, however, . As explained in the documentation of <code>ivreg()</code> (see <code>?ivreg</code>), it is necessary to list <em>all</em> exogenous variables as instruments too, that is joining them by <code>+</code>’s on the right of the vertical bar: <code>y ~ x2 + x3 + w1 | w1 + z1 + z2 + z3</code>, where <code>w1</code> is “instrumenting itself”.</p>
+\]</span> where <span class="math inline">\(X_{2i}\)</span> and <span class="math inline">\(X_{3i}\)</span> are endogenous regressors that shall be instrumented by <span class="math inline">\(Z_{1i}\)</span>, <span class="math inline">\(Z_{2i}\)</span> and <span class="math inline">\(Z_{3i}\)</span>, and where <span class="math inline">\(W_{1i}\)</span> is an exogenous regressor. Say the corresponding data is available in a <code>data.frame</code> with column names <code>y</code>, <code>x2</code>, <code>x3</code>, <code>w1</code>, <code>z1</code>, <code>z2</code> and <code>z3</code>. It might be tempting to specify the argument <code>formula</code> in your call of <code>ivreg()</code> as <code>y ~ x2 + x3 + w1 | z1 + z2 + z3</code> which is, however, . As explained in the documentation of <code>ivreg()</code> (see <code>?ivreg</code>), it is necessary to list <em>all</em> exogenous variables as instruments too, that is joining them by <code>+</code>’s on the right of the vertical bar: <code>y ~ x2 + x3 + w1 | w1 + z1 + z2 + z3</code>, where <code>w1</code> is “instrumenting itself”.</p>
 <p>Similarly to the simple IV regression model, the general IV model <span class="math inline">\(\eqref{eq:givmodel}\)</span> can be estimated using the two-stage least squares estimator:</p>
 In the general IV regression model, the instrument relevance and instrument exogeneity assumptions are equivalent to the case of the simple regression model with a single endogenous regressor and only one instrument. That is, for <span class="math inline">\(Z_{1i},\dots,Z_{mi}\)</span> to be a set of valid instruments, the following two conditions must be fulfilled:
 <p>One can show that if the IV regression assumptions hold, the TSLS estimator in <span class="math inline">\(\eqref{eq:givmodel}\)</span> is consistent and normally distributed when the sample size <span class="math inline">\(n\)</span> is large. That is, if we have valid instruments, we obtain valid statistical inference using <span class="math inline">\(t\)</span>-tests, <span class="math inline">\(F\)</span>-tests and confidence intervals for the model coefficients.</p>
@@ -432,14 +429,14 @@ In the general IV regression model, the instrument relevance and instrument exog
   \log(Q_i^{cigarettes}) = \beta_1 + \beta_2 \log(P_i^{cigarettes}) + \beta_3 \log(income_i) + \eps_i \label{eq:mcigstsls1}
 \end{align}\]</span></p>
 <p>Before estimating <span class="math inline">\(\eqref{eq:mcigstsls1}\)</span> using <code>ivreg()</code> we define <span class="math inline">\(income\)</span> as real per capita income <code>rincome</code> and append it to the data set <code>CigarettesSW</code>.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-9_c715c8af639b0ed0e6202f3ab936cac3">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add real income to the dataset (cpi: consumer price index)</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>CigarettesSW<span class="sc">$</span>rincome <span class="ot">&lt;-</span> <span class="fu">with</span>(CigarettesSW, </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                             income <span class="sc">/</span> population <span class="sc">/</span> cpi)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>c1995 <span class="ot">&lt;-</span> <span class="fu">subset</span>(CigarettesSW, year <span class="sc">==</span> <span class="st">"1995"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-10_7e27f4eec4bafb6fd90752d65b013cd5">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate the model</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>cig_ivreg2 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(<span class="fu">log</span>(packs) <span class="sc">~</span> <span class="fu">log</span>(rprice) <span class="sc">+</span> </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">log</span>(rincome) <span class="sc">|</span> <span class="fu">log</span>(rincome) <span class="sc">+</span> </span>
@@ -462,13 +459,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   \widehat{\log(Q_i^{cigarettes})} = \underset{(1.26)}{9.42} - \underset{(0.37)}{1.14} \log(P_i^{cigarettes}) + \underset{(0.31)}{0.21} \log(income_i). \label{eq:emcigstsls2}
 \end{align}\]</span></p>
 <p>In the following we add the cigarette-specific taxes (<span class="math inline">\(cigtax_i\)</span>) as a further instrumental variable and estimate again using TSLS.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-11_23fbf21a221f7ba3f968e21c1311f32d">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add cigtax to the data set</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>CigarettesSW<span class="sc">$</span>cigtax <span class="ot">&lt;-</span> <span class="fu">with</span>(CigarettesSW, tax<span class="sc">/</span>cpi)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>c1995 <span class="ot">&lt;-</span> <span class="fu">subset</span>(CigarettesSW, year <span class="sc">==</span> <span class="st">"1995"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-12_876f5e6ea7fc7a6c9b5cc0ecbd3da21b">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate the model</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cig_ivreg3 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(<span class="fu">log</span>(packs) <span class="sc">~</span> <span class="fu">log</span>(rprice) <span class="sc">+</span> <span class="fu">log</span>(rincome) <span class="sc">|</span> </span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">log</span>(rincome) <span class="sc">+</span> salestax <span class="sc">+</span> cigtax, </span>
@@ -519,19 +516,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <!-- or \say{Overidentifying Restrictions Test} -->
 <p>Take <span class="math inline">\(\hat{\eps}_i^{TSLS},\ i = 1,\dots,n\)</span>, the residuals of the TSLS estimation of the general IV regression model <span class="math inline">\(\eqref{eq:givmodel}\)</span>. Run the OLS regression <span class="math display">\[\begin{align}
 \hat{\eps}_i^{TSLS} =&amp; \delta_0 + \delta_1 Z_{1i} + \dots + \delta_m Z_{mi} + \delta_{m+1} W_{1i} + \dots + \delta_{m+r} W_{ri} + e_i \label{eq:jstatreg}
-\end{align}\]</span> and test the joint hypothesis</p>
-<p><span class="math display">\[
+\end{align}\]</span> and test the joint hypothesis <span class="math display">\[
 H_0: \delta_1 = \dots \delta_{m} = 0
-\]</span></p>
-<p>which states that all instruments are exogenous. This can be done using the corresponding <span class="math inline">\(F\)</span>-statistic by computing</p>
-<p><span class="math display">\[
+\]</span> which states that all instruments are exogenous. This can be done using the corresponding <span class="math inline">\(F\)</span>-statistic by computing <span class="math display">\[
 J = m  F.
-\]</span></p>
-<p>This test is the overidentifying restrictions test and the statistic is called the <span class="math inline">\(J\)</span>-statistic with</p>
-<p><span class="math display">\[
+\]</span> This test is the overidentifying restrictions test and the statistic is called the <span class="math inline">\(J\)</span>-statistic with <span class="math display">\[
 J \overset{H_0}{\to}_d \chi^2_{m-(K-1)}\quad\text{as}\quad n\to\infty
-\]</span></p>
-<p>under the . The degrees of freedom <span class="math inline">\(m-(K-1)\)</span> state the degree of overidentification since this is the number of instruments <span class="math inline">\(m\)</span> minus the number of endogenous regressors <span class="math inline">\(K-1\)</span>.</p>
+\]</span> under the . The degrees of freedom <span class="math inline">\(m-(K-1)\)</span> state the degree of overidentification since this is the number of instruments <span class="math inline">\(m\)</span> minus the number of endogenous regressors <span class="math inline">\(K-1\)</span>.</p>
 <p>It is important to note that the <span class="math inline">\(J\)</span>-statistic is only <span class="math inline">\(\chi^2_{m-(K-1)}\)</span> distributed when the error term <span class="math inline">\(\eps_i\)</span> in the regression @ref(eq:jstatreg) is homoskedastic. A discussion of the heteroskedasticity-robust <span class="math inline">\(J\)</span>-statistic is beyond the scope of this chapter. The application in the next section shows how to apply the <span class="math inline">\(J\)</span>-test using <code>linearHypothesis()</code>.</p>
 </section>
 </section>
@@ -547,7 +538,7 @@ J \overset{H_0}{\to}_d \chi^2_{m-(K-1)}\quad\text{as}\quad n\to\infty
   &amp;+ \beta_3 \left[\log(income_{i,1995}) - \log(income_{i,1985})\right] + \eps_i. \end{split}(\#eq:diffivreg)
 \end{align}\]</span></p>
 <p>We first create differences from 1985 to 1995 for the dependent variable, the regressors and both instruments.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-13_54ee949529f25328b65e1d2ba0941b3e">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset data for year 1985</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>c1985 <span class="ot">&lt;-</span> <span class="fu">subset</span>(CigarettesSW, year <span class="sc">==</span> <span class="st">"1985"</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -569,7 +560,7 @@ J \overset{H_0}{\to}_d \chi^2_{m-(K-1)}\quad\text{as}\quad n\to\infty
 <li><p>TSLS using only the difference in the cigarette-specific sales taxes 1985 and 1995 as the instrument.</p></li>
 <li><p>TSLS using both the difference in the sales taxes 1985 and 1995 and the difference in the cigarette-specific sales taxes 1985 and 1995 as instruments.</p></li>
 </ol>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-14_4b3df172bf5a7f5ff5517eb301b5ad57">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate the three models</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cig_ivreg_diff1 <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(packsdiff <span class="sc">~</span> pricediff <span class="sc">+</span> </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                           incomediff <span class="sc">|</span> incomediff <span class="sc">+</span> </span>
@@ -584,7 +575,7 @@ J \overset{H_0}{\to}_d \chi^2_{m-(K-1)}\quad\text{as}\quad n\to\infty
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>                         salestaxdiff <span class="sc">+</span> cigtaxdiff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As usual we use <code>coeftest()</code> in conjunction with <code>vcovHC()</code> to obtain robust coefficient summaries for all models.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-15_ae5cceb6ed810e1522639c4f7b21effe">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># robust coefficient summary for 1.</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(cig_ivreg_diff1, <span class="at">vcov =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -626,7 +617,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <p>We proceed by generating a tabulated summary of the estimation results using <code>stargazer()</code>.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-16_42e086175da53befbe16ba2e109a9cf5">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># gather robust standard errors in a list</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>rob_se <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(cig_ivreg_diff1, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
@@ -667,15 +658,18 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <!-- ``` -->
 
 </p>
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-17_b8d4a71eec1fd8b323ed7cacb7ed5c9a">
+
+</div>
 <p>Table @ref(tab:tslseotlteotdfcupd) reports negative estimates of the coefficient on <code>pricediff</code> that are quite different in magnitude. Which one should we trust? This hinges on the validity of the instruments used. To assess this we compute <span class="math inline">\(F\)</span>-statistics for the first-stage regressions of all three models to check instrument relevance.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-18_83498bc3935c55133b90de938f8e96f6">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first-stage regressions</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>mod_relevance1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pricediff <span class="sc">~</span> salestaxdiff <span class="sc">+</span> incomediff)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>mod_relevance2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pricediff <span class="sc">~</span> cigtaxdiff   <span class="sc">+</span> incomediff)</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>mod_relevance3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pricediff <span class="sc">~</span> incomediff   <span class="sc">+</span> salestaxdiff <span class="sc">+</span> </span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>                                                cigtaxdiff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-19_abbe509cfec0f5ec05ec312ce9a300a0">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check instrument relevance for model (1)</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(mod_relevance1, </span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"salestaxdiff = 0"</span>, </span>
@@ -698,7 +692,7 @@ Note: Coefficient covariance matrix supplied.
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-20_08b0634f7a569fbc7e018c74164ad01d">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check instrument relevance for model (2)</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(mod_relevance2, </span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"cigtaxdiff = 0"</span>, </span>
@@ -721,7 +715,7 @@ Note: Coefficient covariance matrix supplied.
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-21_cda7d639614c80305e76a17b1046da4f">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check instrument relevance for model (3)</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(mod_relevance3, </span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">c</span>(<span class="st">"salestaxdiff = 0"</span>, <span class="st">"cigtaxdiff = 0"</span>), </span>
@@ -747,7 +741,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>All <span class="math inline">\(F\)</span>-statistics are larger than <span class="math inline">\(10\)</span>; so, the rule of thumb for detecting weak instruments would suggest that the instruments are not weak.</p>
 <p>Next, we also conduct the overidentifying restrictions test for model three which is the only model where the coefficient on the difference in log prices is overidentified (<span class="math inline">\(m=2\)</span>, <span class="math inline">\((K-1)=1\)</span>) such that the <span class="math inline">\(J\)</span>-statistic can be computed. To do this we take the residuals stored in <code>cig_ivreg_diff3</code> and regress them on both instruments and the presumably exogenous regressor <code>incomediff</code>. We again use <code>linearHypothesis()</code> to test whether the coefficients on both instruments are zero which is necessary for the exogeneity assumption to be fulfilled. Note that with <code>test = "Chisq"</code> we obtain a chi-squared distributed test statistic instead of an <span class="math inline">\(F\)</span>-statistic.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-22_89043b15cd0752ae685c391cacc034dd">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the J-statistic</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>cig_iv_OR <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">residuals</span>(cig_ivreg_diff3) <span class="sc">~</span> incomediff <span class="sc">+</span> </span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                                 salestaxdiff <span class="sc">+</span> cigtaxdiff)</span>
@@ -775,7 +769,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <p><strong>Caution</strong>: In this case the <span class="math inline">\(p\)</span>-value reported by <code>linearHypothesis()</code> is wrong because the degrees of freedom are set to <span class="math inline">\(2\)</span>. This differs from the degree of overidentification (<span class="math inline">\(m-(K-1)=2-(2-1)=1\)</span>) so the <span class="math inline">\(J\)</span>-statistic is <span class="math inline">\(\chi^2_1\)</span> distributed instead of following a <span class="math inline">\(\chi^2_2\)</span> distribution as assumed defaultly by <code>linearHypothesis()</code>. We may compute the correct <span class="math inline">\(p\)</span>-value using <code>pchisq()</code>.</p>
-<div class="cell">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-23_eefe791b0d5772b95a0b9d6ef2aa5377">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute correct p-value for J-statistic</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(cig_OR_test[<span class="dv">2</span>, <span class="dv">5</span>], <span class="at">df =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -869,7 +863,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

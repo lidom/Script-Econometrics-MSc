@@ -355,7 +355,7 @@ P\left(H_{1} \cup H_{2}\right)=P\left(H_{1}\right)+P\left(H_{2}\right)-P\left(H_
 <h4 class="unnumbered anchored" data-anchor-id="probabilities-as-frequencies">Probabilities as frequencies</h4>
 <p>One can interpret <span class="math inline">\(P(A)\)</span> in terms of <strong>frequencies</strong>. That is, <span class="math inline">\(P(A)\)</span> is the (infinitely) long run proportion of times that <span class="math inline">\(A\)</span> is true in repetitions. For example, if we say that the probability of heads is <span class="math inline">\(1 / 2\)</span>, i.e <span class="math inline">\(P(H)=1/2\)</span> we mean that if we flip the coin many times then the proportion of times we get heads tends to <span class="math inline">\(1 / 2\)</span> as the number of tosses increases. An infinitely long, unpredictable sequence of tosses whose limiting proportion tends to a constant is an idealization, much like the idea of a straight line in geometry.</p>
 <p>The following <code>R</code> codes approximates the probability <span class="math inline">\(P(H)=1/2\)</span> using 5, 50 and 5,000 many (pseudo) random coin flips:</p>
-<div class="cell">
+<div class="cell" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-1_3e6e0cfd5c00e53d8b479ada6e096e8a">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">869</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 (fair) coin-flip:</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">"H"</span>, <span class="st">"T"</span>), <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
@@ -570,7 +570,7 @@ F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) dt\quad\text{and}\quad f_{X}(x)=F_{X}^{\pri
 <section id="multidimensional-distribution-function" class="level4" data-number="2.2.2.1">
 <h4 data-number="2.2.2.1" class="anchored" data-anchor-id="multidimensional-distribution-function"><span class="header-section-number">2.2.2.1</span> Multidimensional Distribution Function</h4>
 <p>The <strong>multivariate distribution function</strong> <span class="math inline">\(F\)</span> is given by <span class="math display">\[F(a_1,\dots,a_d)=P(X_1\le a_1,\dots,X_d\le a_d).\]</span></p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-2_ef5b2fc15c7ec3100081986f204aa030">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Install the package if not installed yet</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("mnormt")</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -611,7 +611,7 @@ P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=\int\limits_{a_d}^{b_d}\dots \int\l
 <li><span class="math inline">\(\displaystyle f(x_1,\dots,x_d)\geq 0\)</span></li>
 <li><span class="math inline">\(\displaystyle \int_{-\infty}^{\infty}\dots \int_{-\infty}^{\infty}f(x_1,\dots,x_d)dx_1\dots dx_d=1\)</span></li>
 </ul>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-3_dae5ca4c3f23ff5757e56e2dd472fa08">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Load the package</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mnormt)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -645,7 +645,7 @@ P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=\int\limits_{a_d}^{b_d}\dots \int\l
 f_1({\color{blue}x_1})=\int_{-\infty}^{\infty}\dots \int_{-\infty}^{\infty}f({\color{blue}x_1},x_2\dots,
 x_d)dx_2\dots  dx_d
 \]</span></p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-4_2847c2a1c13cef0506691a1872635f23">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -664,7 +664,7 @@ X_1=x_1,\ldots, X_{j-1}=x_{j-1}, X_{j+1}=x_{j+1},\ldots,X_d=x_d.
 <span class="math inline">\(X_1=x_1,\ldots,\)</span> <span class="math inline">\(X_{j-1}=x_{j-1},\)</span> <span class="math inline">\(X_{j+1}=x_{j+1},\ldots, X_d=x_d\)</span>. An important tool is here the <strong>conditional density</strong> of, for instance, <span class="math inline">\(X_1\)</span> given <span class="math inline">\(X_2=x_2,\ldots,X_d=x_d\)</span>: <span class="math display">\[
 f(x_1\mid x_2,\ldots,x_d)=\frac{f(x_1,x_2,\ldots,x_d)}{f_{X_{2},\ldots,X_{d}}(x_2,\ldots,x_d)},
 \]</span> where <span class="math inline">\(f_{X_{2},\ldots,X_{d}}\)</span> denotes the joint density of <span class="math inline">\(X_2,\ldots,X_d\)</span>.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-5_649afdfff339b673f07f0372b1b14de5">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -776,7 +776,7 @@ f(x)=\left\{\begin{array}{ll}
 0 &amp; \text { otherwise. }
 \end{array}\right.
 \]</span> We say that <span class="math inline">\(X\)</span> has a uniform distribution on <span class="math inline">\(\{1, \ldots, k\}\)</span>.</p>
-<div class="cell">
+<div class="cell" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-6_2cfbfd4cf248ca0bcff6dc6395d352b6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">51</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the parameter k</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10</span></span>
@@ -790,7 +790,7 @@ f(x)=\left\{\begin{array}{ll}
 <section id="the-bernoulli-distribution" class="level4" data-number="2.2.9.2">
 <h4 data-number="2.2.9.2" class="anchored" data-anchor-id="the-bernoulli-distribution"><span class="header-section-number">2.2.9.2</span> The Bernoulli Distribution</h4>
 <p>Let <span class="math inline">\(X\)</span> represent a possibly unfair coin flip. Then <span class="math inline">\(P(X=1)=p\)</span> and <span class="math inline">\(P(X=0)=1-p\)</span> for some <span class="math inline">\(p \in[0,1]\)</span>. We say that <span class="math inline">\(X\)</span> has a Bernoulli distribution written <span class="math inline">\(X\sim\operatorname{Bernoulli }(p)\)</span>. The probability function is <span class="math inline">\(f(x)=p^{x}(1-p)^{1-x}\)</span> for <span class="math inline">\(x \in\{0,1\}\)</span></p>
-<div class="cell">
+<div class="cell" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-7_8a0a1c34e217454fe932b303698d7af1">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">51</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the parameter p</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.25</span></span>
@@ -820,7 +820,7 @@ x
 0 &amp; \text { otherwise. }
 \end{array}\right.
 \]</span> A random variable with this mas function is called a <strong>binomial random variable</strong> and we write <span class="math inline">\(X \sim \operatorname{Binomial}(n, p)\)</span>. If <span class="math inline">\(X_{1} \sim\)</span> Binomial <span class="math inline">\(\left(n_1, p1\right)\)</span> and <span class="math inline">\(X_{2} \sim\)</span> Binomial<span class="math inline">\(\left(n_2, p\right)\)</span> and if <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent, then <span class="math inline">\(X_{1}+X_{2} \sim \operatorname{Binomial}\left(n_1+n_2, p\right)\)</span></p>
-<div class="cell">
+<div class="cell" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-8_90531265ba6e427ef1fead556ebf8ac3">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">51</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the parameters n and p</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span>   <span class="dv">10</span> <span class="co"># number of trials</span></span>
@@ -851,7 +851,7 @@ F(x)=\left\{\begin{array}{ll}
 1 &amp; x&gt;b
 \end{array}\right.
 \]</span></p>
-<div class="cell">
+<div class="cell" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-9_000ff309f6bca921eebb300159558fb4">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Drawing from the uniform distribution:</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">0</span></span>
@@ -877,7 +877,7 @@ f(x)=\frac{1}{\sigma \sqrt{2 \pi}} \exp \left\{-\frac{1}{2 \sigma^{2}}(x-\mu)^{2
 \]</span></p></li>
 </ol>
 <p>The following <code>R</code>-codes plots the standard Normal density function:</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-10_01e853eb4042bf03bbd2f158c7c750fd">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a plot of the N(0,1) PDF</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>),</span>
@@ -892,7 +892,7 @@ f(x)=\frac{1}{\sigma \sqrt{2 \pi}} \exp \left\{-\frac{1}{2 \sigma^{2}}(x-\mu)^{2
 </div>
 </div>
 <p>This is how you can draw realizations from pseudo random Normal variables:</p>
-<div class="cell">
+<div class="cell" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-11_db56e4e6ec097d09283ff47d6d4131ba">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Drawing from the uniform distribution:</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">12</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>mu    <span class="ot">&lt;-</span> <span class="dv">0</span></span>
@@ -920,7 +920,7 @@ g_{X,Y}(x,y) = f_X(x) f_Y(y) = \frac{1}{2\pi} \cdot \exp \left\{ -\frac{1}{2}\le
 Z_1^2 + \dots + Z_M^2 = \sum_{m=1}^M Z_m^2 \sim \chi^2_M.
 \end{align*}\]</span> A <span class="math inline">\(\chi^2\)</span> distributed random variable with <span class="math inline">\(M\)</span> degrees of freedom has expectation <span class="math inline">\(M\)</span>, mode at <span class="math inline">\(M-2\)</span> for <span class="math inline">\(M \geq 2\)</span> and variance <span class="math inline">\(2 \cdot M\)</span>.</p>
 <p>Using the code below, we can display the pdf and the distribution function or <strong>cumulated density function (cdf)</strong> of a <span class="math inline">\(\chi^2_3\)</span> random variable in a single plot. This is achieved by setting the argument <code>add = TRUE"</code> in the second call of <code>"curve()"</code>. Further we adjust limits of both axes using <code>"xlim"</code> and <code>"ylim"</code> and choose different colors to make both functions better distinguishable. The plot is completed by adding a legend with help of <code>"legend()"</code>.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-12_3c682f8ff9b0c6a516965f781d7d5dd6">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the PDF</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">3</span>), </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), </span>
@@ -951,7 +951,7 @@ Z_1^2 + \dots + Z_M^2 = \sum_{m=1}^M Z_m^2 \sim \chi^2_M.
 <p>Since the outcomes of a <span class="math inline">\(\chi^2_M\)</span> distributed random variable are always positive, the support of the related PDF and CDF is <span class="math inline">\(\mathbb{R}_{\geq0}\)</span>.</p>
 <p>As expectation and variance depend (solely!) on the degrees of freedom, the distribution’s shape changes drastically if we vary the number of squared standard normals that are summed up. This relation is often depicted by overlaying densities for different <span class="math inline">\(M\)</span>, see the <a href="https://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia Article</a>.</p>
 <p>We reproduce this here by plotting the density of the <span class="math inline">\(\chi_1^2\)</span> distribution on the interval <span class="math inline">\([0,15]\)</span> with <code>"curve()"</code>. In the next step, we loop over degrees of freedom <span class="math inline">\(M=2,...,7\)</span> and add a density curve for each <span class="math inline">\(M\)</span> to the plot. We also adjust the line color for each iteration of the loop by setting <code>"col = M"</code>. At last, we add a legend that displays degrees of freedom and the associated colors.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-13_1f30bb27b0b74742b58824326722bd2c">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the density for M=1</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">1</span>), </span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>), </span>
@@ -994,7 +994,7 @@ Z_1^2 + \dots + Z_M^2 = \sum_{m=1}^M Z_m^2 \sim \chi^2_M.
   \text{Var}(X) =&amp; \frac{M}{M-2}, \ M&gt;2
 \end{align*}\]</span></p>
 <p>Let us plot some <span class="math inline">\(t\)</span> distributions with different degrees of freedoms <span class="math inline">\(\nu\)</span> and compare them to the standard normal distribution.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-14_a66f53ca9c4477f31bdf799cb4cabb2e">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the standard normal density</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x), </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), </span>
@@ -1054,14 +1054,14 @@ f(x)=\frac{1}{\pi\left(1+x^{2}\right)}.
 <p><span class="math display">\[ \frac{W/M}{V/n} \sim F_{M,n} \ \ \text{with} \ \ W \sim \chi^2_M \ \ , \ \ V \sim \chi^2_n \]</span> follows an <span class="math inline">\(F\)</span> distribution with numerator degrees of freedom <span class="math inline">\(M\)</span> and denominator degrees of freedom <span class="math inline">\(n\)</span>, denoted <span class="math inline">\(F_{M,n}\)</span>. The distribution was first derived by George Snedecor but was named in honor of <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Sir Ronald Fisher</a>.</p>
 <p>By definition, the support of both PDF and CDF of an <span class="math inline">\(F_{M,n}\)</span> distributed random variable is <span class="math inline">\(\mathbb{R}_{\geq0}\)</span>.</p>
 <p>Say we have an <span class="math inline">\(F\)</span> distributed random variable <span class="math inline">\(Y\)</span> with numerator degrees of freedom <span class="math inline">\(3\)</span> and denominator degrees of freedom <span class="math inline">\(14\)</span> and are interested in <span class="math inline">\(P(Y \geq 2)\)</span>. This can be computed with help of the function <code>"pf()"</code>. By setting the argument <code>"lower.tail"</code> to <code>"FALSE"</code> we ensure that <code>R</code> computes <span class="math inline">\(1- P(Y \leq 2)\)</span>, i.e,the probability mass in the tail right of <span class="math inline">\(2\)</span>.</p>
-<div class="cell">
+<div class="cell" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-15_03cb351b69f09cb18caacac3685a7acc">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="dv">2</span>, <span class="at">df1 =</span> <span class="dv">3</span>, <span class="at">df2 =</span> <span class="dv">14</span>, <span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1603538</code></pre>
 </div>
 </div>
 <p>We can visualize this probability by drawing a line plot of the related density and adding a color shading with <code>"polygon()"</code>.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="02-Review-Prob_n_Stats_cache/html/unnamed-chunk-16_64fd5dae0157b8e1d295a6cff06bdff8">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define coordinate vectors for vertices of the polygon</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="fl">0.01</span>), <span class="dv">10</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">df</span>(<span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="fl">0.01</span>), <span class="dv">3</span>, <span class="dv">14</span>), <span class="dv">0</span>)</span>
