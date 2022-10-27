@@ -110,8 +110,8 @@ This assumption is a bit dicey and its violation belongs to one of the classic p
 
 Depending on the context (i.e., parameter estimation vs. hypothesis testing and small $n$ vs. large $n$) there are different more or less restrictive assumptions.  Some of the most common ones are the following (roughly order from least to most restrictive):
 
-- **Conditional Distribution:** $\varepsilon_i|X_i \sim f_{\varepsilon|X}$ for all $i=1,\dots,n$ and for any distribution $f_{\varepsilon|X}$ such that $\varepsilon_i|X_i$ has two (or more) finite moments.
-- **Conditional Normal Distribution:** $\varepsilon_i|X_i \sim \mathcal{N}(0,\sigma^2(X_i))$ for all $i=1,\dots,n$.
+- **Conditional distribution:** $\varepsilon_i|X_i \sim f_{\varepsilon|X}$ for all $i=1,\dots,n$ and for any distribution $f_{\varepsilon|X}$ such that $\varepsilon_i|X_i$ has two (or more) finite moments.
+- **Conditional normal distribution:** $\varepsilon_i|X_i \sim \mathcal{N}(0,\sigma^2(X_i))$ for all $i=1,\dots,n$.
 - **Independence between error and predictors:** $\varepsilon_i\sim f_\varepsilon$ such that $f_\varepsilon=f_{\varepsilon|X}$ and such that $f_\varepsilon$ has two (or more) finite moments.  
 - **Independence between error and predictors and normal:** As above, but with $f_\varepsilon=\mathcal{N}(0,\sigma^2)$. 
 - **Spherical errors ("Gauss-Markov assumptions"):** The conditional distributions of  $\varepsilon_i|X_i$ may generally depend on $X_i$, but such that
