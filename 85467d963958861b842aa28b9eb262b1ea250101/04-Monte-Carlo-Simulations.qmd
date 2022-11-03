@@ -390,6 +390,15 @@ MCResults %>% kbl() %>%  kable_styling()
 Obviously, the Monte Carlo approximations (@tbl-mcbvmse) for these true values (@tbl-truebvmse) are very good. If we would further increase the number of Monte Carlo repetitions `B`, the Monte Carlo approximations would get even more precise since we can make them arbitrarily precise by letting `B`$\to\infty$ using the law of large numbers. 
 
 
+
+## Exercises
+
+* [Exercises for Chapter 4](Exercises/Ch4_Exercises.pdf)
+
+<!-- * [Exercises of Chapter 4 with Solutions](Exercises/Ch4_Exercises_with_Solutions.pdf) -->
+
+
+
 <!-- ```{r, fig.align="center"} -->
 <!-- par(mfrow=c(1,3)) -->
 <!-- plot(x = n_seq, y = Bias_n_seq, type = "b", ylim = c(-0.2, 0.2),  -->

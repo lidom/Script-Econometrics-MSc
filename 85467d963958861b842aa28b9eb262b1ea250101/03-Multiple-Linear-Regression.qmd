@@ -988,7 +988,7 @@ However, this was only a simulation for one specific data generating process. Su
 
 * [Exercises for Chapter 3](Exercises/Ch3_Exercises.pdf)
 
-<!-- * [Exercises of Chapter 3 with Solultions](Exercises/Ch2_Exercises_with_Solutions.pdf) -->
+<!-- * [Exercises of Chapter 3 with Solutions](Exercises/Ch3_Exercises_with_Solutions.pdf) -->
 
 
 ## References {-}
