@@ -257,6 +257,57 @@ If $E(\varepsilon_i|X_{i})=0$, then
 
 
 
+
+<!-- ### Exogeneity and Causality -->
+
+<!-- https://allthingsstatistics.com/miscellaneous/exogeneity-assumption/ -->
+
+
+<!--  The exogeneity assumption (Assumption 2) means that the dependent variable $Y_i$ does not causally affect the independent variables $X_i$.
+
+$$
+Y_i = \beta_1 + \beta_2 X_i + \varepsilon_i
+$$
+
+* $Y_i$: Depression test score of person $i$
+* $X_i$: Number of cigarettes smoked per day by person $i$
+* $\beta$: Mean effect of smoking on depression
+
+Can we identify $\beta$, i.e. the causal effect of smoking on depression? 
+
+While it is reasonable that X causes Y 
+$$
+Y_i = \beta_1 + \beta_2 X_i + \varepsilon_i
+$$
+It's also reasonable that Y causes to some extend $X$
+$$
+X_i = \gamma_1 + \gamma_2 Y_i + u_i
+$$
+
+Thus 
+$$
+\begin{align*}
+Y_i 
+& = \beta_1 + \overbrace{\beta_2 X_i}^{=\gamma_1 + \gamma_2 Y_i + u_i} + \varepsilon_i\\
+& = \beta_1 + \beta_2 X_i + \varepsilon_i\\
+\end{align*}
+$$
+
+
+
+
+* It's very likely that smoking causes depression (X \to Y)
+* However, *simultaneously* depression may cause increased smoking behavior (Y\to X)
+
+The latter point would mean that large values of $Y_i$ 
+
+
+
+
+The independent and dependent variables are correlated but the causal link is only in one direction – the independent variable affects the dependent variable not vice-versa. -->
+
+
+
 ## Deriving the Expression of the OLS Estimator
 
 We derive the expression for the OLS estimator $\hat\beta=(\hat\beta_1,\dots,\hat\beta_K)'\in\mathbb{R}^K$ as the vector-valued minimizing argument of the sum of squared residuals, $S_n(b)$ with $b\in\mathbb{R}^K$, for a given sample $((Y_1,X_1),\dots,(Y_n,X_n))$.  In matrix terms this is
@@ -503,20 +554,24 @@ cps <- read_excel(path = "data/cps_ch3.xlsx")
 # range(cps$year)
 # range(cps$a_sex) # 1 = male, 2 = female
 
+## Data wrangling
 cps_2008 <- cps %>% 
   mutate(
-    wage   = ahe08,
-    gender = fct_recode(as_factor(a_sex), "male" = "1", "female" = "2") 
+    wage   = ahe08,      # rename "ahe08" as "wage"    
+    gender = fct_recode( # rename factor "a_sex" as "gender"
+      as_factor(a_sex),     
+                "male" = "1",  # rename factor level "1" to "male"
+                "female" = "2" # rename factor level "2" to "female"
+             ) 
   ) %>%  
-  filter(year == 2008) %>%
-  select(wage, gender) 
+  filter(year == 2008) %>%     # Only data from year 2008
+  select(wage, gender)         # Select only the variables "wage" and "gender"
 ```
 
 The first six lines of the dataset look as following:
 ```{r, echo=FALSE}
 suppressPackageStartupMessages(library("kableExtra"))
 head(cps_2008) %>% kbl() %>%  kable_styling()
-
 ```
 
 Computing the estimation results:
@@ -594,7 +649,7 @@ Calls: .main ... eval_with_user_handlers -> eval -> eval -> solve -> solve.defau
 Execution halted
 ```
 
-<font color="#FF0000">An error message!</font> We blundered into the dummy variable trap 🤬 
+<font color="#FF0000">An error message!</font>  🤬 We blundered into the dummy variable trap!
 
 The estimation result is not computable since $(X'X)$ is not invertible due to the perfect multicollinearity between the intercept and the two dummy variables `X_female` and `X_male` 
 <center>
@@ -628,21 +683,22 @@ You can use `R`'s internal diagnostic plots that can be called using the `plot()
 # library(devtools)
 # install_git("https://github.com/ccolonescu/PoEdata")
 
-library(PoEdata) #for PoE4 datasets)
+library(PoEdata) # for the "food" dataset contained in this package
 
-data("food")
+data("food")     # makes the dataset "food" usable
 
 lm_object <- lm(food_exp ~ income, data = food)
 
+## Diagnostic scatter plot of residuals vs fitted values 
 plot(lm_object, which = 1)
 ```
 
 Interpretation: 
 
+* The plot shows the residuals $\hat{\varepsilon}_i$ plotted against the fitted values $\hat{Y}_i$.
 * The diagnostic plot indicates that the variance increases with income.
 
-The plot shows the residuals $\hat{\varepsilon}_i$ plotted against the fitted values $\hat{Y}_i$. Plotting against the fitted values is actually a quite smart idea since this also works for multiple predictors $X_{i1},\dots,X_{iK}$ with $K\geq 3$. 
-
+**Note:** Plotting against the fitted values is actually a quite smart idea since this also works for multiple predictors $X_{i1},\dots,X_{iK}$ with $K\geq 3$. 
 
 
 ### Checking (Non-)Linearity of the Regression Line
@@ -663,7 +719,6 @@ my_car_df <- data.frame(
 
 pairs(my_car_df)
 ```
-
 
 ## Tidyverse `R`
 
@@ -689,7 +744,7 @@ ggpairs(my_car_df) + theme_bw()
 
 The plots indicate a positive, but non-linear relationship between the outcome variable `MPG` (gasoline consumption in milles per gallon) and the predictor `HP` (power of the mashing in horsepower). 
 
-If we do not take this into account, we get bad model fits as indicated by diagnostic plots:
+If we do not take this into account, we get bad model fits which can be seen in the scatter plot of `MPG` vs. `HP` and in the diagnostic plot of the residuals vs. the fitted values. (The latter works also for $K\geq 3$, the former not.)
 
 ::: {.panel-tabset}
 
@@ -708,7 +763,6 @@ abline(lm_obj_1)
 plot(lm_obj_1, which=1, 
        main = "Simple Linear Regression")
 ```
-
 
 ## Tidyverse `R`
 
@@ -928,6 +982,13 @@ This are promising plots:
 * In the case of a larger sample size, the realizations of $\hat\beta_0$ and $\hat\beta_1$ concentrate stronger around the true (unknown) parameter values $\beta_0$ and $\beta_1$. This indicates consistency of the estimators.  
 
 However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. In the following chapters, we use theoretical arguments to investigate under which assumptions we can make *general* statements about the distributional properties of the estimator $\hat\beta.$ 
+
+
+## Exercises
+
+* [Exercises for Chapter 3](Exercises/Ch3_Exercises.pdf)
+
+<!-- * [Exercises of Chapter 3 with Solultions](Exercises/Ch2_Exercises_with_Solutions.pdf) -->
 
 
 ## References {-}

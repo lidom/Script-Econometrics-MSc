@@ -246,6 +246,7 @@ div.csl-indent {
   <li><a href="#checking-non-linearity-of-the-regression-line" id="toc-checking-non-linearity-of-the-regression-line" class="nav-link" data-scroll-target="#checking-non-linearity-of-the-regression-line"><span class="toc-section-number">3.5.3</span>  Checking (Non-)Linearity of the Regression Line</a></li>
   <li><a href="#behavior-of-the-ols-estimates-for-resampled-data" id="toc-behavior-of-the-ols-estimates-for-resampled-data" class="nav-link" data-scroll-target="#behavior-of-the-ols-estimates-for-resampled-data"><span class="toc-section-number">3.5.4</span>  Behavior of the OLS Estimates for Resampled Data</a></li>
   </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">3.6</span>  Exercises</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -404,6 +405,50 @@ E(X_{ik}\varepsilon_i)=E(X_{ik}E(\varepsilon_i|X_{ik}))=E(X_{ik}0)=0
 </div>
 <!-- ## The Algebra of Least Squares -->
 <!-- In this section, we take the point of view where $(Y^{obs},X^{obs})$ is an observed data-set, i.e., a given realization of the random sample $((Y_1,X_1),\dots,(Y_n,X_n))$. That is, we are not yet interested in the statistical properties of estimators, but are only in doing some linear algebra.  -->
+<!-- ### Exogeneity and Causality -->
+<!-- https://allthingsstatistics.com/miscellaneous/exogeneity-assumption/ -->
+<!--  The exogeneity assumption (Assumption 2) means that the dependent variable $Y_i$ does not causally affect the independent variables $X_i$.
+
+$$
+Y_i = \beta_1 + \beta_2 X_i + \varepsilon_i
+$$
+
+* $Y_i$: Depression test score of person $i$
+* $X_i$: Number of cigarettes smoked per day by person $i$
+* $\beta$: Mean effect of smoking on depression
+
+Can we identify $\beta$, i.e. the causal effect of smoking on depression? 
+
+While it is reasonable that X causes Y 
+$$
+Y_i = \beta_1 + \beta_2 X_i + \varepsilon_i
+$$
+It's also reasonable that Y causes to some extend $X$
+$$
+X_i = \gamma_1 + \gamma_2 Y_i + u_i
+$$
+
+Thus 
+$$
+\begin{align*}
+Y_i 
+& = \beta_1 + \overbrace{\beta_2 X_i}^{=\gamma_1 + \gamma_2 Y_i + u_i} + \varepsilon_i\\
+& = \beta_1 + \beta_2 X_i + \varepsilon_i\\
+\end{align*}
+$$
+
+
+
+
+* It's very likely that smoking causes depression (X \to Y)
+* However, *simultaneously* depression may cause increased smoking behavior (Y\to X)
+
+The latter point would mean that large values of $Y_i$ 
+
+
+
+
+The independent and dependent variables are correlated but the causal link is only in one direction – the independent variable affects the dependent variable not vice-versa. -->
 </section>
 </section>
 <section id="deriving-the-expression-of-the-ols-estimator" class="level2" data-number="3.2">
@@ -582,7 +627,7 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="factor-variables-and-the-dummy-variable-trap"><span class="header-section-number">3.5.1</span> Factor Variables and the Dummy-Variable Trap</h3>
 <p>In the following, we consider simple linear regression model that aims to predict wages in the year 2008 using gender as the only predictor. We use data provided in the accompanying materials of Stock and Watson’s <em>Introduction to Econometrics</em> textbook <span class="citation" data-cites="stock2015">(<a href="#ref-stock2015" role="doc-biblioref">Stock and Watson 2015</a>)</span>. You can download the data stored as an xlsx-file <code>cps_ch3.xlsx</code> <a href="https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps92_12.xlsx">HERE</a>.</p>
 <p>Let us first prepare the dataset:</p>
-<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-3_eb7feef06a115e06d54ae9e7a6b20b83">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-3_4ea0283b3452f294228f0e3bac8d99d7">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## load the 'tidyverse' package</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(<span class="st">"tidyverse"</span>))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## load the 'readxl' package</span></span>
@@ -595,16 +640,21 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># range(cps$year)</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># range(cps$a_sex) # 1 = male, 2 = female</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>cps_2008 <span class="ot">&lt;-</span> cps <span class="sc">%&gt;%</span> </span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">wage   =</span> ahe08,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">fct_recode</span>(<span class="fu">as_factor</span>(a_sex), <span class="st">"male"</span> <span class="ot">=</span> <span class="st">"1"</span>, <span class="st">"female"</span> <span class="ot">=</span> <span class="st">"2"</span>) </span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span>  </span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wage, gender) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Data wrangling</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>cps_2008 <span class="ot">&lt;-</span> cps <span class="sc">%&gt;%</span> </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">wage   =</span> ahe08,      <span class="co"># rename "ahe08" as "wage"    </span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">fct_recode</span>( <span class="co"># rename factor "a_sex" as "gender"</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as_factor</span>(a_sex),     </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">"male"</span> <span class="ot">=</span> <span class="st">"1"</span>,  <span class="co"># rename factor level "1" to "male"</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"female"</span> <span class="ot">=</span> <span class="st">"2"</span> <span class="co"># rename factor level "2" to "female"</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>             ) </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span>  </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span>     <span class="co"># Only data from year 2008</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wage, gender)         <span class="co"># Select only the variables "wage" and "gender"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The first six lines of the dataset look as following:</p>
-<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-4_27413be44bb6c056df652ba27ee212ad">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-4_6b54b6a1151a2e32b231b73098faa00a">
 <div class="cell-output-display">
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -720,7 +770,7 @@ Levels: male female</code></pre>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Calls<span class="sc">:</span> .main ... eval_with_user_handlers <span class="ot">-&gt;</span> eval <span class="ot">-&gt;</span> eval <span class="ot">-&gt;</span> solve <span class="ot">-&gt;</span> solve.default</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Execution halted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><font color="#FF0000">An error message!</font> We blundered into the dummy variable trap 🤬</p>
+<p><font color="#FF0000">An error message!</font> 🤬 We blundered into the dummy variable trap!</p>
 The estimation result is not computable since <span class="math inline">\((X'X)\)</span> is not invertible due to the perfect multicollinearity between the intercept and the two dummy variables <code>X_female</code> and <code>X_male</code>
 <center>
 <code>X_1</code> = <code>X_female</code> <span class="math inline">\(+\)</span> <code>X_male</code>
@@ -746,27 +796,29 @@ X_female -4.103626</code></pre>
 <h3 data-number="3.5.2" class="anchored" data-anchor-id="detecting-heteroskedasticity"><span class="header-section-number">3.5.2</span> Detecting Heteroskedasticity</h3>
 <p>A very simple, but highly effective way to check for heteroskedastic error terms is to plot the residuals. If we have the correct model (hopefully we have), then (and only then) the residuals are good approximations to the realizations of the error terms <span class="math inline">\(\varepsilon_i\)</span>. Thus a plot of the residuals can be used to check for heteroskedasticity.</p>
 <p>You can use <code>R</code>’s internal diagnostic plots that can be called using the <code>plot()</code> method for <code>lm</code>-objects:</p>
-<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-13_3bd831aeb67613bc6bbac26f6756c2d5">
+<div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-13_85d4be23a1293017c8123978fb01353b">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("devtools")</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(devtools)</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install_git("https://github.com/ccolonescu/PoEdata")</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata) <span class="co">#for PoE4 datasets)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PoEdata) <span class="co"># for the "food" dataset contained in this package</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"food"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"food"</span>)     <span class="co"># makes the dataset "food" usable</span></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>lm_object <span class="ot">&lt;-</span> <span class="fu">lm</span>(food_exp <span class="sc">~</span> income, <span class="at">data =</span> food)</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_object, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Diagnostic scatter plot of residuals vs fitted values </span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_object, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="03-Multiple-Linear-Regression_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Interpretation:</p>
 <ul>
+<li>The plot shows the residuals <span class="math inline">\(\hat{\varepsilon}_i\)</span> plotted against the fitted values <span class="math inline">\(\hat{Y}_i\)</span>.</li>
 <li>The diagnostic plot indicates that the variance increases with income.</li>
 </ul>
-<p>The plot shows the residuals <span class="math inline">\(\hat{\varepsilon}_i\)</span> plotted against the fitted values <span class="math inline">\(\hat{Y}_i\)</span>. Plotting against the fitted values is actually a quite smart idea since this also works for multiple predictors <span class="math inline">\(X_{i1},\dots,X_{iK}\)</span> with <span class="math inline">\(K\geq 3\)</span>.</p>
+<p><strong>Note:</strong> Plotting against the fitted values is actually a quite smart idea since this also works for multiple predictors <span class="math inline">\(X_{i1},\dots,X_{iK}\)</span> with <span class="math inline">\(K\geq 3\)</span>.</p>
 </section>
 <section id="checking-non-linearity-of-the-regression-line" class="level3" data-number="3.5.3">
 <h3 data-number="3.5.3" class="anchored" data-anchor-id="checking-non-linearity-of-the-regression-line"><span class="header-section-number">3.5.3</span> Checking (Non-)Linearity of the Regression Line</h3>
@@ -815,7 +867,7 @@ X_female -4.103626</code></pre>
 </div>
 </div>
 <p>The plots indicate a positive, but non-linear relationship between the outcome variable <code>MPG</code> (gasoline consumption in milles per gallon) and the predictor <code>HP</code> (power of the mashing in horsepower).</p>
-<p>If we do not take this into account, we get bad model fits as indicated by diagnostic plots:</p>
+<p>If we do not take this into account, we get bad model fits which can be seen in the scatter plot of <code>MPG</code> vs.&nbsp;<code>HP</code> and in the diagnostic plot of the residuals vs.&nbsp;the fitted values. (The latter works also for <span class="math inline">\(K\geq 3\)</span>, the former not.)</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Base <code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Tidyverse <code>R</code></a></li></ul>
 <div class="tab-content">
@@ -1011,6 +1063,13 @@ X_female -4.103626</code></pre>
 </ul>
 <p>However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. In the following chapters, we use theoretical arguments to investigate under which assumptions we can make <em>general</em> statements about the distributional properties of the estimator <span class="math inline">\(\hat\beta.\)</span></p>
 </section>
+</section>
+<section id="exercises" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.6</span> Exercises</h2>
+<ul>
+<li><a href="Exercises/Ch3_Exercises.pdf">Exercises for Chapter 3</a></li>
+</ul>
+<!-- * [Exercises of Chapter 3 with Solultions](Exercises/Ch2_Exercises_with_Solutions.pdf) -->
 </section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>

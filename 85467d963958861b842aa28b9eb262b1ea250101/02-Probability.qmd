@@ -1058,8 +1058,8 @@ $$
 
 <!-- The following link(s) downloads a PDF-file containing the exercises for this chapter.  -->
 
-* [Exercises of Chapter 2](Exercises/Ch2_Exercises.pdf)
+* [Exercises for Chapter 2](Exercises/Ch2_Exercises.pdf)
 
-* [Exercises of Chapter 2 with Solultions](Exercises/Ch2_Exercises_with_Solutions.pdf)
+* [Exercises for Chapter 2 with Solultions](Exercises/Ch2_Exercises_with_Solutions.pdf)
 
 ## References {-}
