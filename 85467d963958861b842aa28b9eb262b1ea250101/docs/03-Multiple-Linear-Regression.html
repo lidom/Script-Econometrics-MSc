@@ -219,7 +219,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-Instrumental-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instrumental Variables Regression</span></a>
+  <a href="./07-Instrumental-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Instrumental Variables</span></a>
   </div>
 </li>
     </ul>
@@ -231,13 +231,13 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#assumptions" id="toc-assumptions" class="nav-link active" data-scroll-target="#assumptions"><span class="toc-section-number">3.1</span>  Assumptions</a>
+  <li><a href="#sec-LinModAssumptions" id="toc-sec-LinModAssumptions" class="nav-link active" data-scroll-target="#sec-LinModAssumptions"><span class="toc-section-number">3.1</span>  Assumptions</a>
   <ul class="collapse">
   <li><a href="#some-implications-of-the-exogeneity-assumption" id="toc-some-implications-of-the-exogeneity-assumption" class="nav-link" data-scroll-target="#some-implications-of-the-exogeneity-assumption"><span class="toc-section-number">3.1.1</span>  Some Implications of the Exogeneity Assumption</a></li>
   </ul></li>
   <li><a href="#deriving-the-expression-of-the-ols-estimator" id="toc-deriving-the-expression-of-the-ols-estimator" class="nav-link" data-scroll-target="#deriving-the-expression-of-the-ols-estimator"><span class="toc-section-number">3.2</span>  Deriving the Expression of the OLS Estimator</a></li>
   <li><a href="#some-quantities-of-interest" id="toc-some-quantities-of-interest" class="nav-link" data-scroll-target="#some-quantities-of-interest"><span class="toc-section-number">3.3</span>  Some Quantities of Interest</a></li>
-  <li><a href="#method-of-moments-estimator" id="toc-method-of-moments-estimator" class="nav-link" data-scroll-target="#method-of-moments-estimator"><span class="toc-section-number">3.4</span>  Method of Moments Estimator</a></li>
+  <li><a href="#sec-MMEstimator" id="toc-sec-MMEstimator" class="nav-link" data-scroll-target="#sec-MMEstimator"><span class="toc-section-number">3.4</span>  Method of Moments Estimator</a></li>
   <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="toc-section-number">3.5</span>  Practice</a>
   <ul class="collapse">
   <li><a href="#factor-variables-and-the-dummy-variable-trap" id="toc-factor-variables-and-the-dummy-variable-trap" class="nav-link" data-scroll-target="#factor-variables-and-the-dummy-variable-trap"><span class="toc-section-number">3.5.1</span>  Factor Variables and the Dummy-Variable Trap</a></li>
@@ -271,8 +271,8 @@ div.csl-indent {
 </header>
 
 <p>In the following we focus on case of random designs <span class="math inline">\(X\)</span> (i.e.&nbsp;<span class="math inline">\(X\)</span> being a random variable), since, first, this is the more relevant case in econometrics and, second, it includes the case of fixed designs (i.e.&nbsp;<span class="math inline">\(X\)</span> being deterministic) as a special case (“degenerated random variable”). Caution: A random <span class="math inline">\(X\)</span> requires us to consider conditional means and variances “given <span class="math inline">\(X\)</span>.” That is, if we would be able to resample from the model, we do so by fixing (conditioning on) the in-principle random explanatory variable <span class="math inline">\(X\)</span>.</p>
-<section id="assumptions" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">3.1</span> Assumptions</h2>
+<section id="sec-LinModAssumptions" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-LinModAssumptions"><span class="header-section-number">3.1</span> Assumptions</h2>
 <p>The multiple linear regression model is defined by the following assumptions which together describe the relevant theoretical aspects of the underlying data generating process:</p>
 <p><strong>Assumption 1: Model and Sampling</strong></p>
 <p><strong>Part (a): Linear Model</strong></p>
@@ -584,8 +584,8 @@ R^2=\frac{\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}{\sum_{i=1}^n\left(
 \end{eqnarray*}\]</span> The adjustment is in terms of the degrees of freedom <span class="math inline">\(n-K\)</span>.</p>
 </section>
 </section>
-<section id="method-of-moments-estimator" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="method-of-moments-estimator"><span class="header-section-number">3.4</span> Method of Moments Estimator</h2>
+<section id="sec-MMEstimator" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sec-MMEstimator"><span class="header-section-number">3.4</span> Method of Moments Estimator</h2>
 <p>Remember that the exogeneity assumption (Assumption 2), <span class="math inline">\(E(\varepsilon_i|X_i)=0,\)</span> implies that <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span> for all <span class="math inline">\(k=1,\dots,K\)</span>. Thus, the exogeneity assumption gives us a system of <span class="math inline">\(K\)</span> linear equations: <span class="math display">\[
 \left.
   \begin{array}{c}
@@ -625,7 +625,7 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 <h2 data-number="3.5" class="anchored" data-anchor-id="practice"><span class="header-section-number">3.5</span> Practice</h2>
 <section id="factor-variables-and-the-dummy-variable-trap" class="level3" data-number="3.5.1">
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="factor-variables-and-the-dummy-variable-trap"><span class="header-section-number">3.5.1</span> Factor Variables and the Dummy-Variable Trap</h3>
-<p>In the following, we consider simple linear regression model that aims to predict wages in the year 2008 using gender as the only predictor. We use data provided in the accompanying materials of Stock and Watson’s <em>Introduction to Econometrics</em> textbook <span class="citation" data-cites="stock2015">(<a href="#ref-stock2015" role="doc-biblioref">Stock and Watson 2015</a>)</span>. You can download the data stored as an xlsx-file <code>cps_ch3.xlsx</code> <a href="https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps92_12.xlsx">HERE</a>.</p>
+<p>In the following, we consider simple linear regression model that aims to predict wages in the year 2008 using gender as the only predictor. We use data provided in the accompanying materials of Stock and Watson’s <em>Introduction to Econometrics</em> textbook <span class="citation" data-cites="stock2015">(<a href="#ref-stock2015" role="doc-biblioref">Stock and Watson 2015</a>)</span>. You can download the data stored as an xlsx-file <code>cps_ch3.xlsx</code> <a href="https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps_ch3.xlsx">HERE</a>.</p>
 <p>Let us first prepare the dataset:</p>
 <div class="cell" data-hash="03-Multiple-Linear-Regression_cache/html/unnamed-chunk-3_4ea0283b3452f294228f0e3bac8d99d7">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## load the 'tidyverse' package</span></span>
@@ -1059,7 +1059,7 @@ X_female -4.103626</code></pre>
 <p>This are promising plots:</p>
 <ul>
 <li>The realizations of <span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span> are scattered around the true (unknown) parameter values <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. This indicates unbiasdness of the estimators.</li>
-<li>In the case of a larger sample size, the realizations of <span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span> concentrate stronger around the true (unknown) parameter values <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. This indicates consistency of the estimators.</li>
+<li>In the case of a larger sample size, the realizations of <span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span> concentrate stronger around the true (unknown) parameter values <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1.\)</span> This indicates consistency of the estimators.</li>
 </ul>
 <p>However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. In the following chapters, we use theoretical arguments to investigate under which assumptions we can make <em>general</em> statements about the distributional properties of the estimator <span class="math inline">\(\hat\beta.\)</span></p>
 </section>

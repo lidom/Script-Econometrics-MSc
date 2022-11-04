@@ -8,7 +8,7 @@ That is, if we would be able to resample from the model, we do so by fixing (con
 the in-principle random explanatory variable $X$. 
 
 
-## Assumptions
+## Assumptions {#sec-LinModAssumptions}
 
 The multiple linear regression model is defined by the following assumptions which together describe the relevant theoretical aspects of the underlying data generating process:
 
@@ -481,7 +481,7 @@ So, $R^2$ increases here even though `X_ir` is a completely irrelevant explanato
 The adjustment is in terms of the degrees of freedom $n-K$.
 
 
-## Method of Moments Estimator
+## Method of Moments Estimator {#sec-MMEstimator}
 
 Remember that the exogeneity assumption (Assumption 2), $E(\varepsilon_i|X_i)=0,$ implies that $E(X_{ik}\varepsilon_i)=0$ for all $k=1,\dots,K$. Thus, the exogeneity assumption gives us a system of $K$ linear equations:
 $$
@@ -537,7 +537,7 @@ Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS e
 
 ### Factor Variables and the Dummy-Variable Trap
 
-In the following, we consider simple linear regression model that aims to predict wages in the year 2008 using gender as the only predictor. We use data provided in the accompanying materials of Stock and Watson's *Introduction to Econometrics* textbook [@stock2015]. You can download the data stored as an xlsx-file `cps_ch3.xlsx` [HERE](https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps92_12.xlsx). 
+In the following, we consider simple linear regression model that aims to predict wages in the year 2008 using gender as the only predictor. We use data provided in the accompanying materials of Stock and Watson's *Introduction to Econometrics* textbook [@stock2015]. You can download the data stored as an xlsx-file `cps_ch3.xlsx` [HERE](https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps_ch3.xlsx). 
 
 
 Let us first prepare the dataset:
@@ -979,7 +979,7 @@ text(x=0, y=beta1, labels = expression(beta[1]), pos = 4)
 This are promising plots: 
 
 * The realizations of $\hat\beta_0$ and $\hat\beta_1$ are scattered around the true (unknown) parameter values $\beta_0$ and $\beta_1$. This indicates unbiasdness of the estimators. 
-* In the case of a larger sample size, the realizations of $\hat\beta_0$ and $\hat\beta_1$ concentrate stronger around the true (unknown) parameter values $\beta_0$ and $\beta_1$. This indicates consistency of the estimators.  
+* In the case of a larger sample size, the realizations of $\hat\beta_0$ and $\hat\beta_1$ concentrate stronger around the true (unknown) parameter values $\beta_0$ and $\beta_1.$ This indicates consistency of the estimators.  
 
 However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. In the following chapters, we use theoretical arguments to investigate under which assumptions we can make *general* statements about the distributional properties of the estimator $\hat\beta.$ 
 
