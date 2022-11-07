@@ -1,6 +1,6 @@
 # Small Sample Inference {#sec-ssinf}
 
-The content of this chapter is very much inspired by the book by @Hayashi2000. 
+The content of this chapter is very much inspired by the textbook of @Hayashi2000. 
 
 
 It's is very hard to say when a sample size $n$ is small. Often people say something like $n<30$ means small samples and $n\geq 30$ large samples, but this is, of course, only a very rough rule of thumb that may fail. The core issue with small sample sizes is that we cannot do inference using the central limit theorem. Thus we need rather strict assumptions on the distribution of the error term, in order to do **exact** inference in finite samples. 

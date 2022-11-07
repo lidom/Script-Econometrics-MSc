@@ -529,6 +529,121 @@ $$
 Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS estimator.
 
 
+## The Gauss-Markov Theorem {#sec-GMTheorem}
+
+
+::: {#thm-GMTheorem}
+
+##  Gauss-Markov Theorem
+
+Let's assume Assumptions 1-4 hold with spherical errors, i.e., with $E(\varepsilon\varepsilon'|X)=\sigma^{2} I_{n}$. Then the Gauss-Markov theorem states that of all linear and unbiased estimators (i.e. $E(\hat\beta)=\beta$), the OLS estimator $\hat\beta=(X'X)^{-1}X'Y$ will have the smallest variance, in a matrix sense. That is, for any alternative linear (in $Y$) and unbiased (i.e. $E(\tilde\beta)=\beta$) estimator $\tilde{\beta}$ we have that 
+$$
+\begin{align*}
+&Var(\tilde\beta|X)\geq Var(\hat\beta|X)\quad\text{(in the matrix sense)}\\
+\Leftrightarrow&Var(\tilde\beta|X)-Var(\hat\beta|X)=\underset{(K\times K)}{D},
+\end{align*}
+$$
+where $D$ is a *positive semidefinite* $(K\times K)$ matrix, i.e., $a'Da\geq 0$ for any $K$-dimensional vector $a\in\mathbb{R}^K$.  Observe that this implies that $Var(\tilde{\beta}_k|X) \geq Var(\hat\beta_k | X)$ for any $k=1,\dots,K$. 
+::: 
+
+::: {.proof}
+
+Since $\tilde{\beta}$ is assumed to be linear in $Y$, we can write 
+$$
+\tilde{\beta}=CY,
+$$
+where $C$ is some $(K\times n)$ matrix, which is a function of $X$ and/or nonrandom components. Adding a $(K\times n)$ zero matrix $0$ yields 
+$$
+\tilde{\beta}=\Big(C\overbrace{-\left(X'X\right)^{-1}X'+\left(X'X\right)^{-1}X'}^{=0}\Big)Y.
+$$
+Let now $D=C-\left(X'X\right)^{-1}X'$, then
+$$
+\begin{align*}
+\tilde{\beta}&=\left(D+\left(X'X\right)^{-1}X'\right)Y\\
+\tilde{\beta}&=DY + \left(X'X\right)^{-1}X'Y\\
+\tilde{\beta}&=D\left(X{\beta}+{\varepsilon}\right) + \left(X'X\right)^{-1}X'Y
+\end{align*}
+$$
+Thus 
+$$
+\tilde{\beta}=DX{\beta}+D{\varepsilon} + \hat{\beta}.
+$${#eq-c3e16}
+Moreover, 
+$$
+E(\tilde{\beta}|X)=\underbrace{E(DX{\beta}|X)}_{=DX\beta}+\underbrace{E(D\varepsilon|X)}_{=DE(\varepsilon|X)=0}+\underbrace{E(\hat{\beta}|X)}_{=\beta}
+$$
+and thus
+$$
+E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}.
+$${#eq-c3e17}
+
+Since $\tilde{\beta}$ is (by assumption) unbiased, we have that
+$E(\tilde{\beta}|X)={\beta}$. Therefore, @eq-c3e17 implies that $DX=0_{(K\times K)}$ since we must have that 
+$$
+E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}=\beta.
+$$ 
+Plugging $DX=0$ into @eq-c3e16 yields, 
+$$
+\begin{align*}
+\tilde{\beta}&=D{\varepsilon} + \hat{\beta}\\
+\tilde{\beta}-{\beta}&=D{\varepsilon} + (\hat{\beta}-{\beta})\\
+\tilde{\beta}-{\beta}&=D{\varepsilon} + \left(X'X\right)^{-1}X'{\varepsilon}
+\end{align*}
+$$
+such that 
+$$
+\tilde{\beta}-{\beta}=\left(D + \left(X'X\right)^{-1}X'\right){\varepsilon},
+$${#eq-c3e18}
+where we used that 
+$$
+\begin{align*}
+\hat\beta-\beta&=(X'X)^{-1}X'Y-\beta\\
+&=(X'X)^{-1}X'(X\beta+\varepsilon)-\beta\\
+&=(X'X)^{-1}X'\varepsilon.
+\end{align*}
+$$
+
+Using that $Var(\tilde{\beta}|X)= Var(\tilde{\beta}-{\beta}|X)$ since $\beta$ is not random and using @eq-c3e18 yields
+$$
+\begin{align*}
+Var(\tilde{\beta}|X) 
+&= Var((D + (X'X)^{-1}X'){\varepsilon}|X)\\
+&= (D + (X'X)^{-1}X')Var({\varepsilon}|X)(D' + X(X'X)^{-1})\\
+&= \sigma^2(D + (X'X)^{-1}X')I_n(D' + X(X'X)^{-1})\\
+&= \sigma^2\left(DD'+(X'X)^{-1}\right)\quad \text{(using that $DX=0$)} \\
+&\geq\sigma^2(X'X)^{-1} \quad \text{(since $DD'$ is pos.~semidefinit (see below))}\\
+&= Var(\hat{\beta}|X),
+\end{align*}
+$$
+where the last equation follows from 
+$$
+\begin{align*}
+Var(\hat\beta|X)
+&=Var(\hat\beta - \beta|X)\\
+&=Var( (X'X)^{-1}X'\varepsilon|X)\\
+&=(X'X)^{-1}X'Var( \varepsilon|X)((X'X)^{-1}X')'\\
+&=(X'X)^{-1}X'\sigma^2 I_n((X'X)^{-1}X')'\\
+&=\sigma^2(X'X)^{-1}X'((X'X)^{-1}X')'\\
+&=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}=\sigma^2(X'X)^{-1}.
+\end{align*}
+$$
+Finally, we need to show that $DD'$ is really positive semidefinite:
+$$
+\begin{align*}
+a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}\geq 0,
+\end{align*}
+$$
+where $\tilde{a}$ is a $K$ dimensional column-vector. 
+
+<!-- Remember: -->
+<!-- \begin{itemize} -->
+<!-- \item $(A+\hat{\beta})'=A'+\hat{\beta}'$ -->
+<!-- \item $(AB)'=\hat{\beta}'A'$ -->
+<!-- \item $A' = A$ $\Leftrightarrow$ $A$ is a symmetric matrix -->
+<!-- \end{itemize} -->
+:::
+
+<!-- \paragraph*{Note.}  To reiterate: The unbiasedness of $\hat{\beta}$ did not depend on any assumptions about the distribution of $\varepsilon$,  except that $E(\varepsilon|X)=0$ which follows from our Assumption 2 together with the i.i.d. assumption in Assumption 1.  Once we imposed additionally the assumption of spherical errors $E(\varepsilon\varepsilon|X)=\sigma^{2}I_n$ we can show that $\hat{\beta}$ has the smallest variance of all linear unbiased estimators.  -->
 
 
 
