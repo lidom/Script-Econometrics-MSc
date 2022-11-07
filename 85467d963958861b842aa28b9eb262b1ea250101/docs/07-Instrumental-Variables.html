@@ -164,11 +164,11 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">7.1</span>  Introduction</a>
-  <ul class="collapse">
-  <li><a href="#examples-for-structural-models" id="toc-examples-for-structural-models" class="nav-link" data-scroll-target="#examples-for-structural-models"><span class="toc-section-number">7.1.1</span>  Examples for Structural Models</a></li>
-  </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">7.2</span>  References</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">7.1</span>  Introduction</a></li>
+  <li><a href="#examples-for-structural-models" id="toc-examples-for-structural-models" class="nav-link" data-scroll-target="#examples-for-structural-models"><span class="toc-section-number">7.2</span>  Examples for Structural Models</a></li>
+  <li><a href="#endogenous-regressors" id="toc-endogenous-regressors" class="nav-link" data-scroll-target="#endogenous-regressors"><span class="toc-section-number">7.3</span>  Endogenous Regressors</a></li>
+  <li><a href="#instruments" id="toc-instruments" class="nav-link" data-scroll-target="#instruments"><span class="toc-section-number">7.4</span>  Instruments</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">7.5</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -227,8 +227,9 @@ E(X_i\varepsilon_i^*)=0
 \hat\beta\to_pE(X_iX_i')^{-1}E(X_iY) = \beta^* \neq \beta.
 \]</span></p>
 <p>But since the structural parameter <span class="math inline">\(\beta\)</span> is here the parameter of interest, endogeneity requires the development of alternative estimation methods.</p>
-<section id="examples-for-structural-models" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="examples-for-structural-models"><span class="header-section-number">7.1.1</span> Examples for Structural Models</h3>
+</section>
+<section id="examples-for-structural-models" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="examples-for-structural-models"><span class="header-section-number">7.2</span> Examples for Structural Models</h2>
 <div id="exm-MeasurementError" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7.1 (Measurement error in the regressor) </strong></span><br></p>
 <p>Suppose that</p>
@@ -359,12 +360,121 @@ e_{2i}\\
 \end{matrix}  
 \right)
 \end{align}
+\]</span> Thus <span class="math display">\[
+\begin{align*}
+E(P_iQ_i)
+&amp;=\frac{E\left((e_{1i} - e_{2i})(\beta_2 e_{1i} + \beta_1  e_{2i})\right)}{(\beta_1 + \beta_2)^2}\\
+&amp;=\frac{\beta_2 E\left(e_{1i}^2\right) - \beta_1 E\left(e_{2i}^2\right)}{(\beta_1 + \beta_2)^2}=\frac{\beta_2 - \beta_1}{(\beta_1 + \beta_2)^2}
+\end{align*}
+\]</span> <span class="math display">\[
+\begin{align*}
+E(P_i^2)
+&amp;=\frac{E\left((e_{1i} - e_{2i})^2\right)}{(\beta_1 + \beta_2)^2}\\
+&amp;=\frac{E\left(e_{1i}^2\right) + E\left(e_{2i}^2\right)}{(\beta_1 + \beta_2)^2} = \frac{2}{(\beta_1 + \beta_2)^2}
+\end{align*}
 \]</span></p>
+<p>The (population) projection of <span class="math inline">\(Q_i\)</span> on <span class="math inline">\(P_i\)</span> yield <span class="math display">\[
+Q_i=\beta^* P_i+\varepsilon^*_i
+\]</span> with <span class="math inline">\(E(P_i\varepsilon^*_i)=0\)</span> and <span class="math display">\[
+\beta^* = \frac{E(P_iQ_i)}{E(P^2)} = \frac{\beta_2 - \beta_1}{2}
+\]</span> The projection coefficient equals the average of the demand slope <span class="math inline">\(\beta_1\)</span> and the supply slope <span class="math inline">\(\beta_2.\)</span> The OLS estimator satisfies <span class="math inline">\(\hat\beta\to_p\beta^*\)</span> and thus the limit does not equal on of the structural parameters <span class="math inline">\(\beta_1\)</span> or <span class="math inline">\(\beta_2.\)</span> This is called <strong>simultaneous equation bias</strong>.</p>
+<p>Generally, when both the dependent variable and a regressor are <strong>simultaneously determined</strong> then the regressor should be treated as endogenous.</p>
 </div>
 </section>
+<section id="endogenous-regressors" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="endogenous-regressors"><span class="header-section-number">7.3</span> Endogenous Regressors</h2>
+<p>Technically, we say that a regressor <span class="math inline">\(X_i\)</span> is <strong>exogenous</strong> for <span class="math inline">\(\beta\)</span> if <span class="math inline">\(E(X_i\varepsilon_i)=0.\)</span> In general the distinction in an economic model is that a regressor <span class="math inline">\(X_i\)</span> is endogenous if it is jointly determined with <span class="math inline">\(Y_i,\)</span> while a regressor <span class="math inline">\(X_i\)</span> is exogenous if it is determined separately from <span class="math inline">\(Y_i.\)</span></p>
+<p>Usually, only a subset of the regressors need to be treated as endogenous. In the following, we partition the vector of regressors <span class="math display">\[
+X_i*=(\underbrace{X_{i1}'}_{(1\times K_1)}, \underbrace{Y_{i2}'}_{(1\times K_2)}),
+\]</span> with <span class="math inline">\(K=K_1 + K_2\)</span>, and with:</p>
+<ul>
+<li>Exogenous variables denoted as <span class="math inline">\(X_{i1}\)</span></li>
+<li>Endogenous variables denoted as <span class="math inline">\(Y_{i2}\)</span> in analogy to the (always) endogenous dependent variable <span class="math inline">\(Y_i\)</span></li>
+<li>The dependent variable is renamed as <span class="math inline">\(Y_i\equiv Y_{i1}\)</span></li>
+</ul>
+<p>(Be aware that <span class="math inline">\(X_{i1}\)</span> is here a <span class="math inline">\((K_1\times 1)\)</span> dimensional random vector.)</p>
+<p>The structural equation is then <span id="eq-StructuralEqEndogen1"><span class="math display">\[
+Y_{i1}=X_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
+\tag{7.4}\]</span></span><br>
+This notation clarifies which variables are exogenous and which endogenous: <span class="math display">\[
+\begin{align*}
+E(X_{i1}\varepsilon_i)&amp;=0\\[1.5ex]
+E(Y_{i2}\varepsilon_i)&amp;\neq 0\\[1.5ex]
+E(Y_{i1}\varepsilon_i)&amp;\neq 0\\
+\end{align*}
+\]</span></p>
 </section>
-<section id="references" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="references"><span class="header-section-number">7.2</span> References</h2>
+<section id="instruments" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="instruments"><span class="header-section-number">7.4</span> Instruments</h2>
+<p>To consistently estimate the structural parameter <span class="math inline">\(\beta\)</span> we need additional information. One type of information commonly used in econometrics are called <strong>instruments</strong>.</p>
+<div id="def-InstrumentalVariable" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 7.1 (Instrumental Variable) </strong></span>The <span class="math inline">\(\ell\times 1\)</span> random vector <span class="math inline">\(Z_i\)</span> is called an <strong>instrumental variable</strong> for <a href="#eq-StructuralEqEndogen1">Equation&nbsp;<span>7.4</span></a> if <span id="eq-IV1"><span class="math display">\[
+E(Z_i\varepsilon_i)=0
+\tag{7.5}\]</span></span> <span id="eq-IV2"><span class="math display">\[
+\operatorname{rank}\left(E(Z_iZ_i')\right)=\ell  
+\tag{7.6}\]</span></span> <span id="eq-IV3"><span class="math display">\[
+\operatorname{rank}\left(\underbrace{E(Z_iX_i')}_{(\ell\times K)}\right)=K,
+\tag{7.7}\]</span></span> where <span class="math inline">\(X_i'=(X_{i1}',Y_{i2}').\)</span></p>
+</div>
+<p><strong>Explanation of <a href="#def-InstrumentalVariable">Definition&nbsp;<span>7.1</span></a>:</strong></p>
+<ul>
+<li><a href="#eq-IV1">Equation&nbsp;<span>7.5</span></a> states that the instruments are uncorrelated with the error term (<strong>exogeneity condition</strong>)</li>
+<li><a href="#eq-IV2">Equation&nbsp;<span>7.6</span></a> excludes linearly redundant instrument instruments</li>
+<li><a href="#eq-IV3">Equation&nbsp;<span>7.7</span></a> is called the <strong>relevance condition</strong> and is essential for the identification of the model, as we discuss later.
+<ul>
+<li>A necessary condition for <a href="#eq-IV3">Equation&nbsp;<span>7.7</span></a> is that <span class="math inline">\(\ell\geq K.\)</span></li>
+</ul></li>
+</ul>
+<p>Note that the exogenous regressors <span class="math inline">\(X_{i1}\)</span> fulfill <a href="#eq-IV1">Equation&nbsp;<span>7.5</span></a> and thus should be included as (additional) instrumental variables, i.e.&nbsp; <span class="math display">\[
+Z_i=
+\underbrace{\left(\begin{matrix}Z_{i1}\\Z_{i2}\end{matrix}\right)}_{((\ell + K_1)\times 1)}=
+\underbrace{\left(\begin{matrix}X_{i1}\\Z_{i2}\end{matrix}\right)}_{((\ell + K_1)\times 1)}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Z_{i1}\)</span>: (<span class="math inline">\(K_1\)</span> many) <strong>included exogenous variables</strong>:
+<ul>
+<li>uncorrelated with <span class="math inline">\(\varepsilon_i\)</span> and thus potentially usable</li>
+<li>included since they have potentially non-zero coefficients in the equation for <span class="math inline">\(Y_i\)</span></li>
+</ul></li>
+<li><span class="math inline">\(Z_{i2}\)</span>: (<span class="math inline">\(\ell\)</span> many) <strong>excluded exogenous variables</strong>:
+<ul>
+<li>uncorrelated with <span class="math inline">\(\varepsilon_i\)</span> and thus potentially usable</li>
+<li>excluded since they have <strong>zero coefficients</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in the equation for <span class="math inline">\(Y_i\)</span></li>
+</ul></li>
+</ul>
+<p>With this notation we can also write the structural <a href="#eq-StructuralEqEndogen1">Equation&nbsp;<span>7.4</span></a> as <span id="eq-StructuralEqEndogen2"><span class="math display">\[
+Y_{i1} = Z_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
+\tag{7.8}\]</span></span></p>
+<p><strong>Terminology:</strong></p>
+<ul>
+<li><span class="math inline">\(Z_{i1}\)</span>: The <em>exogenous variables</em></li>
+<li><span class="math inline">\(Y_{i2}\)</span>: The <em>endogenous variables</em></li>
+<li><span class="math inline">\(Z_{i2}\)</span>: The <em>instrumental variables</em></li>
+<li>We say that the model is
+<ul>
+<li>just-identified if <span class="math inline">\(\ell = K\)</span></li>
+<li>over-identified if <span class="math inline">\(\ell &gt; K\)</span></li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p>What variables can be used as instruments?</p>
+</blockquote>
+<ol type="1">
+<li>According to <a href="#eq-IV1">Equation&nbsp;<span>7.5</span></a>, instrumental variables must be uncorrelated with the error term.</li>
+<li>From the rank condition (<a href="#eq-IV3">Equation&nbsp;<span>7.7</span></a>) it follows that the instrumental variables are correlated with the endogenous variables <span class="math inline">\(Y_{i2}\)</span> also after controlling for the other exogenous variables <span class="math inline">\(Z_{i1}.\)</span><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> (Otherwise, the instrumental variables would not add any new information since they could be expressed as linear combinations of the already included exogenous variables <span class="math inline">\(Z_{i1}.\)</span>)</li>
+</ol>
+<p>These two requirement mean that the instrumental variables <span class="math inline">\(Z_{i2}\)</span></p>
+<ul>
+<li>are determined outside the systems for the endogenous dependent variable <span class="math inline">\(Y_{i1}\)</span> and the endogenous variables <span class="math inline">\(Y_{i2}.\)</span></li>
+<li>causally determine the endogenous variables <span class="math inline">\(Y_{i2}.\)</span></li>
+<li>not causally determine the dependent variable <span class="math inline">\(Y_{i1}\)</span> (except indirectly through their correlation with the exogenous variables <span class="math inline">\(Z_{i1}\)</span>)</li>
+</ul>
+<p><strong>Measurement error in the regressor (<a href="#exm-MeasurementError">Example&nbsp;<span>7.1</span></a> continued)</strong></p>
+<p>When <span class="math inline">\(X_{i}\)</span> is a mis-measured version of <span class="math inline">\(Z_i\)</span> a common choice for an instrument <span class="math inline">\(Z_{i2}\)</span> is an alternative measurement of <span class="math inline">\(Z_i.\)</span></p>
+<p>For this <span class="math inline">\(Z_{i2}\)</span> to satisfy the property of an instrumental variable the measurement error in <span class="math inline">\(Z_{i2}\)</span> must be independent of that in <span class="math inline">\(X_i.\)</span></p>
+</section>
+<section id="references" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="references"><span class="header-section-number">7.5</span> References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
@@ -376,7 +486,9 @@ Hansen, Bruce. 2022. <em><span>E</span>conometrics</em>. Princeton University Pr
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Caution, here we simply define <span class="math inline">\(\beta^*\)</span> as <span class="math inline">\(\beta^*=E(X_iX_i')^{-1}E(X_iY)\)</span> which results the population projection coefficient for the population projection of <span class="math inline">\(Y\)</span> into the space spanned by <span class="math inline">\(X_i\)</span>. We did not derive the expression for <span class="math inline">\(\beta^*\)</span> using the exogeneity assumption as we did in <a href="03-Multiple-Linear-Regression.html#sec-MMEstimator"><span>Section&nbsp;3.4</span></a>; indeed, the exogeneity assumption may be violated.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Thus if you regress each of the instruments in <span class="math inline">\(Z_{i2}\)</span> on the exogenous variables <span class="math inline">\(Z_{i1}\)</span>, then the residuals of these regressions should still correlate with the endogenous variables in <span class="math inline">\(Y_{i2}.\)</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Thus if you regress each of the instruments in <span class="math inline">\(Z_{i2}\)</span> on the exogenous variables <span class="math inline">\(Z_{i1}\)</span>, then the residuals of these regressions should still correlate with the endogenous variables in <span class="math inline">\(Y_{i2}.\)</span><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Thus if you regress each of the instruments in <span class="math inline">\(Z_{i2}\)</span> on the exogenous variables <span class="math inline">\(Z_{i1}\)</span>, then the residuals of these regressions should still correlate with the endogenous variables in <span class="math inline">\(Y_{i2}.\)</span><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

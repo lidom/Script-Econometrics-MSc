@@ -67,7 +67,7 @@ $$
 But since the structural parameter $\beta$ is here the parameter of interest, endogeneity requires the development of alternative estimation methods. 
 
 
-### Examples for Structural Models 
+## Examples for Structural Models 
 
 
 ::: {#exm-MeasurementError}
@@ -240,9 +240,149 @@ e_{2i}\\
 \right)
 \end{align}
 $$
+Thus
+$$
+\begin{align*}
+E(P_iQ_i)
+&=\frac{E\left((e_{1i} - e_{2i})(\beta_2 e_{1i} + \beta_1  e_{2i})\right)}{(\beta_1 + \beta_2)^2}\\ 
+&=\frac{\beta_2 E\left(e_{1i}^2\right) - \beta_1 E\left(e_{2i}^2\right)}{(\beta_1 + \beta_2)^2}=\frac{\beta_2 - \beta_1}{(\beta_1 + \beta_2)^2}
+\end{align*}
+$$
+$$
+\begin{align*}
+E(P_i^2)
+&=\frac{E\left((e_{1i} - e_{2i})^2\right)}{(\beta_1 + \beta_2)^2}\\ 
+&=\frac{E\left(e_{1i}^2\right) + E\left(e_{2i}^2\right)}{(\beta_1 + \beta_2)^2} = \frac{2}{(\beta_1 + \beta_2)^2}
+\end{align*}
+$$
 
+The (population) projection of $Q_i$ on $P_i$ yield 
+$$
+Q_i=\beta^* P_i+\varepsilon^*_i
+$$ 
+with $E(P_i\varepsilon^*_i)=0$ and 
+$$
+\beta^* = \frac{E(P_iQ_i)}{E(P^2)} = \frac{\beta_2 - \beta_1}{2}
+$$
+The projection coefficient equals the average of the demand slope $\beta_1$ and the supply slope $\beta_2.$ The OLS estimator satisfies $\hat\beta\to_p\beta^*$ and thus the limit does not equal on of the structural parameters $\beta_1$ or $\beta_2.$ This is called **simultaneous equation bias**.  
+
+Generally, when both the dependent variable and a regressor are **simultaneously determined** then the regressor should be treated as endogenous.
 :::
 
+
+## Endogenous Regressors
+
+Technically, we say that a regressor $X_i$ is **exogenous** for $\beta$ if $E(X_i\varepsilon_i)=0.$ In general the distinction in an economic model is that a regressor $X_i$ is endogenous if it is jointly determined with $Y_i,$ while a regressor $X_i$ is exogenous if it is determined separately from $Y_i.$ 
+
+Usually, only a subset of the regressors need to be treated as endogenous. In the following, we partition the vector of regressors 
+$$
+X_i*=(\underbrace{X_{i1}'}_{(1\times K_1)}, \underbrace{Y_{i2}'}_{(1\times K_2)}),
+$$ 
+with $K=K_1 + K_2$, and with: 
+
+* Exogenous variables denoted as $X_{i1}$ 
+* Endogenous variables denoted as $Y_{i2}$ in analogy to the (always) endogenous dependent variable $Y_i$ 
+* The dependent variable is renamed as $Y_i\equiv Y_{i1}$ 
+
+(Be aware that $X_{i1}$ is here a $(K_1\times 1)$ dimensional random vector.)
+
+The structural equation is then
+$$
+Y_{i1}=X_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
+$${#eq-StructuralEqEndogen1}  
+This notation clarifies which variables are exogenous and which endogenous:
+$$
+\begin{align*}
+E(X_{i1}\varepsilon_i)&=0\\[1.5ex]
+E(Y_{i2}\varepsilon_i)&\neq 0\\[1.5ex]
+E(Y_{i1}\varepsilon_i)&\neq 0\\
+\end{align*}
+$$
+
+## Instruments
+
+To consistently estimate the structural parameter $\beta$ we need additional information. One type of information commonly used in econometrics are called **instruments**.
+
+
+::: {#def-InstrumentalVariable}
+
+## Instrumental Variable
+
+The $\ell\times 1$ random vector $Z_i$ is called an **instrumental variable** for @eq-StructuralEqEndogen1 if
+$$
+E(Z_i\varepsilon_i)=0
+$${#eq-IV1}
+$$
+\operatorname{rank}\left(E(Z_iZ_i')\right)=\ell  
+$${#eq-IV2}
+$$
+\operatorname{rank}\left(\underbrace{E(Z_iX_i')}_{(\ell\times K)}\right)=K, 
+$${#eq-IV3}
+where $X_i'=(X_{i1}',Y_{i2}').$
+:::
+
+**Explanation of @def-InstrumentalVariable:**
+
+* @eq-IV1 states that the instruments are uncorrelated with the error term (**exogeneity condition**)
+* @eq-IV2 excludes linearly redundant instrument instruments
+* @eq-IV3 is called the **relevance condition** and is essential for the
+identification of the model, as we discuss later. 
+  * A necessary condition for @eq-IV3 is that $\ell\geq K.$
+
+
+Note that the exogenous regressors $X_{i1}$ fulfill @eq-IV1 and thus should be included as (additional) instrumental variables, i.e. 
+$$
+Z_i=
+\underbrace{\left(\begin{matrix}Z_{i1}\\Z_{i2}\end{matrix}\right)}_{((\ell + K_1)\times 1)}=
+\underbrace{\left(\begin{matrix}X_{i1}\\Z_{i2}\end{matrix}\right)}_{((\ell + K_1)\times 1)}
+$$
+
+* $Z_{i1}$: ($K_1$ many) **included exogenous variables**:
+  * uncorrelated with $\varepsilon_i$ and thus potentially usable
+  * included since they have potentially non-zero coefficients in the equation for $Y_i$ 
+* $Z_{i2}$: ($\ell$ many) **excluded exogenous variables**:
+  * uncorrelated with $\varepsilon_i$  and thus potentially usable
+  * excluded since they have **zero coefficients**[^1] in the equation for $Y_i$
+
+[^1]: The instrumental variables $Z_{i2}$ correlate with $Y_i$ only indirectly, because they correlate with $X_{i1}$ (by @eq-IV3). Therefore, since $X_{i1}$ are included in the equation for $Y_i$, there are no variations left in $Y_i$ that correlate with $Z_{i2}.$ Thus the instrumental variables $Z_{i2}$ have zero coefficients in the equation for $Y_i.$
+
+
+With this notation we can also write the structural @eq-StructuralEqEndogen1 as
+$$
+Y_{i1} = Z_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
+$${#eq-StructuralEqEndogen2}
+
+
+**Terminology:**
+
+* $Z_{i1}$: The *exogenous variables* 
+* $Y_{i2}$: The *endogenous variables*
+* $Z_{i2}$: The *instrumental variables*
+* We say that the model is 
+   * just-identified if $\ell = K$ 
+   * over-identified if $\ell > K$
+
+
+> What variables can be used as instruments? 
+
+1. According to @eq-IV1, instrumental variables must be uncorrelated with the error term.
+2. From the rank condition (@eq-IV3) it follows that the instrumental variables are correlated with the endogenous variables $Y_{i2}$ also after controlling for the other exogenous variables $Z_{i1}.$[^1] (Otherwise, the instrumental variables would not add any new information since they could be expressed as linear combinations of the already included exogenous variables $Z_{i1}.$)
+
+[^1]: Thus if you regress each of the instruments in $Z_{i2}$ on the exogenous variables $Z_{i1}$, then the residuals of these regressions should still correlate with the endogenous variables in $Y_{i2}.$
+
+These two requirement mean that the instrumental variables $Z_{i2}$
+
+* are determined outside the systems for the endogenous dependent variable $Y_{i1}$ and the endogenous variables $Y_{i2}.$
+* causally determine the endogenous variables $Y_{i2}.$
+* not causally determine the dependent variable $Y_{i1}$ (except indirectly through their correlation with the exogenous variables $Z_{i1}$)
+
+
+**Measurement error in the regressor (@exm-MeasurementError continued)** 
+
+When $X_{i}$ is a mis-measured version of $Z_i$ a common choice for
+an instrument $Z_{i2}$ is an alternative measurement of $Z_i.$ 
+
+For this $Z_{i2}$ to satisfy the property of an instrumental variable the measurement error in $Z_{i2}$ must be independent of that in $X_i.$
 
 
 ## References
