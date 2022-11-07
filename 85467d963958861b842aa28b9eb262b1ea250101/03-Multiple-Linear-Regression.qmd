@@ -611,7 +611,7 @@ Var(\tilde{\beta}|X)
 &= (D + (X'X)^{-1}X')Var({\varepsilon}|X)(D' + X(X'X)^{-1})\\
 &= \sigma^2(D + (X'X)^{-1}X')I_n(D' + X(X'X)^{-1})\\
 &= \sigma^2\left(DD'+(X'X)^{-1}\right)\quad \text{(using that $DX=0$)} \\
-&\geq\sigma^2(X'X)^{-1} \quad \text{(since $DD'$ is pos.~semidefinit (see below))}\\
+&\geq\sigma^2(X'X)^{-1} \quad \text{(using that $DD'\geq 0$)}\\
 &= Var(\hat{\beta}|X),
 \end{align*}
 $$
@@ -627,7 +627,7 @@ Var(\hat\beta|X)
 &=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}=\sigma^2(X'X)^{-1}.
 \end{align*}
 $$
-Finally, we need to show that $DD'$ is really positive semidefinite:
+Finally, we need to show that $DD'$ is really positive semidefinite (i.e. $DD'\geq 0$ in matrix sense):
 $$
 \begin{align*}
 a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}\geq 0,

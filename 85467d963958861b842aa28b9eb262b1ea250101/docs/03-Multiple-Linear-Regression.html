@@ -674,7 +674,7 @@ Var(\tilde{\beta}|X)
 &amp;= (D + (X'X)^{-1}X')Var({\varepsilon}|X)(D' + X(X'X)^{-1})\\
 &amp;= \sigma^2(D + (X'X)^{-1}X')I_n(D' + X(X'X)^{-1})\\
 &amp;= \sigma^2\left(DD'+(X'X)^{-1}\right)\quad \text{(using that $DX=0$)} \\
-&amp;\geq\sigma^2(X'X)^{-1} \quad \text{(since $DD'$ is pos.~semidefinit (see below))}\\
+&amp;\geq\sigma^2(X'X)^{-1} \quad \text{(using that $DD'\geq 0$)}\\
 &amp;= Var(\hat{\beta}|X),
 \end{align*}
 \]</span> where the last equation follows from <span class="math display">\[
@@ -687,7 +687,7 @@ Var(\hat\beta|X)
 &amp;=\sigma^2(X'X)^{-1}X'((X'X)^{-1}X')'\\
 &amp;=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}=\sigma^2(X'X)^{-1}.
 \end{align*}
-\]</span> Finally, we need to show that <span class="math inline">\(DD'\)</span> is really positive semidefinite: <span class="math display">\[
+\]</span> Finally, we need to show that <span class="math inline">\(DD'\)</span> is really positive semidefinite (i.e.&nbsp;<span class="math inline">\(DD'\geq 0\)</span> in matrix sense): <span class="math display">\[
 \begin{align*}
 a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}\geq 0,
 \end{align*}
