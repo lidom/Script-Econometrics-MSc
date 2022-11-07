@@ -531,6 +531,32 @@ Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS e
 
 ## The Gauss-Markov Theorem {#sec-GMTheorem}
 
+The OLS estimator 
+$$
+\hat\beta=(X'X)^{-1}X'Y
+$$
+is a linear (in $Y$) estimator and is unbiased, i.e.
+$$
+\operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0.
+$$
+The latter can be shown as following. Observe that $\hat\beta$ consists of two random variables $X$ and $Y,$ and thus one needs to show first the conditional unbiasedness of $\hat\beta$ given $X$.  
+$$
+\begin{align*}
+\operatorname{Bias}(\hat\beta|X) 
+&= E(\hat\beta|X) - \beta \\
+&= E((X'X)^{-1}X'Y|X) - \beta \quad\text{(using $Y=X\beta+\varepsilon$)}\\
+&= E((X'X)^{-1}X'X\beta + (X'X)^{-1}X'\varepsilon|X) - \beta \\
+&=  \beta + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
+&=  (X'X)^{-1}X'E(\varepsilon|X) =0  
+\end{align*}
+$$
+From this if follows, by the iterated law of expectations, that the OLS estimator is (unconditionally) unbiased:  
+$$
+\operatorname{Bias}(\hat\beta) = E\left(\operatorname{Bias}(\hat\beta|X)\right) = E(0) = 0.
+$$
+
+
+The famous Gauss-Markov Theorem states that the OLS estimator is the best (lowest variance) estimator of all linear (in $Y$) and unbiased estimators.
 
 ::: {#thm-GMTheorem}
 

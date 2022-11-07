@@ -624,6 +624,25 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 </section>
 <section id="sec-GMTheorem" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="sec-GMTheorem"><span class="header-section-number">3.5</span> The Gauss-Markov Theorem</h2>
+<p>The OLS estimator <span class="math display">\[
+\hat\beta=(X'X)^{-1}X'Y
+\]</span> is a linear (in <span class="math inline">\(Y\)</span>) estimator and is unbiased, i.e. <span class="math display">\[
+\operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0.
+\]</span> The latter can be shown as following. Observe that <span class="math inline">\(\hat\beta\)</span> consists of two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y,\)</span> and thus one needs to show first the conditional unbiasedness of <span class="math inline">\(\hat\beta\)</span> given <span class="math inline">\(X\)</span>.<br>
+<span class="math display">\[
+\begin{align*}
+\operatorname{Bias}(\hat\beta|X)
+&amp;= E(\hat\beta|X) - \beta \\
+&amp;= E((X'X)^{-1}X'Y|X) - \beta \quad\text{(using $Y=X\beta+\varepsilon$)}\\
+&amp;= E((X'X)^{-1}X'X\beta + (X'X)^{-1}X'\varepsilon|X) - \beta \\
+&amp;=  \beta + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
+&amp;=  (X'X)^{-1}X'E(\varepsilon|X) =0  
+\end{align*}
+\]</span> From this if follows, by the iterated law of expectations, that the OLS estimator is (unconditionally) unbiased:<br>
+<span class="math display">\[
+\operatorname{Bias}(\hat\beta) = E\left(\operatorname{Bias}(\hat\beta|X)\right) = E(0) = 0.
+\]</span></p>
+<p>The famous Gauss-Markov Theorem states that the OLS estimator is the best (lowest variance) estimator of all linear (in <span class="math inline">\(Y\)</span>) and unbiased estimators.</p>
 <div id="thm-GMTheorem" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 3.5 (Gauss-Markov Theorem) </strong></span>Let’s assume Assumptions 1-4 hold with spherical errors, i.e., with <span class="math inline">\(E(\varepsilon\varepsilon'|X)=\sigma^{2} I_{n}\)</span>. Then the Gauss-Markov theorem states that of all linear and unbiased estimators (i.e.&nbsp;<span class="math inline">\(E(\hat\beta)=\beta\)</span>), the OLS estimator <span class="math inline">\(\hat\beta=(X'X)^{-1}X'Y\)</span> will have the smallest variance, in a matrix sense. That is, for any alternative linear (in <span class="math inline">\(Y\)</span>) and unbiased (i.e.&nbsp;<span class="math inline">\(E(\tilde\beta)=\beta\)</span>) estimator <span class="math inline">\(\tilde{\beta}\)</span> we have that <span class="math display">\[
 \begin{align*}
