@@ -213,7 +213,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#estimator-vs.-estimate" id="toc-estimator-vs.-estimate" class="nav-link active" data-scroll-target="#estimator-vs.-estimate"><span class="toc-section-number">4.1</span>  Estimator vs.&nbsp;Estimate</a></li>
-  <li><a href="#deriving-the-distribution-of-estimators" id="toc-deriving-the-distribution-of-estimators" class="nav-link" data-scroll-target="#deriving-the-distribution-of-estimators"><span class="toc-section-number">4.2</span>  Deriving the Distribution of Estimators</a></li>
+  <li><a href="#deriving-the-distribution-of-estimators" id="toc-deriving-the-distribution-of-estimators" class="nav-link" data-scroll-target="#deriving-the-distribution-of-estimators"><span class="toc-section-number">4.2</span>  Deriving the Distribution of Estimators</a>
+  <ul class="collapse">
+  <li><a href="#conducting-a-monte-carlo-simulation" id="toc-conducting-a-monte-carlo-simulation" class="nav-link" data-scroll-target="#conducting-a-monte-carlo-simulation"><span class="toc-section-number">4.2.1</span>  Conducting a Monte Carlo Simulation</a></li>
+  </ul></li>
   <li><a href="#assessing-the-quality-of-estimators" id="toc-assessing-the-quality-of-estimators" class="nav-link" data-scroll-target="#assessing-the-quality-of-estimators"><span class="toc-section-number">4.3</span>  Assessing the Quality of Estimators</a></li>
   <li><a href="#approximating-bias-variance-and-mean-squared-error-using-monte-carlo-simulations" id="toc-approximating-bias-variance-and-mean-squared-error-using-monte-carlo-simulations" class="nav-link" data-scroll-target="#approximating-bias-variance-and-mean-squared-error-using-monte-carlo-simulations"><span class="toc-section-number">4.4</span>  Approximating Bias, Variance, and Mean Squared Error using Monte Carlo Simulations</a>
   <ul class="collapse">
@@ -299,6 +302,8 @@ X_i\overset{iid}{\sim} F_X
 </ul></li>
 </ul>
 <!-- Monte Carlo Simulations rely on distributional assumptions and thus may fail just as the first option (Mathematical Derivation using Distributional Assumptions). However, Monte Carlo Simulations are much wider applicable than since we can use computers to sample data from basically every distribution.   -->
+<section id="conducting-a-monte-carlo-simulation" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="conducting-a-monte-carlo-simulation"><span class="header-section-number">4.2.1</span> Conducting a Monte Carlo Simulation</h3>
 <p>The following <code>R</code> code generates <code>B</code> many realizations of the sample mean estimator <span class="math inline">\(\hat\theta_n=\bar{X}_n\)</span> using a random sample <span class="math inline">\(X_1,\dots,X_n\)</span>, where <span class="math inline">\(F_X\)</span> is a normal distribution with mean <span class="math inline">\((\theta=)\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>:</p>
 <div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/unnamed-chunk-1_d8725870e7304dc65a49a232d5f7c08e">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True parameter value </span></span>
@@ -374,6 +379,7 @@ X_i\overset{iid}{\sim} F_X
 <li><p>As the sample size increases, the distributions of the estimators <span class="math inline">\(\bar{X}_n\)</span> concentrate around the target parameter <span class="math inline">\(\mu=10\)</span>. This feature of the estimator’s distribution is summarized by the <strong>mean squared error</strong> (see next section) of an estimator.</p></li>
 </ul>
 <p>Thus here the quality of the estimator <span class="math inline">\(\bar{X}_n\)</span> gets better as <span class="math inline">\(n\)</span> gets large. To describe the quality of estimators more compactly, statisticians/econometricians use specific metrics like bias, variance and the mean squared error of the distribution of a estimator <span class="math inline">\(\hat\theta\)</span>.</p>
+</section>
 </section>
 <section id="assessing-the-quality-of-estimators" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="assessing-the-quality-of-estimators"><span class="header-section-number">4.3</span> Assessing the Quality of Estimators</h2>

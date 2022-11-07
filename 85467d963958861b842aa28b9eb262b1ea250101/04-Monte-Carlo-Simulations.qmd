@@ -74,6 +74,7 @@ of the estimator $\hat\theta_n$. This set of realizations $\hat\theta_{n,1,obs},
 
 <!-- Monte Carlo Simulations rely on distributional assumptions and thus may fail just as the first option (Mathematical Derivation using Distributional Assumptions). However, Monte Carlo Simulations are much wider applicable than since we can use computers to sample data from basically every distribution.   -->
 
+### Conducting a Monte Carlo Simulation 
 
 The following `R` code generates `B` many realizations of the sample mean estimator $\hat\theta_n=\bar{X}_n$ using a random sample $X_1,\dots,X_n$, where $F_X$ is a normal distribution with mean $(\theta=)\mu=10$ and variance $\sigma^2=5$:  
 ```{r}
