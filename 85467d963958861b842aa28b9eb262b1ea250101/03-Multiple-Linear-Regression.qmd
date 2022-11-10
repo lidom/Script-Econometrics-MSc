@@ -608,7 +608,7 @@ The famous *Gauss-Markov Theorem* states that the OLS estimator is the **"best"*
 
 ##  Gauss-Markov Theorem
 
-Let's assume Assumptions 1-4 hold with spherical errors, i.e., with $E(\varepsilon\varepsilon'|X)=\sigma^{2} I_{n}$. Then the Gauss-Markov theorem states that of all linear and unbiased estimators (i.e. $E(\hat\beta)=\beta$), the OLS estimator $\hat\beta=(X'X)^{-1}X'Y$ will have the smallest variance, in a matrix sense. That is, for any alternative linear (in $Y$) and unbiased (i.e. $E(\tilde\beta)=\beta$) estimator $\tilde{\beta}$ we have that 
+Let's assume Assumptions 1-4 hold with spherical errors, i.e., with $E(\varepsilon\varepsilon'|X)=\sigma^{2} I_{n}$. Then the Gauss-Markov theorem states that of all linear and unbiased estimators (i.e. $E(\hat\beta)=\beta$), the OLS estimator $\hat\beta=(X'X)^{-1}X'Y$ will have the smallest variance (conditionally on $X$). That is, for any alternative linear (in $Y$) and unbiased (i.e. $E(\tilde\beta)=\beta$) estimator $\tilde{\beta}$ we have that 
 $$
 \begin{align*}
 &Var(\tilde\beta|X)\geq Var(\hat\beta|X)\quad\text{(in the matrix sense)}\\
