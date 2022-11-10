@@ -394,9 +394,9 @@ Obviously, the Monte Carlo approximations (@tbl-mcbvmse) for these true values (
 
 ## Exercises
 
-* [Exercises for Chapter 4](Exercises/Ch4_Exercises.pdf)
+<!-- * [Exercises for Chapter 4](Exercises/Ch4_Exercises.pdf) -->
 
-<!-- * [Exercises of Chapter 4 with Solutions](Exercises/Ch4_Exercises_with_Solutions.pdf) -->
+* [Exercises of Chapter 4 with Solutions](Exercises/Ch4_Exercises_with_Solutions.pdf)
 
 
 

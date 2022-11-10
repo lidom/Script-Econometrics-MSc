@@ -535,7 +535,7 @@ The OLS estimator
 $$
 \hat\beta=(X'X)^{-1}X'Y
 $$
-is a linear (in $Y$) estimator and is unbiased, i.e.
+is a linear (in $Y$) and unbiased estimator, i.e.
 $$
 \operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0.
 $$
@@ -554,7 +554,55 @@ Thus $\hat\beta$ is unbiased conditionally on $X.$ From this if follows, by the 
 $$
 \operatorname{Bias}(\hat\beta) = E\left(\operatorname{Bias}(\hat\beta|X)\right) = E(0) = 0.
 $$
-So, we can summarize that the OLS estimator belongs to the large family of linear (in $Y$) and unbiased estimators of $\beta.$ The famous Gauss-Markov Theorem states that the OLS estimator is the best (lowest variance) estimator within this family of linear (in $Y$) and unbiased estimators.
+Moreover, the conditional variance of $\hat\beta$ given $X$ can be derived as following:
+$$
+\begin{align*}
+Var(\hat\beta|X)
+&=Var(\hat\beta - \beta|X)\\
+&=Var((X'X)^{-1}X'\varepsilon|X)
+\end{align*}
+$$
+
+> Hint: The conditional variance of a multivariate random variable $Z\in\mathbb{R}^K$, given $X$, is defined as $Var(Z|X)=E((Z-E(Z|X))(Z-E(Z|X))'|X)$. 
+
+Using the definition of conditional variance for multivariate random variables we have that 
+$$
+\begin{align*}
+Var(\hat\beta|X)
+&=Var(\hat\beta - \beta|X)\\
+&=Var((X'X)^{-1}X'\varepsilon|X)\\ 
+&=E\left(((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right),
+\end{align*}
+$$
+where the latter step uses that $(X'X)^{-1}X'\varepsilon$ has a conditional mean of zero, i.e.,
+$$
+E((X'X)^{-1}X'\varepsilon|X)=(X'X)^{-1}X'E(\varepsilon|X)=0.
+$$ 
+Thus we have that
+$$
+\begin{align*}
+Var(\hat\beta|X)
+&=Var(\hat\beta - \beta|X)\\
+&=Var((X'X)^{-1}X'\varepsilon|X)\\
+&=E\left(((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right)\\
+&=E\left((X'X)^{-1}X'\varepsilon\varepsilon' X(X'X)^{-1}|X\right)\\
+&=(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1}.
+\end{align*}
+$$
+Under the assumption of spherical errors (see Assumption 4), we have that $E\left(\varepsilon\varepsilon'|X\right)=\sigma^2 I_n$, where $I_n$ is the $(n\times n)$ dimensional identity matrix with ones on the diagonal and zeros everywhere else. Thus under the assumption of spherical errors, we have that
+$$
+\begin{align*}
+Var(\hat\beta|X)
+&=(X'X)^{-1}X' \left(\sigma^2I_n\right)X(X'X)^{-1}\\
+&=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}\\ 
+&=\sigma^2(X'X)^{-1}.
+\end{align*}
+$$
+
+So, we can summarize that the OLS estimator belongs to the large family of linear (in $Y$) and unbiased estimators of $\beta.$ Moreover, under the assumption of spherical errors, the conditional variance of $\hat\beta$, given $X,$ is $Var(\hat\beta|X)=\sigma^2(X'X)^{-1}.$
+
+
+The famous *Gauss-Markov Theorem* states that the OLS estimator is the **"best"** (lowest conditional variance) estimator within this family of linear (in $Y$) and unbiased estimators.
 
 ::: {#thm-GMTheorem}
 
@@ -636,19 +684,7 @@ Var(\tilde{\beta}|X)
 &= \sigma^2(D + (X'X)^{-1}X')I_n(D' + X(X'X)^{-1})\\
 &= \sigma^2\left(DD'+(X'X)^{-1}\right)\quad \text{(using that $DX=0$)} \\
 &\geq\sigma^2(X'X)^{-1} \quad \text{(using that $DD'\geq 0$)}\\
-&= Var(\hat{\beta}|X),
-\end{align*}
-$$
-where the last equation follows from 
-$$
-\begin{align*}
-Var(\hat\beta|X)
-&=Var(\hat\beta - \beta|X)\\
-&=Var( (X'X)^{-1}X'\varepsilon|X)\\
-&=(X'X)^{-1}X'Var( \varepsilon|X)((X'X)^{-1}X')'\\
-&=(X'X)^{-1}X'\sigma^2 I_n((X'X)^{-1}X')'\\
-&=\sigma^2(X'X)^{-1}X'((X'X)^{-1}X')'\\
-&=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}=\sigma^2(X'X)^{-1}.
+&= Var(\hat{\beta}|X).
 \end{align*}
 $$
 Finally, we need to show that $DD'$ is really positive semidefinite (i.e. $DD'\geq 0$ in matrix sense):
@@ -1125,9 +1161,9 @@ However, this was only a simulation for one specific data generating process. Su
 
 ## Exercises
 
-* [Exercises for Chapter 3](Exercises/Ch3_Exercises.pdf)
+<!-- * [Exercises for Chapter 3](Exercises/Ch3_Exercises.pdf) -->
 
-<!-- * [Exercises of Chapter 3 with Solutions](Exercises/Ch3_Exercises_with_Solutions.pdf) -->
+* [Exercises of Chapter 3 with Solutions](Exercises/Ch3_Exercises_with_Solutions.pdf)
 
 
 ## References {-}

@@ -626,9 +626,9 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 <h2 data-number="3.5" class="anchored" data-anchor-id="sec-GMTheorem"><span class="header-section-number">3.5</span> The Gauss-Markov Theorem</h2>
 <p>The OLS estimator <span class="math display">\[
 \hat\beta=(X'X)^{-1}X'Y
-\]</span> is a linear (in <span class="math inline">\(Y\)</span>) estimator and is unbiased, i.e. <span class="math display">\[
+\]</span> is a linear (in <span class="math inline">\(Y\)</span>) and unbiased estimator, i.e. <span class="math display">\[
 \operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0.
-\]</span> The latter can be shown as following. Observe that <span class="math inline">\(\hat\beta\)</span> consists of two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y,\)</span> and thus one needs to show first the conditional unbiasedness of <span class="math inline">\(\hat\beta\)</span> given <span class="math inline">\(X\)</span>.<br>
+\]</span> The latter can be shown as following: Observe that <span class="math inline">\(\hat\beta\)</span> consists of two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y,\)</span> and thus one needs to show first the conditional unbiasedness of <span class="math inline">\(\hat\beta\)</span> given <span class="math inline">\(X\)</span> which allows us to focus on randomness due to <span class="math inline">\(Y\)</span>,<br>
 <span class="math display">\[
 \begin{align*}
 \operatorname{Bias}(\hat\beta|X)
@@ -636,13 +636,49 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 &amp;= E((X'X)^{-1}X'Y|X) - \beta \quad\text{(using $Y=X\beta+\varepsilon$)}\\
 &amp;= E((X'X)^{-1}X'X\beta + (X'X)^{-1}X'\varepsilon|X) - \beta \\
 &amp;=  \beta + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
-&amp;=  (X'X)^{-1}X'E(\varepsilon|X) =0  
+&amp;=  (X'X)^{-1}X'E(\varepsilon|X) =0.  
 \end{align*}
-\]</span> From this if follows, by the iterated law of expectations, that the OLS estimator is (unconditionally) unbiased:<br>
+\]</span> Thus <span class="math inline">\(\hat\beta\)</span> is unbiased conditionally on <span class="math inline">\(X.\)</span> From this if follows, by the iterated law of expectations, that the OLS estimator is also unconditionally unbiased, i.e.<br>
 <span class="math display">\[
 \operatorname{Bias}(\hat\beta) = E\left(\operatorname{Bias}(\hat\beta|X)\right) = E(0) = 0.
+\]</span> Moreover, the conditional variance of <span class="math inline">\(\hat\beta\)</span> given <span class="math inline">\(X\)</span> can be derived as following: <span class="math display">\[
+\begin{align*}
+Var(\hat\beta|X)
+&amp;=Var(\hat\beta - \beta|X)\\
+&amp;=Var((X'X)^{-1}X'\varepsilon|X)
+\end{align*}
 \]</span></p>
-<p>The famous Gauss-Markov Theorem states that the OLS estimator is the best (lowest variance) estimator of all linear (in <span class="math inline">\(Y\)</span>) and unbiased estimators.</p>
+<blockquote class="blockquote">
+<p>Hint: The conditional variance of a multivariate random variable <span class="math inline">\(Z\in\mathbb{R}^K\)</span>, given <span class="math inline">\(X\)</span>, is defined as <span class="math inline">\(Var(Z|X)=E((Z-E(Z|X))(Z-E(Z|X))'|X)\)</span>.</p>
+</blockquote>
+<p>Using the definition of conditional variance for multivariate random variables we have that <span class="math display">\[
+\begin{align*}
+Var(\hat\beta|X)
+&amp;=Var(\hat\beta - \beta|X)\\
+&amp;=Var((X'X)^{-1}X'\varepsilon|X)\\
+&amp;=E\left(((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right),
+\end{align*}
+\]</span> where the latter step uses that <span class="math inline">\((X'X)^{-1}X'\varepsilon\)</span> has a conditional mean of zero, i.e., <span class="math display">\[
+E((X'X)^{-1}X'\varepsilon|X)=(X'X)^{-1}X'E(\varepsilon|X)=0.
+\]</span> Thus we have that <span class="math display">\[
+\begin{align*}
+Var(\hat\beta|X)
+&amp;=Var(\hat\beta - \beta|X)\\
+&amp;=Var((X'X)^{-1}X'\varepsilon|X)\\
+&amp;=E\left(((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right)\\
+&amp;=E\left((X'X)^{-1}X'\varepsilon\varepsilon' X(X'X)^{-1}|X\right)\\
+&amp;=(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1}.
+\end{align*}
+\]</span> Under the assumption of spherical errors (see Assumption 4), we have that <span class="math inline">\(E\left(\varepsilon\varepsilon'|X\right)=\sigma^2 I_n\)</span>, where <span class="math inline">\(I_n\)</span> is the <span class="math inline">\((n\times n)\)</span> dimensional identity matrix with ones on the diagonal and zeros everywhere else. Thus under the assumption of spherical errors, we have that <span class="math display">\[
+\begin{align*}
+Var(\hat\beta|X)
+&amp;=(X'X)^{-1}X' \left(\sigma^2I_n\right)X(X'X)^{-1}\\
+&amp;=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}\\
+&amp;=\sigma^2(X'X)^{-1}.
+\end{align*}
+\]</span></p>
+<p>So, we can summarize that the OLS estimator belongs to the large family of linear (in <span class="math inline">\(Y\)</span>) and unbiased estimators of <span class="math inline">\(\beta.\)</span> Moreover, under the assumption of spherical errors, the conditional variance of <span class="math inline">\(\hat\beta\)</span>, given <span class="math inline">\(X,\)</span> is <span class="math inline">\(Var(\hat\beta|X)=\sigma^2(X'X)^{-1}.\)</span></p>
+<p>The famous <em>Gauss-Markov Theorem</em> states that the OLS estimator is the <strong>“best”</strong> (lowest conditional variance) estimator within this family of linear (in <span class="math inline">\(Y\)</span>) and unbiased estimators.</p>
 <div id="thm-GMTheorem" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 3.5 (Gauss-Markov Theorem) </strong></span>Let’s assume Assumptions 1-4 hold with spherical errors, i.e., with <span class="math inline">\(E(\varepsilon\varepsilon'|X)=\sigma^{2} I_{n}\)</span>. Then the Gauss-Markov theorem states that of all linear and unbiased estimators (i.e.&nbsp;<span class="math inline">\(E(\hat\beta)=\beta\)</span>), the OLS estimator <span class="math inline">\(\hat\beta=(X'X)^{-1}X'Y\)</span> will have the smallest variance, in a matrix sense. That is, for any alternative linear (in <span class="math inline">\(Y\)</span>) and unbiased (i.e.&nbsp;<span class="math inline">\(E(\tilde\beta)=\beta\)</span>) estimator <span class="math inline">\(\tilde{\beta}\)</span> we have that <span class="math display">\[
 \begin{align*}
@@ -694,17 +730,7 @@ Var(\tilde{\beta}|X)
 &amp;= \sigma^2(D + (X'X)^{-1}X')I_n(D' + X(X'X)^{-1})\\
 &amp;= \sigma^2\left(DD'+(X'X)^{-1}\right)\quad \text{(using that $DX=0$)} \\
 &amp;\geq\sigma^2(X'X)^{-1} \quad \text{(using that $DD'\geq 0$)}\\
-&amp;= Var(\hat{\beta}|X),
-\end{align*}
-\]</span> where the last equation follows from <span class="math display">\[
-\begin{align*}
-Var(\hat\beta|X)
-&amp;=Var(\hat\beta - \beta|X)\\
-&amp;=Var( (X'X)^{-1}X'\varepsilon|X)\\
-&amp;=(X'X)^{-1}X'Var( \varepsilon|X)((X'X)^{-1}X')'\\
-&amp;=(X'X)^{-1}X'\sigma^2 I_n((X'X)^{-1}X')'\\
-&amp;=\sigma^2(X'X)^{-1}X'((X'X)^{-1}X')'\\
-&amp;=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}=\sigma^2(X'X)^{-1}.
+&amp;= Var(\hat{\beta}|X).
 \end{align*}
 \]</span> Finally, we need to show that <span class="math inline">\(DD'\)</span> is really positive semidefinite (i.e.&nbsp;<span class="math inline">\(DD'\geq 0\)</span> in matrix sense): <span class="math display">\[
 \begin{align*}
@@ -1165,10 +1191,10 @@ X_female -4.103626</code></pre>
 </section>
 <section id="exercises" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.7</span> Exercises</h2>
+<!-- * [Exercises for Chapter 3](Exercises/Ch3_Exercises.pdf) -->
 <ul>
-<li><a href="Exercises/Ch3_Exercises.pdf">Exercises for Chapter 3</a></li>
+<li><a href="Exercises/Ch3_Exercises_with_Solutions.pdf">Exercises of Chapter 3 with Solutions</a></li>
 </ul>
-<!-- * [Exercises of Chapter 3 with Solutions](Exercises/Ch3_Exercises_with_Solutions.pdf) -->
 </section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
