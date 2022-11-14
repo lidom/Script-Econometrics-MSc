@@ -168,7 +168,8 @@ div.csl-indent {
   <li><a href="#examples-for-structural-models" id="toc-examples-for-structural-models" class="nav-link" data-scroll-target="#examples-for-structural-models"><span class="toc-section-number">7.2</span>  Examples for Structural Models</a></li>
   <li><a href="#endogenous-regressors" id="toc-endogenous-regressors" class="nav-link" data-scroll-target="#endogenous-regressors"><span class="toc-section-number">7.3</span>  Endogenous Regressors</a></li>
   <li><a href="#instruments" id="toc-instruments" class="nav-link" data-scroll-target="#instruments"><span class="toc-section-number">7.4</span>  Instruments</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">7.5</span>  References</a></li>
+  <li><a href="#real-data-example-college-proximity" id="toc-real-data-example-college-proximity" class="nav-link" data-scroll-target="#real-data-example-college-proximity"><span class="toc-section-number">7.5</span>  Real-Data Example: College Proximity</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">7.6</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -191,7 +192,7 @@ div.csl-indent {
 
 </header>
 
-<p>This chapter builds upon Chapter 12 in <span class="citation" data-cites="Hansen2022">Hansen (<a href="#ref-Hansen2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>This chapter builds upon Chapter 12 of <span class="citation" data-cites="Hansen2022">Hansen (<a href="#ref-Hansen2022" role="doc-biblioref">2022</a>)</span>.</p>
 <section id="introduction" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
 <p>The concepts of <strong>endogeneity</strong> and <strong>instrumental variable</strong> are fundamental to econometrics, and mark a substantial departure from other branches of statistics.</p>
@@ -230,11 +231,13 @@ E(X_i\varepsilon_i^*)=0
 </section>
 <section id="examples-for-structural-models" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="examples-for-structural-models"><span class="header-section-number">7.2</span> Examples for Structural Models</h2>
+<p>The structural model approach in econometrics goes back to the seminal paper <em>The probability approach in econometrics</em> by <span class="citation" data-cites="Haavelmo1944">Haavelmo (<a href="#ref-Haavelmo1944" role="doc-biblioref">1944</a>)</span>.</p>
+<p>Under the structural approach one, first, specifies a probabilistic economic model (taking into account economic theory), and then performs a quantitative analysis under the assumption that the economic model is correctly specified. This approach is reflected by Assumption 1 in <a href="03-Multiple-Linear-Regression.html"><span>Chapter&nbsp;3</span></a>. Researchers often describe this as “taking their model seriously”. A criticism of the structural approach is that it is misleading to treat an economic model as correctly specified. Rather, it is more accurate to view a model as a useful abstraction or approximation.</p>
 <div id="exm-MeasurementError" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7.1 (Measurement error in the regressor) </strong></span><br></p>
-<p>Suppose that</p>
+<p>Suppose that:</p>
 <ul>
-<li><span class="math inline">\((Y_i,Z_i)\)</span> are joint random variables</li>
+<li><span class="math inline">\((Y_i,Z_i)\)</span> is a multivariate random variable i.i.d. across <span class="math inline">\(i=1,\dots,n\)</span></li>
 <li><span class="math inline">\(E(Y_i|Z_i)=Z_i'\beta\)</span></li>
 <li><span class="math inline">\(\beta\)</span> is the structural parameter</li>
 <li><span class="math inline">\(Y_i = Z_i'\beta + \varepsilon_i\)</span> is the structural equation for which our model assumptions of <a href="03-Multiple-Linear-Regression.html#sec-LinModAssumptions"><span>Section&nbsp;3.1</span></a> can be justified.</li>
@@ -246,7 +249,7 @@ X_i=Z_i + u_i,
 <li><span class="math inline">\(u_i\)</span> is independent of all other stochastic quantities in the model</li>
 <li><span class="math inline">\(E(u_i)=0\)</span></li>
 </ul>
-<p>such that <span class="math inline">\(X_i\)</span> is a noisy but unbiased measure of <span class="math inline">\(Z_i.\)</span></p>
+<p>such that <span class="math inline">\(X_i\)</span> is a noisy, but unbiased measure of <span class="math inline">\(Z_i.\)</span></p>
 <p>It’s easy to express <span class="math inline">\(Y_i\)</span> as a function of the observable <span class="math inline">\(X_i\)</span> <span class="math display">\[
 \begin{align*}
 Y_i
@@ -257,17 +260,26 @@ Y_i
 \]</span> where <span class="math inline">\(v_i=\varepsilon_i - u_i'\beta\)</span>.</p>
 <p>That is, the relationship of <span class="math inline">\(Y_i\)</span> and <span class="math inline">\(X_i\)</span> is described by a linear equation <span class="math display">\[
 Y_i = X_i'\beta  + v_i,
-\]</span> with a stochastic error term <span class="math inline">\(v_i\)</span>, but this error term is not a projection error since <span class="math display">\[
-\begin{align*}
+\]</span> with a stochastic error term <span class="math inline">\(v_i\)</span>, but this error term is (generally) not a projection error since <span id="eq-measurementBias2"><span class="math display">\[
+\begin{align}
 E(X_iv_i)
 &amp; = E((Z_i + u_i)\,(\varepsilon_i - u_i'\beta)) \\
-&amp; = E(Z_i \varepsilon_i) - E(Z_iu_i'\beta)  + E(u_i \varepsilon_i) - E(u_iu_i')\beta \\
-&amp; = 0 - 0  + 0 - E(u_iu_i')\beta \neq 0
+&amp; = \underbrace{E(Z_i \varepsilon_i)}_{=0} - \underbrace{E(Z_iu_i'\beta)}_{=0}  + \underbrace{E(u_i \varepsilon_i)}_{=0} - E(u_iu_i')\beta \\
+&amp; = - E(u_iu_i')\beta \\
+&amp;\neq 0
+\end{align}
+\tag{7.3}\]</span></span> if <span class="math inline">\(\beta\neq 0\)</span> and <span class="math inline">\(E(u_iu_i')\neq 0,\)</span> where generally</p>
+<ul>
+<li><span class="math inline">\(\beta\)</span> will not equal zero and</li>
+<li>the <span class="math inline">\((K\times K)\)</span> variance-covariance matrix <span class="math inline">\(E(u_iu_i')\)</span> will also not equal a zero matrix since this would mean that the measurement errors have variance zero.</li>
+</ul>
+<p>We can calculate the (population) projection coefficient <span class="math inline">\(\beta^*\)</span> (which can be consistently estimated): <span class="math display">\[
+\begin{align*}
+\beta^*
+&amp; = E(X_iX_i')^{-1} E(X_i Y_i)\\
+&amp; = E(X_iX_i')^{-1} E(X_i (X_i'\beta + v_i))\\
+&amp; = \beta + E(X_iX_i')^{-1} \underbrace{E(X_i v_i)}_{\neq 0}
 \end{align*}
-\]</span> if <span class="math inline">\(\beta\neq 0\)</span> and <span class="math inline">\(E(u_iu_i')\neq 0.\)</span></p>
-<p>Note: Generally <span class="math inline">\(\beta\)</span> will not equal zero and the <span class="math inline">\((K\times K)\)</span> variance-covariance matrix <span class="math inline">\(E(u_iu_i')\)</span> will also not equal zero since this would mean no variances in the measurement errors.</p>
-<p>We can, however, calculate the form of the (population) projection coefficient <span class="math inline">\(\beta^*\)</span> (which can be consistently estimated): <span class="math display">\[
-\beta^* = \beta + E(X_iX_i')^{-1} E(X_i v_i).
 \]</span> In the special case where <span class="math inline">\(K=1\)</span>, we have <span id="eq-measurementBias"><span class="math display">\[
 \begin{align}
 \beta^*_1
@@ -275,15 +287,16 @@ E(X_iv_i)
 &amp; = \beta_1 - \frac{E(u_i^2)\beta_1}{E(X_i^2)}\\
 &amp; = \beta_1\left(1 - \frac{ E(u_i^2)}{E(X_i^2)}\right),
 \end{align}
-\tag{7.3}\]</span></span> where <span class="math inline">\(E(X_iv_i)=-E(u_i^2)\beta_1\)</span>, and where the inequality follows from observing that <span class="math inline">\(E(u_i^2)/E(X_i^2)&lt;1\)</span> since <span class="math display">\[
+\tag{7.4}\]</span></span> where, by <a href="#eq-measurementBias2">Equation&nbsp;<span>7.3</span></a>, <span class="math inline">\(E(X_iv_i)=-E(u_i^2)\beta_1\)</span>, and where the inequality follows from observing that <span class="math inline">\(E(u_i^2)/E(X_i^2)&lt;1\)</span> since <span class="math display">\[
 \begin{align*}
 E(X_i^2)
 &amp;= E((Z_i + u_i)^2)\\
 &amp;= E(Z_i^2) + 2E(Z_iu_i) + E(u_i^2) \\
 &amp;= E(Z_i^2) + 0 + E(u_i^2)\\  
-&amp;&gt; E(u_i^2).
+&amp;&gt; E(u_i^2)\\  
+\Leftrightarrow\quad \frac{E(u_i^2)}{E(X_i^2)}&amp;&lt;1.
 \end{align*}
-\]</span> <a href="#eq-measurementBias">Equation&nbsp;<span>7.3</span></a> shows that projection coefficient <span class="math inline">\(\beta_1^*\)</span> shrinks the structural parameter <span class="math inline">\(\beta_1\)</span> towards zero. This is called <strong>measurement error bias</strong> or <strong>attenuation bias</strong>.</p>
+\]</span> <a href="#eq-measurementBias">Equation&nbsp;<span>7.4</span></a> shows that projection coefficient <span class="math inline">\(\beta_1^*\)</span> shrinks the structural parameter <span class="math inline">\(\beta_1\)</span> towards zero. This is called <strong>measurement error bias</strong> or <strong>attenuation bias</strong>.</p>
 </div>
 <div id="exm-SupplyAndDemand" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7.2 (Supply and Demand) </strong></span><br></p>
@@ -395,37 +408,36 @@ X_i*=(\underbrace{X_{i1}'}_{(1\times K_1)}, \underbrace{Y_{i2}'}_{(1\times K_2)}
 <p>(Be aware that <span class="math inline">\(X_{i1}\)</span> is here a <span class="math inline">\((K_1\times 1)\)</span> dimensional random vector.)</p>
 <p>The structural equation is then <span id="eq-StructuralEqEndogen1"><span class="math display">\[
 Y_{i1}=X_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
-\tag{7.4}\]</span></span><br>
-This notation clarifies which variables are exogenous and which endogenous: <span class="math display">\[
-\begin{align*}
-E(X_{i1}\varepsilon_i)&amp;=0\\[1.5ex]
-E(Y_{i2}\varepsilon_i)&amp;\neq 0\\[1.5ex]
-E(Y_{i1}\varepsilon_i)&amp;\neq 0\\
-\end{align*}
-\]</span></p>
+\tag{7.5}\]</span></span><br>
+This notation clarifies which variables are exogenous and which endogenous:</p>
+<ul>
+<li><span class="math inline">\(X_{i1}\)</span>: Exogenous regressors, i.e.&nbsp;<span class="math inline">\(E(X_{i1}\varepsilon_i)=0\)</span></li>
+<li><span class="math inline">\(Y_{i2}\)</span>: Endogenous regressors, i.e.&nbsp;<span class="math inline">\(E(Y_{i2}\varepsilon_i)\neq 0\)</span></li>
+<li><span class="math inline">\(Y_{i1}\)</span>: Endogenous dependent variable, i.e.&nbsp;<span class="math inline">\(E(Y_{i1}\varepsilon_i)\neq 0\)</span></li>
+</ul>
 </section>
 <section id="instruments" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="instruments"><span class="header-section-number">7.4</span> Instruments</h2>
 <p>To consistently estimate the structural parameter <span class="math inline">\(\beta\)</span> we need additional information. One type of information commonly used in econometrics are called <strong>instruments</strong>.</p>
 <div id="def-InstrumentalVariable" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.1 (Instrumental Variable) </strong></span>The <span class="math inline">\(\ell\times 1\)</span> random vector <span class="math inline">\(Z_i\)</span> is called an <strong>instrumental variable</strong> for <a href="#eq-StructuralEqEndogen1">Equation&nbsp;<span>7.4</span></a> if <span id="eq-IV1"><span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 7.1 (Instrumental Variable) </strong></span>The <span class="math inline">\(\ell\times 1\)</span> random vector <span class="math inline">\(Z_i\)</span> is called an <strong>instrumental variable</strong> for <a href="#eq-StructuralEqEndogen1">Equation&nbsp;<span>7.5</span></a> if <span id="eq-IV1"><span class="math display">\[
 E(Z_i\varepsilon_i)=0
-\tag{7.5}\]</span></span> <span id="eq-IV2"><span class="math display">\[
-\operatorname{rank}\left(E(Z_iZ_i')\right)=\ell  
-\tag{7.6}\]</span></span> <span id="eq-IV3"><span class="math display">\[
-\operatorname{rank}\left(\underbrace{E(Z_iX_i')}_{(\ell\times K)}\right)=K,
-\tag{7.7}\]</span></span> where <span class="math inline">\(X_i'=(X_{i1}',Y_{i2}').\)</span></p>
+\tag{7.6}\]</span></span> <span id="eq-IV2"><span class="math display">\[
+\operatorname{rank}\Big(E(Z_iZ_i')\Big)=\ell  
+\tag{7.7}\]</span></span> <span id="eq-IV3"><span class="math display">\[
+\operatorname{rank}\Big(\underbrace{E(Z_iX_i')}_{(\ell\times K)}\Big)=K,
+\tag{7.8}\]</span></span> where <span class="math inline">\(X_i'=(X_{i1}',Y_{i2}').\)</span></p>
 </div>
 <p><strong>Explanation of <a href="#def-InstrumentalVariable">Definition&nbsp;<span>7.1</span></a>:</strong></p>
 <ul>
-<li><a href="#eq-IV1">Equation&nbsp;<span>7.5</span></a> states that the instruments are uncorrelated with the error term (<strong>exogeneity condition</strong>)</li>
-<li><a href="#eq-IV2">Equation&nbsp;<span>7.6</span></a> excludes linearly redundant instrument instruments</li>
-<li><a href="#eq-IV3">Equation&nbsp;<span>7.7</span></a> is called the <strong>relevance condition</strong> and is essential for the identification of the model, as we discuss later.
+<li><a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a> states that the instruments are uncorrelated with the error term (<strong>exogeneity condition</strong>)</li>
+<li><a href="#eq-IV2">Equation&nbsp;<span>7.7</span></a> excludes linearly redundant instrument instruments</li>
+<li><a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a> is called the <strong>relevance condition</strong> and is essential for the identification of the model, as we discuss later.
 <ul>
-<li>A necessary condition for <a href="#eq-IV3">Equation&nbsp;<span>7.7</span></a> is that <span class="math inline">\(\ell\geq K.\)</span></li>
+<li>A necessary condition for <a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a> is that <span class="math inline">\(\ell\geq K.\)</span></li>
 </ul></li>
 </ul>
-<p>Note that the exogenous regressors <span class="math inline">\(X_{i1}\)</span> fulfill <a href="#eq-IV1">Equation&nbsp;<span>7.5</span></a> and thus should be included as (additional) instrumental variables, i.e.&nbsp; <span class="math display">\[
+<p>Note that the exogenous regressors <span class="math inline">\(X_{i1}\)</span> fulfill <a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a> and thus should be included as (additional) instrumental variables, i.e.&nbsp; <span class="math display">\[
 Z_i=
 \underbrace{\left(\begin{matrix}Z_{i1}\\Z_{i2}\end{matrix}\right)}_{((\ell + K_1)\times 1)}=
 \underbrace{\left(\begin{matrix}X_{i1}\\Z_{i2}\end{matrix}\right)}_{((\ell + K_1)\times 1)}
@@ -442,42 +454,58 @@ Z_i=
 <li>excluded since they have <strong>zero coefficients</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in the equation for <span class="math inline">\(Y_i\)</span></li>
 </ul></li>
 </ul>
-<p>With this notation we can also write the structural <a href="#eq-StructuralEqEndogen1">Equation&nbsp;<span>7.4</span></a> as <span id="eq-StructuralEqEndogen2"><span class="math display">\[
+<p>With this notation we can also write the structural <a href="#eq-StructuralEqEndogen1">Equation&nbsp;<span>7.5</span></a> as <span id="eq-StructuralEqEndogen2"><span class="math display">\[
 Y_{i1} = Z_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
-\tag{7.8}\]</span></span></p>
+\tag{7.9}\]</span></span></p>
 <p><strong>Terminology:</strong></p>
 <ul>
-<li><span class="math inline">\(Z_{i1}\)</span>: The <em>exogenous variables</em></li>
-<li><span class="math inline">\(Y_{i2}\)</span>: The <em>endogenous variables</em></li>
+<li><span class="math inline">\(Z_{i1}\)</span>: The <em>exogenous regressors</em> (<span class="math inline">\(Z_{i1}=X_{i1}\)</span>)</li>
+<li><span class="math inline">\(Y_{i2}\)</span>: The <em>endogenous regressor</em></li>
 <li><span class="math inline">\(Z_{i2}\)</span>: The <em>instrumental variables</em></li>
-<li>We say that the model is
+</ul>
+<p>We say that the model is</p>
 <ul>
-<li>just-identified if <span class="math inline">\(\ell = K\)</span></li>
-<li>over-identified if <span class="math inline">\(\ell &gt; K\)</span></li>
-</ul></li>
+<li><strong>just-identified</strong> if <span class="math inline">\(\ell = K\)</span></li>
+<li><strong>over-identified</strong> if <span class="math inline">\(\ell &gt; K\)</span></li>
 </ul>
 <blockquote class="blockquote">
-<p>What variables can be used as instruments?</p>
+<p>What variables can be used as Instrumental Variables (IVs)?</p>
 </blockquote>
 <ol type="1">
-<li>According to <a href="#eq-IV1">Equation&nbsp;<span>7.5</span></a>, instrumental variables must be uncorrelated with the error term.</li>
-<li>From the rank condition (<a href="#eq-IV3">Equation&nbsp;<span>7.7</span></a>) it follows that the instrumental variables are correlated with the endogenous variables <span class="math inline">\(Y_{i2}\)</span> also after controlling for the other exogenous variables <span class="math inline">\(Z_{i1}.\)</span><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> (Otherwise, the instrumental variables would not add any new information since they could be expressed as linear combinations of the already included exogenous variables <span class="math inline">\(Z_{i1}.\)</span>)</li>
+<li>Instrumental variables must be uncorrelated with the error term (<a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a>).</li>
+<li>Instrumental variables must be correlated with the endogenous variables <span class="math inline">\(Y_{i2}\)</span> also after controlling for the other already included exogenous variables <span class="math inline">\(Z_{i1}\)</span> (<a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a>).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> (I.e. the IVs must contain additional information, and thus must not be a perfect multicollinearity between the IVs <span class="math inline">\(Z_{i2}\)</span> and with the already included exogenous regressors <span class="math inline">\(Z_{i1}\)</span>.)</li>
 </ol>
-<p>These two requirement mean that the instrumental variables <span class="math inline">\(Z_{i2}\)</span></p>
+<!-- From the rank condition  it follows that the  (Otherwise, the instrumental variables would not add any new information since they could be expressed as linear combinations of the already included exogenous variables $Z_{i1}.$) -->
+<p>These two requirement mean that the IVs, <span class="math inline">\(Z_{i2},\)</span></p>
 <ul>
-<li>are determined outside the systems for the endogenous dependent variable <span class="math inline">\(Y_{i1}\)</span> and the endogenous variables <span class="math inline">\(Y_{i2}.\)</span></li>
+<li>are determined outside the systems for the endogenous variables <span class="math inline">\(Y_{i1}\)</span> and <span class="math inline">\(Y_{i2}.\)</span></li>
 <li>causally determine the endogenous variables <span class="math inline">\(Y_{i2}.\)</span></li>
 <li>not causally determine the dependent variable <span class="math inline">\(Y_{i1}\)</span> (except indirectly through their correlation with the exogenous variables <span class="math inline">\(Z_{i1}\)</span>)</li>
 </ul>
-<p><strong>Measurement error in the regressor (<a href="#exm-MeasurementError">Example&nbsp;<span>7.1</span></a> continued)</strong></p>
-<p>When <span class="math inline">\(X_{i}\)</span> is a mis-measured version of <span class="math inline">\(Z_i\)</span> a common choice for an instrument <span class="math inline">\(Z_{i2}\)</span> is an alternative measurement of <span class="math inline">\(Z_i.\)</span></p>
-<p>For this <span class="math inline">\(Z_{i2}\)</span> to satisfy the property of an instrumental variable the measurement error in <span class="math inline">\(Z_{i2}\)</span> must be independent of that in <span class="math inline">\(X_i.\)</span></p>
+<!-- **Measurement error in the regressor (@exm-MeasurementError continued)** 
+
+When $X_{i}=Z_i+u_i$ is a mis-measured version of the latent $Z_i,$ a common choice for an instrument $Z_{i2}$ is an alternative (additional) measurement 
+$$
+Z_{i2} =  Z_i + \tilde{u}_{i}
+$$
+of $Z_i.$ This additional measurement $Z_{i2}$ is an IV if
+
+* $\tilde{u}_{i}$ is independent of $X_i.$ Since then $E(Z_{i2})$
+* 
+
+satisfy the property of an instrumental variable the measurement error in $Z_{i2}$ must be independent of that in $X_i.$ -->
 </section>
-<section id="references" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="references"><span class="header-section-number">7.5</span> References</h2>
+<section id="real-data-example-college-proximity" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="real-data-example-college-proximity"><span class="header-section-number">7.5</span> Real-Data Example: College Proximity</h2>
+</section>
+<section id="references" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="references"><span class="header-section-number">7.6</span> References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Haavelmo1944" class="csl-entry" role="doc-biblioentry">
+Haavelmo, Trygve. 1944. <span>“The Probability Approach in Econometrics.”</span> <em>Econometrica</em> 12: iii-vi+1-115.
+</div>
 <div id="ref-Hansen2022" class="csl-entry" role="doc-biblioentry">
 Hansen, Bruce. 2022. <em><span>E</span>conometrics</em>. Princeton University Press.
 </div>

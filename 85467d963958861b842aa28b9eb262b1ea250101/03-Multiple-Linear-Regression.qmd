@@ -535,17 +535,23 @@ The OLS estimator
 $$
 \hat\beta=(X'X)^{-1}X'Y
 $$
-is a linear (in $Y$) and unbiased estimator, i.e.
+is a linear (in $Y$) and unbiased estimator ($E(\hat\beta)=\beta$), i.e.
 $$
 \operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0.
 $$
-The latter can be shown as following: Observe that $\hat\beta$ consists of two random variables $X$ and $Y,$ and thus one needs to show first the conditional unbiasedness of $\hat\beta$ given $X$ which allows us to focus on randomness due to $Y$,  
+The latter can be shown as following: 
+
+Observe that 
+$$
+\hat\beta=(X'X)^{-1}X'Y
+$$ 
+consists of two random variables $X$ and $Y.$ Thus one needs to show first the conditional unbiasedness of $\hat\beta$ given $X$ which allows us to focus on randomness due to $\varepsilon$,  
 $$
 \begin{align*}
 \operatorname{Bias}(\hat\beta|X) 
 &= E(\hat\beta|X) - \beta \\
-&= E((X'X)^{-1}X'Y|X) - \beta \quad\text{(using $Y=X\beta+\varepsilon$)}\\
-&= E((X'X)^{-1}X'X\beta + (X'X)^{-1}X'\varepsilon|X) - \beta \\
+&= E((X'X)^{-1}X'\underbrace{Y}_{=X'\beta+\varepsilon}|X) - \beta \\
+&= E(\underbrace{(X'X)^{-1}X'X}_{I_K}\beta|X) + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
 &=  \beta + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
 &=  (X'X)^{-1}X'E(\varepsilon|X) =0.  
 \end{align*}
@@ -565,28 +571,27 @@ $$
 
 > Hint: The conditional variance of a multivariate random variable $Z\in\mathbb{R}^K$, given $X$, is defined as $Var(Z|X)=E((Z-E(Z|X))(Z-E(Z|X))'|X)$. 
 
-Using the definition of conditional variance for multivariate random variables we have that 
+Using the definition of the conditional variance for multivariate random variables we have that 
 $$
 \begin{align*}
-Var(\hat\beta|X)
-&=Var(\hat\beta - \beta|X)\\
-&=Var((X'X)^{-1}X'\varepsilon|X)\\ 
-&=E\left(((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right),
-\end{align*}
-$$
-where the latter step uses that $(X'X)^{-1}X'\varepsilon$ has a conditional mean of zero, i.e.,
-$$
-E((X'X)^{-1}X'\varepsilon|X)=(X'X)^{-1}X'E(\varepsilon|X)=0.
-$$ 
-Thus we have that
-$$
-\begin{align*}
-Var(\hat\beta|X)
+&Var(\hat\beta|X)=\\
 &=Var(\hat\beta - \beta|X)\\
 &=Var((X'X)^{-1}X'\varepsilon|X)\\
+&=E\Big(\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)\\
+&\phantom{=E\Big(}\,\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)'|X\Big)\\
 &=E\left(((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right)\\
 &=E\left((X'X)^{-1}X'\varepsilon\varepsilon' X(X'X)^{-1}|X\right)\\
-&=(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1}.
+&=(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1},
+\end{align*}
+$$
+where we used that 
+$$
+\begin{align*}
+\hat\beta
+&=(X'X)^{-1}X'Y\\
+&=(X'X)^{-1}X'(X\beta+\varepsilon)\\
+&=\beta+(X'X)^{-1}X'\varepsilon\\
+\Leftrightarrow \hat\beta - \beta & = (X'X)^{-1}X'\varepsilon.
 \end{align*}
 $$
 Under the assumption of spherical errors (see Assumption 4), we have that $E\left(\varepsilon\varepsilon'|X\right)=\sigma^2 I_n$, where $I_n$ is the $(n\times n)$ dimensional identity matrix with ones on the diagonal and zeros everywhere else. Thus under the assumption of spherical errors, we have that
@@ -599,10 +604,13 @@ Var(\hat\beta|X)
 \end{align*}
 $$
 
-So, we can summarize that the OLS estimator belongs to the large family of linear (in $Y$) and unbiased estimators of $\beta.$ Moreover, under the assumption of spherical errors, the conditional variance of $\hat\beta$, given $X,$ is $Var(\hat\beta|X)=\sigma^2(X'X)^{-1}.$
+So, we can summarize: 
+
+* The OLS estimator belongs to the large family of **linear** (in $Y$) and **unbiased** estimators of $\beta.$ 
+* Under the assumption of spherical errors, the conditional variance of $\hat\beta$, given $X,$ is $Var(\hat\beta|X)=\sigma^2(X'X)^{-1}.$
 
 
-The famous *Gauss-Markov Theorem* states that the OLS estimator is the **"best"** (lowest conditional variance) estimator within this family of linear (in $Y$) and unbiased estimators.
+The famous **Gauss-Markov Theorem** states that the OLS estimator is the **"best"** (lowest conditional variance) estimator within this family of linear (in $Y$) and unbiased estimators.
 
 ::: {#thm-GMTheorem}
 
