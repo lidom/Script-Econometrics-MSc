@@ -10,9 +10,9 @@ It's is very hard to say when a sample size $n$ is small. Often people say somet
 **Assumptions:** Recall that we, in general, did not impose a complete distributional assumption on $\varepsilon$ in Assumption 4 (@sec-MLR); the i.i.d. normal case in Assumption 4 was only one possible *option*.  However, to do exact inference, the normality Assumption on the error terms is not a mere option, but a *necessity*. So for this chapter we assume that Assumptions 1-3 from @sec-MLR hold and that additionally the following assumption holds: 
 
 **Assumption 4$^\boldsymbol{\ast}$: Error distribution:** For small sample cases, we assume that the error terms are 
-**i.i.d. normal**, i.e., $\varepsilon_i|X\overset{\operatorname{i.i.d.}}{\sim}\mathcal{N}(0,\sigma^2)$ for all $i=1,\dots,n$ which leads to spherical errors. That is, 
+**i.i.d. normal**, i.e., $\varepsilon_i|X\overset{\operatorname{i.i.d.}}{\sim}\mathcal{N}(0,\sigma^2)$ for all $i=1,\dots,n$ which leads to Gaussian spherical errors. That is, 
 $$
-\varepsilon\sim\mathcal{N}\left(0,\sigma^2I_n\right),
+\varepsilon|X\sim\mathcal{N}\left(0,\sigma^2I_n\right),
 $$
 where $\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'$.
 
@@ -59,9 +59,21 @@ H_A:  & \beta_{k} \ne 0 \\
 
 Under our assumptions (Assumptions 1 to 4$^\ast$), we have that 
 $$
-(R\hat\beta_n-r)|X\sim\mathcal{N}\left(R\beta -r,RVar(\hat\beta_n|X)R'\right).
+\begin{align*}
+(R\hat\beta_n-r)|X&\sim\mathcal{N}\left(R\beta -r,RVar(\hat\beta_n|X)R'\right)\\
+(R\hat\beta_n-r)|X&\overset{H_0}{\sim}\mathcal{N}\left(0,RVar(\hat\beta_n|X)R'\right)
+\end{align*}
 $$ 
-So, the realizations of $(R\hat\beta_n -r)|X$ will scatter around the *unknown* $(R\beta -r)$ in a non-systematical, Gaussian fashion. Therefore, if the null hypothesis is correct (i.e., $(R\beta-r)=0$), the realizations of $(R\hat\beta_n-r)|X$ scatter around the $q$-vector $0$.  If, however, the alternative hypothesis is correct (i.e., $(R\beta-r)=a\neq 0$), the realizations of $R\hat\beta_n-r|X$ scatter around the $q$-vector $a\neq 0$.  So, under the alternative hypothesis, there will be a systematic location-shift of the $q$-dimensional random variable $R\hat\beta_n|X$ away from $r$ which we try to detect using statistical hypothesis testing. 
+
+That is, 
+
+* the realizations of $(R\hat\beta_n -r)|X$ will scatter around the *unknown* $(R\beta -r)$ in a Gaussian fashion. 
+* if the null hypothesis is correct (i.e., $(R\beta-r)=0$), the realizations of $(R\hat\beta_n-r)|X$ scatter around the $(q\times 1)$ vector $0$.  
+
+We use a test statistic to detect a systematic location shift away from the zero vector. 
+<!-- * if the alternative hypothesis is correct (i.e., $(R\beta-r)=a\neq 0$), there will be a systematic location-shift in $(R\hat\beta_n-r)|X$ which we try to detect using statistical hypothesis testing.  -->
+
+<!-- the realizations of $R\hat\beta_n-r|X$ scatter around the $q$-vector $a\neq 0$.  So, under the alternative hypothesis,  -->
 
 
 ### The Test Statistic and its Null Distribution
@@ -70,16 +82,19 @@ The fact that $(R\hat\beta_n-r)\in\mathbb{R}^q$ is a $q$-dimensional random vari
 $$
 W=\underbrace{(R\hat\beta_n -r)'}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R']^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r)}_{(q\times 1)}
 $$
-Note that the test statistic $W$ is simply measuring the distance (it's a weighted L2-distance of two vectors) between $R\hat\beta_n$ and $r$. 
+Note that the test statistic $W$ is simply measuring the distance (it's a weighted L2-distance) between the $(q\times 1)$ vectors $R\hat\beta_n$ and $r$. 
 
-Under the null hypothesis (i.e., if the null hypothesis is true), $W$ is just a sum of $q$-many independent squared standard normal random variables. Therefore, under the null hypothesis, $W$ is chi-square distributed with $q$ degrees of freedom (see @sec-chisqdist), 
+Under the null hypothesis (i.e., if $H_0$ is true), $W|X$ is a sum of $q$-many independent squared standard normal random variables. Therefore, under the null hypothesis, $W|X$ is chi-square distributed with $q$ degrees of freedom (see @sec-chisqdist), 
 $$
-W\overset{H_0}{\sim} \chi^2_{(q)}.
+\begin{align*}
+W|X&\overset{H_0}{\sim} \chi^2_{(q)}\\ 
+\Rightarrow \quad\quad W&\overset{H_0}{\sim} \chi^2_{(q)}
+\end{align*}
 $$
-Note that the distribution of $W$ conditional on $X$ does not depend on $X$; i.e. $W|X\overset{H_0}{\sim}\chi^2_{(q)},$ but $\chi^2_{(q)}$ does here not depend on $X$, thus we can write $W\overset{H_0}{\sim} \chi^2_{(q)}.$
+Note that the distribution of $W|X$ does not depend on $X,$ (i.e. it's a $\chi^2_{(q)}$-distribution no matter the realization of $X$) and thus our test decisions do not depend on the values of $X.$ (Good news!)
 
 
-Usually, we do not know $Var(\hat\beta_n|X)$ , but need to estimate this quantity from the data. Unfortunately, in the small sample case, we can only deal with homoskedastic error terms. For truly exact finite sample inference, we need a variance estimator for which we can derive the exact small sample distribution. Therefore, we assume in Assumption 4$^*$ spherical errors (i.e., $Var(\varepsilon|X)=I_n\sigma^2$) which yields that $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$, and where $\sigma^2$ can be estimated by the unbiased ($UB$) variance estimator  
+Usually, we do not know $Var(\hat\beta_n|X),$ and thus we need to estimate this quantity from the data. Unfortunately, in the small sample case, we can only deal with homoskedastic error terms. For truly exact finite sample inference, we need a variance estimator for which we can derive the exact small sample distribution. Therefore, we require Assumption 4$^*$ of spherical errors (i.e., $Var(\varepsilon|X)=I_n\sigma^2$) which yields that $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$, and where $\sigma^2$ can be estimated by the unbiased ($UB$) variance estimator  
 $$
 s_{UB}^2=(n-K)^{-1}\sum_{i=1}^n\hat\varepsilon_i^2.
 $$  
@@ -88,22 +103,27 @@ $$
 \frac{(n-K)}{\sigma^{2}}s_{UB}^2\sim\chi^2_{(n-K)}.
 $${#eq-distsquared} 
 
-The $F$ test statistic 
+The $F$ test statistic uses then $s_{UB}^2$ as an estimator of $\sigma^2$
 $$
 F=(R\hat\beta_n -r)'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r)/q
 $$
-takes into account the additional randomness due to the estimator $s_{UB}^2$, which leads to the following exact null distribution of the $F$ test
+and takes into account the additional randomness (estimation errors) due to $s_{UB}^2$, which leads to the following exact null distribution of the $F$ test
 $$
 F\overset{H_0}{\sim} F_{(q,n-K)},
 $${#eq-Ftest}
-where $F_{(q,n-K)}$ denotes the $F$-distribution with $q$ numerator and $n-K$ denominator degrees of freedom. As in the case of $W$, the distribution of $F$ conditional on $X$ does not depend on $X$; i.e. $F|X\overset{H_0}{\sim}F_{(q,n-K)},$ but $F_{(q,n-K)}$ does here not depend on $X$, thus we can write $F\overset{H_0}{\sim}F_{(q,n-K)}.$
-
-The distributional statements in @eq-distsquared and @eq-Ftest are a little cumbersome to derive and we do not go into details here, but in case you're interested you can find some more details in Chapter 1 of @Hayashi2000. 
-
-By contrast to $W$, $F$ is now a practically useful test statistic, and we can use the observed value $F_{\text{obs}}$ to measure the distance of our estimate $R\hat\beta_n$ from value $r$.  Observed values, $F_{\text{obs}}$, that are "unusually large" under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution $F_{(q,n-K)}$ of $F$ is used to judge what's "unusually large" under the null hypothesis. 
+where $F_{(q,n-K)}$ denotes the $F$-distribution with $q$ numerator and $n-K$ denominator degrees of freedom. 
 
 
-**The F distribution:** The F distribution is a ratio of two $\chi^2$ distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See @sec-Fdist for more information on the $F$ distribution. 
+As in the case of $W$, the distribution of $F$ conditional on $X$ does not depend on $X$; i.e. $F|X\overset{H_0}{\sim}F_{(q,n-K)},$ but $F_{(q,n-K)}$ does not depend on $X,$ thus we can write $F\overset{H_0}{\sim}F_{(q,n-K)}.$
+
+The distributional statements in @eq-distsquared and @eq-Ftest are a little cumbersome to derive and we do not go into details here, but in case you're interested you can find some more details, for instance, in Chapter 1 of @Hayashi2000. 
+
+By contrast to $W,$ $F$ is now a practically useful test statistic, and we can use the observed value $F_{\text{obs}}$ to measure the distance of our estimate $R\hat\beta_n$ from its hypothetical value $r.$  
+
+Observed values, $F_{\text{obs}}$, that are "unusually large" under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution $F_{(q,n-K)}$ of $F$ is used to judge what's "unusually large" under the null hypothesis. 
+
+
+**The F distribution.** The F distribution is a ratio of two $\chi^2$ distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See @sec-Fdist for more information on the $F$ distribution. 
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 # When fixing rate (lambda) and changing shape (r) for Gamma Distribution,
 # When the shape (r) increases, based on the formula, 
@@ -151,27 +171,24 @@ H_0: & \beta_k=r\\
 H_A: & \beta_k\ne r\\
 \end{array}
 \end{equation*}
-the $(q\times K)=(1\times K)$-matrix $R$ equals a row-vector of zeros but with a one as the $k$th element; e.g., for $k=2$ we have $R=(0,1,0,\dots,0).$ Thus, the $F$ test statistic simplifies to
+the $(q\times K)$-matrix $R$ becomes a $(1\times K)$ row-vector of zeros but with a one as the $k$th element. For instance, for testing a null hypothesis about $\beta_k$ with, e.g., $k=2$, we have $R=(0,1,0,\dots,0),$ and thus the $F$ test statistic simplifies to
 $$
-F=\frac{\left(\hat{\beta}_k-r\right)^2}{\widehat{Var}(\hat{\beta}_k|X)},
+F=\frac{\left(\hat{\beta}_k-r\right)^2}{\widehat{Var}(\hat{\beta}_k|X)}\overset{H_0}{\sim}F_{(1,n-K)},
 $$
 where $\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{kk}.$ 
 
 Taking square roots yields the $t$ test statistic 
 $$
-t=\frac{\hat{\beta}_k-r}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)},
+t=\frac{\hat{\beta}_k-r}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)}\overset{H_0}{\sim}t_{(n-K)},
 $$
-where $\widehat{\operatorname{SE}}(\hat{\beta}_k|X)=s_{UB}[(X'X)^{-1/2}]_{kk}.$
+where $\widehat{\operatorname{SE}}(\hat{\beta}_k|X)=s_{UB}[(X'X)^{-1/2}]_{kk},$ and where $t_{(n-K)}$ denotes the $t$-distribution with $n-K$ degrees of freedom. 
 
-Under the null hypothesis, the $t$ test statistic is $t$-distributed with $n-K$ degrees of freedom
-$$
-t\overset{H_0}{\sim}t_{(n-K)}.
-$$
-Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate distribution to judge whether or not an observed value $t_{obs}$ of the test statistic is unusually small or large under the null hypothesis. 
+Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate distribution to judge whether or not an observed value $t_{obs}$ of the test statistic is "unusually large" under the null hypothesis. 
 
 **Note:** All commonly used statistical software packages report $t$-tests testing the null hypothesis $H_0:\beta_k=0$, i.e., with $r=0$.  This means to test the null hypothesis that $X_k$ has "no (linear) effect" on $Y$. 
 
-The following plot illustrates that as the degrees of freedom increase, the shape of the $t$ distribution comes closer to that of a standard normal bell curve. Already for $25$ degrees of freedom we find little difference to the standard normal density. In case of small degrees of freedom values, we find the distribution to have heavier tails than a standard normal.
+**The $t$ distribution.** The following plot illustrates that as the degrees of freedom increase, the shape of the $t$ distribution comes closer to that of a standard normal bell curve. Already for $25$ degrees of freedom we find little difference to the standard normal density. In case of small degrees of freedom values, we find the distribution to have heavier tails than a standard normal. See @sec-tdist for more information about the $t$-distribution.
+
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"} 
 # plot the standard normal density
 curve(dnorm(x), 
@@ -951,7 +968,7 @@ Note that this is actually a very strong result.
 * First, we correctly control for the Type I error rate since the empirical type I error rate is not larger than the chosen significance level $\alpha$ (the nominal Type I error rate). 
 * Second, the test is not conservative since the empirical type I error rate essentially matches the chosen significance level $\alpha$  (the nominal Type I error rate). 
    * In fact, if we would increase the number of Monte Carlo repetitions, the empirical type I error rate would converge to the nominal Type I error rate $\alpha$ due to the law of large numbers.
-* Last but not least: It works unconditionally on $X$ since the distribution of the $F$ statistic does not depend on $X$. (Thus is also works conditionally on $X$ and you may check this at home.)
+* Last but not least: It works **unconditionally** on $X$ since the distribution of the $F$ statistic does not depend on $X$. (Thus is also works conditionally on $X$ and you may check this at home.)
 
 Next, we check how well the $F$ test detects certain **violations of the null hypothesis**. We do this by using the same data generating process, but by testing the following incorrect (red) null hypothesis:
 \begin{align*}

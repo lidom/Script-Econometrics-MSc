@@ -931,7 +931,7 @@ Increasing the degrees of freedom shifts the distribution to the right (the mode
 
 
 
-#### The Student t Distribution 
+#### The Student t Distribution {#sec-tdist}
 
 Let $Z$ be a standard normal random variable, $W$ a $\chi^2_\nu$ random variable and further assume that $Z$ and $W$ are independent. Then it holds that
 $$
