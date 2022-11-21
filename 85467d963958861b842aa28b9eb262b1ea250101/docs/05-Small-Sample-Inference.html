@@ -473,18 +473,27 @@ P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1
 <h5 class="unnumbered anchored" data-anchor-id="one-sided-t-test">One-Sided <span class="math inline">\(t\)</span>-Test</h5>
 <p>One-sided hypothesis: <span class="math display">\[\begin{equation*}
 \begin{array}{lll}
-&amp;H_0: &amp; \beta_k =r\\
+&amp;H_0: &amp; \beta_k \leq r\\
+(\text{or}&amp;H_0: &amp; \beta_k \geq r)\\
 &amp;H_A: &amp; \beta_k &gt;r\\
 (\text{or}&amp;H_A: &amp; \beta_k&lt; r)
 \end{array}
-\end{equation*}\]</span> In case of a one-sided <span class="math inline">\(t\)</span>-test, we will reject the null if <span class="math inline">\(t_{obs}\)</span> is sufficiently “far away” from zero in the relevant direction of <span class="math inline">\(H_A\)</span>. The corresponding critical value is either <span class="math inline">\(-c_{1-\alpha}\)</span> (<span class="math inline">\(H_A:\beta_k&lt; r\)</span>) or <span class="math inline">\(c_{1-\alpha}\)</span> (<span class="math inline">\(H_A:\beta_k&gt; r\)</span>), where <span class="math inline">\(c_{1-\alpha}\)</span> is the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, and where <span class="math inline">\(-c_{1-\alpha}=c_{\alpha}\)</span> due to the symmetry of the <span class="math inline">\(t\)</span>-distribution. The critical value <span class="math inline">\(c_{1-\alpha}\)</span> defines the following rejection and the non-rejection regions:</p>
-<p>For <span class="math inline">\(H_0: \beta_k=0\)</span> versus<span class="math inline">\(H_A: \beta_k &lt; 0\)</span>: <span class="math display">\[\begin{align*}
+\end{equation*}\]</span> In case of a one-sided <span class="math inline">\(t\)</span>-test, we will reject the null if <span class="math inline">\(t_{obs}\)</span> is sufficiently “far away” from zero in the relevant direction of <span class="math inline">\(H_A\)</span>. The corresponding critical value is either</p>
+<ul>
+<li><span class="math inline">\(-c_{1-\alpha}\)</span> (when <span class="math inline">\(H_A:\beta_k&lt; r\)</span>) or</li>
+<li><span class="math inline">\(\phantom{-}c_{1-\alpha}\)</span> (when <span class="math inline">\(H_A:\beta_k&gt; r\)</span>),</li>
+</ul>
+<p>where <span class="math inline">\(c_{1-\alpha}\)</span> is the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, and where <span class="math display">\[
+-c_{1-\alpha}=c_{\alpha}
+\]</span> due to the symmetry of the <span class="math inline">\(t\)</span>-distribution.</p>
+<p>The critical value <span class="math inline">\(c_{1-\alpha}\)</span> defines the following rejection and the non-rejection regions:</p>
+<p>For <span class="math inline">\(H_0: \beta_k=0\quad\)</span> versus <span class="math inline">\(\quad H_A: \beta_k &lt; 0\)</span>: <span class="math display">\[\begin{align*}
 \text{rejection region:}   &amp;\hspace{2cm}]-\infty,c_{\alpha}[ \\
 \text{non-rejection region:}&amp;\hspace{2cm}[c_{\alpha},\infty[
 \end{align*}\]</span> such that <span class="math display">\[
 P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha}[\Big)=\alpha.
 \]</span></p>
-<p>For <span class="math inline">\(H_0: \beta_k=0\)</span>versus<span class="math inline">\(H_A: \beta_k &gt; 0\)</span>: <span class="math display">\[\begin{align*}
+<p>For <span class="math inline">\(H_0: \beta_k=0\quad\)</span> versus <span class="math inline">\(\quad H_A: \beta_k &gt; 0\)</span>: <span class="math display">\[\begin{align*}
 \text{rejection region:}&amp;\hspace{1cm}]c_{1-\alpha}, \infty[\\
 \text{non-rejection region:}&amp;\hspace{1cm}]-\infty,c_{1-\alpha}]
 \end{align*}\]</span> such that <span class="math display">\[
@@ -542,8 +551,8 @@ H_A:  &amp; \beta_k&gt;0,
 <p>Under this setup, the distribution under the null hypothesis (i.e., if <span class="math inline">\(\beta_k=0\)</span> were true) is: <span class="math display">\[
 t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\overset{H_0}{\sim}\mathcal{N}(0,1)
 \]</span> Likewise, the distribution under the alternative hypothesis (i.e., for the actual <span class="math inline">\(\beta_k=3\)</span>) is: <span class="math display">\[\begin{align*}
-t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
-&amp;=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
+t&amp;=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
+=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
 &amp;=\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
 \end{align*}\]</span></p>
 <p>So, the mean-shift <span class="math inline">\(\Delta\)</span> depends on:</p>

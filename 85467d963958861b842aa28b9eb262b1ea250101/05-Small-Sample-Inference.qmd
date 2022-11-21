@@ -380,16 +380,28 @@ text(x = -q, y = .45, labels = expression(c[alpha/2]==-2.18))
 One-sided hypothesis:
 \begin{equation*}
 \begin{array}{lll}
-&H_0: & \beta_k =r\\
+&H_0: & \beta_k \leq r\\
+(\text{or}&H_0: & \beta_k \geq r)\\
 &H_A: & \beta_k >r\\
 (\text{or}&H_A: & \beta_k< r)
 \end{array}
 \end{equation*}
-In case of a one-sided $t$-test, we will reject the null if $t_{obs}$ is sufficiently "far away" from zero in the relevant direction of $H_A$. The corresponding critical value is either $-c_{1-\alpha}$ ($H_A:\beta_k< r$) or $c_{1-\alpha}$ ($H_A:\beta_k> r$), where $c_{1-\alpha}$ is the $(1-\alpha)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom, and where $-c_{1-\alpha}=c_{\alpha}$ due to the symmetry of the $t$-distribution. The critical value $c_{1-\alpha}$ defines the following rejection and the non-rejection regions:
+In case of a one-sided $t$-test, we will reject the null if $t_{obs}$ is sufficiently "far away" from zero in the relevant direction of $H_A$. The corresponding critical value is either 
+
+* $-c_{1-\alpha}$ (when $H_A:\beta_k< r$) or 
+* $\phantom{-}c_{1-\alpha}$ (when $H_A:\beta_k> r$), 
+
+where $c_{1-\alpha}$ is the $(1-\alpha)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom, and where 
+$$
+-c_{1-\alpha}=c_{\alpha}
+$$ 
+due to the symmetry of the $t$-distribution. 
 
 
+The critical value $c_{1-\alpha}$ defines the following rejection and the non-rejection regions:
 
-For $H_0: \beta_k=0$ \quad versus\quad $H_A: \beta_k < 0$:
+
+For $H_0: \beta_k=0\quad$ versus $\quad H_A: \beta_k < 0$:
 \begin{align*}
 \text{rejection region:}   &\hspace{2cm}]-\infty,c_{\alpha}[ \\
 \text{non-rejection region:}&\hspace{2cm}[c_{\alpha},\infty[
@@ -401,7 +413,7 @@ $$
 
 
 
-For $H_0: \beta_k=0$\quad versus\quad$H_A: \beta_k > 0$:
+For $H_0: \beta_k=0\quad$ versus $\quad H_A: \beta_k > 0$:
 \begin{align*}
 \text{rejection region:}&\hspace{1cm}]c_{1-\alpha}, \infty[\\
 \text{non-rejection region:}&\hspace{1cm}]-\infty,c_{1-\alpha}]
@@ -503,8 +515,8 @@ t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\overset{H_0}{\sim}\math
 $$
 Likewise, the distribution under the alternative hypothesis (i.e., for the actual $\beta_k=3$) is:
 \begin{align*}
-t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
-&=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
+t&=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
+=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
 &=\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
 \end{align*}
 
