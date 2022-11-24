@@ -1,6 +1,6 @@
 # Small Sample Inference {#sec-ssinf}
 
-The content of this chapter is very much inspired by the textbook of @Hayashi2000. 
+The content of this chapter is very much inspired by Chapter 1 of the textbook of @Hayashi2000. 
 
 
 It's is very hard to say when a sample size $n$ is small. Often people say something like $n<30$ means small samples and $n\geq 30$ large samples, but this is, of course, only a very rough rule of thumb that may fail. The core issue with small sample sizes is that we cannot do inference using the central limit theorem. Thus we need rather strict assumptions on the distribution of the error term, in order to do **exact** inference in finite samples. 
@@ -642,38 +642,43 @@ Y_i   &=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
 \beta &=(\beta_1,\beta_2,\beta_3)'=(2,3,4)'\\
 X_{i2}&\sim U[2,10]\\
 X_{i3}&\sim U[12,22]\\
-\varepsilon_i&\sim\mathcal{N}(0,3^2),
+\varepsilon_i|X&\sim\mathcal{N}(0,3^2),
 \end{align*}
-where $(Y_i,X_i)$ is assumed i.i.d. across $i=1,\dots,n$. Below, in the codes, I use $n=10$, but, of course, other sample sizes can be considered too. 
+where $(Y_i,X_i)$ is i.i.d. across $i=1,\dots,n$. Let us consider a small sample size of $n=7$. 
 
 
 The below function `myDataGenerator()` allows to sample new realizations of $Y_1,\dots,Y_n$ conditionally on a given data matrix $X$.  Moreover, you can provide your own values for the sample size $n$ and for the parameter vector $\beta=(\beta_1,\beta_2,\beta_3)'$. 
 ```{r}
 ## Function to generate artificial data
-## If X=NULL: new X variables are generated
-## If the user gives X variables, 
-## the sampling of new Y variables is conditionally on 
-## the given X variables.
-myDataGenerator <- function(n, beta, X=NULL){
-  if(is.null(X)){
-    X   <- cbind(rep(1, n), 
+## If the user provides 'X_cond' data, 
+## the sampling of new Y variables is 
+## conditionally on the given X_cond variables.
+## If X_cond = NULL, sampling is done unconditionally. 
+
+myDataGenerator <- function(n, beta, X_cond = NULL){
+  if(is.null(X_cond)){
+      X   <- cbind(rep(1, n), 
                  runif(n, 2, 10), 
                  runif(n,12, 22))
+  }else{
+      X   <- X_cond
   }
-  eps  <- rnorm(n, sd=3)
+  eps  <- rnorm(n, sd = 3)
   Y    <- X %*% beta + eps
-  data <- data.frame("Y"=Y, 
-                     "X_1"=X[,1], "X_2"=X[,2], "X_3"=X[,3])
+  data <- data.frame("Y"   = Y, 
+                     "X_1" = X[,1], 
+                     "X_2" = X[,2], 
+                     "X_3" = X[,3])
   ##
   return(data)
 }
 
 
 ## Small sample size
-n           <- 8           
+n             <- 7        
 
 ## Define a true beta vector
-beta_true <- c(2,3,4)
+beta_true     <- c(2,3,4)
 
 ## Generate Y and X data 
 test_data     <- myDataGenerator(n = n, beta=beta_true)
@@ -683,8 +688,8 @@ X_cond        <- as.matrix(test_data[,-1]) # as matrix allows matrix multiplicat
 
 ## Generate new Y data conditionally on X            
 test_data_X_cond <- myDataGenerator(n    = n, 
-                                 beta = beta_true, 
-                                 X    = X_cond)
+                                    beta = beta_true, 
+                                    X    = X_cond)
 ## compare
 round(head(test_data,     3), 2)    # New Y, new X
 round(head(test_data_X_cond, 3), 2) # New Y, old X (conditionally on X)
@@ -693,9 +698,9 @@ round(head(test_data_X_cond, 3), 2) # New Y, old X (conditionally on X)
 
 ### Check: Distribution of $\hat\beta|X$ vs Distribution of $\hat\beta$
 
-The above data generating process fulfills Assumptions 1-4$^*$. So, by theory, the estimators $\hat\beta_k|X$, $k=1,\dots,K=3$, should be normal distributed conditionally on $X$,
+The above data generating process fulfills Assumptions 1-4$^*$. So, by theory, the estimators $\hat\beta|X$ should be normal distributed conditionally on $X$,
 $$
-\hat\beta_k|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{kk}),
+\hat\beta_k|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{kk}),\quad k=1,\dots,K=3,
 $$ 
 where $[(X'X)^{-1}]_{kk}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $(X'X)^{-1}$. 
 
@@ -705,15 +710,18 @@ In order to check the effect of "conditioning on $X$", let us focus on $\hat\bet
 1. Generate `B`$=10000$ realizations of $\hat\beta_2$ conditionally on $X$.
 2. Generate `B`$=10000$ realizations of $\hat\beta_2$ **un**conditionally on $X$.
 
-Then estimate the distributons from both Monte Carlo samples and compare them with the theoretical distribution $\hat\beta_2|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{22})$:
+Then estimate the distributons from both Monte Carlo samples and compare them with the theoretical distribution 
+$$
+\hat\beta_2|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{22})
+$$
 ```{r}
 set.seed(11100) # seed of the random number generator
 
-## A function to generate realizations of the estimator \hat{beta}_2
-## conditionally or unconditionally on X:
-hatbeta2_sim_fun <- function(conditional, X = X_cond){
+## A function to generate realizations of the estimator 
+## \hat{beta}_2 conditionally or unconditionally on X:
+hatbeta2_sim_fun <- function(conditional, X_cond = NULL){
       if(conditional == TRUE){
-            data     <- myDataGenerator(n = n, beta = beta_true, X = X)
+            data     <- myDataGenerator(n = n, beta = beta_true, X_cond = X_cond)
             lm_obj   <- lm(Y ~ X_2 + X_3, data = data)
             hatbeta2 <- coef(lm_obj)[2]
       }
@@ -730,26 +738,28 @@ B <- 10000
 
 ## Draw realizations of \hat{beta}_2
 ## 1. Generate \hat{beta}_2 realizations conditionally on X
-hatbeta2_sim_cond   <- replicate(B, hatbeta2_sim_fun(conditional = TRUE,  X = X_cond))
+hatbeta2_sim_cond   <- replicate(B, hatbeta2_sim_fun(conditional = TRUE,  X_cond = X_cond))
 ## 2. Generate \hat{beta}_2 realizations unconditionally on X
 hatbeta2_sim_uncond <- replicate(B, hatbeta2_sim_fun(conditional = FALSE))
 
+library("scales") # transparent colors with the alpha() function 
 
-## Theoretical normal distribution of beta_hat_2 versus 
+## Plot
+## Theoretical normal distribution of beta_hat_2 versus the
 ## estimated densities based on the two Monte Carlo samples
-library("scales")
-
 ## true beta_2
 beta_true_2     <- beta_true[2] 
 ## true standard deviation of the error term
 sigma           <- 3
-## true variance
-var_true_beta_2 <- sigma^2 * diag(solve(t(X_cond) %*% X_cond))[2]
+## true variance of \hat\beta_2 conditionally on X_cond
+var_true_beta_2 <- sigma^2 * solve(t(X_cond) %*% X_cond)[2,2]
 
-## Plot
+## Theoretical Gaussian density of \hat\beta_2 conditionally on X_cond
 curve(expr = dnorm(x, mean = beta_true_2, sd=sqrt(var_true_beta_2)), 
 xlab="", ylab="", col=gray(.2), lwd=3, lty=1, xlim=c(1,5), ylim=c(0,1.5))
+## Estimated density based on the MC-sample of \hat\beta_2 conditionally on X_cond
 lines(density(hatbeta2_sim_cond, bw = bw.SJ(hatbeta2_sim_cond)), col=alpha("blue",.5), lwd=3)
+## Estimated density based on the MC-sample of \hat\beta_2 *un*conditionally on X_cond
 lines(density(hatbeta2_sim_uncond, bw=bw.SJ(hatbeta2_sim_uncond)), col=alpha("red",.5), lwd=3)
 legend("topleft", lty=c(1,1,1), lwd=c(3,3,3),
      col=c(gray(.2), alpha("blue",.45), alpha("red",.5)), bty="n", legend= 
@@ -758,24 +768,40 @@ c(expression("Theoretical Gaussian Density of"~hat(beta)[2]~'|'~X),
   expression("Empirical Density based on the 5000 MC realizations of"~hat(beta)[2])))
 ```
 
-Core observations on the densities:
+Observations:
 
 * The empirical conditional distribution of $\hat{\beta}_2|X$ matches with the theoretical conditional distribution of $\hat{\beta}_2|X$.
-* The empirical **un**conditional distribution of $\hat{\beta}_2$ does not match with the theoretical conditional distribution of $\hat{\beta}_2|X$.
+* The empirical **un**conditional distribution of $\hat{\beta}_2$ does **not** match with the theoretical conditional distribution of $\hat{\beta}_2|X$.
+
+Thus, in small sample, the distribution of $\hat{\beta}_2$ is strongly influenced by the $X$ we condition on. This affects also important features of the distribution of $\hat{\beta}_2$ like the variance. 
 
 
-### Check: Variance of $\hat\beta|X$ vs Variance of $\hat\beta$
+#### Variance of $\hat\beta|X$ vs. Variance of $\hat\beta$ {-}
 
 The theoretical variance of $\hat{\beta}_2|X$ is:<br> 
 
 <center>
-$Var(\hat{\beta}_2|X)=\sigma^2[(X'X)^{-1}]_{22}=$ `var_true_beta_2` $=$ `r round(var_true_beta_2,3)`. 
+$Var(\hat{\beta}_2|X)=\sigma^2[(X'X)^{-1}]_{22}=$ `var_true_beta_2`.
 </center>
 
-<br>
+```{r}
+var_true_beta_2 <- sigma^2 * solve(t(X_cond) %*% X_cond)[2,2]
+round(var_true_beta_2, 3)
+```
 
-* The Monte Carlo approximation to the true variance of $\hat{\beta}_2|X$ is `var(hatbeta2_sim_cond)` $=$ `r round(var(hatbeta2_sim_cond),3)` and thus close to the theoretical counterpart.
-* The Monte Carlo approximation to the true variance of $\hat{\beta}_2$ is `var(hatbeta2_sim_uncond)` $=$ `r round(var(hatbeta2_sim_uncond),3)` and thus clearly different to the theoretical counterpart.
+
+The Monte Carlo realizations of $\hat{\beta}_2|X$, i.e. conditionally on $X$, have an empirical variance of 
+```{r}
+round(var(hatbeta2_sim_cond), 3)
+```
+which basically matches the theoretical counterpart.
+
+
+The Monte Carlo realizations of $\hat{\beta}_2$, i.e. **un**conditionally on $X$, have an empirical variance of 
+```{r}
+round(var(hatbeta2_sim_uncond), 3)
+```
+which is clearly different from the theoretical counterpart.
 
 
 <!-- While the unconditional distribution has a larger variance.  -->
@@ -966,23 +992,28 @@ for(r in 1:B){
   ## save the p-value
   F_test_pvalues[r] <- p
 }
-##
-signif_level <-  0.05
-rejections   <- F_test_pvalues[F_test_pvalues < signif_level]
-round(length(rejections)/B, 4)
+
+## Is the significance level ("nominal type I error rate") 
+## smaller or equal to the actual type I error rate?
+
+alpha        <-  0.05          # signif level
+rejections   <- F_test_pvalues[F_test_pvalues < alpha]
+round(length(rejections)/B, 4) # actual type I error rate 
 ## 
-signif_level <-  0.01
-rejections   <- F_test_pvalues[F_test_pvalues < signif_level]
-round(length(rejections)/B, 4)
+alpha        <-  0.01  # signif level
+rejections   <- F_test_pvalues[F_test_pvalues < alpha]
+round(length(rejections)/B, 4) # actual type I error rate 
 ```
-Note that this is actually a very strong result. 
 
-* First, we correctly control for the Type I error rate since the empirical type I error rate is not larger than the chosen significance level $\alpha$ (the nominal Type I error rate). 
-* Second, the test is not conservative since the empirical type I error rate essentially matches the chosen significance level $\alpha$  (the nominal Type I error rate). 
-   * In fact, if we would increase the number of Monte Carlo repetitions, the empirical type I error rate would converge to the nominal Type I error rate $\alpha$ due to the law of large numbers.
-* Last but not least: It works **unconditionally** on $X$ since the distribution of the $F$ statistic does not depend on $X$. (Thus is also works conditionally on $X$ and you may check this at home.)
+Observations:
 
-Next, we check how well the $F$ test detects certain **violations of the null hypothesis**. We do this by using the same data generating process, but by testing the following incorrect (red) null hypothesis:
+1. We correctly control for the type I error rate since the empirical type I error rate is not larger than the chosen significance level $\alpha$ (i.e. the nominal type I error rate). 
+2. Second, the $F$ test is not conservative since the empirical type I error rates essentially matche the chosen significance levels $\alpha$  (i.e. the nominal Type I error rate). 
+   2.1 In fact, if we would increase the number of Monte Carlo repetitions, the empirical type I error rate would converge to the nominal type I error rate $\alpha$ due to the law of large numbers.
+3. Last but not least: All this works **unconditionally** on $X$ since the distribution of the $F$ statistic does not depend on $X$. 
+<!-- (Thus is also works conditionally on $X$ and you may check this at home.) -->
+
+Next, we check how well the $F$ test detects certain **violations of the null hypothesis**. We do this by using the same data generating process, but by testing the following <span style="color:#FF0000">incorrect</span> null hypothesis:
 \begin{align*}
 H_0:\;&{\color{red}\beta_2=4}\quad\text{and}\quad\beta_3=4\\
 H_A:\;&\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
@@ -1001,29 +1032,29 @@ for(r in 1:B){
   ## save the p-value
   F_test_pvalues[r] <- p
 }
-##
-signif_level <-  0.05
-rejections   <- F_test_pvalues[F_test_pvalues < signif_level]
 
-## Rate of H0 rejections:
-length(rejections)/B
+## Checking the power of the F test 
+
+alpha       <-  0.05  # signif_level
+rejections  <- F_test_pvalues[F_test_pvalues < alpha]
+length(rejections)/B  # power 
 ```
 
 We can now correctly reject the false null hypothesis in approximately `r length(rejections)/B *100` % of all Monte Carlo replications. 
 
-**Caution:** This also means that we are not able to detect the violation of the null hypothesis in `r 100 - length(rejections)/B *100` % of cases. Therefore, we can never use an insignificant test result ($p$-value $\geq\alpha$) as a confirmation of the null hypothesis. Obviously, there are Type II error events (false none rejections), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control this Type II error rate. We can only control the Type I error rate by using a small significance level $\alpha$. 
+**Caution:** This means that we are not able to detect the violation of the null hypothesis in `r 100 - length(rejections)/B *100` % of cases. Therefore, we can never use an insignificant test result ($p$-value $\geq\alpha$) as a confirmation of the null hypothesis. Obviously, there are type II error events (not rejecting a false H$_0$), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control the type II error rate. We can only control the type I error rate by using a small significance level $\alpha$. 
 
 Moreover, note that the $F$ test is not informative about which part of the null hypothesis ($\beta_2=4$ and/or $\beta_3=4$) is violated. We only get the information that at least one of the multiple parameter hypotheses is violated.
 
 
-### Dualty of Confidence Intervals and Hypothesis Tests
+### Check: Dualty of Confidence Intervals and Hypothesis Tests
 
 Confidence intervals can be computed using `R` as following:
 ```{r}
 ## Significance level
-signif_level <- 0.05
+alpha        <- 0.05
 ## Confidence level
-conf_level   <- 1 - signif_level
+conf_level   <- 1 - alpha
 
 ## 95% CI for beta_2
 confint(lm_obj, parm = "X_2", level = conf_level)
@@ -1034,18 +1065,20 @@ We can use these two-sided confidence intervals to conduct hypotheses tests. Thi
 
 For instance, when testing the null hypothesis
 \begin{align*}
-H_0:&\beta_3=4\\
-\text{versus}\quad H_A: &\beta_3\neq 4
+H_0:&\beta_2=3\\
+\text{versus}\quad H_A: &\beta_2\neq 3
 \end{align*}
-we can check whether the confidence interval $\operatorname{CI}_{1-\alpha}$ contains the hypothetical value $4$ or not. 
+we can either use a $t$-test or equivalently check whether the confidence interval $\operatorname{CI}_{2,1-\alpha}$ for $\beta_2$ contains the hypothetical value $4$ or not. 
 
-* In case of $4\in \operatorname{CI}_{1-\alpha}$, we cannot reject the null hypothesis. 
-* In case of $4\not\in \operatorname{CI}_{1-\alpha}$, we reject the null hypothesis. 
+* In case of $3    \in\operatorname{CI}_{2,1-\alpha}$, we cannot reject the null hypothesis H$_0$: $\beta_2=3.$ 
+* In case of $3\not\in\operatorname{CI}_{2,1-\alpha}$, we can reject the null hypothesis H$_0$: $\beta_2=3.$
 
-If the Assumption 1-4$^\ast$ hold true, then $\operatorname{CI}_{1-\alpha}$ is an exact confidence interval. That is, under the null hypothesis, it falsely rejects the null hypothesis in only $\alpha\cdot 100\%$ of resamplings. Let's check this in the following Monte Carlo simulation:
+If the Assumptions 1-4$^\ast$ hold true, then $\operatorname{CI}_{2,1-\alpha}$ is an exact confidence interval. That is, under the null hypothesis, it falsely rejects the null hypothesis in only $\alpha\cdot 100\%$ of resamplings. Let's check this in the following Monte Carlo simulation:
 ```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
-signif_level <- 0.05
-confint_m    <- matrix(NA, nrow=2, ncol=B)
+## Significance level
+alpha      <- 0.05
+## Container to save all CI realizations
+confint_m  <- matrix(NA, nrow=2, ncol=B)
 ##
 for(r in 1:B){
   ## generate new data 
@@ -1053,7 +1086,7 @@ for(r in 1:B){
   ## estimate
   lm_obj  <- lm(Y ~ X_2 + X_3, data = MC_data)
   ## compute confidence interval 
-  CI <- confint(lm_obj, parm="X_2", level=1-signif_level)
+  CI <- confint(lm_obj, parm="X_2", level = 1 - alpha)
   ## save confidence interval
   confint_m[,r] <- CI
 }
@@ -1072,18 +1105,16 @@ round(length(inside_CI[inside_CI == FALSE])/B, 4)
 That's good! The relative frequency is basically equal to the chosen $\alpha=0.05$ value. 
 
 
-Next, we visualize a sample of `nCIs <- 100` realizations of the random confidence interval: 
+Next, we visualize a subsample of `100` confidence intervals from the total sample of `5000` generated confidence interval realizations: 
 ```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 nCIs <- 100
-plot(x=0,y=0,type="n",xlim=c(0,nCIs),ylim=range(confint_m[,1:nCIs]),
+plot(x=0, y=0,type="n", xlim=c(0,nCIs), ylim=range(confint_m[,1:nCIs]),
      ylab="", xlab="Resamplings", main="Confidence Intervals")
 for(r in 1:nCIs){
   if(inside_CI[r]==TRUE){
-      lines(x=c(r,r), y=c(confint_m[1,r], confint_m[2,r]), 
-            lwd=2, col=gray(.5,.5))
+      lines(x=c(r,r), y=c(confint_m[1,r], confint_m[2,r]), lwd=2, col=gray(.5,.5))
   }else{
-      lines(x=c(r,r), y=c(confint_m[1,r], confint_m[2,r]), 
-            lwd=2, col="darkred")
+      lines(x=c(r,r), y=c(confint_m[1,r], confint_m[2,r]), lwd=2, col="darkred")
     }
 }
 axis(4, at=beta_true_2, labels = expression(beta[2]))
@@ -1164,9 +1195,10 @@ You can extract the values using `lm_obj_summary$coefficients[,4]`.
 * **F-statistic:** This is a standard $F$ test that tests the null hypothesis that all parameters except the intercept are zero; i.e.<br> 
 $H_0$: $\beta_{gender}=\beta_{age}=\beta_{income}=0$<br>
 versus<br> 
-$H_A$: At least one parameter is not zero.<br><br>
-You can replicate this test result using the following `R` code:
-```{r, eval=FALSE, echo=TRUE}
+$H_A$: At least one parameter is not zero. `R`'s `summary()` functions reports an observed $F$ statistic value of $33.22$ which needs to be evaluated for an $F$ distribution with $3$ and $5186$ degrees of freedom leading to a $p$-value $p< 0.00001.$
+<br><br>
+You can replicate this $F$-test result using the following `R` code:
+```{r, eval=TRUE, echo=TRUE}
 car::linearHypothesis(
       model = lm_obj, 
       hypothesis.matrix = c("genderfemale=0", "age=0", "income=0"))  
@@ -1178,7 +1210,7 @@ car::linearHypothesis(
 
 #### `R` Package Stargazer {-}
 
-A more beautiful and "publication ready" regression output can be produced using the `R` package `stargazer` and its function `stargazer()`:
+Beautiful and "publication ready" regression outputs can be produced using the `R` package `stargazer` and its function `stargazer()`:
 
 ```{r, echo=FALSE, eval=TRUE}
 suppressPackageStartupMessages(library(stargazer))
@@ -1186,25 +1218,31 @@ suppressPackageStartupMessages(library(stargazer))
 
 <center>
 ```{r, ech=TRUE, eval=TRUE, results='asis'}
-# Hint: use type = "latex" to produce a latex table
+## Hint: use type = "latex" 
+## to produce a latex table
 stargazer(lm_obj, type="html")
 ```
 </center>
 
 
-### Critical Discussion of the Regression Results
+#### Critical Discussion of the Regression above Results {-}
 
 The above real data analysis does **not** fit into the small sample inference framework we introduced in this chapter. 
 
-1. The dependent variable $Y_i$ `visits` is a *categorial* variable taking finitely many discrete values `unique(DoctorVisits$visits)` = `r unique(DoctorVisits$visits)`. Consequently, the error term $\varepsilon_i$ **cannot be normal distributed**. 
+1. The dependent variable $Y_i$ `visits` is a *categorial* variable taking finitely many discrete values, indeed 
+<center>
+`unique(DoctorVisits$visits)` = `r unique(DoctorVisits$visits)`. 
+</center>
+Consequently, the error term $\varepsilon_i$ **cannot be normal distributed**. 
 2. The diagnostic plot ("Residuals versus Fitted") indicates a possible issue **violation of the homoskedasticity assumption**. In case of homokedastic variances, the data points $(\hat\varepsilon_i,\hat{Y}_i)$, $i=1,\dots,n$ should roughly show a homogenous scattering across the fitted values $\hat{Y}_i=X\hat\beta$. This seems not to be the case here.
 ```{r}
+## Diagonstic Plot 
+## Residuals versus fitted values
 plot(lm_obj, which = 1)
 ```
 
 
-Lukily, the data set `DoctorVisits` has a really **large sample size** of $n=$ `r nrow(DoctorVisits)` and thus there is a way out of this problem: The large sample inference framework introduced in the next chapter. 
-
+Lukily, the data set `DoctorVisits` actually has a **large sample size** of $n=$ `r nrow(DoctorVisits)` and thus there is a way out of this problem: The large sample inference framework introduced in the next chapter. 
 
 
 ## Exercises

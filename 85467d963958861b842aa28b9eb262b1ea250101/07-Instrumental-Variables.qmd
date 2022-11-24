@@ -17,38 +17,49 @@ $$
   Y_i=X_i'\beta+\varepsilon_i
 \end{align}
 $${#eq-IVLinMod}
-if $\beta$ is the parameter of interest and if $E(\varepsilon_i|X_i)\neq 0$ and thus
+
+1. if $\beta$ is the parameter of interest and 
+2. if $E(\varepsilon_i|X_i)\neq 0$ 
+
+and thus
 $$
 E(X_i\varepsilon_i)\neq 0.
 $${#eq-endogen}
-When @eq-endogen holds, $X$ is **endogenous** for $\beta.$
+
+When @eq-endogen holds, $X_i$ is **endogenous** for $\beta.$
 
 This situation constitutes a core problem in econometrics which is not so much in the focus of the statistics literature. 
 
 
-Equation @eq-IVLinMod is called a **structural equation** and $\beta$ a **structural parameter** and it is important to distinguish @eq-IVLinMod from the regression/projection models we considered so far. It may be the case that a structural model coincides with a regression/projector model, but this is not necessarily the case.
+* @eq-IVLinMod is called a **structural equation** 
+* $\beta$ in @eq-IVLinMod is called a **structural parameter** 
+
+It is important to distinguish @eq-IVLinMod from the regression (or projection) models we considered so far. It may be the case that a structural model coincides with a regression/projector model, but this is not necessarily the case.
 
 
-Endogeneity **cannot** happen if the coefficient is defined by a linear projection. We can *define*[^1] the linear (population) projection coefficient 
+Endogeneity **cannot** happen if the model coefficient is defined by a linear projection. We can *define*[^1] the linear (population) **projection coefficient** 
 $$
-\beta^*=E(X_iX_i')^{-1}E(X_iY)
+\beta^*=E(X_iX_i')^{-1}E(X_iY_i)
 $$
 and the corresponding linear (population) projection equation
 $$
 Y_i = X_i'\beta^* + \varepsilon_i^*,
 $$ 
-where then, by construction (projection properties), 
+where then, by construction (projection properties)
 $$
-E(X_i\varepsilon_i^*)=0
+E(X_i\varepsilon_i^*)=0.
 $$
 
 [^1]: Caution, here we simply define $\beta^*$ as $\beta^*=E(X_iX_i')^{-1}E(X_iY)$ which results the population projection coefficient for the population projection of $Y$ into the space spanned by $X_i$. We did not derive the expression for $\beta^*$ using the exogeneity assumption as we did in @sec-MMEstimator; indeed, the exogeneity assumption may be violated.
 
 
-The (population) projection coefficient $\beta^*$ and the structural parameter $\beta$ coincide ($\beta^*=\beta$) under exogeneity. However, under endogeneity (@eq-endogen) the projection coefficient $\beta^*$ does not equal the structural parameter
+The (population) projection coefficient $\beta^*$ and the structural parameter $\beta$ coincide $(\beta^*=\beta)$ under exogeneity. 
+
+
+However, under endogeneity (@eq-endogen) the projection coefficient $\beta^*$ does not equal the structural parameter $(\beta^*\neq \beta):$
 $$
 \begin{align*}
-\beta^* & =E(X_iX_i')^{-1}E(X_iY)\\
+\beta^* & =E(X_iX_i')^{-1}E(X_iY_i)\\
 \beta^* & =E(X_iX_i')^{-1}E(X_i (X_i'\beta + \varepsilon_i) )\\
 %\beta^* & =E(X_iX_i')^{-1}E(X_i X_i') \beta + 
 %            E(X_iX_i')^{-1}E(X_i\varepsilon_i)\\
@@ -57,17 +68,17 @@ $$
 $$
 
 
-Thus under endogeneity we cannot simply use the projection coefficient to derive an estimator since the projection coefficient does not identify the structural parameter of interest. 
+Thus under endogeneity we cannot simply use the projection coefficient to derive an estimator since **the projection coefficient does not identify the structural parameter of interest**. 
 
-That is, endogeneity implies that the least squares estimator is inconsistent for the structural parameter. Indeed, under i.i.d. sampling, least squares is consistent for the projection coefficient.
+That is, endogeneity implies that the least squares estimator is inconsistent for the structural parameter. Indeed, under i.i.d. sampling, least squares is consistent for the projection coefficient
 $$
-\hat\beta\to_pE(X_iX_i')^{-1}E(X_iY) = \beta^* \neq \beta.
+\hat\beta\to_pE(X_iX_i')^{-1}E(X_iY) = \beta^* \neq \beta\quad n\to\infty.
 $$
 
 But since the structural parameter $\beta$ is here the parameter of interest, endogeneity requires the development of alternative estimation methods. 
 
 
-## Examples for Structural Models 
+## Examples for Structural Equations/Models 
 
 The structural model approach in econometrics goes back to the seminal paper *The probability approach in econometrics* by @Haavelmo1944. 
 
@@ -285,29 +296,32 @@ Generally, when both the dependent variable and a regressor are **simultaneously
 
 ## Endogenous Regressors
 
-Technically, we say that a regressor $X_i$ is **exogenous** for $\beta$ if $E(X_i\varepsilon_i)=0.$ In general the distinction in an economic model is that a regressor $X_i$ is endogenous if it is jointly determined with $Y_i,$ while a regressor $X_i$ is exogenous if it is determined separately from $Y_i.$ 
+<!-- Technically, we say that a regressor $X_i$ is **exogenous** for $\beta$ if $E(X_i\varepsilon_i)=0.$ In general the distinction in an economic model is that a regressor $X_i$ is endogenous if it is jointly determined with $Y_i,$ while a regressor $X_i$ is exogenous if it is determined separately from $Y_i.$  -->
 
-Usually, only a subset of the regressors need to be treated as endogenous. In the following, we partition the vector of regressors 
+Usually, only a subset of the regressors need to be treated as **endogenous**. In the following, we partition the vector of regressors 
 $$
-X_i*=(\underbrace{X_{i1}'}_{(1\times K_1)}, \underbrace{Y_{i2}'}_{(1\times K_2)}),
+X_i=
+\underset{((K_1+K_2)\times 1)}{\left(
+\begin{matrix}
+X_{i1}\\
+Y_{i2}
+\end{matrix}
+\right)}
 $$ 
-with $K=K_1 + K_2$, and with: 
+with $K=K_1 + K_2$.
 
-* Exogenous variables denoted as $X_{i1}$ 
-* Endogenous variables denoted as $Y_{i2}$ in analogy to the (always) endogenous dependent variable $Y_i$ 
-* The dependent variable is renamed as $Y_i\equiv Y_{i1}$ 
-
-(Be aware that $X_{i1}$ is here a $(K_1\times 1)$ dimensional random vector.)
+* $X_{i1}$: $(K_1\times 1)$ vector of **exogenous** regressors, i.e. $E(X_{i1}\varepsilon_i)=0$  
+* $Y_{i2}$: $(K_2\times 1)$ vector of **endogenous** regressors, i.e. $E(Y_{i2}\varepsilon_i)\neq 0$
 
 The structural equation is then
 $$
 Y_{i1}=X_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
 $${#eq-StructuralEqEndogen1}  
-This notation clarifies which variables are exogenous and which endogenous:
 
-* $X_{i1}$: Exogenous regressors, i.e. $E(X_{i1}\varepsilon_i)=0$
-* $Y_{i2}$: Endogenous regressors, i.e. $E(Y_{i2}\varepsilon_i)\neq 0$
-* $Y_{i1}$: Endogenous dependent variable, i.e. $E(Y_{i1}\varepsilon_i)\neq 0$
+* $Y_{i1}=Y_i$: **Endogenous** dependent variable, i.e. $E(Y_{i1}\varepsilon_i)\neq 0$
+
+
+This notation clarifies which variables are exogenous and which endogenous. 
 
 ## Instruments
 
@@ -342,20 +356,11 @@ identification of the model, as we discuss later.
 
 Note that the exogenous regressors $X_{i1}$ fulfill @eq-IV1 and thus should be included as (additional) instrumental variables, i.e. 
 $$
-Z_i=
-\underbrace{\left(\begin{matrix}Z_{i1}\\Z_{i2}\end{matrix}\right)}_{((\ell + K_1)\times 1)}=
-\underbrace{\left(\begin{matrix}X_{i1}\\Z_{i2}\end{matrix}\right)}_{((\ell + K_1)\times 1)}
+\underset{(\ell\times 1)}{Z_i}=
+\underset{((K_1+\ell_2)\times 1)}{\left(\begin{matrix}Z_{i1}\\Z_{i2}\end{matrix}\right)} :=
+\underset{((K_1+\ell_2)\times 1)}{\left(\begin{matrix}X_{i1}\\Z_{i2}\end{matrix}\right)}
 $$
-
-* $Z_{i1}$: ($K_1$ many) **included exogenous variables**:
-  * uncorrelated with $\varepsilon_i$ and thus potentially usable
-  * included since they have potentially non-zero coefficients in the equation for $Y_i$ 
-* $Z_{i2}$: ($\ell$ many) **excluded exogenous variables**:
-  * uncorrelated with $\varepsilon_i$  and thus potentially usable
-  * excluded since they have **zero coefficients**[^1] in the equation for $Y_i$
-
-[^1]: The instrumental variables $Z_{i2}$ correlate with $Y_i$ only indirectly, because they correlate with $X_{i1}$ (by @eq-IV3). Therefore, since $X_{i1}$ are included in the equation for $Y_i$, there are no variations left in $Y_i$ that correlate with $Z_{i2}.$ Thus the instrumental variables $Z_{i2}$ have zero coefficients in the equation for $Y_i.$
-
+with $\ell=K_1+\ell_2.$
 
 With this notation we can also write the structural @eq-StructuralEqEndogen1 as
 $$
@@ -363,11 +368,25 @@ Y_{i1} = Z_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
 $${#eq-StructuralEqEndogen2}
 
 
-**Terminology:**
+* $Z_{i1}$: ($K_1\times 1$) vector of **included exogenous variables** 
+<!-- $(Z_{i1}=X_{i1})$ -->
+  * uncorrelated with $\varepsilon_i$ and thus potentially usable
+  * **included** since they have potentially non-zero coefficients in @eq-StructuralEqEndogen2
+* $Z_{i2}$: ($\ell_2\times 1$) vector of **excluded exogenous variables**
+  * uncorrelated with $\varepsilon_i$  and thus potentially usable
+  * **excluded** since they have **zero coefficients**[^1] in @eq-StructuralEqEndogen2
 
-* $Z_{i1}$: The *exogenous regressors* ($Z_{i1}=X_{i1}$)
-* $Y_{i2}$: The *endogenous regressor*
-* $Z_{i2}$: The *instrumental variables*
+[^1]: The instrumental variables $Z_{i2}$ correlate with $Y_i$ only indirectly, because they correlate with $X_{i1}$ (by @eq-IV3). Therefore, since $X_{i1}$ are included in the equation for $Y_i$, there are no variations left in $Y_i$ that correlate with $Z_{i2}.$ Thus the instrumental variables $Z_{i2}$ have zero coefficients in the equation for $Y_i.$
+
+
+<!-- **Terminology:** -->
+
+<!-- * $Z_{i1}$: $(K_1\times 1)$ vector of **exogenous** regressors $(Z_{i1}=X_{i1})$, i.e. $E(Z_{i1}\varepsilon_i)=0$   -->
+
+<!-- * $Y_{i1}\in\mathbb{R}$:        *Endogenous dependent variable*
+* $Z_{i1}\in\mathbb{R}^{K_1}$:  *Exogenous regressors* ($Z_{i1}=X_{i1}$)
+* $Y_{i2}\in\mathbb{R}^{K_2}$:  *Endogenous regressor*
+* $Z_{i2}\in\mathbb{R}^{\ell}$: *Instrumental variables* -->
 
 
 We say that the model is 
@@ -379,17 +398,17 @@ We say that the model is
 > What variables can be used as Instrumental Variables (IVs)? 
 
 1. Instrumental variables must be uncorrelated with the error term (@eq-IV1).
-2. Instrumental variables must be correlated with the endogenous variables $Y_{i2}$ also after controlling for the other already included exogenous variables $Z_{i1}$ (@eq-IV3).[^1] (I.e. the IVs must contain additional information, and thus must not be a perfect multicollinearity between the IVs $Z_{i2}$ and with the already included exogenous regressors $Z_{i1}$.)
+2. Instrumental variables must be correlated with the endogenous variables $Y_{i2}$ also after controlling for the other already included exogenous variables $Z_{i1}$ (@eq-IV3).[^1] (I.e. the IVs must contain *additional information*, and thus there must not be a perfect multicollinearity between the IVs $Z_{i2}$ and the already included exogenous regressors $Z_{i1}$.)
 
 <!-- From the rank condition  it follows that the  (Otherwise, the instrumental variables would not add any new information since they could be expressed as linear combinations of the already included exogenous variables $Z_{i1}.$) -->
 
 [^1]: Thus if you regress each of the instruments in $Z_{i2}$ on the exogenous variables $Z_{i1}$, then the residuals of these regressions should still correlate with the endogenous variables in $Y_{i2}.$
 
-These two requirement mean that the IVs, $Z_{i2},$
+These two requirement mean that the IVs, $Z_{i2},$ ...
 
-* are determined outside the systems for the endogenous variables $Y_{i1}$ and $Y_{i2}.$
-* causally determine the endogenous variables $Y_{i2}.$
-* not causally determine the dependent variable $Y_{i1}$ (except indirectly through their correlation with the exogenous variables $Z_{i1}$)
+* ... are determined outside the systems for the endogenous variables $Y_{i1}$ and $Y_{i2}.$
+* ... causally determine the endogenous variables $Y_{i2}.$
+* ... not causally determine the dependent variable $Y_{i1}$ (except indirectly through their correlation with the exogenous variables $Z_{i1}$)
 
 
 <!-- **Measurement error in the regressor (@exm-MeasurementError continued)** 
@@ -406,7 +425,33 @@ of $Z_i.$ This additional measurement $Z_{i2}$ is an IV if
 satisfy the property of an instrumental variable the measurement error in $Z_{i2}$ must be independent of that in $X_i.$ -->
 
 
-## Real-Data Example: College Proximity
+
+## Reduced Form
+
+The **reduced form** model gives us the relationship between 
+
+* the $(K_2\times 1)$ endogenous regressors $Y_{i2}$ and 
+* the $(\ell\times 1)$ instruments $Z_{i}.$
+
+The linear reduced form model for $Y_{i2}$ is given by 
+$$
+\begin{align}
+Y_{i2} 
+&= \Gamma'Z_i + u_{i2}\\ 
+&= \Gamma_{12}'Z_{i1} + \Gamma_{22}'Z_{i2} + u_{i2},
+\end{align}
+$$
+which implies that $E(Z_iu_{i2}')=0.$ 
+
+The $(\ell\times K_2)$ dimensional coefficient matrix is defined by the projection coefficient
+$$
+\Gamma = E(Z_iZ_i')^{-1}E(Z_iY_{i2}')
+$${#eq-Gamma1}
+
+The projection coefficient $\Gamma$ (@eq-Gamma1) is well defined and unique if @eq-IV2 holds.  
+
+
+<!-- ## Real-Data Example: College Proximity -->
 
 
 ## References

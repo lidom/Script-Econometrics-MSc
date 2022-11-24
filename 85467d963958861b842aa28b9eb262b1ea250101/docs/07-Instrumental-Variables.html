@@ -165,10 +165,10 @@ div.csl-indent {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">7.1</span>  Introduction</a></li>
-  <li><a href="#examples-for-structural-models" id="toc-examples-for-structural-models" class="nav-link" data-scroll-target="#examples-for-structural-models"><span class="toc-section-number">7.2</span>  Examples for Structural Models</a></li>
+  <li><a href="#examples-for-structural-equationsmodels" id="toc-examples-for-structural-equationsmodels" class="nav-link" data-scroll-target="#examples-for-structural-equationsmodels"><span class="toc-section-number">7.2</span>  Examples for Structural Equations/Models</a></li>
   <li><a href="#endogenous-regressors" id="toc-endogenous-regressors" class="nav-link" data-scroll-target="#endogenous-regressors"><span class="toc-section-number">7.3</span>  Endogenous Regressors</a></li>
   <li><a href="#instruments" id="toc-instruments" class="nav-link" data-scroll-target="#instruments"><span class="toc-section-number">7.4</span>  Instruments</a></li>
-  <li><a href="#real-data-example-college-proximity" id="toc-real-data-example-college-proximity" class="nav-link" data-scroll-target="#real-data-example-college-proximity"><span class="toc-section-number">7.5</span>  Real-Data Example: College Proximity</a></li>
+  <li><a href="#reduced-form" id="toc-reduced-form" class="nav-link" data-scroll-target="#reduced-form"><span class="toc-section-number">7.5</span>  Reduced Form</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">7.6</span>  References</a></li>
   </ul>
 </nav>
@@ -202,35 +202,46 @@ div.csl-indent {
 \begin{align}
   Y_i=X_i'\beta+\varepsilon_i
 \end{align}
-\tag{7.1}\]</span></span> if <span class="math inline">\(\beta\)</span> is the parameter of interest and if <span class="math inline">\(E(\varepsilon_i|X_i)\neq 0\)</span> and thus <span id="eq-endogen"><span class="math display">\[
+\tag{7.1}\]</span></span></p>
+<ol type="1">
+<li>if <span class="math inline">\(\beta\)</span> is the parameter of interest and</li>
+<li>if <span class="math inline">\(E(\varepsilon_i|X_i)\neq 0\)</span></li>
+</ol>
+<p>and thus <span id="eq-endogen"><span class="math display">\[
 E(X_i\varepsilon_i)\neq 0.
-\tag{7.2}\]</span></span> When <a href="#eq-endogen">Equation&nbsp;<span>7.2</span></a> holds, <span class="math inline">\(X\)</span> is <strong>endogenous</strong> for <span class="math inline">\(\beta.\)</span></p>
+\tag{7.2}\]</span></span></p>
+<p>When <a href="#eq-endogen">Equation&nbsp;<span>7.2</span></a> holds, <span class="math inline">\(X_i\)</span> is <strong>endogenous</strong> for <span class="math inline">\(\beta.\)</span></p>
 <p>This situation constitutes a core problem in econometrics which is not so much in the focus of the statistics literature.</p>
-<p>Equation <a href="#eq-IVLinMod">Equation&nbsp;<span>7.1</span></a> is called a <strong>structural equation</strong> and <span class="math inline">\(\beta\)</span> a <strong>structural parameter</strong> and it is important to distinguish <a href="#eq-IVLinMod">Equation&nbsp;<span>7.1</span></a> from the regression/projection models we considered so far. It may be the case that a structural model coincides with a regression/projector model, but this is not necessarily the case.</p>
-<p>Endogeneity <strong>cannot</strong> happen if the coefficient is defined by a linear projection. We can <em>define</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> the linear (population) projection coefficient <span class="math display">\[
-\beta^*=E(X_iX_i')^{-1}E(X_iY)
+<ul>
+<li><a href="#eq-IVLinMod">Equation&nbsp;<span>7.1</span></a> is called a <strong>structural equation</strong></li>
+<li><span class="math inline">\(\beta\)</span> in <a href="#eq-IVLinMod">Equation&nbsp;<span>7.1</span></a> is called a <strong>structural parameter</strong></li>
+</ul>
+<p>It is important to distinguish <a href="#eq-IVLinMod">Equation&nbsp;<span>7.1</span></a> from the regression (or projection) models we considered so far. It may be the case that a structural model coincides with a regression/projector model, but this is not necessarily the case.</p>
+<p>Endogeneity <strong>cannot</strong> happen if the model coefficient is defined by a linear projection. We can <em>define</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> the linear (population) <strong>projection coefficient</strong> <span class="math display">\[
+\beta^*=E(X_iX_i')^{-1}E(X_iY_i)
 \]</span> and the corresponding linear (population) projection equation <span class="math display">\[
 Y_i = X_i'\beta^* + \varepsilon_i^*,
-\]</span> where then, by construction (projection properties), <span class="math display">\[
-E(X_i\varepsilon_i^*)=0
+\]</span> where then, by construction (projection properties) <span class="math display">\[
+E(X_i\varepsilon_i^*)=0.
 \]</span></p>
-<p>The (population) projection coefficient <span class="math inline">\(\beta^*\)</span> and the structural parameter <span class="math inline">\(\beta\)</span> coincide (<span class="math inline">\(\beta^*=\beta\)</span>) under exogeneity. However, under endogeneity (<a href="#eq-endogen">Equation&nbsp;<span>7.2</span></a>) the projection coefficient <span class="math inline">\(\beta^*\)</span> does not equal the structural parameter <span class="math display">\[
+<p>The (population) projection coefficient <span class="math inline">\(\beta^*\)</span> and the structural parameter <span class="math inline">\(\beta\)</span> coincide <span class="math inline">\((\beta^*=\beta)\)</span> under exogeneity.</p>
+<p>However, under endogeneity (<a href="#eq-endogen">Equation&nbsp;<span>7.2</span></a>) the projection coefficient <span class="math inline">\(\beta^*\)</span> does not equal the structural parameter <span class="math inline">\((\beta^*\neq \beta):\)</span> <span class="math display">\[
 \begin{align*}
-\beta^* &amp; =E(X_iX_i')^{-1}E(X_iY)\\
+\beta^* &amp; =E(X_iX_i')^{-1}E(X_iY_i)\\
 \beta^* &amp; =E(X_iX_i')^{-1}E(X_i (X_i'\beta + \varepsilon_i) )\\
 %\beta^* &amp; =E(X_iX_i')^{-1}E(X_i X_i') \beta +
 %            E(X_iX_i')^{-1}E(X_i\varepsilon_i)\\
 \beta^* &amp; = \beta + E(X_iX_i')^{-1}\underbrace{E(X_i \varepsilon_i)}_{\neq 0}\neq \beta\\
 \end{align*}
 \]</span></p>
-<p>Thus under endogeneity we cannot simply use the projection coefficient to derive an estimator since the projection coefficient does not identify the structural parameter of interest.</p>
-<p>That is, endogeneity implies that the least squares estimator is inconsistent for the structural parameter. Indeed, under i.i.d. sampling, least squares is consistent for the projection coefficient. <span class="math display">\[
-\hat\beta\to_pE(X_iX_i')^{-1}E(X_iY) = \beta^* \neq \beta.
+<p>Thus under endogeneity we cannot simply use the projection coefficient to derive an estimator since <strong>the projection coefficient does not identify the structural parameter of interest</strong>.</p>
+<p>That is, endogeneity implies that the least squares estimator is inconsistent for the structural parameter. Indeed, under i.i.d. sampling, least squares is consistent for the projection coefficient <span class="math display">\[
+\hat\beta\to_pE(X_iX_i')^{-1}E(X_iY) = \beta^* \neq \beta\quad n\to\infty.
 \]</span></p>
 <p>But since the structural parameter <span class="math inline">\(\beta\)</span> is here the parameter of interest, endogeneity requires the development of alternative estimation methods.</p>
 </section>
-<section id="examples-for-structural-models" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="examples-for-structural-models"><span class="header-section-number">7.2</span> Examples for Structural Models</h2>
+<section id="examples-for-structural-equationsmodels" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="examples-for-structural-equationsmodels"><span class="header-section-number">7.2</span> Examples for Structural Equations/Models</h2>
 <p>The structural model approach in econometrics goes back to the seminal paper <em>The probability approach in econometrics</em> by <span class="citation" data-cites="Haavelmo1944">Haavelmo (<a href="#ref-Haavelmo1944" role="doc-biblioref">1944</a>)</span>.</p>
 <p>Under the structural approach one, first, specifies a probabilistic economic model (taking into account economic theory), and then performs a quantitative analysis under the assumption that the economic model is correctly specified. This approach is reflected by Assumption 1 in <a href="03-Multiple-Linear-Regression.html"><span>Chapter&nbsp;3</span></a>. Researchers often describe this as “taking their model seriously”. A criticism of the structural approach is that it is misleading to treat an economic model as correctly specified. Rather, it is more accurate to view a model as a useful abstraction or approximation.</p>
 <div id="exm-MeasurementError" class="theorem example">
@@ -396,25 +407,28 @@ Q_i=\beta^* P_i+\varepsilon^*_i
 </section>
 <section id="endogenous-regressors" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="endogenous-regressors"><span class="header-section-number">7.3</span> Endogenous Regressors</h2>
-<p>Technically, we say that a regressor <span class="math inline">\(X_i\)</span> is <strong>exogenous</strong> for <span class="math inline">\(\beta\)</span> if <span class="math inline">\(E(X_i\varepsilon_i)=0.\)</span> In general the distinction in an economic model is that a regressor <span class="math inline">\(X_i\)</span> is endogenous if it is jointly determined with <span class="math inline">\(Y_i,\)</span> while a regressor <span class="math inline">\(X_i\)</span> is exogenous if it is determined separately from <span class="math inline">\(Y_i.\)</span></p>
-<p>Usually, only a subset of the regressors need to be treated as endogenous. In the following, we partition the vector of regressors <span class="math display">\[
-X_i*=(\underbrace{X_{i1}'}_{(1\times K_1)}, \underbrace{Y_{i2}'}_{(1\times K_2)}),
-\]</span> with <span class="math inline">\(K=K_1 + K_2\)</span>, and with:</p>
+<!-- Technically, we say that a regressor $X_i$ is **exogenous** for $\beta$ if $E(X_i\varepsilon_i)=0.$ In general the distinction in an economic model is that a regressor $X_i$ is endogenous if it is jointly determined with $Y_i,$ while a regressor $X_i$ is exogenous if it is determined separately from $Y_i.$  -->
+<p>Usually, only a subset of the regressors need to be treated as <strong>endogenous</strong>. In the following, we partition the vector of regressors <span class="math display">\[
+X_i=
+\underset{((K_1+K_2)\times 1)}{\left(
+\begin{matrix}
+X_{i1}\\
+Y_{i2}
+\end{matrix}
+\right)}
+\]</span> with <span class="math inline">\(K=K_1 + K_2\)</span>.</p>
 <ul>
-<li>Exogenous variables denoted as <span class="math inline">\(X_{i1}\)</span></li>
-<li>Endogenous variables denoted as <span class="math inline">\(Y_{i2}\)</span> in analogy to the (always) endogenous dependent variable <span class="math inline">\(Y_i\)</span></li>
-<li>The dependent variable is renamed as <span class="math inline">\(Y_i\equiv Y_{i1}\)</span></li>
+<li><span class="math inline">\(X_{i1}\)</span>: <span class="math inline">\((K_1\times 1)\)</span> vector of <strong>exogenous</strong> regressors, i.e.&nbsp;<span class="math inline">\(E(X_{i1}\varepsilon_i)=0\)</span><br>
+</li>
+<li><span class="math inline">\(Y_{i2}\)</span>: <span class="math inline">\((K_2\times 1)\)</span> vector of <strong>endogenous</strong> regressors, i.e.&nbsp;<span class="math inline">\(E(Y_{i2}\varepsilon_i)\neq 0\)</span></li>
 </ul>
-<p>(Be aware that <span class="math inline">\(X_{i1}\)</span> is here a <span class="math inline">\((K_1\times 1)\)</span> dimensional random vector.)</p>
 <p>The structural equation is then <span id="eq-StructuralEqEndogen1"><span class="math display">\[
 Y_{i1}=X_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
-\tag{7.5}\]</span></span><br>
-This notation clarifies which variables are exogenous and which endogenous:</p>
+\tag{7.5}\]</span></span></p>
 <ul>
-<li><span class="math inline">\(X_{i1}\)</span>: Exogenous regressors, i.e.&nbsp;<span class="math inline">\(E(X_{i1}\varepsilon_i)=0\)</span></li>
-<li><span class="math inline">\(Y_{i2}\)</span>: Endogenous regressors, i.e.&nbsp;<span class="math inline">\(E(Y_{i2}\varepsilon_i)\neq 0\)</span></li>
-<li><span class="math inline">\(Y_{i1}\)</span>: Endogenous dependent variable, i.e.&nbsp;<span class="math inline">\(E(Y_{i1}\varepsilon_i)\neq 0\)</span></li>
+<li><span class="math inline">\(Y_{i1}=Y_i\)</span>: <strong>Endogenous</strong> dependent variable, i.e.&nbsp;<span class="math inline">\(E(Y_{i1}\varepsilon_i)\neq 0\)</span></li>
 </ul>
+<p>This notation clarifies which variables are exogenous and which endogenous.</p>
 </section>
 <section id="instruments" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="instruments"><span class="header-section-number">7.4</span> Instruments</h2>
@@ -438,31 +452,31 @@ E(Z_i\varepsilon_i)=0
 </ul></li>
 </ul>
 <p>Note that the exogenous regressors <span class="math inline">\(X_{i1}\)</span> fulfill <a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a> and thus should be included as (additional) instrumental variables, i.e.&nbsp; <span class="math display">\[
-Z_i=
-\underbrace{\left(\begin{matrix}Z_{i1}\\Z_{i2}\end{matrix}\right)}_{((\ell + K_1)\times 1)}=
-\underbrace{\left(\begin{matrix}X_{i1}\\Z_{i2}\end{matrix}\right)}_{((\ell + K_1)\times 1)}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(Z_{i1}\)</span>: (<span class="math inline">\(K_1\)</span> many) <strong>included exogenous variables</strong>:
-<ul>
-<li>uncorrelated with <span class="math inline">\(\varepsilon_i\)</span> and thus potentially usable</li>
-<li>included since they have potentially non-zero coefficients in the equation for <span class="math inline">\(Y_i\)</span></li>
-</ul></li>
-<li><span class="math inline">\(Z_{i2}\)</span>: (<span class="math inline">\(\ell\)</span> many) <strong>excluded exogenous variables</strong>:
-<ul>
-<li>uncorrelated with <span class="math inline">\(\varepsilon_i\)</span> and thus potentially usable</li>
-<li>excluded since they have <strong>zero coefficients</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in the equation for <span class="math inline">\(Y_i\)</span></li>
-</ul></li>
-</ul>
+\underset{(\ell\times 1)}{Z_i}=
+\underset{((K_1+\ell_2)\times 1)}{\left(\begin{matrix}Z_{i1}\\Z_{i2}\end{matrix}\right)} :=
+\underset{((K_1+\ell_2)\times 1)}{\left(\begin{matrix}X_{i1}\\Z_{i2}\end{matrix}\right)}
+\]</span> with <span class="math inline">\(\ell=K_1+\ell_2.\)</span></p>
 <p>With this notation we can also write the structural <a href="#eq-StructuralEqEndogen1">Equation&nbsp;<span>7.5</span></a> as <span id="eq-StructuralEqEndogen2"><span class="math display">\[
 Y_{i1} = Z_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
 \tag{7.9}\]</span></span></p>
-<p><strong>Terminology:</strong></p>
 <ul>
-<li><span class="math inline">\(Z_{i1}\)</span>: The <em>exogenous regressors</em> (<span class="math inline">\(Z_{i1}=X_{i1}\)</span>)</li>
-<li><span class="math inline">\(Y_{i2}\)</span>: The <em>endogenous regressor</em></li>
-<li><span class="math inline">\(Z_{i2}\)</span>: The <em>instrumental variables</em></li>
+<li><span class="math inline">\(Z_{i1}\)</span>: (<span class="math inline">\(K_1\times 1\)</span>) vector of <strong>included exogenous variables</strong> <!-- $(Z_{i1}=X_{i1})$ -->
+<ul>
+<li>uncorrelated with <span class="math inline">\(\varepsilon_i\)</span> and thus potentially usable</li>
+<li><strong>included</strong> since they have potentially non-zero coefficients in <a href="#eq-StructuralEqEndogen2">Equation&nbsp;<span>7.9</span></a></li>
+</ul></li>
+<li><span class="math inline">\(Z_{i2}\)</span>: (<span class="math inline">\(\ell_2\times 1\)</span>) vector of <strong>excluded exogenous variables</strong>
+<ul>
+<li>uncorrelated with <span class="math inline">\(\varepsilon_i\)</span> and thus potentially usable</li>
+<li><strong>excluded</strong> since they have <strong>zero coefficients</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in <a href="#eq-StructuralEqEndogen2">Equation&nbsp;<span>7.9</span></a></li>
+</ul></li>
 </ul>
+<!-- **Terminology:** -->
+<!-- * $Z_{i1}$: $(K_1\times 1)$ vector of **exogenous** regressors $(Z_{i1}=X_{i1})$, i.e. $E(Z_{i1}\varepsilon_i)=0$   -->
+<!-- * $Y_{i1}\in\mathbb{R}$:        *Endogenous dependent variable*
+* $Z_{i1}\in\mathbb{R}^{K_1}$:  *Exogenous regressors* ($Z_{i1}=X_{i1}$)
+* $Y_{i2}\in\mathbb{R}^{K_2}$:  *Endogenous regressor*
+* $Z_{i2}\in\mathbb{R}^{\ell}$: *Instrumental variables* -->
 <p>We say that the model is</p>
 <ul>
 <li><strong>just-identified</strong> if <span class="math inline">\(\ell = K\)</span></li>
@@ -473,14 +487,14 @@ Y_{i1} = Z_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
 </blockquote>
 <ol type="1">
 <li>Instrumental variables must be uncorrelated with the error term (<a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a>).</li>
-<li>Instrumental variables must be correlated with the endogenous variables <span class="math inline">\(Y_{i2}\)</span> also after controlling for the other already included exogenous variables <span class="math inline">\(Z_{i1}\)</span> (<a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a>).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> (I.e. the IVs must contain additional information, and thus must not be a perfect multicollinearity between the IVs <span class="math inline">\(Z_{i2}\)</span> and with the already included exogenous regressors <span class="math inline">\(Z_{i1}\)</span>.)</li>
+<li>Instrumental variables must be correlated with the endogenous variables <span class="math inline">\(Y_{i2}\)</span> also after controlling for the other already included exogenous variables <span class="math inline">\(Z_{i1}\)</span> (<a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a>).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> (I.e. the IVs must contain <em>additional information</em>, and thus there must not be a perfect multicollinearity between the IVs <span class="math inline">\(Z_{i2}\)</span> and the already included exogenous regressors <span class="math inline">\(Z_{i1}\)</span>.)</li>
 </ol>
 <!-- From the rank condition  it follows that the  (Otherwise, the instrumental variables would not add any new information since they could be expressed as linear combinations of the already included exogenous variables $Z_{i1}.$) -->
-<p>These two requirement mean that the IVs, <span class="math inline">\(Z_{i2},\)</span></p>
+<p>These two requirement mean that the IVs, <span class="math inline">\(Z_{i2},\)</span> …</p>
 <ul>
-<li>are determined outside the systems for the endogenous variables <span class="math inline">\(Y_{i1}\)</span> and <span class="math inline">\(Y_{i2}.\)</span></li>
-<li>causally determine the endogenous variables <span class="math inline">\(Y_{i2}.\)</span></li>
-<li>not causally determine the dependent variable <span class="math inline">\(Y_{i1}\)</span> (except indirectly through their correlation with the exogenous variables <span class="math inline">\(Z_{i1}\)</span>)</li>
+<li>… are determined outside the systems for the endogenous variables <span class="math inline">\(Y_{i1}\)</span> and <span class="math inline">\(Y_{i2}.\)</span></li>
+<li>… causally determine the endogenous variables <span class="math inline">\(Y_{i2}.\)</span></li>
+<li>… not causally determine the dependent variable <span class="math inline">\(Y_{i1}\)</span> (except indirectly through their correlation with the exogenous variables <span class="math inline">\(Z_{i1}\)</span>)</li>
 </ul>
 <!-- **Measurement error in the regressor (@exm-MeasurementError continued)** 
 
@@ -495,8 +509,25 @@ of $Z_i.$ This additional measurement $Z_{i2}$ is an IV if
 
 satisfy the property of an instrumental variable the measurement error in $Z_{i2}$ must be independent of that in $X_i.$ -->
 </section>
-<section id="real-data-example-college-proximity" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="real-data-example-college-proximity"><span class="header-section-number">7.5</span> Real-Data Example: College Proximity</h2>
+<section id="reduced-form" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="reduced-form"><span class="header-section-number">7.5</span> Reduced Form</h2>
+<p>The <strong>reduced form</strong> model gives us the relationship between</p>
+<ul>
+<li>the <span class="math inline">\((K_2\times 1)\)</span> endogenous regressors <span class="math inline">\(Y_{i2}\)</span> and</li>
+<li>the <span class="math inline">\((\ell\times 1)\)</span> instruments <span class="math inline">\(Z_{i}.\)</span></li>
+</ul>
+<p>The linear reduced form model for <span class="math inline">\(Y_{i2}\)</span> is given by <span class="math display">\[
+\begin{align}
+Y_{i2}
+&amp;= \Gamma'Z_i + u_{i2}\\
+&amp;= \Gamma_{12}'Z_{i1} + \Gamma_{22}'Z_{i2} + u_{i2},
+\end{align}
+\]</span> which implies that <span class="math inline">\(E(Z_iu_{i2}')=0.\)</span></p>
+<p>The <span class="math inline">\((\ell\times K_2)\)</span> dimensional coefficient matrix is defined by the projection coefficient <span id="eq-Gamma1"><span class="math display">\[
+\Gamma = E(Z_iZ_i')^{-1}E(Z_iY_{i2}')
+\tag{7.10}\]</span></span></p>
+<p>The projection coefficient <span class="math inline">\(\Gamma\)</span> (<a href="#eq-Gamma1">Equation&nbsp;<span>7.10</span></a>) is well defined and unique if <a href="#eq-IV2">Equation&nbsp;<span>7.7</span></a> holds.</p>
+<!-- ## Real-Data Example: College Proximity -->
 </section>
 <section id="references" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="references"><span class="header-section-number">7.6</span> References</h2>

@@ -1,12 +1,25 @@
 # Large Sample Inference {#sec-lsinf}
 
-The content of this chapter is very much inspired by the book by @Hayashi2000.
+The content of this chapter is very much inspired by Chapter 2 of the textbook of @Hayashi2000. 
 
 ## Tools for Asymptotic Statistics
 
+Basically every modern econometric method is justified using the toolbox of **asymptotic statistics**. The following core concepts from asymptotic statistics will allow us to drop the restrictive normality assumption of @sec-ssinf and to introduce robust standard errors:   
+
+* Concepts on stochastic convergence
+* Continuous mapping theorem
+* Slutsky's theorem
+* Law of large numbers
+* Central limit theorems 
+
+
 ### Modes of Convergence
 
-In the following we will discuss the four most important convergence concepts for sequences of random variables $(z_1,z_2,\dots,z_n)$ shortly denoted by $\{z_n\}$. Non-random scalars (or vectors or matrices) will be denoted by Greek letters such as $\alpha$. 
+In the following we will discuss the four most important convergence concepts for sequences of random variables 
+$$
+\{z_n\}:=(z_1,z_2,\dots,z_n).
+$$ 
+Non-random scalars (or vectors or matrices) will be denoted by Greek letters such as $\alpha$. 
 
 
 <!-- Sequences of random vectors (or matrices) will be denoted by $\{\mathbf{z}_n\}$.  -->
@@ -16,17 +29,25 @@ In the following we will discuss the four most important convergence concepts fo
 
 ### Four Important Modes of Convergence {-}
 
+Probably the most often used mode of convergence is **convergence in probability**. It states that a stochastic sequence $\{z_n\}$ concentrates around its limit $\alpha$ such that deviations $|z_n-\epsilon|$ larger than some small $\epsilon >0$ occur eventually (as $n\to\infty$) with probability zero. In order to show that some stochastic sequence converges in probability to its limit, one typically uses a *"weak law of large numbers"*.
+
 ::: {#def-conv_prop}
 
 ## Convergence in Probability 
 
 A sequence of random scalars $\{z_n\}$ **converges in probability** to a constant (non-random) $\alpha$ if, for any (arbitrarily small) $\varepsilon>0$,
 \begin{eqnarray*}
-  \lim_{n\to\infty} P\left(|z_n-\alpha|>\varepsilon\right)=0.
+  \lim_{n\to\infty} P\left(|z_n-\alpha|>\epsilon\right)=0.
 \end{eqnarray*}
-We write: $\operatorname{plim}_{n\to\infty}z_n=\alpha$, or $z_n\to_{p}\alpha$. Convergence in probability of a sequence of random vectors (or matrices) $\{z_n\}$ to a constant vector (or matrix) $\alpha$ requires *element-wise* convergence in probability.
+We write: 
+<center>
+$\operatorname{plim}_{n\to\infty}z_n=\alpha\quad$ or shortly 
+$\quad z_n\to_{p}\alpha,\quad$ as $\quad n\to\infty.$
+</center> 
+Convergence in probability of a sequence of random vectors or matrices $\{z_n\}$ to a constant vector or matrix $\alpha$ requires *element-wise* convergence in probability.
 :::
 
+A stricter mode of convergence is **almost sure convergence**. Almost sure convergence is (usually) rather hard to derive, since the probability is about an event concerning an infinite sequence. Fortunately, however, there are established *"strong laws of large numbers"* that we can use to argue that some stochastic sequence converges almost surely to its limit. 
 
 ::: {#def-conv_as}
 
@@ -36,27 +57,52 @@ A sequence of random scalars $\{z_n\}$ **converges almost surely** to a constant
 \begin{eqnarray*}
 P\left(\lim_{n\to\infty}z_n=\alpha\right)=1.
 \end{eqnarray*}
-We write: $z_n\to_{as}\alpha$. Almost sure convergence of a sequence of random vectors (or matrices) $\{z_n\}$ to a constant vector (or matrix) $\alpha$ requires *element-wise* almost sure convergence. 
-
+We write:
+<center>
+$z_n\to_{as}\alpha,\quad$ as $\quad n\to\infty.$
+</center> 
+Almost sure convergence of a sequence of random vectors (or matrices) $\{z_n\}$ to a constant vector (or matrix) $\alpha$ requires *element-wise* almost sure convergence. 
 :::
 
-Almost sure convergence is (usually) rather hard to derive, since the probability is about an event concerning an infinite sequence. Fortunately, however, there are established strong laws of large numbers that we can use for showing almost sure convergence. 
 
+**Convergence in mean square** is typically the most intuitive mode of convergence. If a stochastic sequence converges to a certain limit, then the mean of the stochastic sequence $E(z_n)$ must converge to this limit and the variance of the stochastic sequence must converge to zero. Convergence in mean square is typically easy to show. Moreover, every sequence that converges in mean square, also converges in probability. 
 
 ::: {#def-conv_ms}
 
 ## Convergence in Mean Square 
 
 A sequence of random scalars $\{z_n\}$ **converges in mean square** (or **in quadratic mean**) to a constant (non-random) $\alpha$ if
-\begin{eqnarray*}
-  \lim_{n\to\infty}E\left((z_n-\alpha)^2\right)=0
-\end{eqnarray*}
-We write: $z_n\to_{ms}\alpha$. If $z_n$ is an estimator (e.g., $z_n=\hat\beta_{k,n}$) the expression $E\left((z_n-\alpha)^2\right)$ is termed the **mean squared error**: $\text{MSE}(z_n)=E\left((z_n-\alpha)^2\right)$. Mean square convergence of a sequence of random vectors (or matrices) $\{z_n\}$ to a deterministic vector (or matrix) $\alpha$ requires *element-wise* mean square convergence. 
-
+$$
+\begin{align*}
+  \lim_{n\to\infty}E\left((z_n-\alpha)^2\right)&=0\\
+\Leftrightarrow  
+\lim_{n\to\infty}\left(E(z_n)-\alpha\right)^2 + 
+\lim_{n\to\infty}Var(z_n) &=0
+\end{align*}
+$$
+We write: 
+<center>
+$z_n\to_{ms}\alpha,\quad$ as $\quad n\to\infty.$
+</center> 
+Mean square convergence of a sequence of random vectors (or matrices) $\{z_n\}$ to a deterministic vector (or matrix) $\alpha$ requires *element-wise* mean square convergence. 
 :::
 
+
+Note: If $z_n$ is an estimator (e.g., $z_n=\hat\beta_{k,n}$), then $E\left((z_n-\alpha)^2\right)$ is called the **mean squared error (MSE)** 
+$$
+\begin{align*}
+\operatorname{MSE}(z_n,\alpha)
+&=E\left((z_n-\alpha)^2\right)\\
+&=\left(E(z_n)-\alpha\right)^2 + Var(z_n)\\
+&=\left(\operatorname{Bias}(z_n,\alpha)\right)^2 + Var(z_n).
+\end{align*}
+$$ 
+
+
 <!-- **Convergence to a Random Variable:**The above presented definitions of convergence can be also applied to limits that are random variables. We say that a sequence of random vectors $\{\mathbf{z}_n\}$ converges to a random vector $\mathbf{z}$ and write $\mathbf{z}_n\to_{p}\mathbf{z}$ if the sequence $\{\mathbf{z}_n-\mathbf{z}\}$ converges to $\mathbf{0}$. Similarly, for $\mathbf{z}_n\to_{as}\mathbf{z}$ and $\mathbf{z}_n\to_{ms}\mathbf{z}$.  -->
- 
+
+
+**Convergence in distribution** is the weakest notion of convergence. 
 
 ::: {#def-conv_distr}
 

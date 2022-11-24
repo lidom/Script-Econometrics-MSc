@@ -271,35 +271,73 @@ div.csl-indent {
 
 </header>
 
-<p>The content of this chapter is very much inspired by the book by <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>.</p>
+<p>The content of this chapter is very much inspired by Chapter 2 of the textbook of <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>.</p>
 <section id="tools-for-asymptotic-statistics" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="tools-for-asymptotic-statistics"><span class="header-section-number">6.1</span> Tools for Asymptotic Statistics</h2>
+<p>Basically every modern econometric method is justified using the toolbox of <strong>asymptotic statistics</strong>. The following core concepts from asymptotic statistics will allow us to drop the restrictive normality assumption of <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a> and to introduce robust standard errors:</p>
+<ul>
+<li>Concepts on stochastic convergence</li>
+<li>Continuous mapping theorem</li>
+<li>Slutsky’s theorem</li>
+<li>Law of large numbers</li>
+<li>Central limit theorems</li>
+</ul>
 <section id="modes-of-convergence" class="level3" data-number="6.1.1">
 <h3 data-number="6.1.1" class="anchored" data-anchor-id="modes-of-convergence"><span class="header-section-number">6.1.1</span> Modes of Convergence</h3>
-<p>In the following we will discuss the four most important convergence concepts for sequences of random variables <span class="math inline">\((z_1,z_2,\dots,z_n)\)</span> shortly denoted by <span class="math inline">\(\{z_n\}\)</span>. Non-random scalars (or vectors or matrices) will be denoted by Greek letters such as <span class="math inline">\(\alpha\)</span>.</p>
+<p>In the following we will discuss the four most important convergence concepts for sequences of random variables <span class="math display">\[
+\{z_n\}:=(z_1,z_2,\dots,z_n).
+\]</span> Non-random scalars (or vectors or matrices) will be denoted by Greek letters such as <span class="math inline">\(\alpha\)</span>.</p>
 <!-- Sequences of random vectors (or matrices) will be denoted by $\{\mathbf{z}_n\}$.  -->
 <!-- % Vector-Convergence if and only if element-wise converegence:  -->
 <!-- %https://www.statlect.com/asymptotic-theory/mean-square-convergence#:~:text=The%20concept%20of%20mean%2Dsquare,difference%20is%20on%20average%20small. -->
 </section>
 <section id="four-important-modes-of-convergence" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="four-important-modes-of-convergence">Four Important Modes of Convergence</h3>
+<p>Probably the most often used mode of convergence is <strong>convergence in probability</strong>. It states that a stochastic sequence <span class="math inline">\(\{z_n\}\)</span> concentrates around its limit <span class="math inline">\(\alpha\)</span> such that deviations <span class="math inline">\(|z_n-\epsilon|\)</span> larger than some small <span class="math inline">\(\epsilon &gt;0\)</span> occur eventually (as <span class="math inline">\(n\to\infty\)</span>) with probability zero. In order to show that some stochastic sequence converges in probability to its limit, one typically uses a <em>“weak law of large numbers”</em>.</p>
 <div id="def-conv_prop" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.1 (Convergence in Probability) </strong></span>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in probability</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if, for any (arbitrarily small) <span class="math inline">\(\varepsilon&gt;0\)</span>, <span class="math display">\[\begin{eqnarray*}
-  \lim_{n\to\infty} P\left(|z_n-\alpha|&gt;\varepsilon\right)=0.
-\end{eqnarray*}\]</span> We write: <span class="math inline">\(\operatorname{plim}_{n\to\infty}z_n=\alpha\)</span>, or <span class="math inline">\(z_n\to_{p}\alpha\)</span>. Convergence in probability of a sequence of random vectors (or matrices) <span class="math inline">\(\{z_n\}\)</span> to a constant vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> convergence in probability.</p>
+<span class="theorem-title"><strong>Definition 6.1 (Convergence in Probability) </strong></span>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in probability</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if, for any (arbitrarily small) <span class="math inline">\(\varepsilon&gt;0\)</span>, <span class="math display">\[\begin{eqnarray*}
+  \lim_{n\to\infty} P\left(|z_n-\alpha|&gt;\epsilon\right)=0.
+\end{eqnarray*}\]</span> We write:
+<center>
+<span class="math inline">\(\operatorname{plim}_{n\to\infty}z_n=\alpha\quad\)</span> or shortly <span class="math inline">\(\quad z_n\to_{p}\alpha,\quad\)</span> as <span class="math inline">\(\quad n\to\infty.\)</span>
+</center>
+<p>Convergence in probability of a sequence of random vectors or matrices <span class="math inline">\(\{z_n\}\)</span> to a constant vector or matrix <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> convergence in probability.</p>
 </div>
+<p>A stricter mode of convergence is <strong>almost sure convergence</strong>. Almost sure convergence is (usually) rather hard to derive, since the probability is about an event concerning an infinite sequence. Fortunately, however, there are established <em>“strong laws of large numbers”</em> that we can use to argue that some stochastic sequence converges almost surely to its limit.</p>
 <div id="def-conv_as" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.2 (Almost Sure Convergence) </strong></span>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges almost surely</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[\begin{eqnarray*}
+<span class="theorem-title"><strong>Definition 6.2 (Almost Sure Convergence) </strong></span>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges almost surely</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[\begin{eqnarray*}
 P\left(\lim_{n\to\infty}z_n=\alpha\right)=1.
-\end{eqnarray*}\]</span> We write: <span class="math inline">\(z_n\to_{as}\alpha\)</span>. Almost sure convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{z_n\}\)</span> to a constant vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> almost sure convergence.</p>
+\end{eqnarray*}\]</span> We write:
+<center>
+<span class="math inline">\(z_n\to_{as}\alpha,\quad\)</span> as <span class="math inline">\(\quad n\to\infty.\)</span>
+</center>
+<p>Almost sure convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{z_n\}\)</span> to a constant vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> almost sure convergence.</p>
 </div>
-<p>Almost sure convergence is (usually) rather hard to derive, since the probability is about an event concerning an infinite sequence. Fortunately, however, there are established strong laws of large numbers that we can use for showing almost sure convergence.</p>
+<p><strong>Convergence in mean square</strong> is typically the most intuitive mode of convergence. If a stochastic sequence converges to a certain limit, then the mean of the stochastic sequence <span class="math inline">\(E(z_n)\)</span> must converge to this limit and the variance of the stochastic sequence must converge to zero. Convergence in mean square is typically easy to show. Moreover, every sequence that converges in mean square, also converges in probability.</p>
 <div id="def-conv_ms" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.3 (Convergence in Mean Square) </strong></span>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in mean square</strong> (or <strong>in quadratic mean</strong>) to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[\begin{eqnarray*}
-  \lim_{n\to\infty}E\left((z_n-\alpha)^2\right)=0
-\end{eqnarray*}\]</span> We write: <span class="math inline">\(z_n\to_{ms}\alpha\)</span>. If <span class="math inline">\(z_n\)</span> is an estimator (e.g., <span class="math inline">\(z_n=\hat\beta_{k,n}\)</span>) the expression <span class="math inline">\(E\left((z_n-\alpha)^2\right)\)</span> is termed the <strong>mean squared error</strong>: <span class="math inline">\(\text{MSE}(z_n)=E\left((z_n-\alpha)^2\right)\)</span>. Mean square convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{z_n\}\)</span> to a deterministic vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> mean square convergence.</p>
+<span class="theorem-title"><strong>Definition 6.3 (Convergence in Mean Square) </strong></span>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in mean square</strong> (or <strong>in quadratic mean</strong>) to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[
+\begin{align*}
+  \lim_{n\to\infty}E\left((z_n-\alpha)^2\right)&amp;=0\\
+\Leftrightarrow  
+\lim_{n\to\infty}\left(E(z_n)-\alpha\right)^2 +
+\lim_{n\to\infty}Var(z_n) &amp;=0
+\end{align*}
+\]</span> We write:
+<center>
+<span class="math inline">\(z_n\to_{ms}\alpha,\quad\)</span> as <span class="math inline">\(\quad n\to\infty.\)</span>
+</center>
+<p>Mean square convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{z_n\}\)</span> to a deterministic vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> mean square convergence.</p>
 </div>
+<p>Note: If <span class="math inline">\(z_n\)</span> is an estimator (e.g., <span class="math inline">\(z_n=\hat\beta_{k,n}\)</span>), then <span class="math inline">\(E\left((z_n-\alpha)^2\right)\)</span> is called the <strong>mean squared error (MSE)</strong> <span class="math display">\[
+\begin{align*}
+\operatorname{MSE}(z_n,\alpha)
+&amp;=E\left((z_n-\alpha)^2\right)\\
+&amp;=\left(E(z_n)-\alpha\right)^2 + Var(z_n)\\
+&amp;=\left(\operatorname{Bias}(z_n,\alpha)\right)^2 + Var(z_n).
+\end{align*}
+\]</span></p>
 <!-- **Convergence to a Random Variable:**The above presented definitions of convergence can be also applied to limits that are random variables. We say that a sequence of random vectors $\{\mathbf{z}_n\}$ converges to a random vector $\mathbf{z}$ and write $\mathbf{z}_n\to_{p}\mathbf{z}$ if the sequence $\{\mathbf{z}_n-\mathbf{z}\}$ converges to $\mathbf{0}$. Similarly, for $\mathbf{z}_n\to_{as}\mathbf{z}$ and $\mathbf{z}_n\to_{ms}\mathbf{z}$.  -->
+<p><strong>Convergence in distribution</strong> is the weakest notion of convergence.</p>
 <div id="def-conv_distr" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 6.4 (Convergence in Distribution) </strong></span>Let <span class="math inline">\(F_n\)</span> be the cumulative distribution function (cdf) of <span class="math inline">\(z_n\)</span> and <span class="math inline">\(F\)</span> the cdf of <span class="math inline">\(z\)</span>. A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in distribution</strong> to a random scalar <span class="math inline">\(z\)</span> if for all <span class="math inline">\(t\)</span> such that <span class="math inline">\(F(t)\)</span> is continuous at <span class="math inline">\(t\)</span>, <span class="math display">\[\begin{eqnarray*}
   \lim_{n\to\infty}F_n(t)=F(t).
