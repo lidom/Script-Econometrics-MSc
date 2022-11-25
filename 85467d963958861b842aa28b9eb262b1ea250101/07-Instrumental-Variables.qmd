@@ -37,7 +37,7 @@ This situation constitutes a core problem in econometrics which is not so much i
 It is important to distinguish @eq-IVLinMod from the regression (or projection) models we considered so far. It may be the case that a structural model coincides with a regression/projector model, but this is not necessarily the case.
 
 
-Endogeneity **cannot** happen if the model coefficient is defined by a linear projection. We can *define*[^1] the linear (population) **projection coefficient** 
+Endogeneity **cannot** happen if the model coefficient is defined by a linear projection. We can *define* the linear (population) **projection coefficient** 
 $$
 \beta^*=E(X_iX_i')^{-1}E(X_iY_i)
 $$
@@ -50,7 +50,7 @@ $$
 E(X_i\varepsilon_i^*)=0.
 $$
 
-[^1]: Caution, here we simply define $\beta^*$ as $\beta^*=E(X_iX_i')^{-1}E(X_iY)$ which results the population projection coefficient for the population projection of $Y$ into the space spanned by $X_i$. We did not derive the expression for $\beta^*$ using the exogeneity assumption as we did in @sec-MMEstimator; indeed, the exogeneity assumption may be violated.
+**Caution:** Here we simply *define* $\beta^*$ as $\beta^*=E(X_iX_i')^{-1}E(X_iY)$ which results the population version of the projection coefficient for the projection of $Y$ into the space spanned by $X_i.$ We did not derive the expression for $\beta^*$ using the exogeneity assumption as we did in @sec-MMEstimator; indeed, the exogeneity assumption may be violated here.
 
 
 The (population) projection coefficient $\beta^*$ and the structural parameter $\beta$ coincide $(\beta^*=\beta)$ under exogeneity. 
@@ -398,11 +398,12 @@ We say that the model is
 > What variables can be used as Instrumental Variables (IVs)? 
 
 1. Instrumental variables must be uncorrelated with the error term (@eq-IV1).
-2. Instrumental variables must be correlated with the endogenous variables $Y_{i2}$ also after controlling for the other already included exogenous variables $Z_{i1}$ (@eq-IV3).[^1] (I.e. the IVs must contain *additional information*, and thus there must not be a perfect multicollinearity between the IVs $Z_{i2}$ and the already included exogenous regressors $Z_{i1}$.)
+2. Instrumental variables must be correlated with the endogenous variables $Y_{i2}$ also after controlling for the other already included exogenous variables $Z_{i1}$ (@eq-IV3).[^2] (I.e. the IVs must contain *additional information*, and thus there must not be a perfect multicollinearity between the IVs $Z_{i2}$ and the already included exogenous regressors $Z_{i1}$.)
+
+[^2]: Thus if you regress each of the instruments in $Z_{i2}$ on the exogenous variables $Z_{i1}$, then the residuals of these regressions should still correlate with the endogenous variables in $Y_{i2}.$
 
 <!-- From the rank condition  it follows that the  (Otherwise, the instrumental variables would not add any new information since they could be expressed as linear combinations of the already included exogenous variables $Z_{i1}.$) -->
 
-[^1]: Thus if you regress each of the instruments in $Z_{i2}$ on the exogenous variables $Z_{i1}$, then the residuals of these regressions should still correlate with the endogenous variables in $Y_{i2}.$
 
 These two requirement mean that the IVs, $Z_{i2},$ ...
 

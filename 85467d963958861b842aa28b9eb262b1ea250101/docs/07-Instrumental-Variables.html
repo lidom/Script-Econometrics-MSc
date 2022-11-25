@@ -217,13 +217,14 @@ E(X_i\varepsilon_i)\neq 0.
 <li><span class="math inline">\(\beta\)</span> in <a href="#eq-IVLinMod">Equation&nbsp;<span>7.1</span></a> is called a <strong>structural parameter</strong></li>
 </ul>
 <p>It is important to distinguish <a href="#eq-IVLinMod">Equation&nbsp;<span>7.1</span></a> from the regression (or projection) models we considered so far. It may be the case that a structural model coincides with a regression/projector model, but this is not necessarily the case.</p>
-<p>Endogeneity <strong>cannot</strong> happen if the model coefficient is defined by a linear projection. We can <em>define</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> the linear (population) <strong>projection coefficient</strong> <span class="math display">\[
+<p>Endogeneity <strong>cannot</strong> happen if the model coefficient is defined by a linear projection. We can <em>define</em> the linear (population) <strong>projection coefficient</strong> <span class="math display">\[
 \beta^*=E(X_iX_i')^{-1}E(X_iY_i)
 \]</span> and the corresponding linear (population) projection equation <span class="math display">\[
 Y_i = X_i'\beta^* + \varepsilon_i^*,
 \]</span> where then, by construction (projection properties) <span class="math display">\[
 E(X_i\varepsilon_i^*)=0.
 \]</span></p>
+<p><strong>Caution:</strong> Here we simply <em>define</em> <span class="math inline">\(\beta^*\)</span> as <span class="math inline">\(\beta^*=E(X_iX_i')^{-1}E(X_iY)\)</span> which results the population version of the projection coefficient for the projection of <span class="math inline">\(Y\)</span> into the space spanned by <span class="math inline">\(X_i.\)</span> We did not derive the expression for <span class="math inline">\(\beta^*\)</span> using the exogeneity assumption as we did in <a href="03-Multiple-Linear-Regression.html#sec-MMEstimator"><span>Section&nbsp;3.4</span></a>; indeed, the exogeneity assumption may be violated here.</p>
 <p>The (population) projection coefficient <span class="math inline">\(\beta^*\)</span> and the structural parameter <span class="math inline">\(\beta\)</span> coincide <span class="math inline">\((\beta^*=\beta)\)</span> under exogeneity.</p>
 <p>However, under endogeneity (<a href="#eq-endogen">Equation&nbsp;<span>7.2</span></a>) the projection coefficient <span class="math inline">\(\beta^*\)</span> does not equal the structural parameter <span class="math inline">\((\beta^*\neq \beta):\)</span> <span class="math display">\[
 \begin{align*}
@@ -468,7 +469,7 @@ Y_{i1} = Z_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
 <li><span class="math inline">\(Z_{i2}\)</span>: (<span class="math inline">\(\ell_2\times 1\)</span>) vector of <strong>excluded exogenous variables</strong>
 <ul>
 <li>uncorrelated with <span class="math inline">\(\varepsilon_i\)</span> and thus potentially usable</li>
-<li><strong>excluded</strong> since they have <strong>zero coefficients</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in <a href="#eq-StructuralEqEndogen2">Equation&nbsp;<span>7.9</span></a></li>
+<li><strong>excluded</strong> since they have <strong>zero coefficients</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> in <a href="#eq-StructuralEqEndogen2">Equation&nbsp;<span>7.9</span></a></li>
 </ul></li>
 </ul>
 <!-- **Terminology:** -->
@@ -487,7 +488,7 @@ Y_{i1} = Z_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
 </blockquote>
 <ol type="1">
 <li>Instrumental variables must be uncorrelated with the error term (<a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a>).</li>
-<li>Instrumental variables must be correlated with the endogenous variables <span class="math inline">\(Y_{i2}\)</span> also after controlling for the other already included exogenous variables <span class="math inline">\(Z_{i1}\)</span> (<a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a>).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> (I.e. the IVs must contain <em>additional information</em>, and thus there must not be a perfect multicollinearity between the IVs <span class="math inline">\(Z_{i2}\)</span> and the already included exogenous regressors <span class="math inline">\(Z_{i1}\)</span>.)</li>
+<li>Instrumental variables must be correlated with the endogenous variables <span class="math inline">\(Y_{i2}\)</span> also after controlling for the other already included exogenous variables <span class="math inline">\(Z_{i1}\)</span> (<a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a>).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (I.e. the IVs must contain <em>additional information</em>, and thus there must not be a perfect multicollinearity between the IVs <span class="math inline">\(Z_{i2}\)</span> and the already included exogenous regressors <span class="math inline">\(Z_{i1}\)</span>.)</li>
 </ol>
 <!-- From the rank condition  it follows that the  (Otherwise, the instrumental variables would not add any new information since they could be expressed as linear combinations of the already included exogenous variables $Z_{i1}.$) -->
 <p>These two requirement mean that the IVs, <span class="math inline">\(Z_{i2},\)</span> …</p>
@@ -545,9 +546,8 @@ Hansen, Bruce. 2022. <em><span>E</span>conometrics</em>. Princeton University Pr
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Thus if you regress each of the instruments in <span class="math inline">\(Z_{i2}\)</span> on the exogenous variables <span class="math inline">\(Z_{i1}\)</span>, then the residuals of these regressions should still correlate with the endogenous variables in <span class="math inline">\(Y_{i2}.\)</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>The instrumental variables <span class="math inline">\(Z_{i2}\)</span> correlate with <span class="math inline">\(Y_i\)</span> only indirectly, because they correlate with <span class="math inline">\(X_{i1}\)</span> (by <a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a>). Therefore, since <span class="math inline">\(X_{i1}\)</span> are included in the equation for <span class="math inline">\(Y_i\)</span>, there are no variations left in <span class="math inline">\(Y_i\)</span> that correlate with <span class="math inline">\(Z_{i2}.\)</span> Thus the instrumental variables <span class="math inline">\(Z_{i2}\)</span> have zero coefficients in the equation for <span class="math inline">\(Y_i.\)</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Thus if you regress each of the instruments in <span class="math inline">\(Z_{i2}\)</span> on the exogenous variables <span class="math inline">\(Z_{i1}\)</span>, then the residuals of these regressions should still correlate with the endogenous variables in <span class="math inline">\(Y_{i2}.\)</span><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Thus if you regress each of the instruments in <span class="math inline">\(Z_{i2}\)</span> on the exogenous variables <span class="math inline">\(Z_{i1}\)</span>, then the residuals of these regressions should still correlate with the endogenous variables in <span class="math inline">\(Y_{i2}.\)</span><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

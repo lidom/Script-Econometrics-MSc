@@ -11,6 +11,7 @@ Basically every modern econometric method is justified using the toolbox of **as
 * Slutsky's theorem
 * Law of large numbers
 * Central limit theorems 
+* Cramér-Wold device
 
 
 ### Modes of Convergence
@@ -74,12 +75,14 @@ Almost sure convergence of a sequence of random vectors (or matrices) $\{z_n\}$ 
 A sequence of random scalars $\{z_n\}$ **converges in mean square** (or **in quadratic mean**) to a constant (non-random) $\alpha$ if
 $$
 \begin{align*}
-  \lim_{n\to\infty}E\left((z_n-\alpha)^2\right)&=0\\
-\Leftrightarrow  
-\lim_{n\to\infty}\left(E(z_n)-\alpha\right)^2 + 
-\lim_{n\to\infty}Var(z_n) &=0
+  \lim_{n\to\infty}E\left((z_n-\alpha)^2\right)&=0.
 \end{align*}
 $$
+<!-- where
+$$
+\operatorname{MSE}(z_n,\alpha) = E\left((z_n-\alpha)^2\right)=\left(E(z_n)-\alpha\right)^2 + Var(z_n). 
+$$ 
+-->
 We write: 
 <center>
 $z_n\to_{ms}\alpha,\quad$ as $\quad n\to\infty.$
@@ -102,31 +105,42 @@ $$
 <!-- **Convergence to a Random Variable:**The above presented definitions of convergence can be also applied to limits that are random variables. We say that a sequence of random vectors $\{\mathbf{z}_n\}$ converges to a random vector $\mathbf{z}$ and write $\mathbf{z}_n\to_{p}\mathbf{z}$ if the sequence $\{\mathbf{z}_n-\mathbf{z}\}$ converges to $\mathbf{0}$. Similarly, for $\mathbf{z}_n\to_{as}\mathbf{z}$ and $\mathbf{z}_n\to_{ms}\mathbf{z}$.  -->
 
 
-**Convergence in distribution** is the weakest notion of convergence. 
+**Convergence in distribution** is the weakest and at the same time most important mode of convergence. 
+
+
 
 ::: {#def-conv_distr}
 
 ## Convergence in Distribution 
 
-Let $F_n$ be the cumulative distribution function (cdf) of $z_n$ and $F$ the cdf of $z$. A sequence of random scalars $\{z_n\}$ **converges in distribution** to a random scalar $z$ if for all $t$ such that $F(t)$ is continuous at $t$,
+Let $F_n$ be the cumulative distribution function (cdf) of $z_n$ and $F$ the cdf of $z$. A sequence of real valued random variables $\{z_n\}$ **converges in distribution** to a real valued random variable $z$ if 
 \begin{eqnarray*}
-  \lim_{n\to\infty}F_n(t)=F(t).
+  \lim_{n\to\infty}F_n(t)=F(t)
 \end{eqnarray*}
-We write: $z_n\to_{d} z$ and call $F$ the **asymptotic** (or **limit**) **distribution** of $z_n$. Sometimes you will see statements like $z_n\to_{d} N(0,1)$ or $z_n\overset{a}{\sim}N(0,1)$, which should be read as $z_n\to_{d} z$, where $z\sim N(0,1)$. 
-
+for all $t$ at which $F(t)$ is continuous $t.$ We write: 
+<center>
+$z_n\to_{d}z,\quad$ as $\quad n\to\infty,$
+</center> 
+and we call $F$ the **asymptotic (or limit) distribution** of $z_n$. 
 :::
 
-A stochastic sequence $\{z_n\}$ can also convergence in distribution to a **deterministic scalar** $\alpha$. In this case $\alpha$ is treated as a degenerated random variable with cdf 
+Remarks on @def-conv_distr:
+
+1. Often you will see statements like $z_n\to_{d} N(0,1)$ or $z_n\overset{a}{\sim}N(0,1)$, which should be read as $\lim_{n\to\infty}F_n(t) = \Phi(t)$ for all $t$, where $\Phi$ denotes the  distribution function of the standard normal distribution. 
+2. A stochastic sequence $\{z_n\}$ can also convergence in distribution to a **deterministic scalar** $\alpha$. In this case $\alpha$ is treated as a degenerated random variable with cdf 
 $$
-F_\alpha(t)=\left\{\begin{matrix}0&\text{if}\;\;t<\alpha\\ 1&\text{if}\;\;t\geq\alpha\end{matrix}\right.
+F_\alpha(t)=\left\{\begin{matrix}0&\text{if}\;\;t<\alpha\\ 1&\text{if}\;\;t\geq\alpha.\end{matrix}\right.
 $$
 
 
-::: {#def-conv_multdistr}
+By contrast to all other modes of convergence, @def-conv_distr only addresses the univariate case. The reason for this is that @def-conv_distr cannot simply applied element-wise since this would ignore all interdependencies (i.e. covariances, ...) between the random variables in a radom vector. To handle multivariate convergence in distribution, we need the following theorem. 
 
-## Multivariate Convergence in Distribution 
 
-Let $z_n,z\in\mathbb{R}^K$ be $K$-dimensional random variables, then
+::: {#thm-CramerWold}
+
+## Cramér-Wold
+
+Let $z_n\in\mathbb{R}^K$ and $z\in\mathbb{R}^K$ be $K$-dimensional random variables ($K\geq 1$), then
 $$
 z_n\to_{d} z\text{\quad if and only if \quad}\lambda'z_n\to_{d}\lambda'z
 $$ 
@@ -134,7 +148,9 @@ for any $\lambda\in\mathbb{R}^K$.
 
 :::
 
- This statement is known as the **Cramer Wold Device**. It is needed since element-wise convergence in distribution does generally not imply convergence of the *joint* distribution of $z_n$ to the *joint* distribution of $z$; except, if all elements are independent from each other.
+A proof of @thm-CramerWold can be found, e.g., in @Billingsley2008 (p. 383). 
+
+The Cramér-Wold theorem (@thm-CramerWold) is needed since element-wise convergence in distribution does generally not imply convergence of the *joint* distribution of $z_n$ to the *joint* distribution of $z$; except, if all elements are independent from each other.
 
 
 <!-- **Remark:**Note that convergence in distribution, as the name suggests, only involves the distributions of the random variables. Thus, the random variables need not even be defined on the same probability space (that is, they need not be defined for the same random experiment), and indeed we don't even need the random variables at all. (But all this is just thought provoking \dots typically, we'll only consider cases with a common probability space.) -->
@@ -147,37 +163,45 @@ for any $\lambda\in\mathbb{R}^K$.
 
 The following relationships hold:
 
-(i) $z_n\to_{ms}\alpha\Rightarrow z_n\to_{p}\alpha.$
-(ii) $z_n\to_{as}\alpha\Rightarrow z_n\to_{p}\alpha.$ 
-(iii) $z_n\to_{d}\alpha\Leftrightarrow z_n\to_{p}\alpha.$ I.e., if the limiting random variable is a constant (i.e., a degenerated random variable), then convergence in distribution is equivalent to convergence in probability.
-
+(i) Mean square convergence implies convergence in probability:
+$$
+ z_n\to_{ms}\alpha\quad \Rightarrow\quad  z_n\to_{p}\alpha
+$$
+(ii) Almost sure convergence implies convergence in probability:
+$$
+z_n\to_{as}\alpha\quad \Rightarrow\quad  z_n\to_{p}\alpha
+$$ 
+(iii) Convergence in distribution to a constant is equivalent to convergence in probability to the same constant:
+$$
+z_n\to_{d}\alpha\quad \Leftrightarrow\quad z_n\to_{p}\alpha
+$$ 
 :::
 
-Proofs can be found, e.g., here: [https://www.statlect.com/asymptotic-theory/relations-among-modes-of-convergence](https://www.statlect.com/asymptotic-theory/relations-among-modes-of-convergence)
+Proofs of the result in @lem-Relations can be found, e.g., here: [https://www.statlect.com/asymptotic-theory/relations-among-modes-of-convergence](https://www.statlect.com/asymptotic-theory/relations-among-modes-of-convergence)
 
 
 ### Continuous Mapping Theorem (CMT)
 
 
-::: {#lem-Preserv}
+::: {#thm-Preserv}
 
 ## Preservation of convergence for continuous transformations (or "continuous mapping theorem (CMT)")
 
-Suppose $\{z_n\}$ is a stochastic sequence of random scalars, vectors, or matrices and that $a(\cdot)$ is a continuous function that does not depended on $n$. Then
+Suppose $\{z_n\}$ is a stochastic sequence of random scalars, vectors, or matrices and that $f(\cdot)$ is a *continuous* function that does not depended on $n$. Then
 
-(i)   $z_n\to_{p}\alpha\Rightarrow a(z_n)\to_{p} a(\alpha)$
-(ii)  $z_n\to_{as}  \alpha\Rightarrow a(z_n)\to_{as} a(\alpha)$
-(iii) $z_n\to_{d}\alpha\Rightarrow a(z_n)\to_{d} a(\alpha)$
+(i)   $z_n\to_{p}  \alpha\quad\Rightarrow\quad f(z_n)\to_{p} f(\alpha)$
+(ii)  $z_n\to_{as} \alpha\quad\Rightarrow\quad f(z_n)\to_{as} f(\alpha)$
+(iii) $z_n\to_{d}  \alpha\quad\Rightarrow\quad f(z_n)\to_{d} f(\alpha)$
 
 :::
 
-Proof can be found, e.g., in *Asymptotic Statistics*, van der Vaart (1998), Theorem 2.3. Or here: [https://www.statlect.com/asymptotic-theory/continuous-mapping-theorem](https://www.statlect.com/asymptotic-theory/continuous-mapping-theorem)
+Proofs of @thm-Preserv can be found, e.g., in @Vaart2000 (see Theorem 2.3)  or here: [https://www.statlect.com/asymptotic-theory/continuous-mapping-theorem](https://www.statlect.com/asymptotic-theory/continuous-mapping-theorem)
 
-**Note:** The CMT does *not* hold for m.s.-convergence except for the case where $a(.)$ is linear.  
+**Note:** The CMT does *not* hold for m.s.-convergence except for the case where $f(.)$ is a linear function.  
 <!-- %This is easily seen using the expression %$\E[(z_n-\alpha)^2]=Var(z_n)+(\E(z_n)-\alpha)^2$ and the  -->
 <!-- %application of Jensen's inequality (see below). -->
 
-**Examples:** As a consequence of the CMT (@lem-Preserv) we have that the usual arithmetic operations preserve convergence in probability (equivalently for almost sure convergence and convergence in distribution): 
+**Examples:** As a consequence of the CMT (@thm-Preserv) we have that the usual arithmetic operations preserve convergence in probability (and equivalently for almost sure convergence and convergence in distribution): 
 
 - If $x_n\to_{p} \beta$ and $y_n\to_{p} \gamma$ then $x_n+y_n\to_{p} \beta+\gamma$
 - If $x_n\to_{p} \beta$ and $y_n\to_{p} \gamma$ then $x_n\cdot y_n\to_{p} \beta\cdot\gamma$
@@ -187,72 +211,91 @@ Proof can be found, e.g., in *Asymptotic Statistics*, van der Vaart (1998), Theo
 <!-- The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n, y_n\right)'$, $\boldsymbol\alpha=\left(\beta, \gamma\right)'$, and $\mathbf{a}(\boldsymbol\alpha)=(1,1)\boldsymbol\alpha$, similarly for all others.  -->
 
 
-### Slutsky Theorem
+### Slutsky's Theorem
 
 The following results are concerned with combinations of convergence in probability and convergence in distribution. These are particularly important for the derivation of the asymptotic distribution of estimators.  
 
 
-::: {#lem-Slutsky}
+::: {#thm-Slutsky}
 
-## Slutsky Theorem
+## Slutsky's Theorem
 
 Let $x_n$ and $y_n$ denote sequences of random scalars or vectors and let $A_n$ denote a sequences of random matrices. Moreover, $\alpha$ and $A$ are deterministic limits of appropriate dimensions and $x$ is a random limit of appropriate dimension. 
 
-(i) If $x_n\to_{d} x$\quad and \quad $y_n\to_{p} \alpha$ \quad then\;\; $x_n+y_n\to_{d} x+\alpha$
-(ii) If $x_n\to_{d} x$\quad and \quad $y_n\to_{p} 0$ \quad then\;\; $x_n'y_n\to_{p} 0$
-(iii) If $x_n\to_{d} x$\quad and \quad $A_n\to_{p} A$ \quad then\;\; $A_nx_n\to_{d} Ax$, where it is assumed that $A_n$ and $x_n$ are "conformable"(i.e., the matrix- and vector-dimensions fit to each other). 
-
-Important special case: 
-
-If $x_n\to_{d} N(0,\Sigma)$\quad and \quad $A_n\to_{p} A$ \quad then\;\; $A_nx_n\to_{d} N(0,A\Sigma A')$
-
+(i) If $x_n\to_{d} x\quad$ and  $\quad y_n\to_{p} \alpha,\quad$  then $\quad x_n+y_n\to_{d} x+\alpha$
+(ii) If $x_n\to_{d} x\quad$ and $\quad y_n\to_{p} 0,\quad$ then $\quad x_n'y_n\to_{p} 0$
+(iii) If $x_n\to_{d} x\quad$ and $\quad A_n\to_{p} A,\quad$ then $\quad A_nx_n\to_{d} Ax$, where it is assumed that $A_n$ and $x_n$ are "conformable" (i.e., the matrix- and vector-dimensions fit to each other). 
 :::
 
-Proofs can be found, e.g., in *Asymptotic Statistics*, van der Vaart, Theorem 2.8. Or here: [https://www.statlect.com/asymptotic-theory/Slutsky-theorem](https://www.statlect.com/asymptotic-theory/Slutsky-theorem)
+Proofs of @thm-Slutsky can be found, e.g., in @Vaart2000 (see Theorem 2.8) or here: [https://www.statlect.com/asymptotic-theory/Slutsky-theorem](https://www.statlect.com/asymptotic-theory/Slutsky-theorem)
 
 
-**Note:** Sometimes, only parts *(i)* and *(ii)* of @lem-Slutsky are called "Slutsky's theorem."
+**Remark:** Sometimes, only parts i. and ii. of @thm-Slutsky are called "Slutsky's theorem."
 
 
-### Law of Large Numbers (LLN) and Central Limit Theorem (CLT)
+Important special case of @thm-Slutsky: 
 
-So far, we discussed the definitions of the four most important convergence modes, their relations among each other, and basic theorems (CMT and Slutsky) about functionals of stochastic sequences. Though, we still lack of tools that allow us to actually show that a stochastic sequence convergences (in some of the discussed modes) to some limit.
-
-In the following we consider the stochastic sequences $\{\bar{z}_n\}$ of sample means $\bar{z}_n=n^{-1}\sum_{i=1}^nz_i$, where $z_i$, $i=1,\dots,n$, are (scalar, vector, or matrix-valued) *random variables*. Remember: the sample mean $\bar{z}_n$ is an estimator of the deterministic population mean $\mu$. 
-
-Weak LLNs, strong LLNs, and CLTs tell us conditions under which arithmetic means $\bar{z}_n=n^{-1}\sum_{i=1}^nz_i$ converge: 
-\begin{eqnarray*}
-  \bar{z}_n&\to_{p}&\mu\quad\text{(weak LLN)}\\
-  \bar{z}_n&\to_{as}&\mu\quad\text{(strong LLN)}\\
-  \sqrt{n}(\bar{z}_n-\mu)&\to_{d}&N(0,\sigma^2)\quad\text{(CLT)}
-\end{eqnarray*}
+If 
+$$
+x_n\to_{d} N(0,\Sigma)\quad\text{and}\quad A_n\to_{p} A
+$$ 
+then
+$$
+A_nx_n\to_{d} N(0,A\Sigma A').
+$$
 
 
-In the following we introduce the most well-known versions of the weak, the strong LLN, and the CLT.
+
+
+
+
+### Law of Large Numbers and Central Limit Theorems
+
+So far, we discussed the definitions of the four most important convergence modes, their relations among each other, and basic theorems about functionals of stochastic sequences (CMT and Slutsky). Though, we still lack of tools that allow us to actually show that a stochastic sequence convergences (in some of the discussed modes) to some limit.
+
+In the following we consider the stochastic sequences 
+$$
+\bar{z}_1,\bar{z}_2,\dots,\bar{z}_n,\quad n \to\infty 
+$$ 
+of sample means 
+$$
+\bar{z}_n:=n^{-1}\sum_{i=1}^nz_i,
+$$ 
+where $z_i$, $i=1,\dots,n$, are (scalar, vector, or matrix-valued) *random variables*. 
+
+**Remember:** The sample mean $\bar{z}_n$ is an estimator of the deterministic population mean $\mu$. 
+
+Weak Law of Large Numbers (WLLNs), Strong LLNs (SLLNs), and Central Limit Theorems (CLTs) tell us conditions under which arithmetic means $\bar{z}_n=n^{-1}\sum_{i=1}^nz_i$ converge in probability, almost surely, and in distribution, respectively: 
+
+* Weak LLN: $\bar{z}_n \to_{p}\mu$
+* Strong LLN: $\bar{z}_n\to_{as}\mu$
+* CLT: $\sqrt{n}(\bar{z}_n-\mu)\to_{d}N(0,\sigma^2)$
+
+In the following we introduce the most well-known versions of a WLLN, SLLN, and a CLT.
 
 
 ::: {#thm-WLLN1}
 
-## Weak LLN (Chebychev)
+## Weak LLN (by Chebychev)
 
-If $\lim_{n\to\infty} E(\bar{z}_n)=\mu$ and $\lim_{n\to\infty}Var(\bar{z}_n)=0$ then $\bar{z}_n\to_{p}\mu.$
+If $\lim_{n\to\infty} E(\bar{z}_n)=\mu$ and $\lim_{n\to\infty}Var(\bar{z}_n)=0,$ then $\bar{z}_n\to_{p}\mu.$
 
 :::
 
-Proof can be found, for instance, here: [https://www.statlect.com/asymptotic-theory/law-of-large-numbers](https://www.statlect.com/asymptotic-theory/law-of-large-numbers)
+A proof of @thm-WLLN1 can be found, for instance, here: [https://www.statlect.com/asymptotic-theory/law-of-large-numbers](https://www.statlect.com/asymptotic-theory/law-of-large-numbers)
 
 
 ::: {#thm-SLLN1}
 
-## Strong LLN (Kolmogorov)
+## Strong LLN (by Kolmogorov)
 
-If $\{z_i\}$ is an iid sequence and $E(z_i)=\mu$ then $\bar{z}_n\to_{as}\mu.$
+If $\{z_i\}$ is an iid sequence with $E(z_i)=\mu,$ then $\bar{z}_n\to_{as}\mu.$
 
 :::
 
-Proof can be found, e.g., in *Linear Statistical Inference and Its Applications*, Rao (1973), pp. 112-114. 
+A proof of @thm-SLLN1 can be found, e.g., in *Linear Statistical Inference and Its Applications*, Rao (1973), pp. 112-114. 
 
-**Note:** The weak and the strong LLN for random vectors follow from requiring element-by-element convergence.
+**Note:** The WLLN and the SLLN for **random vectors** follow from applying the the theorem separately for each element of the random vectors.
 
 ::: {#thm-CLT1}
 
@@ -264,43 +307,91 @@ $$
 
 :::
 
-Proof can be found, e.g., in *Asymptotic Statistics*, van der Vaart (1998), Theorem 2.17.
+A proof of @thm-CLT1 can be found, e.g., in @Vaart2000 (see Theorem 2.17).
 
 
-The Lindeberg-Levy CLT for $K$-dimensional random vectors follows from our above discussion on "Multivariate Convergence in Distribution."From this we know that if $\bar{z}_n\in\mathbb{R}^K$ and $\mu\in\mathbb{R}^K$, then
-$$\sqrt{n}(\bar{z}_n-\mu)\to_{d} \mathcal{N}(0,\Sigma)\quad\Leftrightarrow\quad \sqrt{n}(\lambda'\bar{z}_n-\lambda'\mu)\to_{d} \mathcal{N}(0,\lambda'\Sigma\lambda),$$
-for any $\lambda\in\mathbb{R}^K$. 
-
-
-That is, to apply the Lindeberg-Levy CLT (@thm-CLT1) to multivariate (e.g., $K$-dimensional) stochastic sequences, we need to check whether the univariate stochastic sequence $\{\lambda'z_i\}$ is i.i.d. with $E(\lambda'z_i)=\lambda'\mu$ and $Var(\lambda'z_i)=\lambda'\Sigma\lambda$ for any  $\lambda\in\mathbb{R}^K$. This is the case if the  multivariate ($K$-dimensional) stochastic sequence $\{z_i\}$ is an i.i.d. sequence with $E(z_i)=\mu$ and $Var(z_i)=\Sigma$.
+Using the Cramér-Wold device (@thm-CramerWold), the Lindeberg-Levy CLT (@thm-CLT1) can also be applied to $K$-dimensional random vectors: <br>
+To show that $\sqrt{n}(\bar{z}_n-\mu)$ converges to a multivariate ($K>1$ dimensional) normal distribution as $n\to\infty$, we need to check whether the **uni**variate stochastic sequence $\{\lambda'z_i\}$ is i.i.d. with $E(\lambda'z_i)=\lambda'\mu$ and $Var(\lambda'z_i)=\lambda'\Sigma\lambda$ for any  $\lambda\in\mathbb{R}^K$. This is the case if the multivariate stochastic sequence $\{z_i\}$ is an i.i.d. sequence with $E(_i)=\mu$ and $Var(z_i)=\Sigma$.
 
 
 **Note:** The LLNs and the CLT are stated with respect to sequences of sample means $\{\bar{z}_n\}$; i.e., the simplest estimators you probably can think of.  We will see, however, that this is all we need in order to analyze also more complicated estimators such as the OLS estimator.
 
 
 
-### Estimators as a Sequences of Random Variables
+### Estimators: Sequences of Random Variables
 
-Our concepts above readily apply to general scalar-valued (univariate) or vector-valued ($K$-dimensional) estimators, say $\hat\theta_n\in\mathbb{R}^K$, that are computed from i.i.d. random samples.
+Our concepts above readily apply to univariate or multivariate ($K$-dimensional) estimators $\hat\theta_n\in\mathbb{R}^K$ computed from random samples with sample size $n$:<br>
+An increasing sample size $n\to\infty$ makes an estimator $\hat\theta_n$ nothing but a sequence of random variables converging (hopefully) to the correct limit $\theta$. 
 
+If an estimator $\hat\theta_n$ converges in probability to its limit $\theta$, we call the estimator **weakly consistent** or simply **consistent**. If it converges almost surely to $\theta,$ we call the estimator **strongly consistent**. 
 
 <!-- **Note:**Under the asymptotic perspective ($n\to\infty$) it's not necessary anymore to condition on $X$ since as $n\to\infty$ the stochastic influence of $X$ on  vanishes  -->
 
+::: {#def-WConsist}
 
-**(Weak) Consistency:** We say that an estimator $\hat\theta_n$ is *(weakly) consistent for $\theta$* if 
-$$\hat\theta_n\to_{p}\theta\quad\text{as}\quad n\to\infty$$
+## (Weak) Consistency 
 
-**Asymptotic Bias:** The *asymptotic bias* of an estimator $\hat\theta_n$ of some true parameter $\theta$ is defined as:
-$$\text{ABias}(\hat\theta_n)=\lim_{n\to\infty}E(\hat\theta_n)-\theta$$
-If $\text{ABias}(\hat\theta_n)=0$, then $\hat\theta$ is called an **asymptotically unbiased**.
+We say that an estimator $\hat\theta_n$ is *(weakly) consistent for $\theta$* if 
+$$
+\hat\theta_n\to_{p}\theta,\quad\text{as}\quad n\to\infty.
+$$
+:::
 
-**Asymptotic Normality:** A consistent estimator $\hat\theta_n$ is *asymptotically normal distributed* if
-$$\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\Sigma)\quad\text{as}\quad n\to\infty$$
-where $\lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))=\lim_{n\to\infty}Var(\sqrt{n}\hat\theta_n)=\Sigma$ as called the asymptotic variance of $\sqrt{n}(\hat\theta_n-\theta)$.
+::: {#def-SConsist}
 
-**$\sqrt{n}$-consistent:** Consistent estimators $\hat{\theta}_n\to_{p}\theta$ are called *$\sqrt{n*$-consistent} if
-$$\sqrt{n}(\hat\theta_n-\theta)\to_{d} z \quad\text{as}\quad n\to\infty$$
-If additionally the random vector $z$ is normal distributed, then $\hat\theta_n$ is often called *consistent and asymptotically normal.*
+## Strong Consistency 
+
+We say that an estimator $\hat\theta_n$ is *strongly consistent for $\theta$* if 
+$$
+\hat\theta_n\to_{as}\theta,\quad\text{as}\quad n\to\infty.
+$$
+:::
+
+A necessary requirement for weak and strong consistency is that the estimator is asymptotically unbiased. 
+
+::: {#def-ABias}
+
+## Asymptotic Bias
+
+The asymptotic bias of an estimator $\hat\theta_n$ of some  parameter $\theta$ is defined as
+$$
+\begin{align*}
+\operatorname{ABias}(\hat\theta_n,\theta)
+&=\lim_{n\to\infty}\operatorname{Bias}(\hat\theta_n,\theta)\\
+&=\lim_{n\to\infty}E(\hat\theta_n)-\theta.
+\end{align*}
+$$
+If $\text{ABias}(\hat\theta_n,\theta)=0$, then $\hat\theta_n$ is called an **asymptotically unbiased**.
+:::
+
+
+
+::: {#def-ANorm}
+
+## Asymptotic Normality
+
+An estimator $\hat\theta_n$ is asymptotically normal distributed if
+$$
+\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\Sigma)\quad\text{as}\quad n\to\infty,
+$$
+where 
+$$
+\Sigma=\lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))=\lim_{n\to\infty}Var(\sqrt{n}\hat\theta_n)
+$$ 
+is called the asymptotic variance of $\sqrt{n}(\hat\theta_n-\theta)$.
+:::
+
+
+::: {#def-RootnConsistent}
+
+## $\sqrt{n}$-Consistent 
+
+Consistent estimators are called $\sqrt{n}$-consistent if
+$$
+\sqrt{n}(\hat\theta_n-\theta)\to_{d} z \quad\text{as}\quad n\to\infty,
+$$
+where $z\sim F.$ 
+:::
 
 
 
@@ -308,18 +399,23 @@ If additionally the random vector $z$ is normal distributed, then $\hat\theta_n$
 ## Asymptotics under the Classic Regression Model
 
 
-Given the above introduced machinery on asymptotic concepts and results, we can now proof that the OLS estimators $\hat\beta$ and $s_{UB}^2$ applied to the classic regression model (defined by Assumptions 1-4 in @sec-MLR are both consistent, and that $\hat\beta$ is asymptotically normal distributed as $n\to\infty$. That is, we can drop the unrealistic normality and spherical errors assumption (Assumption 4$^\ast$), but still use the usual test statistics ($t$-test, $F$-test); as long as the sample size $n$ is "large."
+Given the above introduced machinery on asymptotic concepts and results, we can now proof that the OLS estimators 
+<center>
+$\hat\beta_n\equiv\hat\beta\quad$ and $\quad s_{UB,n}\equiv s_{UB}^2$ 
+</center>
+applied to the classic regression model (defined by Assumptions 1-4 in @sec-MLR are both consistent, and that $\hat\beta_n$ is asymptotically normal distributed. That is, we can drop the unrealistic normality and spherical errors assumption (Assumption 4$^\ast$) of @sec-ssinf, but still use our inference tools ($t$-tests, $F$-tests); as long as the sample size $n$ is "large."
 
-However, before we can formally state the asymptotic properties, we, first, need to adjust our "data generating process"assumption (Assumption 1) such that we can apply Kolmogorov's strong LLN and Lindeberg-Levy's CLT. Second, we need to adjust the rank assumption (Assumption 3), such that the full column rank of $X$ is guaranteed for the limiting case as $n\to\infty$, too. Assumptions 2 and 4 from @sec-MLR are assumed to hold (and do not need to be changed). 
+For the below results, we need to introduce an asymptotic version of the full rank assumption: 
 
+<!-- However, before we can formally state the asymptotic properties, we, first, need to adjust our "data generating process"assumption (Assumption 1) such that we can apply Kolmogorov's strong LLN and Lindeberg-Levy's CLT. Second, we need to adjust the rank assumption (Assumption 3), such that the full column rank of $X$ is guaranteed for the limiting case as $n\to\infty$, too. Assumptions 2 and 4 from @sec-MLR are assumed to hold (and do not need to be changed).  -->
 
-**Assumption 1$^\ast$: Data Generating Process (for Asymptotics)** Assumption 1 of @sec-MLR applies, but *additionally* we assume that $(\varepsilon_i, X_i)\in\mathbb{R}^{K+1}$ (or equivalently $(Y_i,X_i)\in\mathbb{R}^{K+1}$) is jointly i.i.d. for all $i=1,\dots,n$, with existing and finite second moments for $X_i$ and fourth moments for $\varepsilon_i$.
+<!-- **Assumption 1$^\ast$: Data Generating Process (for Asymptotics)** Assumption 1 of @sec-MLR applies, but *additionally* we assume that $(\varepsilon_i, X_i)\in\mathbb{R}^{K+1}$ (or equivalently $(Y_i,X_i)\in\mathbb{R}^{K+1}$) is jointly i.i.d. for all $i=1,\dots,n$, with existing and finite second moments for $X_i$ and fourth moments for $\varepsilon_i$.
 
 
 **Note 1:** The fourth moment of $\varepsilon_i$ is actually only needed for @thm-Consistency_s1; for the rest two moments are sufficient.
 
 
-**Note 2:** The above adjustment of Assumption 1 is far less restrictive than assuming that the error-terms $\varepsilon_i$ are i.i.d. normally distributed and independent from $X_i$ (as it's necessary for small sample inference in @sec-ssinf). 
+**Note 2:** The above adjustment of Assumption 1 is far less restrictive than assuming that the error-terms $\varepsilon_i$ are i.i.d. normally distributed and independent from $X_i$ (as it's necessary for small sample inference in @sec-ssinf).  -->
 
 
 **Assumption 3$^\ast$: Rank Condition (for Asymptotics)** The $(K\times K)$ matrix 
@@ -338,39 +434,48 @@ has full rank $K$. I.e., $\Sigma_{X'X}$ is nonsingular and invertible.
 
 <!-- % Under the Assumptions 1$^\ast$, 2, 3$^\ast$, and 4, we can show the following results. -->
 
+
+ <!-- 1$^\ast$ and 3$^\ast$  -->
+
 ::: {#thm-Sxx1}
 
 ## Consistency of $S_{X'X}^{-1}$ 
 
-Under Assumption 1$^\ast$ and 3$^\ast$ we have that
-$$\left(\frac{1}{n}X'X\right)^{-1}=S_{X'X}^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1}\quad\text{as}\quad n\to\infty$$
-
+Under Assumptions 1, 2, 3$^\ast$, and 4, and under the assumption that $X_i$ has finite second moments, 
+we have that
+$$
+\left(\frac{1}{n}X'X\right)^{-1}=:S_{X'X}^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1}\quad\text{as}\quad n\to\infty.
+$$
 :::
 
-Proof is done in the lecture. 
+The proof of @thm-Sxx1 is done in the lecture. 
+
+
+<!-- Under Assumption 1$^\ast$, 2 and 3$^\ast$ we have that -->
 
 ::: {#thm-bconsistent1}
 
 ## Consistency of $\hat\beta$
 
-Under Assumption 1$^\ast$, 2 and 3$^\ast$ we have that
-$$\hat\beta_n\to_{p}\beta\quad\text{as}\quad n\to\infty$$
-
+Under Assumptions 1, 2, 3$^\ast$, and 4 and under the assumption that $X_i$ and $\varepsilon_i$ have finite second moments, we have that
+$$
+\hat\beta_n\to_{p}\beta\quad\text{as}\quad n\to\infty.
+$$
 :::
 
-Proof is done in the lecture.
+The proof of @thm-bconsistent1 is done in the lecture.
 
-Furthermore, we can show that the appropriately scaled (by $\sqrt{n}$) sampling error $\hat\beta-\beta$ of the OLS estimator is asymptotically normal distributed. 
+Moreover, we can show that the appropriately scaled OLS estimator is asymptotically normal distributed. The following theorem is stated for the simpler homoskedastic case, the heteroskedastic case is presented in @sec-CaseHetero.
 
 
 ::: {#thm-OLSnormality1}
 
-## Sampling error limiting normality (the classic case)
-For simplicity, we consider here the special case of spherical errors ($Var(\varepsilon|X)=\sigma^2I_n$). Under Assumption 1$^\ast$, 2 and 3$^\ast$ we then have that
+## Sampling error limiting normality (homoskedastic case)
+Under Assumption 1, 2, 3$^\ast$, and 4, and under the assumption that $X_i$ and $\varepsilon_i$ have finite second moments, and under the simplifying assumption of spherical errors $(Var(\varepsilon_i|X)=\sigma^2I_n)$, we have that
 $$\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right)\quad\text{as}\quad n\to\infty$$
 :::
 
-Proof is done in the lecture. 
+The proof of @thm-OLSnormality1 is done in the lecture. 
 
 In principle, we can derive the usual test statistics from the latter result. Though, as long as we do not know (we usually don't) $\sigma^2$ and $\Sigma_{X'X}$ we need to plug-in the (consistent!) estimators $S_{X'X}^{-1}$ and $s_{UB}^2$, where the consistency of the former estimator is provided by @thm-Sxx1 and the consistency of $s_{UB}^2$ is provided by the following result.
 
@@ -379,49 +484,57 @@ In principle, we can derive the usual test statistics from the latter result. Th
 
 ## Consistency of $s^2_{UB}$
 
-$$s_{UB}^2\to_{p}\sigma^2\quad\text{as}\quad n\to\infty$$
-
+Under the assumptions of @thm-OLSnormality1, but with the additional requirement that $\varepsilon_i$ has finite fourth moments, we have that
+$$
+s_{UB}^2\to_{p}\sigma^2\quad\text{as}\quad n\to\infty.
+$$
 :::
 
-Proof is skipped, but a detailed proof can be found here: [https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties](https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties)
+The proof of @thm-Consistency_s1 is skipped, but a detailed proof can be found here: [https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties](https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties)
 
 
-### The Case of Heteroscedasticity
+### The Case of Heteroskedasticity {#sec-CaseHetero}
 
 @thm-OLSnormality1 can also be stated and proofed for conditionally heteroscedastic error terms. In this case one gets
 $$
-\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)\quad\text{as}\quad n\to\infty
+\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)
 $${#eq-OLSnormality1Rob}
-where $\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}$ (i.e., the asymptotic variance of $\sqrt{n}(\hat\beta_n-\beta)$) is usually unknown and needs to be estimated from the data by
+as $n\to\infty.$ 
+
+The asymptotic variance 
 $$
-S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\to_{p} \Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\quad\text{as}\quad n\to\infty,
+\lim_{n\to\infty}Var(\sqrt{n}(\hat\beta_n-\beta))=\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}
+$$ 
+is, of course, usually unknown and needs to be estimated from the data by some consistent estimator such that 
 $$
-where $\widehat{E}(\varepsilon^2_iX_iX_i')$ denotes some consistent estimator of $E(\varepsilon^2X_iX_i')$ such as one of the following choices:
+S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\to_{p} \Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}
+$$
+as $n\to\infty.$ 
 
-- HC0: $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2X_iX_i'$
-- HC1: $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{n}{n-K}\hat\varepsilon_i^2X_iX_i'$
-- HC2: $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{1-h_{i}}X_iX_i'$
-- HC3: $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{2}}X_iX_i'\text{\quad($\leftarrow$ Most often used)}$
-- HC4: $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{\delta_{i}}}X_iX_i'$
+The $\widehat{E}(\varepsilon^2_iX_iX_i')$ is here a placeholder for one of the existing Heteroskedasticity Consistent (HC) estimators of $E(\varepsilon^2X_iX_i')$:
+
+HC-Type  | Formular
+------|------------
+HC0   |$\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2X_iX_i'$
+HC1   | $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{n}{n-K}\hat\varepsilon_i^2X_iX_i'$
+HC2   | $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{1-h_{i}}X_iX_i'$
+HC3   | $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{2}}X_iX_i'$
+HC4    | $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{\delta_{i}}}X_iX_i'$
+
+HC3 is the most often used HC-estimator. 
 
 
-<!-- (These are the heteroscedasticity-consistent robust estimators from Chapter \ref{ch:VarEstBeta}.  -->
+\paragraph*{Side Note.} The statistic $h_i:=[P_X]_{ii}$ is called the "leverage" of $X_i$. One can show that $1/n\leq h_i\leq 1$ and that $\bar{h}=n^{-1}\sum_{i=1}^nh_i=K/n$. Observations $X_i$ with leverage statistics $h_i$ that greatly exceed the average leverage value $K/n$ are referred to as "high leverage" observations.  High leverage observations $X_i$ distort the estimation results, $\hat\beta_n$, if the absolute value of the corresponding residual $|\hat{\varepsilon}_i|$ is unusually large ("influencial outliers").
 
-<!-- \begin{align*} -->
-<!-- \hspace*{-2cm}\text{HC0:}\quad & \hat v_{i}=\hat{\varepsilon}_{i}^{2} \\ -->
-<!-- \text{HC1:}\quad & \hat v_{i}=\frac{n}{n-K} \hat{\varepsilon}_{i}^{2} \\ -->
-<!-- \text{HC2:}\quad & \hat v_{i}=\frac{\hat{\varepsilon}_{i}^{2}}{1-h_{i}} \\ -->
-<!-- \text{HC3:}\quad & \hat v_{i}=\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{2}}\text{\quad($\leftarrow$ Most often used)} \\ -->
-<!-- \text{HC4:}\quad & \hat v_{i}=\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{\delta_{i}}} -->
-<!-- \end{align*} -->
 
-**Note:** In order to show that any of the above versions (HC0-4) of $\widehat{E}(\varepsilon^2_iX_iX_i')$ is a consistent estimator of $E(\varepsilon^2_iX_iX_i')$ we actually need to assume that the explanatory variables in $X$ have finite *fourth* moments (see Chapter 2.5 of @Hayashi2000). So, for this, we would need to make our Assumption 1$^\ast$ more restrictive (so far, only two moments are assumed for $X$).  
+The estimator HC0 was suggested in the econometrics literature by @White1980 and is justified by asymptotic arguments. The estimators HC1, HC2 and HC3 were suggested by @MacKinnon_White_1985 to improve the finite sample performance of HC0. Using an extensive Monte Carlo simulation study comparing HC0-HC3, @Long_Ervin_2000 concludes that HC3 provides the best overall performance in finite samples. @Cribari_2004 suggested the estimator HC4 to further improve the performance in finite sample behavior, especially in the presence of influential observations (large $h_i$ values).
 
-<!-- see Hayashi  Chapter 2.5 -->
+General idea of the HC1-HC4 estimators is to increase the estimated variance in oder to account for the effects of "influencial outliers". The residuals $\hat\varepsilon_i$ belonging to $X_i$ values that have a large leverate $h_i$ are multiplied by a factor $\gg 1$ leading to increased $\widehat{E}(\varepsilon^2_iX_iX_i')$ values. This strategy makes inference robust against issues due to heteroskedasticity. 
+<!-- (Too small variance estimates lead to false inference, too large variance estimates lead to conservative inference.) -->
 
-### Hypothesis Testing and Confidence Intervals 
+### Robust Inference 
 
-From our asymptotic results under the classic regression model (Assumptions 1$^\ast$, 2, 3$^\ast$, and 4) we get the following results important for testing statistical hypothesis. 
+<!-- From our asymptotic results under the classic regression model (Assumptions 1$^\ast$, 2, 3$^\ast$, and 4) we get the following results important for testing statistical hypothesis.  -->
 
 #### Robust Hypothesis Testing: Multiple Parameters
 
@@ -510,7 +623,7 @@ myDataGenerator <- function(n, beta){
 
 ### Normally Distributed $\hat\beta$ for $n\to\infty$ 
 
-The above data generating process fulfills our regulatory assumptions Assumption 1$^*$, 2, 3$^*$, and 4. So, by theory, the estimators $\hat\beta_k$ should be normal distributed for large sample sizes $n$ -- unconditionally on $X$ and even for heteroscedastic error terms. 
+The above data generating process fulfills our regulatory assumptions Assumption 1$^*$, 2, 3$^*$, and 4. So, by theory, the estimators $\hat\beta_k$ should be normal distributed for large sample sizes $n$ - unconditionally on $X$ and even for heteroscedastic error terms. 
 $$
 \sqrt{n}\left(\hat\beta_k-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
 $$
