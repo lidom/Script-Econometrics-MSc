@@ -245,6 +245,7 @@ div.csl-indent {
   <li><a href="#check-testing-single-parameters" id="toc-check-testing-single-parameters" class="nav-link" data-scroll-target="#check-testing-single-parameters"> <span class="header-section-number">6.3.3</span> Check: Testing Single Parameters</a></li>
   </ul></li>
   <li><a href="#sec-RDLSInf" id="toc-sec-RDLSInf" class="nav-link" data-scroll-target="#sec-RDLSInf"> <span class="header-section-number">6.4</span> Real Data Example</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"> <span class="header-section-number">6.5</span> Exercises</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -1059,6 +1060,7 @@ H_0:&amp;\beta_3=5\\
 <pre><code>[1] 0.0496</code></pre>
 </div>
 </div>
+<p>Good! The empirical type I error rate is bounded from above by the nominal type I error rate <span class="math inline">\(\alpha\)</span>.</p>
 </section>
 </section>
 <section id="sec-RDLSInf" class="level2" data-number="6.4">
@@ -1093,20 +1095,17 @@ Y_i = \beta_1 + \beta_{gender} X_{gender,i}
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(lm_obj, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(lm_obj, <span class="at">type =</span> <span class="st">"HC3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can do this also using the <code>R</code> package <code>stargazer</code> which gives you puplication ready regression output tables:</p>
-<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-14_224b054b6129abe9f017d32a75e9ca92">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Hint: use type = "latex" </span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="do">## to produce a latex table</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(<span class="st">"stargazer"</span>))</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust standard errors</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>cov_beta_HC3   <span class="ot">&lt;-</span> <span class="fu">vcovHC</span>(lm_obj, <span class="at">type =</span> <span class="st">"HC3"</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>robust_HC3_se  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(cov_beta_HC3))</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Stargazer output (with and without RSE)</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(lm_obj, lm_obj, </span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">se   =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, robust_HC3_se),</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-14_0d8d7c70bba95ca330dd85b336241097">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(<span class="st">"stargazer"</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust standard errors</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>cov_beta_HC3   <span class="ot">&lt;-</span> <span class="fu">vcovHC</span>(lm_obj, <span class="at">type =</span> <span class="st">"HC3"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>robust_HC3_se  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(cov_beta_HC3))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Stargazer output (with and without RSE)</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(lm_obj, lm_obj, </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">se   =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, robust_HC3_se),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"html"</span>) <span class="co"># alternatively: type = "text" or type = "latex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <table style="text-align:center">
 <tbody><tr>
@@ -1337,6 +1336,13 @@ F Statistic (df = 3; 5186)
 
 </tbody></table>
 </div>
+</section>
+<section id="exercises" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.5</span> Exercises</h2>
+<ul>
+<li><a href="Exercises/Ch6_Exercises.pdf">Exercises for Chapter 6</a></li>
+</ul>
+<!-- * [Exercises of Chapter 6 with Solutions](Exercises/Ch6_Exercises_with_Solutions.pdf) -->
 <!-- 
 ### Variance Inflation
 

@@ -982,6 +982,8 @@ alpha <- 0.05
 length(p_values[p_values < alpha])/B
 ```
 
+Good! The empirical type I error rate is bounded from above by the nominal type I error rate $\alpha$. 
+
 
 ## Real Data Example {#sec-RDLSInf}
 
@@ -1022,9 +1024,6 @@ coeftest(lm_obj, vcov = vcovHC(lm_obj, type = "HC3"))
 You can do this also using the `R` package `stargazer` which gives you puplication ready regression output tables:
 
 ```{r, echo=TRUE, eval=TRUE, results='asis'}
-## Hint: use type = "latex" 
-## to produce a latex table
-
 suppressPackageStartupMessages(library("stargazer"))
 
 # Adjust standard errors
@@ -1034,11 +1033,15 @@ robust_HC3_se  <- sqrt(diag(cov_beta_HC3))
 # Stargazer output (with and without RSE)
 stargazer(lm_obj, lm_obj, 
           se   = list(NULL, robust_HC3_se),
-          type = "html")
+          type = "html") # alternatively: type = "text" or type = "latex"
 ```
 
 
+## Exercises
 
+* [Exercises for Chapter 6](Exercises/Ch6_Exercises.pdf)
+
+<!-- * [Exercises of Chapter 6 with Solutions](Exercises/Ch6_Exercises_with_Solutions.pdf) -->
 
 <!-- 
 ### Variance Inflation
