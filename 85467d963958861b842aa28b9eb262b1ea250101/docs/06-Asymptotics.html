@@ -248,6 +248,7 @@ div.csl-indent {
   <li><a href="#normally-distributed-hatbeta-for-ntoinfty" id="toc-normally-distributed-hatbeta-for-ntoinfty" class="nav-link" data-scroll-target="#normally-distributed-hatbeta-for-ntoinfty"><span class="toc-section-number">6.3.1</span>  Normally Distributed <span class="math inline">\(\hat\beta\)</span> for <span class="math inline">\(n\to\infty\)</span></a></li>
   <li><a href="#testing-multiple-and-single-parameters" id="toc-testing-multiple-and-single-parameters" class="nav-link" data-scroll-target="#testing-multiple-and-single-parameters"><span class="toc-section-number">6.3.2</span>  Testing Multiple and Single Parameters</a></li>
   </ul></li>
+  <li><a href="#real-data" id="toc-real-data" class="nav-link" data-scroll-target="#real-data"><span class="toc-section-number">6.4</span>  Real Data</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -616,8 +617,8 @@ H_0: &amp; \beta_k=r\\
 H_A: &amp; \beta_k\ne r\\
 \end{array}
 \end{equation*}\]</span> We can selecting the <span class="math inline">\(k\)</span>th diagonal element of the test-statistic in <a href="#eq-Ftestasymp">Equation&nbsp;<span>6.2</span></a> and taking the square root yields <span class="math display">\[
-t=\frac{\sqrt{n}\left(\hat{\beta}_k-r\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{kk}}}\overset{H_0}{\to}_d\mathcal{N}(0,1).
-\]</span> This <span class="math inline">\(t\)</span> test statistic allows for heteroscedastic error terms. In case of homoscedastic error terms, one can substitute <span class="math inline">\([S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}\)</span> by <span class="math inline">\(s_{UB}^2[S_{X'X}^{-1}]_{kk}\)</span>.</p>
+t=\frac{\sqrt{n}\left(\hat{\beta}_k-r\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{kk}}}\overset{H_0}{\to}_d\mathcal{N}(0,1)
+\]</span> as <span class="math inline">\(n\to\infty.\)</span> This <span class="math inline">\(t\)</span> test statistic allows for heteroscedastic error terms. In case of homoscedastic error terms, one can substitute <span class="math inline">\([S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}\)</span> by <span class="math inline">\(s_{UB}^2[S_{X'X}^{-1}]_{kk}\)</span>.</p>
 <p><strong>Finite-sample correction:</strong> In order to improve the finite-sample performance of this <span class="math inline">\(t\)</span> test, one usually uses the <span class="math inline">\(t_{(n-K)}\)</span> distribution with <span class="math inline">\(n-K\)</span> degrees of freedoms instead of the <span class="math inline">\(\mathcal{N}(0,1)\)</span> distribution. Asymptotically (<span class="math inline">\(n\to\infty\)</span>), <span class="math inline">\(t_{(n-K)}\)</span> is equivalent to <span class="math inline">\(\mathcal{N}(0,1)\)</span>. However, for finite sample sizes <span class="math inline">\(n\)</span> (i.e., the practically relevant case) <span class="math inline">\(t_{n-K}\)</span> leads to larger critical values which helps to account for the estimation errors in <span class="math inline">\([S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}\)</span> (or in <span class="math inline">\(s_{UB}^2[S_{X'X}^{-1}]_{kk}\)</span>) which are otherwise neglected by the pure asymptotic perspective.</p>
 </section>
 <section id="robust-confidence-intervals" class="level4" data-number="6.2.2.3">
@@ -625,7 +626,7 @@ t=\frac{\sqrt{n}\left(\hat{\beta}_k-r\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E
 <p>Following the derivations in Chapter <a href="05-Small-Sample-Inference.html#sec-CIsmallsample"><span>Section&nbsp;5.4</span></a>, but using the expression for the robust standard errors, we get the following heteroscedasticity robust (random) <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> confidence interval <span class="math display">\[
 \operatorname{CI}_{1-\alpha}=
 \left[\hat\beta_k\pm t_{1-\alpha/2,n-K}\sqrt{n^{-1}[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}}\right].
-\]</span> Here, the coverage probability is an asymptotic coverage probability with <span class="math inline">\(P(\beta_k\in\operatorname{CI}_{1-\alpha})\to 1-\alpha\)</span> as <span class="math inline">\(n\to\infty\)</span>.</p>
+\]</span> Here, the coverage probability is an asymptotic coverage probability with <span class="math inline">\(P(\beta_k\in\operatorname{CI}_{1-\alpha})\to 1-\alpha\)</span>, as <span class="math inline">\(n\to\infty\)</span>.</p>
 </section>
 </section>
 </section>
@@ -662,15 +663,16 @@ Var(\varepsilon_i)
 </div>
 <section id="normally-distributed-hatbeta-for-ntoinfty" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="normally-distributed-hatbeta-for-ntoinfty"><span class="header-section-number">6.3.1</span> Normally Distributed <span class="math inline">\(\hat\beta\)</span> for <span class="math inline">\(n\to\infty\)</span></h3>
-<p>The above data generating process fulfills our regulatory assumptions Assumption 1<span class="math inline">\(^*\)</span>, 2, 3<span class="math inline">\(^*\)</span>, and 4. So, by theory, the estimators <span class="math inline">\(\hat\beta_k\)</span> should be normal distributed for large sample sizes <span class="math inline">\(n\)</span> - unconditionally on <span class="math inline">\(X\)</span> and even for heteroscedastic error terms. <span class="math display">\[
-\sqrt{n}\left(\hat\beta_k-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
-\]</span> Or: <span class="math display">\[
-\hat\beta_k\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
-\]</span> Mathematically, the latter is a bit sloppy since the right hand side of <span class="math inline">\(\to_d\)</span> depends on <span class="math inline">\(n\)</span>, i.e., is not the stable limit object for <span class="math inline">\(n\to\infty\)</span>. However, this sloppiness is nevertheless instructive since it gives us the approximative distribution for given largish sample sizes like <span class="math inline">\(n=100\)</span>.</p>
+<p>The above data generating process fulfills our regulatory assumptions of this chapter. So, by theory, the estimators <span class="math inline">\(\hat\beta_k\)</span> should be normal distributed for large sample sizes <span class="math inline">\(n\)</span>. <span class="math display">\[
+\sqrt{n}\left(\hat\beta_{n,k}-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
+\]</span> or (slight above of notation): <span class="math display">\[
+\hat\beta_{n,k}\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
+\]</span> as <span class="math inline">\(n\to\infty.\)</span></p>
+<p>Mathematically, the latter is a bit sloppy since the right hand side of <span class="math inline">\(\to_d\)</span> depends on <span class="math inline">\(n\)</span>, i.e., is not the stable limit object for <span class="math inline">\(n\to\infty\)</span>. However, this sloppiness is nevertheless instructive since it gives us the approximative distribution for given largish sample sizes like <span class="math inline">\(n=100\)</span>.</p>
 <div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-2_953265d857127e8ed3d5d2e8ee69acec">
 
 </div>
-<p>For our above specified data generating process, we have</p>
+<p>For our above specified data generating process, we can derive all (usually unknown) population quantities.</p>
 <ul>
 <li><p>From the assumed distributions of <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> we have that: <span class="math display">\[
 \Sigma_{X'X}=E(S_{X'X})=E(X_iX_i')
@@ -687,12 +689,22 @@ E(\varepsilon^2_iX_iX_i')
 \end{matrix}\right)\\      
 &amp;=\left(\begin{matrix}\frac{1}{12}\frac{16}{3}&amp;0&amp;0\\
                     0&amp;\frac{1}{12}\frac{256}{5}&amp;0\\
-                    0&amp;0&amp;\frac{1}{12}\frac{16}{3}\frac{25}{3}\end{matrix}\right)
-=\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)
+                    0&amp;0&amp;\frac{1}{12}\frac{16}{3}\frac{25}{3}\end{matrix}\right)\\
+&amp;=\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)
 \end{align*}\]</span> The above result follow from observing that for <span class="math inline">\(X\sim U[a,b]\)</span> one has <span class="math inline">\(E(X^k)=\frac{b^{k+1}-a^{k+1}}{(k+1)(b-a)}\)</span>, <span class="math inline">\(k=1,2,\dots\)</span>; see, for instance, <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">Wikipedia</a>.</p></li>
 </ul>
 <p>So, for instance, for <span class="math inline">\(\hat{\beta}_2\)</span> we have the following theoretical large sample distribution: <span class="math display">\[
-\hat\beta_2\to_d\mathcal{N}\left(\beta_2, \;n^{-1}\;\left[\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)
+\begin{align}
+\hat\beta_{n,2}\to_d&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)\\
+\hat\beta_{n,2}\to_d&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[
+  \left(
+  \begin{matrix}
+  0.444 &amp; 0 &amp;0\\
+  0 &amp; 0.15 &amp;0\\
+  0&amp;0&amp;0.053
+  \end{matrix}\right)\right]_{22}\right)\\
+\hat\beta_{n,2}\to_d&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;0.15\right)
+\end{align}
 \]</span> Let’s use a Monte Carlo simulation to check how well the theoretical large sample (<span class="math inline">\(n\to\infty\)</span>) distribution of <span class="math inline">\(\hat\beta_2\)</span> works as an approximative distribution for a practical largish sample size of <span class="math inline">\(n=100\)</span>.</p>
 <div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-3_508bb2551114ec05a08ae40b1e710634">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -739,7 +751,7 @@ E(\varepsilon^2_iX_iX_i')
 <pre><code>[1] 0.00150 0.00147</code></pre>
 </div>
 </div>
-<p>Great! The variance of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span> is basically equal to the theoretical true variance <span class="math inline">\(Var(\hat\beta_2)=0.0015\)</span>.</p>
+<p>Great! The variance of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span> is basically equal to the theoretical true variance <span class="math inline">\(Var(\hat\beta_{n,2})=0.15/n=0.0015\)</span>.</p>
 <div class="cell" data-layout-align="center" data-hash="06-Asymptotics_cache/html/unnamed-chunk-5_5c58151341b199c777a170dcc6c8c10b">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True normal distribution of beta_hat_2 versus </span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical density of beta_hat_2 estimates</span></span>
@@ -812,7 +824,7 @@ E(\varepsilon^2_iX_iX_i')
 <pre><code>[1] 0.0300 0.0562</code></pre>
 </div>
 </div>
-<p>Ouch! The theoretical large sample variance <span class="math inline">\(Var(\hat\beta_2)=0.03\)</span> is about 50% smaller than the actual (small sample) variance of <span class="math inline">\(\hat\beta_2\)</span> approximated by the empirical variance of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span>. That is, we cannot simply use a large sample result in small samples.</p>
+<p>Ouch! The theoretical large sample variance <span class="math inline">\(Var(\hat\beta_2)=0.15/n=0.03\)</span> is about 50% smaller than the actual (small sample) variance of <span class="math inline">\(\hat\beta_2\)</span> approximated by the empirical variance of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span>. That is, <strong>we cannot simply use a large sample result in small samples</strong>.</p>
 <div class="cell" data-layout-align="center" data-hash="06-Asymptotics_cache/html/unnamed-chunk-8_c79cd0a937e8179b7597dc02a0c9266f">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True normal distribution of beta_hat_2 versus </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## empirical density of beta_hat_2 estimates</span></span>
@@ -970,12 +982,16 @@ Attaching package: 'zoo'</code></pre>
 </div>
 </div>
 <p>Again, the <span class="math inline">\(p\)</span>-value is very small and allows us to reject the (false) null-hypothesis at any of the usual significance levels.</p>
+</section>
+</section>
+<section id="real-data" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="real-data"><span class="header-section-number">6.4</span> Real Data</h2>
+<p>Adding the real data example from the prevous chapter.</p>
 <!-- 
 ### Variance Inflation
 
 https://online.stat.psu.edu/stat462/node/180/
  -->
-</section>
 </section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
