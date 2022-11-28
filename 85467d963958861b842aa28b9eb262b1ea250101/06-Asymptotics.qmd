@@ -583,7 +583,7 @@ Here, the coverage probability is an asymptotic coverage probability with $P(\be
 
 
 
-## Practice: Large Sample Inference
+## Monte Carlo Simulations {#sec-MCLS}
 
 Let's apply the above asymptotic inference methods using `R`. As in Chapter @sec-PSSI we, first, program a function `myDataGenerator()` which allows us to generate data from the following model, i.e., from the following fully specified data generating process:
 \begin{align*}
@@ -593,17 +593,23 @@ X_{i2}&\sim U[-4,4]\\
 X_{i3}&\sim U[-5,5]\\
 \varepsilon_i|X_i&\sim U[-0.5 |X_{i2}|, 0.5 |X_{i2}|],
 \end{align*}
-where $(Y_i,X_i)$ is assumed i.i.d. across $i=1,\dots,n$ with $X_{i2}$ and $X_{i3}$ being independent of each other. Note that, by contrast to Chapter @sec-PSSI, the error terms are conditionally heteroscedastic ($Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2$) and not Gaussian. 
+where $(Y_i,X_i)$ is assumed i.i.d. across $i=1,\dots,n$ with $X_{i2}$ and $X_{i3}$ being independent of each other. 
 
-As a side note: The unconditional variance follows by the law of total variance and is given by 
-\begin{align*}
-Var(\varepsilon_i)
-&=E(Var(\varepsilon_i|X_i))+Var(E(\varepsilon_i|X_i))\\
-&=E\left(\frac{1}{12}X_{i2}^2\right)+0\\
-&=\frac{1}{12}\left(\frac{1}{12}(4-(-4))^2\right)=\frac{4}{9}.
-\end{align*}
+By contrast to Chapter @sec-PSSI, the error terms are **heteroskedastic** 
+$$
+Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2
+$$ 
+and **not Gaussian**. 
 
-Moreover, by contrast to @sec-PSSI, we here do not need to sample new realizations of $Y_i$ *conditionally* on a given data matrix $X$ since the asymptotically (for large $n$) the distribution of $\hat\beta$ does not depend on a random realization of $X$. (Therefore, the large sample normality result in @eq-OLSnormality1Rob does not need a conditioning on $X$.) Consequently, the option to condition on $X$ is removed in the following `R`-function `myDataGenerator()`.
+> As a side note: The unconditional variance follows by the law of total variance and is given by 
+> \begin{align*}
+> Var(\varepsilon_i)
+> &=E(Var(\varepsilon_i|X_i))+Var(E(\varepsilon_i|X_i))\\
+> &=E\left(\frac{1}{12}X_{i2}^2\right)+0\\
+> &=\frac{1}{12}\left(\frac{1}{12}(4-(-4))^2\right)=\frac{4}{9}.
+> \end{align*}
+
+Moreover, the large sample normality result in @eq-OLSnormality1Rob does not need a conditioning on $X$. Consequently, the option to condition on $X$ is removed in the following `R`-function `myDataGenerator()`.
 ```{r}
 ## Function to generate artificial data
 myDataGenerator <- function(n, beta){
@@ -621,9 +627,9 @@ myDataGenerator <- function(n, beta){
 ```
 
 
-### Normally Distributed $\hat\beta$ for $n\to\infty$ 
+### Check: Distribution of $\hat\beta_n$ 
 
-The above data generating process fulfills our regulatory assumptions of this chapter. So, by theory, the estimators $\hat\beta_k$ should be normal distributed for large sample sizes $n$. 
+The above data generating process fulfills our regulatory assumptions of this chapter. So, by theory, the estimators $\hat\beta_k$ should be normal distributed for sufficiently large sample sizes $n$. 
 $$
 \sqrt{n}\left(\hat\beta_{n,k}-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
 $$
@@ -715,7 +721,7 @@ for(r in 1:rep){
 ## True beta_2 versus average of beta_hat_2 estimates
 c(beta_true_2, round(mean(beta_hat_2), 4))
 ```
-Good! As expected, the average of the `5000` simulated realizations of $\hat\beta_2$ is basically equal to the theoretical true mean $E(\hat\beta_2)=\beta_2=3$. 
+Good! As expected, the average of the `5000` simulated realizations of $\hat\beta_2$ is basically equal to the theoretical true mean $E(\hat\beta_2)=\beta_2=3$ which indicates a bias of zero. 
 
 ```{r}
 ## True variance of beta_hat_2 versus 
@@ -743,7 +749,12 @@ c(expression(
   "Empirical Density Estimation based on MC realizations from"~
   hat(beta)[2])))
 ```
-Great! The nonparametric density estimation (estimated via `density()`) computed from the `5000` simulated realizations of $\hat\beta_2$ is indicating that $\hat\beta_2$ is really normally distributed as described by our theoretical results in @thm-OLSnormality1 (homoscedastic case) and in Equation @eq-OLSnormality1Rob (heteroscedastic case). 
+Great! The nonparametric density estimation (estimated via `density()`) computed from the `5000` simulated realizations of $\hat\beta_2$ is indicating that $\hat\beta_2$ is really normally distributed as described by our theoretical results. 
+
+ <!-- in @thm-OLSnormality1 (homoscedastic case) and in Equation @eq-OLSnormality1Rob (heterosceda# car::linearHypothesis(model = lm_obj, 
+#                       hypothesis.matrix = c("X_2=3", "X_3=4"), 
+#                       vcov = vcovHC3_mat)
+stic case).  -->
 
 
 However, is the asymptotic distribution of $\hat\beta_2$ also usable for (very) small samples like $n=5$? Let's check that:
@@ -790,7 +801,19 @@ c(round(var_true_beta_2, 4), round(var(beta_hat_2), 4))
 Ouch! The theoretical large sample variance $Var(\hat\beta_2)=0.15/n=0.03$ is about 50% smaller than the actual (small sample) variance of $\hat\beta_2$ approximated by the empirical variance of the `5000` simulated realizations of $\hat\beta_2$. That is, **we cannot simply use a large sample result in small samples**. 
 
 
-```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
+```{r, fig.align="center", echo=TRUE, fig.wi## Function to generate artificial data
+myDataGenerator <- function(n, beta){
+  ##
+  X   <- cbind(rep(1, n), 
+                 runif(n, -4, 4), 
+                 runif(n, -5, 5))
+  ##
+  eps  <- runif(n, - 0.5 * abs(X[,2]), + 0.5 * abs(X[,2]))
+  Y    <- X %*% beta + eps
+  data <- data.frame("Y"=Y, "X_1"=X[,1], "X_2"=X[,2], "X_3"=X[,3])
+  ##
+  return(data)
+}dth = 8, fig.height = 5, out.width = "1\\textwidth"}
 ## True normal distribution of beta_hat_2 versus 
 ## empirical density of beta_hat_2 estimates
 library("scales")
@@ -799,13 +822,19 @@ curve(expr = dnorm(x, mean = beta_true_2,
       xlab="",ylab="", col=gray(.2), lwd=3, lty=1, 
 xlim=c(2,4), ylim=c(0,3),main=paste0("n=",n))
 lines(density(beta_hat_2, bw = bw.SJ(beta_hat_2)), 
-      col=alpha("blue",.5), lwd=3)
-legend("topleft", lty=c(1,1), lwd=c(3,3), 
-     col=c(gray(.2), alpha("blue",.5)), bty="n", legend= 
-c(expression(
-  "Theoretical (Asymptotic) Gaussian Density of"~hat(beta)[2]), 
-  expression(
-  "Empirical Density Estimation based on MC realizations from"~
+      col=alpha("blue",.5), lwd=3)## Function to generate artificial data
+myDataGenerator <- function(n, beta){
+  ##
+  X   <- cbind(rep(1, n), 
+                 runif(n, -4, 4), 
+                 runif(n, -5, 5))
+  ##
+  eps  <- runif(n, - 0.5 * abs(X[,2]), + 0.5 * abs(X[,2]))
+  Y    <- X %*% beta + eps
+  data <- data.frame("Y"=Y, "X_1"=X[,1], "X_2"=X[,2], "X_3"=X[,3])
+  ##
+  return(data)
+}realizations from"~
   hat(beta)[2])))
 ```
 Not good. The actual distribution has substantially fatter tails. That is, if we would use the quantiles of the asymptotic distribution, we would falsely reject the null-hypothesis too often (probability of type I errors would be larger than the significance level).  
@@ -814,12 +843,12 @@ Not good. The actual distribution has substantially fatter tails. That is, if we
 
 
 
-### Testing Multiple and Single Parameters 
+### Check: Testing Multiple Parameters 
 
-In the following, we do inference about multiple parameters. We test the (false) null hypothesis 
+In the following, we do inference about multiple parameters. We test the (here correct) null hypothesis 
 \begin{align*}
-H_0:\;&\beta_2=3\quad\text{and}\quad\beta_3=5\\
-\text{versus}\quad H_A:\;&\beta_2\neq 3\quad\text{and/or}\quad\beta_3\neq 5.
+H_0:\;&\beta_2=3\quad\text{and}\quad\beta_3=4\\
+\text{versus}\quad H_A:\;&\beta_2\neq 3\quad\text{and/or}\quad\beta_3\neq 4.
 \end{align*}
 Or equivalently
 \begin{align*}
@@ -839,7 +868,9 @@ The following `R` code can be used to test this hypothesis. Note that we use HC3
 ```{r}
 suppressMessages(library("car")) # for linearHyothesis()
 # ?linearHypothesis
-library("sandwich")
+library("sandwich") # for vcovHC(), robust variance estimations
+
+set.seed(1009)
 
 ## Generate data
 MC_data <- myDataGenerator(n    = 100, 
@@ -851,20 +882,46 @@ lm_obj <- lm(Y ~ X_2 + X_3, data = MC_data)
 vcovHC3_mat <- sandwich::vcovHC(lm_obj, type="HC3")
 
 ## Option 1:
-car::linearHypothesis(model = lm_obj, 
-                      hypothesis.matrix = c("X_2=3", "X_3=5"), 
-                      vcov=vcovHC3_mat)
+# car::linearHypothesis(model = lm_obj, 
+#                       hypothesis.matrix = c("X_2=3", "X_3=4"), 
+#                       vcov = vcovHC3_mat)
 
 ## Option 2:
 R <- rbind(c(0,1,0),
            c(0,0,1))
 car::linearHypothesis(model = lm_obj, 
                       hypothesis.matrix = R, 
-                      rhs = c(3,5),
-                      vcov=vcovHC3_mat)
+                      rhs  = c(3,4),
+                      vcov = vcovHC3_mat)
 ```
-The $p$-value is very small and allows us to reject the (false) null-hypothesis at any of the usual significance levels. 
+The large $p$-value does not allow us to reject the null-hypothesis at any of the usual significance levels. This is good, since we test here a correct null-hypothesis and rejecting it would mean do do a false rejection (type I error, false positive). 
 
+On average, however, there will be some false rejections of the null-hypothesis, but this type I error rate needs to be samler or equal to $\alpha$. 
+
+```{r}
+set.seed(1009)
+
+B        <- 10000 
+p_values <- numeric(B)
+
+for(r in 1:B){ 
+  MC_data     <- myDataGenerator(n    = 100, beta = beta_true)
+  lm_obj      <- lm(Y ~ X_2 + X_3, data = MC_data)
+  vcovHC3_mat <- sandwich::vcovHC(lm_obj, type="HC3")
+  Ftest       <- car::linearHypothesis(model = lm_obj, 
+                        hypothesis.matrix = c("X_2=3", "X_3=4"), 
+                        vcov = vcovHC3_mat)
+  p_values[r] <- Ftest$'Pr(>F)'[2]                      
+}
+## Nominal type I error rate 
+alpha <- 0.05 
+## Empirical type I error rate
+length(p_values[p_values < alpha])/B
+```
+
+This is more or less ok, but you see that the upper bound is not so strict here as it was in the small sample inference case in @sec-PSSI.
+
+### Check: Testing Single Parameters
 
 Next, we do inference about a single parameter. We test 
 \begin{align*}
@@ -873,8 +930,7 @@ H_0:&\beta_3=5\\
 \end{align*}
 ```{r}
 # Load libraries
-library("lmtest")   # for coeftest()
-library("sandwich") # for vcovHC()
+suppressMessages(library("lmtest"))  # for coeftest()
 
 ## Generate data
 n <- 100
@@ -889,7 +945,7 @@ lm_obj <- lm(Y ~ X_2 + X_3, data = MC_data)
 ## Robust standard error for \hat{\beta}_3:
 SE_rob <- sqrt(vcovHC(lm_obj, type = "HC3")[3,3])
 ## hypothetical (H0) value of \beta_3:
-beta_3_H0 <- 5
+beta_3_H0 <- 4
 ## estimate for beta_3:
 beta_3_hat <- coef(lm_obj)[3]
 ## robust t-test statistic
@@ -901,11 +957,88 @@ p_value <- 2 * min(   pt(q = t_test_stat, df = n - K),
                    1- pt(q = t_test_stat, df = n - K))
 p_value
 ```
-Again, the $p$-value is very small and allows us to reject the (false) null-hypothesis at any of the usual significance levels. 
+Agian, the large $p$-value does not allow us to reject the (here true) null-hypothesis at any of the usual significance levels. Let us check the empirical type I error rate. 
 
-## Real Data 
 
-Adding the real data example from the prevous chapter.
+```{r}
+set.seed(1009)
+n        <- 100
+B        <- 10000 
+p_values <- numeric(B)
+
+for(r in 1:B){ 
+  MC_data     <- myDataGenerator(n = n, beta = beta_true)
+  lm_obj      <- lm(Y ~ X_2 + X_3, data = MC_data)
+  SE_rob      <- sqrt(vcovHC(lm_obj, type = "HC3")[3,3])
+  beta_3_hat  <- coef(lm_obj)[3]
+  ## robust t-test statistic
+  t_test_stat <- (beta_3_hat - beta_3_H0)/SE_rob
+  p_values[r] <- 2 * min(   pt(q = t_test_stat, df = n - length(beta_true)), 
+                         1- pt(q = t_test_stat, df = n - length(beta_true)))
+}
+## Nominal type I error rate 
+alpha <- 0.05 
+## Empirical type I error rate
+length(p_values[p_values < alpha])/B
+```
+
+
+## Real Data Example {#sec-RDLSInf}
+
+In the following, we revisit the read data study from @sec-RDSSInf, but allow consider the case of heteroskedastic, non-Gaussian errors.  
+
+```{r}
+## The AER package contains a lot of datasets 
+suppressPackageStartupMessages(library(AER))
+
+## Attach the DoctorVisits data to make it usable
+data("DoctorVisits")
+
+lm_obj <- lm(visits ~ gender + age + income, data = DoctorVisits)
+```
+
+The above `R` codes re-estimate the following regression model
+$$
+Y_i = \beta_1 + \beta_{gender} X_{gender,i} 
+              + \beta_{age} X_{age,i}
+              + \beta_{income} X_{income,i} + \varepsilon_i,
+$$
+where $i=1,\dots,n$ and
+
+* $X_{gender,i}=1$ if the $i$th subject is a woman and $X_{gender,i}=0$ if the $i$th subject is a man
+* $X_{age,i}$ is the age of subject $i$ measured in years divided by $100$
+* $X_{income,i}$ is the annual income of subject $i$ in tens of thousands of dollars
+
+Now, to do heteroskedasticity consistent robust inference, one can use the `vcocHV()` frunction from the `R` package `sandwich` together with the `coeftest()` function from the `R` package `lmtest`. 
+
+```{r, echo = TRUE, eval = FALSE}
+## No robust standard errors:
+coeftest(lm_obj)
+## HC3 robust standard errors:
+coeftest(lm_obj, vcov = vcovHC(lm_obj, type = "HC3"))
+```
+
+
+You can do this also using the `R` package `stargazer` which gives you puplication ready regression output tables:
+
+```{r, echo=TRUE, eval=TRUE, results='asis'}
+## Hint: use type = "latex" 
+## to produce a latex table
+
+suppressPackageStartupMessages(library("stargazer"))
+
+# Adjust standard errors
+cov_beta_HC3   <- vcovHC(lm_obj, type = "HC3")
+robust_HC3_se  <- sqrt(diag(cov_beta_HC3))
+
+# Stargazer output (with and without RSE)
+stargazer(lm_obj, lm_obj, 
+          se   = list(NULL, robust_HC3_se),
+          type = "html")
+```
+
+
+
 
 <!-- 
 ### Variance Inflation
