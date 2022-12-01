@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.0.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,15 +11,10 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
-  vertical-align: middle;
-}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -58,7 +53,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -71,7 +66,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -205,28 +200,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#short-glossary" id="toc-short-glossary" class="nav-link active" data-scroll-target="#short-glossary"><span class="toc-section-number">1.1</span>  Short Glossary</a></li>
-  <li><a href="#first-steps" id="toc-first-steps" class="nav-link" data-scroll-target="#first-steps"><span class="toc-section-number">1.2</span>  First Steps</a></li>
-  <li><a href="#further-data-objects" id="toc-further-data-objects" class="nav-link" data-scroll-target="#further-data-objects"><span class="toc-section-number">1.3</span>  Further Data Objects</a></li>
-  <li><a href="#simple-regression-analysis-using-r" id="toc-simple-regression-analysis-using-r" class="nav-link" data-scroll-target="#simple-regression-analysis-using-r"><span class="toc-section-number">1.4</span>  Simple Regression Analysis using R</a></li>
-  <li><a href="#programming-in-r" id="toc-programming-in-r" class="nav-link" data-scroll-target="#programming-in-r"><span class="toc-section-number">1.5</span>  Programming in R</a></li>
-  <li><a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages"><span class="toc-section-number">1.6</span>  R-packages</a></li>
-  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="toc-section-number">1.7</span>  Tidyverse</a>
+  <li><a href="#short-glossary" id="toc-short-glossary" class="nav-link active" data-scroll-target="#short-glossary"> <span class="header-section-number">1.1</span> Short Glossary</a></li>
+  <li><a href="#first-steps" id="toc-first-steps" class="nav-link" data-scroll-target="#first-steps"> <span class="header-section-number">1.2</span> First Steps</a></li>
+  <li><a href="#further-data-objects" id="toc-further-data-objects" class="nav-link" data-scroll-target="#further-data-objects"> <span class="header-section-number">1.3</span> Further Data Objects</a></li>
+  <li><a href="#simple-regression-analysis-using-r" id="toc-simple-regression-analysis-using-r" class="nav-link" data-scroll-target="#simple-regression-analysis-using-r"> <span class="header-section-number">1.4</span> Simple Regression Analysis using R</a></li>
+  <li><a href="#programming-in-r" id="toc-programming-in-r" class="nav-link" data-scroll-target="#programming-in-r"> <span class="header-section-number">1.5</span> Programming in R</a></li>
+  <li><a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages"> <span class="header-section-number">1.6</span> R-packages</a></li>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"> <span class="header-section-number">1.7</span> Tidyverse</a>
   <ul class="collapse">
-  <li><a href="#tidyverse-plotting-basics" id="toc-tidyverse-plotting-basics" class="nav-link" data-scroll-target="#tidyverse-plotting-basics"><span class="toc-section-number">1.7.1</span>  Tidyverse: Plotting Basics</a></li>
-  <li><a href="#tidyverse-data-wrangling-basics" id="toc-tidyverse-data-wrangling-basics" class="nav-link" data-scroll-target="#tidyverse-data-wrangling-basics"><span class="toc-section-number">1.7.2</span>  Tidyverse: Data Wrangling Basics</a></li>
-  <li><a href="#the-pipe-operator" id="toc-the-pipe-operator" class="nav-link" data-scroll-target="#the-pipe-operator"><span class="toc-section-number">1.7.3</span>  The pipe operator <code>%&gt;%</code></a></li>
-  <li><a href="#the-group_by-function" id="toc-the-group_by-function" class="nav-link" data-scroll-target="#the-group_by-function"><span class="toc-section-number">1.7.4</span>  The <code>group_by()</code> function</a></li>
+  <li><a href="#tidyverse-plotting-basics" id="toc-tidyverse-plotting-basics" class="nav-link" data-scroll-target="#tidyverse-plotting-basics"> <span class="header-section-number">1.7.1</span> Tidyverse: Plotting Basics</a></li>
+  <li><a href="#tidyverse-data-wrangling-basics" id="toc-tidyverse-data-wrangling-basics" class="nav-link" data-scroll-target="#tidyverse-data-wrangling-basics"> <span class="header-section-number">1.7.2</span> Tidyverse: Data Wrangling Basics</a></li>
+  <li><a href="#the-pipe-operator" id="toc-the-pipe-operator" class="nav-link" data-scroll-target="#the-pipe-operator"> <span class="header-section-number">1.7.3</span> The pipe operator <code>%&gt;%</code></a></li>
+  <li><a href="#the-group_by-function" id="toc-the-group_by-function" class="nav-link" data-scroll-target="#the-group_by-function"> <span class="header-section-number">1.7.4</span> The <code>group_by()</code> function</a></li>
   </ul></li>
-  <li><a href="#further-links" id="toc-further-links" class="nav-link" data-scroll-target="#further-links"><span class="toc-section-number">1.8</span>  Further Links</a>
+  <li><a href="#further-links" id="toc-further-links" class="nav-link" data-scroll-target="#further-links"> <span class="header-section-number">1.8</span> Further Links</a>
   <ul class="collapse">
-  <li><a href="#further-r-intros" id="toc-further-r-intros" class="nav-link" data-scroll-target="#further-r-intros"><span class="toc-section-number">1.8.1</span>  Further R-Intros</a></li>
-  <li><a href="#version-control-gitgithub" id="toc-version-control-gitgithub" class="nav-link" data-scroll-target="#version-control-gitgithub"><span class="toc-section-number">1.8.2</span>  Version Control (Git/GitHub)</a></li>
-  <li><a href="#r-ladies" id="toc-r-ladies" class="nav-link" data-scroll-target="#r-ladies"><span class="toc-section-number">1.8.3</span>  R-Ladies</a></li>
+  <li><a href="#further-r-intros" id="toc-further-r-intros" class="nav-link" data-scroll-target="#further-r-intros"> <span class="header-section-number">1.8.1</span> Further R-Intros</a></li>
+  <li><a href="#version-control-gitgithub" id="toc-version-control-gitgithub" class="nav-link" data-scroll-target="#version-control-gitgithub"> <span class="header-section-number">1.8.2</span> Version Control (Git/GitHub)</a></li>
+  <li><a href="#r-ladies" id="toc-r-ladies" class="nav-link" data-scroll-target="#r-ladies"> <span class="header-section-number">1.8.3</span> R-Ladies</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -559,16 +554,18 @@ For instance, check out one of the following repositories:
 <div id="fig-margin" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="01-Introduction-to-R_files/figure-html/fig-margin-1.png" class="img-fluid figure-img" width="432"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.1: <strong>?(caption)</strong></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure 1.1: <strong>?(caption)</strong></figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
 <p><br>
 </p>
-<p>As a first step, we might assume a simple kind of linear relationship between the variables <code>gasolin.consumption</code> and <code>car.weight</code>. Let us assume that the data was generated by the following simple regression model: <span class="math display">\[
+<p>As a first step, we might assume a simple kind of linear relationship between the variables <code>gasolin.consumption</code> and <code>car.weight</code>. Let us assume that the data was generated by the following simple regression model:</p>
+<p><span class="math display">\[
 y_i=\alpha+\beta_1 x_i+\varepsilon_i,\quad i=1,\dots,n
-\]</span> where <span class="math inline">\(y_i\)</span> denotes the gasoline-consumption, <span class="math inline">\(x_i\)</span> the weight of car <span class="math inline">\(i\)</span>, and <span class="math inline">\(\varepsilon_i\)</span> is a mean zero constant variance noise term. (This is clearly a non-sense model!)</p>
+\]</span></p>
+<p>where <span class="math inline">\(y_i\)</span> denotes the gasoline-consumption, <span class="math inline">\(x_i\)</span> the weight of car <span class="math inline">\(i\)</span>, and <span class="math inline">\(\varepsilon_i\)</span> is a mean zero constant variance noise term. (This is clearly a non-sense model!)</p>
 <p>The command <code>lm()</code> computes the estimates of this linear regression model. The command (in fact it’s a <em>method</em>) <code>summary()</code> computes further quantities of general interest from the <em>object</em> that was returned from the <code>lm()</code> function.</p>
 <div class="cell" data-hash="01-Introduction-to-R_cache/html/unnamed-chunk-22_66dc1d5495d37852d8e9e9afaa62feef">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>lm.result   <span class="ot">&lt;-</span> <span class="fu">lm</span>(gasolin.consumption<span class="sc">~</span>car.weight)</span>
@@ -633,7 +630,9 @@ F-statistic: 223.8 on 1 and 91 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><br>
 </p>
 <p>Let us consider the following multiple regression model:</p>
-<p><span class="math display">\[y_i=\beta_1 +\beta_2 x_{2i}+\beta_3 x_{3i}+\varepsilon_{i},\quad i=1,\dots,n,\]</span> where <span class="math inline">\(\varepsilon_{i}\)</span> is a heteroscedastic error term <span class="math display">\[\varepsilon_{i}\sim N(0,\sigma_i^2),\quad \sigma_i=|x_{3i}|,\]</span></p>
+<p><span class="math display">\[y_i=\beta_1 +\beta_2 x_{2i}+\beta_3 x_{3i}+\varepsilon_{i},\quad i=1,\dots,n,\]</span></p>
+<p>where <span class="math inline">\(\varepsilon_{i}\)</span> is a heteroscedastic error term</p>
+<p><span class="math display">\[\varepsilon_{i}\sim N(0,\sigma_i^2),\quad \sigma_i=|x_{3i}|,\]</span></p>
 <p>and where for all <span class="math inline">\(i=1,\dots,n=50\)</span>:</p>
 <ul>
 <li><span class="math inline">\(x_{2i}\sim N(10,1.5^2)\)</span></li>
@@ -688,7 +687,9 @@ We still need to simulate realizations of the dependent variable <span class="ma
 </div>
 <p><br>
 </p>
-<p>Once we have data, we can compute the OLS estimate of the true <span class="math inline">\(\beta\)</span> vector. Remember the formula: <span class="math display">\[\hat{\beta}=(X^\top X)^{-1}X^\top y\]</span> In R-Code this is: <span class="math inline">\((X^\top X)^{-1}=\)</span><code>solve(t(X) %*% X)</code>, i.e.:</p>
+<p>Once we have data, we can compute the OLS estimate of the true <span class="math inline">\(\beta\)</span> vector. Remember the formula:</p>
+<p><span class="math display">\[\hat{\beta}=(X^\top X)^{-1}X^\top y\]</span></p>
+<p>In R-Code this is: <span class="math inline">\((X^\top X)^{-1}=\)</span><code>solve(t(X) %*% X)</code>, i.e.:</p>
 <div class="cell" data-hash="01-Introduction-to-R_cache/html/unnamed-chunk-30_1623d809fe92cb360aa3cda907ddc895">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Computation of the beta-Vector:</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>beta.hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
@@ -1385,8 +1386,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      let href = ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

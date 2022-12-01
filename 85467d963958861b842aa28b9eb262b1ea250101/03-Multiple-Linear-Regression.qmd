@@ -550,7 +550,7 @@ $$
 \begin{align*}
 \operatorname{Bias}(\hat\beta|X) 
 &= E(\hat\beta|X) - \beta \\
-&= E((X'X)^{-1}X'\underbrace{Y}_{=X'\beta+\varepsilon}|X) - \beta \\
+&= E((X'X)^{-1}X'\underbrace{Y}_{=X\beta+\varepsilon}|X) - \beta \\
 &= E(\underbrace{(X'X)^{-1}X'X}_{I_K}\beta|X) + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
 &=  \beta + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
 &=  (X'X)^{-1}X'E(\varepsilon|X) =0.  

@@ -764,8 +764,8 @@ lines(density(hatbeta2_sim_uncond, bw=bw.SJ(hatbeta2_sim_uncond)), col=alpha("re
 legend("topleft", lty=c(1,1,1), lwd=c(3,3,3),
      col=c(gray(.2), alpha("blue",.45), alpha("red",.5)), bty="n", legend= 
 c(expression("Theoretical Gaussian Density of"~hat(beta)[2]~'|'~X), 
-  expression("Empirical Density based on the 5000 MC realizations of"~hat(beta)[2]~'|'~X),
-  expression("Empirical Density based on the 5000 MC realizations of"~hat(beta)[2])))
+  expression("Empirical Density based on the 10000 MC realizations of"~hat(beta)[2]~'|'~X),
+  expression("Empirical Density based on the 10000 MC realizations of"~hat(beta)[2])))
 ```
 
 Observations:
@@ -1124,7 +1124,7 @@ abline(h=beta_true_2)
 As expected, only about $\alpha\cdot 100\%=5\%$ of all confidence intervals do not contain the true parameter value $\beta_2=3$, but about $(1-\alpha)\cdot 100\%=95\%$ of all confidence intervals contain the true parameter value $\beta_2=3$. 
 
 
-## Real Data Example 
+## Real Data Example {#sec-RDSSInf}
 
 ```{r}
 ## The AER package contains a lot of datasets 
@@ -1217,7 +1217,7 @@ suppressPackageStartupMessages(library(stargazer))
 ```
 
 <center>
-```{r, ech=TRUE, eval=TRUE, results='asis'}
+```{r, echo=TRUE, eval=TRUE, results='asis'}
 ## Hint: use type = "latex" 
 ## to produce a latex table
 stargazer(lm_obj, type="html")
@@ -1247,9 +1247,9 @@ Lukily, the data set `DoctorVisits` actually has a **large sample size** of $n=$
 
 ## Exercises
 
-* [Exercises for Chapter 5](Exercises/Ch5_Exercises.pdf)
+<!-- * [Exercises for Chapter 5](Exercises/Ch5_Exercises.pdf) -->
 
-<!-- * [Exercises of Chapter 5 with Solutions](Exercises/Ch5_Exercises_with_Solutions.pdf) -->
+* [Exercises of Chapter 5 with Solutions](Exercises/Ch5_Exercises_with_Solutions.pdf)
 
 ## References {-}
 

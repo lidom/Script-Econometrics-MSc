@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.0.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,15 +11,10 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
-  vertical-align: middle;
-}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -58,7 +53,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -71,7 +66,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -224,31 +219,31 @@ div.csl-indent {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#basics-in-probability-theory" id="toc-basics-in-probability-theory" class="nav-link active" data-scroll-target="#basics-in-probability-theory"><span class="toc-section-number">2.1</span>  Basics in Probability Theory</a>
+  <li><a href="#basics-in-probability-theory" id="toc-basics-in-probability-theory" class="nav-link active" data-scroll-target="#basics-in-probability-theory"> <span class="header-section-number">2.1</span> Basics in Probability Theory</a>
   <ul class="collapse">
-  <li><a href="#sample-spaces-and-elementary-events" id="toc-sample-spaces-and-elementary-events" class="nav-link" data-scroll-target="#sample-spaces-and-elementary-events"><span class="toc-section-number">2.1.1</span>  Sample Spaces and (Elementary) Events</a></li>
-  <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability"><span class="toc-section-number">2.1.2</span>  Probability</a></li>
-  <li><a href="#independent-events" id="toc-independent-events" class="nav-link" data-scroll-target="#independent-events"><span class="toc-section-number">2.1.3</span>  Independent Events</a></li>
-  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability"><span class="toc-section-number">2.1.4</span>  Conditional Probability</a></li>
+  <li><a href="#sample-spaces-and-elementary-events" id="toc-sample-spaces-and-elementary-events" class="nav-link" data-scroll-target="#sample-spaces-and-elementary-events"> <span class="header-section-number">2.1.1</span> Sample Spaces and (Elementary) Events</a></li>
+  <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability"> <span class="header-section-number">2.1.2</span> Probability</a></li>
+  <li><a href="#independent-events" id="toc-independent-events" class="nav-link" data-scroll-target="#independent-events"> <span class="header-section-number">2.1.3</span> Independent Events</a></li>
+  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability"> <span class="header-section-number">2.1.4</span> Conditional Probability</a></li>
   </ul></li>
-  <li><a href="#random-variables" id="toc-random-variables" class="nav-link" data-scroll-target="#random-variables"><span class="toc-section-number">2.2</span>  Random Variables</a>
+  <li><a href="#random-variables" id="toc-random-variables" class="nav-link" data-scroll-target="#random-variables"> <span class="header-section-number">2.2</span> Random Variables</a>
   <ul class="collapse">
-  <li><a href="#univariate-distribution-and-probability-functions" id="toc-univariate-distribution-and-probability-functions" class="nav-link" data-scroll-target="#univariate-distribution-and-probability-functions"><span class="toc-section-number">2.2.1</span>  Univariate Distribution and Probability Functions</a></li>
-  <li><a href="#multivariate-distribution-and-probability-functions" id="toc-multivariate-distribution-and-probability-functions" class="nav-link" data-scroll-target="#multivariate-distribution-and-probability-functions"><span class="toc-section-number">2.2.2</span>  Multivariate Distribution and Probability Functions</a></li>
-  <li><a href="#means-and-moments" id="toc-means-and-moments" class="nav-link" data-scroll-target="#means-and-moments"><span class="toc-section-number">2.2.3</span>  Means and Moments</a></li>
-  <li><a href="#unconditional-means" id="toc-unconditional-means" class="nav-link" data-scroll-target="#unconditional-means"><span class="toc-section-number">2.2.4</span>  Unconditional Means</a></li>
-  <li><a href="#conditional-means" id="toc-conditional-means" class="nav-link" data-scroll-target="#conditional-means"><span class="toc-section-number">2.2.5</span>  Conditional Means</a></li>
-  <li><a href="#means-of-transformed-random-variables-and-moments" id="toc-means-of-transformed-random-variables-and-moments" class="nav-link" data-scroll-target="#means-of-transformed-random-variables-and-moments"><span class="toc-section-number">2.2.6</span>  Means of Transformed Random Variables and Moments</a></li>
-  <li><a href="#independent-random-variables" id="toc-independent-random-variables" class="nav-link" data-scroll-target="#independent-random-variables"><span class="toc-section-number">2.2.7</span>  Independent Random Variables</a></li>
-  <li><a href="#random-samples" id="toc-random-samples" class="nav-link" data-scroll-target="#random-samples"><span class="toc-section-number">2.2.8</span>  Random Samples</a></li>
-  <li><a href="#some-important-discrete-random-variables" id="toc-some-important-discrete-random-variables" class="nav-link" data-scroll-target="#some-important-discrete-random-variables"><span class="toc-section-number">2.2.9</span>  Some Important Discrete Random Variables</a></li>
-  <li><a href="#some-important-continuous-random-variables" id="toc-some-important-continuous-random-variables" class="nav-link" data-scroll-target="#some-important-continuous-random-variables"><span class="toc-section-number">2.2.10</span>  Some Important Continuous Random Variables</a></li>
+  <li><a href="#univariate-distribution-and-probability-functions" id="toc-univariate-distribution-and-probability-functions" class="nav-link" data-scroll-target="#univariate-distribution-and-probability-functions"> <span class="header-section-number">2.2.1</span> Univariate Distribution and Probability Functions</a></li>
+  <li><a href="#multivariate-distribution-and-probability-functions" id="toc-multivariate-distribution-and-probability-functions" class="nav-link" data-scroll-target="#multivariate-distribution-and-probability-functions"> <span class="header-section-number">2.2.2</span> Multivariate Distribution and Probability Functions</a></li>
+  <li><a href="#means-and-moments" id="toc-means-and-moments" class="nav-link" data-scroll-target="#means-and-moments"> <span class="header-section-number">2.2.3</span> Means and Moments</a></li>
+  <li><a href="#unconditional-means" id="toc-unconditional-means" class="nav-link" data-scroll-target="#unconditional-means"> <span class="header-section-number">2.2.4</span> Unconditional Means</a></li>
+  <li><a href="#conditional-means" id="toc-conditional-means" class="nav-link" data-scroll-target="#conditional-means"> <span class="header-section-number">2.2.5</span> Conditional Means</a></li>
+  <li><a href="#means-of-transformed-random-variables-and-moments" id="toc-means-of-transformed-random-variables-and-moments" class="nav-link" data-scroll-target="#means-of-transformed-random-variables-and-moments"> <span class="header-section-number">2.2.6</span> Means of Transformed Random Variables and Moments</a></li>
+  <li><a href="#independent-random-variables" id="toc-independent-random-variables" class="nav-link" data-scroll-target="#independent-random-variables"> <span class="header-section-number">2.2.7</span> Independent Random Variables</a></li>
+  <li><a href="#random-samples" id="toc-random-samples" class="nav-link" data-scroll-target="#random-samples"> <span class="header-section-number">2.2.8</span> Random Samples</a></li>
+  <li><a href="#some-important-discrete-random-variables" id="toc-some-important-discrete-random-variables" class="nav-link" data-scroll-target="#some-important-discrete-random-variables"> <span class="header-section-number">2.2.9</span> Some Important Discrete Random Variables</a></li>
+  <li><a href="#some-important-continuous-random-variables" id="toc-some-important-continuous-random-variables" class="nav-link" data-scroll-target="#some-important-continuous-random-variables"> <span class="header-section-number">2.2.10</span> Some Important Continuous Random Variables</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">2.3</span>  Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"> <span class="header-section-number">2.3</span> Exercises</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -282,14 +277,21 @@ div.csl-indent {
 <p><strong>Example:</strong> If we toss a coin twice then <span class="math inline">\(\Omega=\{H H, H T, T H, T T\}.\)</span> The event that the first toss is heads is <span class="math inline">\(A=\{H H, H T\}.\)</span></p>
 <p><strong>Example:</strong> Let <span class="math inline">\(\omega\)</span> be the outcome of a measurement of some physical quantity, for example, temperature. Then <span class="math inline">\(\Omega=\mathbb{R}=(-\infty, \infty).\)</span> The event that the measurement is larger than 10 but less than or equal to 23 is <span class="math inline">\(A=(10,23].\)</span></p>
 <p><strong>Example:</strong> If we toss a coin forever then the sample space is the infinite set <span class="math inline">\(\Omega=\left\{\omega=\left(\omega_{1}, \omega_{2}, \omega_{3}, \ldots,\right)|\omega_{i} \in\{H, T\}\right\}\)</span> Let <span class="math inline">\(A\)</span> be the event that the first head appears on the third toss. Then <span class="math inline">\(A=\left\{\left(\omega_{1}, \omega_{2}, \omega_{3}, \ldots,\right)| \omega_{1}=T, \omega_{2}=T, \omega_{3}=H, \omega_{i} \in\{H, T\} \text { for } i&gt;3\right\}.\)</span></p>
-<p>Given an event <span class="math inline">\(A,\)</span> let <span class="math inline">\(A^{c}=\{\omega \in \Omega ; \omega \notin A\}\)</span> denote the <strong>complement</strong> of <span class="math inline">\(A\)</span>. Informally, <span class="math inline">\(A^{c}\)</span> can be read as “not <span class="math inline">\(A\)</span>.” The complement of <span class="math inline">\(\Omega\)</span> is the empty set <span class="math inline">\(\emptyset\)</span>. The <strong>union</strong> of events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined as <span class="math display">\[
+<p>Given an event <span class="math inline">\(A,\)</span> let <span class="math inline">\(A^{c}=\{\omega \in \Omega ; \omega \notin A\}\)</span> denote the <strong>complement</strong> of <span class="math inline">\(A\)</span>. Informally, <span class="math inline">\(A^{c}\)</span> can be read as “not <span class="math inline">\(A\)</span>.” The complement of <span class="math inline">\(\Omega\)</span> is the empty set <span class="math inline">\(\emptyset\)</span>. The <strong>union</strong> of events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined as</p>
+<p><span class="math display">\[
 A\cup B=\{\omega \in \Omega|\omega\in A\text{ or }\omega \in B\text{ or }\omega\in\text{ both}\}
-\]</span> which can be thought of as “<span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span>.” If <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> is a sequence of sets then <span class="math display">\[
+\]</span></p>
+<p>which can be thought of as “<span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span>.” If <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> is a sequence of sets then</p>
+<p><span class="math display">\[
 \bigcup_{i=1}^{\infty} A_{i}=\left\{\omega \in \Omega: \omega \in A_{i} \text { for at least one i }\right\}.
-\]</span> The <strong>intersection</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined as <span class="math display">\[
+\]</span></p>
+<p>The <strong>intersection</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined as</p>
+<p><span class="math display">\[
 A \cap B=\{\omega \in \Omega ; \omega \in A\text{ and }\omega \in B\}
-\]</span> which reads as “<span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.” Often <span class="math inline">\(A \cap B\)</span> is also written shortly as <span class="math inline">\(AB\)</span> or as <span class="math inline">\(A,B.\)</span></p>
-<p>If <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> is a sequence of sets then <span class="math display">\[
+\]</span></p>
+<p>which reads as “<span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.” Often <span class="math inline">\(A \cap B\)</span> is also written shortly as <span class="math inline">\(AB\)</span> or as <span class="math inline">\(A,B.\)</span></p>
+<p>If <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> is a sequence of sets then</p>
+<p><span class="math display">\[
 \bigcap_{i=1}^{\infty} A_{i}=\left\{\omega \in \Omega: \omega \in A_{i} \text { for all i }\right\}.
 \]</span></p>
 <p>If every element of <span class="math inline">\(A\)</span> is also contained in <span class="math inline">\(B\)</span> we write <span class="math inline">\(A \subset B\)</span> or, equivalently, <span class="math inline">\(B \supset A\)</span>. If <span class="math inline">\(A\)</span> is a finite set, let <span class="math inline">\(|A|\)</span> denote the number of elements in <span class="math inline">\(A .\)</span> We say that <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> are <strong>disjoint</strong> or <strong>mutually exclusive</strong> if <span class="math inline">\(A_{i} \cap A_{j}=\emptyset\)</span> whenever <span class="math inline">\(i \neq j\)</span>. For example, <span class="math inline">\(A_{1}=[0,1), A_{2}=[1,2), A_{3}=[2,3), \ldots\)</span> are disjoint. A <strong>partition</strong> of <span class="math inline">\(\Omega\)</span> is a sequence of disjoint sets <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> such that <span class="math inline">\(\bigcup_{i=1}^{\infty} A_{i}=\Omega\)</span>.</p>
@@ -346,9 +348,12 @@ P\left(\bigcup_{i=1}^{\infty} A_{i}\right)=\sum_{i=1}^{\infty} P\left(A_{i}\righ
 <p><span class="math display">\[
 P(A \cup B)=P(A)+P(B)-P(A B).
 \]</span></p>
-<p><strong>Example:</strong> Two consecutive coin tosses. Let <span class="math inline">\(H_{1}\)</span> be the event that heads occurs on toss 1 and let <span class="math inline">\(H_{2}\)</span> be the event that heads occurs on toss 2. If all outcomes are equally likely, that is, <span class="math display">\[
+<p><strong>Example:</strong> Two consecutive coin tosses. Let <span class="math inline">\(H_{1}\)</span> be the event that heads occurs on toss 1 and let <span class="math inline">\(H_{2}\)</span> be the event that heads occurs on toss 2. If all outcomes are equally likely, that is,</p>
+<p><span class="math display">\[
 P\left(\left\{H_{1}, H_{2}\right\}\right)=P\left(\left\{H_{1}, T_{2}\right\}\right)=P\left(\left\{T_{1}, H_{2}\right\}\right)=P\left(\left\{T_{1}, T_{2}\right\}\right)=1 / 4,
-\]</span> then <span class="math display">\[
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
 P\left(H_{1} \cup H_{2}\right)=P\left(H_{1}\right)+P\left(H_{2}\right)-P\left(H_{1} H_{2}\right)=\frac{1}{2}+\frac{1}{2}-\frac{1}{4}=\frac{3}{4}.
 \]</span></p>
 <section id="probabilities-as-frequencies" class="level4 unnumbered">
@@ -390,16 +395,19 @@ P(A B)=P(A) P(B).
 <p>Or more generally, a whole set of events <span class="math inline">\(\{A_i|i\in I\}\)</span> is independent if</p>
 <p><span class="math display">\[
 P\left(\bigcap_{i \in J} A_{i}\right)=\prod_{i \in J}P\left(A_{i}\right)
-\]</span> for every finite subset <span class="math inline">\(J\)</span> of <span class="math inline">\(I\)</span>, where <span class="math inline">\(I\)</span> denotes the not necessarily finite index set (e.g.&nbsp;<span class="math inline">\(I=\{1,2,\dots\}\)</span>).</p>
+\]</span></p>
+<p>for every finite subset <span class="math inline">\(J\)</span> of <span class="math inline">\(I\)</span>, where <span class="math inline">\(I\)</span> denotes the not necessarily finite index set (e.g.&nbsp;<span class="math inline">\(I=\{1,2,\dots\}\)</span>).</p>
 <p>Independence can arise in two distinct ways. Sometimes, we <strong>explicitly assume</strong> that two events are independent. For example, in tossing a coin twice, we usually assume the tosses are independent which reflects the fact that the coin has no memory of the first toss.</p>
-<p>In other instances, we <strong>derive</strong> independence by verifying that the definition of independence <span class="math inline">\(P(A B)=P(A)P(B)\)</span> holds. For example, in tossing a fair die , let <span class="math inline">\(A=\{2,4,6\}\)</span> be the event of observing an even number and let <span class="math inline">\(B=\{1,2,3,4\}\)</span> be the event of observing no <span class="math inline">\(5\)</span> and no <span class="math inline">\(6\)</span>. Then, <span class="math inline">\(A \cap B=\{2,4\}\)</span> is the event of observing either a <span class="math inline">\(2\)</span> or a <span class="math inline">\(4\)</span>. Are the events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> independent?<br>
-<span class="math display">\[
+<p>In other instances, we <strong>derive</strong> independence by verifying that the definition of independence <span class="math inline">\(P(A B)=P(A)P(B)\)</span> holds. For example, in tossing a fair die , let <span class="math inline">\(A=\{2,4,6\}\)</span> be the event of observing an even number and let <span class="math inline">\(B=\{1,2,3,4\}\)</span> be the event of observing no <span class="math inline">\(5\)</span> and no <span class="math inline">\(6\)</span>. Then, <span class="math inline">\(A \cap B=\{2,4\}\)</span> is the event of observing either a <span class="math inline">\(2\)</span> or a <span class="math inline">\(4\)</span>. Are the events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> independent?</p>
+<p><span class="math display">\[
 P(A B)=\frac{2}{6}=P(A)P(B)=\frac{1}{2}\cdot \frac{2}{3}
-\]</span> and so <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent. In this case, we didn’t assume that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent it just turned out that they were.</p>
+\]</span></p>
+<p>and so <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent. In this case, we didn’t assume that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent it just turned out that they were.</p>
 <p><strong>Cautionary Note:</strong> Suppose that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>disjoint events</strong>, i.e.&nbsp;<span class="math inline">\(AB=\emptyset,\)</span> each with positive probability <span class="math inline">\(P(A)&gt;0\)</span> and <span class="math inline">\(P(B)&gt;0.\)</span> Can they be independent? No! This follows since</p>
 <p><span class="math display">\[
 P(A B)=P(\emptyset)=0\neq P(A)P(B)&gt;0.
-\]</span> Except in this special case, there is no way to judge (in-)dependence by looking at the sets in a Venn diagram.</p>
+\]</span></p>
+<p>Except in this special case, there is no way to judge (in-)dependence by looking at the sets in a Venn diagram.</p>
 <p><strong>Summary:</strong> Independent Events</p>
 <ol type="1">
 <li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if <span class="math inline">\(P(A B)=P(A) P(B)\)</span>.</li>
@@ -409,9 +417,11 @@ P(A B)=P(\emptyset)=0\neq P(A)P(B)&gt;0.
 </section>
 <section id="conditional-probability" class="level3" data-number="2.1.4">
 <h3 data-number="2.1.4" class="anchored" data-anchor-id="conditional-probability"><span class="header-section-number">2.1.4</span> Conditional Probability</h3>
-<p>If <span class="math inline">\(P(B)&gt;0\)</span> then the <strong>conditional probability</strong> of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> is <span class="math display">\[
+<p>If <span class="math inline">\(P(B)&gt;0\)</span> then the <strong>conditional probability</strong> of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> is</p>
+<p><span class="math display">\[
 P(A \mid B)=\frac{P(A B)}{P(B)}.
-\]</span> Think of <span class="math inline">\(P(A \mid B)\)</span> as the fraction of times <span class="math inline">\(A\)</span> occurs among those in which <span class="math inline">\(B\)</span> occurs. Here are some facts about conditional probabilities:</p>
+\]</span></p>
+<p>Think of <span class="math inline">\(P(A \mid B)\)</span> as the fraction of times <span class="math inline">\(A\)</span> occurs among those in which <span class="math inline">\(B\)</span> occurs. Here are some facts about conditional probabilities:</p>
 <ul>
 <li>The rules of probability apply to events on the left of the bar “<span class="math inline">\(\mid\)</span>”. That is, for any fixed <span class="math inline">\(B\)</span> such that <span class="math inline">\(P(B)&gt;0,\)</span> <span class="math inline">\(P(\cdot \mid B)\)</span> is a probability, i.e., it satisfies the three axioms of probability:
 <ul>
@@ -432,22 +442,33 @@ P(A \mid B)=\frac{P(A B)}{P(B)}.
 \hline
   &amp; .0090 &amp; .9910 &amp;  1
 \end{array}
-\]</span> From the definition of conditional probability, we have:</p>
+\]</span></p>
+<p>From the definition of conditional probability, we have:</p>
 <ul>
-<li>Sensitivity of the test: <span class="math display">\[P(+\mid D)=P(+\cap D) / P(D)=0.0081 /(0.0081+0.0009)=0.9\]</span></li>
-<li>Specificity of the test: <span class="math display">\[P(-\mid D^{c})=P(-\cap D^{c}) / P(D^{c})=0.9010/(0.9010+0.0900)\approx 0.9\]</span></li>
+<li>Sensitivity of the test:</li>
 </ul>
+<p><span class="math display">\[P(+\mid D)=P(+\cap D) / P(D)=0.0081 /(0.0081+0.0009)=0.9\]</span></p>
+<ul>
+<li>Specificity of the test:</li>
+</ul>
+<p><span class="math display">\[P(-\mid D^{c})=P(-\cap D^{c}) / P(D^{c})=0.9010/(0.9010+0.0900)\approx 0.9\]</span></p>
 <p>Apparently, the test is fairly accurate. Sick people yield a positive test result 90 percent of the time and healthy people yield a negative test result about 90 percent of the time. Suppose you go for a test and get a positive result. What is the probability you have the disease? Most people answer <span class="math inline">\(0.90=90\%\)</span>. The correct answer is <span class="math inline">\(P(D \mid+)=P(+\cap D) / P(+)=0.0081 /(0.0081+0.0900)=0.08.\)</span> The lesson here is that you need to compute the answer numerically. Don’t trust your intuition.</p>
 <section id="independence-via-conditional-probabilities" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="independence-via-conditional-probabilities">Independence via Conditional Probabilities</h4>
-<p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>independent events</strong> then <span class="math display">\[
+<p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>independent events</strong> then</p>
+<p><span class="math display">\[
 P(A \mid B)=\frac{P(A B)}{P(B)}=\frac{P(A) P(B)}{P(B)}=P(A)
-\]</span> So another <strong>interpretation of independence</strong> is that knowing <span class="math inline">\(B\)</span> doesn’t change the probability of <span class="math inline">\(A\)</span>.</p>
-<p>From the definition of conditional probability we can write <span class="math display">\[
+\]</span></p>
+<p>So another <strong>interpretation of independence</strong> is that knowing <span class="math inline">\(B\)</span> doesn’t change the probability of <span class="math inline">\(A\)</span>.</p>
+<p>From the definition of conditional probability we can write</p>
+<p><span class="math display">\[
 P(A B)=P(A \mid B) P(B)
-\]</span> and also <span class="math display">\[
+\]</span></p>
+<p>and also</p>
+<p><span class="math display">\[
 P(A B)=P(B \mid A) P(A).
-\]</span> Often, these formulas give us a convenient way to compute <span class="math inline">\(P(A B)\)</span> when <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not independent.</p>
+\]</span></p>
+<p>Often, these formulas give us a convenient way to compute <span class="math inline">\(P(A B)\)</span> when <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not independent.</p>
 <p><strong>Example:</strong> Draw two cards from a deck, without replacement. Let <span class="math inline">\(A\)</span> be the event that the first draw is Ace of Clubs and let <span class="math inline">\(B\)</span> be the event that the second draw is Queen of Diamonds. Then <span class="math inline">\(P(A, B)=P(A) P(B \mid A)=(1 / 52) \times(1 / 51)\)</span></p>
 <p><strong>Summary:</strong> Conditional Probability</p>
 <ol type="1">
@@ -526,7 +547,10 @@ P(A B)=P(B \mid A) P(A).
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="univariate-distribution-and-probability-functions"><span class="header-section-number">2.2.1</span> Univariate Distribution and Probability Functions</h3>
 <section id="cumulative-distribution-function" class="level4" data-number="2.2.1.1">
 <h4 data-number="2.2.1.1" class="anchored" data-anchor-id="cumulative-distribution-function"><span class="header-section-number">2.2.1.1</span> Cumulative Distribution Function</h4>
-<p>The <strong>cumulative distribution function (cdf)</strong> <span class="math display">\[F_{X}: \mathbb{R} \rightarrow [0,1]\]</span> of a real-valued random variable <span class="math inline">\(X\in\mathbb{R}\)</span> is defined by <span class="math display">\[
+<p>The <strong>cumulative distribution function (cdf)</strong></p>
+<p><span class="math display">\[F_{X}: \mathbb{R} \rightarrow [0,1]\]</span></p>
+<p>of a real-valued random variable <span class="math inline">\(X\in\mathbb{R}\)</span> is defined by</p>
+<p><span class="math display">\[
 F_{X}(x)=\mathbb{P}(X \leq x).
 \]</span></p>
 <p>You might wonder why we bother to define the cdf. The reason is that it effectively contains all the information about the random variable. Indeed, let <span class="math inline">\(X\in\mathbb{R}\)</span> have cdf <span class="math inline">\(F\)</span> and let <span class="math inline">\(Y\in\mathbb{R}\)</span> have cdf <span class="math inline">\(G\)</span>. If <span class="math inline">\(F(x)=G(x)\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span> then <span class="math inline">\(P(X \in A)=P(Y \in A)\)</span> for all <span class="math inline">\(A\subset\mathbb{R}\)</span>. In order to denote that two random variables, here <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, have the same distribution, one can write shortly <span class="math inline">\(X\overset{d}{=}Y\)</span>.</p>
@@ -543,10 +567,13 @@ F_{X}(x)=\mathbb{P}(X \leq x).
 </section>
 <section id="probability-functions-for-discrete-random-variables" class="level4" data-number="2.2.1.2">
 <h4 data-number="2.2.1.2" class="anchored" data-anchor-id="probability-functions-for-discrete-random-variables"><span class="header-section-number">2.2.1.2</span> Probability Functions for Discrete Random Variables</h4>
-<p>A random variable <span class="math inline">\(X\)</span> is if it takes only countably many values <span class="math display">\[
+<p>A random variable <span class="math inline">\(X\)</span> is if it takes only countably many values</p>
+<p><span class="math display">\[
 X\in\{x_{1}, x_{2}, \ldots\}.
-\]</span> For instance, <span class="math inline">\(X\in\{1,2,3\}\)</span> or <span class="math inline">\(X\in\{2,4,6,\dots\}\)</span> or <span class="math inline">\(X\in\mathbb{Z}\)</span> or <span class="math inline">\(X\in\mathbb{Q}\)</span>.</p>
-<p>We define the <strong>probability function</strong> or <strong>probability mass function (pmf)</strong> for <span class="math inline">\(X\)</span> by <span class="math display">\[
+\]</span></p>
+<p>For instance, <span class="math inline">\(X\in\{1,2,3\}\)</span> or <span class="math inline">\(X\in\{2,4,6,\dots\}\)</span> or <span class="math inline">\(X\in\mathbb{Z}\)</span> or <span class="math inline">\(X\in\mathbb{Q}\)</span>.</p>
+<p>We define the <strong>probability function</strong> or <strong>probability mass function (pmf)</strong> for <span class="math inline">\(X\)</span> by</p>
+<p><span class="math display">\[
 f_{X}(x)=\mathbb{P}(X=x)\quad\text{for all}\quad x\in\{x_1,x_2,\dots\}
 \]</span></p>
 </section>
@@ -559,9 +586,11 @@ f_{X}(x)=\mathbb{P}(X=x)\quad\text{for all}\quad x\in\{x_1,x_2,\dots\}
 <li><span class="math inline">\(\mathbb{P}(a&lt;X&lt;b)=\int_{a}^{b} f_{X}(x) dx\)</span> for every <span class="math inline">\(a\leq b\)</span>.</li>
 </ul>
 <p>The function <span class="math inline">\(f_{X}\)</span> is called the <strong>probability density function (pdf)</strong> or short <strong>density function</strong>.</p>
-<p>For density functions, we have that <span class="math display">\[
+<p>For density functions, we have that</p>
+<p><span class="math display">\[
 F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) dt\quad\text{and}\quad f_{X}(x)=F_{X}^{\prime}(x)
-\]</span> at all points <span class="math inline">\(x\)</span> at which <span class="math inline">\(F_{X}\)</span> is differentiable.</p>
+\]</span></p>
+<p>at all points <span class="math inline">\(x\)</span> at which <span class="math inline">\(F_{X}\)</span> is differentiable.</p>
 </section>
 </section>
 <section id="multivariate-distribution-and-probability-functions" class="level3" data-number="2.2.2">
@@ -569,7 +598,8 @@ F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) dt\quad\text{and}\quad f_{X}(x)=F_{X}^{\pri
 <p>A <span class="math inline">\(d\)</span>-dimensional random vector is a column-vector <span class="math inline">\(X=(X_1,\dots,X_d)^\prime\)</span>, where each element is a univariate random variable.</p>
 <section id="multidimensional-distribution-function" class="level4" data-number="2.2.2.1">
 <h4 data-number="2.2.2.1" class="anchored" data-anchor-id="multidimensional-distribution-function"><span class="header-section-number">2.2.2.1</span> Multidimensional Distribution Function</h4>
-<p>The <strong>multivariate distribution function</strong> <span class="math inline">\(F\)</span> is given by <span class="math display">\[F(a_1,\dots,a_d)=P(X_1\le a_1,\dots,X_d\le a_d).\]</span></p>
+<p>The <strong>multivariate distribution function</strong> <span class="math inline">\(F\)</span> is given by</p>
+<p><span class="math display">\[F(a_1,\dots,a_d)=P(X_1\le a_1,\dots,X_d\le a_d).\]</span></p>
 <div class="cell" data-layout-align="center" data-hash="02-Probability_cache/html/unnamed-chunk-2_da61824a59d8ae2e28c6c861aa66f625">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Install the package if not installed yet</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("mnormt")</span></span>
@@ -660,10 +690,13 @@ x_d)dx_2\dots  dx_d
 <p>Often, we are interested in the <strong>conditional distribution</strong> of <span class="math inline">\(X_j\)</span> given certain values of all other random variables</p>
 <p><span class="math display">\[
 X_1=x_1,\ldots, X_{j-1}=x_{j-1}, X_{j+1}=x_{j+1},\ldots,X_d=x_d.
-\]</span> That is, the distribution of <span class="math inline">\(X_j\)</span> when fixing the values of<br>
-<span class="math inline">\(X_1=x_1,\ldots,\)</span> <span class="math inline">\(X_{j-1}=x_{j-1},\)</span> <span class="math inline">\(X_{j+1}=x_{j+1},\ldots, X_d=x_d\)</span>. An important tool is here the <strong>conditional density</strong> of, for instance, <span class="math inline">\(X_1\)</span> given <span class="math inline">\(X_2=x_2,\ldots,X_d=x_d\)</span>: <span class="math display">\[
+\]</span></p>
+<p>That is, the distribution of <span class="math inline">\(X_j\)</span> when fixing the values of<br>
+<span class="math inline">\(X_1=x_1,\ldots,\)</span> <span class="math inline">\(X_{j-1}=x_{j-1},\)</span> <span class="math inline">\(X_{j+1}=x_{j+1},\ldots, X_d=x_d\)</span>. An important tool is here the <strong>conditional density</strong> of, for instance, <span class="math inline">\(X_1\)</span> given <span class="math inline">\(X_2=x_2,\ldots,X_d=x_d\)</span>:</p>
+<p><span class="math display">\[
 f(x_1\mid x_2,\ldots,x_d)=\frac{f(x_1,x_2,\ldots,x_d)}{f_{X_{2},\ldots,X_{d}}(x_2,\ldots,x_d)},
-\]</span> where <span class="math inline">\(f_{X_{2},\ldots,X_{d}}\)</span> denotes the joint density of <span class="math inline">\(X_2,\ldots,X_d\)</span>.</p>
+\]</span></p>
+<p>where <span class="math inline">\(f_{X_{2},\ldots,X_{d}}\)</span> denotes the joint density of <span class="math inline">\(X_2,\ldots,X_d\)</span>.</p>
 <div class="cell" data-layout-align="center" data-hash="02-Probability_cache/html/unnamed-chunk-5_59720233a28d2faa0cd9e577c343c687">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -680,9 +713,12 @@ f(x_1\mid x_2,\ldots,x_d)=\frac{f(x_1,x_2,\ldots,x_d)}{f_{X_{2},\ldots,X_{d}}(x_
 </section>
 <section id="unconditional-means" class="level3" data-number="2.2.4">
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="unconditional-means"><span class="header-section-number">2.2.4</span> Unconditional Means</h3>
-<p>The <strong>unconditional mean</strong> of <span class="math inline">\(X_1\)</span> is given by <span class="math display">\[
+<p>The <strong>unconditional mean</strong> of <span class="math inline">\(X_1\)</span> is given by</p>
+<p><span class="math display">\[
 E(X_1)= \int x f_{X_1}(x)dx.
-\]</span> The unconditional mean of a random vector <span class="math inline">\(X=(X_1,\dots,X_d)'\)</span> is given by the vector of element-wise means <span class="math display">\[
+\]</span></p>
+<p>The unconditional mean of a random vector <span class="math inline">\(X=(X_1,\dots,X_d)'\)</span> is given by the vector of element-wise means</p>
+<p><span class="math display">\[
 E(X)=(E(X_1),\dots,E(X_d))'.
 \]</span></p>
 </section>
@@ -696,9 +732,11 @@ where <span class="math inline">\(m(x_2,\dots,x_d)\)</span> denotes the <strong>
 </section>
 <section id="means-of-transformed-random-variables-and-moments" class="level3" data-number="2.2.6">
 <h3 data-number="2.2.6" class="anchored" data-anchor-id="means-of-transformed-random-variables-and-moments"><span class="header-section-number">2.2.6</span> Means of Transformed Random Variables and Moments</h3>
-<p>The <strong>mean of a transformed random variable</strong> <span class="math inline">\(r(X)\)</span> is given by <span class="math display">\[
+<p>The <strong>mean of a transformed random variable</strong> <span class="math inline">\(r(X)\)</span> is given by</p>
+<p><span class="math display">\[
 E(r(X))=\int r(x) f_{X}(x)dx.
-\]</span> Typical transformations are, for instance</p>
+\]</span></p>
+<p>Typical transformations are, for instance</p>
 <ul>
 <li>centering <span class="math inline">\(r(x)=x-E(X)\)</span>,</li>
 <li>centering and scaling <span class="math inline">\(r(x)=(x-E(X))/\sqrt{Var(X)}\)</span>,</li>
@@ -706,19 +744,26 @@ E(r(X))=\int r(x) f_{X}(x)dx.
 </ul>
 <p>where the latter transformation leads to the <strong>second central moment</strong>, i.e.&nbsp;the variance of <span class="math inline">\(X\)</span>, <span class="math inline">\(Var(X)=\int (x - E(X))^2 f_{X}(x)dx\)</span>.</p>
 <ul>
-<li><p>The <span class="math inline">\(k\)</span>th, <span class="math inline">\(k&gt;0\)</span>, moment is given by <span class="math display">\[
-\mu_{k}=\mathrm{E}\left[X^{k}\right]=\int_{-\infty}^{+\infty}x^{k} f_X(x)d x.
-\]</span></p></li>
-<li><p>The <span class="math inline">\(k\)</span>th, <span class="math inline">\(k&gt;1\)</span>, central moment is given by <span class="math display">\[
-\mu^c_{k}=\mathrm{E}\left[(X-\mathrm{E}[X])^{k}\right]=\int_{-\infty}^{+\infty}(x-\mu)^{k} f_X(x)d x,
-\]</span> where <span class="math inline">\(\mu=E(X)\)</span>.</p></li>
+<li>The <span class="math inline">\(k\)</span>th, <span class="math inline">\(k&gt;0\)</span>, moment is given by</li>
 </ul>
+<p><span class="math display">\[
+\mu_{k}=\mathrm{E}\left[X^{k}\right]=\int_{-\infty}^{+\infty}x^{k} f_X(x)d x.
+\]</span></p>
+<ul>
+<li>The <span class="math inline">\(k\)</span>th, <span class="math inline">\(k&gt;1\)</span>, central moment is given by</li>
+</ul>
+<p><span class="math display">\[
+\mu^c_{k}=\mathrm{E}\left[(X-\mathrm{E}[X])^{k}\right]=\int_{-\infty}^{+\infty}(x-\mu)^{k} f_X(x)d x,
+\]</span></p>
+<p>where <span class="math inline">\(\mu=E(X)\)</span>.</p>
 <p><strong>Note:</strong> Moments determine the tail of a distribution (but not much else); see <span class="citation" data-cites="LB2000">Lindsay and Basak (<a href="#ref-LB2000" role="doc-biblioref">2000</a>)</span>. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g.&nbsp;the uniform distribution <span class="math inline">\(U[a,b]\)</span>) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support since <span class="math inline">\(\phi(x)&gt;0\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>.</p>
 <section id="law-of-total-expectation" class="level4" data-number="2.2.6.1">
 <h4 data-number="2.2.6.1" class="anchored" data-anchor-id="law-of-total-expectation"><span class="header-section-number">2.2.6.1</span> Law of Total Expectation</h4>
-<p>As long as we do not fix the values of the conditioning variables, <span class="math inline">\(X_2,\dots,X_d\)</span>, they are random variables. Consequently, the conditional mean is generally itself a random variable <span class="math display">\[
+<p>As long as we do not fix the values of the conditioning variables, <span class="math inline">\(X_2,\dots,X_d\)</span>, they are random variables. Consequently, the conditional mean is generally itself a random variable</p>
+<p><span class="math display">\[
 E(X_1|X_2,\ldots,X_d)=\int x_1 f(x_1\mid X_2,\ldots,X_d)dx_1
-\]</span> due to the randomness in <span class="math inline">\(X_2,\ldots,X_d\)</span>.</p>
+\]</span></p>
+<p>due to the randomness in <span class="math inline">\(X_2,\ldots,X_d\)</span>.</p>
 <p>Note that <span class="math inline">\(f(x_1\mid X_2,\ldots,X_d)\)</span> is just a transformation of the random variables <span class="math inline">\(X_2,\dots,X_d\)</span>. So we can easily compute the unconditional mean <span class="math inline">\(E(X_1)\)</span> by taking the mean of <span class="math inline">\(E(X_1|X_2,\ldots,X_d)\)</span> as following, <span class="math display">\[\begin{align*}
 &amp;E\big({\color{RedViolet}E(X_1|X_2,\ldots,X_d)}\big)=\\
 &amp;=\int\dots\int\;{\color{RedViolet}\int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1}\;f_{X_2,\dots,X_d}(x_2,\ldots,x_d)dx_2\dots dx_d\\
@@ -726,9 +771,11 @@ E(X_1|X_2,\ldots,X_d)=\int x_1 f(x_1\mid X_2,\ldots,X_d)dx_1
 &amp;=\int x_1 {\color{blue}f_{X_1}(x_1)}dx_1\\
 &amp;=E(X_1).
 \end{align*}\]</span></p>
-<p>The result that <span class="math display">\[
+<p>The result that</p>
+<p><span class="math display">\[
 E\big(E(X_1|X_2,\ldots,X_d)\big)=E(X_1)
-\]</span> is called <strong>law of total expectation</strong> or <strong>law of iterated expectation</strong>.</p>
+\]</span></p>
+<p>is called <strong>law of total expectation</strong> or <strong>law of iterated expectation</strong>.</p>
 </section>
 </section>
 <section id="independent-random-variables" class="level3" data-number="2.2.7">
@@ -739,13 +786,18 @@ E\big(E(X_1|X_2,\ldots,X_d)\big)=E(X_1)
 \end{align*}\]</span></p>
 <p>The following holds true:</p>
 <ul>
-<li>Two real-valued random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent from each other the marginal density of <span class="math inline">\(X\)</span> equals the conditional density of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span>, <span class="math display">\[f_X(x)=f_{X|Y}(x\mid y)\quad \text{ for all } y\in\mathbb{R}.\]</span> Of course, the same statement applies to the marginal density of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X=x\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>. That is, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are two independent real-valued random variables <span class="math inline">\(f_Y(y)=f_{Y|X}(y\mid x)\)</span> for all <span class="math inline">\(x\in\mathbb{R}.\)</span></li>
-<li>If a real-valued random variable <span class="math inline">\(X\)</span> is independent from a real-valued random variable <span class="math inline">\(Y\)</span>, then the conditional mean of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> equals the unconditional mean of <span class="math inline">\(X\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span> <span class="math display">\[
-E(X\mid Y=y)=E(X)
-\]</span> and likewise <span class="math display">\[
-E(Y\mid X=x)=E(Y)
-\]</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>.</li>
+<li>Two real-valued random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent from each other the marginal density of <span class="math inline">\(X\)</span> equals the conditional density of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span>,</li>
 </ul>
+<p><span class="math display">\[f_X(x)=f_{X|Y}(x\mid y)\quad \text{ for all } y\in\mathbb{R}.\]</span></p>
+<p>Of course, the same statement applies to the marginal density of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X=x\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>. That is, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are two independent real-valued random variables <span class="math inline">\(f_Y(y)=f_{Y|X}(y\mid x)\)</span> for all <span class="math inline">\(x\in\mathbb{R}.\)</span> - If a real-valued random variable <span class="math inline">\(X\)</span> is independent from a real-valued random variable <span class="math inline">\(Y\)</span>, then the conditional mean of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> equals the unconditional mean of <span class="math inline">\(X\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span></p>
+<p><span class="math display">\[
+E(X\mid Y=y)=E(X)
+\]</span></p>
+<p>and likewise</p>
+<p><span class="math display">\[
+E(Y\mid X=x)=E(Y)
+\]</span></p>
+<p>for all <span class="math inline">\(x\in\mathbb{R}\)</span>.</p>
 <p><strong>Note:</strong> The properties that <span class="math inline">\(E(X\mid Y=y)=E(X)\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span> or that <span class="math inline">\(E(Y\mid X=x)=E(Y)\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>, do <strong>not</strong> imply that <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are independent. It only means that <span class="math inline">\(Y\)</span> has no effect on the mean of <span class="math inline">\(X\)</span>, but it may have, for instance, an effect on the variance of <span class="math inline">\(X\)</span>.</p>
 </section>
 <section id="random-samples" class="level3" data-number="2.2.8">
@@ -770,12 +822,14 @@ E(Y\mid X=x)=E(Y)
 <!-- The probability function is $f(x)=1$ for $x=a$ and $0$ otherwise. -->
 <section id="the-discrete-uniform-distribution" class="level4" data-number="2.2.9.1">
 <h4 data-number="2.2.9.1" class="anchored" data-anchor-id="the-discrete-uniform-distribution"><span class="header-section-number">2.2.9.1</span> The Discrete Uniform Distribution</h4>
-<p>Let <span class="math inline">\(k&gt;1\)</span> be a given integer. Suppose that <span class="math inline">\(X\)</span> has probability mass function given by <span class="math display">\[
+<p>Let <span class="math inline">\(k&gt;1\)</span> be a given integer. Suppose that <span class="math inline">\(X\)</span> has probability mass function given by</p>
+<p><span class="math display">\[
 f(x)=\left\{\begin{array}{ll}
 1 / k &amp; \text { for } x=1, \ldots, k \\
 0 &amp; \text { otherwise. }
 \end{array}\right.
-\]</span> We say that <span class="math inline">\(X\)</span> has a uniform distribution on <span class="math inline">\(\{1, \ldots, k\}\)</span>.</p>
+\]</span></p>
+<p>We say that <span class="math inline">\(X\)</span> has a uniform distribution on <span class="math inline">\(\{1, \ldots, k\}\)</span>.</p>
 <div class="cell" data-hash="02-Probability_cache/html/unnamed-chunk-6_b807e73bb8027c07965b2e95a3dc9110">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">51</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the parameter k</span></span>
@@ -810,7 +864,8 @@ f(x)=\left\{\begin{array}{ll}
 </section>
 <section id="the-binomial-distribution" class="level4" data-number="2.2.9.3">
 <h4 data-number="2.2.9.3" class="anchored" data-anchor-id="the-binomial-distribution"><span class="header-section-number">2.2.9.3</span> The Binomial Distribution</h4>
-<p>Suppose we have a coin which falls heads with probability <span class="math inline">\(p\)</span> for some <span class="math inline">\(p\in[0,1]\)</span>. Flip the coin <span class="math inline">\(n\)</span> times and let <span class="math inline">\(X\)</span> be the number of heads (or successes). Assume that the tosses are independent. Let <span class="math inline">\(f(x)=P(X=x)\)</span> be the mass function. It can be shown that <span class="math display">\[
+<p>Suppose we have a coin which falls heads with probability <span class="math inline">\(p\)</span> for some <span class="math inline">\(p\in[0,1]\)</span>. Flip the coin <span class="math inline">\(n\)</span> times and let <span class="math inline">\(X\)</span> be the number of heads (or successes). Assume that the tosses are independent. Let <span class="math inline">\(f(x)=P(X=x)\)</span> be the mass function. It can be shown that</p>
+<p><span class="math display">\[
 f(x)=\left\{
 \begin{array}{ll}
 \left(\begin{array}{l}
@@ -819,7 +874,8 @@ x
 \end{array}\right) p^{x}(1-p)^{n-x} &amp; \text { for } x=0, \ldots, n \\
 0 &amp; \text { otherwise. }
 \end{array}\right.
-\]</span> A random variable with this mas function is called a <strong>binomial random variable</strong> and we write <span class="math inline">\(X \sim \operatorname{Binomial}(n, p)\)</span>. If <span class="math inline">\(X_{1} \sim\)</span> Binomial <span class="math inline">\(\left(n_1, p1\right)\)</span> and <span class="math inline">\(X_{2} \sim\)</span> Binomial<span class="math inline">\(\left(n_2, p\right)\)</span> and if <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent, then <span class="math inline">\(X_{1}+X_{2} \sim \operatorname{Binomial}\left(n_1+n_2, p\right)\)</span></p>
+\]</span></p>
+<p>A random variable with this mas function is called a <strong>binomial random variable</strong> and we write <span class="math inline">\(X \sim \operatorname{Binomial}(n, p)\)</span>. If <span class="math inline">\(X_{1} \sim\)</span> Binomial <span class="math inline">\(\left(n_1, p1\right)\)</span> and <span class="math inline">\(X_{2} \sim\)</span> Binomial<span class="math inline">\(\left(n_2, p\right)\)</span> and if <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent, then <span class="math inline">\(X_{1}+X_{2} \sim \operatorname{Binomial}\left(n_1+n_2, p\right)\)</span></p>
 <div class="cell" data-hash="02-Probability_cache/html/unnamed-chunk-8_1daa9279dbc38b9cfea9cc2c40921c3a">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">51</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Set the parameters n and p</span></span>
@@ -839,12 +895,15 @@ x
 <h3 data-number="2.2.10" class="anchored" data-anchor-id="some-important-continuous-random-variables"><span class="header-section-number">2.2.10</span> Some Important Continuous Random Variables</h3>
 <section id="the-uniform-distribution" class="level4" data-number="2.2.10.1">
 <h4 data-number="2.2.10.1" class="anchored" data-anchor-id="the-uniform-distribution"><span class="header-section-number">2.2.10.1</span> The Uniform Distribution</h4>
-<p><span class="math inline">\(X\)</span> has a <span class="math inline">\(\operatorname{Uniform}(a, b)\)</span> distribution, written <span class="math inline">\(X\sim \operatorname{Uniform}(a, b),\)</span> if <span class="math display">\[
+<p><span class="math inline">\(X\)</span> has a <span class="math inline">\(\operatorname{Uniform}(a, b)\)</span> distribution, written <span class="math inline">\(X\sim \operatorname{Uniform}(a, b),\)</span> if</p>
+<p><span class="math display">\[
 f(x)=\left\{\begin{array}{ll}
 \frac{1}{b-a} &amp; \text { for } x \in[a, b] \\
 0 &amp; \text { otherwise }
 \end{array}\right.
-\]</span> where <span class="math inline">\(a&lt;b\)</span>. The distribution function is <span class="math display">\[
+\]</span></p>
+<p>where <span class="math inline">\(a&lt;b\)</span>. The distribution function is</p>
+<p><span class="math display">\[
 F(x)=\left\{\begin{array}{ll}
 0 &amp; x&lt;a \\
 \frac{x-a}{b-a} &amp; x \in[a, b] \\
@@ -865,17 +924,20 @@ F(x)=\left\{\begin{array}{ll}
 </section>
 <section id="the-normal-or-gaussian-distribution" class="level4" data-number="2.2.10.2">
 <h4 data-number="2.2.10.2" class="anchored" data-anchor-id="the-normal-or-gaussian-distribution"><span class="header-section-number">2.2.10.2</span> The Normal (or Gaussian) Distribution</h4>
-<p><span class="math inline">\(X\)</span> has a Normal (or Gaussian) distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma,\)</span> denoted by <span class="math inline">\(X \sim N\left(\mu, \sigma^{2}\right),\)</span> if <span class="math display">\[
+<p><span class="math inline">\(X\)</span> has a Normal (or Gaussian) distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma,\)</span> denoted by <span class="math inline">\(X \sim N\left(\mu, \sigma^{2}\right),\)</span> if</p>
+<p><span class="math display">\[
 f(x)=\frac{1}{\sigma \sqrt{2 \pi}} \exp \left\{-\frac{1}{2 \sigma^{2}}(x-\mu)^{2}\right\}, \quad x \in \mathbb{R}
-\]</span> where <span class="math inline">\(\mu \in \mathbb{R}\)</span> and <span class="math inline">\(\sigma&gt;0.\)</span> Later we shall see that <span class="math inline">\(\mu\)</span> is the “center” (or mean of the distribution and <span class="math inline">\(\sigma\)</span> is the “spread” (or standard deviation) of the distribution. The Normal plays an important role in probability and statistics. Many phenomena in nature have approximately Normal distributions. The <strong>Central Limit Theorem</strong> gives a special role to the Normal distribution by stating that the distribution of averages of random variables can be approximated by a Normal distribution.</p>
+\]</span></p>
+<p>where <span class="math inline">\(\mu \in \mathbb{R}\)</span> and <span class="math inline">\(\sigma&gt;0.\)</span> Later we shall see that <span class="math inline">\(\mu\)</span> is the “center” (or mean of the distribution and <span class="math inline">\(\sigma\)</span> is the “spread” (or standard deviation) of the distribution. The Normal plays an important role in probability and statistics. Many phenomena in nature have approximately Normal distributions. The <strong>Central Limit Theorem</strong> gives a special role to the Normal distribution by stating that the distribution of averages of random variables can be approximated by a Normal distribution.</p>
 <p>We say that <span class="math inline">\(X\)</span> has a standard Normal distribution if <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma=1\)</span>. Tradition dictates that a standard Normal random variable is denoted by <span class="math inline">\(Z\)</span>. The PDF and CDF of a standard Normal are denoted by <span class="math inline">\(\phi(z)\)</span> and <span class="math inline">\(\Phi(z)\)</span>. There is no closed-form expression for <span class="math inline">\(\Phi\)</span>. Here are some useful facts:</p>
 <ol type="i">
 <li><p>If <span class="math inline">\(X \sim N\left(\mu, \sigma^{2}\right)\)</span> then <span class="math inline">\(Z=(X-\mu) / \sigma \sim N(0,1)\)</span></p></li>
 <li><p>If <span class="math inline">\(Z \sim N(0,1)\)</span> then <span class="math inline">\(X=\mu+\sigma Z \sim N\left(\mu, \sigma^{2}\right)\)</span></p></li>
-<li><p>If <span class="math inline">\(X_{i} \sim N\left(\mu_{i}, \sigma_{i}^{2}\right), i=1, \ldots, n\)</span> are independent then <span class="math display">\[
-\sum_{i=1}^{n} X_{i} \sim N\left(\sum_{i=1}^{n} \mu_{i}, \sum_{i=1}^{n} \sigma_{i}^{2}\right).
-\]</span></p></li>
+<li><p>If <span class="math inline">\(X_{i} \sim N\left(\mu_{i}, \sigma_{i}^{2}\right), i=1, \ldots, n\)</span> are independent then</p></li>
 </ol>
+<p><span class="math display">\[
+\sum_{i=1}^{n} X_{i} \sim N\left(\sum_{i=1}^{n} \mu_{i}, \sum_{i=1}^{n} \sigma_{i}^{2}\right).
+\]</span></p>
 <p>The following <code>R</code>-codes plots the standard Normal density function:</p>
 <div class="cell" data-layout-align="center" data-hash="02-Probability_cache/html/unnamed-chunk-10_6960001b441baefb47291eee61e62ed0">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a plot of the N(0,1) PDF</span></span>
@@ -904,12 +966,15 @@ f(x)=\frac{1}{\sigma \sqrt{2 \pi}} \exp \left\{-\frac{1}{2 \sigma^{2}}(x-\mu)^{2
 [11] -0.883560071 -0.795629557</code></pre>
 </div>
 </div>
-<p>An extension of the normal distribution in a univariate setting is the multivariate normal distribution. Let <span class="math inline">\(X=(X_1,\dots,X_k)'\)</span> be a <span class="math inline">\(k\)</span>-dimensional normal variable, short <span class="math inline">\(X\sim N_k(\mu,\Sigma)\)</span> with mean vector <span class="math inline">\(E(X)=\mu\in\mathbb{R}^k\)</span> and covariance matrix <span class="math inline">\(\operatorname{Cov}(X)=\Sigma\)</span>. The joint density function or <strong>probability density function (pdf)</strong> of the <span class="math inline">\(k\)</span>-dimensional multivariate normal distribution is <span class="math display">\[
+<p>An extension of the normal distribution in a univariate setting is the multivariate normal distribution. Let <span class="math inline">\(X=(X_1,\dots,X_k)'\)</span> be a <span class="math inline">\(k\)</span>-dimensional normal variable, short <span class="math inline">\(X\sim N_k(\mu,\Sigma)\)</span> with mean vector <span class="math inline">\(E(X)=\mu\in\mathbb{R}^k\)</span> and covariance matrix <span class="math inline">\(\operatorname{Cov}(X)=\Sigma\)</span>. The joint density function or <strong>probability density function (pdf)</strong> of the <span class="math inline">\(k\)</span>-dimensional multivariate normal distribution is</p>
+<p><span class="math display">\[
 f_{X}\left(x_{1}, \ldots, x_{k}\right)=\frac{\exp \left(-\frac{1}{2}(x-\mu)' \Sigma^{-1}(x-\mu)\right)}{\sqrt{(2 \pi)^{k}|\Sigma|}},
-\]</span> where <span class="math inline">\(|\Sigma|\)</span> denotes the determinant of <span class="math inline">\(\Sigma\)</span>. For <span class="math inline">\(k=2\)</span> we have the bivariate pdf of two random normal variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> say <span class="math display">\[\begin{align*}
+\]</span></p>
+<p>where <span class="math inline">\(|\Sigma|\)</span> denotes the determinant of <span class="math inline">\(\Sigma\)</span>. For <span class="math inline">\(k=2\)</span> we have the bivariate pdf of two random normal variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> say <span class="math display">\[\begin{align*}
 &amp;g_{X,Y}(x,y) = \frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho_{XY}^2}} \\
 &amp; \cdot \, \exp \left\{ \frac{1}{-2(1-\rho_{XY}^2)} \left[ \left( \frac{x-\mu_x}{\sigma_X} \right)^2 - 2\rho_{XY}\left( \frac{x-\mu_X}{\sigma_X} \right)\left( \frac{y-\mu_Y}{\sigma_Y} \right) + \left( \frac{y-\mu_Y}{\sigma_Y} \right)^2 \right]  \right\}.
-\end{align*}\]</span> Lets consider the special case where <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent standard normal random variables with densities <span class="math inline">\(f_X(x)\)</span> and <span class="math inline">\(f_Y(y)\)</span>. We then have the parameters <span class="math inline">\(\sigma_X = \sigma_Y = 1\)</span>, <span class="math inline">\(\mu_X=\mu_Y=0\)</span> (due to marginal standard normality) and correlation <span class="math inline">\(\rho_{XY}=0\)</span> (due to independence). The joint density of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> then becomes <span class="math display">\[
+\end{align*}\]</span> Lets consider the special case where <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent standard normal random variables with densities <span class="math inline">\(f_X(x)\)</span> and <span class="math inline">\(f_Y(y)\)</span>. We then have the parameters <span class="math inline">\(\sigma_X = \sigma_Y = 1\)</span>, <span class="math inline">\(\mu_X=\mu_Y=0\)</span> (due to marginal standard normality) and correlation <span class="math inline">\(\rho_{XY}=0\)</span> (due to independence). The joint density of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> then becomes</p>
+<p><span class="math display">\[
 g_{X,Y}(x,y) = f_X(x) f_Y(y) = \frac{1}{2\pi} \cdot \exp \left\{ -\frac{1}{2}\left[x^2 + y^2\right]\right\}.
 \]</span></p>
 </section>
@@ -985,9 +1050,11 @@ Z_1^2 + \dots + Z_M^2 = \sum_{m=1}^M Z_m^2 \sim \chi^2_M.
 </section>
 <section id="sec-tdist" class="level4" data-number="2.2.10.4">
 <h4 data-number="2.2.10.4" class="anchored" data-anchor-id="sec-tdist"><span class="header-section-number">2.2.10.4</span> The Student t Distribution</h4>
-<p>Let <span class="math inline">\(Z\)</span> be a standard normal random variable, <span class="math inline">\(W\)</span> a <span class="math inline">\(\chi^2_\nu\)</span> random variable and further assume that <span class="math inline">\(Z\)</span> and <span class="math inline">\(W\)</span> are independent. Then it holds that <span class="math display">\[
+<p>Let <span class="math inline">\(Z\)</span> be a standard normal random variable, <span class="math inline">\(W\)</span> a <span class="math inline">\(\chi^2_\nu\)</span> random variable and further assume that <span class="math inline">\(Z\)</span> and <span class="math inline">\(W\)</span> are independent. Then it holds that</p>
+<p><span class="math display">\[
 \frac{Z}{\sqrt{W/\nu}} =:X \sim t_\nu
-\]</span> and <span class="math inline">\(X\)</span> follows a <em>Student <span class="math inline">\(t\)</span> distribution</em> (or simply <span class="math inline">\(t\)</span> distribution) with <span class="math inline">\(\nu\)</span> degrees of freedom.</p>
+\]</span></p>
+<p>and <span class="math inline">\(X\)</span> follows a <em>Student <span class="math inline">\(t\)</span> distribution</em> (or simply <span class="math inline">\(t\)</span> distribution) with <span class="math inline">\(\nu\)</span> degrees of freedom.</p>
 <p>The shape of a <span class="math inline">\(t_\nu\)</span> distribution depends on <span class="math inline">\(\nu\)</span>. <span class="math inline">\(t\)</span> distributions are symmetric, bell-shaped and look similar to a normal distribution, especially when <span class="math inline">\(\nu\)</span> is large. This is not a coincidence: for a sufficiently large <span class="math inline">\(\nu\)</span>, the <span class="math inline">\(t_\nu\)</span> distribution can be approximated by the standard normal distribution. This approximation works reasonably well for <span class="math inline">\(\nu\geq 30\)</span>.</p>
 <p>A <span class="math inline">\(t_\nu\)</span> distributed random variable <span class="math inline">\(X\)</span> has an expectation if <span class="math inline">\(\nu&gt;1\)</span> and it has a variance if <span class="math inline">\(\nu&gt;2\)</span>. <span class="math display">\[\begin{align*}
   E(X) =&amp; 0, \ M&gt;1 \\
@@ -1038,20 +1105,33 @@ Z_1^2 + \dots + Z_M^2 = \sum_{m=1}^M Z_m^2 \sim \chi^2_M.
 </section>
 <section id="cauchy-distribution" class="level4" data-number="2.2.10.5">
 <h4 data-number="2.2.10.5" class="anchored" data-anchor-id="cauchy-distribution"><span class="header-section-number">2.2.10.5</span> Cauchy Distribution</h4>
-<p>The Cauchy distribution is a special case of the <span class="math inline">\(t\)</span> distribution corresponding to <span class="math inline">\(\nu=1\)</span>. The density is <span class="math display">\[
+<p>The Cauchy distribution is a special case of the <span class="math inline">\(t\)</span> distribution corresponding to <span class="math inline">\(\nu=1\)</span>. The density is</p>
+<p><span class="math display">\[
 f(x)=\frac{1}{\pi\left(1+x^{2}\right)}.
-\]</span> <!-- To see that this is indeed a density, let's do the integral: --> <!-- $$ --> <!-- \begin{aligned} --> <!-- \int_{-\infty}^{\infty} f(x) d x &=\frac{1}{\pi} \int_{-\infty}^{\infty} \frac{d x}{1+x^{2}}=\frac{1}{\pi} \int_{-\infty}^{\infty} \frac{d \tan ^{-1}}{d x} \\ --> <!-- &=\frac{1}{\pi}\left[\tan ^{-1}(\infty)-\tan ^{-1}(-\infty)\right]=\frac{1}{\pi}\left[\frac{\pi}{2}-\left(-\frac{\pi}{2}\right)\right]=1 --> <!-- \end{aligned} --> <!-- $$ --></p>
-<p>For the Cauchy distribution, the <strong>expectation does not exist</strong> – that is, it has no mean. Let’s try to compute the mean of a Cauchy distribution and see what goes wrong. Its mean should be <span class="math display">\[
+\]</span></p>
+<!-- To see that this is indeed a density, let's do the integral: -->
+<!-- $$ -->
+<!-- \begin{aligned} -->
+<!-- \int_{-\infty}^{\infty} f(x) d x &=\frac{1}{\pi} \int_{-\infty}^{\infty} \frac{d x}{1+x^{2}}=\frac{1}{\pi} \int_{-\infty}^{\infty} \frac{d \tan ^{-1}}{d x} \\ -->
+<!-- &=\frac{1}{\pi}\left[\tan ^{-1}(\infty)-\tan ^{-1}(-\infty)\right]=\frac{1}{\pi}\left[\frac{\pi}{2}-\left(-\frac{\pi}{2}\right)\right]=1 -->
+<!-- \end{aligned} -->
+<!-- $$ -->
+<p>For the Cauchy distribution, the <strong>expectation does not exist</strong> – that is, it has no mean. Let’s try to compute the mean of a Cauchy distribution and see what goes wrong. Its mean should be</p>
+<p><span class="math display">\[
 \mu=E(X)=\int_{-\infty}^{\infty} \frac{x d x}{\pi\left(1+x^{2}\right)}.
-\]</span> In order for this improper integral to exist, we need both integrals <span class="math inline">\(\int_{-\infty}^{0}\)</span> and <span class="math inline">\(\int_{0}^{\infty}\)</span> to be finite. Let’s look at the second integral. <span class="math display">\[
+\]</span></p>
+<p>In order for this improper integral to exist, we need both integrals <span class="math inline">\(\int_{-\infty}^{0}\)</span> and <span class="math inline">\(\int_{0}^{\infty}\)</span> to be finite. Let’s look at the second integral.</p>
+<p><span class="math display">\[
 \int_{0}^{\infty} \frac{x d x}{\pi\left(1+x^{2}\right)}=\left.\frac{1}{2 \pi} \log \left(1+x^{2}\right)\right|_{0} ^{\infty}=\infty
-\]</span> Similarly, the other integral, <span class="math inline">\(\int_{-\infty}^{0},\)</span> is <span class="math inline">\(-\infty\)</span>. Since they’re not both finite, the integral <span class="math inline">\(\int_{-\infty}^{\infty}\)</span> doesn’t exist. In other words <span class="math inline">\(\infty-\infty\)</span> is not a number. Thus, the Cauchy distribution has no mean.</p>
+\]</span></p>
+<p>Similarly, the other integral, <span class="math inline">\(\int_{-\infty}^{0},\)</span> is <span class="math inline">\(-\infty\)</span>. Since they’re not both finite, the integral <span class="math inline">\(\int_{-\infty}^{\infty}\)</span> doesn’t exist. In other words <span class="math inline">\(\infty-\infty\)</span> is not a number. Thus, the Cauchy distribution has no mean.</p>
 <p>What this means in practice is that if you take a sample <span class="math inline">\(x_{1}, x_{2}, \ldots, x_{n}\)</span> from the Cauchy distribution, then the average <span class="math inline">\(\bar{x}\)</span> does not tend to a particular number. Instead, every so often you will get such a huge number, either positive or negative, that the average is overwhelmed by it.</p>
 </section>
 <section id="sec-Fdist" class="level4" data-number="2.2.10.6">
 <h4 data-number="2.2.10.6" class="anchored" data-anchor-id="sec-Fdist"><span class="header-section-number">2.2.10.6</span> The F Distribution</h4>
 <p>Another ratio of random variables important to econometricians is the ratio of two independent <span class="math inline">\(\chi^2\)</span> distributed random variables that are divided by their degrees of freedom <span class="math inline">\(M\)</span> and <span class="math inline">\(n\)</span>. The quantity</p>
-<p><span class="math display">\[ \frac{W/M}{V/n} \sim F_{M,n} \ \ \text{with} \ \ W \sim \chi^2_M \ \ , \ \ V \sim \chi^2_n \]</span> follows an <span class="math inline">\(F\)</span> distribution with numerator degrees of freedom <span class="math inline">\(M\)</span> and denominator degrees of freedom <span class="math inline">\(n\)</span>, denoted <span class="math inline">\(F_{M,n}\)</span>. The distribution was first derived by George Snedecor but was named in honor of <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Sir Ronald Fisher</a>.</p>
+<p><span class="math display">\[ \frac{W/M}{V/n} \sim F_{M,n} \ \ \text{with} \ \ W \sim \chi^2_M \ \ , \ \ V \sim \chi^2_n \]</span></p>
+<p>follows an <span class="math inline">\(F\)</span> distribution with numerator degrees of freedom <span class="math inline">\(M\)</span> and denominator degrees of freedom <span class="math inline">\(n\)</span>, denoted <span class="math inline">\(F_{M,n}\)</span>. The distribution was first derived by George Snedecor but was named in honor of <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Sir Ronald Fisher</a>.</p>
 <p>By definition, the support of both PDF and CDF of an <span class="math inline">\(F_{M,n}\)</span> distributed random variable is <span class="math inline">\(\mathbb{R}_{\geq0}\)</span>.</p>
 <p>Say we have an <span class="math inline">\(F\)</span> distributed random variable <span class="math inline">\(Y\)</span> with numerator degrees of freedom <span class="math inline">\(3\)</span> and denominator degrees of freedom <span class="math inline">\(14\)</span> and are interested in <span class="math inline">\(P(Y \geq 2)\)</span>. This can be computed with help of the function <code>"pf()"</code>. By setting the argument <code>"lower.tail"</code> to <code>"FALSE"</code> we ensure that <code>R</code> computes <span class="math inline">\(1- P(Y \leq 2)\)</span>, i.e,the probability mass in the tail right of <span class="math inline">\(2\)</span>.</p>
 <div class="cell" data-hash="02-Probability_cache/html/unnamed-chunk-15_f15443b4b51dfc05bd032d2755460fee">
@@ -1083,7 +1163,8 @@ f(x)=\frac{1}{\pi\left(1+x^{2}\right)}.
 </div>
 </div>
 </div>
-<p>The <span class="math inline">\(F\)</span> distribution is related to many other distributions. An important special case encountered in econometrics arises if the denominator degrees of freedom are large such that the <span class="math inline">\(F_{M,n}\)</span> distribution can be approximated by the <span class="math inline">\(F_{M,\infty}\)</span> distribution which turns out to be simply the distribution of a <span class="math inline">\(\chi^2_M\)</span> random variable divided by its degrees of freedom <span class="math inline">\(M\)</span>, i.e.&nbsp; <span class="math display">\[
+<p>The <span class="math inline">\(F\)</span> distribution is related to many other distributions. An important special case encountered in econometrics arises if the denominator degrees of freedom are large such that the <span class="math inline">\(F_{M,n}\)</span> distribution can be approximated by the <span class="math inline">\(F_{M,\infty}\)</span> distribution which turns out to be simply the distribution of a <span class="math inline">\(\chi^2_M\)</span> random variable divided by its degrees of freedom <span class="math inline">\(M\)</span>, i.e.&nbsp;</p>
+<p><span class="math display">\[
 W/M \sim F_{M,\infty} \quad\text{with}\quad W \sim \chi^2_M.
 \]</span></p>
 </section>
@@ -1181,8 +1262,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      let href = ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

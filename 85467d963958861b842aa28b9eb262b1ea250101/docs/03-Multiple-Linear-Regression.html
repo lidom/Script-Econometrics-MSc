@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.0.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,15 +11,10 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
-  vertical-align: middle;
-}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -58,7 +53,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -71,7 +66,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -227,27 +222,27 @@ div.csl-indent {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-LinModAssumptions" id="toc-sec-LinModAssumptions" class="nav-link active" data-scroll-target="#sec-LinModAssumptions"><span class="toc-section-number">3.1</span>  Assumptions</a>
+  <li><a href="#sec-LinModAssumptions" id="toc-sec-LinModAssumptions" class="nav-link active" data-scroll-target="#sec-LinModAssumptions"> <span class="header-section-number">3.1</span> Assumptions</a>
   <ul class="collapse">
-  <li><a href="#some-implications-of-the-exogeneity-assumption" id="toc-some-implications-of-the-exogeneity-assumption" class="nav-link" data-scroll-target="#some-implications-of-the-exogeneity-assumption"><span class="toc-section-number">3.1.1</span>  Some Implications of the Exogeneity Assumption</a></li>
+  <li><a href="#some-implications-of-the-exogeneity-assumption" id="toc-some-implications-of-the-exogeneity-assumption" class="nav-link" data-scroll-target="#some-implications-of-the-exogeneity-assumption"> <span class="header-section-number">3.1.1</span> Some Implications of the Exogeneity Assumption</a></li>
   </ul></li>
-  <li><a href="#deriving-the-expression-of-the-ols-estimator" id="toc-deriving-the-expression-of-the-ols-estimator" class="nav-link" data-scroll-target="#deriving-the-expression-of-the-ols-estimator"><span class="toc-section-number">3.2</span>  Deriving the Expression of the OLS Estimator</a></li>
-  <li><a href="#some-quantities-of-interest" id="toc-some-quantities-of-interest" class="nav-link" data-scroll-target="#some-quantities-of-interest"><span class="toc-section-number">3.3</span>  Some Quantities of Interest</a></li>
-  <li><a href="#sec-MMEstimator" id="toc-sec-MMEstimator" class="nav-link" data-scroll-target="#sec-MMEstimator"><span class="toc-section-number">3.4</span>  Method of Moments Estimator</a></li>
-  <li><a href="#sec-GMTheorem" id="toc-sec-GMTheorem" class="nav-link" data-scroll-target="#sec-GMTheorem"><span class="toc-section-number">3.5</span>  The Gauss-Markov Theorem</a></li>
-  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="toc-section-number">3.6</span>  Practice</a>
+  <li><a href="#deriving-the-expression-of-the-ols-estimator" id="toc-deriving-the-expression-of-the-ols-estimator" class="nav-link" data-scroll-target="#deriving-the-expression-of-the-ols-estimator"> <span class="header-section-number">3.2</span> Deriving the Expression of the OLS Estimator</a></li>
+  <li><a href="#some-quantities-of-interest" id="toc-some-quantities-of-interest" class="nav-link" data-scroll-target="#some-quantities-of-interest"> <span class="header-section-number">3.3</span> Some Quantities of Interest</a></li>
+  <li><a href="#sec-MMEstimator" id="toc-sec-MMEstimator" class="nav-link" data-scroll-target="#sec-MMEstimator"> <span class="header-section-number">3.4</span> Method of Moments Estimator</a></li>
+  <li><a href="#sec-GMTheorem" id="toc-sec-GMTheorem" class="nav-link" data-scroll-target="#sec-GMTheorem"> <span class="header-section-number">3.5</span> The Gauss-Markov Theorem</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"> <span class="header-section-number">3.6</span> Practice</a>
   <ul class="collapse">
-  <li><a href="#factor-variables-and-the-dummy-variable-trap" id="toc-factor-variables-and-the-dummy-variable-trap" class="nav-link" data-scroll-target="#factor-variables-and-the-dummy-variable-trap"><span class="toc-section-number">3.6.1</span>  Factor Variables and the Dummy-Variable Trap</a></li>
+  <li><a href="#factor-variables-and-the-dummy-variable-trap" id="toc-factor-variables-and-the-dummy-variable-trap" class="nav-link" data-scroll-target="#factor-variables-and-the-dummy-variable-trap"> <span class="header-section-number">3.6.1</span> Factor Variables and the Dummy-Variable Trap</a></li>
   <li><a href="#dummy-variable-trap" id="toc-dummy-variable-trap" class="nav-link" data-scroll-target="#dummy-variable-trap">Dummy-Variable Trap</a></li>
-  <li><a href="#detecting-heteroskedasticity" id="toc-detecting-heteroskedasticity" class="nav-link" data-scroll-target="#detecting-heteroskedasticity"><span class="toc-section-number">3.6.2</span>  Detecting Heteroskedasticity</a></li>
-  <li><a href="#checking-non-linearity-of-the-regression-line" id="toc-checking-non-linearity-of-the-regression-line" class="nav-link" data-scroll-target="#checking-non-linearity-of-the-regression-line"><span class="toc-section-number">3.6.3</span>  Checking (Non-)Linearity of the Regression Line</a></li>
-  <li><a href="#behavior-of-the-ols-estimates-for-resampled-data" id="toc-behavior-of-the-ols-estimates-for-resampled-data" class="nav-link" data-scroll-target="#behavior-of-the-ols-estimates-for-resampled-data"><span class="toc-section-number">3.6.4</span>  Behavior of the OLS Estimates for Resampled Data</a></li>
+  <li><a href="#detecting-heteroskedasticity" id="toc-detecting-heteroskedasticity" class="nav-link" data-scroll-target="#detecting-heteroskedasticity"> <span class="header-section-number">3.6.2</span> Detecting Heteroskedasticity</a></li>
+  <li><a href="#checking-non-linearity-of-the-regression-line" id="toc-checking-non-linearity-of-the-regression-line" class="nav-link" data-scroll-target="#checking-non-linearity-of-the-regression-line"> <span class="header-section-number">3.6.3</span> Checking (Non-)Linearity of the Regression Line</a></li>
+  <li><a href="#behavior-of-the-ols-estimates-for-resampled-data" id="toc-behavior-of-the-ols-estimates-for-resampled-data" class="nav-link" data-scroll-target="#behavior-of-the-ols-estimates-for-resampled-data"> <span class="header-section-number">3.6.4</span> Behavior of the OLS Estimates for Resampled Data</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">3.7</span>  Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"> <span class="header-section-number">3.7</span> Exercises</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -281,7 +276,8 @@ div.csl-indent {
 \begin{align}
   Y_i=\sum_{k=1}^K\beta_k X_{ik}+\varepsilon_i, \quad i=1,\dots,n.
 \end{align}
-\tag{3.1}\]</span></span> Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>. In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.<br>
+\tag{3.1}\]</span></span></p>
+<p>Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>. In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.<br>
 It is convenient to write <a href="#eq-LinMod">Equation&nbsp;<span>3.1</span></a> using matrix notation <span class="math display">\[\begin{eqnarray*}
   Y_i&amp;=&amp;\underset{(1\times K)}{X_i'}\underset{(K\times 1)}{\beta} +\varepsilon_i, \quad i=1,\dots,n,
 \end{eqnarray*}\]</span> where <span class="math inline">\(X_i=(X_{i1},\dots,X_{iK})'\)</span> and <span class="math inline">\(\beta=(\beta_1,\dots,\beta_K)'\)</span>. Stacking all individual rows <span class="math inline">\(i\)</span> leads to <span class="math display">\[\begin{eqnarray*}\label{LM}
@@ -290,9 +286,12 @@ It is convenient to write <a href="#eq-LinMod">Equation&nbsp;<span>3.1</span></a
 Y=\left(\begin{matrix}Y_1\\ \vdots\\Y_n\end{matrix}\right),\quad X=\left(\begin{matrix}X_{11}&amp;\dots&amp;X_{1K}\\\vdots&amp;\ddots&amp;\vdots\\ X_{n1}&amp;\dots&amp;X_{nK}\\\end{matrix}\right),\quad\text{and}\quad \varepsilon=\left(\begin{matrix}\varepsilon_1\\ \vdots\\ \varepsilon_n\end{matrix}\right).
 \end{equation*}\]</span></p>
 <p><strong>Part (b): Random Sample</strong></p>
-<p>Moreover, we assume that the observed (“obs”) data points <span class="math display">\[
+<p>Moreover, we assume that the observed (“obs”) data points</p>
+<p><span class="math display">\[
 ((Y_{1,obs},X_{11,obs},\dots,X_{1K,obs}),(Y_{2,obs},X_{21,obs},\dots,X_{2K,obs}),\dots,(Y_{n,obs},X_{n1,obs},\dots,X_{nK,obs}))
-\]</span> are realizations of a random sample <span class="math display">\[
+\]</span></p>
+<p>are realizations of a random sample</p>
+<p><span class="math display">\[
 ((Y_{1},X_{11},\dots,X_{1K}),(Y_{2},X_{21},\dots,X_{2K}),\dots,(Y_{n},X_{n1},\dots,X_{nK})).
 \]</span></p>
 <p>That is, the <span class="math inline">\(i\)</span>th observed <span class="math inline">\(K+1\)</span> dimensional data point <span class="math inline">\((Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}\)</span> is a realization of a <span class="math inline">\(K+1\)</span> dimensional random variable <span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1},\)</span> where</p>
@@ -307,13 +306,16 @@ across $i=1,\dots,n$, but the multivariate random variables $(\varepsilon_i,X_{i
 and $(\varepsilon_j,X_{j1},\dots,X_{jK})$ are independent for all $i\neq j$. -->
 <!-- **Note.:** Of course, in principle, Assumption 1 can be violated; however, in classic econometrics one usually does not bother with a possibly violated model assumption (Assumption 1). In modern econometrics, this is a big deal.  -->
 <!-- The following assumptions are the so-called *classic assumptions* and we will be often concerned about violations of these assumptions.  -->
-<p><strong>Assumption 2: Exogeneity</strong> <span class="math display">\[E(\varepsilon_i|X_i)=0,\quad i=1,\dots,n\]</span> This assumption demands that the mean of the random error term <span class="math inline">\(\varepsilon_i\)</span> is zero irrespective of the realizations of <span class="math inline">\(X_i\)</span>.</p>
+<p><strong>Assumption 2: Exogeneity</strong></p>
+<p><span class="math display">\[E(\varepsilon_i|X_i)=0,\quad i=1,\dots,n\]</span></p>
+<p>This assumption demands that the mean of the random error term <span class="math inline">\(\varepsilon_i\)</span> is zero irrespective of the realizations of <span class="math inline">\(X_i\)</span>.</p>
 <p>This exogeneity assumption is also called “orthogonality assumption” or “mean independence assumption.”</p>
 <p><strong>Note:</strong> Together with the random sample assumption (Assumption 1, Part (b)) this assumption implies even <strong>strict</strong> exogeneity <span class="math inline">\(E(\varepsilon_i|X) = 0\)</span> since we have independence across <span class="math inline">\(i=1,\dots,n\)</span>. Under strict exogeneity, the mean of <span class="math inline">\(\varepsilon_i\)</span> is zero irrespective of the realizations of <span class="math inline">\(X_1,\dots,X_n\)</span>.</p>
 <!-- For one example, it cannot be fulfilled when the regressors include lagged dependent variables. -->
 <!-- Notice that in the presence of a constant explanatory variable, setting the expectation to zero is a normalization.  -->
 <p><strong>Assumption 3: Rank Condition (no perfect multicollinearity)</strong></p>
-<p><span class="math display">\[\operatorname{rank}(X)=K\quad\text{a.s.}\]</span> This assumption demands that the event of one explanatory variable being linearly dependent on the others occurs with a probability equal to zero. (This is the literal translation of the “almost surely (a.s.)” concept.) The assumption implies that <span class="math inline">\(n\geq K\)</span>.</p>
+<p><span class="math display">\[\operatorname{rank}(X)=K\quad\text{a.s.}\]</span></p>
+<p>This assumption demands that the event of one explanatory variable being linearly dependent on the others occurs with a probability equal to zero. (This is the literal translation of the “almost surely (a.s.)” concept.) The assumption implies that <span class="math inline">\(n\geq K\)</span>.</p>
 <p>This assumption is a bit dicey and its violation belongs to one of the classic problems in applied econometrics (keywords: dummy variable trap, multicollinearity, variance inflation). The violation of this assumption harms any economic interpretation as we cannot disentangle the explanatory variables’ individual effects on <span class="math inline">\(Y\)</span>. Therefore, this assumption is also often called an “identification assumption.”</p>
 <p><strong>Assumption 4: Error distribution</strong></p>
 <p>Depending on the context (i.e., parameter estimation vs.&nbsp;hypothesis testing and small <span class="math inline">\(n\)</span> vs.&nbsp;large <span class="math inline">\(n\)</span>) there are different more or less restrictive assumptions. Some of the most common ones are the following (roughly order from least to most restrictive):</p>
@@ -360,22 +362,29 @@ $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$. -->
 <section id="some-implications-of-the-exogeneity-assumption" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="some-implications-of-the-exogeneity-assumption"><span class="header-section-number">3.1.1</span> Some Implications of the Exogeneity Assumption</h3>
 <div id="thm-a" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3.1 (Unconditional Mean) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>, then the also the unconditional mean of the error term is zero, i.e. <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 3.1 (Unconditional Mean) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>, then the also the unconditional mean of the error term is zero, i.e.</p>
+<p><span class="math display">\[
 E(\varepsilon_i)=0,\quad i=1,\dots,n.
 \]</span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>Using the <em>Law of Total Expectations</em> (i.e., <span class="math inline">\(E[E(Z|X)]=E(Z)\)</span>) we can rewrite <span class="math inline">\(E(\varepsilon_i)\)</span> as <span class="math display">\[
+<p><span class="proof-title"><em>Proof</em>. </span>Using the <em>Law of Total Expectations</em> (i.e., <span class="math inline">\(E[E(Z|X)]=E(Z)\)</span>) we can rewrite <span class="math inline">\(E(\varepsilon_i)\)</span> as</p>
+<p><span class="math display">\[
 E(\varepsilon_i)=E[E(\varepsilon_i|X_i)]
-\]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> But the exogeneity assumption yields <span class="math display">\[
+\]</span></p>
+<p>for all <span class="math inline">\(i=1,\dots,n.\)</span> But the exogeneity assumption yields</p>
+<p><span class="math display">\[
 E[E(\varepsilon_i|X_i)]=E[0]=0
-\]</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> which completes the proof. <span class="math inline">\(\square\)</span></p>
+\]</span></p>
+<p>for all <span class="math inline">\(i=1,\dots,n,\)</span> which completes the proof. <span class="math inline">\(\square\)</span></p>
 </div>
 <p>Generally, two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are said to be <strong>orthogonal</strong> if their cross moment is zero, i.e.&nbsp;if <span class="math inline">\(E(XY)=0\)</span>. Exogeneity is sometimes also called “orthogonality,” due to the following result.</p>
 <div id="thm-b" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3.2 (Orthogonality) </strong></span>Under exogeneity, i.e.&nbsp;if <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, the regressors and the error term are orthogonal to each other, i.e, <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 3.2 (Orthogonality) </strong></span>Under exogeneity, i.e.&nbsp;if <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, the regressors and the error term are orthogonal to each other, i.e,</p>
+<p><span class="math display">\[
 E(X_{ik}\varepsilon_i)=0
-\]</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and <span class="math inline">\(k=1,\dots,K\)</span>.</p>
+\]</span></p>
+<p>for all <span class="math inline">\(i=1,\dots,n\)</span> and <span class="math inline">\(k=1,\dots,K\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><span class="math display">\[\begin{align*}
@@ -383,17 +392,24 @@ E(X_{ik}\varepsilon_i)
 &amp;=E(E(X_{ik}\varepsilon_i|X_{ik}))\quad{\small\text{(By the Law of Total Expectations)}}\\
 &amp;=E(X_{ik}E(\varepsilon_i|X_{ik}))\quad{\small\text{(By the linearity of cond.~expectations)}}
 \end{align*}\]</span> Now, to show that <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span>, we need to show that <span class="math inline">\(E(\varepsilon_i|X_{ik})=0,\)</span> which is done in the following:</p>
-<p>Since <span class="math inline">\(X_{ik}\)</span> is an element of <span class="math inline">\(X_i,\)</span> a slightly more sophisticated use of the <em>Law of Total Expectations</em> (i.e., <span class="math inline">\(E(Y|X)=E(E(Y|X,Z)|X)\)</span>) implies that <span class="math display">\[
+<p>Since <span class="math inline">\(X_{ik}\)</span> is an element of <span class="math inline">\(X_i,\)</span> a slightly more sophisticated use of the <em>Law of Total Expectations</em> (i.e., <span class="math inline">\(E(Y|X)=E(E(Y|X,Z)|X)\)</span>) implies that</p>
+<p><span class="math display">\[
 E(\varepsilon_i|X_{ik})=E(E(\varepsilon_i|X_i)|X_{ik}).
-\]</span> So, the exogeneity assumption, <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> yields <span class="math display">\[
+\]</span></p>
+<p>So, the exogeneity assumption, <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> yields</p>
+<p><span class="math display">\[
 E(\varepsilon_i|X_{ik})=E(\underbrace{E(\varepsilon_i|X_i)}_{=0}|X_{ik})=E(0|X_{ik})=0.
-\]</span> I.e., we have that <span class="math inline">\(E(\varepsilon_i|X_{ik})=0\)</span> which allows us to conclude that <span class="math display">\[
+\]</span></p>
+<p>I.e., we have that <span class="math inline">\(E(\varepsilon_i|X_{ik})=0\)</span> which allows us to conclude that</p>
+<p><span class="math display">\[
 E(X_{ik}\varepsilon_i)=E(X_{ik}E(\varepsilon_i|X_{ik}))=E(X_{ik}0)=0
-\]</span> which completes the proof. <span class="math inline">\(\square\)</span></p>
+\]</span></p>
+<p>which completes the proof. <span class="math inline">\(\square\)</span></p>
 </div>
 <p>Because the mean of the error term is zero (<span class="math inline">\(E(\varepsilon_i)=0\)</span> for all <span class="math inline">\(i\)</span> (see <a href="#thm-a">Theorem&nbsp;<span>3.1</span></a>), it follows that the orthogonality property, <span class="math inline">\(E(X_{ik}\varepsilon_i)=0,\)</span> is equivalent to a zero correlation property.</p>
 <div id="thm-c" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3.3 (No Correlation) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, then <span class="math display">\[\begin{eqnarray*}
+<p><span class="theorem-title"><strong>Theorem 3.3 (No Correlation) </strong></span></p>
+<p>If <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, then <span class="math display">\[\begin{eqnarray*}
   Cov(\varepsilon_i,X_{ik})&amp;=&amp;0\quad\text{for all}\quad i=1,\dots,n\quad\text{and}\quad k=1,\dots,K.
 \end{eqnarray*}\]</span></p>
 </div>
@@ -410,9 +426,13 @@ E(X_{ik}\varepsilon_i)=E(X_{ik}E(\varepsilon_i|X_{ik}))=E(X_{ik}0)=0
 <!-- https://allthingsstatistics.com/miscellaneous/exogeneity-assumption/ -->
 <!--  The exogeneity assumption (Assumption 2) means that the dependent variable $Y_i$ does not causally affect the independent variables $X_i$.
 
+
+
 $$
 Y_i = \beta_1 + \beta_2 X_i + \varepsilon_i
 $$
+
+
 
 * $Y_i$: Depression test score of person $i$
 * $X_i$: Number of cigarettes smoked per day by person $i$
@@ -421,15 +441,25 @@ $$
 Can we identify $\beta$, i.e. the causal effect of smoking on depression? 
 
 While it is reasonable that X causes Y 
+
+
 $$
 Y_i = \beta_1 + \beta_2 X_i + \varepsilon_i
 $$
+
+
 It's also reasonable that Y causes to some extend $X$
+
+
 $$
 X_i = \gamma_1 + \gamma_2 Y_i + u_i
 $$
 
+
+
 Thus 
+
+
 $$
 \begin{align*}
 Y_i 
@@ -437,6 +467,8 @@ Y_i
 & = \beta_1 + \beta_2 X_i + \varepsilon_i\\
 \end{align*}
 $$
+
+
 
 
 
@@ -456,15 +488,20 @@ The independent and dependent variables are correlated but the causal link is on
 <h2 data-number="3.2" class="anchored" data-anchor-id="deriving-the-expression-of-the-ols-estimator"><span class="header-section-number">3.2</span> Deriving the Expression of the OLS Estimator</h2>
 <p>We derive the expression for the OLS estimator <span class="math inline">\(\hat\beta=(\hat\beta_1,\dots,\hat\beta_K)'\in\mathbb{R}^K\)</span> as the vector-valued minimizing argument of the sum of squared residuals, <span class="math inline">\(S_n(b)\)</span> with <span class="math inline">\(b\in\mathbb{R}^K\)</span>, for a given sample <span class="math inline">\(((Y_1,X_1),\dots,(Y_n,X_n))\)</span>. In matrix terms this is <span class="math display">\[\begin{align*}
 S_n(b)&amp;=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
-\end{align*}\]</span> To find the minimizing argument <span class="math display">\[\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)\]</span> we compute all partial derivatives <span class="math display">\[
+\end{align*}\]</span> To find the minimizing argument <span class="math display">\[\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)\]</span> we compute all partial derivatives</p>
+<p><span class="math display">\[
 \begin{aligned}
 \underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &amp;=-2\left(X^{\prime}Y -X^{\prime} Xb\right)
 \end{aligned}
-\]</span> and set them equal to zero which leads to <span class="math inline">\(K\)</span> linear equations (the “normal equations”) in <span class="math inline">\(K\)</span> unknowns. This system of equations defines the OLS estimates, <span class="math inline">\(\hat{\beta}\)</span>, for a given data-set: <span class="math display">\[
+\]</span></p>
+<p>and set them equal to zero which leads to <span class="math inline">\(K\)</span> linear equations (the “normal equations”) in <span class="math inline">\(K\)</span> unknowns. This system of equations defines the OLS estimates, <span class="math inline">\(\hat{\beta}\)</span>, for a given data-set:</p>
+<p><span class="math display">\[
 \begin{aligned}
 -2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)=\underset{(K\times 1)}{0}.
 \end{aligned}
-\]</span> From our rank assumption (Assumption 3) it follows that <span class="math inline">\(X^{\prime}X\)</span> is an invertible matrix which allows us to solve the equation system by <span class="math display">\[
+\]</span></p>
+<p>From our rank assumption (Assumption 3) it follows that <span class="math inline">\(X^{\prime}X\)</span> is an invertible matrix which allows us to solve the equation system by</p>
+<p><span class="math display">\[
 \begin{aligned}
 \underset{(K\times 1)}{\hat{\beta}} &amp;=\left(X^{\prime} X\right)^{-1} X^{\prime} Y.
 \end{aligned}
@@ -505,11 +542,15 @@ In matrix notation: <span class="math inline">\(\hat Y=X\underbrace{(X'X)^{-1}X'
 <li>The (OLS) <strong>residuals</strong>: <span class="math inline">\(\hat\varepsilon_i=Y_i-\hat{Y}_i\)</span>. In matrix notation: <span class="math inline">\(\hat\varepsilon=Y-\hat{Y}=\left(I_n-X(X'X)^{-1}X'\right)Y=M_X Y\)</span></li>
 </ul>
 <p><strong>Projection matrices.</strong></p>
-<p>The matrix <span class="math display">\[
+<p>The matrix</p>
+<p><span class="math display">\[
 P_X=X(X'X)^{-1}X'
-\]</span> is the <span class="math inline">\((n\times n)\)</span> <strong>projection matrix</strong> that projects any vector from <span class="math inline">\(\mathbb{R}^n\)</span> into the column space spanned by the column vectors of <span class="math inline">\(X\)</span> and <span class="math display">\[
+\]</span></p>
+<p>is the <span class="math inline">\((n\times n)\)</span> <strong>projection matrix</strong> that projects any vector from <span class="math inline">\(\mathbb{R}^n\)</span> into the column space spanned by the column vectors of <span class="math inline">\(X\)</span> and</p>
+<p><span class="math display">\[
 M_X=I_n-X(X'X)^{-1}X'=I_n-P_X
-\]</span> is the associated <span class="math inline">\((n\times n)\)</span> <strong>orthogonal projection matrix</strong> that projects any vector from <span class="math inline">\(\mathbb{R}^n\)</span> into the vector space that is orthogonal to that spanned by <span class="math inline">\(X\)</span>.</p>
+\]</span></p>
+<p>is the associated <span class="math inline">\((n\times n)\)</span> <strong>orthogonal projection matrix</strong> that projects any vector from <span class="math inline">\(\mathbb{R}^n\)</span> into the vector space that is orthogonal to that spanned by <span class="math inline">\(X\)</span>.</p>
 <p>The projection matrices <span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> have some nice properties:</p>
 <ol type="a">
 <li><span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> are <strong>symmetric</strong>, i.e.&nbsp;<span class="math inline">\(P_X=P_X'\)</span> and <span class="math inline">\(M_X=M_X'\)</span>.</li>
@@ -534,11 +575,14 @@ Y'Y&amp;=&amp;(\hat Y+\hat\varepsilon)'(\hat Y+\hat\varepsilon)\notag\\
   &amp;=&amp;(Y'P_X'+Y'M_X')(P_XY+M_XY)\notag\\
   &amp;=&amp;Y'P_X'P_XY+Y'M_X'M_XY+0\notag\\
   &amp;=&amp;\hat{Y}'\hat{Y}+\hat\varepsilon'\hat\varepsilon
-\end{eqnarray*}\]</span> The decomposition <span class="math display">\[
+\end{eqnarray*}\]</span> The decomposition</p>
+<p><span class="math display">\[
 \hat{Y}'\hat{Y}+\hat\varepsilon'\hat\varepsilon
-\]</span> is the basis for the well-known variance decomposition result for OLS regressions.</p>
+\]</span></p>
+<p>is the basis for the well-known variance decomposition result for OLS regressions.</p>
 <div id="thm-vardecomp" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3.4 </strong></span>For the linear regression model with intercept (<a href="#eq-LinMod">Equation&nbsp;<span>3.1</span></a>), the total sample variance of the dependent variable <span class="math inline">\(Y_1,\dots,Y_n\)</span> can be decomposed as following: <span class="math display">\[\begin{eqnarray}
+<p><span class="theorem-title"><strong>Theorem 3.4 </strong></span></p>
+<p>For the linear regression model with intercept (<a href="#eq-LinMod">Equation&nbsp;<span>3.1</span></a>), the total sample variance of the dependent variable <span class="math inline">\(Y_1,\dots,Y_n\)</span> can be decomposed as following: <span class="math display">\[\begin{eqnarray}
 \underset{\text{total sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}&amp;=&amp;\underset{\text{explained sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}+\underset{\text{unexplained sample variance}}{\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2,}\label{VarDecomp}
 \end{eqnarray}\]</span> where <span class="math inline">\(\bar{Y}=\frac{1}{n}\sum_{i=1}^nY_i\)</span> and <span class="math inline">\(\bar{\hat{Y}}=\frac{1}{n}\sum_{i=1}^n\hat{Y}_i\)</span>.</p>
 </div>
@@ -587,7 +631,8 @@ R^2=\frac{\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}{\sum_{i=1}^n\left(
 </section>
 <section id="sec-MMEstimator" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="sec-MMEstimator"><span class="header-section-number">3.4</span> Method of Moments Estimator</h2>
-<p>Remember that the exogeneity assumption (Assumption 2), <span class="math inline">\(E(\varepsilon_i|X_i)=0,\)</span> implies that <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span> for all <span class="math inline">\(k=1,\dots,K\)</span>. Thus, the exogeneity assumption gives us a system of <span class="math inline">\(K\)</span> linear equations: <span class="math display">\[
+<p>Remember that the exogeneity assumption (Assumption 2), <span class="math inline">\(E(\varepsilon_i|X_i)=0,\)</span> implies that <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span> for all <span class="math inline">\(k=1,\dots,K\)</span>. Thus, the exogeneity assumption gives us a system of <span class="math inline">\(K\)</span> linear equations:</p>
+<p><span class="math display">\[
 \left.
   \begin{array}{c}
   E(\varepsilon_i)=0\\
@@ -597,9 +642,12 @@ R^2=\frac{\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}{\sum_{i=1}^n\left(
   \end{array}
 \right\}\Leftrightarrow \underset{(K\times 1)}{E(X_i\varepsilon_i)}=\underset{(K\times 1)}{0}
 \]</span></p>
-<p>The linear equation system <span class="math display">\[
+<p>The linear equation system</p>
+<p><span class="math display">\[
 \underset{(K\times 1)}{E(X_i\varepsilon_i)}=\underset{(K\times 1)}{0}
-\]</span> allows us to identify the unknown parameter vector <span class="math inline">\(\beta\in\mathbb{R}^K\)</span> in terms of population moments: <span class="math display">\[
+\]</span></p>
+<p>allows us to identify the unknown parameter vector <span class="math inline">\(\beta\in\mathbb{R}^K\)</span> in terms of population moments:</p>
+<p><span class="math display">\[
 \begin{align*}
 E(X_i(\overbrace{Y_i - X_i'\beta}^{=\varepsilon_i})) &amp;= 0\\
 %\Leftrightarrow \hspace{1.5cm}
@@ -607,12 +655,16 @@ E(X_iY_i) - E(X_iX_i')\beta &amp; = 0\\
 E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 \beta &amp; = \left(E(X_iX_i')\right)^{-1} E(X_iY_i)  \\
 \end{align*}
-\]</span> The fundamental idea behind “method of moments estimation” is to define an estimator by substituting population moments by sample moment analogues (sample means): <span class="math display">\[
+\]</span></p>
+<p>The fundamental idea behind “method of moments estimation” is to define an estimator by substituting population moments by sample moment analogues (sample means):</p>
+<p><span class="math display">\[
 \begin{align*}
 \hat\beta_{mm}
 &amp; = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i,
 \end{align*}
-\]</span> where <span class="math inline">\(\hat\beta_{mm}\)</span> can be simplified as following: <span class="math display">\[
+\]</span></p>
+<p>where <span class="math inline">\(\hat\beta_{mm}\)</span> can be simplified as following:</p>
+<p><span class="math display">\[
 \begin{align*}
 \hat\beta_{mm}
 &amp; = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i  \\
@@ -624,27 +676,36 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 </section>
 <section id="sec-GMTheorem" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="sec-GMTheorem"><span class="header-section-number">3.5</span> The Gauss-Markov Theorem</h2>
-<p>The OLS estimator <span class="math display">\[
+<p>The OLS estimator</p>
+<p><span class="math display">\[
 \hat\beta=(X'X)^{-1}X'Y
-\]</span> is a linear (in <span class="math inline">\(Y\)</span>) and unbiased estimator (<span class="math inline">\(E(\hat\beta)=\beta\)</span>), i.e. <span class="math display">\[
+\]</span></p>
+<p>is a linear (in <span class="math inline">\(Y\)</span>) and unbiased estimator (<span class="math inline">\(E(\hat\beta)=\beta\)</span>), i.e.</p>
+<p><span class="math display">\[
 \operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0.
-\]</span> The latter can be shown as following:</p>
-<p>Observe that <span class="math display">\[
+\]</span></p>
+<p>The latter can be shown as following:</p>
+<p>Observe that</p>
+<p><span class="math display">\[
 \hat\beta=(X'X)^{-1}X'Y
-\]</span> consists of two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y.\)</span> Thus one needs to show first the conditional unbiasedness of <span class="math inline">\(\hat\beta\)</span> given <span class="math inline">\(X\)</span> which allows us to focus on randomness due to <span class="math inline">\(\varepsilon\)</span>,<br>
-<span class="math display">\[
+\]</span></p>
+<p>consists of two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y.\)</span> Thus one needs to show first the conditional unbiasedness of <span class="math inline">\(\hat\beta\)</span> given <span class="math inline">\(X\)</span> which allows us to focus on randomness due to <span class="math inline">\(\varepsilon\)</span>,</p>
+<p><span class="math display">\[
 \begin{align*}
 \operatorname{Bias}(\hat\beta|X)
 &amp;= E(\hat\beta|X) - \beta \\
-&amp;= E((X'X)^{-1}X'\underbrace{Y}_{=X'\beta+\varepsilon}|X) - \beta \\
+&amp;= E((X'X)^{-1}X'\underbrace{Y}_{=X\beta+\varepsilon}|X) - \beta \\
 &amp;= E(\underbrace{(X'X)^{-1}X'X}_{I_K}\beta|X) + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
 &amp;=  \beta + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
 &amp;=  (X'X)^{-1}X'E(\varepsilon|X) =0.  
 \end{align*}
-\]</span> Thus <span class="math inline">\(\hat\beta\)</span> is unbiased conditionally on <span class="math inline">\(X.\)</span> From this if follows, by the iterated law of expectations, that the OLS estimator is also unconditionally unbiased, i.e.<br>
-<span class="math display">\[
+\]</span></p>
+<p>Thus <span class="math inline">\(\hat\beta\)</span> is unbiased conditionally on <span class="math inline">\(X.\)</span> From this if follows, by the iterated law of expectations, that the OLS estimator is also unconditionally unbiased, i.e.&nbsp;</p>
+<p><span class="math display">\[
 \operatorname{Bias}(\hat\beta) = E\left(\operatorname{Bias}(\hat\beta|X)\right) = E(0) = 0.
-\]</span> Moreover, the conditional variance of <span class="math inline">\(\hat\beta\)</span> given <span class="math inline">\(X\)</span> can be derived as following: <span class="math display">\[
+\]</span></p>
+<p>Moreover, the conditional variance of <span class="math inline">\(\hat\beta\)</span> given <span class="math inline">\(X\)</span> can be derived as following:</p>
+<p><span class="math display">\[
 \begin{align*}
 Var(\hat\beta|X)
 &amp;=Var(\hat\beta - \beta|X)\\
@@ -654,7 +715,8 @@ Var(\hat\beta|X)
 <blockquote class="blockquote">
 <p>Hint: The conditional variance of a multivariate random variable <span class="math inline">\(Z\in\mathbb{R}^K\)</span>, given <span class="math inline">\(X\)</span>, is defined as <span class="math inline">\(Var(Z|X)=E((Z-E(Z|X))(Z-E(Z|X))'|X)\)</span>.</p>
 </blockquote>
-<p>Using the definition of the conditional variance for multivariate random variables we have that <span class="math display">\[
+<p>Using the definition of the conditional variance for multivariate random variables we have that</p>
+<p><span class="math display">\[
 \begin{align*}
 &amp;Var(\hat\beta|X)=\\
 &amp;=Var(\hat\beta - \beta|X)\\
@@ -665,7 +727,9 @@ Var(\hat\beta|X)
 &amp;=E\left((X'X)^{-1}X'\varepsilon\varepsilon' X(X'X)^{-1}|X\right)\\
 &amp;=(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1},
 \end{align*}
-\]</span> where we used that <span class="math display">\[
+\]</span></p>
+<p>where we used that</p>
+<p><span class="math display">\[
 \begin{align*}
 \hat\beta
 &amp;=(X'X)^{-1}X'Y\\
@@ -673,7 +737,9 @@ Var(\hat\beta|X)
 &amp;=\beta+(X'X)^{-1}X'\varepsilon\\
 \Leftrightarrow \hat\beta - \beta &amp; = (X'X)^{-1}X'\varepsilon.
 \end{align*}
-\]</span> Under the assumption of spherical errors (see Assumption 4), we have that <span class="math inline">\(E\left(\varepsilon\varepsilon'|X\right)=\sigma^2 I_n\)</span>, where <span class="math inline">\(I_n\)</span> is the <span class="math inline">\((n\times n)\)</span> dimensional identity matrix with ones on the diagonal and zeros everywhere else. Thus under the assumption of spherical errors, we have that <span class="math display">\[
+\]</span></p>
+<p>Under the assumption of spherical errors (see Assumption 4), we have that <span class="math inline">\(E\left(\varepsilon\varepsilon'|X\right)=\sigma^2 I_n\)</span>, where <span class="math inline">\(I_n\)</span> is the <span class="math inline">\((n\times n)\)</span> dimensional identity matrix with ones on the diagonal and zeros everywhere else. Thus under the assumption of spherical errors, we have that</p>
+<p><span class="math display">\[
 \begin{align*}
 Var(\hat\beta|X)
 &amp;=(X'X)^{-1}X' \left(\sigma^2I_n\right)X(X'X)^{-1}\\
@@ -688,49 +754,70 @@ Var(\hat\beta|X)
 </ul>
 <p>The famous <strong>Gauss-Markov Theorem</strong> states that the OLS estimator is the <strong>“best”</strong> (lowest conditional variance) estimator within this family of linear (in <span class="math inline">\(Y\)</span>) and unbiased estimators.</p>
 <div id="thm-GMTheorem" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3.5 (Gauss-Markov Theorem) </strong></span>Let’s assume Assumptions 1-4 hold with spherical errors, i.e., with <span class="math inline">\(E(\varepsilon\varepsilon'|X)=\sigma^{2} I_{n}\)</span>. Then the Gauss-Markov theorem states that of all linear and unbiased estimators (i.e.&nbsp;<span class="math inline">\(E(\hat\beta)=\beta\)</span>), the OLS estimator <span class="math inline">\(\hat\beta=(X'X)^{-1}X'Y\)</span> will have the smallest variance (conditionally on <span class="math inline">\(X\)</span>). That is, for any alternative linear (in <span class="math inline">\(Y\)</span>) and unbiased (i.e.&nbsp;<span class="math inline">\(E(\tilde\beta)=\beta\)</span>) estimator <span class="math inline">\(\tilde{\beta}\)</span> we have that <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 3.5 (Gauss-Markov Theorem) </strong></span>Let’s assume Assumptions 1-4 hold with spherical errors, i.e., with <span class="math inline">\(E(\varepsilon\varepsilon'|X)=\sigma^{2} I_{n}\)</span>. Then the Gauss-Markov theorem states that of all linear and unbiased estimators (i.e.&nbsp;<span class="math inline">\(E(\hat\beta)=\beta\)</span>), the OLS estimator <span class="math inline">\(\hat\beta=(X'X)^{-1}X'Y\)</span> will have the smallest variance (conditionally on <span class="math inline">\(X\)</span>). That is, for any alternative linear (in <span class="math inline">\(Y\)</span>) and unbiased (i.e.&nbsp;<span class="math inline">\(E(\tilde\beta)=\beta\)</span>) estimator <span class="math inline">\(\tilde{\beta}\)</span> we have that</p>
+<p><span class="math display">\[
 \begin{align*}
 &amp;Var(\tilde\beta|X)\geq Var(\hat\beta|X)\quad\text{(in the matrix sense)}\\
 \Leftrightarrow&amp;Var(\tilde\beta|X)-Var(\hat\beta|X)=\underset{(K\times K)}{D},
 \end{align*}
-\]</span> where <span class="math inline">\(D\)</span> is a <em>positive semidefinite</em> <span class="math inline">\((K\times K)\)</span> matrix, i.e., <span class="math inline">\(a'Da\geq 0\)</span> for any <span class="math inline">\(K\)</span>-dimensional vector <span class="math inline">\(a\in\mathbb{R}^K\)</span>. Observe that this implies that <span class="math inline">\(Var(\tilde{\beta}_k|X) \geq Var(\hat\beta_k | X)\)</span> for any <span class="math inline">\(k=1,\dots,K\)</span>.</p>
+\]</span></p>
+<p>where <span class="math inline">\(D\)</span> is a <em>positive semidefinite</em> <span class="math inline">\((K\times K)\)</span> matrix, i.e., <span class="math inline">\(a'Da\geq 0\)</span> for any <span class="math inline">\(K\)</span>-dimensional vector <span class="math inline">\(a\in\mathbb{R}^K\)</span>. Observe that this implies that <span class="math inline">\(Var(\tilde{\beta}_k|X) \geq Var(\hat\beta_k | X)\)</span> for any <span class="math inline">\(k=1,\dots,K\)</span>.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>Since <span class="math inline">\(\tilde{\beta}\)</span> is assumed to be linear in <span class="math inline">\(Y\)</span>, we can write <span class="math display">\[
+<p><span class="proof-title"><em>Proof</em>. </span>Since <span class="math inline">\(\tilde{\beta}\)</span> is assumed to be linear in <span class="math inline">\(Y\)</span>, we can write</p>
+<p><span class="math display">\[
 \tilde{\beta}=CY,
-\]</span> where <span class="math inline">\(C\)</span> is some <span class="math inline">\((K\times n)\)</span> matrix, which is a function of <span class="math inline">\(X\)</span> and/or nonrandom components. Adding a <span class="math inline">\((K\times n)\)</span> zero matrix <span class="math inline">\(0\)</span> yields <span class="math display">\[
+\]</span></p>
+<p>where <span class="math inline">\(C\)</span> is some <span class="math inline">\((K\times n)\)</span> matrix, which is a function of <span class="math inline">\(X\)</span> and/or nonrandom components. Adding a <span class="math inline">\((K\times n)\)</span> zero matrix <span class="math inline">\(0\)</span> yields</p>
+<p><span class="math display">\[
 \tilde{\beta}=\Big(C\overbrace{-\left(X'X\right)^{-1}X'+\left(X'X\right)^{-1}X'}^{=0}\Big)Y.
-\]</span> Let now <span class="math inline">\(D=C-\left(X'X\right)^{-1}X'\)</span>, then <span class="math display">\[
+\]</span></p>
+<p>Let now <span class="math inline">\(D=C-\left(X'X\right)^{-1}X'\)</span>, then</p>
+<p><span class="math display">\[
 \begin{align*}
 \tilde{\beta}&amp;=\left(D+\left(X'X\right)^{-1}X'\right)Y\\
 \tilde{\beta}&amp;=DY + \left(X'X\right)^{-1}X'Y\\
 \tilde{\beta}&amp;=D\left(X{\beta}+{\varepsilon}\right) + \left(X'X\right)^{-1}X'Y
 \end{align*}
-\]</span> Thus <span id="eq-c3e16"><span class="math display">\[
+\]</span></p>
+<p>Thus</p>
+<p><span id="eq-c3e16"><span class="math display">\[
 \tilde{\beta}=DX{\beta}+D{\varepsilon} + \hat{\beta}.
-\tag{3.2}\]</span></span> Moreover, <span class="math display">\[
+\tag{3.2}\]</span></span></p>
+<p>Moreover,</p>
+<p><span class="math display">\[
 E(\tilde{\beta}|X)=\underbrace{E(DX{\beta}|X)}_{=DX\beta}+\underbrace{E(D\varepsilon|X)}_{=DE(\varepsilon|X)=0}+\underbrace{E(\hat{\beta}|X)}_{=\beta}
-\]</span> and thus <span id="eq-c3e17"><span class="math display">\[
+\]</span></p>
+<p>and thus</p>
+<p><span id="eq-c3e17"><span class="math display">\[
 E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}.
 \tag{3.3}\]</span></span></p>
-<p>Since <span class="math inline">\(\tilde{\beta}\)</span> is (by assumption) unbiased, we have that <span class="math inline">\(E(\tilde{\beta}|X)={\beta}\)</span>. Therefore, <a href="#eq-c3e17">Equation&nbsp;<span>3.3</span></a> implies that <span class="math inline">\(DX=0_{(K\times K)}\)</span> since we must have that <span class="math display">\[
+<p>Since <span class="math inline">\(\tilde{\beta}\)</span> is (by assumption) unbiased, we have that <span class="math inline">\(E(\tilde{\beta}|X)={\beta}\)</span>. Therefore, <a href="#eq-c3e17">Equation&nbsp;<span>3.3</span></a> implies that <span class="math inline">\(DX=0_{(K\times K)}\)</span> since we must have that</p>
+<p><span class="math display">\[
 E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}=\beta.
-\]</span> Plugging <span class="math inline">\(DX=0\)</span> into <a href="#eq-c3e16">Equation&nbsp;<span>3.2</span></a> yields, <span class="math display">\[
+\]</span></p>
+<p>Plugging <span class="math inline">\(DX=0\)</span> into <a href="#eq-c3e16">Equation&nbsp;<span>3.2</span></a> yields,</p>
+<p><span class="math display">\[
 \begin{align*}
 \tilde{\beta}&amp;=D{\varepsilon} + \hat{\beta}\\
 \tilde{\beta}-{\beta}&amp;=D{\varepsilon} + (\hat{\beta}-{\beta})\\
 \tilde{\beta}-{\beta}&amp;=D{\varepsilon} + \left(X'X\right)^{-1}X'{\varepsilon}
 \end{align*}
-\]</span> such that <span id="eq-c3e18"><span class="math display">\[
+\]</span></p>
+<p>such that</p>
+<p><span id="eq-c3e18"><span class="math display">\[
 \tilde{\beta}-{\beta}=\left(D + \left(X'X\right)^{-1}X'\right){\varepsilon},
-\tag{3.4}\]</span></span> where we used that <span class="math display">\[
+\tag{3.4}\]</span></span></p>
+<p>where we used that</p>
+<p><span class="math display">\[
 \begin{align*}
 \hat\beta-\beta&amp;=(X'X)^{-1}X'Y-\beta\\
 &amp;=(X'X)^{-1}X'(X\beta+\varepsilon)-\beta\\
 &amp;=(X'X)^{-1}X'\varepsilon.
 \end{align*}
 \]</span></p>
-<p>Using that <span class="math inline">\(Var(\tilde{\beta}|X)= Var(\tilde{\beta}-{\beta}|X)\)</span> since <span class="math inline">\(\beta\)</span> is not random and using <a href="#eq-c3e18">Equation&nbsp;<span>3.4</span></a> yields <span class="math display">\[
+<p>Using that <span class="math inline">\(Var(\tilde{\beta}|X)= Var(\tilde{\beta}-{\beta}|X)\)</span> since <span class="math inline">\(\beta\)</span> is not random and using <a href="#eq-c3e18">Equation&nbsp;<span>3.4</span></a> yields</p>
+<p><span class="math display">\[
 \begin{align*}
 Var(\tilde{\beta}|X)
 &amp;= Var((D + (X'X)^{-1}X'){\varepsilon}|X)\\
@@ -740,11 +827,14 @@ Var(\tilde{\beta}|X)
 &amp;\geq\sigma^2(X'X)^{-1} \quad \text{(using that $DD'\geq 0$)}\\
 &amp;= Var(\hat{\beta}|X).
 \end{align*}
-\]</span> Finally, we need to show that <span class="math inline">\(DD'\)</span> is really positive semidefinite (i.e.&nbsp;<span class="math inline">\(DD'\geq 0\)</span> in matrix sense): <span class="math display">\[
+\]</span></p>
+<p>Finally, we need to show that <span class="math inline">\(DD'\)</span> is really positive semidefinite (i.e.&nbsp;<span class="math inline">\(DD'\geq 0\)</span> in matrix sense):</p>
+<p><span class="math display">\[
 \begin{align*}
 a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}\geq 0,
 \end{align*}
-\]</span> where <span class="math inline">\(\tilde{a}\)</span> is a <span class="math inline">\(K\)</span> dimensional column-vector.</p>
+\]</span></p>
+<p>where <span class="math inline">\(\tilde{a}\)</span> is a <span class="math inline">\(K\)</span> dimensional column-vector.</p>
 <!-- Remember: -->
 <!-- \begin{itemize} -->
 <!-- \item $(A+\hat{\beta})'=A'+\hat{\beta}'$ -->
@@ -860,7 +950,8 @@ a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}\geq 0,
 Levels: male female</code></pre>
 </div>
 </div>
-<p>Thus <code>R</code> internally codes <code>female</code> subjects by a 1 and <code>male</code> subjects by a 0, such that <span class="math display">\[
+<p>Thus <code>R</code> internally codes <code>female</code> subjects by a 1 and <code>male</code> subjects by a 0, such that</p>
+<p><span class="math display">\[
 \hat\beta_1  + \hat\beta_2 X_{i,gender}=\left\{\begin{array}{ll}\hat\beta_1&amp;\text{ if }X_{i,gender}=\text{male}\\\hat\beta_1 + \hat\beta_2&amp;\text{ if }X_{i,gender}=\text{female}\end{array} \right.
 \]</span></p>
 <p>Interpretation:</p>
@@ -1214,10 +1305,10 @@ Stock, J. H., and M. W. Watson. 2015. <em><span>I</span>ntroduction to <span>E</
 </div>
 </div>
 </section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>The <span class="math inline">\(K\)</span> linear restrictions follow from the fact that <span class="math inline">\(X'\hat\varepsilon=0\)</span> are <span class="math inline">\(K\)</span> equations <span class="math inline">\(\sum_{i=1}^nX_{ik}\hat\varepsilon_i=0\)</span> for <span class="math inline">\(k=1,\dots,K\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>The <span class="math inline">\(K\)</span> linear restrictions follow from the fact that <span class="math inline">\(X'\hat\varepsilon=0\)</span> are <span class="math inline">\(K\)</span> equations <span class="math inline">\(\sum_{i=1}^nX_{ik}\hat\varepsilon_i=0\)</span> for <span class="math inline">\(k=1,\dots,K\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -1291,8 +1382,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      let href = ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
