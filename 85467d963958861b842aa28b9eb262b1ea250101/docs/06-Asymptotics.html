@@ -451,6 +451,7 @@ A_nx_n\to_{d} N(0,A\Sigma A').
 <p><span class="theorem-title"><strong>Theorem 6.5 (Strong LLN (by Kolmogorov)) </strong></span>If <span class="math inline">\(\{z_i\}\)</span> is an iid sequence with <span class="math inline">\(E(z_i)=\mu,\)</span> then <span class="math inline">\(\bar{z}_n\to_{as}\mu.\)</span></p>
 </div>
 <p>A proof of <a href="#thm-SLLN1">Theorem&nbsp;<span>6.5</span></a> can be found, e.g., in <em>Linear Statistical Inference and Its Applications</em>, Rao (1973), pp.&nbsp;112-114.</p>
+<p><strong>Interactive visualization of the Law of Large Numbers:</strong> <a href="http://shiny.webpopix.org/sia/LLN/">http://shiny.webpopix.org/sia/LLN/</a></p>
 <p><strong>Note:</strong> The WLLN and the SLLN for <strong>random vectors</strong> follow from applying the the theorem separately for each element of the random vectors.</p>
 <div id="thm-CLT1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 6.6 (CLT (Lindeberg-Levy)) </strong></span>If <span class="math inline">\(\{z_i\}\)</span> is an iid sequence and <span class="math inline">\(E(z_i)=\mu\)</span> and <span class="math inline">\(Var(z_i)=\sigma^2\)</span> then <span class="math display">\[
@@ -458,6 +459,7 @@ A_nx_n\to_{d} N(0,A\Sigma A').
 \]</span></p>
 </div>
 <p>A proof of <a href="#thm-CLT1">Theorem&nbsp;<span>6.6</span></a> can be found, e.g., in <span class="citation" data-cites="Vaart2000">Van der Vaart (<a href="#ref-Vaart2000" role="doc-biblioref">2000</a>)</span> (see Theorem 2.17).</p>
+<p><strong>Interactive visualization of the CLT:</strong> <a href="https://tuomonieminen.shinyapps.io/CLTdemo/">https://tuomonieminen.shinyapps.io/CLTdemo/</a></p>
 <p>Using the Cramér-Wold device (<a href="#thm-CramerWold">Theorem&nbsp;<span>6.1</span></a>), the Lindeberg-Levy CLT (<a href="#thm-CLT1">Theorem&nbsp;<span>6.6</span></a>) can also be applied to <span class="math inline">\(K\)</span>-dimensional random vectors: <br> To show that <span class="math inline">\(\sqrt{n}(\bar{z}_n-\mu)\)</span> converges to a multivariate (<span class="math inline">\(K&gt;1\)</span> dimensional) normal distribution as <span class="math inline">\(n\to\infty\)</span>, we need to check whether the <strong>uni</strong>variate stochastic sequence <span class="math inline">\(\{\lambda'z_i\}\)</span> is i.i.d. with <span class="math inline">\(E(\lambda'z_i)=\lambda'\mu\)</span> and <span class="math inline">\(Var(\lambda'z_i)=\lambda'\Sigma\lambda\)</span> for any <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>. This is the case if the multivariate stochastic sequence <span class="math inline">\(\{z_i\}\)</span> is an i.i.d. sequence with <span class="math inline">\(E(_i)=\mu\)</span> and <span class="math inline">\(Var(z_i)=\Sigma\)</span>.</p>
 <p><strong>Note:</strong> The LLNs and the CLT are stated with respect to sequences of sample means <span class="math inline">\(\{\bar{z}_n\}\)</span>; i.e., the simplest estimators you probably can think of. We will see, however, that this is all we need in order to analyze also more complicated estimators such as the OLS estimator.</p>
 </section>

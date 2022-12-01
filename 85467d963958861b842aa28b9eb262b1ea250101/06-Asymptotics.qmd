@@ -295,6 +295,10 @@ If $\{z_i\}$ is an iid sequence with $E(z_i)=\mu,$ then $\bar{z}_n\to_{as}\mu.$
 
 A proof of @thm-SLLN1 can be found, e.g., in *Linear Statistical Inference and Its Applications*, Rao (1973), pp. 112-114. 
 
+
+**Interactive visualization of the Law of Large Numbers:** [http://shiny.webpopix.org/sia/LLN/](http://shiny.webpopix.org/sia/LLN/)
+
+
 **Note:** The WLLN and the SLLN for **random vectors** follow from applying the the theorem separately for each element of the random vectors.
 
 ::: {#thm-CLT1}
@@ -308,6 +312,9 @@ $$
 :::
 
 A proof of @thm-CLT1 can be found, e.g., in @Vaart2000 (see Theorem 2.17).
+
+
+**Interactive visualization of the CLT:** [https://tuomonieminen.shinyapps.io/CLTdemo/](https://tuomonieminen.shinyapps.io/CLTdemo/)
 
 
 Using the Cramér-Wold device (@thm-CramerWold), the Lindeberg-Levy CLT (@thm-CLT1) can also be applied to $K$-dimensional random vectors: <br>
@@ -471,6 +478,7 @@ Moreover, we can show that the appropriately scaled OLS estimator is asymptotica
 ::: {#thm-OLSnormality1}
 
 ## Sampling error limiting normality (homoskedastic case)
+
 Under Assumption 1, 2, 3$^\ast$, and 4, and under the assumption that $X_i$ and $\varepsilon_i$ have finite second moments, and under the simplifying assumption of spherical errors $(Var(\varepsilon_i|X)=\sigma^2I_n)$, we have that
 $$\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right)\quad\text{as}\quad n\to\infty$$
 :::
