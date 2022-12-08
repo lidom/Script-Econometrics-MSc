@@ -169,7 +169,8 @@ div.csl-indent {
   <li><a href="#endogenous-regressors" id="toc-endogenous-regressors" class="nav-link" data-scroll-target="#endogenous-regressors"><span class="toc-section-number">7.3</span>  Endogenous Regressors</a></li>
   <li><a href="#instruments" id="toc-instruments" class="nav-link" data-scroll-target="#instruments"><span class="toc-section-number">7.4</span>  Instruments</a></li>
   <li><a href="#reduced-form" id="toc-reduced-form" class="nav-link" data-scroll-target="#reduced-form"><span class="toc-section-number">7.5</span>  Reduced Form</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">7.6</span>  References</a></li>
+  <li><a href="#two-stage-least-squares" id="toc-two-stage-least-squares" class="nav-link" data-scroll-target="#two-stage-least-squares"><span class="toc-section-number">7.6</span>  Two-Stage Least Squares</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">7.7</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -196,7 +197,7 @@ div.csl-indent {
 <section id="introduction" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
 <p>The concepts of <strong>endogeneity</strong> and <strong>instrumental variable</strong> are fundamental to econometrics, and mark a substantial departure from other branches of statistics.</p>
-<p>The ideas of endogeneity arise naturally in economics from models of simultaneous equations, most notably the classic supply/demand model of price determination.</p>
+<p>The ideas of endogeneity arise naturally in economics from the structural model approach leading to models of simultaneous equations such as, for instance, the classic supply/demand model of price determination.</p>
 <!-- ### Overview {-} -->
 <p>We say that there is <strong>endogeneity</strong> in the linear model <span id="eq-IVLinMod"><span class="math display">\[
 \begin{align}
@@ -216,7 +217,7 @@ E(X_i\varepsilon_i)\neq 0.
 <li><a href="#eq-IVLinMod">Equation&nbsp;<span>7.1</span></a> is called a <strong>structural equation</strong></li>
 <li><span class="math inline">\(\beta\)</span> in <a href="#eq-IVLinMod">Equation&nbsp;<span>7.1</span></a> is called a <strong>structural parameter</strong></li>
 </ul>
-<p>It is important to distinguish <a href="#eq-IVLinMod">Equation&nbsp;<span>7.1</span></a> from the regression (or projection) models we considered so far. It may be the case that a structural model coincides with a regression/projector model, but this is not necessarily the case.</p>
+<p>It is important to distinguish <a href="#eq-IVLinMod">Equation&nbsp;<span>7.1</span></a> from the regression or <strong>projection models</strong> we considered so far. It may be the case that a structural model coincides with a regression/projector model, but this is not necessarily the case.</p>
 <p>Endogeneity <strong>cannot</strong> happen if the model coefficient is defined by a linear projection. We can <em>define</em> the linear (population) <strong>projection coefficient</strong> <span class="math display">\[
 \beta^*=E(X_iX_i')^{-1}E(X_iY_i)
 \]</span> and the corresponding linear (population) projection equation <span class="math display">\[
@@ -410,13 +411,13 @@ Q_i=\beta^* P_i+\varepsilon^*_i
 <h2 data-number="7.3" class="anchored" data-anchor-id="endogenous-regressors"><span class="header-section-number">7.3</span> Endogenous Regressors</h2>
 <!-- Technically, we say that a regressor $X_i$ is **exogenous** for $\beta$ if $E(X_i\varepsilon_i)=0.$ In general the distinction in an economic model is that a regressor $X_i$ is endogenous if it is jointly determined with $Y_i,$ while a regressor $X_i$ is exogenous if it is determined separately from $Y_i.$  -->
 <p>Usually, only a subset of the regressors need to be treated as <strong>endogenous</strong>. In the following, we partition the vector of regressors <span class="math display">\[
-X_i=
-\underset{((K_1+K_2)\times 1)}{\left(
+\underset{(K\times 1)}{X_i}=
+\left(
 \begin{matrix}
-X_{i1}\\
-Y_{i2}
+\underset{(K_1\times 1)}{X_{i1}}\\
+\underset{(K_2\times 1)}{Y_{i2}}
 \end{matrix}
-\right)}
+\right)
 \]</span> with <span class="math inline">\(K=K_1 + K_2\)</span>.</p>
 <ul>
 <li><span class="math inline">\(X_{i1}\)</span>: <span class="math inline">\((K_1\times 1)\)</span> vector of <strong>exogenous</strong> regressors, i.e.&nbsp;<span class="math inline">\(E(X_{i1}\varepsilon_i)=0\)</span><br>
@@ -446,7 +447,7 @@ E(Z_i\varepsilon_i)=0
 <p><strong>Explanation of <a href="#def-InstrumentalVariable">Definition&nbsp;<span>7.1</span></a>:</strong></p>
 <ul>
 <li><a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a> states that the instruments are uncorrelated with the error term (<strong>exogeneity condition</strong>)</li>
-<li><a href="#eq-IV2">Equation&nbsp;<span>7.7</span></a> excludes linearly redundant instrument instruments</li>
+<li><a href="#eq-IV2">Equation&nbsp;<span>7.7</span></a> excludes linearly redundant instruments</li>
 <li><a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a> is called the <strong>relevance condition</strong> and is essential for the identification of the model, as we discuss later.
 <ul>
 <li>A necessary condition for <a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a> is that <span class="math inline">\(\ell\geq K.\)</span></li>
@@ -512,26 +513,126 @@ satisfy the property of an instrumental variable the measurement error in $Z_{i2
 </section>
 <section id="reduced-form" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="reduced-form"><span class="header-section-number">7.5</span> Reduced Form</h2>
-<p>The <strong>reduced form</strong> model gives us the relationship between</p>
-<ul>
-<li>the <span class="math inline">\((K_2\times 1)\)</span> endogenous regressors <span class="math inline">\(Y_{i2}\)</span> and</li>
-<li>the <span class="math inline">\((\ell\times 1)\)</span> instruments <span class="math inline">\(Z_{i}.\)</span></li>
-</ul>
-<p>The linear reduced form model for <span class="math inline">\(Y_{i2}\)</span> is given by <span class="math display">\[
+<p>The <strong>reduced form</strong> models are <strong>projection models</strong> giving us the relationships</p>
+<ol type="1">
+<li>between the <span class="math inline">\((K_2\times 1)\)</span> endogenous regressors <span class="math inline">\(Y_{i2}\)</span> and the <span class="math inline">\((\ell\times 1)\)</span> instruments <span class="math inline">\(Z_{i}.\)</span></li>
+<li>between the <span class="math inline">\((1\times 1)\)</span> endogenous regressors <span class="math inline">\(Y_{i1}\)</span> and the <span class="math inline">\((\ell\times 1)\)</span> instruments <span class="math inline">\(Z_{i}.\)</span></li>
+</ol>
+<p>The linear reduced form model for <span class="math inline">\(Y_{i2}\)</span> is given by the population projection model that regresses <span class="math inline">\(Y_{i2}\)</span> on the exogenous instruments <span class="math inline">\(Z_{i}:\)</span> <span id="eq-reducedFormModelY2"><span class="math display">\[
 \begin{align}
 Y_{i2}
 &amp;= \Gamma'Z_i + u_{i2}\\
 &amp;= \Gamma_{12}'Z_{i1} + \Gamma_{22}'Z_{i2} + u_{i2},
 \end{align}
-\]</span> which implies that <span class="math inline">\(E(Z_iu_{i2}')=0.\)</span></p>
-<p>The <span class="math inline">\((\ell\times K_2)\)</span> dimensional coefficient matrix is defined by the projection coefficient <span id="eq-Gamma1"><span class="math display">\[
-\Gamma = E(Z_iZ_i')^{-1}E(Z_iY_{i2}')
-\tag{7.10}\]</span></span></p>
-<p>The projection coefficient <span class="math inline">\(\Gamma\)</span> (<a href="#eq-Gamma1">Equation&nbsp;<span>7.10</span></a>) is well defined and unique if <a href="#eq-IV2">Equation&nbsp;<span>7.7</span></a> holds.</p>
+\tag{7.10}\]</span></span> which implies that <span class="math inline">\(E(Z_iu_{i2}')=0.\)</span></p>
+<p>The <span class="math inline">\((\ell\times K_2)\)</span> dimensional coefficient matrix <span class="math inline">\(\Gamma\)</span> is defined by the projection coefficient <span id="eq-Gamma"><span class="math display">\[
+\underset{(\ell\times K_2)}{\Gamma}=\left(\begin{matrix}\underset{(K_1\times K_2)}{\Gamma_{12}}\\ \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right) = E(Z_iZ_i')^{-1}E(Z_iY_{i2}')
+\tag{7.11}\]</span></span></p>
+<blockquote class="blockquote">
+<p>Note: <a href="#eq-Gamma">Equation&nbsp;<span>7.11</span></a> defines a <em>matrix-valued</em> regression/projection parameter and can be thought as lining up single ordinary vector-valued regression parameters <span class="math inline">\([\Gamma]_{\cdot,l} = E(Z_iZ_i')^{-1}E(Z_iY_{i2,l}')\)</span>, <span class="math inline">\(l=1,\dots,\ell\)</span>, where <span class="math inline">\([\Gamma]_{\cdot,l}\)</span> is the <span class="math inline">\(l\)</span>th column of <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(Y_{i2,l}\)</span> the <span class="math inline">\(l\)</span>th element of <span class="math inline">\(Y_{i2}\)</span>. More details can be found, for instance, in Chapter 11 of <span class="citation" data-cites="Hansen2022">Hansen (<a href="#ref-Hansen2022" role="doc-biblioref">2022</a>)</span>.</p>
+</blockquote>
+<p>The projection coefficient <span class="math inline">\(\Gamma\)</span> (<a href="#eq-Gamma">Equation&nbsp;<span>7.11</span></a>) is well defined and unique if <a href="#eq-IV2">Equation&nbsp;<span>7.7</span></a> holds since then <span class="math inline">\(E(Z_iZ_i')\)</span> is invertible.</p>
+<p>The linear reduced form projection model for <span class="math inline">\(Y_{i1}\)</span> is derived from substituting the reduced form projection model for <span class="math inline">\(Y_{i2}\)</span> (<a href="#eq-reducedFormModelY2">Equation&nbsp;<span>7.10</span></a>) into the structural equation for <span class="math inline">\(Y_{i1}\)</span> (<a href="#eq-StructuralEqEndogen2">Equation&nbsp;<span>7.9</span></a>): <span id="eq-reducedFormModelY1"><span class="math display">\[
+\begin{align}
+Y_{i1}
+&amp;= Z_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i\\
+&amp;= Z_{i1}'\beta_1 + (\Gamma_{12}'Z_{i1} + \Gamma_{22}'Z_{i2} + u_{i2})'\beta_2 + \varepsilon_i\\
+&amp;= Z_{i1}'\beta_1 + Z_{i1}'\Gamma_{12}\beta_2 + Z_{i2}'\Gamma_{22}\beta_2  + u_{i2}'\beta_2 + \varepsilon_i\\
+&amp;= Z_{i1}' (\beta_1 + \Gamma_{12}\beta_2) + Z_{i2}' (\Gamma_{22}\beta_2)  + (u_{i2}'\beta_2 + \varepsilon_i)\\
+&amp;= Z_{i1}' \lambda_1 + Z_{i2}' \lambda_2  + u_{i1}\\
+&amp;= Z_{i}' \lambda + u_{i1},
+\end{align}
+\tag{7.12}\]</span></span> where <span class="math inline">\(u_{i1} = u_{i2}'\beta_2 + \varepsilon_i.\)</span> Since <a href="#eq-reducedFormModelY1">Equation&nbsp;<span>7.12</span></a> is a projection model, we have that <span class="math inline">\(E(Z_iu_{i1})=0\)</span> such that the <span class="math inline">\((\ell\times 1)\)</span> dimensional coefficient <span class="math inline">\(\lambda\)</span> is defined by the projection coefficient <span id="eq-lambda"><span class="math display">\[
+\underset{(\ell\times 1)}{\lambda}=\left(\begin{matrix}\underset{(K_1\times 1)}{\lambda_{1}}\\ \underset{(\ell_2\times 1)}{\lambda_{2}}\end{matrix}\right) = E(Z_iZ_i')^{-1}E(Z_iY_{i})
+\tag{7.13}\]</span></span></p>
+<p>Note that the thus estimable projection parameter <span class="math inline">\(\lambda\)</span> of the reduced form projection model for <span class="math inline">\(Y_{i1}\)</span> (<a href="#eq-reducedFormModelY1">Equation&nbsp;<span>7.12</span></a>) can written as a linear function <span class="math inline">\(\bar{\Gamma}\beta\)</span> of the (not directly estimable) structural parameter <span class="math inline">\(\beta\)</span>: <span class="math display">\[
+\begin{align*}
+\underset{(\ell\times 1)}{
+\lambda} =
+\left(
+\begin{matrix}
+\lambda_1\\
+\lambda_2
+\end{matrix}
+\right)
+&amp;=
+\left(
+\begin{matrix}
+\beta_1 + \Gamma_{12}\beta_2 \\
+\Gamma_{22}\beta_2
+\end{matrix}
+\right) \\
+&amp;=
+\underset{(\ell\times (K_1+K_2))}{
+\left[
+\begin{matrix}
+I_{K_1} &amp;  \Gamma_{12}\\
+0 &amp;  \Gamma_{22}
+\end{matrix}
+\right]}
+\underset{((K_1+K_2)\times 1)}{
+\left(
+\begin{matrix}
+\beta_1\\
+\beta_2
+\end{matrix}
+\right)} = \bar{\Gamma} \beta.
+\end{align*}
+\]</span> Luckily, the unknown components <span class="math inline">\(\Gamma_{12}\)</span> and <span class="math inline">\(\Gamma_{12}\)</span> of <span class="math inline">\(\bar{\Gamma}\)</span> are together the estimable projection parameter <span class="math inline">\(\Gamma\)</span> (<a href="#eq-Gamma">Equation&nbsp;<span>7.11</span></a>). Moreover, we can generalize <a href="#eq-Gamma">Equation&nbsp;<span>7.11</span></a> for <span class="math inline">\(\Gamma\)</span> to an expression for <span class="math inline">\(\bar{\Gamma}\)</span>: <!-- $$
+\underset{(\ell\times K_2)}{\Gamma}=\left(\begin{matrix}\underset{(K_1\times K_2)}{\Gamma_{12}}\\ \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right) & = E(Z_iZ_i')^{-1}E(Z_iY_{i2}')
+$$ --> <span id="eq-GammaBar"><span class="math display">\[
+\underbrace{\left[\begin{matrix}I_{K_1}&amp;\underset{(K_1\times K_2)}{\Gamma_{12}}\\ 0&amp; \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right]}_{=\underset{(\ell\times K )}{\bar{\Gamma}}} = E(Z_iZ_i')^{-1}E(Z_i\;\overbrace{\underset{(1\times (K_1+K_2))}{(X_{i1}',Y_{i2}')}}^{=X_i'}\;)
+\tag{7.14}\]</span></span></p>
+<p>The least squares estimators of the regression/projection parameters</p>
+<ul>
+<li><span class="math inline">\(\Gamma\)</span> (<a href="#eq-Gamma">Equation&nbsp;<span>7.11</span></a>)</li>
+<li><span class="math inline">\(\bar{\Gamma}\)</span> (<a href="#eq-GammaBar">Equation&nbsp;<span>7.14</span></a>)</li>
+<li><span class="math inline">\(\lambda\)</span> (<a href="#eq-lambda">Equation&nbsp;<span>7.13</span></a>)</li>
+</ul>
+<p>are given by the following moment estimators: <span id="eq-GammaHat"><span class="math display">\[
+\hat{\Gamma} = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iY_{i2}'\right)
+\tag{7.15}\]</span></span> <span id="eq-GammaBarHat"><span class="math display">\[
+\widehat{\bar{\Gamma}} = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_i X_i'\right)
+\tag{7.16}\]</span></span> <span id="eq-lambdaHat"><span class="math display">\[
+\hat{\lambda} = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iY_{i1}\right).
+\tag{7.17}\]</span></span></p>
+</section>
+<section id="two-stage-least-squares" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="two-stage-least-squares"><span class="header-section-number">7.6</span> Two-Stage Least Squares</h2>
+<p>From the reduced form projection equation <a href="#eq-reducedFormModelY1">Equation&nbsp;<span>7.12</span></a> with <span class="math inline">\(\lambda = \bar{\Gamma}\beta\)</span>, we have <span class="math display">\[
+\begin{align*}
+Y_i
+&amp; = Z_i' \lambda + u_{i1}  \\
+&amp; = Z_i' \bar{\Gamma}\beta + u_{i1}  \\
+E(Z_iu_{i1}) &amp; = 0.   
+\end{align*}
+\]</span> The parameter <span class="math inline">\(\bar{\Gamma}\)</span> is unknown, but consistently estimable.</p>
+<p>Let us, for a moment, assume we would know <span class="math inline">\(\bar{\Gamma}\)</span> and let<br>
+<span class="math display">\[
+W_{i}=\bar{\Gamma}'Z_i.
+\]</span> <span class="math inline">\(W_{i}\)</span> is thus a specific linear combination of the <span class="math inline">\(\ell\)</span> instruments <span class="math inline">\(Z_i\)</span> which allows us to identify the structural parameter <span class="math inline">\(\beta\)</span> in a regression/projection model <span class="math display">\[
+\begin{align*}
+Y_i &amp; = W_i'\beta + u_{i1}  \\
+E(W_iu_{i1}) &amp; = 0.
+\end{align*}
+\]</span></p>
+<p>Thus, if we would know <span class="math inline">\(\bar{\Gamma}\)</span>, we would estimate <span class="math inline">\(\beta\)</span> by <span class="math display">\[
+\begin{align*}
+\hat{\beta}
+&amp; = \left(\sum_{i=1}^nW_iW_i'\right)^{-1}\left(\sum_{i=1}^nW_iY_{i1}\right)\\
+&amp; = \left(W'W\right)^{-1}\left(WY_{1}\right)\\
+&amp; = \left(\bar{\Gamma}'Z'Z\bar{\Gamma}\right)^{-1}\left(\bar{\Gamma}'Z'Y_{1}\right)\\
+\end{align*}
+\]</span> To make <span class="math inline">\(\hat{\beta}\)</span> a feasible estimator, we simply replace the unknown <span class="math inline">\(\bar{\Gamma}\)</span> by its estimator <span class="math inline">\(\widehat{\bar{\Gamma}} = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iX_{i}'\right)\)</span> (<a href="#eq-GammaBarHat">Equation&nbsp;<span>7.16</span></a>) which yields the <strong>Two State Lease Squares (2SLS) estimator</strong>: <span class="math display">\[
+\begin{align*}
+\hat{\beta}_{2SLS}
+&amp; = \left(\widehat{\bar{\Gamma}}'Z'Z\widehat{\bar{\Gamma}}\right)^{-1}\left(\widehat{\bar{\Gamma}}'Z'Y_{1}\right)\\
+\end{align*}
+\]</span></p>
 <!-- ## Real-Data Example: College Proximity -->
 </section>
-<section id="references" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="references"><span class="header-section-number">7.6</span> References</h2>
+<section id="references" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="references"><span class="header-section-number">7.7</span> References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
