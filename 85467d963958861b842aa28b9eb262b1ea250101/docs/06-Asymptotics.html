@@ -346,7 +346,7 @@ $$
 <div id="def-conv_distr" class="theorem definition">
 <span class="theorem-title"><strong>Definition 6.4 (Convergence in Distribution) </strong></span>Let <span class="math inline">\(F_n\)</span> be the cumulative distribution function (cdf) of <span class="math inline">\(z_n\)</span> and <span class="math inline">\(F\)</span> the cdf of <span class="math inline">\(z\)</span>. A sequence of real valued random variables <span class="math inline">\(\{z_n\}\)</span> <strong>converges in distribution</strong> to a real valued random variable <span class="math inline">\(z\)</span> if <span class="math display">\[\begin{eqnarray*}
   \lim_{n\to\infty}F_n(t)=F(t)
-\end{eqnarray*}\]</span> for all <span class="math inline">\(t\)</span> at which <span class="math inline">\(F(t)\)</span> is continuous <span class="math inline">\(t.\)</span> We write:
+\end{eqnarray*}\]</span> for all <span class="math inline">\(t\)</span> at which <span class="math inline">\(F(t)\)</span> is continuous. We write:
 <center>
 <span class="math inline">\(z_n\to_{d}z,\quad\)</span> as <span class="math inline">\(\quad n\to\infty,\)</span>
 </center>
@@ -355,11 +355,11 @@ $$
 <p>Remarks on <a href="#def-conv_distr">Definition&nbsp;<span>6.4</span></a>:</p>
 <ol type="1">
 <li>Often you will see statements like <span class="math inline">\(z_n\to_{d} N(0,1)\)</span> or <span class="math inline">\(z_n\overset{a}{\sim}N(0,1)\)</span>, which should be read as <span class="math inline">\(\lim_{n\to\infty}F_n(t) = \Phi(t)\)</span> for all <span class="math inline">\(t\)</span>, where <span class="math inline">\(\Phi\)</span> denotes the distribution function of the standard normal distribution.</li>
-<li>A stochastic sequence <span class="math inline">\(\{z_n\}\)</span> can also convergence in distribution to a <strong>deterministic scalar</strong> <span class="math inline">\(\alpha\)</span>. In this case <span class="math inline">\(\alpha\)</span> is treated as a degenerated random variable with cdf <span class="math display">\[
+<li>A stochastic sequence <span class="math inline">\(\{z_n\}\)</span> can also convergence in distribution to a <strong>constant</strong> <span class="math inline">\(\alpha\)</span>. In this case <span class="math inline">\(\alpha\)</span> is treated as a degenerated random variable with cdf <span class="math display">\[
 F_\alpha(t)=\left\{\begin{matrix}0&amp;\text{if}\;\;t&lt;\alpha\\ 1&amp;\text{if}\;\;t\geq\alpha.\end{matrix}\right.
 \]</span></li>
 </ol>
-<p>By contrast to all other modes of convergence, <a href="#def-conv_distr">Definition&nbsp;<span>6.4</span></a> only addresses the univariate case. The reason for this is that <a href="#def-conv_distr">Definition&nbsp;<span>6.4</span></a> cannot simply applied element-wise since this would ignore all interdependencies (i.e.&nbsp;covariances, …) between the random variables in a radom vector. To handle multivariate convergence in distribution, we need the following theorem.</p>
+<p>By contrast to all other modes of convergence, <a href="#def-conv_distr">Definition&nbsp;<span>6.4</span></a> only addresses the univariate case. The reason for this is that <a href="#def-conv_distr">Definition&nbsp;<span>6.4</span></a> cannot simply applied element-wise since this would ignore all interdependencies between the univariate random variables of a radom vector. To handle multivariate convergence in distribution, we need the following theorem known as the Cramér-Wold device.</p>
 <div id="thm-CramerWold" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 6.1 (Cramér-Wold) </strong></span>Let <span class="math inline">\(z_n\in\mathbb{R}^K\)</span> and <span class="math inline">\(z\in\mathbb{R}^K\)</span> be <span class="math inline">\(K\)</span>-dimensional random variables (<span class="math inline">\(K\geq 1\)</span>), then <span class="math display">\[
 z_n\to_{d} z\text{\quad if and only if \quad}\lambda'z_n\to_{d}\lambda'z

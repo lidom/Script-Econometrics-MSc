@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
@@ -170,7 +233,9 @@ div.csl-indent {
   <li><a href="#instruments" id="toc-instruments" class="nav-link" data-scroll-target="#instruments"><span class="toc-section-number">7.4</span>  Instruments</a></li>
   <li><a href="#reduced-form" id="toc-reduced-form" class="nav-link" data-scroll-target="#reduced-form"><span class="toc-section-number">7.5</span>  Reduced Form</a></li>
   <li><a href="#two-stage-least-squares" id="toc-two-stage-least-squares" class="nav-link" data-scroll-target="#two-stage-least-squares"><span class="toc-section-number">7.6</span>  Two-Stage Least Squares</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">7.7</span>  References</a></li>
+  <li><a href="#monte-carlo-simulation" id="toc-monte-carlo-simulation" class="nav-link" data-scroll-target="#monte-carlo-simulation"><span class="toc-section-number">7.7</span>  Monte-Carlo Simulation</a></li>
+  <li><a href="#real-data-example-college-proximity" id="toc-real-data-example-college-proximity" class="nav-link" data-scroll-target="#real-data-example-college-proximity"><span class="toc-section-number">7.8</span>  Real-Data Example: College Proximity</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">7.9</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -590,12 +655,31 @@ $$ --> <span id="eq-GammaBar"><span class="math display">\[
 <li><span class="math inline">\(\lambda\)</span> (<a href="#eq-lambda">Equation&nbsp;<span>7.13</span></a>)</li>
 </ul>
 <p>are given by the following moment estimators: <span id="eq-GammaHat"><span class="math display">\[
-\hat{\Gamma} = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iY_{i2}'\right)
+\begin{align*}
+\hat{\Gamma}
+&amp;= \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iY_{i2}'\right)\\
+&amp;= \left(Z'Z\right)^{-1}(Z'Y_{2})
+\end{align*}
 \tag{7.15}\]</span></span> <span id="eq-GammaBarHat"><span class="math display">\[
-\widehat{\bar{\Gamma}} = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_i X_i'\right)
+\begin{align*}
+\widehat{\bar{\Gamma}}
+&amp;= \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_i X_i'\right)\\
+&amp;= \left(Z'Z\right)^{-1}(Z'X)
+\end{align*}
 \tag{7.16}\]</span></span> <span id="eq-lambdaHat"><span class="math display">\[
-\hat{\lambda} = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iY_{i1}\right).
-\tag{7.17}\]</span></span></p>
+\begin{align*}
+\hat{\lambda}
+&amp;= \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iY_{i1}\right)\\
+&amp;= \left(Z'Z\right)^{-1}(Z'Y_1)
+\end{align*}
+\tag{7.17}\]</span></span> where</p>
+<ul>
+<li><span class="math inline">\(Z\)</span> is a <span class="math inline">\((n\times \ell)\)</span> matrix with <span class="math inline">\(Z_i'=(Z_{i1}',Z_{i2}')\)</span> in the <span class="math inline">\(i\)</span>th row</li>
+<li><span class="math inline">\(X\)</span> is a <span class="math inline">\((n\times K)\)</span> matrix with <span class="math inline">\(X_i'=(X_{i1}',Y_{i2}')\)</span> in the <span class="math inline">\(i\)</span>th row</li>
+<li><span class="math inline">\(Y_1\)</span> is a <span class="math inline">\((n\times 1)\)</span> vector with <span class="math inline">\(Y_{i1}\)</span> in the <span class="math inline">\(i\)</span>th element</li>
+<li><span class="math inline">\(Y_2\)</span> is a <span class="math inline">\((n\times K_2)\)</span> matrix with <span class="math inline">\(Y_{i2}'\)</span> in the <span class="math inline">\(i\)</span>th row</li>
+</ul>
+<p>with <span class="math inline">\(i=1,\dots,n\)</span></p>
 </section>
 <section id="two-stage-least-squares" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="two-stage-least-squares"><span class="header-section-number">7.6</span> Two-Stage Least Squares</h2>
@@ -627,12 +711,81 @@ E(W_iu_{i1}) &amp; = 0.
 \begin{align*}
 \hat{\beta}_{2SLS}
 &amp; = \left(\widehat{\bar{\Gamma}}'Z'Z\widehat{\bar{\Gamma}}\right)^{-1}\left(\widehat{\bar{\Gamma}}'Z'Y_{1}\right)\\
+&amp; = \left(X'Z\left(Z'Z\right)^{-1}Z'Z\left(Z'Z\right)^{-1}Z'X\right)^{-1}\left(X'Z\left(Z'Z\right)^{-1}Z'Y_{1}\right)\\
+&amp; = \left(X'Z\left(Z'Z\right)^{-1}Z'X\right)^{-1}\left(X'Z\left(Z'Z\right)^{-1}Z'Y_{1}\right)\\
+&amp; = \left(X'P_ZX\right)^{-1}\left(X'P_ZY_{1}\right),\\
+\end{align*}
+\]</span> where <span class="math inline">\(P_Z=Z\left(Z'Z\right)^{-1}Z'\)</span> is the projection matrix that projects into the vector spaced spanned by the columns of <span class="math inline">\(Z.\)</span></p>
+<p>The projection matrix <span class="math inline">\(P_Z\)</span> motivates the name <strong>“Two Stage Least Squares”</strong> of the estimator <span class="math inline">\(\hat{\beta}_{2SLS}\)</span>. Computing <span class="math inline">\(\hat{\beta}_{2SLS}\)</span> is equivalent to conduct the following two stage procedure:</p>
+<ol type="1">
+<li>Compute the fitted values when regressing <span class="math inline">\(X\)</span> on <span class="math inline">\(Z\)</span>: <span class="math inline">\(\hat{X}=P_ZX\)</span></li>
+<li>Regress <span class="math inline">\(Y_1\)</span> on <span class="math inline">\(\hat{X}:\;\)</span> <span class="math inline">\(\hat{\beta}_{2SLS}=\left(\hat{X}'\hat{X}\right)^{-1}\hat{X}'Y_1\)</span></li>
+</ol>
+<p>This two stage approach is indeed equivalent to the above direct approach: <span class="math display">\[
+\begin{align*}
+\left(\hat{X}'\hat{X}\right)^{-1}\hat{X}'Y_1
+&amp; = \left((P_ZX)'P_ZX\right)^{-1}\left((P_ZX)'Y_{1}\right)\\
+&amp; = \left(X'P_Z'P_ZX\right)^{-1}\left(X'P_Z'Y_{1}\right)\\
+&amp; = \left(X'P_ZP_ZX\right)^{-1}\left(X'P_ZY_{1}\right)\\
+&amp; = \left(X'P_ZX\right)^{-1}\left(X'P_ZY_{1}\right) = \hat{\beta}_{2SLS}
 \end{align*}
 \]</span></p>
-<!-- ## Real-Data Example: College Proximity -->
 </section>
-<section id="references" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="references"><span class="header-section-number">7.7</span> References</h2>
+<section id="monte-carlo-simulation" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="monte-carlo-simulation"><span class="header-section-number">7.7</span> Monte-Carlo Simulation</h2>
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-1_9fe1621876ce95764f995bd9d10ff516">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n         <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>beta_true <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>B         <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>beta_hat  <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> B)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  eps          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  X_1          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  X_2          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> eps</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  Y            <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, X_1, X_2) <span class="sc">%*%</span> beta_true <span class="sc">+</span> eps</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  beta_hat[,b] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(Y <span class="sc">~</span> X_1 <span class="sc">+</span> X_2))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(beta_hat[<span class="dv">2</span>,])</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_3 <span class="ot">&lt;-</span> <span class="fu">mean</span>(beta_hat[<span class="dv">3</span>,])</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="do">## MC-Approximations for the Bias:</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2  <span class="sc">-</span> beta_true[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -5.51182e-05</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_3  <span class="sc">-</span> beta_true[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4707233</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">rowMeans</span>(beta_hat) <span class="sc">-</span> beta_true, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.470  0.000  0.471</code></pre>
+</div>
+</div>
+</section>
+<section id="real-data-example-college-proximity" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="real-data-example-college-proximity"><span class="header-section-number">7.8</span> Real-Data Example: College Proximity</h2>
+<p>The data can be downloaded from the home page of Bruce Hansen <a href="https://www.ssc.wisc.edu/~bhansen/econometrics/">DATA</a></p>
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-2_25e35c06d0632692569bbd2ef3cc7b25">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+✔ tibble  3.1.7      ✔ dplyr   1.0.10
+✔ tidyr   1.2.1      ✔ stringr 1.4.0 
+✔ readr   2.1.2      ✔ forcats 0.5.1 
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::recode() masks car::recode()
+✖ purrr::some()   masks car::some()</code></pre>
+</div>
+</div>
+</section>
+<section id="references" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="references"><span class="header-section-number">7.9</span> References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">

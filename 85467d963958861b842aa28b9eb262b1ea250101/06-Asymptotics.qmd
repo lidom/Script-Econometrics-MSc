@@ -117,7 +117,7 @@ Let $F_n$ be the cumulative distribution function (cdf) of $z_n$ and $F$ the cdf
 \begin{eqnarray*}
   \lim_{n\to\infty}F_n(t)=F(t)
 \end{eqnarray*}
-for all $t$ at which $F(t)$ is continuous $t.$ We write: 
+for all $t$ at which $F(t)$ is continuous. We write: 
 <center>
 $z_n\to_{d}z,\quad$ as $\quad n\to\infty,$
 </center> 
@@ -127,13 +127,13 @@ and we call $F$ the **asymptotic (or limit) distribution** of $z_n$.
 Remarks on @def-conv_distr:
 
 1. Often you will see statements like $z_n\to_{d} N(0,1)$ or $z_n\overset{a}{\sim}N(0,1)$, which should be read as $\lim_{n\to\infty}F_n(t) = \Phi(t)$ for all $t$, where $\Phi$ denotes the  distribution function of the standard normal distribution. 
-2. A stochastic sequence $\{z_n\}$ can also convergence in distribution to a **deterministic scalar** $\alpha$. In this case $\alpha$ is treated as a degenerated random variable with cdf 
+2. A stochastic sequence $\{z_n\}$ can also convergence in distribution to a **constant** $\alpha$. In this case $\alpha$ is treated as a degenerated random variable with cdf 
 $$
 F_\alpha(t)=\left\{\begin{matrix}0&\text{if}\;\;t<\alpha\\ 1&\text{if}\;\;t\geq\alpha.\end{matrix}\right.
 $$
 
 
-By contrast to all other modes of convergence, @def-conv_distr only addresses the univariate case. The reason for this is that @def-conv_distr cannot simply applied element-wise since this would ignore all interdependencies (i.e. covariances, ...) between the random variables in a radom vector. To handle multivariate convergence in distribution, we need the following theorem. 
+By contrast to all other modes of convergence, @def-conv_distr only addresses the univariate case. The reason for this is that @def-conv_distr cannot simply applied element-wise since this would ignore all interdependencies between the univariate random variables of a radom vector. To handle multivariate convergence in distribution, we need the following theorem known as the Cramér-Wold device. 
 
 
 ::: {#thm-CramerWold}

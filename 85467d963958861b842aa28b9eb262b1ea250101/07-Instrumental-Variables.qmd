@@ -524,15 +524,34 @@ The least squares estimators of the regression/projection parameters
 
 are given by the following moment estimators:
 $$
-\hat{\Gamma} = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iY_{i2}'\right)
+\begin{align*}
+\hat{\Gamma} 
+&= \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iY_{i2}'\right)\\ 
+&= \left(Z'Z\right)^{-1}(Z'Y_{2})
+\end{align*}
 $${#eq-GammaHat}
 $$
-\widehat{\bar{\Gamma}} = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_i X_i'\right)
+\begin{align*}
+\widehat{\bar{\Gamma}} 
+&= \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_i X_i'\right)\\ 
+&= \left(Z'Z\right)^{-1}(Z'X)
+\end{align*}
 $${#eq-GammaBarHat}
 $$
-\hat{\lambda} = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iY_{i1}\right).
+\begin{align*}
+\hat{\lambda} 
+&= \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iY_{i1}\right)\\ 
+&= \left(Z'Z\right)^{-1}(Z'Y_1)
+\end{align*}
 $${#eq-lambdaHat}
+where 
 
+* $Z$ is a $(n\times \ell)$ matrix with $Z_i'=(Z_{i1}',Z_{i2}')$ in the $i$th row
+* $X$ is a $(n\times K)$ matrix with $X_i'=(X_{i1}',Y_{i2}')$ in the $i$th row 
+* $Y_1$ is a $(n\times 1)$ vector with $Y_{i1}$ in the $i$th element
+* $Y_2$ is a $(n\times K_2)$ matrix with $Y_{i2}'$ in the $i$th row
+
+with $i=1,\dots,n$
 
 ## Two-Stage Least Squares
 
@@ -573,10 +592,67 @@ $$
 \begin{align*}
 \hat{\beta}_{2SLS} 
 & = \left(\widehat{\bar{\Gamma}}'Z'Z\widehat{\bar{\Gamma}}\right)^{-1}\left(\widehat{\bar{\Gamma}}'Z'Y_{1}\right)\\
+& = \left(X'Z\left(Z'Z\right)^{-1}Z'Z\left(Z'Z\right)^{-1}Z'X\right)^{-1}\left(X'Z\left(Z'Z\right)^{-1}Z'Y_{1}\right)\\
+& = \left(X'Z\left(Z'Z\right)^{-1}Z'X\right)^{-1}\left(X'Z\left(Z'Z\right)^{-1}Z'Y_{1}\right)\\
+& = \left(X'P_ZX\right)^{-1}\left(X'P_ZY_{1}\right),\\
+\end{align*}
+$$
+where $P_Z=Z\left(Z'Z\right)^{-1}Z'$ is the projection matrix that projects into the vector spaced spanned by the columns of $Z.$ 
+
+
+The projection matrix $P_Z$ motivates the name **"Two Stage Least Squares"** of the estimator $\hat{\beta}_{2SLS}$. Computing $\hat{\beta}_{2SLS}$ is equivalent to conduct the following two stage procedure: 
+
+1. Compute the fitted values when regressing $X$ on $Z$: $\hat{X}=P_ZX$
+2. Regress $Y_1$ on $\hat{X}:\;$  $\hat{\beta}_{2SLS}=\left(\hat{X}'\hat{X}\right)^{-1}\hat{X}'Y_1$
+
+This two stage approach is indeed equivalent to the above direct approach:
+$$
+\begin{align*}
+\left(\hat{X}'\hat{X}\right)^{-1}\hat{X}'Y_1
+& = \left((P_ZX)'P_ZX\right)^{-1}\left((P_ZX)'Y_{1}\right)\\
+& = \left(X'P_Z'P_ZX\right)^{-1}\left(X'P_Z'Y_{1}\right)\\
+& = \left(X'P_ZP_ZX\right)^{-1}\left(X'P_ZY_{1}\right)\\
+& = \left(X'P_ZX\right)^{-1}\left(X'P_ZY_{1}\right) = \hat{\beta}_{2SLS}
 \end{align*}
 $$
 
-<!-- ## Real-Data Example: College Proximity -->
+## Monte-Carlo Simulation 
+
+```{r}
+n         <- 100
+beta_true <- c(2,2,2)
+B         <- 10000
+beta_hat  <- matrix(NA, nrow = 3, ncol = B)
+
+for(b in 1:B){
+  eps          <- rnorm(n)
+  X_1          <- rnorm(n, m = 3, sd = 2)
+  X_2          <- rnorm(n, m = 1, sd = 0.5) + 2 * eps
+  Y            <- cbind(1, X_1, X_2) %*% beta_true + eps
+  beta_hat[,b] <- coef(lm(Y ~ X_1 + X_2))
+}
+
+mean_beta_hat_2 <- mean(beta_hat[2,])
+mean_beta_hat_3 <- mean(beta_hat[3,])
+
+## MC-Approximations for the Bias:
+mean_beta_hat_2  - beta_true[2]
+mean_beta_hat_3  - beta_true[3]
+round(rowMeans(beta_hat) - beta_true, 3)
+```
+
+
+
+## Real-Data Example: College Proximity
+
+The data can be downloaded from the home page of Bruce Hansen [DATA](https://www.ssc.wisc.edu/~bhansen/econometrics/)
+
+
+```{r}
+library("tidyverse")
+```
+
 
 
 ## References
+
