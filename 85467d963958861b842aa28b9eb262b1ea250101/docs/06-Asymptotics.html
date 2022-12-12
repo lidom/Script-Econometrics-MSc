@@ -674,7 +674,7 @@ Var(\varepsilon_i)
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="check-distribution-of-hatbeta_n"><span class="header-section-number">6.3.1</span> Check: Distribution of <span class="math inline">\(\hat\beta_n\)</span></h3>
 <p>The above data generating process fulfills our regulatory assumptions of this chapter. So, by theory, the estimators <span class="math inline">\(\hat\beta_k\)</span> should be normal distributed for sufficiently large sample sizes <span class="math inline">\(n\)</span>. <span class="math display">\[
 \sqrt{n}\left(\hat\beta_{n,k}-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
-\]</span> or (slight above of notation): <span class="math display">\[
+\]</span> or (slight abuse of notation): <span class="math display">\[
 \hat\beta_{n,k}\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
 \]</span> as <span class="math inline">\(n\to\infty.\)</span></p>
 <p>Mathematically, the latter is a bit sloppy since the right hand side of <span class="math inline">\(\to_d\)</span> depends on <span class="math inline">\(n\)</span>, i.e., is not the stable limit object for <span class="math inline">\(n\to\infty\)</span>. However, this sloppiness is nevertheless instructive since it gives us the approximative distribution for given largish sample sizes like <span class="math inline">\(n=100\)</span>.</p>
