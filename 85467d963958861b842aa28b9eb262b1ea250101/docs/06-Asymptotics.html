@@ -1048,7 +1048,7 @@ H_0:&amp;\beta_3=5\\
 </section>
 <section id="sec-RDLSInf" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="sec-RDLSInf"><span class="header-section-number">6.4</span> Real Data Example</h2>
-<p>In the following, we revisit the read data study from <a href="05-Small-Sample-Inference.html#sec-RDSSInf"><span>Section&nbsp;5.6</span></a>, but allow consider the case of heteroskedastic, non-Gaussian errors.</p>
+<p>In the following, we revisit the read data study from <a href="05-Small-Sample-Inference.html#sec-RDSSInf"><span>Section&nbsp;5.6</span></a>. Now, we have the tools to allow for heteroskedastic and non-Gaussian errors.</p>
 <div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-13_586f2c3cb9adfc9a52d372ff6eb05190">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## The AER package contains a lot of datasets </span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(AER))</span>
@@ -1069,24 +1069,48 @@ Y_i = \beta_1 + \beta_{gender} X_{gender,i}
 <li><span class="math inline">\(X_{income,i}\)</span> is the annual income of subject <span class="math inline">\(i\)</span> in tens of thousands of dollars</li>
 </ul>
 <p>Now, to do heteroskedasticity consistent robust inference, one can use the <code>vcocHV()</code> frunction from the <code>R</code> package <code>sandwich</code> together with the <code>coeftest()</code> function from the <code>R</code> package <code>lmtest</code>.</p>
-<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-14_873d8df04fb7822e1877fda9d90b0614">
+<div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-14_acb6110a61024c5c27645a633a9df6ea">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## No robust standard errors:</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(lm_obj)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="do">## HC3 robust standard errors:</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(lm_obj, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(lm_obj, <span class="at">type =</span> <span class="st">"HC3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(lm_obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+t test of coefficients:
+
+              Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept)   0.153710   0.036069  4.2616 2.066e-05 ***
+genderfemale  0.062446   0.023455  2.6624  0.007782 ** 
+age           0.402355   0.057131  7.0427 2.132e-12 ***
+income       -0.082306   0.031670 -2.5989  0.009380 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<p>You can do this also using the <code>R</code> package <code>stargazer</code> which gives you puplication ready regression output tables:</p>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## HC3 robust standard errors:</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(lm_obj, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(lm_obj, <span class="at">type =</span> <span class="st">"HC3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+t test of coefficients:
+
+              Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept)   0.153710   0.034351  4.4747 7.815e-06 ***
+genderfemale  0.062446   0.024582  2.5403   0.01110 *  
+age           0.402355   0.060304  6.6721 2.785e-11 ***
+income       -0.082306   0.032321 -2.5465   0.01091 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>You can do this also using the <code>R</code> package <code>stargazer</code> which gives you (almost) puplication ready regression output tables. The following <code>R</code> code produced two regression outputs—one without and one with robust standard errors:</p>
 <div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-15_3d49bac1523dc6280a4b311e93016318">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(<span class="st">"stargazer"</span>))</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust standard errors</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>cov_beta_HC3   <span class="ot">&lt;-</span> <span class="fu">vcovHC</span>(lm_obj, <span class="at">type =</span> <span class="st">"HC3"</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>robust_HC3_se  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(cov_beta_HC3))</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Stargazer output (with and without RSE)</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(lm_obj, lm_obj, </span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">se   =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, robust_HC3_se),</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"html"</span>) <span class="co"># alternatively: type = "text" or type = "latex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(<span class="st">"stargazer"</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust standard errors</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>cov_beta_HC3   <span class="ot">&lt;-</span> <span class="fu">vcovHC</span>(lm_obj, <span class="at">type =</span> <span class="st">"HC3"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>robust_HC3_se  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">diag</span>(cov_beta_HC3))</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Stargazer output (with and without RSE)</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(lm_obj, lm_obj, </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">se   =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, robust_HC3_se),</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"html"</span>) <span class="co"># alternatively: type = "text" or type = "latex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <table style="text-align:center">
 <tbody><tr>

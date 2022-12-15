@@ -1005,7 +1005,7 @@ Good! The empirical type I error rate is bounded from above by the nominal type 
 
 ## Real Data Example {#sec-RDLSInf}
 
-In the following, we revisit the read data study from @sec-RDSSInf, but allow consider the case of heteroskedastic, non-Gaussian errors.  
+In the following, we revisit the read data study from @sec-RDSSInf. Now, we have the tools to allow for heteroskedastic and non-Gaussian errors.  
 
 ```{r}
 ## The AER package contains a lot of datasets 
@@ -1031,16 +1031,14 @@ where $i=1,\dots,n$ and
 
 Now, to do heteroskedasticity consistent robust inference, one can use the `vcocHV()` frunction from the `R` package `sandwich` together with the `coeftest()` function from the `R` package `lmtest`. 
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE, eval = TRUE}
 ## No robust standard errors:
 coeftest(lm_obj)
 ## HC3 robust standard errors:
 coeftest(lm_obj, vcov = vcovHC(lm_obj, type = "HC3"))
 ```
 
-
-You can do this also using the `R` package `stargazer` which gives you puplication ready regression output tables:
-
+You can do this also using the `R` package `stargazer` which gives you (almost) puplication ready regression output tables. The following `R` code produced two regression outputs---one without and one with robust standard errors:
 ```{r, echo=TRUE, eval=TRUE, results='asis'}
 suppressPackageStartupMessages(library("stargazer"))
 
