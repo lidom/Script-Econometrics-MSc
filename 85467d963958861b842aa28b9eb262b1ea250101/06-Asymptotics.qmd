@@ -1049,6 +1049,7 @@ robust_HC3_se  <- sqrt(diag(cov_beta_HC3))
 # Stargazer output (with and without RSE)
 stargazer(lm_obj, lm_obj, 
           se   = list(NULL, robust_HC3_se),
+          column.labels = c("", "Robust SE"),
           type = "html") # alternatively: type = "text" or type = "latex"
 ```
 
