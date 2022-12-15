@@ -255,7 +255,7 @@ So far, we discussed the definitions of the four most important convergence mode
 
 In the following we consider the stochastic sequences 
 $$
-\bar{z}_1,\bar{z}_2,\dots,\bar{z}_n,\quad n \to\infty 
+\bar{z}_1,\bar{z}_2,\dots,\bar{z}_n,\quad\text{as}\quad n \to\infty, 
 $$ 
 of sample means 
 $$
@@ -296,7 +296,7 @@ If $\{z_i\}$ is an iid sequence with $E(z_i)=\mu,$ then $\bar{z}_n\to_{as}\mu.$
 A proof of @thm-SLLN1 can be found, e.g., in *Linear Statistical Inference and Its Applications*, Rao (1973), pp. 112-114. 
 
 
-**Interactive visualization of the Law of Large Numbers:** [http://shiny.webpopix.org/sia/LLN/](http://shiny.webpopix.org/sia/LLN/)
+> **Interactive visualization of the Law of Large Numbers:** [http://shiny.webpopix.org/sia/LLN/](http://shiny.webpopix.org/sia/LLN/)
 
 
 **Note:** The WLLN and the SLLN for **random vectors** follow from applying the the theorem separately for each element of the random vectors.
@@ -306,7 +306,7 @@ A proof of @thm-SLLN1 can be found, e.g., in *Linear Statistical Inference and I
 ## CLT (Lindeberg-Levy)
 If $\{z_i\}$ is an iid sequence and $E(z_i)=\mu$ and $Var(z_i)=\sigma^2$ then
 $$
-\sqrt{n}(\bar{z}_n-\mu)\to_{d} N(0,\sigma^2)\quad\text{as}\quad n\to\infty
+\sqrt{n}(\bar{z}_n-\mu)\to_{d} N(0,\sigma^2),\quad\text{as}\quad n\to\infty
 $$
 
 :::
@@ -314,7 +314,7 @@ $$
 A proof of @thm-CLT1 can be found, e.g., in @Vaart2000 (see Theorem 2.17).
 
 
-**Interactive visualization of the CLT:** [https://tuomonieminen.shinyapps.io/CLTdemo/](https://tuomonieminen.shinyapps.io/CLTdemo/)
+> **Interactive visualization of the CLT:** [https://tuomonieminen.shinyapps.io/CLTdemo/](https://tuomonieminen.shinyapps.io/CLTdemo/)
 
 
 Using the Cramér-Wold device (@thm-CramerWold), the Lindeberg-Levy CLT (@thm-CLT1) can also be applied to $K$-dimensional random vectors: <br>
@@ -379,7 +379,7 @@ If $\text{ABias}(\hat\theta_n,\theta)=0$, then $\hat\theta_n$ is called an **asy
 
 An estimator $\hat\theta_n$ is asymptotically normal distributed if
 $$
-\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\Sigma)\quad\text{as}\quad n\to\infty,
+\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\Sigma),\quad\text{as}\quad n\to\infty,
 $$
 where 
 $$
@@ -395,7 +395,7 @@ is called the asymptotic variance of $\sqrt{n}(\hat\theta_n-\theta)$.
 
 Consistent estimators are called $\sqrt{n}$-consistent if
 $$
-\sqrt{n}(\hat\theta_n-\theta)\to_{d} z \quad\text{as}\quad n\to\infty,
+\sqrt{n}(\hat\theta_n-\theta)\to_{d} z,\quad\text{as}\quad n\to\infty,
 $$
 where $z\sim F.$ 
 :::
@@ -426,7 +426,9 @@ For the below results, we need to introduce an asymptotic version of the full ra
 
 
 **Assumption 3$^\ast$: Rank Condition (for Asymptotics)** The $(K\times K)$ matrix 
-$$\Sigma_{X'X}:=E(S_{X'X})=E(n^{-1}X'X)=E(X_iX_i')$$
+$$
+\Sigma_{X'X}:=E(S_{X'X})=E(n^{-1}X'X)=E(X_iX_i')
+$$
 <!-- $$ -->
 <!-- n^{-1}X'X=S_{X'X}\to_{p}\Sigma_{X'X}\quad\text{as}\quad n\to\infty -->
 <!-- $$ -->
@@ -451,7 +453,7 @@ has full rank $K$. I.e., $\Sigma_{X'X}$ is nonsingular and invertible.
 Under Assumptions 1, 2, 3$^\ast$, and 4, and under the assumption that $X_i$ has finite second moments, 
 we have that
 $$
-\left(\frac{1}{n}X'X\right)^{-1}=:S_{X'X}^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1}\quad\text{as}\quad n\to\infty.
+\left(\frac{1}{n}X'X\right)^{-1}=:S_{X'X}^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1},\quad\text{as}\quad n\to\infty.
 $$
 :::
 
@@ -464,7 +466,7 @@ The proof of @thm-Sxx1 is done in the lecture.
 
 ## Consistency of $\hat\beta$
 
-Under Assumptions 1, 2, 3$^\ast$, and 4 and under the assumption that $X_i$ and $\varepsilon_i$ have finite second moments, we have that
+Under Assumptions 1, 2, 3$^\ast$, and 4, and under the assumption that $X_i$ has a finite second moment, and $\varepsilon_i$ has a finite first moment, we have that
 $$
 \hat\beta_n\to_{p}\beta\quad\text{as}\quad n\to\infty.
 $$
@@ -472,16 +474,23 @@ $$
 
 The proof of @thm-bconsistent1 is done in the lecture.
 
+
+<!-- **Note:** In @thm-bconsistent1 it would suffice to assume that $\varepsilon_i$ has only a finite *first* moment, but since we need also a finite second moment for the error term in the following theorems, we may also require two moments in @thm-bconsistent1.   -->
+
+
 Moreover, we can show that the appropriately scaled OLS estimator is asymptotically normal distributed. The following theorem is stated for the simpler homoskedastic case, the heteroskedastic case is presented in @sec-CaseHetero.
 
 
 ::: {#thm-OLSnormality1}
 
-## Sampling error limiting normality (homoskedastic case)
+## Asymptotic Normality of $\hat{\beta}$ (Homoskedastic Case)
 
 Under Assumption 1, 2, 3$^\ast$, and 4, and under the assumption that $X_i$ and $\varepsilon_i$ have finite second moments, and under the simplifying assumption of spherical errors $(Var(\varepsilon_i|X)=\sigma^2I_n)$, we have that
-$$\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right)\quad\text{as}\quad n\to\infty$$
+$$
+\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right),\quad\text{as}\quad n\to\infty.
+$$
 :::
+
 
 The proof of @thm-OLSnormality1 is done in the lecture. 
 
@@ -494,7 +503,7 @@ In principle, we can derive the usual test statistics from the latter result. Th
 
 Under the assumptions of @thm-OLSnormality1, but with the additional requirement that $\varepsilon_i$ has finite fourth moments, we have that
 $$
-s_{UB}^2\to_{p}\sigma^2\quad\text{as}\quad n\to\infty.
+s_{UB}^2\to_{p}\sigma^2,\quad\text{as}\quad n\to\infty.
 $$
 :::
 
@@ -532,13 +541,19 @@ HC4    | $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{
 HC3 is the most often used HC-estimator. 
 
 
-\paragraph*{Side Note.} The statistic $h_i:=[P_X]_{ii}$ is called the "leverage" of $X_i$. One can show that $1/n\leq h_i\leq 1$ and that $\bar{h}=n^{-1}\sum_{i=1}^nh_i=K/n$. Observations $X_i$ with leverage statistics $h_i$ that greatly exceed the average leverage value $K/n$ are referred to as "high leverage" observations.  High leverage observations $X_i$ distort the estimation results, $\hat\beta_n$, if the absolute value of the corresponding residual $|\hat{\varepsilon}_i|$ is unusually large ("influencial outliers").
+\paragraph*{Side Note.} The statistic $h_i:=[P_X]_{ii}$ is called the **leverage statistic** of $X_i,$ where 
+
+* $1/n\leq h_i\leq 1$ and 
+* $\bar{h}=n^{-1}\sum_{i=1}^nh_i=K/n$. 
+
+Observations $X_i$ with leverage statistics $h_i$ that greatly exceed the average leverage value $K/n$ are referred to as "high leverage" observations. High leverage observations $X_i$ are observations that are far away from all other observations $X_j$, $i\neq j=1,\dots,n.$ 
+
+High leverage observations $X_i$ have the potential to distort the estimation results, $\hat\beta_n$. Indeed, a high leverage observation $X_i$ will have an distorting effect on the estimation results if the absolute value of the corresponding residual $|\hat{\varepsilon}_i|$ is unusually large---such observations are called **influencial outliers**. Such observations increase the estimation uncertainty. 
 
 
-The estimator HC0 was suggested in the econometrics literature by @White1980 and is justified by asymptotic arguments. The estimators HC1, HC2 and HC3 were suggested by @MacKinnon_White_1985 to improve the finite sample performance of HC0. Using an extensive Monte Carlo simulation study comparing HC0-HC3, @Long_Ervin_2000 concludes that HC3 provides the best overall performance in finite samples. @Cribari_2004 suggested the estimator HC4 to further improve the performance in finite sample behavior, especially in the presence of influential observations (large $h_i$ values).
+The estimator HC0 was suggested in the econometrics literature by @White1980 and is justified by asymptotic ($n\to\infty$) arguments. The estimators HC1, HC2 and HC3 were suggested by @MacKinnon_White_1985 to improve the finite sample performance of HC0. Using an extensive Monte Carlo simulation study comparing HC0-HC3, @Long_Ervin_2000 concludes that HC3 provides the best overall performance in finite samples. @Cribari_2004 suggested the estimator HC4 to further improve the performance in finite sample behavior, especially in the presence of influential observations (large $h_i$ values).
 
-General idea of the HC1-HC4 estimators is to increase the estimated variance in oder to account for the effects of "influencial outliers". The residuals $\hat\varepsilon_i$ belonging to $X_i$ values that have a large leverate $h_i$ are multiplied by a factor $\gg 1$ leading to increased $\widehat{E}(\varepsilon^2_iX_iX_i')$ values. This strategy makes inference robust against issues due to heteroskedasticity. 
-<!-- (Too small variance estimates lead to false inference, too large variance estimates lead to conservative inference.) -->
+General idea of the HC1-HC4 estimators is to increase the estimated variance in oder to account for the effects of influencial outliers. The residuals $\hat\varepsilon_i$ belonging to $X_i$ values that have a large leverate $h_i$ are multiplied by a factor $\gg 1$ leading to increased $\widehat{E}(\varepsilon^2_iX_iX_i')$. This strategy takes into account increased estimation uncertainties due to single influencial outliers. <!-- (Too small variance estimates lead to false inference, too large variance estimates lead to conservative inference.) -->
 
 ### Robust Inference 
 
@@ -554,16 +569,21 @@ where the $(q \times K)$ matrix $R$ and the $q$-vector $r=(r_{1},\dots,r_{q})'$ 
 
 By contrast to the multiple parameter tests for small samples (see @sec-testmultp), we can work here with a heterosedasticity robust test statistic which is applicable for heteroscedastic error terms:
 $$
-W=n(R\hat\beta_n -r)'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r)\overset{H_0}{\to}_d\chi^2(q)
+\begin{align*}
+W&=n(R\hat\beta_n -r)'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r)\\ 
+W&\overset{H_0}{\to}_d\chi^2(q), \quad\text{as}\quad n\to\infty. 
+\end{align*}
 $${#eq-Ftestasymp}
-as $n\to\infty$. The price to pay is that the distribution of the test statistic under the null hypothesis is only valid asymptotically for large $n$. That is, the critical values taken from the asymptotic distribution will be useful only for "large"samples sizes. In case of homoscedastic error terms, one can substitute $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}$ by $s_{UB}^2S_{X'X}^{-1}$. 
+The price to pay is that the distribution of the test statistic under the null hypothesis is only valid asymptotically; i.e. for large $n$. That is, the critical values taken from the asymptotic distribution will be useful only for "largish" samples sizes. 
+
+In case of homoscedastic error terms, one can substitute $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}$ by $s_{UB}^2S_{X'X}^{-1}$. 
 
 **Finite-sample correction:** In order to improve the finite-sample performance of this test, one usually uses the $F_{q,n-K}$ distribution with $q$ and $n-K$ degrees of freedoms instead of the $\chi^2(q)$ distribution. Asymptotically ($n\to\infty$), $F_{q,n-K}$ is equivalent to $\chi^2(q)$. However, for finite sample sizes $n$ (i.e., the practically relevant case) $F_{q,n-K}$ leads to larger critical values which helps to account for the estimation errors in $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}$ (or in $s_{UB}^2S_{X'X}^{-1}$) which are otherwise neglected by the pure asymptotic perspective. 
 
 
 #### Robust Hypothesis Testing: Single Parameters
 
-Let us reconsider the case of hypotheses about only one parameter $\beta_k$, with $k=1,\dots,K$
+Let us reconsider the case of hypotheses about only one parameter $\beta_k,$ with $k=1,\dots,K$
 \begin{equation*}
 \begin{array}{ll}
 H_0: & \beta_k=r\\
@@ -572,9 +592,12 @@ H_A: & \beta_k\ne r\\
 \end{equation*}
 We can selecting the $k$th diagonal element of the test-statistic in @eq-Ftestasymp and taking the square root yields 
 $$
-t=\frac{\sqrt{n}\left(\hat{\beta}_k-r\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{kk}}}\overset{H_0}{\to}_d\mathcal{N}(0,1)
+\begin{align*}
+t&=\frac{\sqrt{n}\left(\hat{\beta}_k-r\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{kk}}}\\[1.5ex] 
+\text{where}\qquad t&\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty. 
+\end{align*}
 $$
-as $n\to\infty.$ This $t$ test statistic allows for heteroscedastic error terms. In case of homoscedastic error terms, one can substitute $[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}$ by $s_{UB}^2[S_{X'X}^{-1}]_{kk}$. 
+This $t$ test statistic allows for heteroscedastic error terms. In case of homoscedastic error terms, one can substitute $[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}$ by $s_{UB}^2[S_{X'X}^{-1}]_{kk}$. 
 
 **Finite-sample correction:** In order to improve the finite-sample performance of this $t$ test, one usually uses the $t_{(n-K)}$ distribution with $n-K$ degrees of freedoms instead of the $\mathcal{N}(0,1)$ distribution. Asymptotically ($n\to\infty$), $t_{(n-K)}$ is equivalent to $\mathcal{N}(0,1)$. However, for finite sample sizes $n$ (i.e., the practically relevant case) $t_{n-K}$ leads to larger critical values which helps to account for the estimation errors in $[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}$ (or in $s_{UB}^2[S_{X'X}^{-1}]_{kk}$) which are otherwise neglected by the pure asymptotic perspective. 
 
@@ -808,46 +831,33 @@ c(round(var_true_beta_2, 4), round(var(beta_hat_2), 4))
 ```
 Ouch! The theoretical large sample variance $Var(\hat\beta_2)=0.15/n=0.03$ is about 50% smaller than the actual (small sample) variance of $\hat\beta_2$ approximated by the empirical variance of the `5000` simulated realizations of $\hat\beta_2$. That is, **we cannot simply use a large sample result in small samples**. 
 
+This issue can also seen when comparing the theoretical large sample distribution of $\hat\beta_2$ with an estimate of the actual finite-sample distribution of $\hat\beta_2.$
 
-```{r, fig.align="center", echo=TRUE, fig.wi## Function to generate artificial data
-myDataGenerator <- function(n, beta){
-  ##
-  X   <- cbind(rep(1, n), 
-                 runif(n, -4, 4), 
-                 runif(n, -5, 5))
-  ##
-  eps  <- runif(n, - 0.5 * abs(X[,2]), + 0.5 * abs(X[,2]))
-  Y    <- X %*% beta + eps
-  data <- data.frame("Y"=Y, "X_1"=X[,1], "X_2"=X[,2], "X_3"=X[,3])
-  ##
-  return(data)
-}dth = 8, fig.height = 5, out.width = "1\\textwidth"}
+
+```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 ## True normal distribution of beta_hat_2 versus 
 ## empirical density of beta_hat_2 estimates
 library("scales")
-curve(expr = dnorm(x, mean = beta_true_2, 
-                   sd=sqrt(var_true_beta_2)), 
-      xlab="",ylab="", col=gray(.2), lwd=3, lty=1, 
-xlim=c(2,4), ylim=c(0,3),main=paste0("n=",n))
+curve(expr = dnorm(x, 
+                   mean = beta_true_2, 
+                   sd   = sqrt(var_true_beta_2)), 
+      xlab = "", ylab = "", col=gray(.2), lwd=3, lty=1, 
+xlim=c(2,4), ylim=c(0,3), main=paste0("n=",n))
 lines(density(beta_hat_2, bw = bw.SJ(beta_hat_2)), 
-      col=alpha("blue",.5), lwd=3)## Function to generate artificial data
-myDataGenerator <- function(n, beta){
-  ##
-  X   <- cbind(rep(1, n), 
-                 runif(n, -4, 4), 
-                 runif(n, -5, 5))
-  ##
-  eps  <- runif(n, - 0.5 * abs(X[,2]), + 0.5 * abs(X[,2]))
-  Y    <- X %*% beta + eps
-  data <- data.frame("Y"=Y, "X_1"=X[,1], "X_2"=X[,2], "X_3"=X[,3])
-  ##
-  return(data)
-}realizations from"~
-  hat(beta)[2])))
+      col=alpha("blue",.5), lwd=3)
+## Legend      
+legend("topleft", lty=c(1,1), lwd=c(3,3), 
+       col=c(gray(.2), alpha("blue",.5)), bty="n", 
+       legend= 
+c(expression(
+  "Theoretical (Asymptotic) Gaussian Density of"~hat(beta)[2]), 
+  expression(
+  "Empirical Density Estimation based on MC realizations from"~
+  hat(beta)[2])))      
 ```
-Not good. The actual distribution has substantially fatter tails. That is, if we would use the quantiles of the asymptotic distribution, we would falsely reject the null-hypothesis too often (probability of type I errors would be larger than the significance level).  
+Not good. The actual finite-sample distribution has substantially fatter tails. That is, if we would use the quantiles of the asymptotic distribution, we would falsely reject the null-hypothesis too often (probability of type I errors would be larger than the significance level).  
 
-<!-- Fortunately, asymptotics are kicking in pretty fast here.  things become much more reliable already for $n\approx 15$.  -->
+Fortunately, asymptotics are usually kicking in relatively fast; here,  things become much more reliable already for $n\geq 15$. 
 
 
 
@@ -902,12 +912,12 @@ car::linearHypothesis(model = lm_obj,
                       rhs  = c(3,4),
                       vcov = vcovHC3_mat)
 ```
-The large $p$-value does not allow us to reject the null-hypothesis at any of the usual significance levels. This is good, since we test here a correct null-hypothesis and rejecting it would mean do do a false rejection (type I error, false positive). 
+The large $p$-value does not allow us to reject the null-hypothesis at any of the usual significance levels. This is good, since we test here a correct null-hypothesis and rejecting it would mean to do a false rejection (type I error, false positive). 
 
 On average, however, there will be some false rejections of the null-hypothesis, but this type I error rate needs to be samler or equal to $\alpha$. 
 
 ```{r}
-set.seed(1009)
+set.seed(1110)
 
 B        <- 10000 
 p_values <- numeric(B)
@@ -927,7 +937,7 @@ alpha <- 0.05
 length(p_values[p_values < alpha])/B
 ```
 
-This is more or less ok, but you see that the upper bound is not so strict here as it was in the small sample inference case in @sec-PSSI.
+This is more or less ok, but you see that the upper bound is not so strict here as it was in the small sample inference case in @sec-PSSI. A larger sample size $n\geq 100$ would improve this simulation result. 
 
 ### Check: Testing Single Parameters
 
