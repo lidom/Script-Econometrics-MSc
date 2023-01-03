@@ -34,7 +34,7 @@ This situation constitutes a core problem in econometrics which is not so much i
 * @eq-IVLinMod is called a **structural equation** 
 * $\beta$ in @eq-IVLinMod is called a **structural parameter** 
 
-It is important to distinguish @eq-IVLinMod from the regression or **projection models** we considered so far. It may be the case that a structural model coincides with a regression/projector model, but this is not necessarily the case.
+It is important to distinguish @eq-IVLinMod from the regression or **projection models** we considered so far. It may be the case that a structural model coincides with a regression/projection model, but this is not necessarily the case.
 
 
 Endogeneity **cannot** happen if the model coefficient is defined by a linear projection. We can *define* the linear (population) **projection coefficient** 
@@ -45,12 +45,13 @@ and the corresponding linear (population) projection equation
 $$
 Y_i = X_i'\beta^* + \varepsilon_i^*,
 $$ 
-where then, by construction (projection properties), $\varepsilon_i^*$ is a **projection error**, i.e.
+where then, by construction (projection properties), $\varepsilon_i^* = Y_i - X_i'\beta^*$ is a **projection error**, i.e.
 $$
 E(X_i\varepsilon_i^*)=0.
 $$
+Under endogeneity, the projection error generally does not equal the structural error $\varepsilon_i^* \neq \varepsilon_i.$ 
 
-**Caution:** Here we simply *define* $\beta^*$ as $\beta^*=E(X_iX_i')^{-1}E(X_iY)$ which results in the population version of the projection coefficient for the projection of $Y$ into the space spanned by $X_i.$ We did not derive the expression for $\beta^*$ using the exogeneity assumption as we did in @sec-MMEstimator; indeed, the exogeneity assumption may be violated here.
+**Caution:** Here we simply *define* $\beta^*$ as $\beta^*=E(X_iX_i')^{-1}E(X_iY)$ which results in the population version of the projection coefficient for the projection of $Y_i$ into the space spanned by $X_i$ (i.e. the population regression of $Y_i$ on $X_i$.) We did not derive the expression for $\beta^*$ using the exogeneity assumption as we did in @sec-MMEstimator; indeed, the exogeneity assumption may be violated such that $\beta^*\neq \beta.$
 
 
 The (population) projection coefficient $\beta^*$ and the structural parameter $\beta$ coincide $(\beta^*=\beta)$ under exogeneity. 
