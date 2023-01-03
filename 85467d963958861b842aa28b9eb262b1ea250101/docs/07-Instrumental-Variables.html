@@ -287,10 +287,10 @@ E(X_i\varepsilon_i)\neq 0.
 \beta^*=E(X_iX_i')^{-1}E(X_iY_i)
 \]</span> and the corresponding linear (population) projection equation <span class="math display">\[
 Y_i = X_i'\beta^* + \varepsilon_i^*,
-\]</span> where then, by construction (projection properties) <span class="math display">\[
+\]</span> where then, by construction (projection properties), <span class="math inline">\(\varepsilon_i^*\)</span> is a <strong>projection error</strong>, i.e. <span class="math display">\[
 E(X_i\varepsilon_i^*)=0.
 \]</span></p>
-<p><strong>Caution:</strong> Here we simply <em>define</em> <span class="math inline">\(\beta^*\)</span> as <span class="math inline">\(\beta^*=E(X_iX_i')^{-1}E(X_iY)\)</span> which results the population version of the projection coefficient for the projection of <span class="math inline">\(Y\)</span> into the space spanned by <span class="math inline">\(X_i.\)</span> We did not derive the expression for <span class="math inline">\(\beta^*\)</span> using the exogeneity assumption as we did in <a href="03-Multiple-Linear-Regression.html#sec-MMEstimator"><span>Section&nbsp;3.4</span></a>; indeed, the exogeneity assumption may be violated here.</p>
+<p><strong>Caution:</strong> Here we simply <em>define</em> <span class="math inline">\(\beta^*\)</span> as <span class="math inline">\(\beta^*=E(X_iX_i')^{-1}E(X_iY)\)</span> which results in the population version of the projection coefficient for the projection of <span class="math inline">\(Y\)</span> into the space spanned by <span class="math inline">\(X_i.\)</span> We did not derive the expression for <span class="math inline">\(\beta^*\)</span> using the exogeneity assumption as we did in <a href="03-Multiple-Linear-Regression.html#sec-MMEstimator"><span>Section&nbsp;3.4</span></a>; indeed, the exogeneity assumption may be violated here.</p>
 <p>The (population) projection coefficient <span class="math inline">\(\beta^*\)</span> and the structural parameter <span class="math inline">\(\beta\)</span> coincide <span class="math inline">\((\beta^*=\beta)\)</span> under exogeneity.</p>
 <p>However, under endogeneity (<a href="#eq-endogen">Equation&nbsp;<span>7.2</span></a>) the projection coefficient <span class="math inline">\(\beta^*\)</span> does not equal the structural parameter <span class="math inline">\((\beta^*\neq \beta):\)</span> <span class="math display">\[
 \begin{align*}
@@ -333,7 +333,7 @@ X_i=Z_i + u_i,
 Y_i
 &amp; = Z_i'\beta + \varepsilon_i \\
 &amp; = (X_i - u_i)'\beta + \varepsilon_i \\
-&amp; = X_i'\beta  + v,\\
+&amp; = X_i'\beta  + v_i,\\
 \end{align*}
 \]</span> where <span class="math inline">\(v_i=\varepsilon_i - u_i'\beta\)</span>.</p>
 <p>That is, the relationship of <span class="math inline">\(Y_i\)</span> and <span class="math inline">\(X_i\)</span> is described by a linear equation <span class="math display">\[
@@ -346,7 +346,8 @@ E(X_iv_i)
 &amp; = - E(u_iu_i')\beta \\
 &amp;\neq 0
 \end{align}
-\tag{7.3}\]</span></span> if <span class="math inline">\(\beta\neq 0\)</span> and <span class="math inline">\(E(u_iu_i')\neq 0,\)</span> where generally</p>
+\tag{7.3}\]</span></span> if <span class="math inline">\(\beta\neq 0\)</span> and <span class="math inline">\(E(u_iu_i')\neq 0.\)</span></p>
+<p>Generally</p>
 <ul>
 <li><span class="math inline">\(\beta\)</span> will not equal zero and</li>
 <li>the <span class="math inline">\((K\times K)\)</span> variance-covariance matrix <span class="math inline">\(E(u_iu_i')\)</span> will also not equal a zero matrix since this would mean that the measurement errors have variance zero.</li>
@@ -363,29 +364,31 @@ E(X_iv_i)
 \beta^*_1
 &amp; = \beta_1 + \frac{E(X_i v_i)}{E(X_i^2)}\\
 &amp; = \beta_1 - \frac{E(u_i^2)\beta_1}{E(X_i^2)}\\
-&amp; = \beta_1\left(1 - \frac{ E(u_i^2)}{E(X_i^2)}\right),
+&amp; = \beta_1\left(1 - \frac{ E(u_i^2)}{E(X_i^2)}\right) &lt; \beta_1,
 \end{align}
-\tag{7.4}\]</span></span> where, by <a href="#eq-measurementBias2">Equation&nbsp;<span>7.3</span></a>, <span class="math inline">\(E(X_iv_i)=-E(u_i^2)\beta_1\)</span>, and where the inequality follows from observing that <span class="math inline">\(E(u_i^2)/E(X_i^2)&lt;1\)</span> since <span class="math display">\[
+\tag{7.4}\]</span></span> where we used that, by <a href="#eq-measurementBias2">Equation&nbsp;<span>7.3</span></a>, <span class="math inline">\(E(X_iv_i)=-E(u_i^2)\beta_1\)</span>, and where the inequality follows from observing that <span class="math inline">\(E(u_i^2)/E(X_i^2)&lt;1\)</span> since <span class="math display">\[
 \begin{align*}
 E(X_i^2)
 &amp;= E((Z_i + u_i)^2)\\
 &amp;= E(Z_i^2) + 2E(Z_iu_i) + E(u_i^2) \\
 &amp;= E(Z_i^2) + 0 + E(u_i^2)\\  
 &amp;&gt; E(u_i^2)\\  
-\Leftrightarrow\quad \frac{E(u_i^2)}{E(X_i^2)}&amp;&lt;1.
+\Leftrightarrow\quad 0\leq \frac{E(u_i^2)}{E(X_i^2)}&amp;&lt;1.
 \end{align*}
 \]</span> <a href="#eq-measurementBias">Equation&nbsp;<span>7.4</span></a> shows that projection coefficient <span class="math inline">\(\beta_1^*\)</span> shrinks the structural parameter <span class="math inline">\(\beta_1\)</span> towards zero. This is called <strong>measurement error bias</strong> or <strong>attenuation bias</strong>.</p>
 </div>
 <div id="exm-SupplyAndDemand" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7.2 (Supply and Demand) </strong></span><br></p>
-<p>The variables <span class="math inline">\(Q\)</span> and <span class="math inline">\(P\)</span> (Quantity and Price) are determined jointly by the following simultaneous equation system consisting of the demand equation <span class="math display">\[
+<p>The variables <span class="math inline">\(Q_i\in\mathbb{R}\)</span> and <span class="math inline">\(P_i\in\mathbb{R}\)</span> (Quantity and Price) are determined jointly by the following simultaneous equation system consisting of the demand equation <span class="math display">\[
 Q_i = -\beta_1 P_i + \varepsilon_{1i}
 \]</span> and of the supply equation <span class="math display">\[
 Q_i =  \beta_2 P_i + \varepsilon_{2i},
 \]</span> where we assume that <span class="math inline">\(Q_i\)</span> and <span class="math inline">\(P_i\)</span> are centered such that we can drop the intercepts.</p>
-<p>Assume that the <span class="math inline">\((2\times 1)\)</span> dimensional joint random error <span class="math inline">\(\varepsilon_i=(\varepsilon_{1i},\varepsilon_{2i})'\)</span> satisfies <span class="math inline">\(E(\varepsilon)=0\)</span> and <span class="math inline">\(E(\varepsilon\varepsilon')=I_2\)</span> (the latter for simplicity).</p>
+<p>Assume that the <span class="math inline">\((2\times 1)\)</span> dimensional joint random error <span class="math inline">\(\varepsilon_i=(\varepsilon_{1i},\varepsilon_{2i})'\)</span> satisfies <span class="math inline">\(E(\varepsilon_i)=0\)</span> and <span class="math inline">\(E(\varepsilon_i\varepsilon_i')=I_2\)</span> (the latter for simplicity).</p>
 <blockquote class="blockquote">
-<p>What happens if we regress <span class="math inline">\(Q_i\)</span> on <span class="math inline">\(P_i\)</span>?</p>
+<p>What happens if we regress <span class="math inline">\(Q_i\)</span> on <span class="math inline">\(P_i\)</span>? <span class="math display">\[
+Q_i=\beta^* P_i+\varepsilon^*_i
+\]</span></p>
 </blockquote>
 <p>To answer this question, we need to solve <span class="math inline">\(Q_i\)</span> and <span class="math inline">\(P_i\)</span> in terms of the errors <span class="math inline">\(\varepsilon_{1i}\)</span> and <span class="math inline">\(\varepsilon_{2i}\)</span>. <span class="math display">\[
 \left(\begin{matrix}
@@ -399,8 +402,8 @@ P_i\\
 \end{matrix}
 \right) =
 \left(\begin{matrix}
-e_{1i}\\
-e_{2i}\\
+\varepsilon_{1i}\\
+\varepsilon_{2i}\\
 \end{matrix}
 \right)
 \]</span> Rewriting yields (assuming invertibility) <span class="math display">\[
@@ -417,8 +420,8 @@ P_i\\
 \end{matrix}
 \right)^{-1}
 \left(\begin{matrix}
-e_{1i}\\
-e_{2i}\\
+\varepsilon_{1i}\\
+\varepsilon_{2i}\\
 \end{matrix}
 \right)\\[2ex]
 &amp;=
@@ -429,8 +432,8 @@ e_{2i}\\
 \end{matrix}
 \right)
 \left(\begin{matrix}
-e_{1i}\\
-e_{2i}\\
+\varepsilon_{1i}\\
+\varepsilon_{2i}\\
 \end{matrix}
 \right)\\[2ex]
 &amp;=
@@ -439,36 +442,36 @@ e_{2i}\\
 1    &amp;     -1\\
 \end{matrix}\right)
 \left(\begin{matrix}
-e_{1i}\\
-e_{2i}\\
+\varepsilon_{1i}\\
+\varepsilon_{2i}\\
 \end{matrix}\right)
 \frac{1}{\beta_1 +\beta_2}\\[2ex]
 &amp;=
 \left(
 \begin{matrix}
-(\beta_2 e_{1i} + \beta_1  e_{2i})/(\beta_1 + \beta_2)\\
-(e_{1i} - e_{2i})/(\beta_1 + \beta_2)
+(\beta_2 \varepsilon_{1i} + \beta_1  \varepsilon_{2i})/(\beta_1 + \beta_2)\\
+(\varepsilon_{1i} - \varepsilon_{2i})/(\beta_1 + \beta_2)
 \end{matrix}  
 \right)
 \end{align}
-\]</span> Thus <span class="math display">\[
+\]</span> Thus, under the simplification that <span class="math inline">\(E(\varepsilon_i\varepsilon_i')=I_2\)</span> <span class="math display">\[
 \begin{align*}
 E(P_iQ_i)
-&amp;=\frac{E\left((e_{1i} - e_{2i})(\beta_2 e_{1i} + \beta_1  e_{2i})\right)}{(\beta_1 + \beta_2)^2}\\
-&amp;=\frac{\beta_2 E\left(e_{1i}^2\right) - \beta_1 E\left(e_{2i}^2\right)}{(\beta_1 + \beta_2)^2}=\frac{\beta_2 - \beta_1}{(\beta_1 + \beta_2)^2}
+&amp;=\frac{E\left((\varepsilon_{1i} - \varepsilon_{2i})(\beta_2 \varepsilon_{1i} + \beta_1  \varepsilon_{2i})\right)}{(\beta_1 + \beta_2)^2}\\
+&amp;=\frac{\beta_2 E\left(\varepsilon_{1i}^2\right) - \beta_1 E\left(\varepsilon_{2i}^2\right)}{(\beta_1 + \beta_2)^2}=\frac{\beta_2 - \beta_1}{(\beta_1 + \beta_2)^2}
 \end{align*}
 \]</span> <span class="math display">\[
 \begin{align*}
 E(P_i^2)
-&amp;=\frac{E\left((e_{1i} - e_{2i})^2\right)}{(\beta_1 + \beta_2)^2}\\
-&amp;=\frac{E\left(e_{1i}^2\right) + E\left(e_{2i}^2\right)}{(\beta_1 + \beta_2)^2} = \frac{2}{(\beta_1 + \beta_2)^2}
+&amp;=\frac{E\left((\varepsilon_{1i} - \varepsilon_{2i})^2\right)}{(\beta_1 + \beta_2)^2}\\
+&amp;=\frac{E\left(\varepsilon_{1i}^2\right) + E\left(\varepsilon_{2i}^2\right)}{(\beta_1 + \beta_2)^2} = \frac{2}{(\beta_1 + \beta_2)^2}
 \end{align*}
 \]</span></p>
 <p>The (population) projection of <span class="math inline">\(Q_i\)</span> on <span class="math inline">\(P_i\)</span> yield <span class="math display">\[
 Q_i=\beta^* P_i+\varepsilon^*_i
 \]</span> with <span class="math inline">\(E(P_i\varepsilon^*_i)=0\)</span> and <span class="math display">\[
-\beta^* = \frac{E(P_iQ_i)}{E(P^2)} = \frac{\beta_2 - \beta_1}{2}
-\]</span> The projection coefficient equals the average of the demand slope <span class="math inline">\(\beta_1\)</span> and the supply slope <span class="math inline">\(\beta_2.\)</span> The OLS estimator satisfies <span class="math inline">\(\hat\beta\to_p\beta^*\)</span> and thus the limit does not equal on of the structural parameters <span class="math inline">\(\beta_1\)</span> or <span class="math inline">\(\beta_2.\)</span> This is called <strong>simultaneous equation bias</strong>.</p>
+\beta^* = \frac{E(P_iQ_i)}{E(P_i^2)} = \frac{\beta_2 - \beta_1}{2}
+\]</span> The projection coefficient equals the average of the demand slope <span class="math inline">\(\beta_1\)</span> and the supply slope <span class="math inline">\(\beta_2.\)</span> The OLS estimator satisfies <span class="math inline">\(\hat\beta\to_p\beta^*\)</span> and thus the limit does not equal one of the structural parameters <span class="math inline">\(\beta_1\)</span> or <span class="math inline">\(\beta_2.\)</span> This is called <strong>simultaneous equation bias</strong>.</p>
 <p>Generally, when both the dependent variable and a regressor are <strong>simultaneously determined</strong> then the regressor should be treated as endogenous.</p>
 </div>
 </section>
