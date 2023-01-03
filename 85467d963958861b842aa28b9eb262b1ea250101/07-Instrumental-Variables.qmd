@@ -49,9 +49,8 @@ where then, by construction (projection properties), $\varepsilon_i^* = Y_i - X_
 $$
 E(X_i\varepsilon_i^*)=0.
 $$
-Under endogeneity, the projection error generally does not equal the structural error $\varepsilon_i^* \neq \varepsilon_i.$ 
 
-**Caution:** Here we simply *define* $\beta^*$ as $\beta^*=E(X_iX_i')^{-1}E(X_iY)$ which results in the population version of the projection coefficient for the projection of $Y_i$ into the space spanned by $X_i$ (i.e. the population regression of $Y_i$ on $X_i$.) We did not derive the expression for $\beta^*$ using the exogeneity assumption as we did in @sec-MMEstimator; indeed, the exogeneity assumption may be violated such that $\beta^*\neq \beta.$
+**Caution:** Here we simply *define* $\beta^*$ as $\beta^*=E(X_iX_i')^{-1}E(X_iY)$ which results in the population version of the projection coefficient for the projection of $Y_i$ into the space spanned by $X_i$ (i.e. the population regression of $Y_i$ on $X_i$.) We did not derive the expression for $\beta^*$ using the exogeneity assumption as we did in @sec-MMEstimator; indeed, the exogeneity assumption may be violated.
 
 
 The (population) projection coefficient $\beta^*$ and the structural parameter $\beta$ coincide $(\beta^*=\beta)$ under exogeneity. 
