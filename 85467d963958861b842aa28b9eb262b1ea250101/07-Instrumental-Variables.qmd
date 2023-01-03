@@ -72,7 +72,7 @@ Thus under endogeneity we cannot simply use the projection coefficient to derive
 
 That is, endogeneity implies that the least squares estimator is inconsistent for the structural parameter. Indeed, under i.i.d. sampling, least squares is consistent for the projection coefficient
 $$
-\hat\beta\to_pE(X_iX_i')^{-1}E(X_iY) = \beta^* \neq \beta\quad n\to\infty.
+\hat\beta\to_pE(X_iX_i')^{-1}E(X_iY) = \beta^* \neq \beta,\quad n\to\infty.
 $$
 
 But since the structural parameter $\beta$ is here the parameter of interest, endogeneity requires the development of alternative estimation methods. 
