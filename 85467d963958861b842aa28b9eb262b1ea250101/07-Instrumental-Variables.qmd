@@ -3,6 +3,11 @@
 This chapter builds upon Chapter 12 of @Hansen2022. 
 
 
+Lecture videos for this chapter: 
+
+* [Video 1 (Ch. 7.1 and 7.2)](https://uni-bonn.sciebo.de/s/NX9hoNeSGT9HY0V)
+
+
 ## Introduction
 
 The concepts of **endogeneity** and **instrumental variable** are fundamental to econometrics, and mark a substantial departure from other branches of statistics. 
