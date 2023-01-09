@@ -352,7 +352,7 @@ $${#eq-IV2}
 $$
 \operatorname{rank}\Big(\underbrace{E(Z_iX_i')}_{(\ell\times K)}\Big)=K, 
 $${#eq-IV3}
-where $X_i'=(X_{i1}',Y_{i2}').$
+where $\underset{1\times (K_1+K_2)}{X_i'}=(X_{i1}',Y_{i2}').$
 :::
 
 **Explanation of @def-InstrumentalVariable:**
@@ -417,7 +417,7 @@ These two requirements mean that the IVs, $Z_{i2},$ ...
 
 * ... are determined outside the systems for the endogenous variables $Y_{i1}$ and $Y_{i2}.$
 * ... causally determine the endogenous variables $Y_{i2}.$
-* ... not causally determine the dependent variable $Y_{i1}$ (except indirectly through $Y_{i2}$.)
+* ... not causally determine the dependent variable $Y_{i1},$ except indirectly through $Y_{i2}.$
 
 
 <!-- **Measurement error in the regressor (@exm-MeasurementError continued)** 
