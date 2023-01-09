@@ -705,19 +705,19 @@ $$ --> <span id="eq-GammaBar"><span class="math display">\[
 \]</span></p>
 <p>The structural parameter <span class="math inline">\(\beta\)</span> is <strong>identified</strong> if it is uniquely determined by this relation, which is a set of <span class="math inline">\(\ell\)</span> equations with <span class="math inline">\(K\)</span> unknown, where <span class="math inline">\(\ell\geq K.\)</span> Form linear algebra we know that there is a unique solution if and only if <span class="math inline">\(\bar{\Gamma}\)</span> has full column rank <span class="math inline">\(K\)</span> <span id="eq-BarGammaRank"><span class="math display">\[
 \operatorname{rank}\left(\bar{\Gamma}\right)=K.
-\tag{7.19}\]</span></span> If <a href="#eq-BarGammaRank">Equation&nbsp;<span>7.19</span></a> fails, then <a href="#eq-lambdaGammabeta">Equation&nbsp;<span>7.14</span></a> has fewer (linear independent) equations than coefficients so there is no unique solution.</p>
+\tag{7.19}\]</span></span> <!-- If @eq-BarGammaRank fails, then @eq-lambdaGammabeta has fewer (linear independent) equations than coefficients so there is no unique solution.  --></p>
 <p>From <a href="#eq-GammaBar">Equation&nbsp;<span>7.15</span></a> we know that we can write <span class="math inline">\(\bar{\Gamma}\)</span> as <span class="math display">\[
 \bar{\Gamma}=\left[\begin{matrix}I_{K_1}&amp;\underset{(K_1\times K_2)}{\Gamma_{12}}\\ 0&amp; \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right] = E(Z_iZ_i')^{-1}E(Z_iX_i').
 \]</span> Combining this with <a href="#eq-lambdaGammabeta">Equation&nbsp;<span>7.14</span></a>, we obtain <span class="math display">\[
 \begin{align*}
 \overbrace{E(Z_iZ_i')^{-1}E(Z_iY_{i})}^{\lambda} &amp; = \overbrace{E(Z_iZ_i')^{-1}E(Z_iX_i')}^{\bar{\Gamma}} \beta \\
-\Leftrightarrow E(Z_iY_{i}) &amp; =  E(Z_iX_i') \beta
+\Leftrightarrow \underset{(\ell\times 1)}{E(Z_iY_{i})} &amp; =  \underset{(\ell\times K)}{E(Z_iX_i')} \underset{(K\times 1)}{\beta}
 \end{align*}
 \]</span> which is a set of <span class="math inline">\(\ell\)</span> equations in <span class="math inline">\(K\)</span> unknowns. This system of linear equations has a unique solution if and only if <span class="math display">\[
 \operatorname{rank}\left(E(Z_iX_i')\right)=K
 \]</span> which is the required <strong>identification/relevance condition</strong> (<a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a>) in the definition of instrumental variables (<a href="#def-InstrumentalVariable">Definition&nbsp;<span>7.1</span></a>).</p>
-<p>It is useful to have explicit expressions for the solution <span class="math inline">\(\beta.\)</span> The easiest case is when <span class="math inline">\(\ell = K,\)</span> because then <span class="math inline">\(\beta=\bar{\Gamma}^{-1}\lambda\)</span> and we can get an estimator for <span class="math inline">\(\beta\)</span> by substituting population moments with sample moments (methods of moments estimator).</p>
-<p>The two-state least squares estimator, discussed in the next section, allows to consider the information of more instruments <span class="math inline">\(\ell &gt; K.\)</span></p>
+<p>It is useful to have explicit expressions for the solution <span class="math inline">\(\beta.\)</span> The easiest case is when <span class="math inline">\(\ell = K,\)</span> because then <span class="math inline">\(\beta=E(Z_iX_i')^{-1}E(Z_iY_{i})\)</span> and we can get an estimator for <span class="math inline">\(\beta\)</span> by substituting the population moments with sample moments (methods of moments estimator).</p>
+<p>The two-state least squares estimator, discussed in the next section, allows us to consider the information of more instruments <span class="math inline">\(\ell\geq K.\)</span></p>
 </section>
 <section id="two-stage-least-squares" class="level2" data-number="7.7">
 <h2 data-number="7.7" class="anchored" data-anchor-id="two-stage-least-squares"><span class="header-section-number">7.7</span> Two-Stage Least Squares</h2>

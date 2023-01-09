@@ -593,7 +593,7 @@ The structural parameter $\beta$ is **identified** if it is uniquely determined 
 $$
 \operatorname{rank}\left(\bar{\Gamma}\right)=K.
 $${#eq-BarGammaRank}
-If @eq-BarGammaRank fails, then @eq-lambdaGammabeta has fewer (linear independent) equations than coefficients so there is no unique solution. 
+<!-- If @eq-BarGammaRank fails, then @eq-lambdaGammabeta has fewer (linear independent) equations than coefficients so there is no unique solution.  -->
 
 From @eq-GammaBar we know that we can write $\bar{\Gamma}$ as 
 $$
@@ -603,7 +603,7 @@ Combining this with @eq-lambdaGammabeta, we obtain
 $$
 \begin{align*}
 \overbrace{E(Z_iZ_i')^{-1}E(Z_iY_{i})}^{\lambda} & = \overbrace{E(Z_iZ_i')^{-1}E(Z_iX_i')}^{\bar{\Gamma}} \beta \\
-\Leftrightarrow E(Z_iY_{i}) & =  E(Z_iX_i') \beta 
+\Leftrightarrow \underset{(\ell\times 1)}{E(Z_iY_{i})} & =  \underset{(\ell\times K)}{E(Z_iX_i')} \underset{(K\times 1)}{\beta} 
 \end{align*}
 $$
 which is a set of $\ell$ equations in $K$ unknowns. This system of linear equations has a unique solution if and only if 
@@ -613,9 +613,9 @@ $$
 which is the required **identification/relevance condition** (@eq-IV3) in the definition of instrumental variables (@def-InstrumentalVariable).
 
 
-It is useful to have explicit expressions for the solution $\beta.$ The easiest case is when $\ell = K,$ because then $\beta=\bar{\Gamma}^{-1}\lambda$ and we can get an estimator for $\beta$ by substituting population moments with sample moments (methods of moments estimator). 
+It is useful to have explicit expressions for the solution $\beta.$ The easiest case is when $\ell = K,$ because then $\beta=E(Z_iX_i')^{-1}E(Z_iY_{i})$ and we can get an estimator for $\beta$ by substituting the population moments with sample moments (methods of moments estimator). 
 
-The two-state least squares estimator, discussed in the next section, allows to consider the information of more instruments $\ell > K.$
+The two-state least squares estimator, discussed in the next section, allows us to consider the information of more instruments $\ell\geq K.$
 
 ## Two-Stage Least Squares
 
