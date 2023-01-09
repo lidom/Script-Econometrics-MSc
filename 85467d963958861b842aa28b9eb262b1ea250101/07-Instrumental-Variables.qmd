@@ -328,14 +328,14 @@ $$
 Y_{i1}=X_{i1}'\beta_1 + Y_{i2}'\beta_2 + \varepsilon_i
 $${#eq-StructuralEqEndogen1}  
 
-* $Y_{i1}=Y_i$: **Endogenous** dependent variable, i.e. $E(Y_{i1}\varepsilon_i)\neq 0$
+* $Y_{i1}=Y_i$: **endogenous** *dependent* variable, i.e. $E(Y_{i1}\varepsilon_i)\neq 0$
 
 
 This notation clarifies which variables are exogenous and which endogenous. 
 
 ## Instruments
 
-To consistently estimate the structural parameter $\beta$ we need additional information. One type of information commonly used in econometrics are called **instruments**.
+To consistently estimate the structural parameter $\beta$ we need additional information. One type of information commonly used in econometrics are called **instruments** or **instrumental variables**.
 
 
 ::: {#def-InstrumentalVariable}
@@ -359,12 +359,10 @@ where $X_i'=(X_{i1}',Y_{i2}').$
 
 * @eq-IV1 states that the instruments are uncorrelated with the error term (**exogeneity condition**)
 * @eq-IV2 excludes linearly redundant instruments
-* @eq-IV3 is called the **relevance condition** and is essential for the
-identification of the model, as we discuss later. 
+* @eq-IV3 is called the **relevance condition** and is essential for the identification of the structural parameter $\beta$; see @sec-identification. 
   * A necessary condition for @eq-IV3 is that $\ell\geq K.$
 
-
-Note that the exogenous regressors $X_{i1}$ fulfill @eq-IV1 and thus should be included as (additional) instrumental variables, i.e. 
+Note that the exogenous regressors $X_{i1}$ fulfill @eq-IV1 (they are valid instruments for themselves) and thus should be included as (additional) instrumental variables, i.e. 
 $$
 \underset{(\ell\times 1)}{Z_i}=
 \underset{((K_1+\ell_2)\times 1)}{\left(\begin{matrix}Z_{i1}\\Z_{i2}\end{matrix}\right)} :=
@@ -401,25 +399,25 @@ $${#eq-StructuralEqEndogen2}
 
 We say that the model is 
 
-  * **just-identified** if $\ell = K$ 
-  * **over-identified** if $\ell > K$
+  * **just-identified** if $\ell = K_1 + \ell_2 = K$ 
+  * **over-identified** if $\ell = K_1 + \ell_2 > K$
 
 
 > What variables can be used as Instrumental Variables (IVs)? 
 
 1. Instrumental variables must be uncorrelated with the error term (@eq-IV1).
-2. Instrumental variables must be correlated with the endogenous variables $Y_{i2}$ also after controlling for the other already included exogenous variables $Z_{i1}$ (@eq-IV3).[^2] (I.e. the IVs must contain *additional information*, and thus there must not be a perfect multicollinearity between the IVs $Z_{i2}$ and the already included exogenous regressors $Z_{i1}$.)
+2. Instrumental variables must be correlated with the endogenous variables $Y_{i2}$ also after controlling for the other already included exogenous variables $Z_{i1}$ (@eq-IV3).[^2] (I.e. the IVs must contain *additional information*, and thus there must not be a perfect multicollinearity between the IVs, $Z_{i2},$ and the already included exogenous regressors $Z_{i1}$.)
 
 [^2]: Thus if you regress each of the instruments in $Z_{i2}$ on the exogenous variables $Z_{i1}$, then the residuals of these regressions should still correlate with the endogenous variables in $Y_{i2}.$
 
 <!-- From the rank condition  it follows that the  (Otherwise, the instrumental variables would not add any new information since they could be expressed as linear combinations of the already included exogenous variables $Z_{i1}.$) -->
 
 
-These two requirement mean that the IVs, $Z_{i2},$ ...
+These two requirements mean that the IVs, $Z_{i2},$ ...
 
 * ... are determined outside the systems for the endogenous variables $Y_{i1}$ and $Y_{i2}.$
 * ... causally determine the endogenous variables $Y_{i2}.$
-* ... not causally determine the dependent variable $Y_{i1}$ (except indirectly through their correlation with the exogenous variables $Z_{i1}$)
+* ... not causally determine the dependent variable $Y_{i1}$ (except indirectly through $Y_{i2}$.)
 
 
 <!-- **Measurement error in the regressor (@exm-MeasurementError continued)** 
@@ -517,7 +515,7 @@ I_{K_1} &  \Gamma_{12}\\
 \end{matrix}
 \right)} = \bar{\Gamma} \beta. 
 \end{align*}
-$$
+$${#eq-lambdaGammabeta}
 Luckily, the unknown components $\Gamma_{12}$ and $\Gamma_{12}$ of $\bar{\Gamma}$ are together the estimable projection parameter $\Gamma$ (@eq-Gamma). Moreover, we can generalize @eq-Gamma for $\Gamma$ to an expression for $\bar{\Gamma}$:
 <!-- $$
 \underset{(\ell\times K_2)}{\Gamma}=\left(\begin{matrix}\underset{(K_1\times K_2)}{\Gamma_{12}}\\ \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right) & = E(Z_iZ_i')^{-1}E(Z_iY_{i2}')
@@ -562,6 +560,56 @@ where
 * $Y_2$ is a $(n\times K_2)$ matrix with $Y_{i2}'$ in the $i$th row
 
 with $i=1,\dots,n$
+
+
+## Identification {#sec-identification}
+
+A parameter is **identified** if it is a unique function of the probability distribution of the observables. 
+
+
+One way to show that a parameter is identified is to write it as an explicit function of population moments. For example, the reduced form coefficient matrices $\Gamma$ and $\lambda$ are identified because they can be written as explicit functions of the moments of the variables $(Y_{i1},Y_{i2},X_i,Z_i).$ That is,
+$$
+\underset{(\ell\times K_2)}{\Gamma}=\left(\begin{matrix}\underset{(K_1\times K_2)}{\Gamma_{12}}\\ \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right) = E(Z_iZ_i')^{-1}E(Z_iY_{i2}')
+$$
+and
+$$
+\underset{(\ell\times 1)}{\lambda}=\left(\begin{matrix}\underset{(K_1\times 1)}{\lambda_{1}}\\ \underset{(\ell_2\times 1)}{\lambda_{2}}\end{matrix}\right) = E(Z_iZ_i')^{-1}E(Z_iY_{i})
+$$
+are uniquely determined by the probability distribution of $(Y_{i1},Y_{i2},Z_i)$ if @def-InstrumentalVariable holds because this definition includes the requirement that $E(Z_iZ_i')$ has full rank. 
+
+
+We are interested in the structural parameter $\beta,$ which relates to $\Gamma$ and $\lambda$ through equation @eq-lambdaGammabeta; i.e. through
+$$
+\lambda = \underset{(\ell\times K)}{\bar{\Gamma}}\beta.
+$$  
+
+The structural parameter $\beta$ is **identified** if it is uniquely determined by this relation, which is a set of $\ell$ equations with $K$ unknown, where $\ell\geq K.$ Form linear algebra we know that there is a unique solution if and only if $\bar{\Gamma}$ has full column rank $K$
+$$
+\operatorname{rank}\left(\bar{\Gamma}\right)=K.
+$${#eq-BarGammaRank}
+If @eq-BarGammaRank fails, then @eq-lambdaGammabeta has fewer (linear independent) equations than coefficients so there is no unique solution. 
+
+From @eq-GammaBar we know that we can write $\bar{\Gamma}$ as 
+$$
+\bar{\Gamma}=\left[\begin{matrix}I_{K_1}&\underset{(K_1\times K_2)}{\Gamma_{12}}\\ 0& \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right] = E(Z_iZ_i')^{-1}E(Z_iX_i').
+$$
+Combining this with @eq-lambdaGammabeta, we obtain
+$$
+\begin{align*}
+\overbrace{E(Z_iZ_i')^{-1}E(Z_iY_{i})}^{\lambda} & =  \overbrace{E(Z_iZ_i')^{-1}E(Z_iX_i')}^{\bar{\Gamma}} \beta \\
+\Leftrightarrow E(Z_iY_{i}) & =  E(Z_iX_i') \beta 
+\end{align*}
+$$
+which is a set of $\ell$ equations in $K$ unknowns. This system of linear equations has a unique solution if and only if 
+$$
+\operatorname{rank}\left(E(Z_iX_i')\right)=K
+$$
+which is the required **identification/relevance condition** (@eq-IV3) in the definition of instrumental variables (@def-InstrumentalVariable).
+
+
+It is useful to have explicit expressions for the solution $\beta.$ The easiest case is when $\ell = K,$ because then $\beta=\bar{\Gamma}^{-1}\lambda$ and we can get an estimator for $\beta$ by substituting population moments with sample moments (methods of moments estimator). 
+
+The two-state least squares estimator, discussed in the next section, allows to consider the information of more instruments $\ell > K.$
 
 ## Two-Stage Least Squares
 
