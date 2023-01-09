@@ -8,7 +8,8 @@ Lecture videos for this chapter:
 * [Video 1 (Ch. 7.1 and 7.2)](https://uni-bonn.sciebo.de/s/NX9hoNeSGT9HY0V)
 * [Video 2 (Ch. 7.3 and 7.4)](https://uni-bonn.sciebo.de/s/pKD0Z8nFh4We1pL)
 * [Video 3 (Ch. 7.5)](https://uni-bonn.sciebo.de/s/97jkuWgDdqB8E2B)
-<!-- * [Video 4 (Ch. 7.6)]() -->
+* [Video 4 (Ch. 7.6)](https://uni-bonn.sciebo.de/s/qWpoXiZ0d4zB2GH)
+* [Video 5 (Ch. 7.7)]()
 
 
 ## Introduction
@@ -619,7 +620,7 @@ The two-state least squares estimator, discussed in the next section, allows us 
 
 ## Two-Stage Least Squares
 
-From the reduced form projection equation @eq-reducedFormModelY1 with $\lambda = \bar{\Gamma}\beta$, we have
+From the reduced form projection @eq-reducedFormModelY1 and @eq-lambdaGammabeta (i.e. $\lambda = \bar{\Gamma}\beta$), we have
 $$
 \begin{align*}
 Y_i 
@@ -628,7 +629,7 @@ Y_i
 E(Z_iu_{i1}) & = 0.   
 \end{align*}
 $$
-The parameter $\bar{\Gamma}$ is unknown, but consistently estimable. 
+The parameter $\bar{\Gamma}$ is unknown, but consistently estimable (see @eq-GammaBarHat). 
 
 Let us, for a moment, assume we would know $\bar{\Gamma}$ and let  
 $$
@@ -651,7 +652,17 @@ $$
 & = \left(\bar{\Gamma}'Z'Z\bar{\Gamma}\right)^{-1}\left(\bar{\Gamma}'Z'Y_{1}\right)\\
 \end{align*}
 $$
-To make $\hat{\beta}$ a feasible estimator, we simply replace the unknown $\bar{\Gamma}$ by its estimator $\widehat{\bar{\Gamma}} = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iX_{i}'\right)$ (@eq-GammaBarHat) which yields the **Two State Lease Squares (2SLS) estimator**:
+To make $\hat{\beta}$ a feasible estimator, we simply replace the unknown $\bar{\Gamma}$ by its estimator (@eq-GammaBarHat) 
+$$
+\begin{align*}
+\widehat{\bar{\Gamma}} 
+& = \left(\sum_{i=1}^nZ_iZ_i'\right)^{-1}\left(\sum_{i=1}^nZ_iX_{i}'\right)\\ 
+& = \left(Z'Z\right)^{-1}\left(Z'X\right),
+\end{align*}
+$$
+where the $(n\times \ell)$ dimensional matrix $Z$ contains in the $i$th row the $(1\times \ell)$ vector $Z_i',$ and where the $(n\times K)$ dimensional matrix $X$ contains in the $i$th row the $(1\times K)$ vector $X_i'.$ 
+
+This then yields the **Two State Lease Squares (2SLS) estimator**:
 $$
 \begin{align*}
 \hat{\beta}_{2SLS} 
@@ -664,7 +675,7 @@ $$
 where $P_Z=Z\left(Z'Z\right)^{-1}Z'$ is the projection matrix that projects into the vector spaced spanned by the columns of $Z.$ 
 
 
-The projection matrix $P_Z$ motivates the name **"Two Stage Least Squares"** of the estimator $\hat{\beta}_{2SLS}$. Computing $\hat{\beta}_{2SLS}$ is equivalent to conduct the following two stage procedure: 
+The projection matrix $P_Z$ motivates the name **"Two Stage Least Squares"**, since computing $\hat{\beta}_{2SLS}$ is equivalent to conduct the following two stage procedure: 
 
 1. Compute the fitted values when regressing $X$ on $Z$: $\hat{X}=P_ZX$
 2. Regress $Y_1$ on $\hat{X}:\;$  $\hat{\beta}_{2SLS}=\left(\hat{X}'\hat{X}\right)^{-1}\hat{X}'Y_1$
