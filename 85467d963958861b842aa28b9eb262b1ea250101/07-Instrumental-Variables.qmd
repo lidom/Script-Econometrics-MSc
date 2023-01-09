@@ -9,7 +9,7 @@ Lecture videos for this chapter:
 * [Video 2 (Ch. 7.3 and 7.4)](https://uni-bonn.sciebo.de/s/pKD0Z8nFh4We1pL)
 * [Video 3 (Ch. 7.5)](https://uni-bonn.sciebo.de/s/97jkuWgDdqB8E2B)
 * [Video 4 (Ch. 7.6)](https://uni-bonn.sciebo.de/s/qWpoXiZ0d4zB2GH)
-* [Video 5 (Ch. 7.7)]()
+* [Video 5 (Ch. 7.7)](https://uni-bonn.sciebo.de/s/3yX7SukSNus81iM)
 
 
 ## Introduction
@@ -662,7 +662,7 @@ $$
 $$
 where the $(n\times \ell)$ dimensional matrix $Z$ contains in the $i$th row the $(1\times \ell)$ vector $Z_i',$ and where the $(n\times K)$ dimensional matrix $X$ contains in the $i$th row the $(1\times K)$ vector $X_i'.$ 
 
-This then yields the **Two State Lease Squares (2SLS) estimator**:
+This then yields the **Two Stage Lease Squares (2SLS) estimator**:
 $$
 \begin{align*}
 \hat{\beta}_{2SLS} 
