@@ -384,7 +384,7 @@ $${#eq-StructuralEqEndogen2}
   * uncorrelated with $\varepsilon_i$  and thus potentially usable
   * **excluded** since they have **zero coefficients**[^1] in @eq-StructuralEqEndogen2
 
-[^1]: The instrumental variables $Z_{i2}$ correlate with $Y_{i1}$ only indirectly through $X_{i}'=(X_{i1}',Y_{i2}')$ (by @eq-IV3). Therefore, since $X_{i}'=(X_{i1}',Y_{i2}')$ are included in the equation for $Y_i$, there are no variations left in $Y_i$ that correlate with $Z_{i2}.$ Thus the instrumental variables $Z_{i2}$ have zero coefficients in the equation for $Y_i.$
+[^1]: The instrumental variables $Z_{i2}$ correlate with $Y_{i1}$ only indirectly through $X_{i}'=(X_{i1}',Y_{i2}')$ (by @eq-IV3). Therefore, since $X_{i}'=(X_{i1}',Y_{i2}')$ are included in the equation for $Y_i$, there are no variations left in $Y_{i1}$ that correlate with $Z_{i2}.$ Thus the instrumental variables $Z_{i2}$ have zero coefficients in the equation for $Y_{i1}.$
 
 
 <!-- **Terminology:** -->
@@ -521,8 +521,11 @@ Luckily, the unknown components $\Gamma_{12}$ and $\Gamma_{12}$ of $\bar{\Gamma}
 \underset{(\ell\times K_2)}{\Gamma}=\left(\begin{matrix}\underset{(K_1\times K_2)}{\Gamma_{12}}\\ \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right) & = E(Z_iZ_i')^{-1}E(Z_iY_{i2}')
 $$ -->
 $$
-\underbrace{\left[\begin{matrix}I_{K_1}&\underset{(K_1\times K_2)}{\Gamma_{12}}\\ 0& \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right]}_{=\underset{(\ell\times K )}{\bar{\Gamma}}} = E(Z_iZ_i')^{-1}E(Z_i\;\overbrace{\underset{(1\times (K_1+K_2))}{(X_{i1}',Y_{i2}')}}^{=X_i'}\;)
+\underset{(\ell\times K )}{\bar{\Gamma}}=\left[\begin{matrix}I_{K_1}&\underset{(K_1\times K_2)}{\Gamma_{12}}\\ \underset{(\ell_2\times K_1)}{0}& \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right] = E(Z_iZ_i')^{-1}E\big(Z_{i}\;\overbrace{\underset{(1\times (K_1+K_2))}{(Z_{i1}',Y_{i2}')}}^{=X_i'}\;\big)
 $${#eq-GammaBar}
+
+<!-- Zero coefficients: The $\ell_2$ instruments shall not be causally related with $Y_{i1}$ which is determined by the $K_1$ included exogenous variables $Z_{i1}.$ -->
+
 
 The least squares estimators of the regression/projection parameters
 
@@ -596,7 +599,7 @@ $$
 Combining this with @eq-lambdaGammabeta, we obtain
 $$
 \begin{align*}
-\overbrace{E(Z_iZ_i')^{-1}E(Z_iY_{i})}^{\lambda} & =  \overbrace{E(Z_iZ_i')^{-1}E(Z_iX_i')}^{\bar{\Gamma}} \beta \\
+\overbrace{E(Z_iZ_i')^{-1}E(Z_iY_{i})}^{\lambda} & = \overbrace{E(Z_iZ_i')^{-1}E(Z_iX_i')}^{\bar{\Gamma}} \beta \\
 \Leftrightarrow E(Z_iY_{i}) & =  E(Z_iX_i') \beta 
 \end{align*}
 $$

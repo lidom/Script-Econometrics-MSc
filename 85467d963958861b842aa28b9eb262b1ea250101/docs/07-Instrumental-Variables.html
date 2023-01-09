@@ -654,8 +654,9 @@ I_{K_1} &amp;  \Gamma_{12}\\
 \tag{7.14}\]</span></span> Luckily, the unknown components <span class="math inline">\(\Gamma_{12}\)</span> and <span class="math inline">\(\Gamma_{12}\)</span> of <span class="math inline">\(\bar{\Gamma}\)</span> are together the estimable projection parameter <span class="math inline">\(\Gamma\)</span> (<a href="#eq-Gamma">Equation&nbsp;<span>7.11</span></a>). Moreover, we can generalize <a href="#eq-Gamma">Equation&nbsp;<span>7.11</span></a> for <span class="math inline">\(\Gamma\)</span> to an expression for <span class="math inline">\(\bar{\Gamma}\)</span>: <!-- $$
 \underset{(\ell\times K_2)}{\Gamma}=\left(\begin{matrix}\underset{(K_1\times K_2)}{\Gamma_{12}}\\ \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right) & = E(Z_iZ_i')^{-1}E(Z_iY_{i2}')
 $$ --> <span id="eq-GammaBar"><span class="math display">\[
-\underbrace{\left[\begin{matrix}I_{K_1}&amp;\underset{(K_1\times K_2)}{\Gamma_{12}}\\ 0&amp; \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right]}_{=\underset{(\ell\times K )}{\bar{\Gamma}}} = E(Z_iZ_i')^{-1}E(Z_i\;\overbrace{\underset{(1\times (K_1+K_2))}{(X_{i1}',Y_{i2}')}}^{=X_i'}\;)
+\underset{(\ell\times K )}{\bar{\Gamma}}=\left[\begin{matrix}I_{K_1}&amp;\underset{(K_1\times K_2)}{\Gamma_{12}}\\ \underset{(\ell_2\times K_1)}{0}&amp; \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right] = E(Z_iZ_i')^{-1}E\big(Z_{i}\;\overbrace{\underset{(1\times (K_1+K_2))}{(Z_{i1}',Y_{i2}')}}^{=X_i'}\;\big)
 \tag{7.15}\]</span></span></p>
+<!-- Zero coefficients: The $\ell_2$ instruments shall not be causally related with $Y_{i1}$ which is determined by the $K_1$ included exogenous variables $Z_{i1}.$ -->
 <p>The least squares estimators of the regression/projection parameters</p>
 <ul>
 <li><span class="math inline">\(\Gamma\)</span> (<a href="#eq-Gamma">Equation&nbsp;<span>7.11</span></a>)</li>
@@ -707,7 +708,7 @@ $$ --> <span id="eq-GammaBar"><span class="math display">\[
 \bar{\Gamma}=\left[\begin{matrix}I_{K_1}&amp;\underset{(K_1\times K_2)}{\Gamma_{12}}\\ 0&amp; \underset{(\ell_2\times K_2)}{\Gamma_{22}}\end{matrix}\right] = E(Z_iZ_i')^{-1}E(Z_iX_i').
 \]</span> Combining this with <a href="#eq-lambdaGammabeta">Equation&nbsp;<span>7.14</span></a>, we obtain <span class="math display">\[
 \begin{align*}
-\overbrace{E(Z_iZ_i')^{-1}E(Z_iY_{i})}^{\lambda} &amp; =  \overbrace{E(Z_iZ_i')^{-1}E(Z_iX_i')}^{\bar{\Gamma}} \beta \\
+\overbrace{E(Z_iZ_i')^{-1}E(Z_iY_{i})}^{\lambda} &amp; = \overbrace{E(Z_iZ_i')^{-1}E(Z_iX_i')}^{\bar{\Gamma}} \beta \\
 \Leftrightarrow E(Z_iY_{i}) &amp; =  E(Z_iX_i') \beta
 \end{align*}
 \]</span> which is a set of <span class="math inline">\(\ell\)</span> equations in <span class="math inline">\(K\)</span> unknowns. This system of linear equations has a unique solution if and only if <span class="math display">\[
@@ -835,7 +836,7 @@ Hansen, Bruce. 2022. <em><span>E</span>conometrics</em>. Princeton University Pr
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>The instrumental variables <span class="math inline">\(Z_{i2}\)</span> correlate with <span class="math inline">\(Y_{i1}\)</span> only indirectly through <span class="math inline">\(X_{i}'=(X_{i1}',Y_{i2}')\)</span> (by <a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a>). Therefore, since <span class="math inline">\(X_{i}'=(X_{i1}',Y_{i2}')\)</span> are included in the equation for <span class="math inline">\(Y_i\)</span>, there are no variations left in <span class="math inline">\(Y_i\)</span> that correlate with <span class="math inline">\(Z_{i2}.\)</span> Thus the instrumental variables <span class="math inline">\(Z_{i2}\)</span> have zero coefficients in the equation for <span class="math inline">\(Y_i.\)</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>The instrumental variables <span class="math inline">\(Z_{i2}\)</span> correlate with <span class="math inline">\(Y_{i1}\)</span> only indirectly through <span class="math inline">\(X_{i}'=(X_{i1}',Y_{i2}')\)</span> (by <a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a>). Therefore, since <span class="math inline">\(X_{i}'=(X_{i1}',Y_{i2}')\)</span> are included in the equation for <span class="math inline">\(Y_i\)</span>, there are no variations left in <span class="math inline">\(Y_{i1}\)</span> that correlate with <span class="math inline">\(Z_{i2}.\)</span> Thus the instrumental variables <span class="math inline">\(Z_{i2}\)</span> have zero coefficients in the equation for <span class="math inline">\(Y_{i1}.\)</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Thus if you regress each of the instruments in <span class="math inline">\(Z_{i2}\)</span> on the exogenous variables <span class="math inline">\(Z_{i1}\)</span>, then the residuals of these regressions should still correlate with the endogenous variables in <span class="math inline">\(Y_{i2}.\)</span><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
