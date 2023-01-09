@@ -6,6 +6,9 @@ This chapter builds upon Chapter 12 of @Hansen2022.
 Lecture videos for this chapter: 
 
 * [Video 1 (Ch. 7.1 and 7.2)](https://uni-bonn.sciebo.de/s/NX9hoNeSGT9HY0V)
+* [Video 2 (Ch. 7.3 and 7.4)](https://uni-bonn.sciebo.de/s/pKD0Z8nFh4We1pL)
+* [Video 3 (Ch. 7.5)](https://uni-bonn.sciebo.de/s/97jkuWgDdqB8E2B)
+* [Video 4 (Ch. 7.6)]()
 
 
 ## Introduction
@@ -578,7 +581,7 @@ and
 $$
 \underset{(\ell\times 1)}{\lambda}=\left(\begin{matrix}\underset{(K_1\times 1)}{\lambda_{1}}\\ \underset{(\ell_2\times 1)}{\lambda_{2}}\end{matrix}\right) = E(Z_iZ_i')^{-1}E(Z_iY_{i})
 $$
-are uniquely determined by the probability distribution of $(Y_{i1},Y_{i2},Z_i)$ if @def-InstrumentalVariable holds because this definition includes the requirement that $E(Z_iZ_i')$ has full rank. 
+are uniquely determined by the probability distribution of $(Y_{i1},Y_{i2},Z_i)$ if @def-InstrumentalVariable holds because this definition includes the requirement that $E(Z_iZ_i')$ has full rank (@eq-IV2). 
 
 
 We are interested in the structural parameter $\beta,$ which relates to $\Gamma$ and $\lambda$ through equation @eq-lambdaGammabeta; i.e. through
