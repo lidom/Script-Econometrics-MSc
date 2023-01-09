@@ -384,7 +384,7 @@ $${#eq-StructuralEqEndogen2}
   * uncorrelated with $\varepsilon_i$  and thus potentially usable
   * **excluded** since they have **zero coefficients**[^1] in @eq-StructuralEqEndogen2
 
-[^1]: The instrumental variables $Z_{i2}$ correlate with $Y_i$ only indirectly, because they correlate with $X_{i1}$ (by @eq-IV3). Therefore, since $X_{i1}$ are included in the equation for $Y_i$, there are no variations left in $Y_i$ that correlate with $Z_{i2}.$ Thus the instrumental variables $Z_{i2}$ have zero coefficients in the equation for $Y_i.$
+[^1]: The instrumental variables $Z_{i2}$ correlate with $Y_{i1}$ only indirectly through $X_{i}'=(X_{i1}',Y_{i2}')$ (by @eq-IV3). Therefore, since $X_{i}'=(X_{i1}',Y_{i2}')$ are included in the equation for $Y_i$, there are no variations left in $Y_i$ that correlate with $Z_{i2}.$ Thus the instrumental variables $Z_{i2}$ have zero coefficients in the equation for $Y_i.$
 
 
 <!-- **Terminology:** -->
@@ -406,7 +406,7 @@ We say that the model is
 > What variables can be used as Instrumental Variables (IVs)? 
 
 1. Instrumental variables must be uncorrelated with the error term (@eq-IV1).
-2. Instrumental variables must be correlated with the endogenous variables $Y_{i2}$ also after controlling for the other already included exogenous variables $Z_{i1}$ (@eq-IV3).[^2] (I.e. the IVs must contain *additional information*, and thus there must not be a perfect multicollinearity between the IVs, $Z_{i2},$ and the already included exogenous regressors $Z_{i1}$.)
+2. Instrumental variables must be correlated with the endogenous variables $Y_{i2}$ also after controlling for the other already included exogenous variables $Z_{i1}$ (@eq-IV3).[^2] I.e. the IVs must contain *additional information*, and thus there must not be a perfect multicollinearity between the IVs, $Z_{i2},$ and the already included exogenous regressors $Z_{i1}.$
 
 [^2]: Thus if you regress each of the instruments in $Z_{i2}$ on the exogenous variables $Z_{i1}$, then the residuals of these regressions should still correlate with the endogenous variables in $Y_{i2}.$
 
