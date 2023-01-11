@@ -42,4 +42,10 @@ It's not must, but you can read any of the usual econometrics textbooks addition
 <!-- * *A primer in econometric theory*, by J. Stachurski -->
 
 
+### Communication {-}
+
+* You can use the Zulip-Chat [Metrics 2223 (M.Sc.)](https://ifs-bonn.zulipchat.com/join/qd5sgbusv24xsjfgbnyk5u44/) to post questions, share codes, etc. I will moderate the chat and try to answer your questions to the benefit for all. Happy sharing and discussing! 
+
+
+
 
