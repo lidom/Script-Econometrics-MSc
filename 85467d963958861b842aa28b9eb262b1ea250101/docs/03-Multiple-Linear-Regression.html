@@ -281,8 +281,8 @@ div.csl-indent {
 \begin{align}
   Y_i=\sum_{k=1}^K\beta_k X_{ik}+\varepsilon_i, \quad i=1,\dots,n.
 \end{align}
-\tag{3.1}\]</span></span> Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>. In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.<br>
-It is convenient to write <a href="#eq-LinMod">Equation&nbsp;<span>3.1</span></a> using matrix notation <span class="math display">\[\begin{eqnarray*}
+\tag{3.1}\]</span></span> Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.</p>
+<p>It is convenient to write <a href="#eq-LinMod">Equation&nbsp;<span>3.1</span></a> using matrix notation <span class="math display">\[\begin{eqnarray*}
   Y_i&amp;=&amp;\underset{(1\times K)}{X_i'}\underset{(K\times 1)}{\beta} +\varepsilon_i, \quad i=1,\dots,n,
 \end{eqnarray*}\]</span> where <span class="math inline">\(X_i=(X_{i1},\dots,X_{iK})'\)</span> and <span class="math inline">\(\beta=(\beta_1,\dots,\beta_K)'\)</span>. Stacking all individual rows <span class="math inline">\(i\)</span> leads to <span class="math display">\[\begin{eqnarray*}\label{LM}
   \underset{(n\times 1)}{Y}&amp;=&amp;\underset{(n\times K)}{X}\underset{(K\times 1)}{\beta} + \underset{(n\times 1)}{\varepsilon},
@@ -297,7 +297,7 @@ Y=\left(\begin{matrix}Y_1\\ \vdots\\Y_n\end{matrix}\right),\quad X=\left(\begin{
 \]</span></p>
 <p>That is, the <span class="math inline">\(i\)</span>th observed <span class="math inline">\(K+1\)</span> dimensional data point <span class="math inline">\((Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}\)</span> is a realization of a <span class="math inline">\(K+1\)</span> dimensional random variable <span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1},\)</span> where</p>
 <ol type="1">
-<li><span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\)</span> has the identical joint distribution as <span class="math inline">\((Y_{j},X_{j1},\dots,X_{jK})\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and all <span class="math inline">\(j=1,\dots,n\)</span>, and where</li>
+<li><span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\)</span> has the identical <span class="math inline">\(K+1\)</span> dimensional distribution for all <span class="math inline">\(i=1,\dots,n.\)</span></li>
 <li><span class="math inline">\((Y_{i},X_{i1},\dots,X_{iK})\)</span> is independent of <span class="math inline">\((Y_{j},X_{j1},\dots,X_{jK})\)</span> for all <span class="math inline">\(i\neq j=1,\dots,n.\)</span></li>
 </ol>
 <p>Note: Due to <a href="#eq-LinMod">Equation&nbsp;<span>3.1</span></a>, this i.i.d. assumption is equivalent to assuming that the multivariate random variables <span class="math inline">\((\varepsilon_i,X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1}\)</span> are i.i.d. across <span class="math inline">\(i=1,\dots,n\)</span>.</p>

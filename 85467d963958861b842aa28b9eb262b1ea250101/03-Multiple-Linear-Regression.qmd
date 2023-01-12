@@ -21,8 +21,8 @@ $$
   Y_i=\sum_{k=1}^K\beta_k X_{ik}+\varepsilon_i, \quad i=1,\dots,n.
 \end{align}
 $${#eq-LinMod}
-Usually, a constant (intercept) is included, in this case $X_{i1}=1$ for all $i$. 
-In the following we will always assume that $X_{i1}=1$ for all $i$, unless otherwise stated.   
+Usually, a constant (intercept) is included, in this case $X_{i1}=1$ for all $i=1,\dots,n.$ In the following we will always assume that $X_{i1}=1$ for all $i$, unless otherwise stated.   
+
 It is convenient to write @eq-LinMod using matrix notation
 \begin{eqnarray*}
   Y_i&=&\underset{(1\times K)}{X_i'}\underset{(K\times 1)}{\beta} +\varepsilon_i, \quad i=1,\dots,n,
@@ -48,14 +48,9 @@ $$
 ((Y_{1},X_{11},\dots,X_{1K}),(Y_{2},X_{21},\dots,X_{2K}),\dots,(Y_{n},X_{n1},\dots,X_{nK})).
 $$ 
 
-That is, the $i$th observed $K+1$ dimensional data point 
-$(Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}$ 
-is a realization of a $K+1$ dimensional random variable 
-$(Y_{i},X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1},$ 
-where 
+That is, the $i$th observed $K+1$ dimensional data point $(Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}$ is a realization of a $K+1$ dimensional random variable $(Y_{i},X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1},$ where 
 
-1. $(Y_{i},X_{i1},\dots,X_{iK})$ has the identical joint distribution as 
-$(Y_{j},X_{j1},\dots,X_{jK})$ for all $i=1,\dots,n$ and all $j=1,\dots,n$, and where 
+1. $(Y_{i},X_{i1},\dots,X_{iK})$ has the identical $K+1$ dimensional distribution for all $i=1,\dots,n.$ 
 2. $(Y_{i},X_{i1},\dots,X_{iK})$ is independent of 
 $(Y_{j},X_{j1},\dots,X_{jK})$ for all $i\neq j=1,\dots,n.$
 
