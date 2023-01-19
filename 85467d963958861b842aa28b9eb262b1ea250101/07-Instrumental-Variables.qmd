@@ -858,12 +858,12 @@ That is, the instrumental variables vector $Z_i=(1,X_{i2},Z_{i2})'$ is a valid i
 
 ### R function `ivreg()` {-}
 
-The function `ivreg()` from the `R` package `AER` carries out 2SLS estimation. It is used similarly as the `lm()` function. Instruments can be added to the usual specification of the regression formula using a vertical bar separating the model equation from the instruments. Thus, for the regression at hand the correct formula is 
+The function `ivreg()` from the `R` package `AER` carries out 2SLS estimation. It is used similarly as the `lm()` function. Instruments can be added to the usual specification of the regression formula using a vertical bar separating the model equation from the instruments. Thus, for the regression at hand the correct formula is: 
 <center>
-`ivreg(Y ~ X_2 + X_3 | X_2 + Z_2)`.
+`ivreg(Y ~ X_2 + X_3 | X_2 + Z_2)`
 </center>
 
-```{r, eval=FALSE}
+```{r}
 library("AER")             # contains ivreg()
 
 n              <- 100      # Sample size 
