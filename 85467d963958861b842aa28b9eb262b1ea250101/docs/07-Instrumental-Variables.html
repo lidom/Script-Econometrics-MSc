@@ -935,14 +935,14 @@ The function <code>ivreg()</code> from the <code>R</code> package <code>AER</cod
 <center>
 <code>ivreg(Y ~ X_2 + X_3 | X_2 + Z_2)</code>.
 </center>
-<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-2_33ca4a6ce6dc11888aedbdd5564b5f89">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-2_5856bde721e939debc1798cfe4a53fae">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"AER"</span>)             <span class="co"># contains ivreg()</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n              <span class="ot">&lt;-</span> <span class="dv">100</span>      <span class="co"># Sample size </span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>beta_true      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>) <span class="co"># Structural parameter</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>B              <span class="ot">&lt;-</span> <span class="dv">10000</span>    <span class="co"># Number of MC replications</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>beta_hat_TSLS  <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="cn">NA</span>, <span class="co"># Container for </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>beta_hat_2SLS  <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="cn">NA</span>, <span class="co"># Container for </span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">nrow =</span> <span class="dv">3</span>,  <span class="co"># MC simulations</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ncol =</span> B)</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
@@ -957,21 +957,21 @@ The function <code>ivreg()</code> from the <code>R</code> package <code>AER</cod
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  Z_2          <span class="ot">&lt;-</span> V <span class="sc">+</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)        <span class="co"># Instrument</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Dependent variable</span></span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  Y            <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, X_2, X_3) <span class="sc">%*%</span> beta_true <span class="sc">+</span> eps</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Estimation</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  beta_hat_TSLS[,b] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">ivreg</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3 <span class="sc">|</span> X_2 <span class="sc">+</span> V))</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 2SLS Estimation</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  beta_hat_2SLS[,b] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">ivreg</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3 <span class="sc">|</span> X_2 <span class="sc">+</span> V))</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="do">## MC means of \hat{\beta}_2 and \hat{\beta}_3 </span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_TSLS_2 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat_TSLS[<span class="dv">2</span>,]), <span class="dv">2</span>)</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_TSLS_3 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat_TSLS[<span class="dv">3</span>,]), <span class="dv">2</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="do">## MC means of \hat{\beta}_{2SLS,2} and \hat{\beta}_{2SLS,3} </span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2SLS_2 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat_2SLS[<span class="dv">2</span>,]), <span class="dv">2</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2SLS_3 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat_2SLS[<span class="dv">3</span>,]), <span class="dv">2</span>)</span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_2:</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_TSLS_2  <span class="sc">-</span> beta_true[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_{2SLS,2}:</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2SLS_2  <span class="sc">-</span> beta_true[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.01</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_3:</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_TSLS_3  <span class="sc">-</span> beta_true[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_{2SLS,3}:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2SLS_3  <span class="sc">-</span> beta_true[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.06</code></pre>
 </div>

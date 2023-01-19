@@ -871,7 +871,7 @@ n              <- 100      # Sample size
 beta_true      <- c(2,2,2) # Structural parameter
 
 B              <- 10000    # Number of MC replications
-beta_hat_TSLS  <- matrix(data = NA, # Container for 
+beta_hat_2SLS  <- matrix(data = NA, # Container for 
                          nrow = 3,  # MC simulations
                          ncol = B)
 
@@ -886,19 +886,19 @@ for(b in 1:B){
   Z_2          <- V + runif(n, 0, 1)        # Instrument
   ## Dependent variable
   Y            <- cbind(1, X_2, X_3) %*% beta_true + eps
-  ## Estimation
-  beta_hat_TSLS[,b] <- coef(ivreg(Y ~ X_2 + X_3 | X_2 + V))
+  ## 2SLS Estimation
+  beta_hat_2SLS[,b] <- coef(ivreg(Y ~ X_2 + X_3 | X_2 + V))
 }
 
-## MC means of \hat{\beta}_2 and \hat{\beta}_3 
-mean_beta_hat_TSLS_2 <- round(mean(beta_hat_TSLS[2,]), 2)
-mean_beta_hat_TSLS_3 <- round(mean(beta_hat_TSLS[3,]), 2)
+## MC means of \hat{\beta}_{2SLS,2} and \hat{\beta}_{2SLS,3} 
+mean_beta_hat_2SLS_2 <- round(mean(beta_hat_2SLS[2,]), 2)
+mean_beta_hat_2SLS_3 <- round(mean(beta_hat_2SLS[3,]), 2)
 
-## Unbiased estimator \hat{\beta}_2:
-mean_beta_hat_TSLS_2  - beta_true[2]
+## Unbiased estimator \hat{\beta}_{2SLS,2}:
+mean_beta_hat_2SLS_2  - beta_true[2]
 
-## Unbiased estimator \hat{\beta}_3:
-mean_beta_hat_TSLS_3  - beta_true[3]
+## Unbiased estimator \hat{\beta}_{2SLS,3}:
+mean_beta_hat_2SLS_3  - beta_true[3]
 ```
 
 
