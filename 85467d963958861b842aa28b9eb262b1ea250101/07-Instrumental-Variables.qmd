@@ -902,19 +902,6 @@ mean_beta_hat_2SLS_3  - beta_true[3]
 ```
 
 
-
-
-<!-- ## Real-Data Example: College Proximity
-
-The data can be downloaded from the home page of Bruce Hansen [DATA](https://www.ssc.wisc.edu/~bhansen/econometrics/)
-
-
-```{r}
-library("tidyverse")
-``` -->
-
-
-
 ## References
 
 
