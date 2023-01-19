@@ -864,7 +864,7 @@ The function `ivreg()` from the `R` package `AER` carries out 2SLS estimation. I
 `ivreg(Y ~ X_2 + X_3 | X_2 + Z_2)`.
 </center>
 
-```{r}
+```{r, eval=FALSE}
 library("AER")             # contains ivreg()
 
 n              <- 100      # Sample size 

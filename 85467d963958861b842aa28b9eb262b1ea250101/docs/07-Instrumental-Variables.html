@@ -935,7 +935,7 @@ The function <code>ivreg()</code> from the <code>R</code> package <code>AER</cod
 <center>
 <code>ivreg(Y ~ X_2 + X_3 | X_2 + Z_2)</code>.
 </center>
-<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-2_ffb251959623d0716452db331db99434">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-2_bd2300fa0716d835ac53d91f6ff2178d">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"AER"</span>)             <span class="co"># contains ivreg()</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n              <span class="ot">&lt;-</span> <span class="dv">100</span>      <span class="co"># Sample size </span></span>
@@ -966,15 +966,10 @@ The function <code>ivreg()</code> from the <code>R</code> package <code>AER</cod
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2SLS_3 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat_2SLS[<span class="dv">3</span>,]), <span class="dv">2</span>)</span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_{2SLS,2}:</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2SLS_2  <span class="sc">-</span> beta_true[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_{2SLS,3}:</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2SLS_3  <span class="sc">-</span> beta_true[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0</code></pre>
-</div>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2SLS_2  <span class="sc">-</span> beta_true[<span class="dv">2</span>]</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_{2SLS,3}:</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2SLS_3  <span class="sc">-</span> beta_true[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
