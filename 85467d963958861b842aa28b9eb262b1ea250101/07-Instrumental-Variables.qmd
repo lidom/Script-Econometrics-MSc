@@ -853,7 +853,6 @@ $$
 \end{align*}
 $$
 
-
 That is, the instrumental variables vector $Z_i=(1,X_{i2},Z_{i2})'$ is a valid instrument. 
 
 
