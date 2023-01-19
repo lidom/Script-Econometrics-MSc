@@ -234,9 +234,12 @@ div.csl-indent {
   <li><a href="#reduced-form" id="toc-reduced-form" class="nav-link" data-scroll-target="#reduced-form"><span class="toc-section-number">7.5</span>  Reduced Form</a></li>
   <li><a href="#sec-identification" id="toc-sec-identification" class="nav-link" data-scroll-target="#sec-identification"><span class="toc-section-number">7.6</span>  Identification</a></li>
   <li><a href="#two-stage-least-squares" id="toc-two-stage-least-squares" class="nav-link" data-scroll-target="#two-stage-least-squares"><span class="toc-section-number">7.7</span>  Two-Stage Least Squares</a></li>
-  <li><a href="#monte-carlo-simulation" id="toc-monte-carlo-simulation" class="nav-link" data-scroll-target="#monte-carlo-simulation"><span class="toc-section-number">7.8</span>  Monte-Carlo Simulation</a></li>
-  <li><a href="#real-data-example-college-proximity" id="toc-real-data-example-college-proximity" class="nav-link" data-scroll-target="#real-data-example-college-proximity"><span class="toc-section-number">7.9</span>  Real-Data Example: College Proximity</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">7.10</span>  References</a></li>
+  <li><a href="#monte-carlo-simulation" id="toc-monte-carlo-simulation" class="nav-link" data-scroll-target="#monte-carlo-simulation"><span class="toc-section-number">7.8</span>  Monte-Carlo Simulation</a>
+  <ul class="collapse">
+  <li><a href="#instrumental-variable-1" id="toc-instrumental-variable-1" class="nav-link" data-scroll-target="#instrumental-variable-1">Instrumental Variable</a></li>
+  <li><a href="#r-function-ivreg" id="toc-r-function-ivreg" class="nav-link" data-scroll-target="#r-function-ivreg">R function <code>ivreg()</code></a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">7.9</span>  References</a></li>
   </ul>
 </nav>
     </div>
@@ -780,59 +783,211 @@ E(W_iu_{i1}) &amp; = 0.
 </section>
 <section id="monte-carlo-simulation" class="level2" data-number="7.8">
 <h2 data-number="7.8" class="anchored" data-anchor-id="monte-carlo-simulation"><span class="header-section-number">7.8</span> Monte-Carlo Simulation</h2>
-<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-1_9fe1621876ce95764f995bd9d10ff516">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n         <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>beta_true <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>B         <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>beta_hat  <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> B)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  eps          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  X_1          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  X_2          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> eps</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  Y            <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, X_1, X_2) <span class="sc">%*%</span> beta_true <span class="sc">+</span> eps</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  beta_hat[,b] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(Y <span class="sc">~</span> X_1 <span class="sc">+</span> X_2))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(beta_hat[<span class="dv">2</span>,])</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_3 <span class="ot">&lt;-</span> <span class="fu">mean</span>(beta_hat[<span class="dv">3</span>,])</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="do">## MC-Approximations for the Bias:</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2  <span class="sc">-</span> beta_true[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s consider the following data generating process with endogenous regressor <span class="math inline">\(X_{i3}\)</span>: <span class="math display">\[
+\begin{align*}
+\overbrace{Y_i}^{=Y_{i1}}
+&amp; = \beta_1 + \beta_2 X_{i2}  + \beta_3 \overbrace{X_{i3}}^{=Y_{i2}} + \varepsilon_i\\
+&amp; = X_i'\beta + \varepsilon_i,
+\end{align*}
+\]</span> where <span class="math inline">\(X_i'=(1,X_{i2},X_{i3})\)</span> with <span class="math display">\[
+\begin{align*}
+\beta         &amp; = (\beta_1,\beta_2,\beta_3)'=(2,2,2)'\\
+\varepsilon_i &amp; \sim \mathcal{N}(0,1)\\
+X_{i2}        &amp; \sim \mathcal{N}(3,4)\\
+V_{i}         &amp; \sim \mathcal{N}(1,0.25)\\
+X_{i3}        &amp; = V_{i}  + 2  \varepsilon_i
+\end{align*}
+\]</span></p>
+<p>The following <code>R</code> code draws <code>B=10000</code> many i.i.d. samples from this data generating process and checks the (un-)biasedness of the OLS estimators <span class="math inline">\(\hat\beta_2\)</span> and <span class="math inline">\(\hat\beta_2\)</span>:</p>
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-1_c1fcbd8ccc90b66f7fb61212c720e01b">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n         <span class="ot">&lt;-</span> <span class="dv">100</span>      <span class="co"># Sample size </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>beta_true <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>) <span class="co"># Structural parameter</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>B         <span class="ot">&lt;-</span> <span class="dv">10000</span>    <span class="co"># Number of MC replications</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>beta_hat  <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="cn">NA</span>, <span class="co"># Container for </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">nrow =</span> <span class="dv">3</span>,  <span class="co"># MC simulations</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ncol =</span> B)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Monte Carlo (MC) simulation for generating </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="do">## estimates when X3 is endogenous for beta3:</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  eps          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)                  <span class="co"># error term </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  X_2          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>)   <span class="co"># exogenous</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  V            <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.5</span>) <span class="co"># exogenous</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  X_3          <span class="ot">&lt;-</span> V <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> eps               <span class="co"># endogenous</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Dependent variable</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  Y            <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, X_2, X_3) <span class="sc">%*%</span> beta_true <span class="sc">+</span> eps</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Estimation</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  beta_hat[,b] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3))</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="do">## MC means of \hat{\beta}_2 and \hat{\beta}_3 </span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat[<span class="dv">2</span>,]), <span class="dv">2</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_3 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat[<span class="dv">3</span>,]), <span class="dv">2</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_2:</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2  <span class="sc">-</span> beta_true[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -5.51182e-05</code></pre>
+<pre><code>[1] 0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_3  <span class="sc">-</span> beta_true[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Biased estimator \hat{\beta}_3:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_3  <span class="sc">-</span> beta_true[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4707233</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">rowMeans</span>(beta_hat) <span class="sc">-</span> beta_true, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.470  0.000  0.471</code></pre>
+<pre><code>[1] 0.47</code></pre>
 </div>
 </div>
+<!-- Caution: Since intercept is determined by the slope estimates and the regressor means, it must be biased if one of the slope estimates is biased.  -->
+<p>The estimator <span class="math inline">\(\hat\beta_3\)</span> is clearly biased due to the endogeneity of <span class="math inline">\(X_{i3}.\)</span></p>
+<section id="instrumental-variable-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="instrumental-variable-1">Instrumental Variable</h3>
+<p>Let’s say there is a real-valued instrumental variable <span class="math display">\[
+Z_{i2}=V_{i} + u_i,\quad \text{where}\quad u_i\sim\mathcal{U}(0,1).
+\]</span> That is, <span class="math inline">\(Z_{i2}\)</span> correlates with the endogenous <span class="math inline">\(X_{i3}\)</span> through <span class="math inline">\(V_i,\)</span> but is independent of <span class="math inline">\(\varepsilon_i.\)</span></p>
+<p>The <span class="math inline">\(\ell=3\)</span> dimensional instrumental variables vector <span class="math inline">\(Z_i\)</span> is then determined by coll, we take the exogenous constant <span class="math inline">\(1\)</span>, the exogenous regressor <span class="math inline">\(X_{i2}\)</span> and the instrument <span class="math inline">\(Z_{i2}\)</span> <span class="math display">\[
+Z_i = (1,X_{i2},Z_{i2})'.
+\]</span></p>
+<p>The <span class="math inline">\(Z_i\)</span> vector is a valid instrumental variables vector, if it fulfills the conditions of <a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a> – <a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a> of <a href="#def-InstrumentalVariable">Definition&nbsp;<span>7.1</span></a>.</p>
+<ul>
+<li>Checking <a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a> (<span class="math inline">\(E(Z_i\varepsilon_i)=0\)</span>): <!-- i.e. $E(Z_i\varepsilon_i)=0$ is fulfilled if each of the elements in $Z_i$ and $\varepsilon_i$ are **uncorrelated** since
+$$
+\begin{align*}
+\operatorname{Cov}(Z_{i2},\varepsilon_i) &= E(Z_{i2}\varepsilon_i) - E(Z_{i2})\;\overbrace{E(\varepsilon_i)}^{=0}\\ 
+\Rightarrow \operatorname{Cov}(Z_{i2},\varepsilon_i) &= E(Z_{i2}\varepsilon_i) 
+\end{align*} 
+$$
+Checking the single elements in $Z_i = (1,X_{i2},Z_{i2})'$: 
+-->
+<ul>
+<li><span class="math inline">\(E(1\varepsilon_i)=E(\varepsilon_i)=0\)</span></li>
+<li><span class="math inline">\(E(X_{i2}\varepsilon_i)=\operatorname{Cov}(X_{i2},\varepsilon_i)=0\)</span></li>
+<li><span class="math inline">\(E(Z_{i2}\varepsilon_i)=\operatorname{Cov}(Z_{i2},\varepsilon_i)=\underbrace{\operatorname{Cov}(V_{i},\varepsilon_i)}_{=0} + \underbrace{\operatorname{Cov}(u_i,\varepsilon_i)}_{=0}\)</span></li>
+</ul></li>
+<li>Checking <a href="#eq-IV2">Equation&nbsp;<span>7.7</span></a> (<span class="math inline">\(\operatorname{rank}(E(Z_iZ_i'))=\ell=3\)</span>): <!-- is fulfilled if no instrument is a linear combination of the others. For $Z_i = (1,X_{i2},Z_{i2})'$ the condition that $\operatorname{rank}(E(Z_iZ_i'))=\ell$, i.e., that  --> <span class="math display">\[
+\begin{align*}
+&amp;\operatorname{rank}(E(Z_iZ_i'))\\
+=&amp;\operatorname{rank}\left(
+\begin{matrix}
+1                    &amp; E\left(X_{i2}\right)         &amp; E\left(Z_{i2}\right) \\
+E\left(X_{i2}\right) &amp; E\left(X_{i2}^2\right)       &amp; E\left(X_{i2} Z_{i2}\right) \\
+E\left(Z_{i2}\right) &amp; E\left(X_{i2} Z_{i2}\right)  &amp; E\left(Z_{i2}^2\right) \\
+\end{matrix}\right)\overset{?}{=}3
+\end{align*}
+\]</span> This “no redundancies” condition is fulfilled since <span class="math inline">\(Z_{i2}=V_i + u_i(\neq 1\neq X_{i2}\neq 0).\)</span> A linear dependency would occur if <span class="math inline">\(Z_{i2}\)</span>
+<ul>
+<li>if <span class="math inline">\(Z_{i2}= 1\)</span> (1st and 3rd column)</li>
+<li>if <span class="math inline">\(Z_{i2}= X_{i2}\)</span> (2nd and 3rd column) or</li>
+<li>if <span class="math inline">\(Z_{i2}= 0\)</span> (zero column).<br>
+</li>
+</ul></li>
+<li>Checking <a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a> (<span class="math inline">\(\operatorname{rank}(E(Z_iX_i'))=K=3\)</span>):<br>
+<span class="math display">\[
+\begin{align*}
+&amp;\operatorname{rank}(E(Z_iX_i'))\\
+=&amp;\operatorname{rank}\left(
+\begin{matrix}
+1                    &amp; E\left(X_{i2}\right)       &amp; E\left(X_{i3}\right) \\
+E\left(X_{i2}\right) &amp; E\left(X_{i2}^2\right)     &amp; E\left(X_{i2} X_{i3}\right) \\
+E\left(Z_{i2}\right) &amp; E\left(Z_{i2} X_{i2}\right)&amp; E\left(Z_{i2} X_{i3}\right) \\
+\end{matrix}\right)
+\end{align*}
+\]</span><br>
+Since <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> are independent, <span class="math inline">\(E(X_{i2} X_{i3})=E(X_{i2})E(X_{i3})\)</span> such that<br>
+<span class="math display">\[
+\begin{align*}
+&amp;\operatorname{rank}(E(Z_iX_i'))\\
+=&amp;\operatorname{rank}\left(
+\begin{matrix}
+1                    &amp; E\left(X_{i2}\right)       &amp; \;\;1\;\cdot\;\; E\left(X_{i3}\right) \\
+E\left(X_{i2}\right) &amp; E\left(X_{i2}^2\right)     &amp; E\left(X_{i2}\right)E\left(X_{i3}\right) \\
+E\left(Z_{i2}\right) &amp; E\left(Z_{i2} X_{i2}\right)&amp; E\left(Z_{i2}\;\;\cdot\;\;X_{i3}\right) \\
+\end{matrix}\right)  
+\end{align*}
+\]</span> Thus, to guarantee that <span class="math inline">\(\operatorname{rank}(E(Z_iX_i'))=3\)</span> we need that <span class="math display">\[
+E\left(Z_{i2} X_{i3}\right)\neq E\left(Z_{i2}\right)E\left(X_{i3}\right)
+\]</span> otherwise the first and the third column are linearly dependent. <br> Note that <span class="math display">\[
+\begin{align*}
+E(Z_{i2} X_{i3}) \neq  E(Z_{i2}) E(X_{i3}) \Leftrightarrow \operatorname{Cov}(Z_{i2},X_{i3}) \neq 0
+\end{align*}
+\]</span> since <span class="math display">\[
+\begin{align*}
+\operatorname{Cov}(Z_{i2},X_{i3})&amp;=E(Z_{i2} X_{i3}) - E(Z_{i2}) E(X_{i3})\\
+%\Leftrightarrow
+%E(Z_{i2} X_{i3}) &amp;= E(Z_{i2}) E(X_{i3}) + \underbrace{\operatorname{Cov}(Z_{i2},X_{i3})}_{\neq 0\;?}.
+\end{align*}
+\]</span> That is, we need that the instrument <span class="math inline">\(Z_{i3}\)</span> is correlated with the endogenous variable <span class="math inline">\(X_{i3}\)</span>, i.e.&nbsp;that <span class="math inline">\(\operatorname{Cov}(Z_{i2},X_{i3}) \neq 0.\)</span> This is fulfilled here since <span class="math display">\[
+\begin{align*}
+\operatorname{Cov}(Z_{i2},X_{i3})
+&amp;=\operatorname{Cov}(V_{i}+u_i,X_{i3})\\
+&amp;=\operatorname{Cov}(V_{i},X_{i3})+\operatorname{Cov}(u_i,X_{i3})\\
+&amp;=\operatorname{Cov}(V_{i},X_{i3})+0\\  
+&amp;=\operatorname{Cov}(V_{i},V_i+2\varepsilon_{i})\\  
+&amp;=\operatorname{Cov}(V_{i},V_i) + 2\operatorname{Cov}(V_{i},\varepsilon_{i})\\  
+&amp;=\operatorname{Var}(V_{i}) + 0 \\
+&amp;=0.125  
+\end{align*}
+\]</span></li>
+</ul>
+<p>That is, the instrumental variable <span class="math inline">\(Z_{i2}\)</span> is a valid instrument.</p>
 </section>
-<section id="real-data-example-college-proximity" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="real-data-example-college-proximity"><span class="header-section-number">7.9</span> Real-Data Example: College Proximity</h2>
-<p>The data can be downloaded from the home page of Bruce Hansen <a href="https://www.ssc.wisc.edu/~bhansen/econometrics/">DATA</a></p>
-<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-2_25e35c06d0632692569bbd2ef3cc7b25">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
-✔ tibble  3.1.7      ✔ dplyr   1.0.10
-✔ tidyr   1.2.1      ✔ stringr 1.4.0 
-✔ readr   2.1.2      ✔ forcats 0.5.1 
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-✖ dplyr::recode() masks car::recode()
-✖ purrr::some()   masks car::some()</code></pre>
+<section id="r-function-ivreg" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="r-function-ivreg">R function <code>ivreg()</code></h3>
+The function <code>ivreg()</code> from the <code>R</code> package <code>AER</code> carries out 2SLS estimation. It is used similarly as the <code>lm()</code> function. Instruments can be added to the usual specification of the regression formula using a vertical bar separating the model equation from the instruments. Thus, for the regression at hand the correct formula is
+<center>
+<code>ivreg(Y ~ X_2 + X_3 | X_2 + Z_2)</code>.
+</center>
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-2_33ca4a6ce6dc11888aedbdd5564b5f89">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"AER"</span>)             <span class="co"># contains ivreg()</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n              <span class="ot">&lt;-</span> <span class="dv">100</span>      <span class="co"># Sample size </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>beta_true      <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>) <span class="co"># Structural parameter</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>B              <span class="ot">&lt;-</span> <span class="dv">10000</span>    <span class="co"># Number of MC replications</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>beta_hat_TSLS  <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="cn">NA</span>, <span class="co"># Container for </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">nrow =</span> <span class="dv">3</span>,  <span class="co"># MC simulations</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ncol =</span> B)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Monte Carlo (MC) simulation for generating </span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">## estimates when X3 is endogenous for beta3:</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  eps          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)                  <span class="co"># error term </span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  X_2          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>)   <span class="co"># exogenous</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  V            <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.5</span>) <span class="co"># exogenous</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  X_3          <span class="ot">&lt;-</span> V <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> eps               <span class="co"># endogenous</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="do">##</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  Z_2          <span class="ot">&lt;-</span> V <span class="sc">+</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)        <span class="co"># Instrument</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Dependent variable</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  Y            <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, X_2, X_3) <span class="sc">%*%</span> beta_true <span class="sc">+</span> eps</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Estimation</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  beta_hat_TSLS[,b] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">ivreg</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3 <span class="sc">|</span> X_2 <span class="sc">+</span> V))</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="do">## MC means of \hat{\beta}_2 and \hat{\beta}_3 </span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_TSLS_2 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat_TSLS[<span class="dv">2</span>,]), <span class="dv">2</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_TSLS_3 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(beta_hat_TSLS[<span class="dv">3</span>,]), <span class="dv">2</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_2:</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_TSLS_2  <span class="sc">-</span> beta_true[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.01</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_3:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_TSLS_3  <span class="sc">-</span> beta_true[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.06</code></pre>
 </div>
 </div>
+<!-- ## Real-Data Example: College Proximity
+
+The data can be downloaded from the home page of Bruce Hansen [DATA](https://www.ssc.wisc.edu/~bhansen/econometrics/)
+
+
+
+library("tidyverse")
+``` -->
 </section>
-<section id="references" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="references"><span class="header-section-number">7.10</span> References</h2>
+</section>
+<section id="references" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="references"><span class="header-section-number">7.9</span> References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
