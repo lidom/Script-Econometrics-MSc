@@ -708,8 +708,8 @@ $$
 \beta         & = (\beta_1,\beta_2,\beta_3)'=(2,2,2)'\\ 
 \varepsilon_i & \sim \mathcal{N}(0,1)\\ 
 X_{i2}        & \sim \mathcal{N}(3,4)\\ 
-V_{i}         & \sim \mathcal{N}(1,0.25)\\
-X_{i3}        & = V_{i}  + 2  \varepsilon_i
+V_{i}         & \sim \mathcal{N}(1,9)\\
+X_{i3}        & = V_{i}  + 2 \varepsilon_i
 \end{align*}
 $$
 
@@ -726,10 +726,10 @@ beta_hat  <- matrix(data = NA, # Container for
 ## Monte Carlo (MC) simulation for generating 
 ## estimates when X3 is endogenous for beta3:
 for(b in 1:B){
-  eps          <- rnorm(n)                  # error term 
-  X_2          <- rnorm(n, m = 3, sd = 2)   # exogenous
-  V            <- rnorm(n, m = 1, sd = 0.5) # exogenous
-  X_3          <- V + 2 * eps               # endogenous
+  eps          <- rnorm(n)                # error term 
+  X_2          <- rnorm(n, m = 3, sd = 2) # exogenous
+  V            <- rnorm(n, m = 1, sd = 3) # exogenous
+  X_3          <- V + 2 * eps             # endogenous
   ## Dependent variable
   Y            <- cbind(1, X_2, X_3) %*% beta_true + eps
   ## Estimation
@@ -849,7 +849,7 @@ $$
 &=\operatorname{Cov}(V_{i},V_i+2\varepsilon_{i})\\  
 &=\operatorname{Cov}(V_{i},V_i) + 2\operatorname{Cov}(V_{i},\varepsilon_{i})\\  
 &=\operatorname{Var}(V_{i}) + 0 \\ 
-&=0.125  
+&=9
 \end{align*}
 $$
 
@@ -878,16 +878,16 @@ beta_hat_2SLS  <- matrix(data = NA, # Container for
 ## Monte Carlo (MC) simulation for generating 
 ## estimates when X3 is endogenous for beta3:
 for(b in 1:B){
-  eps          <- rnorm(n)                  # error term 
-  X_2          <- rnorm(n, m = 3, sd = 2)   # exogenous
-  V            <- rnorm(n, m = 1, sd = 0.5) # exogenous
-  X_3          <- V + 2 * eps               # endogenous
+  eps          <- rnorm(n)                # error term 
+  X_2          <- rnorm(n, m = 3, sd = 2) # exogenous
+  V            <- rnorm(n, m = 1, sd = 3) # exogenous
+  X_3          <- V + 2 * eps             # endogenous
   ##
-  Z_2          <- V + runif(n, 0, 1)        # Instrument
+  Z_2          <- V + runif(n, 0, 1)      # Instrument
   ## Dependent variable
   Y            <- cbind(1, X_2, X_3) %*% beta_true + eps
   ## 2SLS Estimation
-  beta_hat_2SLS[,b] <- coef(ivreg(Y ~ X_2 + X_3 | X_2 + V))
+  beta_hat_2SLS[,b] <- coef(ivreg(Y ~ X_2 + X_3 | X_2 + Z_2))
 }
 
 ## MC means of \hat{\beta}_{2SLS,2} and \hat{\beta}_{2SLS,3} 

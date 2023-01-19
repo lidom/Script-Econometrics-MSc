@@ -794,12 +794,12 @@ E(W_iu_{i1}) &amp; = 0.
 \beta         &amp; = (\beta_1,\beta_2,\beta_3)'=(2,2,2)'\\
 \varepsilon_i &amp; \sim \mathcal{N}(0,1)\\
 X_{i2}        &amp; \sim \mathcal{N}(3,4)\\
-V_{i}         &amp; \sim \mathcal{N}(1,0.25)\\
-X_{i3}        &amp; = V_{i}  + 2  \varepsilon_i
+V_{i}         &amp; \sim \mathcal{N}(1,9)\\
+X_{i3}        &amp; = V_{i}  + 2 \varepsilon_i
 \end{align*}
 \]</span></p>
 <p>The following <code>R</code> code draws <code>B=10000</code> many i.i.d. samples from this data generating process and checks the (un-)biasedness of the OLS estimators <span class="math inline">\(\hat\beta_2\)</span> and <span class="math inline">\(\hat\beta_2\)</span>:</p>
-<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-1_c1fcbd8ccc90b66f7fb61212c720e01b">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-1_3a2e1d1accb54241b686fcd82b8c7b98">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n         <span class="ot">&lt;-</span> <span class="dv">100</span>      <span class="co"># Sample size </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>beta_true <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>) <span class="co"># Structural parameter</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -811,10 +811,10 @@ X_{i3}        &amp; = V_{i}  + 2  \varepsilon_i
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Monte Carlo (MC) simulation for generating </span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="do">## estimates when X3 is endogenous for beta3:</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  eps          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)                  <span class="co"># error term </span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  X_2          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>)   <span class="co"># exogenous</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  V            <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.5</span>) <span class="co"># exogenous</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  X_3          <span class="ot">&lt;-</span> V <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> eps               <span class="co"># endogenous</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  eps          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)                <span class="co"># error term </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  X_2          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>) <span class="co"># exogenous</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  V            <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">3</span>) <span class="co"># exogenous</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  X_3          <span class="ot">&lt;-</span> V <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> eps             <span class="co"># endogenous</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Dependent variable</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  Y            <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, X_2, X_3) <span class="sc">%*%</span> beta_true <span class="sc">+</span> eps</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Estimation</span></span>
@@ -833,7 +833,7 @@ X_{i3}        &amp; = V_{i}  + 2  \varepsilon_i
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Biased estimator \hat{\beta}_3:</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_3  <span class="sc">-</span> beta_true[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.47</code></pre>
+<pre><code>[1] 0.15</code></pre>
 </div>
 </div>
 <!-- Caution: Since intercept is determined by the slope estimates and the regressor means, it must be biased if one of the slope estimates is biased.  -->
@@ -923,7 +923,7 @@ E(Z_{i2} X_{i3}) \neq  E(Z_{i2}) E(X_{i3}) \Leftrightarrow \operatorname{Cov}(Z_
 &amp;=\operatorname{Cov}(V_{i},V_i+2\varepsilon_{i})\\  
 &amp;=\operatorname{Cov}(V_{i},V_i) + 2\operatorname{Cov}(V_{i},\varepsilon_{i})\\  
 &amp;=\operatorname{Var}(V_{i}) + 0 \\
-&amp;=0.125  
+&amp;=9
 \end{align*}
 \]</span></li>
 </ul>
@@ -935,7 +935,7 @@ The function <code>ivreg()</code> from the <code>R</code> package <code>AER</cod
 <center>
 <code>ivreg(Y ~ X_2 + X_3 | X_2 + Z_2)</code>.
 </center>
-<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-2_5856bde721e939debc1798cfe4a53fae">
+<div class="cell" data-hash="07-Instrumental-Variables_cache/html/unnamed-chunk-2_ffb251959623d0716452db331db99434">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"AER"</span>)             <span class="co"># contains ivreg()</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n              <span class="ot">&lt;-</span> <span class="dv">100</span>      <span class="co"># Sample size </span></span>
@@ -949,16 +949,16 @@ The function <code>ivreg()</code> from the <code>R</code> package <code>AER</cod
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Monte Carlo (MC) simulation for generating </span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">## estimates when X3 is endogenous for beta3:</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B){</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  eps          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)                  <span class="co"># error term </span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  X_2          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>)   <span class="co"># exogenous</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  V            <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.5</span>) <span class="co"># exogenous</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  X_3          <span class="ot">&lt;-</span> V <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> eps               <span class="co"># endogenous</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  eps          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)                <span class="co"># error term </span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  X_2          <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>) <span class="co"># exogenous</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  V            <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">m =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">3</span>) <span class="co"># exogenous</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  X_3          <span class="ot">&lt;-</span> V <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> eps             <span class="co"># endogenous</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="do">##</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  Z_2          <span class="ot">&lt;-</span> V <span class="sc">+</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)        <span class="co"># Instrument</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  Z_2          <span class="ot">&lt;-</span> V <span class="sc">+</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)      <span class="co"># Instrument</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Dependent variable</span></span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  Y            <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, X_2, X_3) <span class="sc">%*%</span> beta_true <span class="sc">+</span> eps</span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 2SLS Estimation</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  beta_hat_2SLS[,b] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">ivreg</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3 <span class="sc">|</span> X_2 <span class="sc">+</span> V))</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  beta_hat_2SLS[,b] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">ivreg</span>(Y <span class="sc">~</span> X_2 <span class="sc">+</span> X_3 <span class="sc">|</span> X_2 <span class="sc">+</span> Z_2))</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="do">## MC means of \hat{\beta}_{2SLS,2} and \hat{\beta}_{2SLS,3} </span></span>
@@ -968,12 +968,12 @@ The function <code>ivreg()</code> from the <code>R</code> package <code>AER</cod
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_{2SLS,2}:</span></span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2SLS_2  <span class="sc">-</span> beta_true[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.01</code></pre>
+<pre><code>[1] 0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiased estimator \hat{\beta}_{2SLS,3}:</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mean_beta_hat_2SLS_3  <span class="sc">-</span> beta_true[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.06</code></pre>
+<pre><code>[1] 0</code></pre>
 </div>
 </div>
 <!-- ## Real-Data Example: College Proximity
