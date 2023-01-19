@@ -759,14 +759,14 @@ Z_{i2}=V_{i} + u_i,\quad \text{where}\quad u_i\sim\mathcal{U}(0,1).
 $$ 
 That is, $Z_{i2}$ correlates with the endogenous $X_{i3}$ through $V_i,$ but is independent of $\varepsilon_i.$ 
 
-The $\ell=3$ dimensional instrumental variables vector $Z_i$ is then determined by coll, we take the exogenous constant $1$, the exogenous regressor $X_{i2}$ and the instrument $Z_{i2}$
+The $\ell=3$ dimensional instrumental variables vector $Z_i$ collects all exogenous information, i.e.
 $$
 Z_i = (1,X_{i2},Z_{i2})'.
 $$
 
 The $Z_i$ vector is a valid instrumental variables vector, if it fulfills the conditions of @eq-IV1 -- @eq-IV3 of @def-InstrumentalVariable. 
 
-* Checking @eq-IV1 ($E(Z_i\varepsilon_i)=0$): 
+* Checking @eq-IV1 (i.e., $E(Z_i\varepsilon_i)=0$ ?): 
  <!-- i.e. $E(Z_i\varepsilon_i)=0$ is fulfilled if each of the elements in $Z_i$ and $\varepsilon_i$ are **uncorrelated** since
 $$
 \begin{align*}
@@ -779,7 +779,7 @@ Checking the single elements in $Z_i = (1,X_{i2},Z_{i2})'$:
   * $E(1\varepsilon_i)=E(\varepsilon_i)=0$ 
   * $E(X_{i2}\varepsilon_i)=\operatorname{Cov}(X_{i2},\varepsilon_i)=0$ 
   * $E(Z_{i2}\varepsilon_i)=\operatorname{Cov}(Z_{i2},\varepsilon_i)=\underbrace{\operatorname{Cov}(V_{i},\varepsilon_i)}_{=0} + \underbrace{\operatorname{Cov}(u_i,\varepsilon_i)}_{=0}$ 
-* Checking @eq-IV2 ($\operatorname{rank}(E(Z_iZ_i'))=\ell=3$): 
+* Checking @eq-IV2 (i.e., $\operatorname{rank}(E(Z_iZ_i'))=\ell=3$ ?): 
 <!-- is fulfilled if no instrument is a linear combination of the others. For $Z_i = (1,X_{i2},Z_{i2})'$ the condition that $\operatorname{rank}(E(Z_iZ_i'))=\ell$, i.e., that  -->
 $$
 \begin{align*}
@@ -796,7 +796,7 @@ This "no redundancies" condition is fulfilled since $Z_{i2}=V_i + u_i(\neq 1\neq
   * if $Z_{i2}= 1$ (1st and 3rd column) 
   * if $Z_{i2}= X_{i2}$ (2nd and 3rd column) or 
   * if $Z_{i2}= 0$ (zero column).   
-* Checking @eq-IV3 ($\operatorname{rank}(E(Z_iX_i'))=K=3$):  
+* Checking @eq-IV3 (i.e., $\operatorname{rank}(E(Z_iX_i'))=K=3$ ?):  
 $$
 \begin{align*}
 &\operatorname{rank}(E(Z_iX_i'))\\ 
@@ -854,7 +854,7 @@ $$
 $$
 
 
-That is, the instrumental variable $Z_{i2}$ is a valid instrument. 
+That is, the instrumental variables vector $Z_i=(1,X_{i2},Z_{i2})'$ is a valid instrument. 
 
 
 ### R function `ivreg()` {-}
