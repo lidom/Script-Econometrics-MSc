@@ -1,11 +1,7 @@
 # Multiple Linear Regression {#sec-MLR}
 
-In the following we focus on case of random designs $X$ (i.e. $X$ being a random variable), 
-since, first, this is the more relevant case in econometrics and, second, it includes the case of 
-fixed designs (i.e. $X$ being deterministic) as a special case ("degenerated random variable"). 
-Caution: A random $X$ requires us to consider conditional means and variances "given $X$." 
-That is, if we would be able to resample from the model, we do so by fixing (conditioning on) 
-the in-principle random explanatory variable $X$. 
+In the following we focus on case of random designs $X$ (i.e. $X$ being a random variable), since, first, this is the more relevant case in econometrics and, second, it includes the case of fixed designs (i.e. $X$ being deterministic) as a special case ("degenerated random variable"). 
+Caution: A random $X$ requires us to consider conditional means and variances "given $X$." That is, if we would be able to resample from the model, we do so by fixing (conditioning on) the in-principle random explanatory variable $X$. 
 
 
 ## Assumptions {#sec-LinModAssumptions}

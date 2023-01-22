@@ -627,7 +627,7 @@ $$
 where $\mu=E(X)$. 
 
 
-**Note:** Moments determine the tail of a distribution (but not much else); see @LB2000. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g. the uniform distribution $U[a,b]$) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support since $\phi(x)>0$ for all $x\in\mathbb{R}$. 
+**Note:** Moments determine the tail of a distribution (but not much else); see @LB2000. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g. the uniform distribution $\mathcal{U}[a,b]$) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support since $\phi(x)>0$ for all $x\in\mathbb{R}$. 
 
 
 #### Law of Total Expectation
@@ -781,7 +781,7 @@ rbinom(n = n, size = size, prob = p)
 
 #### The Uniform Distribution 
 
-$X$ has a $\operatorname{Uniform}(a, b)$ distribution, written $X\sim \operatorname{Uniform}(a, b),$ if
+$X$ has a $\operatorname{Uniform}(a, b)$ distribution, written $X\sim \mathcal{U}(a, b),$ if
 $$
 f(x)=\left\{\begin{array}{ll}
 \frac{1}{b-a} & \text { for } x \in[a, b] \\
