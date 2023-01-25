@@ -610,7 +610,7 @@ $$
 \operatorname{CI}_{1-\alpha}=
 \left[\hat\beta_k\pm t_{1-\alpha/2,n-K}\sqrt{n^{-1}[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}}\right].
 $$
-Here, the coverage probability is an asymptotic coverage probability with $P(\beta_k\in\operatorname{CI}_{1-\alpha})\to 1-\alpha$, as $n\to\infty$. 
+Here, the coverage probability is an asymptotic coverage probability with $P(\beta_k\in\operatorname{CI}_{1-\alpha})\to \gamma$ as $n\to\infty$, where $\gamma\geq 1-\alpha.$ 
 
 
 

@@ -581,7 +581,7 @@ The $p$-value of a test statistic is the significance level we would obtain if w
 * **$F$-test:** $p=P_{H_0}(F\geq F_{\text{obs}})$
 * **$t$-test:** 
    * Two sided, i.e.,  $H_0:\beta_k = r$ vs. $H_A:\beta_k\neq r$: <br> 
-    $p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|>|t_{obs}|)$ <br>
+    $p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|\geq|t_{obs}|)$ <br>
     The latter equality holds since the $t$ distrbution is symmetric. 
    * One sided, i.e., $H_0:\beta_k \leq r$ vs. $H_A:\beta_k> r$: <br> 
      $p=P_{H_0}(t\geq t_{\text{obs}})$
