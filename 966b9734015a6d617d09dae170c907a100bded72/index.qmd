@@ -7,8 +7,8 @@
 suppressPackageStartupMessages(library("kableExtra"))
 suppressPackageStartupMessages(library("tidyverse"))
 
-timetable <- tibble("Day"=c("Monday", "Thursday"),
-                    "Time (UTC+2)" = c("14:15-15:45", "16:15-17:45"),
+timetable <- tibble("Day"=c("Monday", "Wednesday"),
+                    "Time (UTC+2)" = c("10:15-11:45", "14:15-15:45"),
                     "Lecture Hall" = c("Jur / Hörsaal F", "	Jur / Hörsaal F"))
            
 timetable %>% kbl() %>%  kable_styling()
@@ -16,12 +16,10 @@ timetable %>% kbl() %>%  kable_styling()
 
 ### Lecture Material  
 
-* [eWhiteboard for lecture notes](https://uni-bonn.sciebo.de/s/utwT9e0txGVDOpP)
-* [eWhiteboard for exercises](https://uni-bonn.sciebo.de/s/Q0bER32lycuw6NV)
+* [eWhiteboard for lecture notes](https://www.dropbox.com/scl/fi/47ct5cqnpwbx8zsqqfbby/eWhiteboard_Metrics_2023.pdf?rlkey=yslrjdqrsgxhufbxaz10fe0z1&dl=0)
 * [This online script](https://www.dliebl.com/Script-Econometrics-MSc/)
 
-
-The above links can also be found at [eCampus](https://ecampus.uni-bonn.de/goto_ecampus_crs_2700232.html).
+The above links can also be found at [eCampus](https://ecampus.uni-bonn.de/goto_ecampus_crs_3107358.html).
 
 
 For students not yet in Bonn, I'll stream the lectures via [Zoom](
@@ -32,19 +30,18 @@ https://uni-bonn.zoom.us/j/99283287705?pwd=UHFoRTlwYkNqb0k2ODRjdEluY2FXZz09) (Me
 
 It's not must, but you can read any of the usual econometrics textbooks additionally to this script. I can recommend the following ones, but there are many other good books: 
 
-* *Probability and Statistics for Economists*, by Bruce E. Hansen
 * *Econometrics*, by Bruce E. Hansen
+* *Probability and Statistics for Economists*, by Bruce E. Hansen
 * *Econometrics*, by F. Hayashi
-<!-- * *A guide to modern econometrics*, by M. Verbeek -->
-* *Introduction to econometrics*, by J. Stock and M.W. Watson 
-  * E-Book: [https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983](https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983)
 * *Econometric theory and methods*, by R. Davidson and J.G. MacKinnon
+<!-- * *Introduction to econometrics*, by J. Stock and M.W. Watson 
+  * E-Book: [https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983](https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983) -->
 <!-- * *A primer in econometric theory*, by J. Stachurski -->
 
 
-### Communication {-}
+<!-- ### Communication {-}
 
-* You can use the Zulip-Chat [Metrics 2223 (M.Sc.)](https://ifs-bonn.zulipchat.com/join/qd5sgbusv24xsjfgbnyk5u44/) to post questions, share codes, etc. I will moderate the chat and try to answer your questions to the benefit for all. Happy sharing and discussing! 
+* You can use the Zulip-Chat [Metrics 2223 (M.Sc.)](https://ifs-bonn.zulipchat.com/join/qd5sgbusv24xsjfgbnyk5u44/) to post questions, share codes, etc. I will moderate the chat and try to answer your questions to the benefit for all. Happy sharing and discussing!  -->
 
 
 
