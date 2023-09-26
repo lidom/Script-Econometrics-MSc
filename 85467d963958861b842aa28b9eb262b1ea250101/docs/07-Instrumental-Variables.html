@@ -844,11 +844,16 @@ X_{i3}        &amp; = V_{i}  + 2 \varepsilon_i
 Z_{i2}=V_{i} + u_i,\quad \text{where}\quad u_i\sim\mathcal{U}(0,1).
 \]</span> That is, <span class="math inline">\(Z_{i2}\)</span> correlates with the endogenous <span class="math inline">\(X_{i3}\)</span> through <span class="math inline">\(V_i,\)</span> but is independent of <span class="math inline">\(\varepsilon_i.\)</span></p>
 <p>The <span class="math inline">\(\ell=3\)</span> dimensional instrumental variables vector <span class="math inline">\(Z_i\)</span> collects all exogenous information, i.e. <span class="math display">\[
-Z_i = (1,X_{i2},Z_{i2})'.
+Z_i =
+\left(\begin{matrix}
+1\\
+X_{i2}\\
+Z_{i2}
+\end{matrix}\right).
 \]</span></p>
 <p>The <span class="math inline">\(Z_i\)</span> vector is a valid instrumental variables vector, if it fulfills the conditions of <a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a> – <a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a> of <a href="#def-InstrumentalVariable">Definition&nbsp;<span>7.1</span></a>.</p>
 <ul>
-<li>Checking <a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a> (i.e., <span class="math inline">\(E(Z_i\varepsilon_i)=0\)</span> ?): <!-- i.e. $E(Z_i\varepsilon_i)=0$ is fulfilled if each of the elements in $Z_i$ and $\varepsilon_i$ are **uncorrelated** since
+<li>Checking <a href="#eq-IV1">Equation&nbsp;<span>7.6</span></a>, i.e., <span class="math inline">\(E(Z_i\varepsilon_i)=0\)</span>: <!-- i.e. $E(Z_i\varepsilon_i)=0$ is fulfilled if each of the elements in $Z_i$ and $\varepsilon_i$ are **uncorrelated** since
 $$
 \begin{align*}
 \operatorname{Cov}(Z_{i2},\varepsilon_i) &= E(Z_{i2}\varepsilon_i) - E(Z_{i2})\;\overbrace{E(\varepsilon_i)}^{=0}\\ 
@@ -856,50 +861,78 @@ $$
 \end{align*} 
 $$
 Checking the single elements in $Z_i = (1,X_{i2},Z_{i2})'$: 
--->
-<ul>
-<li><span class="math inline">\(E(1\varepsilon_i)=E(\varepsilon_i)=0\)</span></li>
-<li><span class="math inline">\(E(X_{i2}\varepsilon_i)=\operatorname{Cov}(X_{i2},\varepsilon_i)=0\)</span></li>
-<li><span class="math inline">\(E(Z_{i2}\varepsilon_i)=\operatorname{Cov}(Z_{i2},\varepsilon_i)=\underbrace{\operatorname{Cov}(V_{i},\varepsilon_i)}_{=0} + \underbrace{\operatorname{Cov}(u_i,\varepsilon_i)}_{=0}\)</span></li>
-</ul></li>
-<li>Checking <a href="#eq-IV2">Equation&nbsp;<span>7.7</span></a> (i.e., <span class="math inline">\(\operatorname{rank}(E(Z_iZ_i'))=\ell=3\)</span> ?): <!-- is fulfilled if no instrument is a linear combination of the others. For $Z_i = (1,X_{i2},Z_{i2})'$ the condition that $\operatorname{rank}(E(Z_iZ_i'))=\ell$, i.e., that  --> <span class="math display">\[
+--> <span class="math display">\[
+\begin{align*}
+E(Z_i\varepsilon_i)
+&amp;=
+\left(\begin{matrix}
+E(1\varepsilon_i)\\
+E(X_{i2}\varepsilon_i)\\
+E(Z_{i2}\varepsilon_i)
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+\operatorname{Cov}(1,\varepsilon_i)\\
+\operatorname{Cov}(X_{i2},\varepsilon_i)\\
+\operatorname{Cov}(Z_{i2},\varepsilon_i)
+\end{matrix}\right)\\
+&amp;=
+\left(\begin{matrix}
+0\\
+0\\
+\underbrace{\operatorname{Cov}(V_{i},\varepsilon_i)}_{=0} + \underbrace{\operatorname{Cov}(u_i,\varepsilon_i)}_{=0}
+\end{matrix}\right)
+=\underset{(\ell\times 1)}{0}
+\end{align*}
+\]</span> Thus, the instruments do not correlate with the error term <span class="math inline">\(\varepsilon_i\)</span>. <!-- * $E(1\varepsilon_i)=E(\varepsilon_i)=0$ 
+  * $E(X_{i2}\varepsilon_i)=\operatorname{Cov}(X_{i2},\varepsilon_i)=0$ 
+  * $E(Z_{i2}\varepsilon_i)=\operatorname{Cov}(Z_{i2},\varepsilon_i)=\underbrace{\operatorname{Cov}(V_{i},\varepsilon_i)}_{=0} + \underbrace{\operatorname{Cov}(u_i,\varepsilon_i)}_{=0}$  --></li>
+<li>Checking <a href="#eq-IV2">Equation&nbsp;<span>7.7</span></a>, i.e., <span class="math inline">\(\operatorname{rank}(E(Z_iZ_i'))=\ell=3\)</span>: <!-- is fulfilled if no instrument is a linear combination of the others. For $Z_i = (1,X_{i2},Z_{i2})'$ the condition that $\operatorname{rank}(E(Z_iZ_i'))=\ell$, i.e., that  --> <span class="math display">\[
 \begin{align*}
 &amp;\operatorname{rank}(E(Z_iZ_i'))\\
 =&amp;\operatorname{rank}\left(
 \begin{matrix}
-1                    &amp; E\left(X_{i2}\right)         &amp; E\left(Z_{i2}\right) \\
-E\left(X_{i2}\right) &amp; E\left(X_{i2}^2\right)       &amp; E\left(X_{i2} Z_{i2}\right) \\
-E\left(Z_{i2}\right) &amp; E\left(X_{i2} Z_{i2}\right)  &amp; E\left(Z_{i2}^2\right) \\
-\end{matrix}\right)\overset{?}{=}3
+1 \cdot\;1                   &amp; E\left(1\;\cdot X_{i2}\right)  &amp; E\left(1\;\cdot Z_{i2}\right) \\
+E\left(X_{i2}\cdot\;1\right) &amp; E\left(X_{i2} X_{i2}\right)    &amp; E\left(X_{i2} Z_{i2}\right) \\
+E\left(Z_{i2}\cdot\;1\right) &amp; E\left(X_{i2} Z_{i2}\right)    &amp; E\left(Z_{i2} Z_{i2}\right) \\
+\end{matrix}\right)
 \end{align*}
-\]</span> This “no redundancies” condition is fulfilled since <span class="math inline">\(Z_{i2}=V_i + u_i(\neq 1\neq X_{i2}\neq 0).\)</span> A linear dependency would occur if <span class="math inline">\(Z_{i2}\)</span>
+\]</span> A linear dependency would occur only …
 <ul>
-<li>if <span class="math inline">\(Z_{i2}= 1\)</span> (1st and 3rd column)</li>
-<li>if <span class="math inline">\(Z_{i2}= X_{i2}\)</span> (2nd and 3rd column) or</li>
-<li>if <span class="math inline">\(Z_{i2}= 0\)</span> (zero column).<br>
-</li>
+<li>if <span class="math inline">\(Z_{i2}= 1\)</span> (between 1st and 3rd column)</li>
+<li>if <span class="math inline">\(Z_{i2}= X_{i2}\)</span> (between 2nd and 3rd column)</li>
+<li>if <span class="math inline">\(Z_{i2}= 0\)</span> (between zero column)</li>
 </ul></li>
-<li>Checking <a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a> (i.e., <span class="math inline">\(\operatorname{rank}(E(Z_iX_i'))=K=3\)</span> ?):<br>
+</ul>
+<p>Thus the “no redundancies” condition, <span class="math inline">\(\operatorname{rank}(E(Z_iZ_i'))=3\)</span>, is fulfilled since <span class="math display">\[
+\begin{align*}
+Z_{i2}=V_i + u_i
+&amp; \neq 1\\
+&amp;\neq X_{i2}\\
+&amp;\neq 0.
+\end{align*}
+\]</span></p>
+<ul>
+<li>Checking <a href="#eq-IV3">Equation&nbsp;<span>7.8</span></a>, i.e., <span class="math inline">\(\operatorname{rank}(E(Z_iX_i'))=K=3\)</span>:<br>
 <span class="math display">\[
 \begin{align*}
 &amp;\operatorname{rank}(E(Z_iX_i'))\\
 =&amp;\operatorname{rank}\left(
 \begin{matrix}
-1                    &amp; E\left(X_{i2}\right)       &amp; E\left(X_{i3}\right) \\
-E\left(X_{i2}\right) &amp; E\left(X_{i2}^2\right)     &amp; E\left(X_{i2} X_{i3}\right) \\
-E\left(Z_{i2}\right) &amp; E\left(Z_{i2} X_{i2}\right)&amp; E\left(Z_{i2} X_{i3}\right) \\
+1  \cdot\;1                  &amp; E\left(1\;\cdot X_{i2}\right) &amp; E\left(1\cdot X_{i3}\right) \\
+E\left(X_{i2}\cdot\;1\right) &amp; E\left(X_{i2} X_{i2}\right)    &amp; E\left(X_{i2} X_{i3}\right) \\
+E\left(Z_{i2}\cdot\;1\right) &amp; E\left(Z_{i2} X_{i2}\right)    &amp; E\left(Z_{i2} X_{i3}\right) \\
 \end{matrix}\right)
 \end{align*}
 \]</span><br>
-Since <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> are independent, <span class="math inline">\(E(X_{i2} X_{i3})=E(X_{i2})E(X_{i3})\)</span> such that<br>
-<span class="math display">\[
+Since <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> are independent, <span class="math inline">\(E(X_{i2} X_{i3})=E(X_{i2})E(X_{i3})\)</span>, which yields <span class="math display">\[
 \begin{align*}
 &amp;\operatorname{rank}(E(Z_iX_i'))\\
 =&amp;\operatorname{rank}\left(
 \begin{matrix}
-1                    &amp; E\left(X_{i2}\right)       &amp; \;\;1\;\cdot\;\; E\left(X_{i3}\right) \\
-E\left(X_{i2}\right) &amp; E\left(X_{i2}^2\right)     &amp; E\left(X_{i2}\right)E\left(X_{i3}\right) \\
-E\left(Z_{i2}\right) &amp; E\left(Z_{i2} X_{i2}\right)&amp; E\left(Z_{i2}\;\;\cdot\;\;X_{i3}\right) \\
+1\cdot\;1                    &amp; E\left(1\;\cdot X_{i2}\right)&amp; \;\;1\;\cdot\;\; E\left(X_{i3}\right) \\
+E\left(X_{i2}\right)\cdot\;1 &amp; E\left(X_{i2} X_{i2}\right)  &amp; E\left(X_{i2}\right)\cdot E\left(X_{i3}\right) \\
+E\left(Z_{i2}\right)\cdot\;1 &amp; E\left(Z_{i2} X_{i2}\right)  &amp; E\left(Z_{i2}\;\;\cdot\;\;X_{i3}\right) \\
 \end{matrix}\right)  
 \end{align*}
 \]</span> Thus, to guarantee that <span class="math inline">\(\operatorname{rank}(E(Z_iX_i'))=3\)</span> we need that <span class="math display">\[
