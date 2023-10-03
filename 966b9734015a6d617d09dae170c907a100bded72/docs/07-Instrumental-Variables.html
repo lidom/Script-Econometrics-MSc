@@ -263,14 +263,13 @@ div.csl-indent {
 </header>
 
 <p>This chapter builds upon Chapter 12 of <span class="citation" data-cites="Hansen2022">Hansen (<a href="#ref-Hansen2022" role="doc-biblioref">2022</a>)</span>.</p>
-<p>Lecture videos for this chapter:</p>
-<ul>
-<li><a href="https://uni-bonn.sciebo.de/s/NX9hoNeSGT9HY0V">Video 1 (Ch. 7.1 and 7.2)</a></li>
-<li><a href="https://uni-bonn.sciebo.de/s/pKD0Z8nFh4We1pL">Video 2 (Ch. 7.3 and 7.4)</a></li>
-<li><a href="https://uni-bonn.sciebo.de/s/97jkuWgDdqB8E2B">Video 3 (Ch. 7.5)</a></li>
-<li><a href="https://uni-bonn.sciebo.de/s/qWpoXiZ0d4zB2GH">Video 4 (Ch. 7.6)</a></li>
-<li><a href="https://uni-bonn.sciebo.de/s/3yX7SukSNus81iM">Video 5 (Ch. 7.7)</a></li>
-</ul>
+<!-- Lecture videos for this chapter: 
+
+* [Video 1 (Ch. 7.1 and 7.2)](https://uni-bonn.sciebo.de/s/NX9hoNeSGT9HY0V)
+* [Video 2 (Ch. 7.3 and 7.4)](https://uni-bonn.sciebo.de/s/pKD0Z8nFh4We1pL)
+* [Video 3 (Ch. 7.5)](https://uni-bonn.sciebo.de/s/97jkuWgDdqB8E2B)
+* [Video 4 (Ch. 7.6)](https://uni-bonn.sciebo.de/s/qWpoXiZ0d4zB2GH)
+* [Video 5 (Ch. 7.7)](https://uni-bonn.sciebo.de/s/3yX7SukSNus81iM) -->
 <section id="introduction" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
 <p>The concepts of <strong>endogeneity</strong> and <strong>instrumental variable</strong> are fundamental to econometrics, and mark a substantial departure from other branches of statistics.</p>
@@ -302,7 +301,7 @@ Y_i = X_i'\beta^* + \varepsilon_i^*,
 \]</span> where then, by construction (projection properties), <span class="math inline">\(\varepsilon_i^* = Y_i - X_i'\beta^*\)</span> is a <strong>projection error</strong>, i.e. <span class="math display">\[
 E(X_i\varepsilon_i^*)=0.
 \]</span></p>
-<p><strong>Caution:</strong> Here we simply <em>define</em> <span class="math inline">\(\beta^*\)</span> as <span class="math inline">\(\beta^*=E(X_iX_i')^{-1}E(X_iY)\)</span> which results in the population version of the projection coefficient for the projection of <span class="math inline">\(Y_i\)</span> into the space spanned by <span class="math inline">\(X_i\)</span> (i.e.&nbsp;the population regression of <span class="math inline">\(Y_i\)</span> on <span class="math inline">\(X_i\)</span>.) We did not derive the expression for <span class="math inline">\(\beta^*\)</span> using the exogeneity assumption as we did in <a href="03-Multiple-Linear-Regression.html#sec-MMEstimator"><span>Section&nbsp;3.4</span></a>; indeed, the exogeneity assumption may be violated.</p>
+<p><strong>Caution:</strong> Here we simply <em>define</em> <span class="math inline">\(\beta^*\)</span> as <span class="math inline">\(\beta^*=E(X_iX_i')^{-1}E(X_iY)\)</span> which results in the population version of the projection coefficient for the projection of <span class="math inline">\(Y_i\)</span> into the space spanned by <span class="math inline">\(X_i\)</span> (i.e.&nbsp;the population regression of <span class="math inline">\(Y_i\)</span> on <span class="math inline">\(X_i\)</span>.) We did not derive the expression for <span class="math inline">\(\beta^*\)</span> using the exogeneity assumption as we did in <span class="quarto-unresolved-ref">?sec-MMEstimator</span>; indeed, the exogeneity assumption may be violated.</p>
 <p>The (population) projection coefficient <span class="math inline">\(\beta^*\)</span> and the structural parameter <span class="math inline">\(\beta\)</span> coincide <span class="math inline">\((\beta^*=\beta)\)</span> under exogeneity.</p>
 <p>However, under endogeneity (<a href="#eq-endogen">Equation&nbsp;<span>7.2</span></a>) the projection coefficient <span class="math inline">\(\beta^*\)</span> does not equal the structural parameter <span class="math inline">\((\beta^*\neq \beta):\)</span> <span class="math display">\[
 \begin{align*}
@@ -322,7 +321,7 @@ E(X_i\varepsilon_i^*)=0.
 <section id="examples-for-structural-equationsmodels" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="examples-for-structural-equationsmodels"><span class="header-section-number">7.2</span> Examples for Structural Equations/Models</h2>
 <p>The structural model approach in econometrics goes back to the seminal paper <em>The probability approach in econometrics</em> by <span class="citation" data-cites="Haavelmo1944">Haavelmo (<a href="#ref-Haavelmo1944" role="doc-biblioref">1944</a>)</span>.</p>
-<p>Under the structural approach one, first, specifies a probabilistic economic model (taking into account economic theory), and then performs a quantitative analysis under the assumption that the economic model is correctly specified. This approach is reflected by Assumption 1 in <a href="03-Multiple-Linear-Regression.html"><span>Chapter&nbsp;3</span></a>. Researchers often describe this as “taking their model seriously”. A criticism of the structural approach is that it is misleading to treat an economic model as correctly specified. Rather, it is more accurate to view a model as a useful abstraction or approximation.</p>
+<p>Under the structural approach one, first, specifies a probabilistic economic model (taking into account economic theory), and then performs a quantitative analysis under the assumption that the economic model is correctly specified. This approach is reflected by Assumption 1 in <span class="quarto-unresolved-ref">?sec-MLR</span>. Researchers often describe this as “taking their model seriously”. A criticism of the structural approach is that it is misleading to treat an economic model as correctly specified. Rather, it is more accurate to view a model as a useful abstraction or approximation.</p>
 <div id="exm-MeasurementError" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7.1 (Measurement error in the regressor) </strong></span><br></p>
 <p>Suppose that:</p>
@@ -330,7 +329,7 @@ E(X_i\varepsilon_i^*)=0.
 <li><span class="math inline">\((Y_i,Z_i)\)</span> is a multivariate random variable i.i.d. across <span class="math inline">\(i=1,\dots,n\)</span></li>
 <li><span class="math inline">\(E(Y_i|Z_i)=Z_i'\beta\)</span></li>
 <li><span class="math inline">\(\beta\)</span> is the structural parameter</li>
-<li><span class="math inline">\(Y_i = Z_i'\beta + \varepsilon_i\)</span> is the structural equation for which our model assumptions of <a href="03-Multiple-Linear-Regression.html#sec-LinModAssumptions"><span>Section&nbsp;3.1</span></a> can be justified.</li>
+<li><span class="math inline">\(Y_i = Z_i'\beta + \varepsilon_i\)</span> is the structural equation for which our model assumptions of <span class="quarto-unresolved-ref">?sec-LinModAssumptions</span> can be justified.</li>
 </ul>
 <p>Unfortunately, <span class="math inline">\(Z_i\)</span> is not observed (latent), instead we observe a noisy version of <span class="math inline">\(Z_i\)</span> <span class="math display">\[
 X_i=Z_i + u_i,
