@@ -282,15 +282,15 @@ div.csl-indent {
 <p><strong>Example:</strong> If we toss a coin twice then <span class="math inline">\(\Omega=\{H H, H T, T H, T T\}.\)</span> The event that the first toss is heads is <span class="math inline">\(A=\{H H, H T\}.\)</span></p>
 <p><strong>Example:</strong> Let <span class="math inline">\(\omega\)</span> be the outcome of a measurement of some physical quantity, for example, temperature. Then <span class="math inline">\(\Omega=\mathbb{R}=(-\infty, \infty).\)</span> The event that the measurement is larger than 10 but less than or equal to 23 is <span class="math inline">\(A=(10,23].\)</span></p>
 <p><strong>Example:</strong> If we toss a coin forever then the sample space is the infinite set <span class="math inline">\(\Omega=\left\{\omega=\left(\omega_{1}, \omega_{2}, \omega_{3}, \ldots,\right)|\omega_{i} \in\{H, T\}\right\}\)</span> Let <span class="math inline">\(A\)</span> be the event that the first head appears on the third toss. Then <span class="math inline">\(A=\left\{\left(\omega_{1}, \omega_{2}, \omega_{3}, \ldots,\right)| \omega_{1}=T, \omega_{2}=T, \omega_{3}=H, \omega_{i} \in\{H, T\} \text { for } i&gt;3\right\}.\)</span></p>
-<p>Given an event <span class="math inline">\(A,\)</span> let <span class="math inline">\(A^{c}=\{\omega \in \Omega ; \omega \notin A\}\)</span> denote the <strong>complement</strong> of <span class="math inline">\(A\)</span>. Informally, <span class="math inline">\(A^{c}\)</span> can be read as “not <span class="math inline">\(A\)</span>.” The complement of <span class="math inline">\(\Omega\)</span> is the empty set <span class="math inline">\(\emptyset\)</span>. The <strong>union</strong> of events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined as <span class="math display">\[
+<p>Given an event <span class="math inline">\(A,\)</span> let <span class="math inline">\(A^{c}=\{\omega \in \Omega | \omega \notin A\}\)</span> denote the <strong>complement</strong> of <span class="math inline">\(A\)</span>. Informally, <span class="math inline">\(A^{c}\)</span> can be read as “not <span class="math inline">\(A\)</span>.” The complement of <span class="math inline">\(\Omega\)</span> is the empty set <span class="math inline">\(\emptyset\)</span>. The <strong>union</strong> of events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined as <span class="math display">\[
 A\cup B=\{\omega \in \Omega|\omega\in A\text{ or }\omega \in B\text{ or }\omega\in\text{ both}\}
 \]</span> which can be thought of as “<span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span>.” If <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> is a sequence of sets then <span class="math display">\[
-\bigcup_{i=1}^{\infty} A_{i}=\left\{\omega \in \Omega: \omega \in A_{i} \text { for at least one i }\right\}.
+\bigcup_{i=1}^{\infty} A_{i}=\left\{\omega \in \Omega | \omega \in A_{i} \text { for at least one i }\right\}.
 \]</span> The <strong>intersection</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined as <span class="math display">\[
-A \cap B=\{\omega \in \Omega ; \omega \in A\text{ and }\omega \in B\}
+A \cap B=\{\omega \in \Omega | \omega \in A\text{ and }\omega \in B\}
 \]</span> which reads as “<span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.” Often <span class="math inline">\(A \cap B\)</span> is also written shortly as <span class="math inline">\(AB\)</span> or as <span class="math inline">\(A,B.\)</span></p>
 <p>If <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> is a sequence of sets then <span class="math display">\[
-\bigcap_{i=1}^{\infty} A_{i}=\left\{\omega \in \Omega: \omega \in A_{i} \text { for all i }\right\}.
+\bigcap_{i=1}^{\infty} A_{i}=\left\{\omega \in \Omega | \omega \in A_{i} \text { for all i }\right\}.
 \]</span></p>
 <p>If every element of <span class="math inline">\(A\)</span> is also contained in <span class="math inline">\(B\)</span> we write <span class="math inline">\(A \subset B\)</span> or, equivalently, <span class="math inline">\(B \supset A\)</span>. If <span class="math inline">\(A\)</span> is a finite set, let <span class="math inline">\(|A|\)</span> denote the number of elements in <span class="math inline">\(A .\)</span> We say that <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> are <strong>disjoint</strong> or <strong>mutually exclusive</strong> if <span class="math inline">\(A_{i} \cap A_{j}=\emptyset\)</span> whenever <span class="math inline">\(i \neq j\)</span>. For example, <span class="math inline">\(A_{1}=[0,1), A_{2}=[1,2), A_{3}=[2,3), \ldots\)</span> are disjoint. A <strong>partition</strong> of <span class="math inline">\(\Omega\)</span> is a sequence of disjoint sets <span class="math inline">\(A_{1}, A_{2}, \ldots\)</span> such that <span class="math inline">\(\bigcup_{i=1}^{\infty} A_{i}=\Omega\)</span>.</p>
 <p><strong>Summary:</strong> Sample space and events</p>
@@ -333,8 +333,24 @@ A \subset B &amp;\text{ set inclusion }(A \text{ is a subset of or equal to }B)\
 <p><span class="math display">\[
 P\left(\bigcup_{i=1}^{\infty} A_{i}\right)=\sum_{i=1}^{\infty} P\left(A_{i}\right).
 \]</span></p>
-<p><strong>Note:</strong> It is not always possible to assign a probability to <em>every</em> event <span class="math inline">\(A\)</span> if the sample space is large. For instance, in the case of <span class="math inline">\(\Omega=\mathbb{R}\)</span> strange things can happen. There are pathological sets (e.g.&nbsp;Vitali sets) that simply break down the mathematics since they are non-measurable (i.e.&nbsp;we cannot assign probabilities to them). Therefore, in cases like <span class="math inline">\(\Omega=\mathbb{R}\)</span>, we assign probabilities to a <em>limited</em> class of sets called a <strong><span class="math inline">\(\sigma\)</span>-field</strong> or <strong><span class="math inline">\(\sigma\)</span>-algebra</strong>. For <span class="math inline">\(\Omega=\mathbb{R}\)</span>, the canonical <strong><span class="math inline">\(\sigma\)</span>-algebra</strong> is the <strong>Borel <span class="math inline">\(\sigma\)</span>-algebra</strong>. The Borel <span class="math inline">\(\sigma\)</span>-algebra on <span class="math inline">\(\mathbb{R}\)</span> is generated by the collection of all open subsets of <span class="math inline">\(\mathbb{R}\)</span>. In this course, we use the Borel <span class="math inline">\(\sigma\)</span>-algebra and fortunately we do not have to bother with it any further. It’s there lurking in the background making things work for us.</p>
-<p>One can derive many properties of <span class="math inline">\(P\)</span> from the axioms. Here are a few:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Sigma-Algebra
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is not always possible to assign a probability to <em>every</em> event <span class="math inline">\(A\)</span> if the sample space is large. For instance, in the case of <span class="math display">\[
+\Omega=\mathbb{R}
+\]</span> strange things can happen. There are pathological sets (e.g.&nbsp;Vitali sets) that simply break down the mathematics since they are non-measurable (i.e.&nbsp;we cannot assign probabilities to them). Therefore, in cases like <span class="math inline">\(\Omega=\mathbb{R}\)</span>, we assign probabilities to a <em>limited</em> class of sets called a <strong><span class="math inline">\(\sigma\)</span>-field</strong> or <strong><span class="math inline">\(\sigma\)</span>-algebra</strong>.</p>
+<p>For <span class="math inline">\(\Omega=\mathbb{R}\)</span>, the canonical <strong><span class="math inline">\(\sigma\)</span>-algebra</strong> is the <strong>Borel <span class="math inline">\(\sigma\)</span>-algebra</strong>. The Borel <span class="math inline">\(\sigma\)</span>-algebra on <span class="math inline">\(\mathbb{R}\)</span> is generated by the collection of <strong>all open subsets of <span class="math inline">\(\mathbb{R}\)</span></strong>.</p>
+<p>In this course, we use the Borel <span class="math inline">\(\sigma\)</span>-algebra and fortunately we do not have to bother with it any further. It’s there lurking in the background making things work for us.</p>
+</div>
+</div>
+<p>One can derive many properties of <span class="math inline">\(P\)</span> from the three axioms. Here are a few:</p>
 <ul>
 <li><span class="math inline">\(P(\emptyset)=0\)</span></li>
 <li><span class="math inline">\(A \subset B\Rightarrow P(A) \leq P(B)\)</span></li>
@@ -346,10 +362,33 @@ P\left(\bigcup_{i=1}^{\infty} A_{i}\right)=\sum_{i=1}^{\infty} P\left(A_{i}\righ
 <p><span class="math display">\[
 P(A \cup B)=P(A)+P(B)-P(A B).
 \]</span></p>
-<p><strong>Example:</strong> Two consecutive coin tosses. Let <span class="math inline">\(H_{1}\)</span> be the event that heads occurs on toss 1 and let <span class="math inline">\(H_{2}\)</span> be the event that heads occurs on toss 2. If all outcomes are equally likely, that is, <span class="math display">\[
-P\left(\left\{H_{1}, H_{2}\right\}\right)=P\left(\left\{H_{1}, T_{2}\right\}\right)=P\left(\left\{T_{1}, H_{2}\right\}\right)=P\left(\left\{T_{1}, T_{2}\right\}\right)=1 / 4,
-\]</span> then <span class="math display">\[
-P\left(H_{1} \cup H_{2}\right)=P\left(H_{1}\right)+P\left(H_{2}\right)-P\left(H_{1} H_{2}\right)=\frac{1}{2}+\frac{1}{2}-\frac{1}{4}=\frac{3}{4}.
+<p><strong>Example:</strong> Two consecutive coin tosses. Let <span class="math inline">\(H_{1}\)</span> be the event that heads occurs on toss 1 and let <span class="math inline">\(H_{2}\)</span> be the event that heads occurs on toss 2. Likewise for <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2.\)</span> Let us consider “fair” coins, i.e., all outcomes are equally likely. Then<br>
+<!-- $$
+P\left(\{H_{1},H_2\}\right)=P\left(H_{1}\right)+P\left(H_{2}\right)=\frac{1}{2}+\frac{1}{2}=1
+$$
+$$
+P\left(\{T_{1},T_2\}\right)=P\left(T_{1}\right)+P\left(T_{2}\right)=\frac{1}{2}+\frac{1}{2}=1
+$$ --> <!-- $$
+P\left(H_{1}\right)=P\left(H_{2}\right)=P\left(T_{1}\right)=P\left(T_{2}\right)=1 / 2
+=P\left(\left\{H_{1}, T_{2}\right\}\right)+P\left(\left\{T_{1}, H_{2}\right\}\right)+P\left(\left\{T_{1}, T_{2}\right\}\right)
+$$  --> <!-- and --> <span class="math display">\[
+\begin{align*}
+&amp;P\left(\left\{\left\{H_{1}, H_{2}\right\},
+               \left\{H_{1}, T_{2}\right\},
+               \left\{T_{1}, H_{2}\right\},
+               \left\{T_{1}, T_{2}\right\}\right\}\right)\\[2ex]
+&amp;=P\left(\left\{H_{1}, H_{2}\right\}\right)+
+  P\left(\left\{H_{1}, T_{2}\right\}\right)+
+  P\left(\left\{T_{1}, H_{2}\right\}\right)+
+  P\left(\left\{T_{1}, T_{2}\right\}\right)=\\[2ex]
+&amp;=\frac{1}{4}+\frac{1}{4}+\frac{1}{4}+\frac{1}{4}=1.               
+\end{align*}
+\]</span> Therefore,<br>
+<span class="math display">\[
+\begin{align*}
+P\left(H_{1} \cup H_{2}\right)&amp;=P\left(H_{1}\right)+P\left(H_{2}\right)-P\left(H_{1} H_{2}\right)\\[2ex]
+&amp;=\frac{1}{2}+\frac{1}{2}-\frac{1}{4}=\frac{3}{4}.
+\end{align*}
 \]</span></p>
 <section id="probabilities-as-frequencies" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="probabilities-as-frequencies">Probabilities as frequencies</h4>
