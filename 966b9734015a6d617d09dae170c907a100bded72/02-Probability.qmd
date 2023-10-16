@@ -134,11 +134,11 @@ $$  -->
 <!-- and -->
 $$
 \begin{align*}
-&P\left(\left\{\left\{H_{1}, H_{2}\right\},
-               \left\{H_{1}, T_{2}\right\},
-               \left\{T_{1}, H_{2}\right\},
-               \left\{T_{1}, T_{2}\right\}\right\}\right)\\[2ex]
-&=P\left(\left\{H_{1}, H_{2}\right\}\right)+
+%&P\left(\left\{H_{1}, H_{2}\right\} \cup
+%        \left\{H_{1}, T_{2}\right\} \cup
+%        \left\{T_{1}, H_{2}\right\} \cup
+%        \left\{T_{1}, T_{2}\right\}\right)\\[2ex]
+&P\left(\left\{H_{1}, H_{2}\right\}\right)+
   P\left(\left\{H_{1}, T_{2}\right\}\right)+
   P\left(\left\{T_{1}, H_{2}\right\}\right)+
   P\left(\left\{T_{1}, T_{2}\right\}\right)=\\[2ex]
@@ -154,7 +154,7 @@ P\left(H_{1} \cup H_{2}\right)&=P\left(H_{1}\right)+P\left(H_{2}\right)-P\left(H
 $$
 
 
-#### Probabilities as frequencies {-}
+#### Probabilities as relative frequencies {-}
 
 One can interpret $P(A)$ in terms of **frequencies**. That is, $P(A)$ is the (infinitely) long run proportion of times that $A$ is true in repetitions. For example, if we say that the probability of heads is $1 / 2$, i.e $P(H)=1/2$ we mean that if we flip the coin many times then the proportion of times we get heads tends to $1 / 2$ as the number of tosses increases.  An infinitely long, unpredictable sequence of tosses whose limiting proportion tends to a constant is an idealization, much like the idea of a straight line in geometry. 
 
@@ -162,7 +162,7 @@ One can interpret $P(A)$ in terms of **frequencies**. That is, $P(A)$ is the (in
 The following `R` codes approximates the probability $P(H)=1/2$ using 5, 50 and 5,000 many (pseudo) random coin flips:
 ```{r}
 set.seed(869)
-## 1 (fair) coin-flip:
+## 5 (fair) coin-flips:
 results <- sample(x = c("H", "T"), size = 5, replace = TRUE)
 ## Relative frequency of "H" in 5 coin-flips
 length(results[results=="H"])/5

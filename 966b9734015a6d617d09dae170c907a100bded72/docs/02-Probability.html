@@ -373,11 +373,11 @@ P\left(H_{1}\right)=P\left(H_{2}\right)=P\left(T_{1}\right)=P\left(T_{2}\right)=
 =P\left(\left\{H_{1}, T_{2}\right\}\right)+P\left(\left\{T_{1}, H_{2}\right\}\right)+P\left(\left\{T_{1}, T_{2}\right\}\right)
 $$  --> <!-- and --> <span class="math display">\[
 \begin{align*}
-&amp;P\left(\left\{\left\{H_{1}, H_{2}\right\},
-               \left\{H_{1}, T_{2}\right\},
-               \left\{T_{1}, H_{2}\right\},
-               \left\{T_{1}, T_{2}\right\}\right\}\right)\\[2ex]
-&amp;=P\left(\left\{H_{1}, H_{2}\right\}\right)+
+%&amp;P\left(\left\{H_{1}, H_{2}\right\} \cup
+%        \left\{H_{1}, T_{2}\right\} \cup
+%        \left\{T_{1}, H_{2}\right\} \cup
+%        \left\{T_{1}, T_{2}\right\}\right)\\[2ex]
+&amp;P\left(\left\{H_{1}, H_{2}\right\}\right)+
   P\left(\left\{H_{1}, T_{2}\right\}\right)+
   P\left(\left\{T_{1}, H_{2}\right\}\right)+
   P\left(\left\{T_{1}, T_{2}\right\}\right)=\\[2ex]
@@ -390,13 +390,13 @@ P\left(H_{1} \cup H_{2}\right)&amp;=P\left(H_{1}\right)+P\left(H_{2}\right)-P\le
 &amp;=\frac{1}{2}+\frac{1}{2}-\frac{1}{4}=\frac{3}{4}.
 \end{align*}
 \]</span></p>
-<section id="probabilities-as-frequencies" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="probabilities-as-frequencies">Probabilities as frequencies</h4>
+<section id="probabilities-as-relative-frequencies" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="probabilities-as-relative-frequencies">Probabilities as relative frequencies</h4>
 <p>One can interpret <span class="math inline">\(P(A)\)</span> in terms of <strong>frequencies</strong>. That is, <span class="math inline">\(P(A)\)</span> is the (infinitely) long run proportion of times that <span class="math inline">\(A\)</span> is true in repetitions. For example, if we say that the probability of heads is <span class="math inline">\(1 / 2\)</span>, i.e <span class="math inline">\(P(H)=1/2\)</span> we mean that if we flip the coin many times then the proportion of times we get heads tends to <span class="math inline">\(1 / 2\)</span> as the number of tosses increases. An infinitely long, unpredictable sequence of tosses whose limiting proportion tends to a constant is an idealization, much like the idea of a straight line in geometry.</p>
 <p>The following <code>R</code> codes approximates the probability <span class="math inline">\(P(H)=1/2\)</span> using 5, 50 and 5,000 many (pseudo) random coin flips:</p>
-<div class="cell" data-hash="02-Probability_cache/html/unnamed-chunk-1_64f8b71b3edf37708793def7515dda5a">
+<div class="cell" data-hash="02-Probability_cache/html/unnamed-chunk-1_691cf798fbc09baecce67c246e2f9740">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">869</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 (fair) coin-flip:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 (fair) coin-flips:</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">"H"</span>, <span class="st">"T"</span>), <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Relative frequency of "H" in 5 coin-flips</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(results[results<span class="sc">==</span><span class="st">"H"</span>])<span class="sc">/</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
