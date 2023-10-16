@@ -167,12 +167,12 @@ results <- sample(x = c("H", "T"), size = 5, replace = TRUE)
 ## Relative frequency of "H" in 5 coin-flips
 length(results[results=="H"])/5
 
-## 10 (fair) coin-flips:
+## 50 (fair) coin-flips:
 results <- sample(x = c("H", "T"), size = 50, replace = TRUE)
 ## Relative frequency of "H" in 50 coin-flips
 length(results[results=="H"])/50
 
-## 100000 (fair) coin-flips:
+## 5000 (fair) coin-flips:
 results <- sample(x = c("H", "T"), size = 5000, replace = TRUE)
 ## Relative frequency of "H" in 5000 coin-flips
 length(results[results=="H"])/5000
