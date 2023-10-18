@@ -1054,11 +1054,11 @@ stargazer(lm_obj, lm_obj,
 ```
 
 
-## Exercises
+<!-- ## Exercises -->
 
 <!-- * [Exercises for Chapter 6](Exercises/Ch6_Exercises.pdf) -->
 
-* [Exercises of Chapter 6 with Solutions](Exercises/Ch6_Exercises_with_Solutions.pdf)
+<!-- * [Exercises of Chapter 6 with Solutions](Exercises/Ch6_Exercises_with_Solutions.pdf) -->
 
 <!-- 
 ### Variance Inflation

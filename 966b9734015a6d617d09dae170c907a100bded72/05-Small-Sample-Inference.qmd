@@ -1245,11 +1245,11 @@ plot(lm_obj, which = 1)
 Lukily, the data set `DoctorVisits` actually has a **large sample size** of $n=$ `r nrow(DoctorVisits)` and thus there is a way out of this problem: The large sample inference framework introduced in the next chapter. 
 
 
-## Exercises
+<!-- ## Exercises -->
 
 <!-- * [Exercises for Chapter 5](Exercises/Ch5_Exercises.pdf) -->
 
-* [Exercises of Chapter 5 with Solutions](Exercises/Ch5_Exercises_with_Solutions.pdf)
+<!-- * [Exercises of Chapter 5 with Solutions](Exercises/Ch5_Exercises_with_Solutions.pdf) -->
 
 ## References {-}
 

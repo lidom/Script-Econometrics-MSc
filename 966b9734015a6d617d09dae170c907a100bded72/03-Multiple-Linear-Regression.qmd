@@ -1158,11 +1158,11 @@ This are promising plots:
 However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. In the following chapters, we use theoretical arguments to investigate under which assumptions we can make *general* statements about the distributional properties of the estimator $\hat\beta.$ 
 
 
-## Exercises
+<!-- ## Exercises -->
 
 <!-- * [Exercises for Chapter 3](Exercises/Ch3_Exercises.pdf) -->
 
-* [Exercises of Chapter 3 with Solutions](Exercises/Ch3_Exercises_with_Solutions.pdf)
+<!-- * [Exercises of Chapter 3 with Solutions](Exercises/Ch3_Exercises_with_Solutions.pdf) -->
 
 
 ## References {-}
