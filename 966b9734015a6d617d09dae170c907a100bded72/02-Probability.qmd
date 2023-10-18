@@ -206,12 +206,17 @@ $$
 and so $A$ and $B$ are independent. In this case, we didn't assume that $A$ and $B$ are independent it just turned out that they were. 
 
 
-**Cautionary Note:** Suppose that $A$ and $B$ are **disjoint events**, i.e. $AB=\emptyset,$ each with positive probability  $P(A)>0$ and $P(B)>0.$  Can they be independent?  No!  This follows since 
+**Cautionary Note:** Suppose that $A$ and $B$ are **disjoint events**, i.e. 
+$$
+AB=\emptyset,
+$$ 
+each with positive probability, i.e., $P(A)>0$ and $P(B)>0.$  Can they be independent?  No!  This follows since 
 
 $$
-P(A B)=P(\emptyset)=0\neq P(A)P(B)>0.
+P(A B)=P(\emptyset)=0\neq \underbrace{P(A)}_{>0}\;\underbrace{P(B)}_{>0}>0.
 $$
-Except in this special case, there is no way to judge (in-)dependence by looking at the sets in a Venn diagram.
+
+Generally, there is no way to judge (in-)dependence by looking at the sets in a Venn diagram.
 
 
 **Summary:** Independent Events
@@ -219,7 +224,7 @@ Except in this special case, there is no way to judge (in-)dependence by looking
 
 1. $A$ and $B$ are independent if $P(A B)=P(A) P(B)$.
 2. Independence is sometimes assumed and sometimes derived.
-3. Disjoint events with strictly positive probabilities are not independent.
+3. Disjoint events with strictly positive probabilities are *not* independent.
 
 
 
@@ -255,12 +260,33 @@ $$
 From the definition of conditional probability, we have: 
 
 - Sensitivity of the test:
-$$P(+\mid D)=P(+\cap D) / P(D)=0.0081 /(0.0081+0.0009)=0.9$$ 
+\begin{align*}
+P(+\mid D) 
+& = \frac{P(+\cap D)}{P(D)}\\[2ex]
+& = \frac{0.0081}{(0.0081+0.0009)}=0.9
+\end{align*} 
 - Specificity of the test: 
-$$P(-\mid D^{c})=P(-\cap D^{c}) / P(D^{c})=0.9010/(0.9010+0.0900)\approx 0.9$$
+\begin{align*}
+P(-\mid D^{c})
+& = \frac{P(-\cap D^{c})}{P(D^{c})}\\[2ex]
+& = \frac{0.9010}{(0.9010+0.0900)}\approx 0.9
+\end{align*}
 
+Apparently, the test is fairly accurate: 
 
-Apparently, the test is fairly accurate. Sick people yield a positive test result 90 percent of the time and healthy people yield a negative test result about 90 percent of the time. Suppose you go for a test and get a positive result. What is the probability you have the disease? Most people answer $0.90=90\%$. The correct answer is $P(D \mid+)=P(+\cap D) / P(+)=0.0081 /(0.0081+0.0900)=0.08.$ The lesson here is that you need to compute the answer numerically. Don't trust your intuition.
+* Sick people yield a positive test result 90 percent of the time. 
+* Healthy people yield a negative test result about 90 percent of the time. 
+
+Now, suppose you go for a test and get a positive result. What is the probability you have the disease? Most people answer $0.90=90\%$. However, this conclusion is a fallacy ("prosecutor's fallacy") and not correct.
+
+The correct answer is 
+\begin{align*}
+P(D \mid+)
+& = \frac{P(+\cap D)}{P(+)}\\[2ex]
+& = \frac{0.0081}{(0.0081+0.0900)}=0.08 = 8\%.
+\end{align*} 
+
+The lesson here is that you need to compute the answer numerically. Don't trust your intuition.
 
 
 #### Independence via Conditional Probabilities {-}
@@ -284,7 +310,12 @@ Often, these formulas give us a convenient way to compute $P(A B)$ when $A$ and 
 
 
 
-**Example:** Draw two cards from a deck, without replacement. Let $A$ be the event that the first draw is Ace of Clubs and let $B$ be the event that the second draw is Queen of Diamonds. Then $P(A, B)=P(A) P(B \mid A)=(1 / 52) \times(1 / 51)$
+**Example:** Draw two cards from a deck, without replacement. Let $A$ be the event that the first draw is Ace of Clubs and let $B$ be the event that the second draw is Queen of Diamonds. Then 
+\begin{align*}
+P(A B) 
+&=P(A) \;\;P(B \mid A)\\[2ex]
+&=(1 / 52)\; (1 / 51)
+\end{align*}
 
 
 

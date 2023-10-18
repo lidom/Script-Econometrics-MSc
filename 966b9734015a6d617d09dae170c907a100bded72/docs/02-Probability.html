@@ -435,15 +435,18 @@ P\left(\bigcap_{i \in J} A_{i}\right)=\prod_{i \in J}P\left(A_{i}\right)
 <span class="math display">\[
 P(A B)=\frac{2}{6}=P(A)P(B)=\frac{1}{2}\cdot \frac{2}{3}
 \]</span> and so <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent. In this case, we didn’t assume that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent it just turned out that they were.</p>
-<p><strong>Cautionary Note:</strong> Suppose that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>disjoint events</strong>, i.e.&nbsp;<span class="math inline">\(AB=\emptyset,\)</span> each with positive probability <span class="math inline">\(P(A)&gt;0\)</span> and <span class="math inline">\(P(B)&gt;0.\)</span> Can they be independent? No! This follows since</p>
+<p><strong>Cautionary Note:</strong> Suppose that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>disjoint events</strong>, i.e.&nbsp; <span class="math display">\[
+AB=\emptyset,
+\]</span> each with positive probability, i.e., <span class="math inline">\(P(A)&gt;0\)</span> and <span class="math inline">\(P(B)&gt;0.\)</span> Can they be independent? No! This follows since</p>
 <p><span class="math display">\[
-P(A B)=P(\emptyset)=0\neq P(A)P(B)&gt;0.
-\]</span> Except in this special case, there is no way to judge (in-)dependence by looking at the sets in a Venn diagram.</p>
+P(A B)=P(\emptyset)=0\neq \underbrace{P(A)}_{&gt;0}\;\underbrace{P(B)}_{&gt;0}&gt;0.
+\]</span></p>
+<p>Generally, there is no way to judge (in-)dependence by looking at the sets in a Venn diagram.</p>
 <p><strong>Summary:</strong> Independent Events</p>
 <ol type="1">
 <li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if <span class="math inline">\(P(A B)=P(A) P(B)\)</span>.</li>
 <li>Independence is sometimes assumed and sometimes derived.</li>
-<li>Disjoint events with strictly positive probabilities are not independent.</li>
+<li>Disjoint events with strictly positive probabilities are <em>not</em> independent.</li>
 </ol>
 </section>
 <section id="conditional-probability" class="level3" data-number="2.1.4">
@@ -473,10 +476,29 @@ P(A \mid B)=\frac{P(A B)}{P(B)}.
 \end{array}
 \]</span> From the definition of conditional probability, we have:</p>
 <ul>
-<li>Sensitivity of the test: <span class="math display">\[P(+\mid D)=P(+\cap D) / P(D)=0.0081 /(0.0081+0.0009)=0.9\]</span></li>
-<li>Specificity of the test: <span class="math display">\[P(-\mid D^{c})=P(-\cap D^{c}) / P(D^{c})=0.9010/(0.9010+0.0900)\approx 0.9\]</span></li>
+<li>Sensitivity of the test: <span class="math display">\[\begin{align*}
+P(+\mid D)
+&amp; = \frac{P(+\cap D)}{P(D)}\\[2ex]
+&amp; = \frac{0.0081}{(0.0081+0.0009)}=0.9
+\end{align*}\]</span></li>
+<li>Specificity of the test: <span class="math display">\[\begin{align*}
+P(-\mid D^{c})
+&amp; = \frac{P(-\cap D^{c})}{P(D^{c})}\\[2ex]
+&amp; = \frac{0.9010}{(0.9010+0.0900)}\approx 0.9
+\end{align*}\]</span></li>
 </ul>
-<p>Apparently, the test is fairly accurate. Sick people yield a positive test result 90 percent of the time and healthy people yield a negative test result about 90 percent of the time. Suppose you go for a test and get a positive result. What is the probability you have the disease? Most people answer <span class="math inline">\(0.90=90\%\)</span>. The correct answer is <span class="math inline">\(P(D \mid+)=P(+\cap D) / P(+)=0.0081 /(0.0081+0.0900)=0.08.\)</span> The lesson here is that you need to compute the answer numerically. Don’t trust your intuition.</p>
+<p>Apparently, the test is fairly accurate:</p>
+<ul>
+<li>Sick people yield a positive test result 90 percent of the time.</li>
+<li>Healthy people yield a negative test result about 90 percent of the time.</li>
+</ul>
+<p>Now, suppose you go for a test and get a positive result. What is the probability you have the disease? Most people answer <span class="math inline">\(0.90=90\%\)</span>. However, this conclusion is a fallacy (“prosecutor’s fallacy”) and not correct.</p>
+<p>The correct answer is <span class="math display">\[\begin{align*}
+P(D \mid+)
+&amp; = \frac{P(+\cap D)}{P(+)}\\[2ex]
+&amp; = \frac{0.0081}{(0.0081+0.0900)}=0.08 = 8\%.
+\end{align*}\]</span></p>
+<p>The lesson here is that you need to compute the answer numerically. Don’t trust your intuition.</p>
 <section id="independence-via-conditional-probabilities" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="independence-via-conditional-probabilities">Independence via Conditional Probabilities</h4>
 <p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>independent events</strong> then <span class="math display">\[
@@ -487,7 +509,11 @@ P(A B)=P(A \mid B) P(B)
 \]</span> and also <span class="math display">\[
 P(A B)=P(B \mid A) P(A).
 \]</span> Often, these formulas give us a convenient way to compute <span class="math inline">\(P(A B)\)</span> when <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not independent.</p>
-<p><strong>Example:</strong> Draw two cards from a deck, without replacement. Let <span class="math inline">\(A\)</span> be the event that the first draw is Ace of Clubs and let <span class="math inline">\(B\)</span> be the event that the second draw is Queen of Diamonds. Then <span class="math inline">\(P(A, B)=P(A) P(B \mid A)=(1 / 52) \times(1 / 51)\)</span></p>
+<p><strong>Example:</strong> Draw two cards from a deck, without replacement. Let <span class="math inline">\(A\)</span> be the event that the first draw is Ace of Clubs and let <span class="math inline">\(B\)</span> be the event that the second draw is Queen of Diamonds. Then <span class="math display">\[\begin{align*}
+P(A B)
+&amp;=P(A) \;\;P(B \mid A)\\[2ex]
+&amp;=(1 / 52)\; (1 / 51)
+\end{align*}\]</span></p>
 <p><strong>Summary:</strong> Conditional Probability</p>
 <ol type="1">
 <li>If <span class="math inline">\(P(B)&gt;0\)</span> then <span class="math inline">\(P(A \mid B)=P(A B)/P(B)\)</span></li>
