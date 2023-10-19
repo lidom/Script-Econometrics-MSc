@@ -403,7 +403,7 @@ Alternatively to cumulative distribution functions one can use **probability (ma
 
 #### Probability Functions for Discrete Random Variables
 
-A random variable $X$ is \textit{discrete} if it takes only countably many values 
+A random variable $X$ is *discrete* if it takes only countably many values 
 $$
 X\in\{x_{1}, x_{2}, \ldots\}.
 $$ 
@@ -418,7 +418,7 @@ $$
 
 #### Density Functions for Continuous Random Variables
 
-A random variable $X$ is \textit{continuous} if there exists a function $f_{X}$ such that 
+A random variable $X$ is *continuous* if there exists a function $f_{X}$ such that 
 
 - $f_{X}(x)\geq 0$ for all $x$
 - $\int_{-\infty}^{\infty}f_{X}(x)dx=1$ and 
@@ -467,11 +467,27 @@ persp(x, y, z, theta = -30, phi = 25,
 
 #### Multidimensional Probability Function 
 
-**Discrete random vectors:** $X$ takes only countably many (i.e. discrete) values $\mathbf{x}_1,\mathbf{x}_2,\dots\in\mathbb{R}^d$ and has a **multidimensional probability function** $p(\mathbf{x}_i)=P(X=\mathbf{x}_i)$ for $i=1,2,\dots$. That is, 
+**Discrete random vectors:** $X$ takes only countably many (i.e. discrete) values 
+$$
+X\in\{x_1, x_2,\dots\} 
+$$
+with 
+$$
+x_i=\left(\begin{matrix}x_{i1}\\\vdots \\ x_{id}\end{matrix}\right)\in\mathbb{R}^d
+$$
+for $i=1,2,\dots$
+
+**Multidimensional probability mass function** 
+
+$$
+f_{X}(x)=\mathbb{P}(X=x)\quad\text{for all}\quad x\in\{x_1,x_2,\dots\}
+$$
+
+<!-- $p(\mathbf{x}_i)=P(X=\mathbf{x}_i)$ for $i=1,2,\dots$. That is, 
 \begin{align*}
 P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=
 \sum_{\mathbf{x}_i\in [a_1,b_1]\times\dots\times [a_d,b_d]}p(\mathbf{x}_i).
-\end{align*}
+\end{align*} -->
 
 
 
@@ -479,12 +495,15 @@ P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=
 
 **Continuous random vectors:** $X$ takes values in $\mathbb{R}^d$ and has a **multidimensional density function** $f(x_1,\dots,x_d)$. That is, 
 \begin{align*}
-P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=\int\limits_{a_d}^{b_d}\dots \int\limits _{a_1}^{b_1}f(x_1,\dots,x_d)dx_1\dots dx_d.
+&P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=\\[2ex]
+=&\int\limits_{a_d}^{b_d}\dots \int\limits _{a_1}^{b_1}f(x_1,\dots,x_d)dx_1\dots dx_d.
 \end{align*}
-In the following we focus only on continuous random vectors, but the discrete cases are treated analogously. Properties of **multivariate density** functions: 
+
+Properties of **multivariate density** functions: 
 
 - $\displaystyle f(x_1,\dots,x_d)\geq 0$\par
 - $\displaystyle \int_{-\infty}^{\infty}\dots \int_{-\infty}^{\infty}f(x_1,\dots,x_d)dx_1\dots dx_d=1$
+
 
 
 ```{r, fig.align="center"}
@@ -502,6 +521,9 @@ persp(x, y, z, theta = -30, phi = 25,
       shade = 0.75, col = "blue", expand = 0.5, r = 2, 
       ltheta = 25, ticktype = "detailed")
 ```
+
+
+In the following we focus only on continuous random vectors, but the discrete cases are treated analogously.
 
 
 #### Marginal Distribution Functions and Marginal Density Functions 
@@ -573,7 +595,12 @@ $$
 X_1=x_1,\ldots, X_{j-1}=x_{j-1}, X_{j+1}=x_{j+1},\ldots,X_d=x_d.
 $$
 That is, the distribution of $X_j$ when fixing the values of  
-$X_1=x_1,\ldots,$ $X_{j-1}=x_{j-1},$ $X_{j+1}=x_{j+1},\ldots, X_d=x_d$.  An important tool is here the **conditional density** of, for instance, $X_1$ given $X_2=x_2,\ldots,X_d=x_d$:
+$$
+X_1=x_1,\ldots, X_{j-1}=x_{j-1}, X_{j+1}=x_{j+1},\ldots, X_d=x_d.
+$$  
+
+
+An important tool is here the **conditional density** of, for instance, $X_1$ given $X_2=x_2,\ldots,X_d=x_d$:
 $$
 f(x_1\mid x_2,\ldots,x_d)=\frac{f(x_1,x_2,\ldots,x_d)}{f_{X_{2},\ldots,X_{d}}(x_2,\ldots,x_d)},
 $$
@@ -732,7 +759,7 @@ Random variables $X_1,\dots,X_d$ are mutually **independent** if for all $x=(x_1
 
 The following holds true:
 
-- Two real-valued random variables $X$ and $Y$ are independent from each other \textit{if and only if} the marginal density of $X$ equals the conditional density of $X$ given $Y=y$ for all $y\in\mathbb{R}$,
+- Two real-valued random variables $X$ and $Y$ are independent from each other *if and only if* the marginal density of $X$ equals the conditional density of $X$ given $Y=y$ for all $y\in\mathbb{R}$,
 $$f_X(x)=f_{X|Y}(x\mid y)\quad \text{ for all } y\in\mathbb{R}.$$
 Of course, the same statement applies to the marginal density of $Y$ given $X=x$ for all $x\in\mathbb{R}$. That is, $X$ and $Y$ are two independent real-valued random variables \textit{if and only if} 
 $f_Y(y)=f_{Y|X}(y\mid x)$ for all $x\in\mathbb{R}.$

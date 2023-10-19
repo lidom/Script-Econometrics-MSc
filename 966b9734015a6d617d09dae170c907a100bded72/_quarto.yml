@@ -12,8 +12,8 @@ book:
     - index.qmd
     - 01-Introduction-to-R.qmd
     - 02-Probability.qmd
-    - 03-Multiple-Linear-Regression.qmd
     - 04-Monte-Carlo-Simulations.qmd
+    - 03-Multiple-Linear-Regression.qmd
     - 05-Small-Sample-Inference.qmd
     - 06-Asymptotics.qmd
     - 07-Instrumental-Variables.qmd
