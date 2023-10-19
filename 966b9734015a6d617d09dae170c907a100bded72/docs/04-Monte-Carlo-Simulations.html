@@ -257,24 +257,35 @@ X_i\overset{iid}{\sim} F_X
 <p>The observed data <span class="math inline">\(X_{1,obs},\dots,X_{n,obs}\)</span> is assumed to be a certain realization of the random sample <span class="math inline">\(X_1,\dots,X_n\)</span>. The corresponding <strong>realization</strong> of the estimator is called an <strong>estimate</strong> of <span class="math inline">\(\theta\)</span> <span class="math display">\[
 \hat\theta_{n,obs}=\hat\theta(X_{1,obs},\dots,X_{n,obs}).
 \]</span></p>
-<p><strong>Note:</strong> Often we do not use a distinguishing notation, but denote both the estimator and its realization as <span class="math inline">\(\hat\theta_{n}\)</span>. This ambiguity is often convenient since both points of views can make sense.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Often we do not use a distinguishing notation, but denote both the estimator and its realization as <span class="math inline">\(\hat\theta_{n}\)</span>. This ambiguity is often convenient since both points of views can make sense in a given context.</p>
+</div>
+</div>
 <p><strong>Examples:</strong></p>
 <ul>
-<li>The sample mean as an estimator of the population mean:</li>
+<li><p>The sample mean as an estimator of the population mean <span class="math inline">\(E(X_i) =\theta\)</span>: <span class="math display">\[
+\hat\theta_n=\bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i
+\]</span></p></li>
+<li><p>The sample variance as an estimator of the population variance <span class="math inline">\(Var(X_i) =\theta\)</span>: <span class="math display">\[
+\hat\theta_n=s_{UB}^2=\frac{1}{n-1}\sum_{i=1}^n\left(X_i - \bar{X}_n\right)^2
+\]</span></p></li>
 </ul>
-<p><span class="math display">\[
-\hat\theta_n=\bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i \approx E(X_i) =\theta
-\]</span></p>
-<ul>
-<li>The sample variance as an estimator of the population variance:</li>
-</ul>
-<p><span class="math display">\[
-\hat\theta_n=s_{UB}^2=\frac{1}{n-1}\sum_{i=1}^n\left(X_i - \bar{X}_n\right)^2 \approx Var(X_i) =\theta
-\]</span></p>
 </section>
 <section id="deriving-the-distribution-of-estimators" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="deriving-the-distribution-of-estimators"><span class="header-section-number">3.2</span> Deriving the Distribution of Estimators</h2>
-<p>Usually, we do not know the distribution <span class="math inline">\(F_X\)</span> of the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> and thus do not know the distribution of the estimator <span class="math inline">\(\hat\theta_n=\hat\theta(X_1,\dots,X_n)\)</span>. This is a fundamental statistical problem and we need to overcome this problem in order to do statistical inference (hypothesis testing, etc.). There are different possibilities to derive/approximate the distribution of an estimator <span class="math inline">\(\hat\theta_n\)</span>. In times when when computers were expensive, statisticians mainly used mathematical derivations:</p>
+<p>Usually, we do not know the distribution <span class="math inline">\(F_X\)</span> of the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> and thus do not know the distribution of the estimator <span class="math display">\[
+\hat\theta_n=\hat\theta(X_1,\dots,X_n).
+\]</span> This is a fundamental statistical problem and we need to overcome this problem in order to do statistical inference (hypothesis testing, etc.).</p>
+<p>There are different possibilities to derive/approximate the distribution of an estimator <span class="math inline">\(\hat\theta_n\)</span>. In times when when computers were expensive, statisticians mainly used mathematical derivations:</p>
 <ul>
 <li><strong>Mathematical Derivation using Distributional Assumptions.</strong> Assuming a certain distribution <span class="math inline">\(F_X\)</span> for the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> allows us to derive the <em>exact</em> distribution of <span class="math inline">\(\hat\theta_n\)</span> mathematically. (We consider this option in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a>.)
 <ul>
@@ -290,11 +301,23 @@ X_i\overset{iid}{\sim} F_X
 </ul>
 <p>With computers, we have further options to approximate the exact distribution of estimators using (pseudo-)random number generators. One example are Monte Carlo simulations:</p>
 <ul>
-<li><p><strong>Monte Carlo Simulations.</strong> Using (pseudo-)random number generators, we can draw <code>B</code> many realizations <span class="math display">\[
-(X_{1,1,obs},\dots,X_{n,1,obs}),\; (X_{1,2,obs},\dots,X_{n,2,obs}),\dots, (X_{1,B,obs},\dots,X_{n,B,obs})
-\]</span> of the random sample <span class="math inline">\(X_{1},\dots,X_{n}\)</span> from basically any distribution <span class="math inline">\(F_X\)</span> and thus can compute <code>B</code> many realizations <span class="math display">\[
-\underbrace{\hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})}_{=\hat\theta_{n,1,obs}},\;\underbrace{\hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})}_{=\hat\theta_{n,2,obs}},\dots,\underbrace{\hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})}_{=\hat\theta_{n,B,obs}}
-\]</span> of the estimator <span class="math inline">\(\hat\theta_n\)</span>. This set of realizations <span class="math inline">\(\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}\)</span> allows us then to approximate the exact distribution of <span class="math inline">\(\hat\theta_n\)</span> for given sample sizes <span class="math inline">\(n\)</span> and given distributions <span class="math inline">\(F_X\)</span>. (We use this option to validate theoretical statements in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a> and <a href="06-Asymptotics.html"><span>Chapter&nbsp;6</span></a>.)</p>
+<li><p><strong>Monte Carlo Simulations.</strong> Let’s say the distribution <span class="math inline">\(F_X\)</span> of the random sample were known. Then, using (pseudo-)random number generators, we can draw <code>B</code> many realizations <span class="math display">\[\begin{align*}
+&amp;(X_{1,1,obs},\dots,X_{n,1,obs})\\
+&amp;(X_{1,2,obs},\dots,X_{n,2,obs})\\
+&amp; \hspace{2cm}\vdots \\
+&amp;(X_{1,B,obs},\dots,X_{n,B,obs})
+\end{align*}\]</span> of the random sample <span class="math inline">\(X_{1},\dots,X_{n}\)</span> from <span class="math inline">\(F_X\)</span> and thus can compute <code>B</code> many realizations <span class="math display">\[\begin{align*}
+\hat\theta_{n,1,obs} &amp;= \hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})\\
+\hat\theta_{n,2,obs} &amp;= \hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})\\
+&amp;\vdots\\
+\hat\theta_{n,B,obs} &amp;= \hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})
+\end{align*}\]</span> of the estimator <span class="math inline">\(\hat\theta_n\)</span>. <br> This set of realizations <span class="math inline">\(\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}\)</span> allows us then to approximate the exact distribution of <span class="math inline">\(\hat\theta_n\)</span> for given sample sizes <span class="math inline">\(n\)</span> and given distributions <span class="math inline">\(F_X\)</span>, since the empirical distribution function <span class="math display">\[
+\hat{F}_{\hat{\theta}_n}(x)=\frac{1}{B}\sum_{j=1}^BI_{(\hat\theta_{n,1,obs} \leq x)}
+\]</span> approximates the true (unknown) distribution function of <span class="math inline">\(\hat{\theta}_n\)</span> <span class="math display">\[
+F_{\hat{\theta}_n}(x)=P(\hat\theta_{n} \leq x)
+\]</span> arbitrarily well as <span class="math inline">\(B\to\infty,\)</span> i.e. <span class="math display">\[
+\sup_x\left| \hat{F}_{\hat{\theta}_n}(x) - F_{\hat{\theta}_n}(x)\right|\to 0\quad\text{as}\quad B\to\infty.
+\]</span> almost surely as <span class="math inline">\(B\to\infty\)</span>; see the famous <a href="https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem">Glivenko–Cantelli theorem</a>. (We use this option to <em>validate</em> theoretical statements in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a> and <a href="06-Asymptotics.html"><span>Chapter&nbsp;6</span></a>.)</p>
 <ul>
 <li>Pro: Works for basically every distributional assumption.</li>
 <li>Con: This option can fail miserably if the distributional assumption on <span class="math inline">\(F_X\)</span> is wrong.</li>
@@ -387,13 +410,41 @@ X_i\overset{iid}{\sim} F_X
 \hat\theta_n\approx\theta,
 \]</span> and the approximation should get better as the sample size increases (i.e.&nbsp;as <span class="math inline">\(n\to\infty\)</span>).</p>
 <p>Statisticians and econometricians use different metrics to assess the approximation quality of an estimator <span class="math inline">\(\hat\theta_n\)</span>. The most prominent metrics are bias, variance, and mean squared error.</p>
+<div class="callout-note callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div id="def-bias" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.1 (Bias of <span class="math inline">\(\theta\)</span>) </strong></span>The <strong>bias</strong> of an estimator <span class="math inline">\(\hat\theta_n\)</span> is defined as</p>
 <p><span class="math display">\[
 \operatorname{Bias}\left(\hat\theta_n\right) = E\left(\hat\theta_n\right) - \theta.
 \]</span></p>
 </div>
-<p>We would like to have unbiased estimators <span class="math inline">\(\operatorname{Bias}\left(\hat\theta_n\right)=0\)</span> or at least asymptotically unbiased estimators <span class="math inline">\(\lim_{n\to\infty}\operatorname{Bias}\left(\hat\theta_n\right)=0\)</span>. If the bias of an estimator is small (or zero), we know that the estimator will have a distribution that is centered around the true (usually unknown) parameter <span class="math inline">\(\theta\)</span>; however, such an estimator may still vary a lot around <span class="math inline">\(\theta\)</span>. Therefore, is is also important to assess the variance of the estimator.</p>
+</div>
+</div>
+<p>If an estimator <span class="math inline">\(\hat\theta_n\)</span> has no bias <span class="math display">\[
+\operatorname{Bias}\left(\hat\theta_n\right)=0
+\]</span> for all <span class="math inline">\(n,\)</span> we call it an <strong>unbiased estimator</strong>. Many modern estimators are <em>not</em> unbiased. However, every estimator should <strong>asymptotically unbiased</strong>, i.e. <span class="math display">\[
+\lim_{n\to\infty}\operatorname{Bias}\left(\hat\theta_n\right)=0.
+\]</span></p>
+<p>We would like to have estimators with a small (or zero) bias.</p>
+<p>If the bias of an estimator is small (or zero), we know that the estimator will have a distribution that roughly (or exactly) centered around the true (usually unknown) parameter <span class="math inline">\(\theta.\)</span> However, such an estimator may still vary a lot around <span class="math inline">\(\theta\)</span>. Therefore, is is also important to assess the variance of the estimator.</p>
+<div class="callout-note callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div id="def-var" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.2 (Variance and Standard Error of <span class="math inline">\(\theta\)</span>) </strong></span>The <strong>variance</strong> of an estimator <span class="math inline">\(\hat\theta_n\)</span> is defined equivalently to the variance of any other random variable</p>
 <p><span class="math display">\[
@@ -402,12 +453,26 @@ Var\left(\hat\theta_n\right) = E\left[\left(\hat\theta_n - E(\hat\theta_n)\right
 \operatorname{SE}\left(\hat\theta_n\right) = \sqrt{Var\left(\hat\theta_n\right)}.
 \]</span></p>
 </div>
+</div>
+</div>
 <p>We would like to have estimators with a small as possible variance, and the variance should decline as the sample size increases, such that <span class="math inline">\(\lim_{n\to\infty}Var\left(\hat\theta_n\right)=0\)</span>.</p>
+<div class="callout-note callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div id="def-mse" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.3 (Mean Squared Error of <span class="math inline">\(\theta\)</span>) </strong></span>The <strong>mean squared error</strong> of an estimator <span class="math inline">\(\hat\theta_n\)</span> is defined as</p>
 <p><span class="math display">\[
 \operatorname{MSE}\left(\hat\theta_n\right) =  E\left[\left(\hat\theta_n - \theta\right)^2\right].
 \]</span></p>
+</div>
+</div>
 </div>
 <p>We would like to have estimators with a small as possible mean squared error, and the mean squared error should decline as the sample size increases, such that <span class="math inline">\(\lim_{n\to\infty}\operatorname{MSE}\left(\hat\theta_n\right)=0\)</span>.</p>
 <p>The following holds true:</p>
@@ -443,29 +508,22 @@ Var\left(\hat\theta_n\right) = E\left[\left(\hat\theta_n - E(\hat\theta_n)\right
 <p><strong>Step 2.</strong> Compute the corresponding <span class="math inline">\(B\)</span> many realizations of the estimator</p>
 <p><span class="math display">\[
 \underbrace{\hat\theta(X_{1,1},\dots,X_{n,1})}_{=\hat\theta_{n,1}},\;\underbrace{\hat\theta(X_{1,2},\dots,X_{n,2})}_{=\hat\theta_{n,2}},\dots,\underbrace{\hat\theta(X_{1,B},\dots,X_{n,B})}_{=\hat\theta_{n,B}}
-\]</span> <strong>Step 3.</strong> Use the sample mean as an approximation to the population mean</p>
-<p><span class="math display">\[
-\left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right) - \theta \approx E\left(\hat\theta_n\right)-\theta
-\]</span></p>
-<p>By law of large numbers this approximation gets arbitrarily precise as <span class="math inline">\(B \to \infty\)</span>.</p>
+\]</span> <strong>Step 3.</strong> Use the simulated realizations <span class="math inline">\(\hat{\theta}_{n,1},\dots,\hat{\theta}_{n,B}\)</span> to approximate the bias, variance, and the mean squared error of the estimator <span class="math inline">\(\hat{\theta}_n\)</span>:</p>
 <ul>
-<li>The bias of <span class="math inline">\(\hat\theta_n\)</span> can be approximated by</li>
+<li>The bias of <span class="math inline">\(\operatorname{Bias}\left(\hat\theta_n\right)=E\left(\hat\theta_n\right)-\theta\)</span> can be approximated by</li>
 </ul>
 <p><span class="math display">\[
-\operatorname{Bias}\left(\hat\theta_n\right)=E\left(\hat\theta_n\right)-\theta\approx\left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right) - \theta = \widehat{\operatorname{Bias}}_{MC}\left(\hat\theta_n\right)
+\widehat{\operatorname{Bias}}_{MC}\left(\hat\theta_n\right) = \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right) - \theta
 \]</span></p>
 <ul>
-<li>The variance of <span class="math inline">\(\hat\theta_n\)</span> can be approximated by</li>
+<li><p>The variance <span class="math inline">\(Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^2\right]\)</span> can be approximated by <span class="math display">\[
+\widehat{Var}_{MC}\left(\hat\theta_n\right) = \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right)\right)^2
+\]</span></p></li>
+<li><p>The mean squared error <span class="math inline">\(\operatorname{MSE}\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - \theta\right)^2\right]\)</span> can be approximated by <span class="math display">\[
+\widehat{\operatorname{MSE}}_{MC}\left(\hat\theta_n\right) = \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \theta\right)^2
+\]</span></p></li>
 </ul>
-<p><span class="math display">\[
-Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^2\right]\approx \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right)\right)^2 = \widehat{Var}_{MC}\left(\hat\theta_n\right)
-\]</span></p>
-<ul>
-<li>The mean squared error of <span class="math inline">\(\hat\theta_n\)</span> can be approximated by</li>
-</ul>
-<p><span class="math display">\[
-\operatorname{MSE}\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - \theta\right)^2\right]\approx\frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \theta\right)^2 = \widehat{\operatorname{MSE}}_{MC}\left(\hat\theta_n\right)
-\]</span></p>
+<p>By law of large numbers these approximations get arbitrarily precise as <span class="math inline">\(B \to \infty\)</span>.</p>
 <section id="example-sample-mean" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="example-sample-mean">Example: Sample Mean</h3>
 <p>The following <code>R</code> code contains a Monte Carlo simulation ( <code>B = 10000</code> replications) computing the bias, variance, and means squared error for the sample mean <span class="math inline">\((\hat\theta_n=)\bar{X}_n=\sum_{i=1}^nX_i\)</span> as the estimator of the population mean <span class="math inline">\((\theta=)\mu\)</span>. The random sample <span class="math inline">\(X_i\overset{iid}{\sim}F_X\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>, is drawn from a normal distribution <span class="math inline">\(F_X=\mathcal{N}(\mu,\sigma^2)\)</span> with mean <span class="math inline">\(\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>. We investigate the accuracy of the estimator for different sample sizes <span class="math inline">\(n\in\{5,15,50\}\)</span>. <!-- The following `R` codes generated `B = 10000` realizations of the estimator $\bar{X}_n$ for each sample size $n\in\{5,15,50\}$ and stores all these realizations in a $10000\times 3$ matrix `estimates_mat`: --></p>
@@ -553,17 +611,21 @@ Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^
 <!-- The sample mean $\bar{X}_n$ is known to be a very good estimator of the population mean $\mu$ and the above simulation results conform this.  -->
 <p>Since this example is chosen to be an extremely simple one, we can easily derive the <em>true</em> bias, variance and mean squared error values and compare them with their Monte Carlo approximations:</p>
 <ul>
-<li>True bias of <span class="math inline">\(\bar{X}_n\)</span>:</li>
+<li><p>True bias of <span class="math inline">\(\bar{X}_n\)</span>: <span class="math display">\[\begin{align*}
+\operatorname{Bias}\left(\bar{X}_n\right)
+&amp;=E\left(\frac{1}{n}\sum_{i=1}^nX_i\right) - \mu \\[2ex]
+&amp;= \left(\frac{1}{n}\sum_{i=1}^nE(X_i)\right) -\mu\\[2ex]
+&amp;= \frac{n}{n}\mu-\mu \\[2ex]
+&amp;=0,
+\end{align*}\]</span> thus the mean squared error of <span class="math inline">\(\bar{X}_n\)</span> equals the variance of <span class="math inline">\(\bar{X}_n\)</span>.</p></li>
+<li><p>True variance of <span class="math inline">\(\bar{X}_n\)</span>: <span class="math display">\[\begin{align*}
+Var\left(\bar{X}_n\right)
+&amp;=Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right)\\[2ex]
+&amp;= \frac{1}{n^2} \sum_{i=1}^nVar\left(X_i\right)\\[2ex]
+&amp;= \frac{n}{n^2}\sigma^2 \\[2ex]
+&amp;= \frac{1}{n}\sigma^2
+\end{align*}\]</span> The following table shows the true bias, true variance and true mean squared error values:</p></li>
 </ul>
-<p><span class="math display">\[
-\operatorname{Bias}\left(\bar{X}_n\right)=E\left(\frac{1}{n}\sum_{i=1}^nX_i\right) - \mu = \left(\frac{1}{n}\sum_{i=1}^nE(X_i)\right) -\mu = \frac{n}{n}\mu-\mu =0,
-\]</span> thus the mean squared error of <span class="math inline">\(\bar{X}_n\)</span> equals the variance of <span class="math inline">\(\bar{X}_n\)</span>.</p>
-<ul>
-<li>True variance of <span class="math inline">\(\bar{X}_n\)</span>:</li>
-</ul>
-<p><span class="math display">\[
-Var\left(\bar{X}_n\right)=Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right) = \frac{1}{n^2} \sum_{i=1}^nVar\left(X_i\right) = \frac{n}{n^2}\sigma^2 = \frac{5}{n}
-\]</span> The following table shows the true bias, true variance and true mean squared error values:</p>
 <div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/tbl-truebvmse_e9f85c5e8f5afa2143757c6a020a4f0a">
 <div class="cell-output-display">
 <div id="tbl-truebvmse" class="anchored">

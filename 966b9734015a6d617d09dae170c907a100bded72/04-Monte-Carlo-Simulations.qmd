@@ -25,27 +25,33 @@ $$
 \hat\theta_{n,obs}=\hat\theta(X_{1,obs},\dots,X_{n,obs}).
 $$
 
-**Note:** Often we do not use a distinguishing notation, but denote both the estimator and its realization as $\hat\theta_{n}$. This ambiguity is often convenient since both points of views can make sense. 
-
+::: {.callout-note}
+Often we do not use a distinguishing notation, but denote both the estimator and its realization as $\hat\theta_{n}$. This ambiguity is often convenient since both points of views can make sense in a given context. 
+:::
 
 **Examples:**
 
-* The sample mean as an estimator of the population mean:
-
+* The sample mean as an estimator of the population mean $E(X_i) =\theta$:
 $$
-\hat\theta_n=\bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i \approx E(X_i) =\theta
+\hat\theta_n=\bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i
 $$ 
 
-* The sample variance as an estimator of the population variance:
-
+* The sample variance as an estimator of the population variance $Var(X_i) =\theta$:
 $$
-\hat\theta_n=s_{UB}^2=\frac{1}{n-1}\sum_{i=1}^n\left(X_i - \bar{X}_n\right)^2 \approx Var(X_i) =\theta
+\hat\theta_n=s_{UB}^2=\frac{1}{n-1}\sum_{i=1}^n\left(X_i - \bar{X}_n\right)^2
 $$ 
 
 
 ## Deriving the Distribution of Estimators
 
-Usually, we do not know the distribution $F_X$ of the random sample $X_1,\dots,X_n$ and thus do not know the distribution of the estimator $\hat\theta_n=\hat\theta(X_1,\dots,X_n)$. This is a fundamental statistical problem and we need to overcome this problem in order to do statistical inference (hypothesis testing, etc.).  There are different possibilities to derive/approximate the distribution of an estimator $\hat\theta_n$.  In times when when computers were expensive, statisticians mainly used mathematical derivations:  
+Usually, we do not know the distribution $F_X$ of the random sample $X_1,\dots,X_n$ and thus do not know the distribution of the estimator 
+$$
+\hat\theta_n=\hat\theta(X_1,\dots,X_n).
+$$ 
+This is a fundamental statistical problem and we need to overcome this problem in order to do statistical inference (hypothesis testing, etc.).  
+
+
+There are different possibilities to derive/approximate the distribution of an estimator $\hat\theta_n$.  In times when when computers were expensive, statisticians mainly used mathematical derivations:  
 
 * **Mathematical Derivation using Distributional Assumptions.** Assuming a certain distribution $F_X$ for the random sample $X_1,\dots,X_n$ allows us to derive the *exact* distribution of $\hat\theta_n$ mathematically. (We consider this option in @sec-ssinf.)
   * Pro: If the distributional assumption is correct, one has *exact* inference for each sample size $n$. 
@@ -58,15 +64,34 @@ Usually, we do not know the distribution $F_X$ of the random sample $X_1,\dots,X
 
 With computers, we have further options to approximate the exact distribution of estimators using (pseudo-)random number generators. One example are Monte Carlo simulations:
 
-* **Monte Carlo Simulations.** Using (pseudo-)random number generators, we can draw `B` many realizations 
+* **Monte Carlo Simulations.** Let's say the distribution $F_X$ of the random sample were known. Then, using (pseudo-)random number generators, we can draw `B` many realizations 
+\begin{align*}
+&(X_{1,1,obs},\dots,X_{n,1,obs})\\
+&(X_{1,2,obs},\dots,X_{n,2,obs})\\
+& \hspace{2cm}\vdots \\
+&(X_{1,B,obs},\dots,X_{n,B,obs})
+\end{align*}
+of the random sample $X_{1},\dots,X_{n}$ from $F_X$ and thus can compute `B` many realizations 
+\begin{align*}
+\hat\theta_{n,1,obs} &= \hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})\\
+\hat\theta_{n,2,obs} &= \hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})\\
+&\vdots\\
+\hat\theta_{n,B,obs} &= \hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})
+\end{align*} 
+of the estimator $\hat\theta_n$. <br>
+This set of realizations $\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}$ allows us then to approximate the exact distribution of $\hat\theta_n$ for given sample sizes $n$ and given distributions $F_X$, since the empirical distribution function 
 $$
-(X_{1,1,obs},\dots,X_{n,1,obs}),\; (X_{1,2,obs},\dots,X_{n,2,obs}),\dots, (X_{1,B,obs},\dots,X_{n,B,obs})
+\hat{F}_{\hat{\theta}_n}(x)=\frac{1}{B}\sum_{j=1}^BI_{(\hat\theta_{n,1,obs} \leq x)}
 $$
-of the random sample $X_{1},\dots,X_{n}$ from basically any distribution $F_X$ and thus can compute `B` many realizations 
+approximates the true (unknown) distribution function of $\hat{\theta}_n$
 $$
-\underbrace{\hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})}_{=\hat\theta_{n,1,obs}},\;\underbrace{\hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})}_{=\hat\theta_{n,2,obs}},\dots,\underbrace{\hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})}_{=\hat\theta_{n,B,obs}}
-$$ 
-of the estimator $\hat\theta_n$. This set of realizations $\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}$ allows us then to approximate the exact distribution of $\hat\theta_n$ for given sample sizes $n$ and given distributions $F_X$. (We use this option to validate theoretical statements in @sec-ssinf and @sec-lsinf.)
+F_{\hat{\theta}_n}(x)=P(\hat\theta_{n} \leq x)
+$$
+arbitrarily well as $B\to\infty,$ i.e.
+$$
+\sup_x\left| \hat{F}_{\hat{\theta}_n}(x) - F_{\hat{\theta}_n}(x)\right|\to 0\quad\text{as}\quad B\to\infty.
+$$
+almost surely as $B\to\infty$; see the famous [Glivenko–Cantelli theorem](https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem). (We use this option to *validate* theoretical statements in @sec-ssinf and @sec-lsinf.)
 
   * Pro: Works for basically every distributional assumption. 
   * Con: This option can fail miserably if the distributional assumption on $F_X$ is wrong. 
@@ -161,8 +186,9 @@ and the approximation should get better as the sample size increases (i.e. as $n
 
 Statisticians and econometricians use different metrics to assess the approximation quality of an estimator $\hat\theta_n$. The most prominent metrics are bias, variance, and mean squared error.
 
+::: {.callout-note icon=false}
+##
 ::: {#def-bias}
-
 ## Bias of $\theta$
 
 The **bias** of an estimator $\hat\theta_n$ is defined as
@@ -171,10 +197,25 @@ $$
 \operatorname{Bias}\left(\hat\theta_n\right) = E\left(\hat\theta_n\right) - \theta.
 $$
 :::
+:::
 
-We would like to have unbiased estimators $\operatorname{Bias}\left(\hat\theta_n\right)=0$ or at least asymptotically unbiased estimators $\lim_{n\to\infty}\operatorname{Bias}\left(\hat\theta_n\right)=0$. If the bias of an estimator is small (or zero), we know that the estimator will have a distribution that is centered around the true (usually unknown) parameter $\theta$; however, such an estimator may still vary a lot around $\theta$. Therefore, is is also important to assess the variance of the estimator. 
+If an estimator $\hat\theta_n$ has no bias 
+$$
+\operatorname{Bias}\left(\hat\theta_n\right)=0
+$$ 
+for all $n,$ we call it an **unbiased estimator**. Many modern estimators are *not* unbiased. However, every estimator should **asymptotically unbiased**, i.e.
+$$
+\lim_{n\to\infty}\operatorname{Bias}\left(\hat\theta_n\right)=0.
+$$ 
 
 
+We would like to have estimators with a small (or zero) bias. 
+
+If the bias of an estimator is small (or zero), we know that the estimator will have a distribution that roughly (or exactly) centered around the true (usually unknown) parameter $\theta.$ However, such an estimator may still vary a lot around $\theta$. Therefore, is is also important to assess the variance of the estimator. 
+
+
+::: {.callout-note icon=false}
+##
 ::: {#def-var}
 
 ## Variance and Standard Error of $\theta$
@@ -189,10 +230,13 @@ $$
 \operatorname{SE}\left(\hat\theta_n\right) = \sqrt{Var\left(\hat\theta_n\right)}.
 $$
 :::
+:::
 
 We would like to have estimators with a small as possible variance, and the variance should decline as the sample size increases, such that $\lim_{n\to\infty}Var\left(\hat\theta_n\right)=0$.
 
 
+::: {.callout-note icon=false}
+##
 ::: {#def-mse}
 
 ## Mean Squared Error of $\theta$
@@ -202,6 +246,7 @@ The **mean squared error** of an estimator $\hat\theta_n$ is defined as
 $$
 \operatorname{MSE}\left(\hat\theta_n\right) =  E\left[\left(\hat\theta_n - \theta\right)^2\right].
 $$
+:::
 :::
 
 We would like to have estimators with a small as possible mean squared error, and the mean squared error should decline as the sample size increases, such that $\lim_{n\to\infty}\operatorname{MSE}\left(\hat\theta_n\right)=0$.
@@ -255,33 +300,26 @@ $$
 $$
 \underbrace{\hat\theta(X_{1,1},\dots,X_{n,1})}_{=\hat\theta_{n,1}},\;\underbrace{\hat\theta(X_{1,2},\dots,X_{n,2})}_{=\hat\theta_{n,2}},\dots,\underbrace{\hat\theta(X_{1,B},\dots,X_{n,B})}_{=\hat\theta_{n,B}}
 $$ 
-**Step 3.** Use the sample mean as an approximation to the population mean
+**Step 3.** Use the simulated realizations $\hat{\theta}_{n,1},\dots,\hat{\theta}_{n,B}$ to approximate the bias, variance, and the mean squared error of the estimator $\hat{\theta}_n$:
+
+* The bias of $\operatorname{Bias}\left(\hat\theta_n\right)=E\left(\hat\theta_n\right)-\theta$ can be approximated by 
 
 $$
-\left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right) - \theta \approx E\left(\hat\theta_n\right)-\theta
+\widehat{\operatorname{Bias}}_{MC}\left(\hat\theta_n\right) = \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right) - \theta 
 $$
 
-By law of large numbers this approximation gets arbitrarily precise as $B \to \infty$. 
-
-
-
-* The bias of $\hat\theta_n$ can be approximated by 
-
+* The variance $Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^2\right]$ can be approximated by
 $$
-\operatorname{Bias}\left(\hat\theta_n\right)=E\left(\hat\theta_n\right)-\theta\approx\left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right) - \theta = \widehat{\operatorname{Bias}}_{MC}\left(\hat\theta_n\right)
+\widehat{Var}_{MC}\left(\hat\theta_n\right) = \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right)\right)^2 
 $$
 
-* The variance of $\hat\theta_n$ can be approximated by
+* The mean squared error $\operatorname{MSE}\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - \theta\right)^2\right]$ can be approximated by 
+$$
+\widehat{\operatorname{MSE}}_{MC}\left(\hat\theta_n\right) = \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \theta\right)^2 
+$$
 
-$$
-Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^2\right]\approx \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right)\right)^2 = \widehat{Var}_{MC}\left(\hat\theta_n\right)
-$$
 
-* The mean squared error of $\hat\theta_n$ can be approximated by 
-
-$$
-\operatorname{MSE}\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - \theta\right)^2\right]\approx\frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \theta\right)^2 = \widehat{\operatorname{MSE}}_{MC}\left(\hat\theta_n\right)
-$$
+By law of large numbers these approximations get arbitrarily precise as $B \to \infty$. 
 
 
 ### Example: Sample Mean {-}
@@ -360,17 +398,23 @@ These Monte Carlo approximations (@tbl-mcbvmse) indicate that:
 Since this example is chosen to be an extremely simple one, we can easily derive the *true* bias, variance and mean squared error values and compare them with their Monte Carlo approximations: 
 
 * True bias of $\bar{X}_n$:
-
-$$
-\operatorname{Bias}\left(\bar{X}_n\right)=E\left(\frac{1}{n}\sum_{i=1}^nX_i\right) - \mu = \left(\frac{1}{n}\sum_{i=1}^nE(X_i)\right) -\mu = \frac{n}{n}\mu-\mu =0,
-$$
+\begin{align*}
+\operatorname{Bias}\left(\bar{X}_n\right)
+&=E\left(\frac{1}{n}\sum_{i=1}^nX_i\right) - \mu \\[2ex]
+&= \left(\frac{1}{n}\sum_{i=1}^nE(X_i)\right) -\mu\\[2ex] 
+&= \frac{n}{n}\mu-\mu \\[2ex]
+&=0,
+\end{align*}
 thus the mean squared error of $\bar{X}_n$ equals the variance of $\bar{X}_n$. 
 
 * True variance of $\bar{X}_n$:
-
-$$
-Var\left(\bar{X}_n\right)=Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right) = \frac{1}{n^2} \sum_{i=1}^nVar\left(X_i\right) = \frac{n}{n^2}\sigma^2 = \frac{5}{n} 
-$$
+\begin{align*}
+Var\left(\bar{X}_n\right)
+&=Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right)\\[2ex] 
+&= \frac{1}{n^2} \sum_{i=1}^nVar\left(X_i\right)\\[2ex]
+&= \frac{n}{n^2}\sigma^2 \\[2ex]
+&= \frac{1}{n}\sigma^2 
+\end{align*}
 The following table shows the true bias, true variance and true mean squared error values:
 
 ```{r, echo=FALSE}
