@@ -247,7 +247,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the following parts of the lecture, we will use Monte Carlo simulations in oder to check whether a certain estimator is able to estimate its (usually unknown) target parameter. In this chapter, we will learn what Monte Carlo simulations are and how they can be implemented.</p>
 <section id="estimator-vs.-estimate" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="estimator-vs.-estimate"><span class="header-section-number">3.1</span> Estimator vs.&nbsp;Estimate</h2>
-<p>Let’s assume that we have an iid random sample <span class="math inline">\(X_1,\dots,X_n\)</span> with <span class="math display">\[
+<p>Let’s assume that we have an iid random sample <span class="math inline">\(\{X_1,\dots,X_n\}\)</span> with <span class="math display">\[
 X_i\overset{iid}{\sim} F_X
 \]</span> for all <span class="math inline">\(i=1,\dots,n\)</span>, and let <span class="math inline">\(\theta\in\mathbb{R}\)</span> denote some parameter (e.g.&nbsp;the mean or the variance) of the distribution <span class="math inline">\(F_X\)</span>.</p>
 <p>An <strong>estimator</strong> <span class="math inline">\(\hat\theta_n\)</span> of <span class="math inline">\(\theta\)</span> is a function of the random sample <span class="math inline">\(X_1,\dots,X_n\)</span>, <span class="math display">\[
@@ -326,14 +326,57 @@ F_{\hat{\theta}_n}(x)=P(\hat\theta_{n} \leq x)
 <!-- Monte Carlo Simulations rely on distributional assumptions and thus may fail just as the first option (Mathematical Derivation using Distributional Assumptions). However, Monte Carlo Simulations are much wider applicable than since we can use computers to sample data from basically every distribution.   -->
 <section id="conducting-a-monte-carlo-simulation" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="conducting-a-monte-carlo-simulation"><span class="header-section-number">3.2.1</span> Conducting a Monte Carlo Simulation</h3>
-<p>The following <code>R</code> code generates <code>B</code> many realizations of the sample mean estimator <span class="math inline">\(\hat\theta_n=\bar{X}_n\)</span> using a random sample <span class="math inline">\(X_1,\dots,X_n\)</span>, where <span class="math inline">\(F_X\)</span> is a normal distribution with mean <span class="math inline">\((\theta=)\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>:</p>
-<div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/unnamed-chunk-1_d8725870e7304dc65a49a232d5f7c08e">
+<p>Let <span class="math inline">\(\{X_1,\dots,X_n\}\)</span> be an iid random sample with <span class="math display">\[
+X_i\overset{iid}{\sim} F_X,
+\]</span> where <span class="math inline">\(F_X\)</span> is a normal distribution with mean <span class="math inline">\((\theta=)\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>.</p>
+<p>In the following, we want to use a Monte Carlo simulation to approximate the distribution of the estimator <span class="math display">\[
+\hat{X}_n =  \frac{1}{n}\sum_{i=1}^n X_i
+\]</span> of <span class="math inline">\(\mu=10.\)</span> We consider two sample sizes <span class="math inline">\(n=5\)</span> and <span class="math inline">\(n=50.\)</span></p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Here we have specified the distribution <span class="math inline">\(F_X\)</span> completely by setting <span class="math inline">\(F_X=\mathcal{N}(\mu=10,\sigma^2=5).\)</span> This is such a simple case, that we can actually use mathematical derivations to derive the distribution of <span class="math inline">\(\hat{X}_n.\)</span> (Often, this is not possible.)</p>
+<p>Observe that since <span class="math inline">\(X_1\sim\mathcal{N}(\mu,\sigma^2)\)</span> and <span class="math inline">\(X_2\sim\mathcal{N}(\mu,\sigma^2)\)</span> <span class="math display">\[
+X_1+X_2\sim\mathcal{N}(\mu + \mu, \sigma^2 + \sigma^2).
+\]</span> Thus <span class="math display">\[
+\sum_{i=1}^nX_i\sim\mathcal{N}(n \mu, n \sigma^2).
+\]</span> Multiplying by <span class="math inline">\(\frac{1}{n}\)</span> yields <span class="math display">\[\begin{align*}
+\frac{1}{n}\sum_{i=1}^nX_i = \bar{X}_n
+&amp;\sim\mathcal{N}\left(\frac{1}{n}n \mu, \frac{1}{n^2}n \sigma^2\right)\\[2ex]
+\bar{X}_n &amp;\sim\mathcal{N}\left( \mu, \frac{1}{n} \sigma^2\right).
+\end{align*}\]</span></p>
+<p><strong>Summing up:</strong> If <span class="math inline">\(X_i\overset{iid}{\sim}\mathcal{N}(\mu,\sigma^2),\)</span> then the exact (exact for each <span class="math inline">\(n\)</span>) distribution of <span class="math inline">\(\bar{X}_n\)</span> is given by <span class="math display">\[
+\bar{X}_n\sim\mathcal{N}\left( \mu, \frac{1}{n} \sigma^2\right).
+\]</span></p>
+<p>⚠️ Unfortunately, such a mathematical derivation works only for very simple estimators and only for simple (and completely specified) distributions <span class="math inline">\(F_X.\)</span></p>
+<p>🤓 But for this special case, we can now check, whether a Monte Carlo simulation is able to approximate the distribution of <span class="math inline">\(\bar{X}_n\sim\mathcal{N}\left( \mu, \frac{1}{n} \sigma^2\right).\)</span></p>
+</div>
+</div>
+<p>The following <code>R</code> code generates <code>B</code> many realizations of the random sample <span class="math inline">\(X_i\overset{iid}{\sim}\mathcal{N}(\mu,\sigma^2)\)</span> <span class="math display">\[\begin{align*}
+&amp;(X_{1,1,obs},\dots,X_{n,1,obs})\\
+&amp;(X_{1,2,obs},\dots,X_{n,2,obs})\\
+&amp; \hspace{2cm}\vdots \\
+&amp;(X_{1,B,obs},\dots,X_{n,B,obs})
+\end{align*}\]</span> leading to <code>B</code> many realizations of the estimator <span class="math inline">\(\bar{X}_n\)</span> <span class="math display">\[\begin{align*}
+\bar{X}_{n,1,obs} &amp;= \hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})\\
+\bar{X}_{n,2,obs} &amp;= \hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})\\
+&amp;\vdots\\
+\bar{X}_{n,B,obs} &amp;= \hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})
+\end{align*}\]</span> These realizations are then used to approximate the true distribution of <span class="math inline">\(\bar{X}_n.\)</span></p>
+<div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/unnamed-chunk-1_d3b815be4d97bf203bc2f1685ae1c643">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True parameter value </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mu            <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of Monte Carlo repetitions:</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>B             <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Sequence of different sample sizes:</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>n_seq         <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">50</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>n_seq         <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">50</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="do">## ######################################</span></span>
@@ -373,41 +416,75 @@ F_{\hat{\theta}_n}(x)=P(\hat\theta_{n} \leq x)
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>estimates_mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(B, <span class="fu">my_estimates_generator</span>(<span class="at">n =</span> n_seq[<span class="dv">1</span>])),</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(B, <span class="fu">my_estimates_generator</span>(<span class="at">n =</span> n_seq[<span class="dv">2</span>])),</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(B, <span class="fu">my_estimates_generator</span>(<span class="at">n =</span> n_seq[<span class="dv">3</span>]))</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(B, <span class="fu">my_estimates_generator</span>(<span class="at">n =</span> n_seq[<span class="dv">2</span>]))</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Based on the <code>B</code><span class="math inline">\(=10,000\)</span> realizations of the estimator <span class="math inline">\(\bar{X}_n\)</span>, we can compute histograms and non-parametric density estimates to get an idea about the true distribution of <span class="math inline">\(\bar{X}_n\)</span> for the case of random samples <span class="math inline">\(X_1,\dots,X_n\)</span> from a normal distribution with mean <span class="math inline">\(\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>:</p>
-<div class="cell" data-layout-align="center" data-hash="04-Monte-Carlo-Simulations_cache/html/fig-histdensplots_be57df1d977058a7fbb84d68b7a7c34e">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(estimates_mat[,<span class="dv">1</span>], <span class="at">main=</span><span class="st">"n=5"</span>, <span class="at">xlab=</span><span class="st">""</span>,  <span class="at">xlim =</span> <span class="fu">range</span>(estimates_mat[,<span class="dv">1</span>]), <span class="at">prob =</span> <span class="cn">TRUE</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.2</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(estimates_mat[,<span class="dv">1</span>], <span class="at">bw =</span> <span class="fu">bw.SJ</span>(estimates_mat[,<span class="dv">1</span>])), <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">lwd=</span><span class="fl">1.5</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(estimates_mat[,<span class="dv">2</span>], <span class="at">main=</span><span class="st">"n=15"</span>, <span class="at">xlab=</span><span class="st">""</span>, <span class="at">xlim =</span> <span class="fu">range</span>(estimates_mat[,<span class="dv">1</span>]), <span class="at">prob =</span> <span class="cn">TRUE</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.2</span>))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(estimates_mat[,<span class="dv">2</span>], <span class="at">bw =</span> <span class="fu">bw.SJ</span>(estimates_mat[,<span class="dv">3</span>])), <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">lwd=</span><span class="fl">1.5</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(estimates_mat[,<span class="dv">3</span>], <span class="at">main=</span><span class="st">"n=50"</span>, <span class="at">xlab=</span><span class="st">""</span>, <span class="at">xlim =</span> <span class="fu">range</span>(estimates_mat[,<span class="dv">1</span>]), <span class="at">prob =</span> <span class="cn">TRUE</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.2</span>))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(estimates_mat[,<span class="dv">2</span>], <span class="at">bw =</span> <span class="fu">bw.SJ</span>(estimates_mat[,<span class="dv">3</span>])), <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">lwd=</span><span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Based on the <code>B</code><span class="math inline">\(=10,000\)</span> realizations of the estimator <span class="math inline">\(\bar{X}_n\)</span>, we can compute the empirical density functions <span class="math inline">\(\hat{F}_{X_n,B}\)</span> (see <a href="#fig-ecdf">Figure&nbsp;<span>3.1</span></a>) and histograms (see <a href="#fig-histdensplots">Figure&nbsp;<span>3.2</span></a>) to get an idea about the true distribution of <span class="math inline">\(\bar{X}_n.\)</span></p>
+<p>In this simple case, we also know the theoretical distribution function <span class="math inline">\(F_{X_n}\)</span> and density function which allows us to check the simulation results (see <a href="#fig-ecdf">Figure&nbsp;<span>3.1</span></a> and <a href="#fig-histdensplots">Figure&nbsp;<span>3.2</span></a>).</p>
+<div class="cell" data-layout-align="center" data-hash="04-Monte-Carlo-Simulations_cache/html/fig-ecdf_7ef42738c8a75bceaca454837f204ab7">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ecdf</span>(estimates_mat[,<span class="dv">1</span>]), <span class="at">main=</span><span class="st">"n=5"</span>, <span class="at">ylab=</span><span class="st">""</span>, <span class="at">xlab=</span><span class="st">""</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">xlim =</span> <span class="fu">range</span>(estimates_mat[,<span class="dv">1</span>]))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="fu">expression</span>(mu<span class="sc">==</span><span class="dv">10</span>), <span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="dv">10</span>, <span class="at">line =</span> <span class="fl">2.5</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pnorm</span>(x, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="fu">sqrt</span>(<span class="dv">5</span><span class="sc">/</span><span class="dv">5</span>)), <span class="at">add=</span>T, <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"blue"</span>, <span class="fl">0.25</span>), <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">4</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ecdf</span>(estimates_mat[,<span class="dv">2</span>]), <span class="at">main=</span><span class="st">"n=50"</span>, <span class="at">ylab=</span><span class="st">""</span>, <span class="at">xlab=</span><span class="st">""</span>, <span class="at">col =</span> <span class="st">"black"</span>,  <span class="at">xlim =</span> <span class="fu">range</span>(estimates_mat[,<span class="dv">1</span>]))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="fu">expression</span>(mu<span class="sc">==</span><span class="dv">10</span>), <span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="dv">10</span>, <span class="at">line =</span> <span class="fl">2.5</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pnorm</span>(x, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="fu">sqrt</span>(<span class="dv">5</span><span class="sc">/</span><span class="dv">50</span>)), <span class="at">add=</span>T, <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"blue"</span>, <span class="fl">0.25</span>), <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-histdensplots" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-ecdf" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="04-Monte-Carlo-Simulations_files/figure-html/fig-histdensplots-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3.1: Histrograms and non-parametric density estimates of the distributions of the sample mean estimator for different sample sizes.</figcaption><p></p>
+<p><img src="04-Monte-Carlo-Simulations_files/figure-html/fig-ecdf-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3.1: In black-solid: Empirical distribution functions <span class="math inline">\(\hat{F}_{X_{n},B}\)</span> of <span class="math inline">\((B=10000)\)</span> simulated realizations <span class="math inline">\(\bar{X}_{n,1,obs},\dots,\bar{X}_{n,B,obs}\)</span> for <span class="math inline">\(n=5,50.\)</span> In blue-dashed: The theoretical distribution functions for <span class="math inline">\(n=5,50.\)</span> The empirical (simulation based) and the theoretical distribution functions match perfectly.</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Observations (<a href="#fig-histdensplots">Figure&nbsp;<span>3.1</span></a>):</p>
-<ul>
-<li><p>At least on average, the estimates <span class="math inline">\(\bar{X}_n\)</span> are close to the target parameter <span class="math inline">\(\mu=10\)</span> for each sample size <span class="math inline">\(n\in\{5,15,50\}\)</span>. This feature of the estimator’s distribution is summarized by the <strong>bias</strong> (see next section) of an estimator.</p></li>
-<li><p>As the sample size increases, the distributions of the estimators <span class="math inline">\(\bar{X}_n\)</span> concentrate around the target parameter <span class="math inline">\(\mu=10\)</span>. This feature of the estimator’s distribution is summarized by the <strong>mean squared error</strong> (see next section) of an estimator.</p></li>
-</ul>
-<p>Thus here the quality of the estimator <span class="math inline">\(\bar{X}_n\)</span> gets better as <span class="math inline">\(n\)</span> gets large. To describe the quality of estimators more compactly, statisticians/econometricians use specific metrics like bias, variance and the mean squared error of the distribution of a estimator <span class="math inline">\(\hat\theta\)</span>.</p>
+<div class="cell" data-layout-align="center" data-hash="04-Monte-Carlo-Simulations_cache/html/fig-histdensplots_11a3ac697ada29fb23e82954b4ef5824">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(estimates_mat[,<span class="dv">1</span>], <span class="at">main=</span><span class="st">"n=5"</span>, <span class="at">xlab=</span><span class="st">""</span>,  <span class="at">xlim =</span> <span class="fu">range</span>(estimates_mat[,<span class="dv">1</span>]), <span class="at">prob =</span> <span class="cn">TRUE</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.2</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="fu">expression</span>(mu<span class="sc">==</span><span class="dv">10</span>), <span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="dv">10</span>, <span class="at">line =</span> <span class="fl">2.5</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="fu">sqrt</span>(<span class="dv">5</span><span class="sc">/</span><span class="dv">5</span>)), <span class="at">add=</span>T, <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"blue"</span>, <span class="fl">0.25</span>), <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">4</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(estimates_mat[,<span class="dv">2</span>], <span class="at">main=</span><span class="st">"n=50"</span>, <span class="at">xlab=</span><span class="st">""</span>, <span class="at">xlim =</span> <span class="fu">range</span>(estimates_mat[,<span class="dv">1</span>]), <span class="at">prob =</span> <span class="cn">TRUE</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.2</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="fu">expression</span>(mu<span class="sc">==</span><span class="dv">10</span>), <span class="at">side =</span> <span class="dv">1</span>, <span class="at">at =</span> <span class="dv">10</span>, <span class="at">line =</span> <span class="fl">2.5</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="fu">sqrt</span>(<span class="dv">5</span><span class="sc">/</span><span class="dv">50</span>)), <span class="at">add=</span>T, <span class="at">col=</span><span class="fu">alpha</span>(<span class="st">"blue"</span>, <span class="fl">0.25</span>), <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-histdensplots" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="04-Monte-Carlo-Simulations_files/figure-html/fig-histdensplots-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3.2: In black-solid: Empirical histrograms of <span class="math inline">\((B=10000)\)</span> simulated realizations <span class="math inline">\(\bar{X}_{n,1,obs},\dots,\bar{X}_{n,B,obs}\)</span> for <span class="math inline">\(n=5,50.\)</span> In blue-dashed: The theoretical density functions for <span class="math inline">\(n=5,50.\)</span> The empirical (simulation based) histrograms and the theoretical density functions match perfectly.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observations in <a href="#fig-ecdf">Figure&nbsp;<span>3.1</span></a> and <a href="#fig-histdensplots">Figure&nbsp;<span>3.2</span></a>: The empirical distribution functions and the histograms based on the simulated realizations <span class="math display">\[
+\bar{X}_{n,1,obs},\dots,\bar{X}_{n,B,obs}
+\]</span> mach their theoretical counterparts almost perfectly since we chose a sufficient large number of <span class="math inline">\(B=10000\)</span> simulations.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We can use Monte Carlo simulations to approximate the <em>exact</em> distribution of an estimator <span class="math inline">\(\hat{\theta}_n\)</span> for given distributions <span class="math inline">\(F_X\)</span> of the underlying random sample. These approximations become arbitrarily precise as <span class="math inline">\(B\to\infty\)</span>.</p>
+</div>
+</div>
+<!-- * At least on average, the estimates $\bar{X}_n$ are close to the target parameter $\mu=10$ for each sample size $n\in\{5,15,50\}$. This feature of the estimator's distribution is summarized by the **bias** (see next section) of an estimator.
+
+* As the sample size increases, the distributions of the estimators $\bar{X}_n$ concentrate around the target parameter $\mu=10$. This feature of the estimator's distribution is summarized by the **mean squared error** (see next section) of an estimator.
+
+Thus here the quality of the estimator $\bar{X}_n$ gets better as $n$ gets large. To describe the quality of estimators more compactly, statisticians/econometricians use specific metrics like bias, variance and the mean squared error of the distribution of a estimator $\hat\theta$. -->
 </section>
 </section>
 <section id="assessing-the-quality-of-estimators" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="assessing-the-quality-of-estimators"><span class="header-section-number">3.3</span> Assessing the Quality of Estimators</h2>
 <!-- But how good is a given estimator $\hat\theta_n$ for a given sample size?  -->
 <p>Any reasonable estimator <span class="math inline">\(\hat\theta_n\)</span> should be able to approximate the (usually unknown) parameter value <span class="math inline">\(\theta\)</span>, <span class="math display">\[
-\hat\theta_n\approx\theta,
+\left(\text{random quantity}\right)\quad\hat\theta_n\approx\theta\quad\left(\text{deterministic parameter}\right),
 \]</span> and the approximation should get better as the sample size increases (i.e.&nbsp;as <span class="math inline">\(n\to\infty\)</span>).</p>
 <p>Statisticians and econometricians use different metrics to assess the approximation quality of an estimator <span class="math inline">\(\hat\theta_n\)</span>. The most prominent metrics are bias, variance, and mean squared error.</p>
 <div class="callout-note callout callout-style-default no-icon callout-captioned">
@@ -527,39 +604,39 @@ Var\left(\hat\theta_n\right) = E\left[\left(\hat\theta_n - E(\hat\theta_n)\right
 <section id="example-sample-mean" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="example-sample-mean">Example: Sample Mean</h3>
 <p>The following <code>R</code> code contains a Monte Carlo simulation ( <code>B = 10000</code> replications) computing the bias, variance, and means squared error for the sample mean <span class="math inline">\((\hat\theta_n=)\bar{X}_n=\sum_{i=1}^nX_i\)</span> as the estimator of the population mean <span class="math inline">\((\theta=)\mu\)</span>. The random sample <span class="math inline">\(X_i\overset{iid}{\sim}F_X\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>, is drawn from a normal distribution <span class="math inline">\(F_X=\mathcal{N}(\mu,\sigma^2)\)</span> with mean <span class="math inline">\(\mu=10\)</span> and variance <span class="math inline">\(\sigma^2=5\)</span>. We investigate the accuracy of the estimator for different sample sizes <span class="math inline">\(n\in\{5,15,50\}\)</span>. <!-- The following `R` codes generated `B = 10000` realizations of the estimator $\bar{X}_n$ for each sample size $n\in\{5,15,50\}$ and stores all these realizations in a $10000\times 3$ matrix `estimates_mat`: --></p>
-<div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/unnamed-chunk-3_354ac7468ad519dc54bd7db1ae80bda4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set seed for the random number generator to get reproducible results</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">## True parameter value ('theta' here 'mu')</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>mu            <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of Monte Carlo repetitions:</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>B             <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Sequence of different sample sizes:</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>n_seq         <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">50</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Function that generates estimator realizations </span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>my_estimates_generator <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  X_sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> mu, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">5</span>))</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="do">## compute the sample mean realization</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(X_sample))</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>estimates_mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(B, <span class="fu">my_estimates_generator</span>(<span class="at">n =</span> n_seq[<span class="dv">1</span>])),</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(B, <span class="fu">my_estimates_generator</span>(<span class="at">n =</span> n_seq[<span class="dv">2</span>])),</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(B, <span class="fu">my_estimates_generator</span>(<span class="at">n =</span> n_seq[<span class="dv">3</span>]))</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/unnamed-chunk-4_9af1eeefe001ea1ccdd2786e3edfabc0">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Set seed for the random number generator to get reproducible results</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## True parameter value ('theta' here 'mu')</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>mu            <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of Monte Carlo repetitions:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>B             <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Sequence of different sample sizes:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>n_seq         <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">50</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Function that generates estimator realizations </span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>my_estimates_generator <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  X_sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> mu, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">5</span>))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="do">## compute the sample mean realization</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(X_sample))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>estimates_mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(B, <span class="fu">my_estimates_generator</span>(<span class="at">n =</span> n_seq[<span class="dv">1</span>])),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(B, <span class="fu">my_estimates_generator</span>(<span class="at">n =</span> n_seq[<span class="dv">2</span>])),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(B, <span class="fu">my_estimates_generator</span>(<span class="at">n =</span> n_seq[<span class="dv">3</span>]))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following <code>R</code> code computes the Monte Carlo (MC) approximations for the bias, variance, and mean squared error of <span class="math inline">\(\bar{X}_n\)</span>. The results should capture our observations.</p>
-<div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/unnamed-chunk-4_f02744dfb75eef4164247f67d2e8e938">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Bias of the sample mean for different sample sizes n</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>MC_Bias_n_seq <span class="ot">&lt;-</span> <span class="fu">apply</span>(estimates_mat, <span class="dv">2</span>, mean) <span class="sc">-</span> mu</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Variance of the sample mean for different sample sizes n</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>MC_Var_n_seq  <span class="ot">&lt;-</span> <span class="fu">apply</span>(estimates_mat, <span class="dv">2</span>, var)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Mean squared error of the sample mean for different sample sizes n</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>MC_MSE_n_seq  <span class="ot">&lt;-</span> <span class="fu">apply</span>(estimates_mat, <span class="dv">2</span>, <span class="cf">function</span>(x){<span class="fu">mean</span>((x <span class="sc">-</span> mu)<span class="sc">^</span><span class="dv">2</span>)})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/unnamed-chunk-5_152a7323403c9ff9882c1985f87d3e79">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Bias of the sample mean for different sample sizes n</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>MC_Bias_n_seq <span class="ot">&lt;-</span> <span class="fu">apply</span>(estimates_mat, <span class="dv">2</span>, mean) <span class="sc">-</span> mu</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Variance of the sample mean for different sample sizes n</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>MC_Var_n_seq  <span class="ot">&lt;-</span> <span class="fu">apply</span>(estimates_mat, <span class="dv">2</span>, var)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Mean squared error of the sample mean for different sample sizes n</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>MC_MSE_n_seq  <span class="ot">&lt;-</span> <span class="fu">apply</span>(estimates_mat, <span class="dv">2</span>, <span class="cf">function</span>(x){<span class="fu">mean</span>((x <span class="sc">-</span> mu)<span class="sc">^</span><span class="dv">2</span>)})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The table shows the numerical values of the Monte Carlo <em>approximations</em> for the true bias, true variance, and true mean squared error of <span class="math inline">\(\bar{X}_n\)</span>:</p>
 <div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/tbl-mcbvmse_07b8bdadee294249ff048ff8ba61710e">
