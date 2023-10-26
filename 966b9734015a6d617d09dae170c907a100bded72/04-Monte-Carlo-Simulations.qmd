@@ -530,7 +530,7 @@ These Monte Carlo approximations (@tbl-mcbvmse) indicate that:
 <!-- The sample mean $\bar{X}_n$ is known to be a very good estimator of the population mean $\mu$ and the above simulation results conform this.  -->
 
 
-In @sec-ExampleSampleMean, we have derived the exact theoretical distribution of $\bar{X}_n$ under the assumed sampling distribution $(F_X=\mathcal{N}(\mu,\sigma^2));$ namely,
+In @sec-ExampleSampleMean, we have already derived the exact theoretical distribution of $\bar{X}_n$ under the assumed random sample with sampling distribution $F_X=\mathcal{N}(\mu,\sigma^2):$
 $$
 \bar{X}_n\sim\mathcal{N}\left(\mu,\frac{1}{n}\sigma^2\right).
 $$ 
@@ -540,7 +540,8 @@ Using this, we can simply compute the *true* bias, variance and mean squared err
 * True bias of $\bar{X}_n$:
 \begin{align*}
 \operatorname{Bias}\left(\bar{X}_n\right)
-&=E\left(\frac{1}{n}\sum_{i=1}^nX_i\right) - \mu \\[2ex]
+&=E\left(\bar{X}_n\right) - \mu \\[2ex]
+&=E\left(\frac{1}{n}\sum_{i=1}^n X_i\right) - \mu \\[2ex]
 &= \left(\frac{1}{n}\sum_{i=1}^nE(X_i)\right) -\mu\\[2ex] 
 &= \frac{n}{n}\mu-\mu \\[2ex]
 &=0,
@@ -550,12 +551,21 @@ thus $\bar{X}_n$ is unbiased for all $\mu.$
 * True variance of $\bar{X}_n$:
 \begin{align*}
 Var\left(\bar{X}_n\right)
-&=Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right)\\[2ex] 
+&=Var\left(\frac{1}{n}\sum_{i=1}^n X_i\right)\\[2ex] 
 &= \frac{1}{n^2} \sum_{i=1}^nVar\left(X_i\right)\\[2ex]
 &= \frac{n}{n^2}\sigma^2 \\[2ex]
 &= \frac{1}{n}\sigma^2 
 \end{align*}
-The following table shows the true bias, true variance and true mean squared error values:
+
+* True MSE of $\bar{X}_n$:
+\begin{align*}
+\operatorname{MSE}\left(\bar{X}_n\right)
+&=\left(\operatorname{Bias}\left(\bar{X}_n\right)\right)^2 +
+Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right)\\[2ex]
+&= 0+\frac{1}{n}\sigma^2 
+\end{align*}
+
+The following table shows the true bias, true variance and true mean squared error values for $\sigma^2=5$ and $n\in\{5,15,50\}$:
 
 ```{r, echo=FALSE}
 #| label: tbl-truebvmse
@@ -577,7 +587,12 @@ Obviously, the Monte Carlo approximations (@tbl-mcbvmse) for these true values (
 If we would further increase the number of Monte Carlo repetitions `B`, the Monte Carlo approximations in @tbl-mcbvmse would get even more precise since we can make them arbitrarily precise by letting `B`$\to\infty$ using the law of large numbers. 
 
 
+::: {.callout-tip}
 
+## Take away message (repeated)
+
+We can use Monte Carlo simulations to approximate the *exact* distribution and its features (bias, variance, mse) of an estimator $\hat{\theta}_n$ for given distributions $F_X$ of the underlying random sample. These approximations become arbitrarily precise as $B\to\infty$. 
+:::
 
 
 <!-- ## Exercises -->

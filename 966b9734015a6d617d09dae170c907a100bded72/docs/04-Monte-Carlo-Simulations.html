@@ -724,26 +724,34 @@ Var\left(\hat\theta_n\right) = E\left[\left(\hat\theta_n - E(\hat\theta_n)\right
 <li>The true mean squared error <span class="math inline">\(\operatorname{MSE}(\bar{X}_n)\)</span> is very likely decreasing as the sample size <span class="math inline">\(n\)</span> get larger.</li>
 </ul>
 <!-- The sample mean $\bar{X}_n$ is known to be a very good estimator of the population mean $\mu$ and the above simulation results conform this.  -->
-<p>In <a href="#sec-ExampleSampleMean"><span>Section&nbsp;3.2.1</span></a>, we have derived the exact theoretical distribution of <span class="math inline">\(\bar{X}_n\)</span> under the assumed sampling distribution <span class="math inline">\((F_X=\mathcal{N}(\mu,\sigma^2));\)</span> namely, <span class="math display">\[
+<p>In <a href="#sec-ExampleSampleMean"><span>Section&nbsp;3.2.1</span></a>, we have already derived the exact theoretical distribution of <span class="math inline">\(\bar{X}_n\)</span> under the assumed random sample with sampling distribution <span class="math inline">\(F_X=\mathcal{N}(\mu,\sigma^2):\)</span> <span class="math display">\[
 \bar{X}_n\sim\mathcal{N}\left(\mu,\frac{1}{n}\sigma^2\right).
 \]</span></p>
 <p>Using this, we can simply compute the <em>true</em> bias, variance and mean squared error of <span class="math inline">\(\bar{X}_n\)</span> for <span class="math inline">\(n\in\{5,15,50\}\)</span> and compare them with their Monte Carlo approximations:</p>
 <ul>
 <li><p>True bias of <span class="math inline">\(\bar{X}_n\)</span>: <span class="math display">\[\begin{align*}
 \operatorname{Bias}\left(\bar{X}_n\right)
-&amp;=E\left(\frac{1}{n}\sum_{i=1}^nX_i\right) - \mu \\[2ex]
+&amp;=E\left(\bar{X}_n\right) - \mu \\[2ex]
+&amp;=E\left(\frac{1}{n}\sum_{i=1}^n X_i\right) - \mu \\[2ex]
 &amp;= \left(\frac{1}{n}\sum_{i=1}^nE(X_i)\right) -\mu\\[2ex]
 &amp;= \frac{n}{n}\mu-\mu \\[2ex]
 &amp;=0,
 \end{align*}\]</span> thus <span class="math inline">\(\bar{X}_n\)</span> is unbiased for all <span class="math inline">\(\mu.\)</span></p></li>
 <li><p>True variance of <span class="math inline">\(\bar{X}_n\)</span>: <span class="math display">\[\begin{align*}
 Var\left(\bar{X}_n\right)
-&amp;=Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right)\\[2ex]
+&amp;=Var\left(\frac{1}{n}\sum_{i=1}^n X_i\right)\\[2ex]
 &amp;= \frac{1}{n^2} \sum_{i=1}^nVar\left(X_i\right)\\[2ex]
 &amp;= \frac{n}{n^2}\sigma^2 \\[2ex]
 &amp;= \frac{1}{n}\sigma^2
-\end{align*}\]</span> The following table shows the true bias, true variance and true mean squared error values:</p></li>
+\end{align*}\]</span></p></li>
+<li><p>True MSE of <span class="math inline">\(\bar{X}_n\)</span>: <span class="math display">\[\begin{align*}
+\operatorname{MSE}\left(\bar{X}_n\right)
+&amp;=\left(\operatorname{Bias}\left(\bar{X}_n\right)\right)^2 +
+Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right)\\[2ex]
+&amp;= 0+\frac{1}{n}\sigma^2
+\end{align*}\]</span></p></li>
 </ul>
+<p>The following table shows the true bias, true variance and true mean squared error values for <span class="math inline">\(\sigma^2=5\)</span> and <span class="math inline">\(n\in\{5,15,50\}\)</span>:</p>
 <div class="cell" data-hash="04-Monte-Carlo-Simulations_cache/html/tbl-truebvmse_e9f85c5e8f5afa2143757c6a020a4f0a">
 <div class="cell-output-display">
 <div id="tbl-truebvmse" class="anchored">
@@ -784,6 +792,19 @@ Var\left(\bar{X}_n\right)
 </div>
 <p>Obviously, the Monte Carlo approximations (<a href="#tbl-mcbvmse">Table&nbsp;<span>3.1</span></a>) for these true values (<a href="#tbl-truebvmse">Table&nbsp;<span>3.2</span></a>) are very good.</p>
 <p>If we would further increase the number of Monte Carlo repetitions <code>B</code>, the Monte Carlo approximations in <a href="#tbl-mcbvmse">Table&nbsp;<span>3.1</span></a> would get even more precise since we can make them arbitrarily precise by letting <code>B</code><span class="math inline">\(\to\infty\)</span> using the law of large numbers.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Take away message (repeated)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We can use Monte Carlo simulations to approximate the <em>exact</em> distribution and its features (bias, variance, mse) of an estimator <span class="math inline">\(\hat{\theta}_n\)</span> for given distributions <span class="math inline">\(F_X\)</span> of the underlying random sample. These approximations become arbitrarily precise as <span class="math inline">\(B\to\infty\)</span>.</p>
+</div>
+</div>
 <!-- ## Exercises -->
 <!-- * [Exercises for Chapter 4](Exercises/Ch4_Exercises.pdf) -->
 <!-- * [Exercises of Chapter 4 with Solutions](Exercises/Ch4_Exercises_with_Solutions.pdf) -->
