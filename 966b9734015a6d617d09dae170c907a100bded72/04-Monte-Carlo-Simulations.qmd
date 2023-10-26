@@ -1,4 +1,4 @@
-# Monte Carlo Simulations
+# Estimation Theory and Monte Carlo Simulations
 
 In the following parts of the lecture, we will use Monte Carlo simulations in oder to check whether a certain estimator is able to estimate its (usually unknown) target parameter. In this chapter, we will learn what Monte Carlo simulations are and how they can be implemented. 
 
@@ -97,23 +97,31 @@ almost surely as $B\to\infty$; see the famous [Glivenko–Cantelli theorem](http
 
 <!-- Monte Carlo Simulations rely on distributional assumptions and thus may fail just as the first option (Mathematical Derivation using Distributional Assumptions). However, Monte Carlo Simulations are much wider applicable than since we can use computers to sample data from basically every distribution.   -->
 
-### Conducting a Monte Carlo Simulation 
+### Example: Sample Mean $\bar{X}_n$ {#sec-ExampleSampleMean}
 
 Let $\{X_1,\dots,X_n\}$ be an iid random sample  with 
 $$
 X_i\overset{iid}{\sim} F_X,
 $$ 
-where $F_X$ is a normal distribution with mean $(\theta=)\mu=10$ and variance $\sigma^2=5$. 
+where 
 
-In the following, we want to use a Monte Carlo simulation to approximate the distribution of the estimator 
-$$
-\hat{X}_n =  \frac{1}{n}\sum_{i=1}^n X_i
-$$
-of $\mu=10.$ We consider two sample sizes $n=5$ and $n=50.$
+* $F_X$ is a normal distribution $\mathcal{N}(\mu, \sigma^2)$ with 
+  * mean $(\theta=)\mu=10$ and 
+  * variance $\sigma^2=5$. 
 
+To estimate the (usually unknown) mean value $\mu=10,$ we use the sample mean estimator
+$$
+\bar{X}_n =  \frac{1}{n}\sum_{i=1}^n X_i
+$$
+
+
+We consider two sample sizes $n=5$ and $n=50.$
 
 ::: {.callout-note}
-Here we have specified the distribution $F_X$ completely by setting $F_X=\mathcal{N}(\mu=10,\sigma^2=5).$ This is such a simple case, that we can actually use mathematical derivations to derive the distribution of $\hat{X}_n.$ (Often, this is not possible.)
+
+## Mathematical Derivation using the Distributional Assumptions
+
+Here we have specified the distribution $F_X$ completely by setting $F_X=\mathcal{N}(\mu=10,\sigma^2=5).$ This is such a simple case, that we can actually use mathematical derivations to derive the distribution of $\bar{X}_n.$ (Often, this is not possible.)
 
 Observe that since $X_1\sim\mathcal{N}(\mu,\sigma^2)$ and $X_2\sim\mathcal{N}(\mu,\sigma^2)$
 $$
@@ -136,12 +144,31 @@ $$
 \bar{X}_n\sim\mathcal{N}\left( \mu, \frac{1}{n} \sigma^2\right).
 $$
 
+* For $\mu=10,$ $\sigma=5,$ $n=5$:
+$$
+\bar{X}_n\sim\mathcal{N}\left(10, 1\right).
+$$
+* For $\mu=10,$ $\sigma=5,$ $n=50$:
+$$
+\bar{X}_n\sim\mathcal{N}\left(10, 0.1\right).
+$$
+
 ⚠️ Unfortunately, such a mathematical derivation works only for very simple estimators and only for simple (and completely specified) distributions $F_X.$
 
 🤓 But for this special case, we can now check, whether a Monte Carlo simulation is able to approximate the distribution of $\bar{X}_n\sim\mathcal{N}\left( \mu, \frac{1}{n} \sigma^2\right).$
 :::
 
-The following `R` code generates `B` many realizations of the random sample $X_i\overset{iid}{\sim}\mathcal{N}(\mu,\sigma^2)$
+
+
+Next, we use a Monte Carlo simulation to approximate the distribution of the estimator 
+$$
+\bar{X}_n =  \frac{1}{n}\sum_{i=1}^n X_i
+$$
+of $\mu=10.$ 
+
+
+The following `R` code generates `B` many realizations of the random sample $X_i\overset{iid}{\sim}\mathcal{N}(\mu,\sigma^2)$ with $\mu=10$ and $\sigma^2=5.$
+
 \begin{align*}
 &(X_{1,1,obs},\dots,X_{n,1,obs})\\
 &(X_{1,2,obs},\dots,X_{n,2,obs})\\
@@ -212,29 +239,38 @@ Based on the `B`$=10,000$ realizations of the estimator $\bar{X}_n$, we can comp
 In this simple case, we also know the theoretical distribution function $F_{X_n}$ and density function which allows us to check the simulation results (see @fig-ecdf and @fig-histdensplots). 
 ```{r, fig.align="center", fig.cap=""}
 #| label: fig-ecdf
-#| fig-cap: "In black-solid: Empirical distribution functions $\\hat{F}_{X_{n},B}$ of $(B=10000)$ simulated realizations $\\bar{X}_{n,1,obs},\\dots,\\bar{X}_{n,B,obs}$ for $n=5,50.$ In blue-dashed: The theoretical distribution functions for $n=5,50.$ The empirical (simulation based) and the theoretical distribution functions match perfectly." 
+#| fig-cap: "Empirical distribution functions $\\hat{F}_{X_{n},B}$ computed from the $(B=10000)$ simulated realizations $\\bar{X}_{n,1,obs},\\dots,\\bar{X}_{n,B,obs}$ and the theoretical distribution functions for $n=5,50.$ The empirical and the theoretical distribution functions match perfectly." 
 library(scales)
 par(mfrow=c(1,2))
-plot(ecdf(estimates_mat[,1]), main="n=5", ylab="", xlab="", col = "black", xlim = range(estimates_mat[,1]))
+plot(ecdf(estimates_mat[,1]), main="n=5", ylab="", xlab="", col = "black", xlim = range(estimates_mat[,1]), ylim=c(0,1.25))
 mtext(expression(mu==10), side = 1, at = 10, line = 2.5)
 curve(pnorm(x, mean=10, sd=sqrt(5/5)), add=T, col=alpha("blue", 0.25), lty = 3, lwd=4)
-plot(ecdf(estimates_mat[,2]), main="n=50", ylab="", xlab="", col = "black",  xlim = range(estimates_mat[,1]))
+legend("topleft", legend = c("True Distr.-Function", "Empir. Distr.-Function"), 
+      col = c("black", alpha("blue", 0.5)), lty = c(1,2), lwd = c(1.3, 2), bty = "n")
+##      
+plot(ecdf(estimates_mat[,2]), main="n=50", ylab="", xlab="", col = "black",  xlim = range(estimates_mat[,1]), ylim=c(0,1.25))
 mtext(expression(mu==10), side = 1, at = 10, line = 2.5)
 curve(pnorm(x, mean=10, sd=sqrt(5/50)), add=T, col=alpha("blue", 0.25), lty = 3, lwd=4)
+legend("topleft", legend = c("True Distr.-Function", "Empir. Distr.-Function"), 
+      col = c("black", alpha("blue", 0.5)), lty = c(1,2), lwd = c(1.3, 2), bty = "n")
 ```
 
 
 ```{r, fig.align="center", fig.cap=""}
 #| label: fig-histdensplots
-#| fig-cap: "In black-solid: Empirical histrograms of $(B=10000)$ simulated realizations $\\bar{X}_{n,1,obs},\\dots,\\bar{X}_{n,B,obs}$ for $n=5,50.$ In blue-dashed: The theoretical density functions for $n=5,50.$ The empirical (simulation based) histrograms and the theoretical density functions match perfectly." 
+#| fig-cap: "Histrograms of $(B=10000)$ simulated realizations $\\bar{X}_{n,1,obs},\\dots,\\bar{X}_{n,B,obs}$ and true density functions for $n=5,50.$ The empirical (simulation based) histrograms and the theoretical density functions match perfectly." 
 library(scales)
 par(mfrow=c(1,2))
-hist(estimates_mat[,1], main="n=5", xlab="",  xlim = range(estimates_mat[,1]), prob = TRUE, ylim = c(0, 1.2))
+hist(estimates_mat[,1], main="n=5", xlab="",  xlim = range(estimates_mat[,1]), prob = TRUE, ylim = c(0, 1.5))
 mtext(expression(mu==10), side = 1, at = 10, line = 2.5)
 curve(dnorm(x, mean=10, sd=sqrt(5/5)), add=T, col=alpha("blue", 0.25), lty = 3, lwd=4)
-hist(estimates_mat[,2], main="n=50", xlab="", xlim = range(estimates_mat[,1]), prob = TRUE, ylim = c(0, 1.2))
+legend("topleft", legend = c("True Density", "Histogram"), 
+      col = c("black", alpha("blue", 0.5)), lty = c(1,2), lwd = c(1.3, 2), bty = "n")
+hist(estimates_mat[,2], main="n=50", xlab="", xlim = range(estimates_mat[,1]), prob = TRUE, ylim = c(0, 1.5))
 mtext(expression(mu==10), side = 1, at = 10, line = 2.5)
 curve(dnorm(x, mean=10, sd=sqrt(5/50)), add=T, col=alpha("blue", 0.25), lty = 3, lwd=4)
+legend("topleft", legend = c("True Density", "Histogram"), 
+      col = c("black", alpha("blue", 0.5)), lty = c(1,2), lwd = c(1.3, 2), bty = "n")
 ```
 
 Observations in @fig-ecdf and @fig-histdensplots: The empirical distribution functions and the histograms based on the simulated realizations 
@@ -244,6 +280,9 @@ $$
 mach their theoretical counterparts almost perfectly since we chose a sufficient large number of $B=10000$ simulations. 
 
 ::: {.callout-tip}
+
+## Take away message
+
 We can use Monte Carlo simulations to approximate the *exact* distribution of an estimator $\hat{\theta}_n$ for given distributions $F_X$ of the underlying random sample. These approximations become arbitrarily precise as $B\to\infty$. 
 :::
 
@@ -261,9 +300,20 @@ Any reasonable estimator $\hat\theta_n$ should be able to approximate the (usual
 $$
 \left(\text{random quantity}\right)\quad\hat\theta_n\approx\theta\quad\left(\text{deterministic parameter}\right),
 $$
-and the approximation should get better as the sample size increases (i.e. as $n\to\infty$).
+and the approximation should get better as the sample size increases, i.e. as $n\to\infty$. 
 
-Statisticians and econometricians use different metrics to assess the approximation quality of an estimator $\hat\theta_n$. The most prominent metrics are bias, variance, and mean squared error.
+
+The simulation results shown in @fig-ecdf and @fig-histdensplots show this desired behavior for the case of $\hat{\theta}_n=\bar{X}_n.$ 
+
+To check (via MC-Simulations) the quality of an estimator, one can look at the total distribution or density function of $\hat{\theta}_n$; as done in @fig-ecdf and @fig-histdensplots. However, it is often more convenient to consider only the most relevant features of the distribution of an estimator. 
+
+
+Statisticians/econometricians use different metrics to assess the quality of an estimator $\hat\theta_n$. The most prominent metrics are:
+
+* bias of an estimator $\hat{\theta}_n$
+* variance and standard error of an estimator $\hat{\theta}_n$
+* mean squared error (mse) of an estimator $\hat{\theta}_n$
+
 
 ::: {.callout-note icon=false}
 ##
@@ -282,15 +332,21 @@ If an estimator $\hat\theta_n$ has no bias
 $$
 \operatorname{Bias}\left(\hat\theta_n\right)=0
 $$ 
-for all $n,$ we call it an **unbiased estimator**. Many modern estimators are *not* unbiased. However, every estimator should **asymptotically unbiased**, i.e.
+for all $\theta$ and all sample sizes $n,$ we call it an **unbiased estimator**. 
+
+Many modern estimators are *not* unbiased. However, every estimator should be at least **asymptotically unbiased**, i.e.
 $$
-\lim_{n\to\infty}\operatorname{Bias}\left(\hat\theta_n\right)=0.
+\lim_{n\to\infty}\operatorname{Bias}\left(\hat\theta_n\right)=0
 $$ 
+for all $\theta.$
 
 
 We would like to have estimators with a small (or zero) bias. 
 
-If the bias of an estimator is small (or zero), we know that the estimator will have a distribution that roughly (or exactly) centered around the true (usually unknown) parameter $\theta.$ However, such an estimator may still vary a lot around $\theta$. Therefore, is is also important to assess the variance of the estimator. 
+If the bias of an estimator is small (or zero), we know that the distribution of the estimator is roughly (or exactly) centered around the true (usually unknown) parameter $\theta.$ 
+
+
+However, also unbiased estimators $\hat{\theta}_n$ may still vary a lot around the parameter $\theta$ to be estimated. Therefore, is is also important to assess the variance of the estimator. 
 
 
 ::: {.callout-note icon=false}
@@ -347,7 +403,7 @@ $$
 
 Unfortunately, it is often difficult to derive the above assessment metrics for given sample sizes $n$ and given data distributions $F_X$. Monte Carlo simulations allow us to solve this issue.
 
-## Approximating Bias, Variance, and Mean Squared Error using Monte Carlo Simulations 
+### Approximating Bias, Variance, and MSE using MC Simulations 
 
 We can use Monte Carlo simulations to approximate the assessment metrics $\operatorname{Bias}\left(\hat\theta_n\right),$ $Var\left(\hat\theta_n\right),$ and  $\operatorname{MSE}\left(\hat\theta_n\right)$ for given sample sizes $n$ and given data distributions $F_X$ with arbitrary precision. 
 
@@ -401,7 +457,7 @@ $$
 By law of large numbers these approximations get arbitrarily precise as $B \to \infty$. 
 
 
-### Example: Sample Mean {-}
+### Example (revisited): Sample Mean {-}
 
 The following `R` code contains a Monte Carlo simulation ( `B = 10000` replications) computing the bias, variance, and means squared error for the sample mean $(\hat\theta_n=)\bar{X}_n=\sum_{i=1}^nX_i$ as the estimator of the population mean $(\theta=)\mu$. The random sample $X_i\overset{iid}{\sim}F_X$, $i=1,\dots,n$, is drawn from a normal distribution $F_X=\mathcal{N}(\mu,\sigma^2)$ with mean $\mu=10$ and variance $\sigma^2=5$. We investigate the accuracy of the estimator for different sample sizes $n\in\{5,15,50\}$. 
 <!-- The following `R` codes generated `B = 10000` realizations of the estimator $\bar{X}_n$ for each sample size $n\in\{5,15,50\}$ and stores all these realizations in a $10000\times 3$ matrix `estimates_mat`: -->
@@ -453,7 +509,7 @@ suppressPackageStartupMessages(library("kableExtra"))
 suppressPackageStartupMessages(library("tidyverse"))
 
 MCResults <- tibble(
-  "n"        = n_seq,
+  "n"                  = n_seq,
   "Bias (MC-Sim) "     = round(MC_Bias_n_seq, 3),
   "Variance (MC-Sim)"  = round(MC_Var_n_seq,  2),
   "MSE (MC-Sim) "      = round(MC_MSE_n_seq,  2))
@@ -474,7 +530,12 @@ These Monte Carlo approximations (@tbl-mcbvmse) indicate that:
 <!-- The sample mean $\bar{X}_n$ is known to be a very good estimator of the population mean $\mu$ and the above simulation results conform this.  -->
 
 
-Since this example is chosen to be an extremely simple one, we can easily derive the *true* bias, variance and mean squared error values and compare them with their Monte Carlo approximations: 
+In @sec-ExampleSampleMean, we have derived the exact theoretical distribution of $\bar{X}_n$ under the assumed sampling distribution $(F_X=\mathcal{N}(\mu,\sigma^2));$ namely,
+$$
+\bar{X}_n\sim\mathcal{N}\left(\mu,\frac{1}{n}\sigma^2\right).
+$$ 
+
+Using this, we can simply compute the *true* bias, variance and mean squared error of $\bar{X}_n$ for $n\in\{5,15,50\}$ and compare them with their Monte Carlo approximations: 
 
 * True bias of $\bar{X}_n$:
 \begin{align*}
@@ -484,7 +545,7 @@ Since this example is chosen to be an extremely simple one, we can easily derive
 &= \frac{n}{n}\mu-\mu \\[2ex]
 &=0,
 \end{align*}
-thus the mean squared error of $\bar{X}_n$ equals the variance of $\bar{X}_n$. 
+thus $\bar{X}_n$ is unbiased for all $\mu.$
 
 * True variance of $\bar{X}_n$:
 \begin{align*}
@@ -511,7 +572,11 @@ MCResults <- tibble(
 MCResults %>% kbl() %>%  kable_styling()
 ```
 
-Obviously, the Monte Carlo approximations (@tbl-mcbvmse) for these true values (@tbl-truebvmse) are very good. If we would further increase the number of Monte Carlo repetitions `B`, the Monte Carlo approximations would get even more precise since we can make them arbitrarily precise by letting `B`$\to\infty$ using the law of large numbers. 
+Obviously, the Monte Carlo approximations (@tbl-mcbvmse) for these true values (@tbl-truebvmse) are very good. 
+
+If we would further increase the number of Monte Carlo repetitions `B`, the Monte Carlo approximations in @tbl-mcbvmse would get even more precise since we can make them arbitrarily precise by letting `B`$\to\infty$ using the law of large numbers. 
+
+
 
 
 
