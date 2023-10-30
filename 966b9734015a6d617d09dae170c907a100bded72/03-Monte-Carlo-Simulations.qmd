@@ -1,6 +1,12 @@
 # Estimation Theory and Monte Carlo Simulations
 
-In the following parts of the lecture, we will use Monte Carlo simulations in oder to check whether a certain estimator is able to estimate its (usually unknown) target parameter. In this chapter, we will learn what Monte Carlo simulations are and how they can be implemented. 
+
+Learning outcomes of this chapter: 
+
+* You know the basic concepts of estimation theory and you can apply them to specific estimators.
+   * Estimate vs estimator
+   * Estimator's distribution, bias, variance, and standard error 
+* You know how to use a Monte Carlo simulation to check the accuracy (bias, variance, and standard error) of a given (simple) estimator 
 
 
 ## Estimator vs. Estimate 
@@ -23,10 +29,6 @@ $$
 \hat\theta_{n,obs}=\hat\theta(X_{1,obs},\dots,X_{n,obs}).
 $$
 
-::: {.callout-note}
-Often we do not use a distinguishing notation, but denote both the estimator and its realization as $\hat\theta_{n}$. This ambiguity is often convenient since both points of views can make sense in a given context. 
-:::
-
 **Examples:**
 
 * The sample mean as an estimator of the population mean $E(X_i) =\theta$:
@@ -40,62 +42,91 @@ $$
 $$ 
 
 
+::: {.callout-note}
+Often we do not use a distinguishing notation, but denote both the estimator and its realization as $\hat\theta_{n}$. This ambiguity is often convenient since both points of views can make sense in a given context. 
+:::
+
+
 ## Deriving the Distribution of Estimators
 
-Usually, we do not know the distribution $F_X$ of the random sample $X_1,\dots,X_n$ and thus do not know the distribution of the estimator 
+Usually, we do not know the distribution $F_X$ of the random sample $X_1,\dots,X_n$ and thus we neither know the value of $\theta$ nor the distribution of the estimator 
 $$
 \hat\theta_n=\hat\theta(X_1,\dots,X_n).
 $$ 
-This is a fundamental statistical problem and we need to overcome this problem in order to do statistical inference (hypothesis testing, etc.).  
+This is the fundamental statistical problem that we need to overcome in statistical inference (estimating $\theta$, hypothesis testing about $\theta$, etc.).  
 
 
-There are different possibilities to derive/approximate the distribution of an estimator $\hat\theta_n$.  In times when when computers were expensive, statisticians mainly used mathematical derivations:  
+There are (roughly) three different possibilities to derive/approximate the distribution of an estimator $\hat\theta_n:$  
 
-* **Mathematical Derivation using Distributional Assumptions.** Assuming a certain distribution $F_X$ for the random sample $X_1,\dots,X_n$ allows us to derive the *exact* distribution of $\hat\theta_n$ mathematically. (We consider this option in @sec-ssinf.)
+* **Option 1: Mathematical derivation using a *complete* distributional assumption on $F_X$.** Assuming a certain distribution $F_X$ for the random sample $X_1,\dots,X_n$ may allow us to derive mathematically the *exact* distribution of $\hat\theta_n$ for given sample sizes $n.$<br>
+➡️ We consider this option in @sec-ssinf.
   * Pro: If the distributional assumption is correct, one has *exact* inference for each sample size $n$. 
   * Con: This option can fail miserably if the distributional assumption on $F_X$ is wrong. 
-  * Con: Such mathematical derivations are often only possible for particular distributions $F_X$ like the normal distribution. 
+  * Con: This option is often only possible for rather simple distributions $F_X$ like the normal distribution. 
 
-* **Mathematical Derivation using Asymptotic Statistics.** Large sample $(n\to\infty)$ approximations (i.e. laws of large numbers and central limit theorems) allow us to derive the *approximate* distribution of $\hat\theta_n$. This option uses mathematical limit considerations by letting the sample size $n$ diverge to infinity. (We consider this option in @sec-lsinf.) 
-  * Pro: Only a few qualitative distributional assumptions are needed. 
+
+
+* **Option 2: Mathematical derivation using only an *incomplete* distributional assumption on $F_X$ and asymptotic statistics.** Large sample $(n\to\infty)$ approximations (i.e. laws of large numbers and central limit theorems) often allows us to derive the *approximate* distribution of $\hat\theta_n$ for large sample sizes $n.$<br>
+➡️ We consider this option in @sec-lsinf. 
+  * Pro: Only a few qualitative distributional assumptions are needed. (Typically: A random sample with finite variances.)  
   * Con: The derived asymptotic ($n\to\infty$) distribution is only exact for the practically impossible case where $n=\infty$ and thus can fail to approximate the exact distribution of $\hat\theta_n$ for given (finite) sample sizes $n$; particularly if $n$ is small. 
 
-With computers, we have further options to approximate the exact distribution of estimators using (pseudo-)random number generators. One example are Monte Carlo simulations:
 
-* **Monte Carlo Simulations.** Let's say the distribution $F_X$ of the random sample were known. Then, using (pseudo-)random number generators, we can draw `B` many realizations 
+* **Option 3: Monte Carlo (MC) Simulations using a *complete* distributional assumption on $F_X$.** Assuming a certain distribution $F_X$ for the random sample $X_1,\dots,X_n$ we can approximate (with arbitrary precision) the *exact* distribution of $\hat\theta_n$ for given sample sizes $n;$ see the Algorithm "MC-Simulation". <br> 
+➡️ We use this option to check the behavior of estimators under different scenarios for $F_X$ and $n$ throughout the rest of this script.<br>
+  * Pro: Works for a basically every distribution $F_X$ and sample size $n.$  
+  * Con: This option can fail miserably if the distributional assumption on $F_X$ is wrong.
+
+**Algorithm "MC-Simulation":**<br>
+**1. Step: Generate realizations of $\hat{\theta}_n$.** Use a (pseudo-)random number generator to draw a large number of $B$ (e.g. $B=10,000$) many realizations of the random sample $\{X_1,\dots,X_n\}$ for a given distribution $F_X$ and a given sample size $n:$ 
 \begin{align*}
 &(X_{1,1,obs},\dots,X_{n,1,obs})\\
 &(X_{1,2,obs},\dots,X_{n,2,obs})\\
 & \hspace{2cm}\vdots \\
 &(X_{1,B,obs},\dots,X_{n,B,obs})
 \end{align*}
-of the random sample $X_{1},\dots,X_{n}$ from $F_X$ and thus can compute `B` many realizations 
+Compute for each realization of the random sample a realization of $\hat{\theta}_n:$ 
 \begin{align*}
 \hat\theta_{n,1,obs} &= \hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})\\
 \hat\theta_{n,2,obs} &= \hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})\\
 &\vdots\\
 \hat\theta_{n,B,obs} &= \hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})
 \end{align*} 
-of the estimator $\hat\theta_n$. <br>
-This set of realizations $\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}$ allows us then to approximate the exact distribution of $\hat\theta_n$ for given sample sizes $n$ and given distributions $F_X$, since the empirical distribution function 
+**2. Step: Approximate the distribution of $\hat{\theta}_n$ (or a features of it).**
+Use the realizations $\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}$ to approximate the exact distribution of $\hat\theta_n$ for a given $F_X$ and a give sample size $n.$<br>
+
+
+
+
+::: {.callout-note}
+Step 2 of the above algorithm works, since the empirical distribution function 
 $$
-\hat{F}_{\hat{\theta}_n}(x)=\frac{1}{B}\sum_{j=1}^BI_{(\hat\theta_{n,1,obs} \leq x)}
+\hat{F}_{\hat{\theta}_n,B}(x)=\frac{1}{B}\sum_{j=1}^BI_{(\hat\theta_{n,1,obs} \leq x)}
 $$
 approximates the true (unknown) distribution function of $\hat{\theta}_n$
 $$
 F_{\hat{\theta}_n}(x)=P(\hat\theta_{n} \leq x)
 $$
-arbitrarily well as $B\to\infty,$ i.e.
+arbitrarily well as $B\to\infty.$ 
+
+This hold true, since by the famous [Glivenko–Cantelli theorem](https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem)  
 $$
-\sup_x\left| \hat{F}_{\hat{\theta}_n}(x) - F_{\hat{\theta}_n}(x)\right|\to 0\quad\text{as}\quad B\to\infty.
+\sup_x\left| \hat{F}_{\hat{\theta}_n,B}(x) - F_{\hat{\theta}_n}(x)\right|\to 0\quad\text{as}\quad B\to\infty.
 $$
-almost surely as $B\to\infty$; see the famous [Glivenko–Cantelli theorem](https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem). (We use this option to *validate* theoretical statements in @sec-ssinf and @sec-lsinf.)
-
-  * Pro: Works for basically every distributional assumption. 
-  * Con: This option can fail miserably if the distributional assumption on $F_X$ is wrong. 
+almost surely as $B\to\infty.$
 
 
-<!-- Monte Carlo Simulations rely on distributional assumptions and thus may fail just as the first option (Mathematical Derivation using Distributional Assumptions). However, Monte Carlo Simulations are much wider applicable than since we can use computers to sample data from basically every distribution.   -->
+Instead of approximating the whole distribution of $\hat{\theta}_n,$ we may only be interested in approximating specific features of the this distribution, such as: 
+
+* the bias of $\hat{\theta}_n$
+* the variance of $\hat{\theta}_n$
+* the standard error of $\hat{\theta}_n$
+* the mean squared error of $\hat{\theta}_n$
+* etc.
+
+**Note:** These features are simple functionals of $\hat{F}_{\hat{\theta}_n,B},$ and thus can also be approximated arbitrarily well as $B\to\infty.$
+:::
+
 
 ### Example: Sample Mean $\bar{X}_n$ {#sec-ExampleSampleMean}
 

@@ -244,7 +244,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>In the following parts of the lecture, we will use Monte Carlo simulations in oder to check whether a certain estimator is able to estimate its (usually unknown) target parameter. In this chapter, we will learn what Monte Carlo simulations are and how they can be implemented.</p>
+<p>Learning outcomes of this chapter:</p>
+<ul>
+<li>You know the basic concepts of estimation theory and you can apply them to specific estimators.
+<ul>
+<li>Estimate vs estimator</li>
+<li>Estimator’s distribution, bias, variance, and standard error</li>
+</ul></li>
+<li>You know how to use a Monte Carlo simulation to check the accuracy (bias, variance, and standard error) of a given (simple) estimator</li>
+</ul>
 <section id="estimator-vs.-estimate" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="estimator-vs.-estimate"><span class="header-section-number">3.1</span> Estimator vs.&nbsp;Estimate</h2>
 <p>Let’s assume that we have an iid random sample <span class="math inline">\(\{X_1,\dots,X_n\}\)</span> with <span class="math display">\[
@@ -257,6 +265,15 @@ X_i\overset{iid}{\sim} F_X
 <p>The observed data <span class="math inline">\(X_{1,obs},\dots,X_{n,obs}\)</span> is assumed to be a certain realization of the random sample <span class="math inline">\(X_1,\dots,X_n\)</span>. The corresponding <strong>realization</strong> of the estimator is called an <strong>estimate</strong> of <span class="math inline">\(\theta\)</span> <span class="math display">\[
 \hat\theta_{n,obs}=\hat\theta(X_{1,obs},\dots,X_{n,obs}).
 \]</span></p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><p>The sample mean as an estimator of the population mean <span class="math inline">\(E(X_i) =\theta\)</span>: <span class="math display">\[
+\hat\theta_n=\bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i
+\]</span></p></li>
+<li><p>The sample variance as an estimator of the population variance <span class="math inline">\(Var(X_i) =\theta\)</span>: <span class="math display">\[
+\hat\theta_n=s_{UB}^2=\frac{1}{n-1}\sum_{i=1}^n\left(X_i - \bar{X}_n\right)^2
+\]</span></p></li>
+</ul>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -270,60 +287,74 @@ Note
 <p>Often we do not use a distinguishing notation, but denote both the estimator and its realization as <span class="math inline">\(\hat\theta_{n}\)</span>. This ambiguity is often convenient since both points of views can make sense in a given context.</p>
 </div>
 </div>
-<p><strong>Examples:</strong></p>
-<ul>
-<li><p>The sample mean as an estimator of the population mean <span class="math inline">\(E(X_i) =\theta\)</span>: <span class="math display">\[
-\hat\theta_n=\bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i
-\]</span></p></li>
-<li><p>The sample variance as an estimator of the population variance <span class="math inline">\(Var(X_i) =\theta\)</span>: <span class="math display">\[
-\hat\theta_n=s_{UB}^2=\frac{1}{n-1}\sum_{i=1}^n\left(X_i - \bar{X}_n\right)^2
-\]</span></p></li>
-</ul>
 </section>
 <section id="deriving-the-distribution-of-estimators" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="deriving-the-distribution-of-estimators"><span class="header-section-number">3.2</span> Deriving the Distribution of Estimators</h2>
-<p>Usually, we do not know the distribution <span class="math inline">\(F_X\)</span> of the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> and thus do not know the distribution of the estimator <span class="math display">\[
+<p>Usually, we do not know the distribution <span class="math inline">\(F_X\)</span> of the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> and thus we neither know the value of <span class="math inline">\(\theta\)</span> nor the distribution of the estimator <span class="math display">\[
 \hat\theta_n=\hat\theta(X_1,\dots,X_n).
-\]</span> This is a fundamental statistical problem and we need to overcome this problem in order to do statistical inference (hypothesis testing, etc.).</p>
-<p>There are different possibilities to derive/approximate the distribution of an estimator <span class="math inline">\(\hat\theta_n\)</span>. In times when when computers were expensive, statisticians mainly used mathematical derivations:</p>
+\]</span> This is the fundamental statistical problem that we need to overcome in statistical inference (estimating <span class="math inline">\(\theta\)</span>, hypothesis testing about <span class="math inline">\(\theta\)</span>, etc.).</p>
+<p>There are (roughly) three different possibilities to derive/approximate the distribution of an estimator <span class="math inline">\(\hat\theta_n:\)</span></p>
 <ul>
-<li><strong>Mathematical Derivation using Distributional Assumptions.</strong> Assuming a certain distribution <span class="math inline">\(F_X\)</span> for the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> allows us to derive the <em>exact</em> distribution of <span class="math inline">\(\hat\theta_n\)</span> mathematically. (We consider this option in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a>.)
+<li><strong>Option 1: Mathematical derivation using a <em>complete</em> distributional assumption on <span class="math inline">\(F_X\)</span>.</strong> Assuming a certain distribution <span class="math inline">\(F_X\)</span> for the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> may allow us to derive mathematically the <em>exact</em> distribution of <span class="math inline">\(\hat\theta_n\)</span> for given sample sizes <span class="math inline">\(n.\)</span><br> ➡️ We consider this option in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a>.
 <ul>
 <li>Pro: If the distributional assumption is correct, one has <em>exact</em> inference for each sample size <span class="math inline">\(n\)</span>.</li>
 <li>Con: This option can fail miserably if the distributional assumption on <span class="math inline">\(F_X\)</span> is wrong.</li>
-<li>Con: Such mathematical derivations are often only possible for particular distributions <span class="math inline">\(F_X\)</span> like the normal distribution.</li>
+<li>Con: This option is often only possible for rather simple distributions <span class="math inline">\(F_X\)</span> like the normal distribution.</li>
 </ul></li>
-<li><strong>Mathematical Derivation using Asymptotic Statistics.</strong> Large sample <span class="math inline">\((n\to\infty)\)</span> approximations (i.e.&nbsp;laws of large numbers and central limit theorems) allow us to derive the <em>approximate</em> distribution of <span class="math inline">\(\hat\theta_n\)</span>. This option uses mathematical limit considerations by letting the sample size <span class="math inline">\(n\)</span> diverge to infinity. (We consider this option in <a href="06-Asymptotics.html"><span>Chapter&nbsp;6</span></a>.)
+<li><strong>Option 2: Mathematical derivation using only an <em>incomplete</em> distributional assumption on <span class="math inline">\(F_X\)</span> and asymptotic statistics.</strong> Large sample <span class="math inline">\((n\to\infty)\)</span> approximations (i.e.&nbsp;laws of large numbers and central limit theorems) often allows us to derive the <em>approximate</em> distribution of <span class="math inline">\(\hat\theta_n\)</span> for large sample sizes <span class="math inline">\(n.\)</span><br> ➡️ We consider this option in <a href="06-Asymptotics.html"><span>Chapter&nbsp;6</span></a>.
 <ul>
-<li>Pro: Only a few qualitative distributional assumptions are needed.</li>
+<li>Pro: Only a few qualitative distributional assumptions are needed. (Typically: A random sample with finite variances.)<br>
+</li>
 <li>Con: The derived asymptotic (<span class="math inline">\(n\to\infty\)</span>) distribution is only exact for the practically impossible case where <span class="math inline">\(n=\infty\)</span> and thus can fail to approximate the exact distribution of <span class="math inline">\(\hat\theta_n\)</span> for given (finite) sample sizes <span class="math inline">\(n\)</span>; particularly if <span class="math inline">\(n\)</span> is small.</li>
 </ul></li>
-</ul>
-<p>With computers, we have further options to approximate the exact distribution of estimators using (pseudo-)random number generators. One example are Monte Carlo simulations:</p>
+<li><strong>Option 3: Monte Carlo (MC) Simulations using a <em>complete</em> distributional assumption on <span class="math inline">\(F_X\)</span>.</strong> Assuming a certain distribution <span class="math inline">\(F_X\)</span> for the random sample <span class="math inline">\(X_1,\dots,X_n\)</span> we can approximate (with arbitrary precision) the <em>exact</em> distribution of <span class="math inline">\(\hat\theta_n\)</span> for given sample sizes <span class="math inline">\(n;\)</span> see the Algorithm “MC-Simulation”. <br> ➡️ We use this option to check the behavior of estimators under different scenarios for <span class="math inline">\(F_X\)</span> and <span class="math inline">\(n\)</span> throughout the rest of this script.<br>
 <ul>
-<li><p><strong>Monte Carlo Simulations.</strong> Let’s say the distribution <span class="math inline">\(F_X\)</span> of the random sample were known. Then, using (pseudo-)random number generators, we can draw <code>B</code> many realizations <span class="math display">\[\begin{align*}
+<li>Pro: Works for a basically every distribution <span class="math inline">\(F_X\)</span> and sample size <span class="math inline">\(n.\)</span><br>
+</li>
+<li>Con: This option can fail miserably if the distributional assumption on <span class="math inline">\(F_X\)</span> is wrong.</li>
+</ul></li>
+</ul>
+<p><strong>Algorithm “MC-Simulation”:</strong><br> <strong>1. Step: Generate realizations of <span class="math inline">\(\hat{\theta}_n\)</span>.</strong> Use a (pseudo-)random number generator to draw a large number of <span class="math inline">\(B\)</span> (e.g.&nbsp;<span class="math inline">\(B=10,000\)</span>) many realizations of the random sample <span class="math inline">\(\{X_1,\dots,X_n\}\)</span> for a given distribution <span class="math inline">\(F_X\)</span> and a given sample size <span class="math inline">\(n:\)</span> <span class="math display">\[\begin{align*}
 &amp;(X_{1,1,obs},\dots,X_{n,1,obs})\\
 &amp;(X_{1,2,obs},\dots,X_{n,2,obs})\\
 &amp; \hspace{2cm}\vdots \\
 &amp;(X_{1,B,obs},\dots,X_{n,B,obs})
-\end{align*}\]</span> of the random sample <span class="math inline">\(X_{1},\dots,X_{n}\)</span> from <span class="math inline">\(F_X\)</span> and thus can compute <code>B</code> many realizations <span class="math display">\[\begin{align*}
+\end{align*}\]</span> Compute for each realization of the random sample a realization of <span class="math inline">\(\hat{\theta}_n:\)</span> <span class="math display">\[\begin{align*}
 \hat\theta_{n,1,obs} &amp;= \hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})\\
 \hat\theta_{n,2,obs} &amp;= \hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})\\
 &amp;\vdots\\
 \hat\theta_{n,B,obs} &amp;= \hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})
-\end{align*}\]</span> of the estimator <span class="math inline">\(\hat\theta_n\)</span>. <br> This set of realizations <span class="math inline">\(\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}\)</span> allows us then to approximate the exact distribution of <span class="math inline">\(\hat\theta_n\)</span> for given sample sizes <span class="math inline">\(n\)</span> and given distributions <span class="math inline">\(F_X\)</span>, since the empirical distribution function <span class="math display">\[
-\hat{F}_{\hat{\theta}_n}(x)=\frac{1}{B}\sum_{j=1}^BI_{(\hat\theta_{n,1,obs} \leq x)}
+\end{align*}\]</span> <strong>2. Step: Approximate the distribution of <span class="math inline">\(\hat{\theta}_n\)</span> (or a features of it).</strong> Use the realizations <span class="math inline">\(\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}\)</span> to approximate the exact distribution of <span class="math inline">\(\hat\theta_n\)</span> for a given <span class="math inline">\(F_X\)</span> and a give sample size <span class="math inline">\(n.\)</span><br></p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Step 2 of the above algorithm works, since the empirical distribution function <span class="math display">\[
+\hat{F}_{\hat{\theta}_n,B}(x)=\frac{1}{B}\sum_{j=1}^BI_{(\hat\theta_{n,1,obs} \leq x)}
 \]</span> approximates the true (unknown) distribution function of <span class="math inline">\(\hat{\theta}_n\)</span> <span class="math display">\[
 F_{\hat{\theta}_n}(x)=P(\hat\theta_{n} \leq x)
-\]</span> arbitrarily well as <span class="math inline">\(B\to\infty,\)</span> i.e. <span class="math display">\[
-\sup_x\left| \hat{F}_{\hat{\theta}_n}(x) - F_{\hat{\theta}_n}(x)\right|\to 0\quad\text{as}\quad B\to\infty.
-\]</span> almost surely as <span class="math inline">\(B\to\infty\)</span>; see the famous <a href="https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem">Glivenko–Cantelli theorem</a>. (We use this option to <em>validate</em> theoretical statements in <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a> and <a href="06-Asymptotics.html"><span>Chapter&nbsp;6</span></a>.)</p>
+\]</span> arbitrarily well as <span class="math inline">\(B\to\infty.\)</span></p>
+<p>This hold true, since by the famous <a href="https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem">Glivenko–Cantelli theorem</a><br>
+<span class="math display">\[
+\sup_x\left| \hat{F}_{\hat{\theta}_n,B}(x) - F_{\hat{\theta}_n}(x)\right|\to 0\quad\text{as}\quad B\to\infty.
+\]</span> almost surely as <span class="math inline">\(B\to\infty.\)</span></p>
+<p>Instead of approximating the whole distribution of <span class="math inline">\(\hat{\theta}_n,\)</span> we may only be interested in approximating specific features of the this distribution, such as:</p>
 <ul>
-<li>Pro: Works for basically every distributional assumption.</li>
-<li>Con: This option can fail miserably if the distributional assumption on <span class="math inline">\(F_X\)</span> is wrong.</li>
-</ul></li>
+<li>the bias of <span class="math inline">\(\hat{\theta}_n\)</span></li>
+<li>the variance of <span class="math inline">\(\hat{\theta}_n\)</span></li>
+<li>the standard error of <span class="math inline">\(\hat{\theta}_n\)</span></li>
+<li>the mean squared error of <span class="math inline">\(\hat{\theta}_n\)</span></li>
+<li>etc.</li>
 </ul>
-<!-- Monte Carlo Simulations rely on distributional assumptions and thus may fail just as the first option (Mathematical Derivation using Distributional Assumptions). However, Monte Carlo Simulations are much wider applicable than since we can use computers to sample data from basically every distribution.   -->
+<p><strong>Note:</strong> These features are simple functionals of <span class="math inline">\(\hat{F}_{\hat{\theta}_n,B},\)</span> and thus can also be approximated arbitrarily well as <span class="math inline">\(B\to\infty.\)</span></p>
+</div>
+</div>
 <section id="sec-ExampleSampleMean" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="sec-ExampleSampleMean"><span class="header-section-number">3.2.1</span> Example: Sample Mean <span class="math inline">\(\bar{X}_n\)</span></h3>
 <p>Let <span class="math inline">\(\{X_1,\dots,X_n\}\)</span> be an iid random sample with <span class="math display">\[
@@ -798,7 +829,7 @@ Var\left(\frac{1}{n}\sum_{i=1}^nX_i\right)\\[2ex]
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Take away message (repeated)
+Take away message (continued)
 </div>
 </div>
 <div class="callout-body-container callout-body">
