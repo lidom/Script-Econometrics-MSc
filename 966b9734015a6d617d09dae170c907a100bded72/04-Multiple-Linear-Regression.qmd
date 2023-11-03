@@ -1,7 +1,11 @@
 # Multiple Linear Regression {#sec-MLR}
 
-In the following we focus on case of random designs $X$ (i.e. $X$ being a random variable), since, first, this is the more relevant case in econometrics and, second, it includes the case of fixed designs (i.e. $X$ being deterministic) as a special case ("degenerated random variable"). 
-Caution: A random $X$ requires us to consider conditional means and variances "given $X$." That is, if we would be able to resample from the model, we do so by fixing (conditioning on) the in-principle random explanatory variable $X$. 
+In the following we focus on the case of random designs $X$ (i.e. $X$ being a random variable), since 
+
+1. this is the more relevant case in econometrics and 
+2. it includes the case of fixed designs (i.e. $X$ being deterministic) as a special case ("degenerated random variable").
+
+**Caution:** A random $X$ requires us to consider conditional means and variances given $X.$ That is, if we were able to resample from the population (from the data-generating process), we would do so by fixing (conditioning on) the observed $X.$ 
 
 
 ## Assumptions {#sec-LinModAssumptions}
@@ -44,16 +48,26 @@ $$
 ((Y_{1},X_{11},\dots,X_{1K}),(Y_{2},X_{21},\dots,X_{2K}),\dots,(Y_{n},X_{n1},\dots,X_{nK})).
 $$ 
 
-That is, the $i$th observed $K+1$ dimensional data point $(Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}$ is a realization of a $K+1$ dimensional random variable $(Y_{i},X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1},$ where 
+That is, the $i$th observed $K+1$ dimensional data point 
+$$(Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}
+$$ 
+is a realization of a $K+1$ dimensional random variable 
+$$
+(Y_{i},X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1},
+$$ 
+where 
 
 1. $(Y_{i},X_{i1},\dots,X_{iK})$ has the identical $K+1$ dimensional distribution for all $i=1,\dots,n.$ 
 2. $(Y_{i},X_{i1},\dots,X_{iK})$ is independent of 
 $(Y_{j},X_{j1},\dots,X_{jK})$ for all $i\neq j=1,\dots,n.$
 
-
-Note: Due to @eq-LinMod, this i.i.d. assumption is equivalent to assuming that the multivariate 
-random variables $(\varepsilon_i,X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1}$ are i.i.d. across 
-$i=1,\dots,n$. 
+::: {.callout-note}
+Due to @eq-LinMod, this i.i.d. assumption is equivalent to assuming that the multivariate  random variables 
+$$
+(\varepsilon_i,X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1}
+$$ 
+are i.i.d. across $i=1,\dots,n$. 
+:::
 
 **Remark:** Usually, we do not use a different notation for observed realizations 
 $(Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}$ 
@@ -77,13 +91,17 @@ and $(\varepsilon_j,X_{j1},\dots,X_{jK})$ are independent for all $i\neq j$. -->
 
 
 **Assumption 2: Exogeneity**
-$$E(\varepsilon_i|X_i)=0,\quad i=1,\dots,n$$
+$$
+E(\varepsilon_i|X_i)=0,\quad i=1,\dots,n
+$${#eq-assExogen}
 This assumption demands that the mean of the random error term $\varepsilon_i$ is zero irrespective of the realizations of $X_i$.  
 
 
 This exogeneity assumption is also called "orthogonality assumption" or "mean independence assumption."
 
-**Note:** Together with the random sample assumption (Assumption 1, Part (b)) this assumption implies even **strict** exogeneity $E(\varepsilon_i|X) = 0$ since we have independence across $i=1,\dots,n$.  Under strict exogeneity, the mean of $\varepsilon_i$ is zero irrespective of the realizations of $X_1,\dots,X_n$. 
+::: {.callout-note}
+Together with the random sample assumption (Assumption 1, Part (b)) @eq-assExogen implies even **strict** exogeneity $E(\varepsilon_i|X) = 0$ since we have independence across $i=1,\dots,n$.  Under strict exogeneity, the mean of $\varepsilon_i$ is zero irrespective of the realizations of $X_1,\dots,X_n$. 
+:::
 
 <!-- For one example, it cannot be fulfilled when the regressors include lagged dependent variables. -->
 <!-- Notice that in the presence of a constant explanatory variable, setting the expectation to zero is a normalization.  -->
@@ -159,6 +177,10 @@ Sometimes, we need to be more restrictive by assuming that also the variances of
 
 ### Some Implications of the Exogeneity Assumption 
 
+
+::: {.callout-note icon=false}
+##
+
 ::: {#thm-a}
 
 ## Unconditional Mean
@@ -167,9 +189,8 @@ If $E(\varepsilon_i|X_i)=0$ for all $i=1,\dots,n$, then the also the uncondition
 $$
 E(\varepsilon_i)=0,\quad i=1,\dots,n.
 $$
-
 :::
-
+::: 
 
 ::: {.proof}
 Using the *Law of Total Expectations* (i.e., $E[E(Z|X)]=E(Z)$) we can rewrite $E(\varepsilon_i)$ as
@@ -186,6 +207,8 @@ for all $i=1,\dots,n,$ which completes the proof. $\square$
 
 Generally, two random variables $X$ and $Y$ are said to be **orthogonal** if their cross moment is zero, i.e. if $E(XY)=0$. Exogeneity is sometimes also called "orthogonality," due to the following result.  
 
+::: {.callout-note icon=false}
+##
 ::: {#thm-b}
 
 ## Orthogonality
@@ -195,6 +218,7 @@ $$
 E(X_{ik}\varepsilon_i)=0
 $$
 for all $i=1,\dots,n$ and $k=1,\dots,K$.
+:::
 :::
 
 ::: {.proof}
@@ -223,6 +247,8 @@ which completes the proof. $\square$
 
 Because the mean of the error term is zero ($E(\varepsilon_i)=0$ for all $i$ (see @thm-a), it follows that the orthogonality property, $E(X_{ik}\varepsilon_i)=0,$ is equivalent to a zero correlation property. 
 
+::: {.callout-note icon=false}
+##
 ::: {#thm-c}
 
 ## No Correlation
@@ -232,6 +258,8 @@ If $E(\varepsilon_i|X_{i})=0$, then
   Cov(\varepsilon_i,X_{ik})&=&0\quad\text{for all}\quad i=1,\dots,n\quad\text{and}\quad k=1,\dots,K.
 \end{eqnarray*}
 :::
+::: 
+
 
 ::: {.proof}
 \begin{eqnarray*}
@@ -415,6 +443,8 @@ $$
 $$
 is the basis for the well-known variance decomposition result for OLS regressions. 
 
+::: {.callout-note icon=false}
+##
 ::: {#thm-vardecomp}
 For the linear regression model with intercept (@eq-LinMod), the total sample variance of the dependent variable $Y_1,\dots,Y_n$ can be decomposed as following:
 \begin{eqnarray}
@@ -422,6 +452,7 @@ For the linear regression model with intercept (@eq-LinMod), the total sample va
 \end{eqnarray}
 where $\bar{Y}=\frac{1}{n}\sum_{i=1}^nY_i$ and $\bar{\hat{Y}}=\frac{1}{n}\sum_{i=1}^n\hat{Y}_i$. 
 :::
+::: 
 
 ::: {.proof}
 From equation $X'\hat\varepsilon=0$ we have for regressions with intercept that $\sum_{i=1}^n\hat\varepsilon_i=0$. Hence, from $Y_i=\hat{Y}_i+\hat\varepsilon_i$ it follows that
@@ -603,6 +634,8 @@ So, we can summarize:
 
 The famous **Gauss-Markov Theorem** states that the OLS estimator is the **"best"** (lowest conditional variance) estimator within this family of linear (in $Y$) and unbiased estimators.
 
+::: {.callout-note icon=false}
+##
 ::: {#thm-GMTheorem}
 
 ##  Gauss-Markov Theorem
@@ -616,6 +649,8 @@ $$
 $$
 where $D$ is a *positive semidefinite* $(K\times K)$ matrix, i.e., $a'Da\geq 0$ for any $K$-dimensional vector $a\in\mathbb{R}^K$.  Observe that this implies that $Var(\tilde{\beta}_k|X) \geq Var(\hat\beta_k | X)$ for any $k=1,\dots,K$. 
 ::: 
+:::
+
 
 ::: {.proof}
 

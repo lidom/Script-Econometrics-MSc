@@ -154,11 +154,7 @@ We consider two sample sizes $n=5$ and $n=50.$
 
 Here we have specified the distribution $F_X$ completely by setting $F_X=\mathcal{N}(\mu=10,\sigma^2=5).$ This is such a simple case, that we can actually use mathematical derivations to derive the distribution of $\bar{X}_n.$ (Often, this is not possible.)
 
-Observe that since $X_1\sim\mathcal{N}(\mu,\sigma^2)$ and $X_2\sim\mathcal{N}(\mu,\sigma^2)$
-$$
-X_1+X_2\sim\mathcal{N}(\mu + \mu, \sigma^2 + \sigma^2).
-$$
-Thus 
+Observe that since $X_i\overset{\text{iid}}{\sim}\mathcal{N}(\mu,\sigma^2),$ 
 $$
 \sum_{i=1}^nX_i\sim\mathcal{N}(n \mu, n \sigma^2).
 $$
@@ -193,12 +189,11 @@ $$
 
 Next, we use a Monte Carlo simulation to approximate the distribution of the estimator 
 $$
-\bar{X}_n =  \frac{1}{n}\sum_{i=1}^n X_i
+\bar{X}_n =  \frac{1}{n}\sum_{i=1}^n X_i.
 $$
-of $\mu=10.$ 
 
 
-The following `R` code generates `B` many realizations of the random sample $X_i\overset{iid}{\sim}\mathcal{N}(\mu,\sigma^2)$ with $\mu=10$ and $\sigma^2=5.$
+The following `R` code generates $B=10,000$ many realizations of the random sample $X_i\overset{iid}{\sim}\mathcal{N}(\mu,\sigma^2)$ with $\mu=10$ and $\sigma^2=5.$
 
 \begin{align*}
 &(X_{1,1,obs},\dots,X_{n,1,obs})\\
@@ -206,7 +201,7 @@ The following `R` code generates `B` many realizations of the random sample $X_i
 & \hspace{2cm}\vdots \\
 &(X_{1,B,obs},\dots,X_{n,B,obs})
 \end{align*}
-leading to `B` many realizations of the estimator $\bar{X}_n$ 
+leading to $B$ many realizations of the estimator $\bar{X}_n$ 
 \begin{align*}
 \bar{X}_{n,1,obs} &= \hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})\\
 \bar{X}_{n,2,obs} &= \hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})\\
@@ -224,9 +219,9 @@ B             <- 10000
 n_seq         <- c(5, 50)
 
 
-## ######################################
-## 1st Possibility: Using a for() loop ##
-## ######################################
+## #############################################
+## 1st Coding-Possibility: Using a for() loop ##
+## #############################################
 
 ## Set seed for the random number generator to get reproducible results
 set.seed(3)
@@ -245,9 +240,9 @@ for(j in 1:length(n_seq)){
   }
 }
 
-## #####################################
-## 2nd Possibility: Using replicate() ##
-## #####################################
+## ############################################
+## 2nd Coding-Possibility: Using replicate() ##
+## ############################################
 
 ## Set seed for the random number generator to get reproducible results
 set.seed(3)
@@ -265,7 +260,7 @@ estimates_mat <- cbind(
 )
 ```
 
-Based on the `B`$=10,000$ realizations of the estimator $\bar{X}_n$, we can compute the empirical density functions $\hat{F}_{X_n,B}$ (see @fig-ecdf) and histograms (see @fig-histdensplots) to get an idea about the true distribution of $\bar{X}_n.$ 
+Based on the $B=10,000$ realizations of the estimator $\bar{X}_n$, we can compute the empirical density functions $\hat{F}_{X_n,B}$ (see @fig-ecdf) and histograms (see @fig-histdensplots) to get an idea about the true distribution of $\bar{X}_n.$ 
 
 In this simple case, we also know the theoretical distribution function $F_{X_n}$ and density function which allows us to check the simulation results (see @fig-ecdf and @fig-histdensplots). 
 ```{r, fig.align="center", fig.cap=""}
@@ -455,42 +450,76 @@ A Monte Carlo simulation can approximate these means by using the **law of large
 
 Thus, to compute a very precise approximation to $E\left(\hat\theta_n\right)-\theta$, we can use a computer to execute the following algorithm:
 
-**Step 1.** Generate $B$ many (e.g. $B=10,000$) realizations of the iid random sample 
+**Step 1.** Generate $B$ many (e.g. $B=10,000$) realizations of the iid random sample $(X_1,\dots,X_n)$
+\begin{align*}
+&(X_{1,1,obs},\dots,X_{n,1,obs})\\
+&(X_{1,2,obs},\dots,X_{n,2,obs})\\
+& \hspace{2cm}\vdots \\
+&(X_{1,B,obs},\dots,X_{n,B,obs})
+\end{align*}
+leading to $B$ many realizations of the estimator $\hat{\theta}_n$ 
+\begin{align*}
+\hat{\theta}_{n,1,obs} &= \hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})\\
+\hat{\theta}_{n,2,obs} &= \hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})\\
+&\;\vdots\\
+\hat{\theta}_{n,B,obs} &= \hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})
+\end{align*} 
 
-$$
-(X_{1,1},\dots,X_{n,1}),\; (X_{1,2},\dots,X_{n,2}),\dots, (X_{1,B},\dots,X_{n,B})
-$$
-
-**Step 2.** Compute the corresponding $B$ many realizations of the estimator 
-
-$$
-\underbrace{\hat\theta(X_{1,1},\dots,X_{n,1})}_{=\hat\theta_{n,1}},\;\underbrace{\hat\theta(X_{1,2},\dots,X_{n,2})}_{=\hat\theta_{n,2}},\dots,\underbrace{\hat\theta(X_{1,B},\dots,X_{n,B})}_{=\hat\theta_{n,B}}
-$$ 
-**Step 3.** Use the simulated realizations $\hat{\theta}_{n,1},\dots,\hat{\theta}_{n,B}$ to approximate the bias, variance, and the mean squared error of the estimator $\hat{\theta}_n$:
+**Step 2.** Use the simulated realizations $\hat{\theta}_{n,1,obs},\dots,\hat{\theta}_{n,B,obs}$ to approximate the bias, variance, and the mean squared error of the estimator $\hat{\theta}_n$:
 
 * The bias of $\operatorname{Bias}\left(\hat\theta_n\right)=E\left(\hat\theta_n\right)-\theta$ can be approximated by 
 
 $$
-\widehat{\operatorname{Bias}}_{MC}\left(\hat\theta_n\right) = \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right) - \theta 
+\widehat{\operatorname{Bias}}_{MC}\left(\hat\theta_n\right) = \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b,obs}\right) - \theta 
 $$
 
 * The variance $Var\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^2\right]$ can be approximated by
 $$
-\widehat{Var}_{MC}\left(\hat\theta_n\right) = \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b}\right)\right)^2 
+\widehat{Var}_{MC}\left(\hat\theta_n\right) = \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b,obs} - \left(\frac{1}{B}\sum_{b=1}^B \hat\theta_{n,b,obs}\right)\right)^2 
 $$
 
 * The mean squared error $\operatorname{MSE}\left(\hat\theta_n\right)=E\left[\left(\hat\theta_n - \theta\right)^2\right]$ can be approximated by 
 $$
-\widehat{\operatorname{MSE}}_{MC}\left(\hat\theta_n\right) = \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b} - \theta\right)^2 
+\widehat{\operatorname{MSE}}_{MC}\left(\hat\theta_n\right) = \frac{1}{B}\sum_{b=1}^B \left(\hat\theta_{n,b,obs} - \theta\right)^2 
 $$
 
+::: {.callout-note}
 
-By law of large numbers these approximations get arbitrarily precise as $B \to \infty$. 
+By the law of large numbers these approximations get arbitrarily precise as $B \to \infty,$ i.e.
+\begin{align*}
+\widehat{\operatorname{Bias}}_{MC}\left(\hat\theta_n\right)&\to
+\operatorname{Bias}\left(\hat\theta_n\right)\quad\text{as}\quad B\to\infty\\[2ex]
+\widehat{Var}_{MC}\left(\hat\theta_n\right)&\to
+Var\left(\hat\theta_n\right)\quad\text{as}\quad B\to\infty\\[2ex]
+\widehat{\operatorname{MSE}}_{MC}\left(\hat\theta_n\right)&\to
+\operatorname{MSE}\left(\hat\theta_n\right)\quad\text{as}\quad B\to\infty
+\end{align*} 
 
+So for large $B$ (e.g. $B=10,000$) we can consider 
+$$
+\widehat{\operatorname{Bias}}_{MC}(\hat\theta_n), 
+\widehat{Var}_{MC}(\hat\theta_n),\text{ and }\;\;  
+\widehat{\operatorname{MSE}}_{MC}(\hat\theta_n)
+$$ 
+as roughly equal to 
+$$
+\operatorname{Bias}(\hat\theta_n), 
+Var(\hat\theta_n),\text{ and } 
+\operatorname{MSE}(\hat\theta_n).
+$$
+:::
 
 ### Example (revisited): Sample Mean {-}
 
-The following `R` code contains a Monte Carlo simulation ( `B = 10000` replications) computing the bias, variance, and means squared error for the sample mean $(\hat\theta_n=)\bar{X}_n=\sum_{i=1}^nX_i$ as the estimator of the population mean $(\theta=)\mu$. The random sample $X_i\overset{iid}{\sim}F_X$, $i=1,\dots,n$, is drawn from a normal distribution $F_X=\mathcal{N}(\mu,\sigma^2)$ with mean $\mu=10$ and variance $\sigma^2=5$. We investigate the accuracy of the estimator for different sample sizes $n\in\{5,15,50\}$. 
+The following `R` code contains a Monte Carlo simulation with $B = 10000$ replications to approximate the bias, the variance, and the mean squared error for the sample mean 
+$$
+(\hat\theta_n=)\bar{X}_n=\sum_{i=1}^nX_i
+$$ 
+Setup: 
+
+* $X_i\overset{iid}{\sim}F_X$, $i=1,\dots,n$, with $F_X=\mathcal{N}(\mu,\sigma^2)$ 
+* Mean $\mu=10$ and variance $\sigma^2=5$ 
+* Sample sizes $n\in\{5,15,50\}$ 
 <!-- The following `R` codes generated `B = 10000` realizations of the estimator $\bar{X}_n$ for each sample size $n\in\{5,15,50\}$ and stores all these realizations in a $10000\times 3$ matrix `estimates_mat`: -->
 ```{r}
 ## Set seed for the random number generator to get reproducible results
@@ -514,12 +543,7 @@ estimates_mat <- cbind(
   replicate(B, my_estimates_generator(n = n_seq[2])),
   replicate(B, my_estimates_generator(n = n_seq[3]))
 )
-```
 
-
-
-The following `R` code computes the Monte Carlo (MC) approximations for the bias, variance, and mean squared error of $\bar{X}_n$. The results should capture our observations. 
-```{r}
 ## Bias of the sample mean for different sample sizes n
 MC_Bias_n_seq <- apply(estimates_mat, 2, mean) - mu
 
@@ -532,7 +556,8 @@ MC_MSE_n_seq  <- apply(estimates_mat, 2, function(x){mean((x - mu)^2)})
 
 
 
-The table shows the numerical values of the Monte Carlo *approximations* for the true bias, true variance, and true mean squared error of $\bar{X}_n$:
+@tbl-mcbvmse shows the Monte Carlo approximations for the bias, the variance, and the mean squared error of $\bar{X}_n.$
+
 ```{r, echo=FALSE}
 #| label: tbl-mcbvmse
 #| tbl-cap: Monte Carlo approximations for the true bias, true variance, and true mean squared error of sample mean.
@@ -561,7 +586,9 @@ These Monte Carlo approximations (@tbl-mcbvmse) indicate that:
 <!-- The sample mean $\bar{X}_n$ is known to be a very good estimator of the population mean $\mu$ and the above simulation results conform this.  -->
 
 
-In @sec-ExampleSampleMean, we have already derived the exact theoretical distribution of $\bar{X}_n$ under the assumed random sample with sampling distribution $F_X=\mathcal{N}(\mu,\sigma^2):$
+### Comparing the MC-Results with the theoretical bias, variance, and mse of the sample mean {-}
+
+Since this example is so simple, we actually know the true bias, the true variance, and the true mean squared error of $\bar{X}_n.$ In @sec-ExampleSampleMean, we have already derived the exact theoretical distribution of $\bar{X}_n$ under the assumed random sample with sampling distribution $F_X=\mathcal{N}(\mu,\sigma^2):$
 $$
 \bar{X}_n\sim\mathcal{N}\left(\mu,\frac{1}{n}\sigma^2\right).
 $$ 
@@ -615,32 +642,30 @@ MCResults %>% kbl() %>%  kable_styling()
 
 Obviously, the Monte Carlo approximations (@tbl-mcbvmse) for these true values (@tbl-truebvmse) are very good. 
 
-If we would further increase the number of Monte Carlo repetitions `B`, the Monte Carlo approximations in @tbl-mcbvmse would get even more precise since we can make them arbitrarily precise by letting `B`$\to\infty$ using the law of large numbers. 
+If we would further increase the number of Monte Carlo repetitions $B,$ the Monte Carlo approximations in @tbl-mcbvmse would get even more precise since we can make them arbitrarily precise by letting $B\to\infty$ using the law of large numbers. 
 
 
 ::: {.callout-tip}
 
 ## Take away message (continued)
 
-We can use Monte Carlo simulations to approximate the *exact* distribution and its features (bias, variance, mse) of an estimator $\hat{\theta}_n$ for given distributions $F_X$ of the underlying random sample. These approximations become arbitrarily precise as $B\to\infty$. 
+We can use Monte Carlo simulations to approximate the *exact* distribution and its features (e.g. bias, variance, mse) of an estimator $\hat{\theta}_n$ for given distributions $F_X$ of the underlying random sample. These approximations become arbitrarily precise as $B\to\infty$. 
 
-We Monte Carlo simulations can be used to check estimation procedures when applied to specific data generating processes and sample sizes. 
+Therefore, Monte Carlo simulations can be used to check estimation procedures when applied to specific data generating processes and sample sizes. 
 
-MC simulations are an important tool, since modern estimation procedures are usually only justified based on asymptotic statistics $(n\to\infty)$ and sometimes only under relative restrictive assumptions. 
+<!-- MC simulations are an important tool, since modern estimation procedures are usually only justified based on asymptotic statistics $(n\to\infty)$ and sometimes only under relative restrictive assumptions. 
 
 In such cases, MC simulations can be used to investigate the behavior of the estimation procedure in practical, finite sample sizes $n$ and under different data generating processes. 
 
-MC simulations can also help to get an idea about how restrictive theoretical assumptions are in practice and how sensitive the an estimation procedure is with respect to violations of the theoretical assumptions.  
+MC simulations can also help to get an idea about how restrictive theoretical assumptions are in practice and how sensitive the an estimation procedure is with respect to violations of the theoretical assumptions.   -->
 :::
 
 
-<!-- ## Exercises -->
+## Exercises
 
-<!-- * [Exercises for Chapter 4](Exercises/Ch4_Exercises.pdf) -->
+* [Exercises for Chapter 3](https://www.dropbox.com/scl/fi/xuqqzulvje2f07kq8da1f/Ch3_Exercises1.pdf?rlkey=i7b0c5x259eyd483na0esrtel&dl=0)
 
-<!-- * [Exercises of Chapter 4 with Solutions](Exercises/Ch4_Exercises_with_Solutions.pdf) -->
-
-
+<!-- * [Exercises for Chapter 3 with Solutions](https://www.dropbox.com/scl/fi/lpek08w3v713b3fkfcqce/Ch3_Exercises_with_Solutions1.pdf?rlkey=covd2axn4sd56kassw6jhx6po&dl=0) -->
 
 
 
