@@ -270,15 +270,13 @@ library(scales)
 par(mfrow=c(1,2))
 plot(ecdf(estimates_mat[,1]), main="n=5", ylab="", xlab="", col = "black", xlim = range(estimates_mat[,1]), ylim=c(0,1.25))
 mtext(expression(mu==10), side = 1, at = 10, line = 2.5)
-curve(pnorm(x, mean=10, sd=sqrt(5/5)), add=T, col=alpha("blue", 0.25), lty = 3, lwd=4)
-legend("topleft", legend = c("True Distr.-Function", "Empir. Distr.-Function"), 
-      col = c("black", alpha("blue", 0.5)), lty = c(1,2), lwd = c(1.3, 2), bty = "n")
+curve(pnorm(x, mean=10, sd=sqrt(5/5)), add=TRUE, col="red", lty = 3, lwd=4)
+legend("topleft", legend = c("Empir. Distr.-Function", "True Distr.-Function"), col = c("black", "red"), lty = c(1, 3), lwd = c(1.3, 2), bty = "n")
 ##      
-plot(ecdf(estimates_mat[,2]), main="n=50", ylab="", xlab="", col = "black",  xlim = range(estimates_mat[,1]), ylim=c(0,1.25))
+plot(ecdf(estimates_mat[,2]), main="n=50", ylab="", xlab="", col = "black", xlim = range(estimates_mat[,1]), ylim=c(0,1.25))
 mtext(expression(mu==10), side = 1, at = 10, line = 2.5)
-curve(pnorm(x, mean=10, sd=sqrt(5/50)), add=T, col=alpha("blue", 0.25), lty = 3, lwd=4)
-legend("topleft", legend = c("True Distr.-Function", "Empir. Distr.-Function"), 
-      col = c("black", alpha("blue", 0.5)), lty = c(1,2), lwd = c(1.3, 2), bty = "n")
+curve(pnorm(x, mean=10, sd=sqrt(5/50)), add=TRUE, col="red", lty = 3, lwd=4)
+legend("topleft", legend = c("Empir. Distr.-Function", "True Distr.-Function"), col = c("black", "red"), lty = c(1, 3), lwd = c(1.3, 2), bty = "n")
 ```
 
 
@@ -289,14 +287,16 @@ library(scales)
 par(mfrow=c(1,2))
 hist(estimates_mat[,1], main="n=5", xlab="",  xlim = range(estimates_mat[,1]), prob = TRUE, ylim = c(0, 1.5))
 mtext(expression(mu==10), side = 1, at = 10, line = 2.5)
-curve(dnorm(x, mean=10, sd=sqrt(5/5)), add=T, col=alpha("blue", 0.25), lty = 3, lwd=4)
-legend("topleft", legend = c("True Density", "Histogram"), 
-      col = c("black", alpha("blue", 0.5)), lty = c(1,2), lwd = c(1.3, 2), bty = "n")
-hist(estimates_mat[,2], main="n=50", xlab="", xlim = range(estimates_mat[,1]), prob = TRUE, ylim = c(0, 1.5))
+curve(dnorm(x, mean=10, sd=sqrt(5/5)), add=TRUE, lty = 3, lwd=4, col="red")
+legend("topleft", legend = c("Histogram","True Density"), 
+      col = c("black", "red"), lty = c(1,3), lwd = c(1.3, 4), bty = "n")
+##
+hist(estimates_mat[,2], main="n=50", xlab="",  xlim = range(estimates_mat[,1]), prob = TRUE, ylim = c(0, 1.5))
 mtext(expression(mu==10), side = 1, at = 10, line = 2.5)
-curve(dnorm(x, mean=10, sd=sqrt(5/50)), add=T, col=alpha("blue", 0.25), lty = 3, lwd=4)
-legend("topleft", legend = c("True Density", "Histogram"), 
-      col = c("black", alpha("blue", 0.5)), lty = c(1,2), lwd = c(1.3, 2), bty = "n")
+curve(dnorm(x, mean=10, sd=sqrt(5/50)), add=TRUE, lty = 3, lwd=4, col="red")
+legend("topleft", legend = c("Histogram","True Density"), 
+      col = c("black", "red"), lty = c(1,3), lwd = c(1.3, 4), bty = "n")
+
 ```
 
 Observations in @fig-ecdf and @fig-histdensplots: The empirical distribution functions and the histograms based on the simulated realizations 
