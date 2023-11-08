@@ -293,6 +293,21 @@ div.csl-indent {
 \end{eqnarray*}\]</span> where <span class="math display">\[\begin{equation*}
 Y=\left(\begin{matrix}Y_1\\ \vdots\\Y_n\end{matrix}\right),\quad X=\left(\begin{matrix}X_{11}&amp;\dots&amp;X_{1K}\\\vdots&amp;\ddots&amp;\vdots\\ X_{n1}&amp;\dots&amp;X_{nK}\\\end{matrix}\right),\quad\text{and}\quad \varepsilon=\left(\begin{matrix}\varepsilon_1\\ \vdots\\ \varepsilon_n\end{matrix}\right).
 \end{equation*}\]</span></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The special case of <span class="math inline">\(K=2\)</span> <span class="math display">\[
+Y_i = \beta_1 + \beta_2 X_{i2} + \varepsilon_i
+\]</span> is called the <strong><em>simple</em> linear regression model</strong>.</p>
+</div>
+</div>
 <p><strong>Part (b): Random Sample</strong></p>
 <p>Moreover, we assume that the observed (“obs”) data points <span class="math display">\[
 ((Y_{1,obs},X_{11,obs},\dots,X_{1K,obs}),(Y_{2,obs},X_{21,obs},\dots,X_{2K,obs}),\dots,(Y_{n,obs},X_{n1,obs},\dots,X_{nK,obs}))
@@ -342,7 +357,9 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Together with the random sample assumption (Assumption 1, Part (b)) <a href="#eq-assExogen">Equation&nbsp;<span>4.2</span></a> implies even <strong>strict</strong> exogeneity <span class="math inline">\(E(\varepsilon_i|X) = 0\)</span> since we have independence across <span class="math inline">\(i=1,\dots,n\)</span>. Under strict exogeneity, the mean of <span class="math inline">\(\varepsilon_i\)</span> is zero irrespective of the realizations of <span class="math inline">\(X_1,\dots,X_n\)</span>.</p>
+<p>Together with the random sample assumption (Assumption 1, Part (b)) <a href="#eq-assExogen">Equation&nbsp;<span>4.2</span></a> implies even <strong>strict exogeneity</strong> <span class="math display">\[
+E(\varepsilon|X) = \underset{(n\times 1)}{0}
+\]</span> since we have independence across <span class="math inline">\(i=1,\dots,n\)</span>. Under strict exogeneity, the mean of the random vector <span class="math inline">\(\varepsilon\)</span> is zero irrespective of the realizations of <span class="math inline">\(X_1,\dots,X_n\)</span>.</p>
 </div>
 </div>
 <!-- For one example, it cannot be fulfilled when the regressors include lagged dependent variables. -->
@@ -351,17 +368,39 @@ Note
 <p><span class="math display">\[\operatorname{rank}(X)=K\quad\text{a.s.}\]</span> This assumption demands that the event of one explanatory variable being linearly dependent on the others occurs with a probability equal to zero. (This is the literal translation of the “almost surely (a.s.)” concept.) The assumption implies that <span class="math inline">\(n\geq K\)</span>.</p>
 <p>This assumption is a bit dicey and its violation belongs to one of the classic problems in applied econometrics (keywords: dummy variable trap, multicollinearity, variance inflation). The violation of this assumption harms any economic interpretation as we cannot disentangle the explanatory variables’ individual effects on <span class="math inline">\(Y\)</span>. Therefore, this assumption is also often called an “identification assumption.”</p>
 <p><strong>Assumption 4: Error distribution</strong></p>
-<p>Depending on the context (i.e., parameter estimation vs.&nbsp;hypothesis testing and small <span class="math inline">\(n\)</span> vs.&nbsp;large <span class="math inline">\(n\)</span>) there are different more or less restrictive assumptions. Some of the most common ones are the following (roughly order from least to most restrictive):</p>
+<p>Depending on the context (i.e., parameter estimation vs.&nbsp;hypothesis testing and small <span class="math inline">\(n\)</span> vs.&nbsp;large <span class="math inline">\(n\)</span>) there are different more or less restrictive assumptions. Some of the most common ones are the following:</p>
 <ul>
-<li><strong>Conditional distribution:</strong> <span class="math inline">\(\varepsilon_i|X_i \sim f_{\varepsilon|X}\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and for any distribution <span class="math inline">\(f_{\varepsilon|X}\)</span> such that <span class="math inline">\(\varepsilon_i|X_i\)</span> has two (or more) finite moments.</li>
-<li><strong>Conditional normal distribution:</strong> <span class="math inline">\(\varepsilon_i|X_i \sim \mathcal{N}(0,\sigma^2(X_i))\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>.</li>
-<li><strong>Independence between error and predictors:</strong> <span class="math inline">\(\varepsilon_i\sim f_\varepsilon\)</span> such that <span class="math inline">\(f_\varepsilon=f_{\varepsilon|X}\)</span> and such that <span class="math inline">\(f_\varepsilon\)</span> has two (or more) finite moments.<br>
+<li><strong>Conditional distribution:</strong> <span class="math display">\[
+\varepsilon_i|X_i \sim f_{\varepsilon|X}
+\]</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and for any distribution <span class="math inline">\(f_{\varepsilon|X}\)</span> with two (or more) finite moments.</li>
+<li><strong>Conditional normal distribution:</strong> <span class="math display">\[
+\varepsilon_i|X_i \sim \mathcal{N}(0,\sigma^2(X_i))
+\]</span> for all <span class="math inline">\(i=1,\dots,n\)</span>.</li>
+<li><strong>Independence between error and predictors:</strong> <span class="math inline">\(\varepsilon_i\sim f_\varepsilon\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> such that <span class="math inline">\(f_\varepsilon=f_{\varepsilon|X}\)</span> and such that <span class="math inline">\(f_\varepsilon\)</span> has two (or more) finite moments.<br>
 </li>
 <li><strong>Independence between error and predictors and normal:</strong> As above, but with <span class="math inline">\(f_\varepsilon=\mathcal{N}(0,\sigma^2)\)</span>.</li>
-<li><strong>Spherical errors (“Gauss-Markov assumptions”):</strong> The conditional distributions of <span class="math inline">\(\varepsilon_i|X_i\)</span> may generally depend on <span class="math inline">\(X_i\)</span>, but such that <span class="math display">\[\begin{align*}
-E(\varepsilon_i^2|X_i)         &amp;=\sigma^2&gt;0\quad\text{for all }i=1,\dots,n\\
-E(\varepsilon_i\varepsilon_j|X)&amp;=0\quad\text{for all }i\neq j\quad\text{with}\quad i=1,\dots,n\quad\text{and}\quad j=1,\dots,n.
-\end{align*}\]</span> Thus, here one assumes that, for a given realization of <span class="math inline">\(X_i\)</span>, the error process is uncorrelated (i.e.&nbsp;<span class="math inline">\(Cov(\varepsilon_i,\varepsilon_j|X)=E(\varepsilon_i\varepsilon_j|X)=0\)</span> for all <span class="math inline">\(i\neq j\)</span>) and homoskedastic (i.e.&nbsp;<span class="math inline">\(Var(\varepsilon_i|X)=\sigma^2\)</span> for all <span class="math inline">\(i\)</span>).</li>
+<li><strong>Spherical errors (“Gauss-Markov assumptions”):</strong> The conditional distributions of <span class="math inline">\(\varepsilon_i|X_i\)</span> may generally depend on <span class="math inline">\(X_i\)</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> but only such that <span class="math display">\[
+E(\varepsilon|X)=\underset{(n\times 1)}{0}
+\]</span> and <span class="math display">\[\begin{align*}
+&amp;Var\left(\varepsilon|X\right)=\\[2ex]
+&amp; = \left(\begin{matrix}
+Var(\varepsilon_1|X)&amp;Cov(\varepsilon_1,\varepsilon_2|X)&amp;\dots&amp;Cov(\varepsilon_1,\varepsilon_n|X)\\
+Cov(\varepsilon_2,\varepsilon_1|X)&amp;Var(\varepsilon_2|X)&amp;\dots&amp;Cov(\varepsilon_2,\varepsilon_n|X)\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+Cov(\varepsilon_n,\varepsilon_1|X)&amp;Cov(\varepsilon_n,\varepsilon_2|X)&amp;\dots&amp;Var(\varepsilon_n|X)
+\end{matrix}\right)\\[2ex]
+&amp; = \left(\begin{matrix}
+\sigma^2&amp;0&amp;\dots&amp;0\\
+0&amp;\sigma^2&amp;\dots&amp;0\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+0&amp;0&amp;\dots&amp;\sigma^2
+\end{matrix}\right)
+= \sigma^2 I_n,
+\end{align*}\]</span> where <span class="math inline">\(I_n\)</span> denotes the <span class="math inline">\((n\times n)\)</span> identity matrix with ones on the diagonal and zeros else.<br> Thus, here one assumes that, for a given realization of <span class="math inline">\(X\)</span>, the error process is
+<ul>
+<li><strong>uncorrelated</strong>, i.e.&nbsp;<span class="math inline">\(Cov(\varepsilon_i,\varepsilon_j|X)=0\)</span> for all <span class="math inline">\(i\neq j\)</span> and</li>
+<li><strong>homoskedastic</strong>, i.e.&nbsp;<span class="math inline">\(Var(\varepsilon_i|X)=\sigma^2\)</span> for all <span class="math inline">\(i.\)</span></li>
+</ul></li>
 </ul>
 <!-- **Technical Note:** When we write that $Var(\varepsilon_i|X)=\sigma^2$ or $Var(\varepsilon_i|X_i)=\sigma^2_i,$ we implicitly assume that these second moments exists and that they are finite.  -->
 <section id="homoskedastic-versus-heteroskedastic-error-terms" class="level4 unnumbered">
@@ -374,12 +413,18 @@ allowed to depend on $X_i$ (see Assumption 2: Exogeneity). -->
 with $X_{i2}\sim U[-4,4]$. This error term is mean independent of $X_i$ since 
 $E(\varepsilon_i|X_i)=0$, but it has heteroskedastic conditional variance 
 $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$. -->
-<p>The exogeneity assumption (Assumption 2: Exogeneity) requires that the conditional mean of <span class="math inline">\(\varepsilon_i\)</span> is independent of <span class="math inline">\(X_i\)</span>. Besides this, dependencies between <span class="math inline">\(\varepsilon_i\)</span> and <span class="math inline">\(X_{i1},\dots,X_{iK}\)</span> are allowed. For instance, the variance of <span class="math inline">\(\varepsilon_i\)</span> can be a function of <span class="math inline">\(X_{i1},\dots,X_{iK}\)</span>. If this is the case, <span class="math inline">\(\varepsilon_i\)</span> is said to be “heteroskedastic.”</p>
+<p>The exogeneity assumption (Assumption 2: Exogeneity) requires that the conditional mean of <span class="math inline">\(\varepsilon_i\)</span> is independent of <span class="math inline">\(X_i\)</span>. Besides this, dependencies between <span class="math inline">\(\varepsilon_i\)</span> and <span class="math inline">\(X_{i1},\dots,X_{iK}\)</span> are allowed. For instance, the variance of <span class="math inline">\(\varepsilon_i\)</span> can be a function of <span class="math inline">\(X_{i1},\dots,X_{iK}\)</span>. If this is the case, <span class="math inline">\(\varepsilon_i\)</span> is said to be <strong>“heteroskedastic.”</strong></p>
 <ul>
-<li><strong>Heteroskedastic error terms:</strong> The conditional variances <span class="math inline">\(Var(\varepsilon_i|X_i=x_i)=\sigma^2(x_i)\)</span> are equal to a non-constant variance-function <span class="math inline">\(\sigma^2(x_i)&gt;0\)</span> which is a function of the realization <span class="math inline">\(X_i=x_i.\)</span></li>
+<li><strong>Heteroskedastic error terms:</strong> The conditional variances <span class="math inline">\(Var(\varepsilon_i|X_i=x_i)=\sigma^2(x_i)\)</span> are equal to a non-constant variance-function <span class="math inline">\(\sigma^2(x_i)&gt;0.\)</span></li>
 </ul>
-<p><strong>Example:</strong> <span class="math inline">\(\varepsilon_i|X_i\sim U[-0.5|X_{i2}|, 0.5|X_{i2}|],\)</span> with <span class="math inline">\(X_{i2}\sim U[-4,4]\)</span>. This error term is mean independent of <span class="math inline">\(X_i\)</span> since <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span>, but it has a heteroskedastic conditional variance since <span class="math inline">\(Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2\)</span> depends on <span class="math inline">\(X_i\)</span>.</p>
-<p>Sometimes, we need to be more restrictive by assuming that also the variances of the error terms <span class="math inline">\(\varepsilon_i\)</span> are independent from <span class="math inline">\(X_i\)</span>. (Higher moments may still depend on <span class="math inline">\(X_i\)</span>.) This assumption leads to “homoskedastic” error terms.</p>
+<p><strong>Example:</strong> <span class="math display">\[
+\varepsilon_i|X_i\sim U[-0.5|X_{i2}|, 0.5|X_{i2}|],
+\]</span> with <span class="math display">\[
+X_{i2}\sim U[-4,4]
+\]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> This error term is mean independent of <span class="math inline">\(X_i\)</span> since <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span>, but it has a heteroskedastic conditional variance since <span class="math display">\[
+Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2
+\]</span> depends on <span class="math inline">\(X_i.\)</span></p>
+<p>Sometimes, we need to be more restrictive by assuming that also the variances of the error terms <span class="math inline">\(\varepsilon_i\)</span> are independent from <span class="math inline">\(X_i\)</span>. (Higher moments may still depend on <span class="math inline">\(X_i\)</span>.) This assumption leads to <strong>“homoskedastic”</strong> error terms.</p>
 <ul>
 <li><strong>Homoskedastic error terms:</strong> The conditional variances <span class="math inline">\(Var(\varepsilon_i|X_i=x_i)=\sigma^2\)</span> are equal to some constant <span class="math inline">\(\sigma^2&gt;0\)</span> for every possible realization <span class="math inline">\(X_i=x_i.\)</span></li>
 </ul>
@@ -390,7 +435,11 @@ $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$. -->
 <!-- does not depend on $X_i$. This assumption also implies  **homoskedastic** error terms since when  -->
 <!-- the whole distribution of $\varepsilon_i$ does not depend on $X_i\in\mathbb{R}^K$ also its variance  -->
 <!-- doesn't depend on $X_i$.  -->
-<p><strong>Example:</strong> For doing small sample inference (see <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a>), we need to assume that the error terms <span class="math inline">\(\varepsilon_i\)</span> are i.i.d. across <span class="math inline">\(i=1,\dots,n\)</span> plus the normality assumption, i.e., <span class="math inline">\(\varepsilon_i\stackrel{\textrm{i.i.d.}}{\sim}{\mathcal N} (0, \sigma^2)\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> which leads to homoskedastic variances <span class="math inline">\(Var(\varepsilon_i|X_i)=\sigma^2\)</span> for every possible realization of <span class="math inline">\(X_i\)</span>.</p>
+<p><strong>Example:</strong> <span class="math display">\[
+\varepsilon_i\sim{\mathcal N} (0, \sigma^2)
+\]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> Here, the conditional variance of the error terms <span class="math inline">\(\varepsilon_i\)</span> given <span class="math inline">\(X_i\)</span> <span class="math display">\[
+Var(\varepsilon_i|X_i)=\sigma^2
+\]</span> are equal to the constant <span class="math inline">\(\sigma^2&gt;0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and for every possible realization of <span class="math inline">\(X_i\)</span>. For doing small sample inference (see <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a>), we will assume that the error terms are homoskedastik.</p>
 </section>
 <section id="some-implications-of-the-exogeneity-assumption" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="some-implications-of-the-exogeneity-assumption"><span class="header-section-number">4.1.1</span> Some Implications of the Exogeneity Assumption</h3>
@@ -596,9 +645,27 @@ X'\hat\varepsilon&amp;=0\\
 \Rightarrow\;\hat\beta'X'\hat\varepsilon&amp;=\hat\beta'0\\
 \Leftrightarrow\;\hat Y'\hat\varepsilon&amp;=0.
 \end{align*}\]</span></p>
-<p>Another insight from equation <span class="math inline">\(X'\hat\varepsilon=0\)</span> is that the vector <span class="math inline">\(\hat\varepsilon\)</span> has to satisfy <span class="math inline">\(K\)</span> linear restrictions which means it looses <span class="math inline">\(K\)</span> degrees of freedom.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Consequently, the vector of residuals <span class="math inline">\(\hat\varepsilon\)</span> has only <span class="math inline">\(n-K\)</span> so-called <em>degrees of freedom</em>. This loss of <span class="math inline">\(K\)</span> degrees of freedom also appears in the definition of the <em>unbiased</em> variance estimator <span class="math display">\[\begin{align}
+<p>Another insight from equation <span class="math inline">\(X'\hat\varepsilon=0\)</span> is that the vector <span class="math inline">\(\hat\varepsilon\)</span> has to satisfy <span class="math inline">\(K\)</span> linear restrictions which means it looses <span class="math inline">\(K\)</span> degrees of freedom. Consequently, the vector of residuals <span class="math inline">\(\hat\varepsilon\)</span> has only <span class="math inline">\(n-K\)</span> so-called <em>degrees of freedom</em>. This loss of <span class="math inline">\(K\)</span> degrees of freedom also appears in the definition of the <em>unbiased</em> variance estimator <span class="math display">\[\begin{align}
   s_{UB}^2&amp;=\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon_i^2\label{EqVarEstim}.
 \end{align}\]</span></p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <span class="math inline">\(K\)</span> linear restrictions follow from the fact that <span class="math display">\[
+X'\hat\varepsilon=\underset{(K\times 1)}{0}
+\]</span> is a linear system of <span class="math inline">\(K\)</span> equations. That is, for each <span class="math inline">\(k=1,\dots,K\)</span> the residuals <span class="math inline">\(\hat\varepsilon_1,\dots,\hat\varepsilon_n\)</span> need to fulfill the equation<br>
+<span class="math display">\[
+\sum_{i=1}^nX_{ik}\hat\varepsilon_i=0.
+\]</span></p>
+</div>
+</div>
 <p><strong>Variance decomposition:</strong> A further useful result that can be shown using the properties of <span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> is that <span class="math inline">\(Y'Y=\hat{Y}'\hat{Y}+\hat\varepsilon'\hat\varepsilon\)</span>, i.e. <span class="math display">\[\begin{eqnarray*}
 Y'Y&amp;=&amp;(\hat Y+\hat\varepsilon)'(\hat Y+\hat\varepsilon)\notag\\
   &amp;=&amp;(P_XY+M_XY)'(P_XY+M_XY)\notag\\
@@ -707,12 +774,25 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 </section>
 <section id="sec-GMTheorem" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="sec-GMTheorem"><span class="header-section-number">4.5</span> The Gauss-Markov Theorem</h2>
-<p>The OLS estimator <span class="math display">\[
-\hat\beta=(X'X)^{-1}X'Y
-\]</span> is a linear (in <span class="math inline">\(Y\)</span>) and unbiased estimator (<span class="math inline">\(E(\hat\beta)=\beta\)</span>), i.e. <span class="math display">\[
-\operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0.
-\]</span> The latter can be shown as following:</p>
-<p>Observe that <span class="math display">\[
+<p>The OLS estimator is a</p>
+<ul>
+<li>linear (in <span class="math inline">\(Y\)</span>) and</li>
+<li>unbiased estimator</li>
+</ul>
+<p><strong>Showing linearity:</strong> A function <span class="math inline">\(f(Y)\)</span> is called linear if for and <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any <span class="math inline">\(a\in\mathbb{R}\)</span> <span class="math display">\[\begin{align*}
+f(Y_1+Y_2)&amp;=f(Y_1)+f(Y_2)\\[2ex]
+f(aY)&amp;=af(Y).
+\end{align*}\]</span> This property applies to the OLS estimator <span class="math display">\[
+\hat\beta=f(Y)=(X'X)^{-1}X'Y
+\]</span> since <span class="math display">\[\begin{align*}
+(X'X)^{-1}X'(Y_1+Y_2)
+&amp; = (X'X)^{-1}X'Y_1 + (X'X)^{-1}X'Y_2
+\end{align*}\]</span> and <span class="math display">\[\begin{align*}
+(X'X)^{-1}X'aY &amp; = a (X'X)^{-1}X'Y
+\end{align*}\]</span> for any <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any <span class="math inline">\(a\in\mathbb{R}.\)</span></p>
+<p><strong>Showing unbiasedness:</strong> The OLS estimator is unbiased if <span class="math display">\[
+\operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0
+\]</span> This can be shown as following: Observe that <span class="math display">\[
 \hat\beta=(X'X)^{-1}X'Y
 \]</span> consists of two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y.\)</span> Thus one needs to show first the conditional unbiasedness of <span class="math inline">\(\hat\beta\)</span> given <span class="math inline">\(X\)</span> which allows us to focus on randomness due to <span class="math inline">\(\varepsilon\)</span>,<br>
 <span class="math display">\[
@@ -722,31 +802,17 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 &amp;= E((X'X)^{-1}X'\underbrace{Y}_{=X\beta+\varepsilon}|X) - \beta \\
 &amp;= E(\underbrace{(X'X)^{-1}X'X}_{I_K}\beta|X) + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
 &amp;=  \beta + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
-&amp;=  (X'X)^{-1}X'E(\varepsilon|X) =0.  
+&amp;=  (X'X)^{-1}X'\underbrace{E(\varepsilon|X)}_{=0} =0.  
 \end{align*}
 \]</span> Thus <span class="math inline">\(\hat\beta\)</span> is unbiased conditionally on <span class="math inline">\(X.\)</span> From this if follows, by the iterated law of expectations, that the OLS estimator is also unconditionally unbiased, i.e.<br>
 <span class="math display">\[
 \operatorname{Bias}(\hat\beta) = E\left(\operatorname{Bias}(\hat\beta|X)\right) = E(0) = 0.
-\]</span> Moreover, the conditional variance of <span class="math inline">\(\hat\beta\)</span> given <span class="math inline">\(X\)</span> can be derived as following: <span class="math display">\[
+\]</span></p>
+<p>For the Gauss-Markov Theorem, we also need the conditional variance of <span class="math inline">\(\hat\beta\)</span> given <span class="math inline">\(X\)</span> which can be derived as following: <span class="math display">\[
 \begin{align*}
 Var(\hat\beta|X)
 &amp;=Var(\hat\beta - \beta|X)\\
-&amp;=Var((X'X)^{-1}X'\varepsilon|X)
-\end{align*}
-\]</span></p>
-<blockquote class="blockquote">
-<p>Hint: The conditional variance of a multivariate random variable <span class="math inline">\(Z\in\mathbb{R}^K\)</span>, given <span class="math inline">\(X\)</span>, is defined as <span class="math inline">\(Var(Z|X)=E((Z-E(Z|X))(Z-E(Z|X))'|X)\)</span>.</p>
-</blockquote>
-<p>Using the definition of the conditional variance for multivariate random variables we have that <span class="math display">\[
-\begin{align*}
-&amp;Var(\hat\beta|X)=\\
-&amp;=Var(\hat\beta - \beta|X)\\
-&amp;=Var((X'X)^{-1}X'\varepsilon|X)\\
-&amp;=E\Big(\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)\\
-&amp;\phantom{=E\Big(}\,\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)'|X\Big)\\
-&amp;=E\left(((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right)\\
-&amp;=E\left((X'X)^{-1}X'\varepsilon\varepsilon' X(X'X)^{-1}|X\right)\\
-&amp;=(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1},
+&amp;=Var((X'X)^{-1}X'\varepsilon|X),
 \end{align*}
 \]</span> where we used that <span class="math display">\[
 \begin{align*}
@@ -756,7 +822,54 @@ Var(\hat\beta|X)
 &amp;=\beta+(X'X)^{-1}X'\varepsilon\\
 \Leftrightarrow \hat\beta - \beta &amp; = (X'X)^{-1}X'\varepsilon.
 \end{align*}
-\]</span> Under the assumption of spherical errors (see Assumption 4), we have that <span class="math inline">\(E\left(\varepsilon\varepsilon'|X\right)=\sigma^2 I_n\)</span>, where <span class="math inline">\(I_n\)</span> is the <span class="math inline">\((n\times n)\)</span> dimensional identity matrix with ones on the diagonal and zeros everywhere else. Thus under the assumption of spherical errors, we have that <span class="math display">\[
+\]</span></p>
+<div class="callout-note callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-CondVarMult" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.1 (Conditional Variance of a Multivariate Random Variable) </strong></span>The conditional variance of a multivariate random variable <span class="math inline">\(Z\in\mathbb{R}^K,\)</span> given <span class="math inline">\(X,\)</span> is defined as <span class="math display">\[
+Var(Z|X)=\underbrace{E\Big[\overbrace{(Z-E(Z|X))}^{(K\times 1)}\overbrace{(Z-E(Z|X))'}^{(1\times K)}|X\Big]}_{K\times K}.
+\]</span></p>
+</div>
+</div>
+</div>
+<p>Using the definition of the conditional variance (<a href="#def-CondVarMult">Definition&nbsp;<span>4.1</span></a>) for multivariate random variables <span class="math inline">\((Z=(X'X)^{-1}X'\varepsilon)\)</span> we have that <span class="math display">\[
+\begin{align*}
+&amp;Var(\hat\beta|X)=\\
+%&amp;=Var(\hat\beta - \beta|X)\\
+&amp;=Var((X'X)^{-1}X'\varepsilon|X)\\
+&amp;=E\Big[\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)\\
+&amp;\phantom{=E\Big(}\,\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)'|X\Big]\\
+&amp;=E\left[((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right]\\
+&amp;=E\left[(X'X)^{-1}X'\varepsilon\varepsilon' X(X'X)^{-1}|X\right]\\
+&amp;=\;\;\;(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1}.
+\end{align*}
+\]</span></p>
+<p>Under the assumption of <strong>spherical errors</strong> (see Assumption 4), we have that <span class="math display">\[\begin{align*}
+Var\left(\varepsilon|X\right)
+&amp; = \left(\begin{matrix}
+Var(\varepsilon_1|X)&amp;Cov(\varepsilon_1,\varepsilon_2|X)&amp;\dots&amp;Cov(\varepsilon_1,\varepsilon_n|X)\\
+Cov(\varepsilon_2,\varepsilon_1|X)&amp;Var(\varepsilon_2|X)&amp;\dots&amp;Cov(\varepsilon_2,\varepsilon_n|X)\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+Cov(\varepsilon_n,\varepsilon_1|X)&amp;Cov(\varepsilon_n,\varepsilon_2|X)&amp;\dots&amp;Var(\varepsilon_n|X)
+\end{matrix}\right)\\[2ex]
+&amp; = \left(\begin{matrix}
+\sigma^2&amp;0&amp;\dots&amp;0\\
+0&amp;\sigma^2&amp;\dots&amp;0\\
+\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+0&amp;0&amp;\dots&amp;\sigma^2
+\end{matrix}\right)
+= \sigma^2 I_n,
+%&amp; = E\left(\varepsilon\varepsilon'|X\right) - E\left(\varepsilon|X\right) E\left(\varepsilon'|X\right)\\[2ex]
+%&amp; = E\left(\varepsilon\varepsilon'|X\right) - \underset{(K\times K)}{0}\\[2ex]
+\end{align*}\]</span> where <span class="math inline">\(I_n\)</span> is the <span class="math inline">\((n\times n)\)</span> dimensional identity matrix with ones on the diagonal and zeros everywhere else. Thus under the assumption of spherical errors, we have that <span class="math display">\[
 \begin{align*}
 Var(\hat\beta|X)
 &amp;=(X'X)^{-1}X' \left(\sigma^2I_n\right)X(X'X)^{-1}\\
@@ -781,12 +894,36 @@ Var(\hat\beta|X)
 </div>
 <div class="callout-body-container callout-body">
 <div id="thm-GMTheorem" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.5 (Gauss-Markov Theorem) </strong></span>Let’s assume Assumptions 1-4 hold with spherical errors, i.e., with <span class="math inline">\(E(\varepsilon\varepsilon'|X)=\sigma^{2} I_{n}\)</span>. Then the Gauss-Markov theorem states that of all linear and unbiased estimators (i.e.&nbsp;<span class="math inline">\(E(\hat\beta)=\beta\)</span>), the OLS estimator <span class="math inline">\(\hat\beta=(X'X)^{-1}X'Y\)</span> will have the smallest variance (conditionally on <span class="math inline">\(X\)</span>). That is, for any alternative linear (in <span class="math inline">\(Y\)</span>) and unbiased (i.e.&nbsp;<span class="math inline">\(E(\tilde\beta)=\beta\)</span>) estimator <span class="math inline">\(\tilde{\beta}\)</span> we have that <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 4.5 (Gauss-Markov Theorem) </strong></span>If it hold true that</p>
+<ol type="1">
+<li><span class="math inline">\(Y = X\beta + \varepsilon\)</span></li>
+<li><span class="math inline">\(\operatorname{rank}(X)=K\)</span> a.s.</li>
+<li><span class="math inline">\(E(\varepsilon|X) = \underset{(n\times 1)}{0}\)</span></li>
+<li><span class="math inline">\(Var(\varepsilon|X) = \sigma^2I_n\)</span></li>
+</ol>
+<p>then the OLS estimator <span class="math display">\[
+\hat\beta=(X'X)^{-1}X'Y
+\]</span> has the smallest conditional variance (given <span class="math inline">\(X\)</span>) among all linear and unbiased estimators. That is, for any alternative linear and unbiased estimator <span class="math inline">\(\tilde{\beta}\)</span> we have that <span class="math display">\[
 \begin{align*}
 &amp;Var(\tilde\beta|X)\geq Var(\hat\beta|X)\quad\text{(in the matrix sense)}\\
 \Leftrightarrow&amp;Var(\tilde\beta|X)-Var(\hat\beta|X)=\underset{(K\times K)}{D},
 \end{align*}
-\]</span> where <span class="math inline">\(D\)</span> is a <em>positive semidefinite</em> <span class="math inline">\((K\times K)\)</span> matrix, i.e., <span class="math inline">\(a'Da\geq 0\)</span> for any <span class="math inline">\(K\)</span>-dimensional vector <span class="math inline">\(a\in\mathbb{R}^K\)</span>. Observe that this implies that <span class="math inline">\(Var(\tilde{\beta}_k|X) \geq Var(\hat\beta_k | X)\)</span> for any <span class="math inline">\(k=1,\dots,K\)</span>.</p>
+\]</span> where <span class="math inline">\(D\)</span> is a <em>positive semidefinite</em> <span class="math inline">\((K\times K)\)</span> matrix which implies that <span class="math display">\[
+Var(\tilde{\beta}_k|X) \geq Var(\hat\beta_k | X)
+\]</span> for all <span class="math inline">\(k=1,\dots,K\)</span>.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\(D\)</span> is called “positive semidefinite” if <span class="math inline">\(a'Da\geq 0\)</span> for any <span class="math inline">\(K\)</span>-dimensional vector <span class="math inline">\(a\in\mathbb{R}^K\)</span>.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -853,7 +990,30 @@ a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}\geq 0,
 <h2 data-number="4.6" class="anchored" data-anchor-id="practice"><span class="header-section-number">4.6</span> Practice</h2>
 <section id="factor-variables-and-the-dummy-variable-trap" class="level3" data-number="4.6.1">
 <h3 data-number="4.6.1" class="anchored" data-anchor-id="factor-variables-and-the-dummy-variable-trap"><span class="header-section-number">4.6.1</span> Factor Variables and the Dummy-Variable Trap</h3>
-<p>In the following, we consider simple linear regression model that aims to predict wages in the year 2008 using gender as the only predictor. We use data provided in the accompanying materials of Stock and Watson’s <em>Introduction to Econometrics</em> textbook <span class="citation" data-cites="stock2015">(<a href="#ref-stock2015" role="doc-biblioref">Stock and Watson 2015</a>)</span>. You can download the data stored as an xlsx-file <code>cps_ch3.xlsx</code> <a href="https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps_ch3.xlsx">HERE</a>.</p>
+<p>In the following, we consider a simple linear regression model <span class="math display">\[
+Y_i = \beta_1 + \beta_2 X_{i2} + \varepsilon_i
+\]</span> that aims to predict wages <span class="math inline">\(Y_i\in\mathbb{R}\)</span> in the year 2008 using gender <span class="math inline">\(X_{i2}\in\{\texttt{male},\texttt{female}\}\)</span> as the only predictor.</p>
+<p>Here <span class="math display">\[
+X_{i2}\in\{\texttt{male},\texttt{female}\}
+\]</span> is a <em>categorical</em> variable also called <strong>factor variable</strong> with two categories (two <strong>factor levels</strong>).</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Above in our theoretical part, we have not mentioned the possibility of categorical, i.e., factor variable.</p>
+<ul>
+<li>How can one compute the estimators from non-numeric, verbal factor levels like <code>female</code> and <code>male</code>?</li>
+</ul>
+<p>Well, we need to transform such non-numeric data in numeric data. How this is done, is described in the following.</p>
+</div>
+</div>
+<p>We use data provided in the accompanying materials of Stock and Watson’s <em>Introduction to Econometrics</em> textbook <span class="citation" data-cites="stock2015">(<a href="#ref-stock2015" role="doc-biblioref">Stock and Watson 2015</a>)</span>. You can download the data stored as an xlsx-file <code>cps_ch3.xlsx</code> <a href="https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps_ch3.xlsx">HERE</a>.</p>
 <p>Let us first prepare the dataset:</p>
 <div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-3_02be4f70e7de69f49b3a17d516cb77b3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## load the 'tidyverse' package</span></span>
@@ -881,8 +1041,8 @@ a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}\geq 0,
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span>     <span class="co"># Only data from year 2008</span></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wage, gender)         <span class="co"># Select only the variables "wage" and "gender"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The first six lines of the dataset look as following:</p>
-<div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-4_7f014d43116ba489c89f14652f46c536">
+<p>The first six lines of the dataset <code>cps_2008</code> look as following:</p>
+<div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-4_2f224185e40b82b1afc971b13437a0b0">
 <div class="cell-output-display">
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -936,10 +1096,11 @@ a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}\geq 0,
 <li><span class="math inline">\(\hat\beta_1=\)</span> 24.98</li>
 <li><span class="math inline">\(\hat\beta_2=\)</span> -4.1</li>
 </ul>
-<p>To compute these estimation results, one needs to assign a numeric 0/1 coding to the factor levels <code>male</code> and <code>female</code> of the factor variable <code>gender</code>. To see the numeric values used by <code>R</code> one can take a look at <code>model.matrix(lm_obj)</code>:</p>
-<div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-7_ce2298b5dde72aa77363eef668a4d8c7">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(lm_obj) <span class="co"># this is the internally used X-matrix</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>X[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To compute these estimation results, <code>R</code> assigns to each factor level (<code>male</code> and <code>female</code>) a numeric value. To see the numeric values used by <code>R</code> one can take a look at <code>model.matrix(lm_obj)</code>:</p>
+<div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-7_2f5e258858d5a1ae9140d33acc827158">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the internally used numeric X-matrix</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(lm_obj) </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>X[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  (Intercept) genderfemale
 1           1            0
@@ -949,14 +1110,28 @@ a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}\geq 0,
 5           1            0
 6           1            1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cps_2008<span class="sc">$</span>gender[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Compare this with the factor variable <code>gender</code> in the dataset <code>cps_2008</code>:</p>
+<div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-8_94267ab9e6c98c24605bd7e0fd4d5135">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Factor variable 'gender' in the dataset cps_2008</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cps_2008<span class="sc">$</span>gender[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] male   male   male   male   male   female
 Levels: male female</code></pre>
 </div>
 </div>
-<p>Thus <code>R</code> internally codes <code>female</code> subjects by a 1 and <code>male</code> subjects by a 0, such that <span class="math display">\[
-\hat\beta_1  + \hat\beta_2 X_{i,gender}=\left\{\begin{array}{ll}\hat\beta_1&amp;\text{ if }X_{i,gender}=\text{male}\\\hat\beta_1 + \hat\beta_2&amp;\text{ if }X_{i,gender}=\text{female}\end{array} \right.
+<p>Thus <code>R</code> internally recodes <span class="math inline">\(X_{i2}\in\{\texttt{male}, \texttt{female}\}\)</span> as a <strong>dummy variable</strong> <span class="math inline">\(X_{i2}\in\{0,1\}\)</span> such that <span class="math display">\[
+X_{i2}=
+\left\{\begin{array}{ll}
+0 &amp;\text{ if subject $i$ is male}\\
+1 &amp;\text{ if subject $i$ is female}.
+\end{array} \right.
+\]</span> Therefore, we can interpret the estimation result as <span class="math display">\[
+\hat\beta_1  + \hat\beta_2 X_{i2}=
+\left\{\begin{array}{ll}
+\hat\beta_1              &amp;\text{ if subject $i$ is male}\\
+\hat\beta_1 + \hat\beta_2&amp;\text{ if subject $i$ is female}
+\end{array} \right.
 \]</span></p>
 <p>Interpretation:</p>
 <ul>
@@ -967,30 +1142,29 @@ Levels: male female</code></pre>
 </section>
 <section id="dummy-variable-trap" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="dummy-variable-trap">Dummy-Variable Trap</h3>
-<p>Above, we used <code>R</code>’s internal handling of factor variables which you should always do. If you construct a dummy variable for each of the levels of a factor yourself, however, you may blundered into the dummy variable trap:</p>
-<div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-8_a8d13e17f7796094409eca7cf4cc5073">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Intercept variable</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>X_1      <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="at">times =</span> <span class="fu">nrow</span>(cps_2008))</span>
+<p>Above, we used <code>R</code>’s automatic recoding of categorical factor variables into numeric dummy variable which is very convenient.</p>
+<p>Of course, we can also construct a dummy variable for each of the levels of a factor yourself. But be careful, and do not step into the <strong>dummy variable trap</strong>!</p>
+<p>Let’s construct the <span class="math inline">\(Y\)</span> variable and the <em>numeric</em> <span class="math inline">\(X\)</span> variable “by hand”:</p>
+<div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-9_8af29c3eb756ea71d23e4054c8885df0">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Dependent variable</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Y        <span class="ot">&lt;-</span> cps_2008<span class="sc">$</span>wage</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1. Dummy variable for 'female'</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>X_female <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(cps_2008<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"female"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Intercept variable</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>X_1      <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="at">times =</span> <span class="fu">nrow</span>(cps_2008))</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 2. Dummy variable for 'male'</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>X_male   <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(cps_2008<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"male"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 1. Dummy variable for 'female' (indicates female subjects)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>X_female <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(cps_2008<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"female"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Construct the model matrix 'X'</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>X        <span class="ot">&lt;-</span> <span class="fu">cbind</span>(X_1, X_female, X_male)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-9_daee86b8db7854931019d09836fa9ab7">
-
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 2. Dummy variable for 'male' (indicates male subjects)</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>X_male   <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(cps_2008<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"male"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Construct the numeric model matrix 'X'</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>X        <span class="ot">&lt;-</span> <span class="fu">cbind</span>(X_1, X_female, X_male)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Computing the estimation result for <span class="math inline">\(\beta\)</span> “by hand” yields</p>
-<div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-10_c94dc37c31898200bfca6e104f1f5a59">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Dependent variable</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Y        <span class="ot">&lt;-</span> cps_2008<span class="sc">$</span>wage</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Computing the estimator</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>beta_hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> Y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-10_50836ad6587ceab2dd97689a2a4da264">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Computing the estimator</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>beta_hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> Y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-11_819a32d7ea641e3acafefd7009cd07b9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">solve.default</span>(X <span class="sc">%*%</span> <span class="fu">t</span>(X)) <span class="sc">:</span> </span>
@@ -998,7 +1172,7 @@ Levels: male female</code></pre>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Calls<span class="sc">:</span> .main ... eval_with_user_handlers <span class="ot">-&gt;</span> eval <span class="ot">-&gt;</span> eval <span class="ot">-&gt;</span> solve <span class="ot">-&gt;</span> solve.default</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Execution halted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><font color="#FF0000">An error message!</font> 🤬 We blundered into the dummy variable trap!</p>
+<p><font color="#FF0000">An error message!</font> 🤬 We stepped into the <strong>dummy variable trap</strong>!</p>
 The estimation result is not computable since <span class="math inline">\((X'X)\)</span> is not invertible due to the perfect multicollinearity between the intercept and the two dummy variables <code>X_female</code> and <code>X_male</code>
 <center>
 <code>X_1</code> = <code>X_female</code> <span class="math inline">\(+\)</span> <code>X_male</code>
@@ -1044,9 +1218,21 @@ X_female -4.103626</code></pre>
 <p>Interpretation:</p>
 <ul>
 <li>The plot shows the residuals <span class="math inline">\(\hat{\varepsilon}_i\)</span> plotted against the fitted values <span class="math inline">\(\hat{Y}_i\)</span>.</li>
-<li>The diagnostic plot indicates that the variance increases with income.</li>
+<li>The diagnostic plot indicates that the variance increases with <span class="math inline">\(\hat{Y}_i=X_i'\hat{\beta}.\)</span></li>
 </ul>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Note:</strong> Plotting against the fitted values is actually a quite smart idea since this also works for multiple predictors <span class="math inline">\(X_{i1},\dots,X_{iK}\)</span> with <span class="math inline">\(K\geq 3\)</span>.</p>
+</div>
+</div>
 </section>
 <section id="checking-non-linearity-of-the-regression-line" class="level3" data-number="4.6.3">
 <h3 data-number="4.6.3" class="anchored" data-anchor-id="checking-non-linearity-of-the-regression-line"><span class="header-section-number">4.6.3</span> Checking (Non-)Linearity of the Regression Line</h3>
@@ -1094,8 +1280,19 @@ X_female -4.103626</code></pre>
 </div>
 </div>
 </div>
-<p>The plots indicate a positive, but non-linear relationship between the outcome variable <code>MPG</code> (gasoline consumption in milles per gallon) and the predictor <code>HP</code> (power of the mashing in horsepower).</p>
-<p>If we do not take this into account, we get bad model fits which can be seen in the scatter plot of <code>MPG</code> vs.&nbsp;<code>HP</code> and in the diagnostic plot of the residuals vs.&nbsp;the fitted values. (The latter works also for <span class="math inline">\(K\geq 3\)</span>, the former not.)</p>
+<p>The plots indicate a positive, but non-linear relationship between the outcome variable <code>MPG</code> (gasoline consumption in miles per gallon) and the predictor <code>HP</code> (power of the mashing in horsepower).</p>
+<p>Let’s begin with a simple linear regression model <span class="math display">\[
+Y_i = \beta_1 + \beta_2 X_{i2} +  \varepsilon_i
+\]</span> with</p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span> denoting <code>MPG</code> of car <span class="math inline">\(i\)</span> and</li>
+<li><span class="math inline">\(X_{i2}\)</span> denoting <code>HP</code> of car <span class="math inline">\(i.\)</span></li>
+</ul>
+<p>Such a simple model is not able to take into account the non-linear relationship between <span class="math inline">\(Y_i\)</span> and <span class="math inline">\(X_{i2}\)</span>. Therefore, we get bad model fits which can be spotted</p>
+<ol type="1">
+<li>in the scatter plot of <code>MPG</code> vs.&nbsp;<code>HP</code> with added linear regression line fit and</li>
+<li>in the diagnostic plot of the residuals <span class="math inline">\(\hat{\varepsilon}_i\)</span> vs.&nbsp;the fitted values <span class="math inline">\(\hat{Y}_i=\hat\beta_1 + \hat\beta_2 X_{i2}.\)</span></li>
+</ol>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Base <code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Tidyverse <code>R</code></a></li></ul>
 <div class="tab-content">
@@ -1146,7 +1343,19 @@ X_female -4.103626</code></pre>
 </div>
 </div>
 </div>
-<p>A polynomial regression model with polynomial degree 2 improves the model fit.</p>
+<p>To model the non-linear, more or less quadratic relationship between <span class="math inline">\(Y_i\)</span> and <span class="math inline">\(X_{i2}\)</span>, we can use a a polynomial regression model with polynomial degree 2: <span class="math display">\[
+Y_i = \beta_1 + \beta_2 X_{i2} + \beta_3 X_{i2}^2 +  \varepsilon_i
+\]</span> with</p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span> denoting <code>MPG</code> of car <span class="math inline">\(i,\)</span></li>
+<li><span class="math inline">\(X_{i2}\)</span> denoting <code>HP</code> of car <span class="math inline">\(i,\)</span> and</li>
+<li><span class="math inline">\(X_{i2}^2\)</span> denoting the squared value of <code>HP</code> of car <span class="math inline">\(i.\)</span></li>
+</ul>
+<p>This more flexible model is indeed better in taking into account the non-linear relationship between <span class="math inline">\(Y_i\)</span> and <span class="math inline">\(X_{i2}.\)</span> The improved model fits can be spotted</p>
+<ol type="1">
+<li>in the scatter plot of <code>MPG</code> vs.&nbsp;<code>HP</code> with added non-linear regression line fit and</li>
+<li>in the diagnostic plot of the residuals <span class="math inline">\(\hat{\varepsilon}_i\)</span> vs.&nbsp;the fitted values <span class="math inline">\(\hat{Y}_i=\hat\beta_1 + \hat\beta_2 X_{i2} + \hat\beta_3 X_{i2}^2.\)</span></li>
+</ol>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Base <code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Tidyverse <code>R</code></a></li></ul>
 <div class="tab-content">
@@ -1216,11 +1425,13 @@ X_female -4.103626</code></pre>
 </section>
 <section id="behavior-of-the-ols-estimates-for-resampled-data" class="level3" data-number="4.6.4">
 <h3 data-number="4.6.4" class="anchored" data-anchor-id="behavior-of-the-ols-estimates-for-resampled-data"><span class="header-section-number">4.6.4</span> Behavior of the OLS Estimates for Resampled Data</h3>
-<p>Usually, we only observe <em>one</em> estimate <span class="math inline">\(\hat{\beta}\)</span> of <span class="math inline">\(\beta\)</span> computed based on <em>one</em> given dataset (one realization of the random sample). However, in order to understand the statistical properties of the estimators <span class="math inline">\(\hat{\beta}\)</span> we need to view them as random variables which yield different realizations in repeated realizations of the random sample from Model (<a href="#eq-LinMod">Equation&nbsp;<span>4.1</span></a>). This allows us then to think about questions like:</p>
+<p>Usually, we only observe <em>one</em> estimate <span class="math inline">\(\hat{\beta}\)</span> of <span class="math inline">\(\beta\)</span> computed based on <em>one</em> given dataset (one realization of the random sample).</p>
+<p>However, in order to understand the statistical properties of the estimators <span class="math inline">\(\hat{\beta}\)</span> we need to view them as random variables which yield different realizations in repeated realizations of the random sample from Model (<a href="#eq-LinMod">Equation&nbsp;<span>4.1</span></a>).</p>
+<p>This view allows us then to think about questions like:</p>
 <ul>
-<li>Is the estimator able to estimate the unknown parameter-value correctly on average?<br>
+<li>Is the estimator able to estimate the unknown parameter-value correctly <em>on average</em>?<br>
 </li>
-<li>Are the estimation results more precise if we have more data?</li>
+<li>Are the estimation results more precise (small variance) if we have more data?</li>
 </ul>
 <p>A first idea about the statistical properties of the estimator <span class="math inline">\(\hat{\beta}\)</span> can be gained using Monte Carlo simulations as following.</p>
 <div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-20_e5b4d6c9b3cda838cffc59631b31703e">
@@ -1275,7 +1486,7 @@ X_female -4.103626</code></pre>
 <li><code>beta1_estimates_n_large</code></li>
 </ul>
 <p>These artificially generated realizations allow us to visualize the behavior of the OLS estimates for the repeatedly sampled data.</p>
-<div class="cell" data-layout-align="center" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-21_05015092bae85e86cc61231bb734ba37">
+<div class="cell" data-layout-align="center" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-21_62fd30f29efba030cd82b2999e235619">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1289,7 +1500,20 @@ X_female -4.103626</code></pre>
 <li>The realizations of <span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span> are scattered around the true (unknown) parameter values <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. This indicates unbiasdness of the estimators.</li>
 <li>In the case of a larger sample size, the realizations of <span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span> concentrate stronger around the true (unknown) parameter values <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1.\)</span> This indicates consistency of the estimators.</li>
 </ul>
-<p>However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. In the following chapters, we use theoretical arguments to investigate under which assumptions we can make <em>general</em> statements about the distributional properties of the estimator <span class="math inline">\(\hat\beta.\)</span></p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize the observed properties to other data generating processes.</p>
+<p>In the following chapters, we use theoretical arguments to investigate under which assumptions we can make <em>general</em> statements about the distributional properties of the estimator <span class="math inline">\(\hat\beta.\)</span></p>
+</div>
+</div>
 <!-- ## Exercises -->
 <!-- * [Exercises for Chapter 3](Exercises/Ch3_Exercises.pdf) -->
 <!-- * [Exercises of Chapter 3 with Solutions](Exercises/Ch3_Exercises_with_Solutions.pdf) -->
@@ -1304,12 +1528,6 @@ X_female -4.103626</code></pre>
 Stock, J. H., and M. W. Watson. 2015. <em><span>I</span>ntroduction to <span>E</span>conometrics</em>. <span>P</span>earson <span>E</span>ducation.
 </div>
 </div>
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>The <span class="math inline">\(K\)</span> linear restrictions follow from the fact that <span class="math inline">\(X'\hat\varepsilon=0\)</span> are <span class="math inline">\(K\)</span> equations <span class="math inline">\(\sum_{i=1}^nX_{ik}\hat\varepsilon_i=0\)</span> for <span class="math inline">\(k=1,\dots,K\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->

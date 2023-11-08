@@ -665,7 +665,7 @@ MC simulations can also help to get an idea about how restrictive theoretical as
 
 * [Exercises for Chapter 3](https://www.dropbox.com/scl/fi/xuqqzulvje2f07kq8da1f/Ch3_Exercises1.pdf?rlkey=i7b0c5x259eyd483na0esrtel&dl=0)
 
-<!-- * [Exercises for Chapter 3 with Solutions](https://www.dropbox.com/scl/fi/lpek08w3v713b3fkfcqce/Ch3_Exercises_with_Solutions1.pdf?rlkey=covd2axn4sd56kassw6jhx6po&dl=0) -->
+* [Exercises for Chapter 3 with Solutions](https://www.dropbox.com/scl/fi/lpek08w3v713b3fkfcqce/Ch3_Exercises_with_Solutions1.pdf?rlkey=covd2axn4sd56kassw6jhx6po&dl=0)
 
 
 

@@ -37,6 +37,14 @@ Y=\left(\begin{matrix}Y_1\\ \vdots\\Y_n\end{matrix}\right),\quad X=\left(\begin{
 \end{equation*}
 
 
+::: {.callout-tip}
+The special case of $K=2$
+$$
+Y_i = \beta_1 + \beta_2 X_{i2} + \varepsilon_i
+$$
+is called the ***simple* linear regression model**.
+:::
+
 **Part (b): Random Sample**
 
 Moreover, we assume that the observed ("obs") data points 
@@ -100,7 +108,11 @@ This assumption demands that the mean of the random error term $\varepsilon_i$ i
 This exogeneity assumption is also called "orthogonality assumption" or "mean independence assumption."
 
 ::: {.callout-note}
-Together with the random sample assumption (Assumption 1, Part (b)) @eq-assExogen implies even **strict** exogeneity $E(\varepsilon_i|X) = 0$ since we have independence across $i=1,\dots,n$.  Under strict exogeneity, the mean of $\varepsilon_i$ is zero irrespective of the realizations of $X_1,\dots,X_n$. 
+Together with the random sample assumption (Assumption 1, Part (b)) @eq-assExogen implies even **strict exogeneity** 
+$$
+E(\varepsilon|X) = \underset{(n\times 1)}{0}
+$$ 
+since we have independence across $i=1,\dots,n$.  Under strict exogeneity, the mean of the random vector $\varepsilon$ is zero irrespective of the realizations of $X_1,\dots,X_n$. 
 :::
 
 <!-- For one example, it cannot be fulfilled when the regressors include lagged dependent variables. -->
@@ -117,18 +129,45 @@ This assumption is a bit dicey and its violation belongs to one of the classic p
 
 **Assumption 4: Error distribution** 
 
-Depending on the context (i.e., parameter estimation vs. hypothesis testing and small $n$ vs. large $n$) there are different more or less restrictive assumptions.  Some of the most common ones are the following (roughly order from least to most restrictive):
+Depending on the context (i.e., parameter estimation vs. hypothesis testing and small $n$ vs. large $n$) there are different more or less restrictive assumptions.  Some of the most common ones are the following:
 
-- **Conditional distribution:** $\varepsilon_i|X_i \sim f_{\varepsilon|X}$ for all $i=1,\dots,n$ and for any distribution $f_{\varepsilon|X}$ such that $\varepsilon_i|X_i$ has two (or more) finite moments.
-- **Conditional normal distribution:** $\varepsilon_i|X_i \sim \mathcal{N}(0,\sigma^2(X_i))$ for all $i=1,\dots,n$.
-- **Independence between error and predictors:** $\varepsilon_i\sim f_\varepsilon$ such that $f_\varepsilon=f_{\varepsilon|X}$ and such that $f_\varepsilon$ has two (or more) finite moments.  
+- **Conditional distribution:** 
+$$
+\varepsilon_i|X_i \sim f_{\varepsilon|X}
+$$ 
+for all $i=1,\dots,n$ and for any distribution $f_{\varepsilon|X}$ with two (or more) finite moments.
+- **Conditional normal distribution:** 
+$$
+\varepsilon_i|X_i \sim \mathcal{N}(0,\sigma^2(X_i))
+$$ 
+for all $i=1,\dots,n$.
+- **Independence between error and predictors:** $\varepsilon_i\sim f_\varepsilon$ for all $i=1,\dots,n$ such that $f_\varepsilon=f_{\varepsilon|X}$ and such that $f_\varepsilon$ has two (or more) finite moments.  
 - **Independence between error and predictors and normal:** As above, but with $f_\varepsilon=\mathcal{N}(0,\sigma^2)$. 
-- **Spherical errors ("Gauss-Markov assumptions"):** The conditional distributions of  $\varepsilon_i|X_i$ may generally depend on $X_i$, but such that
+- **Spherical errors ("Gauss-Markov assumptions"):** The conditional distributions of  $\varepsilon_i|X_i$ may generally depend on $X_i$ for all $i=1,\dots,n,$ but only such that
+$$
+E(\varepsilon|X)=\underset{(n\times 1)}{0}
+$$
+and 
 \begin{align*}
-E(\varepsilon_i^2|X_i)         &=\sigma^2>0\quad\text{for all }i=1,\dots,n\\
-E(\varepsilon_i\varepsilon_j|X)&=0\quad\text{for all }i\neq j\quad\text{with}\quad i=1,\dots,n\quad\text{and}\quad j=1,\dots,n.
+&Var\left(\varepsilon|X\right)=\\[2ex] 
+& = \left(\begin{matrix}
+Var(\varepsilon_1|X)&Cov(\varepsilon_1,\varepsilon_2|X)&\dots&Cov(\varepsilon_1,\varepsilon_n|X)\\
+Cov(\varepsilon_2,\varepsilon_1|X)&Var(\varepsilon_2|X)&\dots&Cov(\varepsilon_2,\varepsilon_n|X)\\
+\vdots&\vdots&\ddots&\vdots\\
+Cov(\varepsilon_n,\varepsilon_1|X)&Cov(\varepsilon_n,\varepsilon_2|X)&\dots&Var(\varepsilon_n|X)
+\end{matrix}\right)\\[2ex]
+& = \left(\begin{matrix}
+\sigma^2&0&\dots&0\\
+0&\sigma^2&\dots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\dots&\sigma^2
+\end{matrix}\right)
+= \sigma^2 I_n,
 \end{align*}
-Thus, here one assumes that, for a given realization of $X_i$, the error process is uncorrelated (i.e. $Cov(\varepsilon_i,\varepsilon_j|X)=E(\varepsilon_i\varepsilon_j|X)=0$ for all $i\neq j$) and homoskedastic (i.e. $Var(\varepsilon_i|X)=\sigma^2$ for all $i$).
+where $I_n$ denotes the $(n\times n)$ identity matrix with ones on the diagonal and zeros else.</br> 
+Thus, here one assumes that, for a given realization of $X$, the error process is 
+   * **uncorrelated**, i.e. $Cov(\varepsilon_i,\varepsilon_j|X)=0$ for all $i\neq j$ and 
+   * **homoskedastic**, i.e. $Var(\varepsilon_i|X)=\sigma^2$ for all $i.$
 
 
 
@@ -150,15 +189,27 @@ $E(\varepsilon_i|X_i)=0$, but it has heteroskedastic conditional variance
 $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$. -->
 
 
-The exogeneity assumption (Assumption 2: Exogeneity) requires that the conditional mean of $\varepsilon_i$ is independent of $X_i$. Besides this, dependencies between $\varepsilon_i$ and $X_{i1},\dots,X_{iK}$ are allowed. For instance, the variance of $\varepsilon_i$ can be a function of $X_{i1},\dots,X_{iK}$. If this is the case, $\varepsilon_i$ is said to be "heteroskedastic." 
+The exogeneity assumption (Assumption 2: Exogeneity) requires that the conditional mean of $\varepsilon_i$ is independent of $X_i$. Besides this, dependencies between $\varepsilon_i$ and $X_{i1},\dots,X_{iK}$ are allowed. For instance, the variance of $\varepsilon_i$ can be a function of $X_{i1},\dots,X_{iK}$. If this is the case, $\varepsilon_i$ is said to be **"heteroskedastic."** 
 
-- **Heteroskedastic error terms:** The conditional variances $Var(\varepsilon_i|X_i=x_i)=\sigma^2(x_i)$ are equal to a non-constant variance-function $\sigma^2(x_i)>0$ which is a function of the realization $X_i=x_i.$ 
+- **Heteroskedastic error terms:** The conditional variances $Var(\varepsilon_i|X_i=x_i)=\sigma^2(x_i)$ are equal to a non-constant variance-function $\sigma^2(x_i)>0.$ 
 
-**Example:** $\varepsilon_i|X_i\sim U[-0.5|X_{i2}|, 0.5|X_{i2}|],$ with $X_{i2}\sim U[-4,4]$. This error term is mean independent of $X_i$ since $E(\varepsilon_i|X_i)=0$, but it has a heteroskedastic conditional variance since $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$ depends on $X_i$. 
+**Example:** 
+$$
+\varepsilon_i|X_i\sim U[-0.5|X_{i2}|, 0.5|X_{i2}|],
+$$ 
+with 
+$$
+X_{i2}\sim U[-4,4]
+$$ 
+for all $i=1,\dots,n.$ This error term is mean independent of $X_i$ since $E(\varepsilon_i|X_i)=0$, but it has a heteroskedastic conditional variance since 
+$$
+Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2
+$$ 
+depends on $X_i.$
 
 
 
-Sometimes, we need to be more restrictive by assuming that also the variances of the error terms $\varepsilon_i$ are independent from $X_i$. (Higher moments may still depend on $X_i$.) This assumption leads to "homoskedastic" error terms. 
+Sometimes, we need to be more restrictive by assuming that also the variances of the error terms $\varepsilon_i$ are independent from $X_i$. (Higher moments may still depend on $X_i$.) This assumption leads to **"homoskedastic"** error terms. 
 
 
 - **Homoskedastic error terms:** The conditional variances $Var(\varepsilon_i|X_i=x_i)=\sigma^2$ are equal to some constant $\sigma^2>0$ for every possible realization $X_i=x_i.$ 
@@ -171,8 +222,15 @@ Sometimes, we need to be more restrictive by assuming that also the variances of
 <!-- the whole distribution of $\varepsilon_i$ does not depend on $X_i\in\mathbb{R}^K$ also its variance  -->
 <!-- doesn't depend on $X_i$.  -->
 
-**Example:** For doing small sample inference (see @sec-ssinf), we need to assume that the error terms $\varepsilon_i$ are i.i.d. across $i=1,\dots,n$ plus the normality assumption, i.e., $\varepsilon_i\stackrel{\textrm{i.i.d.}}{\sim}{\mathcal N} (0, \sigma^2)$ for all $i=1,\dots,n$ which leads to homoskedastic variances $Var(\varepsilon_i|X_i)=\sigma^2$ for every possible realization of $X_i$. 
-
+**Example:** 
+$$
+\varepsilon_i\sim{\mathcal N} (0, \sigma^2)
+$$
+for all $i=1,\dots,n.$ Here, the conditional variance of the error terms $\varepsilon_i$ given $X_i$
+$$
+Var(\varepsilon_i|X_i)=\sigma^2
+$$ 
+are equal to the constant $\sigma^2>0$ for all $i=1,\dots,n$ and for every possible realization of $X_i$. For doing small sample inference (see @sec-ssinf), we will assume that the error terms are homoskedastik. 
 
 
 ### Some Implications of the Exogeneity Assumption 
@@ -422,12 +480,21 @@ X'\hat\varepsilon&=0\\
 \Leftrightarrow\;\hat Y'\hat\varepsilon&=0.
 \end{align*}
 
-Another insight from equation $X'\hat\varepsilon=0$ is that the vector $\hat\varepsilon$ has to satisfy $K$ linear restrictions which means it looses $K$ degrees of freedom.[^1] Consequently, the vector of residuals $\hat\varepsilon$ has only $n-K$ so-called *degrees of freedom*.  This loss of $K$ degrees of freedom also appears in the definition of the *unbiased* variance estimator
+Another insight from equation $X'\hat\varepsilon=0$ is that the vector $\hat\varepsilon$ has to satisfy $K$ linear restrictions which means it looses $K$ degrees of freedom. Consequently, the vector of residuals $\hat\varepsilon$ has only $n-K$ so-called *degrees of freedom*.  This loss of $K$ degrees of freedom also appears in the definition of the *unbiased* variance estimator
 \begin{align}
   s_{UB}^2&=\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon_i^2\label{EqVarEstim}.
 \end{align}
 
-[^1]: The $K$ linear restrictions follow from the fact that $X'\hat\varepsilon=0$ are $K$ equations $\sum_{i=1}^nX_{ik}\hat\varepsilon_i=0$ for $k=1,\dots,K$.  
+::: {.callout-note}
+The $K$ linear restrictions follow from the fact that 
+$$
+X'\hat\varepsilon=\underset{(K\times 1)}{0}
+$$ 
+is a linear system of $K$ equations. That is, for each $k=1,\dots,K$ the residuals $\hat\varepsilon_1,\dots,\hat\varepsilon_n$ need to fulfill the equation  
+$$
+\sum_{i=1}^nX_{ik}\hat\varepsilon_i=0.
+$$ 
+:::
 
 **Variance decomposition:** A further useful result that can be shown using the properties of $P_X$ and $M_X$ is that $Y'Y=\hat{Y}'\hat{Y}+\hat\varepsilon'\hat\varepsilon$, i.e.
 \begin{eqnarray*}
@@ -553,17 +620,36 @@ Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS e
 
 ## The Gauss-Markov Theorem {#sec-GMTheorem}
 
-The OLS estimator 
-$$
-\hat\beta=(X'X)^{-1}X'Y
-$$
-is a linear (in $Y$) and unbiased estimator ($E(\hat\beta)=\beta$), i.e.
-$$
-\operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0.
-$$
-The latter can be shown as following: 
+The OLS estimator is a 
 
-Observe that 
+* linear (in $Y$) and 
+* unbiased estimator
+
+**Showing linearity:** A function $f(Y)$ is called linear if for and $Y_1$ and $Y_2$ such that $Y=Y_1+Y_2$ and for any $a\in\mathbb{R}$ 
+\begin{align*}
+f(Y_1+Y_2)&=f(Y_1)+f(Y_2)\\[2ex]
+f(aY)&=af(Y).
+\end{align*}
+This property applies to the OLS estimator 
+$$
+\hat\beta=f(Y)=(X'X)^{-1}X'Y
+$$ 
+since
+\begin{align*}
+(X'X)^{-1}X'(Y_1+Y_2)
+& = (X'X)^{-1}X'Y_1 + (X'X)^{-1}X'Y_2
+\end{align*}
+and 
+\begin{align*}
+(X'X)^{-1}X'aY & = a (X'X)^{-1}X'Y
+\end{align*}
+for any $Y_1$ and $Y_2$ such that $Y=Y_1+Y_2$ and for any $a\in\mathbb{R}.$
+
+**Showing unbiasedness:** The OLS estimator is unbiased if
+$$
+\operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0
+$$
+This can be shown as following: Observe that 
 $$
 \hat\beta=(X'X)^{-1}X'Y
 $$ 
@@ -575,35 +661,20 @@ $$
 &= E((X'X)^{-1}X'\underbrace{Y}_{=X\beta+\varepsilon}|X) - \beta \\
 &= E(\underbrace{(X'X)^{-1}X'X}_{I_K}\beta|X) + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
 &=  \beta + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
-&=  (X'X)^{-1}X'E(\varepsilon|X) =0.  
+&=  (X'X)^{-1}X'\underbrace{E(\varepsilon|X)}_{=0} =0.  
 \end{align*}
 $$
 Thus $\hat\beta$ is unbiased conditionally on $X.$ From this if follows, by the iterated law of expectations, that the OLS estimator is also unconditionally unbiased, i.e.  
 $$
 \operatorname{Bias}(\hat\beta) = E\left(\operatorname{Bias}(\hat\beta|X)\right) = E(0) = 0.
 $$
-Moreover, the conditional variance of $\hat\beta$ given $X$ can be derived as following:
+
+For the Gauss-Markov Theorem, we also need the conditional variance of $\hat\beta$ given $X$ which can be derived as following:
 $$
 \begin{align*}
 Var(\hat\beta|X)
 &=Var(\hat\beta - \beta|X)\\
-&=Var((X'X)^{-1}X'\varepsilon|X)
-\end{align*}
-$$
-
-> Hint: The conditional variance of a multivariate random variable $Z\in\mathbb{R}^K$, given $X$, is defined as $Var(Z|X)=E((Z-E(Z|X))(Z-E(Z|X))'|X)$. 
-
-Using the definition of the conditional variance for multivariate random variables we have that 
-$$
-\begin{align*}
-&Var(\hat\beta|X)=\\
-&=Var(\hat\beta - \beta|X)\\
-&=Var((X'X)^{-1}X'\varepsilon|X)\\
-&=E\Big(\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)\\
-&\phantom{=E\Big(}\,\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)'|X\Big)\\
-&=E\left(((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right)\\
-&=E\left((X'X)^{-1}X'\varepsilon\varepsilon' X(X'X)^{-1}|X\right)\\
-&=(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1},
+&=Var((X'X)^{-1}X'\varepsilon|X),
 \end{align*}
 $$
 where we used that 
@@ -616,7 +687,55 @@ $$
 \Leftrightarrow \hat\beta - \beta & = (X'X)^{-1}X'\varepsilon.
 \end{align*}
 $$
-Under the assumption of spherical errors (see Assumption 4), we have that $E\left(\varepsilon\varepsilon'|X\right)=\sigma^2 I_n$, where $I_n$ is the $(n\times n)$ dimensional identity matrix with ones on the diagonal and zeros everywhere else. Thus under the assumption of spherical errors, we have that
+
+
+::: {.callout-note icon=false}
+##
+::: {#def-CondVarMult}
+
+## Conditional Variance of a Multivariate Random Variable
+
+The conditional variance of a multivariate random variable $Z\in\mathbb{R}^K,$ given $X,$ is defined as 
+$$
+Var(Z|X)=\underbrace{E\Big[\overbrace{(Z-E(Z|X))}^{(K\times 1)}\overbrace{(Z-E(Z|X))'}^{(1\times K)}|X\Big]}_{K\times K}.
+$$ 
+:::
+:::
+
+Using the definition of the conditional variance (@def-CondVarMult) for multivariate random variables $(Z=(X'X)^{-1}X'\varepsilon)$ we have that 
+$$
+\begin{align*}
+&Var(\hat\beta|X)=\\
+%&=Var(\hat\beta - \beta|X)\\
+&=Var((X'X)^{-1}X'\varepsilon|X)\\
+&=E\Big[\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)\\
+&\phantom{=E\Big(}\,\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)'|X\Big]\\
+&=E\left[((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right]\\
+&=E\left[(X'X)^{-1}X'\varepsilon\varepsilon' X(X'X)^{-1}|X\right]\\
+&=\;\;\;(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1}.
+\end{align*}
+$$
+
+Under the assumption of **spherical errors** (see Assumption 4), we have that 
+\begin{align*}
+Var\left(\varepsilon|X\right) 
+& = \left(\begin{matrix}
+Var(\varepsilon_1|X)&Cov(\varepsilon_1,\varepsilon_2|X)&\dots&Cov(\varepsilon_1,\varepsilon_n|X)\\
+Cov(\varepsilon_2,\varepsilon_1|X)&Var(\varepsilon_2|X)&\dots&Cov(\varepsilon_2,\varepsilon_n|X)\\
+\vdots&\vdots&\ddots&\vdots\\
+Cov(\varepsilon_n,\varepsilon_1|X)&Cov(\varepsilon_n,\varepsilon_2|X)&\dots&Var(\varepsilon_n|X)
+\end{matrix}\right)\\[2ex]
+& = \left(\begin{matrix}
+\sigma^2&0&\dots&0\\
+0&\sigma^2&\dots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\dots&\sigma^2
+\end{matrix}\right)
+= \sigma^2 I_n,
+%& = E\left(\varepsilon\varepsilon'|X\right) - E\left(\varepsilon|X\right) E\left(\varepsilon'|X\right)\\[2ex]
+%& = E\left(\varepsilon\varepsilon'|X\right) - \underset{(K\times K)}{0}\\[2ex]
+\end{align*}
+where $I_n$ is the $(n\times n)$ dimensional identity matrix with ones on the diagonal and zeros everywhere else. Thus under the assumption of spherical errors, we have that
 $$
 \begin{align*}
 Var(\hat\beta|X)
@@ -640,14 +759,33 @@ The famous **Gauss-Markov Theorem** states that the OLS estimator is the **"best
 
 ##  Gauss-Markov Theorem
 
-Let's assume Assumptions 1-4 hold with spherical errors, i.e., with $E(\varepsilon\varepsilon'|X)=\sigma^{2} I_{n}$. Then the Gauss-Markov theorem states that of all linear and unbiased estimators (i.e. $E(\hat\beta)=\beta$), the OLS estimator $\hat\beta=(X'X)^{-1}X'Y$ will have the smallest variance (conditionally on $X$). That is, for any alternative linear (in $Y$) and unbiased (i.e. $E(\tilde\beta)=\beta$) estimator $\tilde{\beta}$ we have that 
+If it hold true that 
+
+1. $Y = X\beta + \varepsilon$
+2. $\operatorname{rank}(X)=K$ a.s.
+3. $E(\varepsilon|X) = \underset{(n\times 1)}{0}$
+4. $Var(\varepsilon|X) = \sigma^2I_n$
+
+then the OLS estimator 
+$$
+\hat\beta=(X'X)^{-1}X'Y
+$$
+has the smallest conditional variance (given $X$) among all linear and unbiased estimators. That is, for any alternative linear and unbiased estimator $\tilde{\beta}$ we have that 
 $$
 \begin{align*}
 &Var(\tilde\beta|X)\geq Var(\hat\beta|X)\quad\text{(in the matrix sense)}\\
 \Leftrightarrow&Var(\tilde\beta|X)-Var(\hat\beta|X)=\underset{(K\times K)}{D},
 \end{align*}
 $$
-where $D$ is a *positive semidefinite* $(K\times K)$ matrix, i.e., $a'Da\geq 0$ for any $K$-dimensional vector $a\in\mathbb{R}^K$.  Observe that this implies that $Var(\tilde{\beta}_k|X) \geq Var(\hat\beta_k | X)$ for any $k=1,\dots,K$. 
+where $D$ is a *positive semidefinite* $(K\times K)$ matrix which implies that 
+$$
+Var(\tilde{\beta}_k|X) \geq Var(\hat\beta_k | X)
+$$ 
+for all $k=1,\dots,K$. 
+
+::: {.callout-tip}
+A $(K\times K)$ matrix $D$ is called "positive semidefinite" if $a'Da\geq 0$ for any $K$-dimensional vector $a\in\mathbb{R}^K$.  
+:::
 ::: 
 :::
 
@@ -746,7 +884,27 @@ where $\tilde{a}$ is a $K$ dimensional column-vector.
 
 ### Factor Variables and the Dummy-Variable Trap
 
-In the following, we consider simple linear regression model that aims to predict wages in the year 2008 using gender as the only predictor. We use data provided in the accompanying materials of Stock and Watson's *Introduction to Econometrics* textbook [@stock2015]. You can download the data stored as an xlsx-file `cps_ch3.xlsx` [HERE](https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps_ch3.xlsx). 
+In the following, we consider a simple linear regression model 
+$$
+Y_i = \beta_1 + \beta_2 X_{i2} + \varepsilon_i
+$$
+that aims to predict wages $Y_i\in\mathbb{R}$ in the year 2008 using gender $X_{i2}\in\{\texttt{male},\texttt{female}\}$ as the only predictor.
+
+Here 
+$$
+X_{i2}\in\{\texttt{male},\texttt{female}\}
+$$
+is a *categorical* variable also called **factor variable** with two categories (two **factor levels**). 
+
+::: {.callout-important}
+Above in our theoretical part, we have not mentioned the possibility of categorical, i.e., factor variable. 
+
+* How can one compute the estimators from non-numeric, verbal factor levels like `female` and `male`? 
+
+Well, we need to transform such non-numeric data in numeric data. How this is done, is described in the following. 
+:::
+
+We use data provided in the accompanying materials of Stock and Watson's *Introduction to Econometrics* textbook [@stock2015]. You can download the data stored as an xlsx-file `cps_ch3.xlsx` [HERE](https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps_ch3.xlsx). 
 
 
 Let us first prepare the dataset:
@@ -777,10 +935,10 @@ cps_2008 <- cps %>%
   select(wage, gender)         # Select only the variables "wage" and "gender"
 ```
 
-The first six lines of the dataset look as following:
+The first six lines of the dataset `cps_2008` look as following:
 ```{r, echo=FALSE}
 suppressPackageStartupMessages(library("kableExtra"))
-head(cps_2008) %>% kbl() %>%  kable_styling()
+head(cps_2008) %>% kbl(col.names = c("wage", "gender")) %>%  kable_styling()
 ```
 
 Computing the estimation results:
@@ -799,17 +957,32 @@ gives
 * $\hat\beta_1=$ `r round(coef(lm_obj)[1], 2)`
 * $\hat\beta_2=$ `r round(coef(lm_obj)[2], 2)`
 
-To compute these estimation results, one needs to assign a numeric 0/1 coding to the factor levels `male` and `female` of the factor variable `gender`. To see the numeric values used by `R` one can take a look at `model.matrix(lm_obj)`:
+To compute these estimation results, `R` assigns to each factor level (`male` and `female`) a numeric value. To see the numeric values used by `R` one can take a look at `model.matrix(lm_obj)`:
 ```{r}
-X <- model.matrix(lm_obj) # this is the internally used X-matrix
+# this is the internally used numeric X-matrix
+X <- model.matrix(lm_obj) 
 X[1:6,]
-
+```
+Compare this with the factor variable `gender` in the dataset `cps_2008`:
+```{r}
+# Factor variable 'gender' in the dataset cps_2008
 cps_2008$gender[1:6]
 ```
-
-Thus `R` internally codes `female` subjects by a 1 and `male` subjects by a 0, such that
+Thus `R` internally recodes $X_{i2}\in\{\texttt{male}, \texttt{female}\}$ as a **dummy variable** $X_{i2}\in\{0,1\}$ such that 
 $$
-\hat\beta_1  + \hat\beta_2 X_{i,gender}=\left\{\begin{array}{ll}\hat\beta_1&\text{ if }X_{i,gender}=\text{male}\\\hat\beta_1 + \hat\beta_2&\text{ if }X_{i,gender}=\text{female}\end{array} \right.
+X_{i2}=
+\left\{\begin{array}{ll}
+0 &\text{ if subject $i$ is male}\\
+1 &\text{ if subject $i$ is female}.
+\end{array} \right.
+$$
+Therefore, we can interpret the estimation result as
+$$
+\hat\beta_1  + \hat\beta_2 X_{i2}=
+\left\{\begin{array}{ll}
+\hat\beta_1              &\text{ if subject $i$ is male}\\
+\hat\beta_1 + \hat\beta_2&\text{ if subject $i$ is female}
+\end{array} \right.
 $$
 
 Interpretation: 
@@ -821,36 +994,36 @@ Interpretation:
 
 ### Dummy-Variable Trap {-}
 
-Above, we used `R`'s internal handling of factor variables which you should always do. If you construct a dummy variable for each of the levels of a factor yourself, however, you may blundered into the dummy variable trap:
+Above, we used `R`'s automatic recoding of categorical factor variables into numeric dummy variable which is very convenient. 
+
+Of course, we can also construct a dummy variable for each of the levels of a factor yourself. But be careful, and do not step into the **dummy variable trap**!
+
+
+Let's construct the $Y$ variable and the *numeric* $X$ variable "by hand": 
 ```{r}
+## Dependent variable
+Y        <- cps_2008$wage
+
 ## Intercept variable
 X_1      <- rep(1, times = nrow(cps_2008))
 
-## 1. Dummy variable for 'female'
+## 1. Dummy variable for 'female' (indicates female subjects)
 X_female <- ifelse(cps_2008$gender == "female", 1, 0)
 
-## 2. Dummy variable for 'male'
+## 2. Dummy variable for 'male' (indicates male subjects)
 X_male   <- ifelse(cps_2008$gender == "male", 1, 0)
 
-## Construct the model matrix 'X'
+## Construct the numeric model matrix 'X'
 X        <- cbind(X_1, X_female, X_male)
 ```
 
-```{r, echo = FALSE, eval = TRUE}
-## Dependent variable
-Y        <- cps_2008$wage
-```
 
 Computing the estimation result for $\beta$ "by hand" yields
 
 ```{r, echo=TRUE, eval=FALSE}
-## Dependent variable
-Y        <- cps_2008$wage
-
 ## Computing the estimator
 beta_hat <- solve(t(X) %*% X) %*% t(X) %*% Y
 ```
-
 ```{r, echo=TRUE, eval=FALSE}
 Error in solve.default(X %*% t(X)) : 
   Lapack routine dgesv: system is exactly singular: U[3,3] = 0
@@ -858,7 +1031,7 @@ Calls: .main ... eval_with_user_handlers -> eval -> eval -> solve -> solve.defau
 Execution halted
 ```
 
-<font color="#FF0000">An error message!</font>  🤬 We blundered into the dummy variable trap!
+<font color="#FF0000">An error message!</font>  🤬 We stepped into the **dummy variable trap**!
 
 The estimation result is not computable since $(X'X)$ is not invertible due to the perfect multicollinearity between the intercept and the two dummy variables `X_female` and `X_male` 
 <center>
@@ -905,10 +1078,11 @@ plot(lm_object, which = 1)
 Interpretation: 
 
 * The plot shows the residuals $\hat{\varepsilon}_i$ plotted against the fitted values $\hat{Y}_i$.
-* The diagnostic plot indicates that the variance increases with income.
+* The diagnostic plot indicates that the variance increases with $\hat{Y}_i=X_i'\hat{\beta}.$
 
+::: {.callout-tip}
 **Note:** Plotting against the fitted values is actually a quite smart idea since this also works for multiple predictors $X_{i1},\dots,X_{iK}$ with $K\geq 3$. 
-
+:::
 
 ### Checking (Non-)Linearity of the Regression Line
 
@@ -951,9 +1125,21 @@ ggpairs(my_car_df) + theme_bw()
 ```
 :::
 
-The plots indicate a positive, but non-linear relationship between the outcome variable `MPG` (gasoline consumption in milles per gallon) and the predictor `HP` (power of the mashing in horsepower). 
+The plots indicate a positive, but non-linear relationship between the outcome variable `MPG` (gasoline consumption in miles per gallon) and the predictor `HP` (power of the mashing in horsepower). 
 
-If we do not take this into account, we get bad model fits which can be seen in the scatter plot of `MPG` vs. `HP` and in the diagnostic plot of the residuals vs. the fitted values. (The latter works also for $K\geq 3$, the former not.)
+Let's begin with a simple linear regression model 
+$$
+Y_i = \beta_1 + \beta_2 X_{i2} +  \varepsilon_i
+$$
+with 
+
+* $Y_i$ denoting `MPG` of car $i$ and 
+* $X_{i2}$ denoting `HP` of car $i.$
+
+Such a simple model is not able to take into account the non-linear relationship between $Y_i$ and $X_{i2}$. Therefore, we get bad model fits which can be spotted 
+
+1. in the scatter plot of `MPG` vs. `HP` with added linear regression line fit and 
+2. in the diagnostic plot of the residuals $\hat{\varepsilon}_i$ vs. the fitted values $\hat{Y}_i=\hat\beta_1 + \hat\beta_2 X_{i2}.$ 
 
 ::: {.panel-tabset}
 
@@ -997,9 +1183,21 @@ autoplot(lm_obj_1, which = 1)
 ```
 :::
 
+To model the non-linear, more or less quadratic relationship between $Y_i$ and $X_{i2}$, we can use a a polynomial regression model with polynomial degree 2:
+$$
+Y_i = \beta_1 + \beta_2 X_{i2} + \beta_3 X_{i2}^2 +  \varepsilon_i
+$$
+with
 
-A polynomial regression model with polynomial degree 2 improves the model fit.
+* $Y_i$ denoting `MPG` of car $i,$ 
+* $X_{i2}$ denoting `HP` of car $i,$ and 
+* $X_{i2}^2$ denoting the squared value of `HP` of car $i.$
 
+
+This more flexible model is indeed better in taking into account the non-linear relationship between $Y_i$ and $X_{i2}.$ The improved model fits can be spotted 
+
+1. in the scatter plot of `MPG` vs. `HP` with added non-linear regression line fit and 
+2. in the diagnostic plot of the residuals $\hat{\varepsilon}_i$ vs. the fitted values $\hat{Y}_i=\hat\beta_1 + \hat\beta_2 X_{i2} + \hat\beta_3 X_{i2}^2.$ 
 
 ::: {.panel-tabset}
 
@@ -1064,10 +1262,16 @@ autoplot(lm_obj_2, which = 1)
 
 ### Behavior of the OLS Estimates for Resampled Data 
 
-Usually, we only observe *one* estimate $\hat{\beta}$ of $\beta$ computed based on *one* given dataset (one realization of the random sample). However, in order to understand the statistical properties of the estimators $\hat{\beta}$ we need to view them as random variables which yield different realizations in repeated realizations of the random sample from Model (@eq-LinMod). This allows us then to think about questions like: 
+Usually, we only observe *one* estimate $\hat{\beta}$ of $\beta$ computed based on *one* given dataset (one realization of the random sample). 
 
-* Is the estimator able to estimate the unknown parameter-value correctly on average?  
-* Are the estimation results more precise if we have more data?
+
+However, in order to understand the statistical properties of the estimators $\hat{\beta}$ we need to view them as random variables which yield different realizations in repeated realizations of the random sample from Model (@eq-LinMod). 
+
+
+This view allows us then to think about questions like: 
+
+* Is the estimator able to estimate the unknown parameter-value correctly *on average*?  
+* Are the estimation results more precise (small variance) if we have more data?
 
 A first idea about the statistical properties of the estimator $\hat{\beta}$ can be gained using Monte Carlo simulations as following.
 ```{r}
@@ -1171,6 +1375,10 @@ abline(a=beta0_estimates_n_large[b],
        b=beta1_estimates_n_large[b], lty=2, lwd = 1.3, col="darkorange")
 }
 abline(a = beta0, b = beta1, lwd=1.3, col="darkblue")
+legend("topleft", col=c("darkorange", "darkblue"), legend=c(
+"Sample regression lines from repeated samples", 
+                  "Population regression line"), 
+       lwd=1.3, lty=c(2,1), bty="n")
 ## Plot 5
 plot(x=rep(0, B), y=beta0_estimates_n_large, axes=FALSE, 
      xlab="", ylab="", pch=19, cex=1.2, ylim=y_range,
@@ -1190,7 +1398,11 @@ This are promising plots:
 * The realizations of $\hat\beta_0$ and $\hat\beta_1$ are scattered around the true (unknown) parameter values $\beta_0$ and $\beta_1$. This indicates unbiasdness of the estimators. 
 * In the case of a larger sample size, the realizations of $\hat\beta_0$ and $\hat\beta_1$ concentrate stronger around the true (unknown) parameter values $\beta_0$ and $\beta_1.$ This indicates consistency of the estimators.  
 
-However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize these properties. In the following chapters, we use theoretical arguments to investigate under which assumptions we can make *general* statements about the distributional properties of the estimator $\hat\beta.$ 
+::: {.callout-important}
+However, this was only a simulation for one specific data generating process. Such a Monte Carlo simulation does not allow us to generalize the observed properties to other data generating processes. 
+
+In the following chapters, we use theoretical arguments to investigate under which assumptions we can make *general* statements about the distributional properties of the estimator $\hat\beta.$
+:::  
 
 
 <!-- ## Exercises -->
