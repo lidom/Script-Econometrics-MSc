@@ -51,6 +51,9 @@ Y=\left(\begin{matrix}Y_1\\ \vdots\\Y_n\end{matrix}\right),\quad X=\left(\begin{
 $$
 
 ::: {.callout-tip}
+
+# Simple Linear Regression and Polynomial Regression Model 
+
 The special case of $K=2$
 $$
 Y_i = \beta_1 + \beta_2 X_{i2} + \varepsilon_i
@@ -152,11 +155,72 @@ $$
 \Leftrightarrow P\big(\operatorname{rank}(X)&=K\big)=1
 \end{align*}
 $$
-This assumption demands that, with probability one, no predictor variable $X_{j}\in\mathbb{R}^n$ is linearly dependent of the others. (This is the literal translation of the "almost surely (a.s.)" concept.) 
+This assumption demands that, with probability one, no predictor variable $X_{k}\in\mathbb{R}^n$ is linearly dependent of the others. (This is the literal translation of the "almost surely (a.s.)" concept.) 
 
-**Note:** The assumption implies that $n\geq K$. 
+::: {.callout-note}
+$X_k$ is 
+:::
+
+**Note:** The assumption implies that $n\geq K,$ since 
+$$
+\operatorname{rank}(X)\leq \min\{n,K\}\quad(a.s.)
+$$
+see the crash course on ranks below. 
 
 This rank assumption is a bit dicey and its violation belongs to one of the classic problems in applied econometrics (keywords: dummy variable trap, multicollinearity, variance inflation).  The violation of this assumption harms any economic interpretation since we cannot disentangle the explanatory variables' individual effects on $Y$. Therefore, this assumption is also often called an **identification assumption**.
+
+
+::: {.callout-tip}
+# Crash Course on Ranks and Matrix Inverse:
+
+Let $A$ be a $(n\times m)$-dimensional matrix. 
+
+* If $A$ is a $(n\times m)$ dimensional matrix, then 
+$$
+\operatorname{rank}(A)\leq \min\{m,n\}.
+$$
+* The column rank and the row rank are always equal, therefore 
+$$
+\operatorname{rank}(A)=\operatorname{rank}(A').$$ 
+So, it is sufficient to check either compute the column rank or the row rank.
+* The rank of a matrix $A$ can be defined as the maximal number of linearly independent columns (or rows) of the matrix $A.$
+* A $(n\times 1)$-dimensional column vector $A_k$ of $A$ is said to be **linearly dependent** of the other column vectors $A_{1},\dots,A_{k-1},A_{k+1},\dots,A_m$ if $A_k$ can be written as a linear combination of the other column vectors, i.e., if there are linear coefficients $c_1,\dots,c_{k-1},c_{k+1},\dots,c_m\in\mathbb{R}$ such that
+$$
+A_k = c_1 A_1 + \dots +c_{k-1} A_{k-1} + c_{k+1} A_{k+1}+ \dots +c_m A_{m}
+$$
+Conversely, the column vectors $A_1, \dots, A_m$ are **linearly independent** of each other if the equation  
+$$
+\begin{align*}
+0   & = c_1 A_1 + \dots +c_{m} A_{m}
+\end{align*}
+$$
+has only the trivial solution $c_1=\dots=c_m=0.$ 
+* A $(n\times n)$ matrix $B$ is **invertible** if it has full rank $\operatorname{rank}(B)=n.$
+* $B^{-1}$ is a matrix **inverse** of $B$ if
+$$
+B^{-1}B=I_n\quad\text{and}\quad BB^{-1}=I_n.
+$$ 
+* The inverse of a $(2\times 2)$ matrix is given by
+$$
+\begin{bmatrix}
+a & b\\
+c & d\\
+\end{bmatrix}^{-1} 
+= \frac{1}{ad - bc} 
+\begin{bmatrix}
+d  & -b\\
+-c & a\\
+\end{bmatrix},
+$$
+where $ad - bc$ is the **determinant** of the matrix, which has to be non-zero, otherwise the matrix is not invertible.  
+
+Further, way more extensive material on linear algebra can be found, for instance: 
+
+* in Appendix A of Marno Verbeek's "A Guide to Modern Econometrics"
+* in Frank Pinter's lecture notes: [LINK](https://www.frankpinter.com/notes/linear-algebra-notes.pdf)
+* in the free book: [Linear Algebra and Optimization with Applications to Machine Learning](https://www.cis.upenn.edu/~jean/gbooks/linalg.html)
+:::
+
 
 
 **Assumption 4: Error distribution** 
@@ -180,8 +244,9 @@ $$
 E(\varepsilon|X)=\underset{(n\times 1)}{0}
 $$
 and 
+$$
 \begin{align*}
-&Var\left(\varepsilon|X\right)=\\[2ex] 
+&\underset{(n\times n)}{Var\left(\varepsilon|X\right)}=\\[2ex] 
 & = \left(\begin{matrix}
 Var(\varepsilon_1|X)&Cov(\varepsilon_1,\varepsilon_2|X)&\dots&Cov(\varepsilon_1,\varepsilon_n|X)\\
 Cov(\varepsilon_2,\varepsilon_1|X)&Var(\varepsilon_2|X)&\dots&Cov(\varepsilon_2,\varepsilon_n|X)\\
@@ -196,10 +261,11 @@ Cov(\varepsilon_n,\varepsilon_1|X)&Cov(\varepsilon_n,\varepsilon_2|X)&\dots&Var(
 \end{matrix}\right)
 = \sigma^2 I_n,
 \end{align*}
+$$
 where $I_n$ denotes the $(n\times n)$ identity matrix with ones on the diagonal and zeros else.</br> 
-Thus, here one assumes that, for a given realization of $X$, the error process is 
-   * **uncorrelated**, i.e. $Cov(\varepsilon_i,\varepsilon_j|X)=0$ for all $i\neq j$ and 
-   * **homoskedastic**, i.e. $Var(\varepsilon_i|X)=\sigma^2$ for all $i.$
+Thus, here one assumes that, for all possible realizations of $X$, the error process is 
+   * **uncorrelated:** $Cov(\varepsilon_i,\varepsilon_j|X)=0$ for all $i\neq j$ and 
+   * **homoskedastic:** $Var(\varepsilon_i|X)=\sigma^2$ for all $i.$
 
 
 
