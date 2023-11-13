@@ -5,8 +5,7 @@ In the following we focus on the case of random designs $X$ (i.e. $X$ being a ra
 1. this is the more relevant case in econometrics and 
 2. it includes the case of fixed designs (i.e. $X$ being deterministic) as a special case ("degenerated random variable").
 
-**Caution:** A random $X$ requires us to consider conditional means and variances given $X.$ That is, if we were able to resample from the population (from the data-generating process), we would do so by fixing (conditioning on) the observed $X.$ 
-
+**Caution:** A random $X$ requires us to consider conditional means and variances given $X.$ That is, if we were able to resample from the population (from the data-generating process), we would do so by fixing (conditioning on) the observed $X_{obs}$ and generating new realizations of all other random quantities involved. 
 
 ## Assumptions {#sec-LinModAssumptions}
 
@@ -23,26 +22,52 @@ $$
 $${#eq-LinMod}
 Usually, a constant (intercept) is included, in this case $X_{i1}=1$ for all $i=1,\dots,n.$ In the following we will always assume that $X_{i1}=1$ for all $i$, unless otherwise stated.   
 
+* $Y_i$ is called "dependent variable" or "outcome variable" or "regressand"
+* $X_{ik}$ is called the $k$th "predictor variable" or "regressor" or "explanatory variable" or "control variable." Each of these names emphasizes a slightly different perspective on $X_{ik}.$
+
 It is convenient to write @eq-LinMod using matrix notation
+$$
 \begin{eqnarray*}
   Y_i&=&\underset{(1\times K)}{X_i'}\underset{(K\times 1)}{\beta} +\varepsilon_i, \quad i=1,\dots,n,
 \end{eqnarray*}
-where $X_i=(X_{i1},\dots,X_{iK})'$ and $\beta=(\beta_1,\dots,\beta_K)'$. Stacking all individual rows $i$ leads to
+$$
+where 
+$$
+  X_i=\left(\begin{matrix}X_{i1}\\ \vdots\\  X_{iK}\end{matrix}\right)
+  \quad\text{and}\quad 
+\beta=\left(\begin{matrix}\beta_1\\ \vdots\\ \beta_K\end{matrix}\right).
+$$ 
+Stacking all individual rows $i=1,\dots,n$ leads to
+$$
 \begin{eqnarray*}\label{LM}
   \underset{(n\times 1)}{Y}&=&\underset{(n\times K)}{X}\underset{(K\times 1)}{\beta} + \underset{(n\times 1)}{\varepsilon},
 \end{eqnarray*}
+$$
 where 
+$$
 \begin{equation*}
 Y=\left(\begin{matrix}Y_1\\ \vdots\\Y_n\end{matrix}\right),\quad X=\left(\begin{matrix}X_{11}&\dots&X_{1K}\\\vdots&\ddots&\vdots\\ X_{n1}&\dots&X_{nK}\\\end{matrix}\right),\quad\text{and}\quad \varepsilon=\left(\begin{matrix}\varepsilon_1\\ \vdots\\ \varepsilon_n\end{matrix}\right).
 \end{equation*}
-
+$$
 
 ::: {.callout-tip}
 The special case of $K=2$
 $$
 Y_i = \beta_1 + \beta_2 X_{i2} + \varepsilon_i
 $$
-is called the ***simple* linear regression model**.
+is called the ***simple* linear regression model**. With the simple linear regression model, only straight line fits are possible. 
+
+By contrast, with the multiple linear regression model, we can also fit polynomials. For instance, we can define
+$$
+X_{i3} := X_{i2}^2
+$$
+which leads to a quadratic regression model (often used for life-cycle analyses that include the predictor `Age`$_i=X_{i2}$)
+$$
+Y_i = \beta_1 + \beta_2 X_{i2} + \beta_3 X_{i2}^2 + \varepsilon_i.
+$$
+Of course, further predictor variables $X_{i3},\dots,X_{iK}$ can (and should) be added to this model. 
+
+The same logic applies to polynomials with higher polynomial degrees $(\geq 2).$ Large polynomial degrees, however, can lead to unstable estimation results. 
 :::
 
 **Part (b): Random Sample**
@@ -51,7 +76,7 @@ Moreover, we assume that the observed ("obs") data points
 $$
 ((Y_{1,obs},X_{11,obs},\dots,X_{1K,obs}),(Y_{2,obs},X_{21,obs},\dots,X_{2K,obs}),\dots,(Y_{n,obs},X_{n1,obs},\dots,X_{nK,obs}))
 $$ 
-are realizations of a random sample 
+are a realization of the **random sample** 
 $$
 ((Y_{1},X_{11},\dots,X_{1K}),(Y_{2},X_{21},\dots,X_{2K}),\dots,(Y_{n},X_{n1},\dots,X_{nK})).
 $$ 
@@ -77,14 +102,14 @@ $$
 are i.i.d. across $i=1,\dots,n$. 
 :::
 
+::: {.callout-caution}
 **Remark:** Usually, we do not use a different notation for observed realizations 
 $(Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}$ 
 and for the corresponding random variable 
 $(Y_{i},X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1}$ 
 since often both interpretations (random variable and its realizations) can make sense 
-in the same statement and then it depends on the considered context whether the random variables 
-point if view or the realization point of view applies.
-
+in the same statement and then it depends on the considered context whether the random variables point if view or the realization point of view applies.
+:::
 
 <!--  That is, the multivariate distribution of $(\varepsilon_i,X_{i1},\dots,X_{iK})$ is assumed equal 
 across $i=1,\dots,n$, but the multivariate random variables $(\varepsilon_i,X_{i1},\dots,X_{iK})$ 
@@ -102,17 +127,17 @@ and $(\varepsilon_j,X_{j1},\dots,X_{jK})$ are independent for all $i\neq j$. -->
 $$
 E(\varepsilon_i|X_i)=0,\quad i=1,\dots,n
 $${#eq-assExogen}
-This assumption demands that the mean of the random error term $\varepsilon_i$ is zero irrespective of the realizations of $X_i$.  
+This assumption demands that the mean of the random error term $\varepsilon_i$ is zero irrespective of the realizations of $X_i$. This exogeneity assumption is also called
 
-
-This exogeneity assumption is also called "orthogonality assumption" or "mean independence assumption."
+* "orthogonality assumption" or 
+* "mean independence assumption."
 
 ::: {.callout-note}
-Together with the random sample assumption (Assumption 1, Part (b)) @eq-assExogen implies even **strict exogeneity** 
+Together with the random sample assumption (Assumption 1, Part (b)) @eq-assExogen even implies **strict exogeneity** 
 $$
 E(\varepsilon|X) = \underset{(n\times 1)}{0}
 $$ 
-since we have independence across $i=1,\dots,n$.  Under strict exogeneity, the mean of the random vector $\varepsilon$ is zero irrespective of the realizations of $X_1,\dots,X_n$. 
+since we have independence across $i=1,\dots,n$.  Under strict exogeneity, the mean of the random vector $\varepsilon$ is zero irrespective of the realizations of the $(n\times K)$-dimensional random predictor matrix $X.$ 
 :::
 
 <!-- For one example, it cannot be fulfilled when the regressors include lagged dependent variables. -->
@@ -121,10 +146,17 @@ since we have independence across $i=1,\dots,n$.  Under strict exogeneity, the m
 
 **Assumption 3: Rank Condition (no perfect multicollinearity)**
 
-$$\operatorname{rank}(X)=K\quad\text{a.s.}$$
-This assumption demands that the event of one explanatory variable being linearly dependent on the others occurs with a probability equal to zero. (This is the literal translation of the "almost surely (a.s.)" concept.) The assumption implies that $n\geq K$. 
+$$
+\begin{align*}
+\operatorname{rank}(X)&=K\quad\text{a.s.}\\
+\Leftrightarrow P\big(\operatorname{rank}(X)&=K\big)=1
+\end{align*}
+$$
+This assumption demands that, with probability one, no predictor variable $X_{j}\in\mathbb{R}^n$ is linearly dependent of the others. (This is the literal translation of the "almost surely (a.s.)" concept.) 
 
-This assumption is a bit dicey and its violation belongs to one of the classic problems in applied econometrics (keywords: dummy variable trap, multicollinearity, variance inflation).  The violation of this assumption harms any economic interpretation as we cannot disentangle the explanatory variables' individual effects on $Y$. Therefore, this assumption is also often called an "identification assumption."
+**Note:** The assumption implies that $n\geq K$. 
+
+This rank assumption is a bit dicey and its violation belongs to one of the classic problems in applied econometrics (keywords: dummy variable trap, multicollinearity, variance inflation).  The violation of this assumption harms any economic interpretation since we cannot disentangle the explanatory variables' individual effects on $Y$. Therefore, this assumption is also often called an **identification assumption**.
 
 
 **Assumption 4: Error distribution** 

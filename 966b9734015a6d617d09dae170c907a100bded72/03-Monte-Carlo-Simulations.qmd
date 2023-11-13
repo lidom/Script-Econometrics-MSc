@@ -651,7 +651,7 @@ If we would further increase the number of Monte Carlo repetitions $B,$ the Mont
 
 We can use Monte Carlo simulations to approximate the *exact* distribution and its features (e.g. bias, variance, mse) of an estimator $\hat{\theta}_n$ for given distributions $F_X$ of the underlying random sample. These approximations become arbitrarily precise as $B\to\infty$. 
 
-Therefore, Monte Carlo simulations can be used to check estimation procedures when applied to specific data generating processes and sample sizes. 
+Therefore, Monte Carlo simulations can be used to check the theoretical properties of estimation procedures under specific data generating processes and sample sizes. 
 
 <!-- MC simulations are an important tool, since modern estimation procedures are usually only justified based on asymptotic statistics $(n\to\infty)$ and sometimes only under relative restrictive assumptions. 
 
