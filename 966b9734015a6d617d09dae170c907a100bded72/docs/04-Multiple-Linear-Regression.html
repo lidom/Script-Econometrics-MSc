@@ -406,19 +406,6 @@ E(\varepsilon|X) = \underset{(n\times 1)}{0}
 \Leftrightarrow P\big(\operatorname{rank}(X)&amp;=K\big)=1
 \end{align*}
 \]</span> This assumption demands that, with probability one, no predictor variable <span class="math inline">\(X_{k}\in\mathbb{R}^n\)</span> is linearly dependent of the others. (This is the literal translation of the “almost surely (a.s.)” concept.)</p>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><span class="math inline">\(X_k\)</span> is</p>
-</div>
-</div>
 <p><strong>Note:</strong> The assumption implies that <span class="math inline">\(n\geq K,\)</span> since <span class="math display">\[
 \operatorname{rank}(X)\leq \min\{n,K\}\quad(a.s.)
 \]</span> see the crash course on ranks below.</p>
@@ -435,11 +422,6 @@ Crash Course on Ranks and Matrix Inverse:
 <div class="callout-body-container callout-body">
 <p>Let <span class="math inline">\(A\)</span> be a <span class="math inline">\((n\times m)\)</span>-dimensional matrix.</p>
 <ul>
-<li>If <span class="math inline">\(A\)</span> is a <span class="math inline">\((n\times m)\)</span> dimensional matrix, then <span class="math display">\[
-\operatorname{rank}(A)\leq \min\{m,n\}.
-\]</span></li>
-<li>The column rank and the row rank are always equal, therefore <span class="math display">\[
-\operatorname{rank}(A)=\operatorname{rank}(A').\]</span> So, it is sufficient to check either compute the column rank or the row rank.</li>
 <li>The rank of a matrix <span class="math inline">\(A\)</span> can be defined as the maximal number of linearly independent columns (or rows) of the matrix <span class="math inline">\(A.\)</span></li>
 <li>A <span class="math inline">\((n\times 1)\)</span>-dimensional column vector <span class="math inline">\(A_k\)</span> of <span class="math inline">\(A\)</span> is said to be <strong>linearly dependent</strong> of the other column vectors <span class="math inline">\(A_{1},\dots,A_{k-1},A_{k+1},\dots,A_m\)</span> if <span class="math inline">\(A_k\)</span> can be written as a linear combination of the other column vectors, i.e., if there are linear coefficients <span class="math inline">\(c_1,\dots,c_{k-1},c_{k+1},\dots,c_m\in\mathbb{R}\)</span> such that <span class="math display">\[
 A_k = c_1 A_1 + \dots +c_{k-1} A_{k-1} + c_{k+1} A_{k+1}+ \dots +c_m A_{m}
@@ -449,10 +431,18 @@ A_k = c_1 A_1 + \dots +c_{k-1} A_{k-1} + c_{k+1} A_{k+1}+ \dots +c_m A_{m}
 0   &amp; = c_1 A_1 + \dots +c_{m} A_{m}
 \end{align*}
 \]</span> has only the trivial solution <span class="math inline">\(c_1=\dots=c_m=0.\)</span></li>
-<li>A <span class="math inline">\((n\times n)\)</span> matrix <span class="math inline">\(B\)</span> is <strong>invertible</strong> if it has full rank <span class="math inline">\(\operatorname{rank}(B)=n.\)</span></li>
-<li><span class="math inline">\(B^{-1}\)</span> is a matrix <strong>inverse</strong> of <span class="math inline">\(B\)</span> if <span class="math display">\[
-B^{-1}B=I_n\quad\text{and}\quad BB^{-1}=I_n.
+<li>If <span class="math inline">\(A\)</span> is a <span class="math inline">\((n\times m)\)</span> dimensional matrix, then <span class="math display">\[
+\operatorname{rank}(A)\leq \min\{m,n\}.
 \]</span></li>
+<li>The column rank and the row rank are always equal, therefore <span class="math display">\[
+\operatorname{rank}(A)=\operatorname{rank}(A').\]</span> So, it is sufficient to check either compute the column rank or the row rank.</li>
+<li>A <span class="math inline">\((n\times m)\)</span> matrix <span class="math inline">\(A\)</span> has full row-rank if <span class="math inline">\(\operatorname{rank}(A)=n\)</span></li>
+<li>A <span class="math inline">\((n\times m)\)</span> matrix <span class="math inline">\(A\)</span> has full column-rank if <span class="math inline">\(\operatorname{rank}(A)=m\)</span></li>
+<li>A <span class="math inline">\((m\times m)\)</span> matrix <span class="math inline">\(B\)</span> has full rank if <span class="math inline">\(\operatorname{rank}(B)=m\)</span></li>
+<li>Let <span class="math inline">\(B\)</span> a <span class="math inline">\((m\times m)\)</span>-dimensional matrix. The <span class="math inline">\((m\times m)\)</span>-dimensional matrix <span class="math inline">\(B^{-1}\)</span> is called a matrix <strong>inverse</strong> of <span class="math inline">\(B\)</span> if <span class="math display">\[
+B^{-1}B=I_m\quad\text{and}\quad BB^{-1}=I_m,
+\]</span> where <span class="math inline">\(I_m\)</span> is the <span class="math inline">\((m\times m)\)</span> dimensional identity matrix.</li>
+<li>If a <span class="math inline">\((m\times m)\)</span> matrix <span class="math inline">\(B\)</span> has full rank, i.e.&nbsp;<span class="math inline">\(\operatorname{rank}(B)=m,\)</span> then there exists an inverse matrix <span class="math inline">\(B^{-1}.\)</span></li>
 <li>The inverse of a <span class="math inline">\((2\times 2)\)</span> matrix is given by <span class="math display">\[
 \begin{bmatrix}
 a &amp; b\\
@@ -470,6 +460,27 @@ d  &amp; -b\\
 <li>in Appendix A of Marno Verbeek’s “A Guide to Modern Econometrics”</li>
 <li>in Frank Pinter’s lecture notes: <a href="https://www.frankpinter.com/notes/linear-algebra-notes.pdf">LINK</a></li>
 <li>in the free book: <a href="https://www.cis.upenn.edu/~jean/gbooks/linalg.html">Linear Algebra and Optimization with Applications to Machine Learning</a></li>
+</ul>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Under Assumption 3, we have that <span class="math inline">\(\operatorname{rank}(X)=K\)</span> (a.s.)</p></li>
+<li><p>This implies that the <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\(X'X\)</span> has full rank, i.e.&nbsp;that <span class="math display">\[
+\operatorname{rank}(X'X)=K\quad(a.s.)
+\]</span></p></li>
+<li><p>Thus <span class="math inline">\((X'X)\)</span> is invertible; i.e.&nbsp;there exists a <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\((X'X)^{-1}\)</span> such that <span class="math display">\[
+(X'X)(X'X)^{-1} = (X'X)^{-1}(X'X) = I_k.
+\]</span></p></li>
 </ul>
 </div>
 </div>
@@ -530,8 +541,8 @@ $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$. -->
 \]</span> with <span class="math display">\[
 X_{i2}\sim U[-4,4]
 \]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> This error term is mean independent of <span class="math inline">\(X_i\)</span> since <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span>, but it has a heteroskedastic conditional variance since <span class="math display">\[
-Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2
-\]</span> depends on <span class="math inline">\(X_i.\)</span></p>
+Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2
+\]</span> depends on <span class="math inline">\(X_{i2}.\)</span></p>
 <p>Sometimes, we need to be more restrictive by assuming that also the variances of the error terms <span class="math inline">\(\varepsilon_i\)</span> are independent from <span class="math inline">\(X_i\)</span>. (Higher moments may still depend on <span class="math inline">\(X_i\)</span>.) This assumption leads to <strong>“homoskedastic”</strong> error terms.</p>
 <ul>
 <li><strong>Homoskedastic error terms:</strong> The conditional variances <span class="math inline">\(Var(\varepsilon_i|X_i=x_i)=\sigma^2\)</span> are equal to some constant <span class="math inline">\(\sigma^2&gt;0\)</span> for every possible realization <span class="math inline">\(X_i=x_i.\)</span></li>

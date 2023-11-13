@@ -157,10 +157,6 @@ $$
 $$
 This assumption demands that, with probability one, no predictor variable $X_{k}\in\mathbb{R}^n$ is linearly dependent of the others. (This is the literal translation of the "almost surely (a.s.)" concept.) 
 
-::: {.callout-note}
-$X_k$ is 
-:::
-
 **Note:** The assumption implies that $n\geq K,$ since 
 $$
 \operatorname{rank}(X)\leq \min\{n,K\}\quad(a.s.)
@@ -175,14 +171,6 @@ This rank assumption is a bit dicey and its violation belongs to one of the clas
 
 Let $A$ be a $(n\times m)$-dimensional matrix. 
 
-* If $A$ is a $(n\times m)$ dimensional matrix, then 
-$$
-\operatorname{rank}(A)\leq \min\{m,n\}.
-$$
-* The column rank and the row rank are always equal, therefore 
-$$
-\operatorname{rank}(A)=\operatorname{rank}(A').$$ 
-So, it is sufficient to check either compute the column rank or the row rank.
 * The rank of a matrix $A$ can be defined as the maximal number of linearly independent columns (or rows) of the matrix $A.$
 * A $(n\times 1)$-dimensional column vector $A_k$ of $A$ is said to be **linearly dependent** of the other column vectors $A_{1},\dots,A_{k-1},A_{k+1},\dots,A_m$ if $A_k$ can be written as a linear combination of the other column vectors, i.e., if there are linear coefficients $c_1,\dots,c_{k-1},c_{k+1},\dots,c_m\in\mathbb{R}$ such that
 $$
@@ -195,11 +183,23 @@ $$
 \end{align*}
 $$
 has only the trivial solution $c_1=\dots=c_m=0.$ 
-* A $(n\times n)$ matrix $B$ is **invertible** if it has full rank $\operatorname{rank}(B)=n.$
-* $B^{-1}$ is a matrix **inverse** of $B$ if
+* If $A$ is a $(n\times m)$ dimensional matrix, then 
 $$
-B^{-1}B=I_n\quad\text{and}\quad BB^{-1}=I_n.
+\operatorname{rank}(A)\leq \min\{m,n\}.
+$$
+* The column rank and the row rank are always equal, therefore 
+$$
+\operatorname{rank}(A)=\operatorname{rank}(A').$$ 
+So, it is sufficient to check either compute the column rank or the row rank.
+* A $(n\times m)$ matrix $A$ has full row-rank if $\operatorname{rank}(A)=n$
+* A $(n\times m)$ matrix $A$ has full column-rank if $\operatorname{rank}(A)=m$
+* A $(m\times m)$ matrix $B$ has full rank if $\operatorname{rank}(B)=m$
+* Let $B$ a $(m\times m)$-dimensional matrix. The $(m\times m)$-dimensional matrix $B^{-1}$ is called a matrix **inverse** of $B$ if
+$$
+B^{-1}B=I_m\quad\text{and}\quad BB^{-1}=I_m,
 $$ 
+where $I_m$ is the $(m\times m)$ dimensional identity matrix. 
+* If a $(m\times m)$ matrix $B$ has full rank, i.e. $\operatorname{rank}(B)=m,$ then there exists an inverse matrix $B^{-1}.$
 * The inverse of a $(2\times 2)$ matrix is given by
 $$
 \begin{bmatrix}
@@ -222,6 +222,20 @@ Further, way more extensive material on linear algebra can be found, for instanc
 :::
 
 
+::: {.callout-tip}
+
+* Under Assumption 3, we have that $\operatorname{rank}(X)=K$ (a.s.)
+
+* This implies that the $(K\times K)$ matrix $X'X$ has full rank, i.e. that 
+$$
+\operatorname{rank}(X'X)=K\quad(a.s.)
+$$
+
+* Thus $(X'X)$ is invertible; i.e. there exists a $(K\times K)$ matrix $(X'X)^{-1}$ such that 
+$$
+(X'X)(X'X)^{-1} = (X'X)^{-1}(X'X) = I_k.
+$$ 
+:::
 
 **Assumption 4: Error distribution** 
 
@@ -301,9 +315,9 @@ X_{i2}\sim U[-4,4]
 $$ 
 for all $i=1,\dots,n.$ This error term is mean independent of $X_i$ since $E(\varepsilon_i|X_i)=0$, but it has a heteroskedastic conditional variance since 
 $$
-Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2
+Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2
 $$ 
-depends on $X_i.$
+depends on $X_{i2}.$
 
 
 
