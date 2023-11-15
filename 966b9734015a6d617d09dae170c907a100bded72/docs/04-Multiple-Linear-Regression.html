@@ -455,10 +455,11 @@ d  &amp; -b\\
 \end{bmatrix},
 \]</span> where <span class="math inline">\(ad - bc\)</span> is the <strong>determinant</strong> of the matrix, which has to be non-zero, otherwise the matrix is not invertible.</li>
 </ul>
-<p>Further, way more extensive material on linear algebra can be found, for instance:</p>
+<p>The above crash course on linear algebra contains all concepts relevant for this course. Further, way more extensive material on linear algebra can be found, for instance:</p>
 <ul>
 <li>in Appendix A of Marno Verbeek’s “A Guide to Modern Econometrics”</li>
 <li>in Frank Pinter’s lecture notes: <a href="https://www.frankpinter.com/notes/linear-algebra-notes.pdf">LINK</a></li>
+<li>in Cesar Aguilar’s lecture notes: <a href="lecture_scripts/Linear_Algebra_Aguilar.pdf">Link</a></li>
 <li>in the free book: <a href="https://www.cis.upenn.edu/~jean/gbooks/linalg.html">Linear Algebra and Optimization with Applications to Machine Learning</a></li>
 </ul>
 </div>
@@ -475,10 +476,10 @@ Tip
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>Under Assumption 3, we have that <span class="math inline">\(\operatorname{rank}(X)=K\)</span> (a.s.)</p></li>
-<li><p>This implies that the <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\(X'X\)</span> has full rank, i.e.&nbsp;that <span class="math display">\[
-\operatorname{rank}(X'X)=K\quad(a.s.)
+<li><p>This implies that the <span class="math inline">\((K\times K)\)</span>-dimensional matrix <span class="math inline">\(X'X\)</span> has full rank, i.e.&nbsp;that <span class="math display">\[
+\operatorname{rank}(X'X)=K\quad\text{(a.s.)}
 \]</span></p></li>
-<li><p>Thus <span class="math inline">\((X'X)\)</span> is invertible; i.e.&nbsp;there exists a <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\((X'X)^{-1}\)</span> such that <span class="math display">\[
+<li><p>Thus <span class="math inline">\((X'X)\)</span> is invertible; i.e.&nbsp;there exists a <span class="math inline">\((K\times K)\)</span>-dimensional matrix <span class="math inline">\((X'X)^{-1}\)</span> such that <span class="math display">\[
 (X'X)(X'X)^{-1} = (X'X)^{-1}(X'X) = I_k.
 \]</span></p></li>
 </ul>
@@ -515,10 +516,10 @@ Cov(\varepsilon_n,\varepsilon_1|X)&amp;Cov(\varepsilon_n,\varepsilon_2|X)&amp;\d
 \end{matrix}\right)
 = \sigma^2 I_n,
 \end{align*}
-\]</span> where <span class="math inline">\(I_n\)</span> denotes the <span class="math inline">\((n\times n)\)</span> identity matrix with ones on the diagonal and zeros else.<br> Thus, here one assumes that, for all possible realizations of <span class="math inline">\(X\)</span>, the error process is
+\]</span> where <span class="math inline">\(I_n\)</span> denotes the <span class="math inline">\((n\times n)\)</span> identity matrix with ones on the diagonal and zeros else.<br> Thus, under the spherical errors assumption, one has, for all possible realizations of <span class="math inline">\(X\)</span>, that:
 <ul>
-<li><strong>uncorrelated:</strong> <span class="math inline">\(Cov(\varepsilon_i,\varepsilon_j|X)=0\)</span> for all <span class="math inline">\(i\neq j\)</span> and</li>
-<li><strong>homoskedastic:</strong> <span class="math inline">\(Var(\varepsilon_i|X)=\sigma^2\)</span> for all <span class="math inline">\(i.\)</span></li>
+<li><strong>uncorrelated:</strong> <span class="math inline">\(Cov(\varepsilon_i,\varepsilon_j|X)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and all <span class="math inline">\(j=1,\dots,n\)</span> such that <span class="math inline">\(i\neq j\)</span></li>
+<li><strong>homoskedastic:</strong> <span class="math inline">\(Var(\varepsilon_i|X)=\sigma^2\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span></li>
 </ul></li>
 </ul>
 <!-- **Technical Note:** When we write that $Var(\varepsilon_i|X)=\sigma^2$ or $Var(\varepsilon_i|X_i)=\sigma^2_i,$ we implicitly assume that these second moments exists and that they are finite.  -->
@@ -543,7 +544,7 @@ X_{i2}\sim U[-4,4]
 \]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> This error term is mean independent of <span class="math inline">\(X_i\)</span> since <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span>, but it has a heteroskedastic conditional variance since <span class="math display">\[
 Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2
 \]</span> depends on <span class="math inline">\(X_{i2}.\)</span></p>
-<p>Sometimes, we need to be more restrictive by assuming that also the variances of the error terms <span class="math inline">\(\varepsilon_i\)</span> are independent from <span class="math inline">\(X_i\)</span>. (Higher moments may still depend on <span class="math inline">\(X_i\)</span>.) This assumption leads to <strong>“homoskedastic”</strong> error terms.</p>
+<p>Sometimes, we need to be more restrictive by assuming that also the variances of the error terms <span class="math inline">\(\varepsilon_i\)</span> are independent from <span class="math inline">\(X_i\)</span>. For instance, to do small sample inference (see <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a>), we will assume that the error terms are homoskedastik. (Higher moments may still depend on <span class="math inline">\(X_i\)</span>.) This assumption leads to <strong>“homoskedastic”</strong> error terms.</p>
 <ul>
 <li><strong>Homoskedastic error terms:</strong> The conditional variances <span class="math inline">\(Var(\varepsilon_i|X_i=x_i)=\sigma^2\)</span> are equal to some constant <span class="math inline">\(\sigma^2&gt;0\)</span> for every possible realization <span class="math inline">\(X_i=x_i.\)</span></li>
 </ul>
@@ -557,8 +558,8 @@ Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2
 <p><strong>Example:</strong> <span class="math display">\[
 \varepsilon_i\sim{\mathcal N} (0, \sigma^2)
 \]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> Here, the conditional variance of the error terms <span class="math inline">\(\varepsilon_i\)</span> given <span class="math inline">\(X_i\)</span> <span class="math display">\[
-Var(\varepsilon_i|X_i)=\sigma^2
-\]</span> are equal to the constant <span class="math inline">\(\sigma^2&gt;0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and for every possible realization of <span class="math inline">\(X_i\)</span>. For doing small sample inference (see <a href="05-Small-Sample-Inference.html"><span>Chapter&nbsp;5</span></a>), we will assume that the error terms are homoskedastik.</p>
+Var(\varepsilon_i|X_i)=Var(\varepsilon_i)=\sigma^2
+\]</span> are equal to the constant <span class="math inline">\(\sigma^2&gt;0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and for every possible realization of <span class="math inline">\(X_i.\)</span></p>
 </section>
 <section id="some-implications-of-the-exogeneity-assumption" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="some-implications-of-the-exogeneity-assumption"><span class="header-section-number">4.1.1</span> Some Implications of the Exogeneity Assumption</h3>
@@ -573,7 +574,7 @@ Var(\varepsilon_i|X_i)=\sigma^2
 </div>
 <div class="callout-body-container callout-body">
 <div id="thm-a" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.1 (Unconditional Mean) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>, then the also the unconditional mean of the error term is zero, i.e. <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 4.1 (Unconditional Mean) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> then the also the unconditional mean of the error term is zero, i.e. <span class="math display">\[
 E(\varepsilon_i)=0,\quad i=1,\dots,n.
 \]</span></p>
 </div>
@@ -586,7 +587,9 @@ E(\varepsilon_i)=E[E(\varepsilon_i|X_i)]
 E[E(\varepsilon_i|X_i)]=E[0]=0
 \]</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> which completes the proof. <span class="math inline">\(\square\)</span></p>
 </div>
-<p>Generally, two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are said to be <strong>orthogonal</strong> if their cross moment is zero, i.e.&nbsp;if <span class="math inline">\(E(XY)=0\)</span>. Exogeneity is sometimes also called “orthogonality,” due to the following result.</p>
+<p>Generally, two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are said to be <strong>orthogonal</strong> if their cross moment is zero, i.e.&nbsp;if <span class="math display">\[
+E(XY)=0.
+\]</span> The exogeneity assumption (Assumption 2) is sometimes also called “orthogonality” assumption, due to the following result:</p>
 <div class="callout-note callout callout-style-default no-icon callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -598,9 +601,9 @@ E[E(\varepsilon_i|X_i)]=E[0]=0
 </div>
 <div class="callout-body-container callout-body">
 <div id="thm-b" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.2 (Orthogonality) </strong></span>Under exogeneity, i.e.&nbsp;if <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, the regressors and the error term are orthogonal to each other, i.e, <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 4.2 (Orthogonality) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> then the regressors and the error term are orthogonal to each other, i.e, <span class="math display">\[
 E(X_{ik}\varepsilon_i)=0
-\]</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and <span class="math inline">\(k=1,\dots,K\)</span>.</p>
+\]</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and all <span class="math inline">\(k=1,\dots,K.\)</span></p>
 </div>
 </div>
 </div>
@@ -630,8 +633,8 @@ E(X_{ik}\varepsilon_i)=E(X_{ik}E(\varepsilon_i|X_{ik}))=E(X_{ik}0)=0
 </div>
 <div class="callout-body-container callout-body">
 <div id="thm-c" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 4.3 (No Correlation) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span>, then <span class="math display">\[\begin{eqnarray*}
-  Cov(\varepsilon_i,X_{ik})&amp;=&amp;0\quad\text{for all}\quad i=1,\dots,n\quad\text{and}\quad k=1,\dots,K.
+<p><span class="theorem-title"><strong>Theorem 4.3 (No Correlation) </strong></span>If <span class="math inline">\(E(\varepsilon_i|X_{i})=0\)</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> then <span class="math display">\[\begin{eqnarray*}
+  Cov(\varepsilon_i,X_{ik})&amp;=&amp;0\quad\text{for all}\quad i=1,\dots,n\quad\text{and all}\quad k=1,\dots,K.
 \end{eqnarray*}\]</span></p>
 </div>
 </div>
@@ -693,13 +696,23 @@ The independent and dependent variables are correlated but the causal link is on
 </section>
 <section id="deriving-the-expression-of-the-ols-estimator" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="deriving-the-expression-of-the-ols-estimator"><span class="header-section-number">4.2</span> Deriving the Expression of the OLS Estimator</h2>
-<p>We derive the expression for the OLS estimator <span class="math inline">\(\hat\beta=(\hat\beta_1,\dots,\hat\beta_K)'\in\mathbb{R}^K\)</span> as the vector-valued minimizing argument of the sum of squared residuals, <span class="math inline">\(S_n(b)\)</span> with <span class="math inline">\(b\in\mathbb{R}^K\)</span>, for a given sample <span class="math inline">\(((Y_1,X_1),\dots,(Y_n,X_n))\)</span>. In matrix terms this is <span class="math display">\[\begin{align*}
-S_n(b)&amp;=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
-\end{align*}\]</span> To find the minimizing argument <span class="math display">\[\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)\]</span> we compute all partial derivatives <span class="math display">\[
+<p>We derive the expression for the OLS estimator <span class="math display">\[
+\hat\beta=(\hat\beta_1,\dots,\hat\beta_K)'\in\mathbb{R}^K
+\]</span> as the vector-valued minimizing argument of the sum of squared residuals, <span class="math display">\[
+S_n(b)=\sum_{i=1}^n\big(\underbrace{Y_i-X_i'b}_{\text{$i$th residual}}\big)^2
+\]</span> with <span class="math inline">\(b\in\mathbb{R}^K\)</span>, for a given sample <span class="math display">\[
+((Y_1,X_1),\dots,(Y_n,X_n)).
+\]</span></p>
+<p>Using matrix/vector notation we can write <span class="math inline">\(S(b)\)</span> as <span class="math display">\[\begin{align*}
+S_n(b)
+&amp;=\sum_{i=1}^n(Y_i-X_i'b)^2\\[2ex]
+&amp;=(Y-X b)^{\prime}(Y-X b)\\[2ex]
+&amp;=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
+\end{align*}\]</span> To find the minimizing argument <span class="math display">\[\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)\]</span> we compute the vector containing all partial derivatives <span class="math display">\[
 \begin{aligned}
-\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &amp;=-2\left(X^{\prime}Y -X^{\prime} Xb\right)
+\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &amp;=-2\left(X^{\prime}Y -X^{\prime} Xb\right).
 \end{aligned}
-\]</span> and set them equal to zero which leads to <span class="math inline">\(K\)</span> linear equations (the “normal equations”) in <span class="math inline">\(K\)</span> unknowns. This system of equations defines the OLS estimates, <span class="math inline">\(\hat{\beta}\)</span>, for a given data-set: <span class="math display">\[
+\]</span> Setting each partial derivative to zero leads to <span class="math inline">\(K\)</span> linear equations (“normal equations”) in <span class="math inline">\(K\)</span> unknowns. This linear system of equations defines the OLS estimates, <span class="math inline">\(\hat{\beta}\)</span>, for a given dataset: <span class="math display">\[
 \begin{aligned}
 -2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)=\underset{(K\times 1)}{0}.
 \end{aligned}
@@ -708,7 +721,7 @@ S_n(b)&amp;=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\
 \underset{(K\times 1)}{\hat{\beta}} &amp;=\left(X^{\prime} X\right)^{-1} X^{\prime} Y.
 \end{aligned}
 \]</span></p>
-<p>The following codes computes the estimate <span class="math inline">\(\hat{\beta}\)</span> for a given realization <span class="math inline">\((Y,X)\)</span> of the random sample <span class="math inline">\((Y,X)\)</span> with <span class="math inline">\(X_i\in\mathbb{R}^3\)</span>.</p>
+<p>The following codes computes the estimate <span class="math inline">\(\hat{\beta}\)</span> for a given dataset with <span class="math inline">\(X_i\in\mathbb{R}^K\)</span>, <span class="math inline">\(K=3\)</span>.</p>
 <div class="cell" data-layout-align="center" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-1_21d85ffa4c674128c0380b1d68aa3110">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some given data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>X_2     <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.8</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">4.4</span>,<span class="fl">4.6</span>,<span class="fl">1.6</span>,<span class="fl">5.5</span>,<span class="fl">3.4</span>)</span>
@@ -759,14 +772,15 @@ M_X=I_n-X(X'X)^{-1}X'=I_n-P_X
 X'\hat\varepsilon&amp;=&amp;X'M_XY\quad\text{\small(By Def.~of $M_X$)}\\
 \Leftrightarrow X'\hat\varepsilon&amp;=&amp;\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad\text{\small(since $X'M_X=0$)}\\
 \Leftrightarrow X'\hat\varepsilon&amp;=&amp;\underset{(K\times 1)}{0}.
-\end{eqnarray}\]</span> <!-- \begin{align} --> <!-- X'\hat\varepsilon=\underset{(K\times 1)}{0}.\label{eq:orthXe} --> <!-- \end{align} --> Note that, in the case with intercept, the result <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies that <span class="math inline">\(\sum_{i=1}^n\hat\varepsilon_i=0\)</span>. Moreover, the equation <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies also that the residual vector <span class="math inline">\(\hat{\varepsilon}\)</span> is orthogonal to the predicted values vector, since <span class="math display">\[\begin{align*}
+\end{eqnarray}\]</span> <!-- \begin{align} --> <!-- X'\hat\varepsilon=\underset{(K\times 1)}{0}.\label{eq:orthXe} --> <!-- \end{align} --> Note that, in the case with intercept, the result <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies that <span class="math inline">\(\sum_{i=1}^n\hat\varepsilon_i=0\)</span>.</p>
+<p>Moreover, the equation <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies also that the residual vector <span class="math inline">\(\hat{\varepsilon}\)</span> is orthogonal to the predicted values vector, since <span class="math display">\[\begin{align*}
 X'\hat\varepsilon&amp;=0\\
 \Rightarrow\;\hat\beta'X'\hat\varepsilon&amp;=\hat\beta'0\\
 \Leftrightarrow\;\hat Y'\hat\varepsilon&amp;=0.
 \end{align*}\]</span></p>
-<p>Another insight from equation <span class="math inline">\(X'\hat\varepsilon=0\)</span> is that the vector <span class="math inline">\(\hat\varepsilon\)</span> has to satisfy <span class="math inline">\(K\)</span> linear restrictions which means it looses <span class="math inline">\(K\)</span> degrees of freedom. Consequently, the vector of residuals <span class="math inline">\(\hat\varepsilon\)</span> has only <span class="math inline">\(n-K\)</span> so-called <em>degrees of freedom</em>. This loss of <span class="math inline">\(K\)</span> degrees of freedom also appears in the definition of the <em>unbiased</em> variance estimator <span class="math display">\[\begin{align}
-  s_{UB}^2&amp;=\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon_i^2\label{EqVarEstim}.
-\end{align}\]</span></p>
+<p>Another insight from equation <span class="math inline">\(X'\hat{\varepsilon}=0\)</span> is that the vector <span class="math inline">\(\hat\varepsilon\)</span> has to satisfy <span class="math inline">\(K\)</span> linear restrictions which means we loose <span class="math inline">\(K\)</span> degrees of freedom in the data. Consequently, the vector of residuals <span class="math inline">\(\hat\varepsilon\)</span> has only <span class="math inline">\(n-K\)</span> so-called <em>degrees of freedom</em>. This loss of <span class="math inline">\(K\)</span> degrees of freedom also appears in the definition of the <em>unbiased</em> variance estimator <span class="math display">\[
+s_{UB}^2=\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon_i^2.
+\]</span></p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

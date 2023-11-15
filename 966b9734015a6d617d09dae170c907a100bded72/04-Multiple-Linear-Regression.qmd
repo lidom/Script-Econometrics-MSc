@@ -214,10 +214,11 @@ d  & -b\\
 $$
 where $ad - bc$ is the **determinant** of the matrix, which has to be non-zero, otherwise the matrix is not invertible.  
 
-Further, way more extensive material on linear algebra can be found, for instance: 
+The above crash course on linear algebra contains all concepts relevant for this course. Further, way more extensive material on linear algebra can be found, for instance: 
 
 * in Appendix A of Marno Verbeek's "A Guide to Modern Econometrics"
 * in Frank Pinter's lecture notes: [LINK](https://www.frankpinter.com/notes/linear-algebra-notes.pdf)
+* in Cesar Aguilar's lecture notes: [Link](lecture_scripts/Linear_Algebra_Aguilar.pdf)
 * in the free book: [Linear Algebra and Optimization with Applications to Machine Learning](https://www.cis.upenn.edu/~jean/gbooks/linalg.html)
 :::
 
@@ -226,12 +227,12 @@ Further, way more extensive material on linear algebra can be found, for instanc
 
 * Under Assumption 3, we have that $\operatorname{rank}(X)=K$ (a.s.)
 
-* This implies that the $(K\times K)$ matrix $X'X$ has full rank, i.e. that 
+* This implies that the $(K\times K)$-dimensional matrix $X'X$ has full rank, i.e. that 
 $$
-\operatorname{rank}(X'X)=K\quad(a.s.)
+\operatorname{rank}(X'X)=K\quad\text{(a.s.)}
 $$
 
-* Thus $(X'X)$ is invertible; i.e. there exists a $(K\times K)$ matrix $(X'X)^{-1}$ such that 
+* Thus $(X'X)$ is invertible; i.e. there exists a $(K\times K)$-dimensional matrix $(X'X)^{-1}$ such that 
 $$
 (X'X)(X'X)^{-1} = (X'X)^{-1}(X'X) = I_k.
 $$ 
@@ -277,9 +278,9 @@ Cov(\varepsilon_n,\varepsilon_1|X)&Cov(\varepsilon_n,\varepsilon_2|X)&\dots&Var(
 \end{align*}
 $$
 where $I_n$ denotes the $(n\times n)$ identity matrix with ones on the diagonal and zeros else.</br> 
-Thus, here one assumes that, for all possible realizations of $X$, the error process is 
-   * **uncorrelated:** $Cov(\varepsilon_i,\varepsilon_j|X)=0$ for all $i\neq j$ and 
-   * **homoskedastic:** $Var(\varepsilon_i|X)=\sigma^2$ for all $i.$
+Thus, under the spherical errors assumption, one has, for all possible realizations of $X$, that: 
+   * **uncorrelated:** $Cov(\varepsilon_i,\varepsilon_j|X)=0$ for all $i=1,\dots,n$ and all $j=1,\dots,n$ such that $i\neq j$ 
+   * **homoskedastic:** $Var(\varepsilon_i|X)=\sigma^2$ for all $i=1,\dots,n$
 
 
 
@@ -321,7 +322,7 @@ depends on $X_{i2}.$
 
 
 
-Sometimes, we need to be more restrictive by assuming that also the variances of the error terms $\varepsilon_i$ are independent from $X_i$. (Higher moments may still depend on $X_i$.) This assumption leads to **"homoskedastic"** error terms. 
+Sometimes, we need to be more restrictive by assuming that also the variances of the error terms $\varepsilon_i$ are independent from $X_i$. For instance, to do small sample inference (see @sec-ssinf), we will assume that the error terms are homoskedastik. (Higher moments may still depend on $X_i$.) This assumption leads to **"homoskedastic"** error terms. 
 
 
 - **Homoskedastic error terms:** The conditional variances $Var(\varepsilon_i|X_i=x_i)=\sigma^2$ are equal to some constant $\sigma^2>0$ for every possible realization $X_i=x_i.$ 
@@ -340,9 +341,9 @@ $$
 $$
 for all $i=1,\dots,n.$ Here, the conditional variance of the error terms $\varepsilon_i$ given $X_i$
 $$
-Var(\varepsilon_i|X_i)=\sigma^2
+Var(\varepsilon_i|X_i)=Var(\varepsilon_i)=\sigma^2
 $$ 
-are equal to the constant $\sigma^2>0$ for all $i=1,\dots,n$ and for every possible realization of $X_i$. For doing small sample inference (see @sec-ssinf), we will assume that the error terms are homoskedastik. 
+are equal to the constant $\sigma^2>0$ for all $i=1,\dots,n$ and for every possible realization of $X_i.$ 
 
 
 ### Some Implications of the Exogeneity Assumption 
@@ -355,7 +356,7 @@ are equal to the constant $\sigma^2>0$ for all $i=1,\dots,n$ and for every possi
 
 ## Unconditional Mean
 
-If $E(\varepsilon_i|X_i)=0$ for all $i=1,\dots,n$, then the also the unconditional mean of the error term is zero, i.e.
+If $E(\varepsilon_i|X_i)=0$ for all $i=1,\dots,n,$ then the also the unconditional mean of the error term is zero, i.e.
 $$
 E(\varepsilon_i)=0,\quad i=1,\dots,n.
 $$
@@ -375,7 +376,11 @@ for all $i=1,\dots,n,$ which completes the proof. $\square$
 :::
 
 
-Generally, two random variables $X$ and $Y$ are said to be **orthogonal** if their cross moment is zero, i.e. if $E(XY)=0$. Exogeneity is sometimes also called "orthogonality," due to the following result.  
+Generally, two random variables $X$ and $Y$ are said to be **orthogonal** if their cross moment is zero, i.e. if 
+$$
+E(XY)=0.
+$$ 
+The exogeneity assumption (Assumption 2) is sometimes also called "orthogonality" assumption, due to the following result:  
 
 ::: {.callout-note icon=false}
 ##
@@ -383,11 +388,11 @@ Generally, two random variables $X$ and $Y$ are said to be **orthogonal** if the
 
 ## Orthogonality
 
-Under exogeneity, i.e. if $E(\varepsilon_i|X_{i})=0$, the regressors and the error term are orthogonal to each other, i.e,
+If $E(\varepsilon_i|X_{i})=0$ for all $i=1,\dots,n,$ then the regressors and the error term are orthogonal to each other, i.e,
 $$
 E(X_{ik}\varepsilon_i)=0
 $$
-for all $i=1,\dots,n$ and $k=1,\dots,K$.
+for all $i=1,\dots,n$ and all $k=1,\dots,K.$
 :::
 :::
 
@@ -423,9 +428,9 @@ Because the mean of the error term is zero ($E(\varepsilon_i)=0$ for all $i$ (se
 
 ## No Correlation
 
-If $E(\varepsilon_i|X_{i})=0$, then 
+If $E(\varepsilon_i|X_{i})=0$ for all $i=1,\dots,n,$ then 
 \begin{eqnarray*}
-  Cov(\varepsilon_i,X_{ik})&=&0\quad\text{for all}\quad i=1,\dots,n\quad\text{and}\quad k=1,\dots,K.
+  Cov(\varepsilon_i,X_{ik})&=&0\quad\text{for all}\quad i=1,\dots,n\quad\text{and all}\quad k=1,\dots,K.
 \end{eqnarray*}
 :::
 ::: 
@@ -499,17 +504,33 @@ The independent and dependent variables are correlated but the causal link is on
 
 ## Deriving the Expression of the OLS Estimator
 
-We derive the expression for the OLS estimator $\hat\beta=(\hat\beta_1,\dots,\hat\beta_K)'\in\mathbb{R}^K$ as the vector-valued minimizing argument of the sum of squared residuals, $S_n(b)$ with $b\in\mathbb{R}^K$, for a given sample $((Y_1,X_1),\dots,(Y_n,X_n))$.  In matrix terms this is
+We derive the expression for the OLS estimator 
+$$
+\hat\beta=(\hat\beta_1,\dots,\hat\beta_K)'\in\mathbb{R}^K
+$$ 
+as the vector-valued minimizing argument of the sum of squared residuals, 
+$$
+S_n(b)=\sum_{i=1}^n\big(\underbrace{Y_i-X_i'b}_{\text{$i$th residual}}\big)^2
+$$ 
+with $b\in\mathbb{R}^K$, for a given sample 
+$$
+((Y_1,X_1),\dots,(Y_n,X_n)).
+$$  
+
+Using matrix/vector notation we can write $S(b)$ as 
 \begin{align*}
-S_n(b)&=(Y-X b)^{\prime}(Y-X b)=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
+S_n(b)
+&=\sum_{i=1}^n(Y_i-X_i'b)^2\\[2ex]
+&=(Y-X b)^{\prime}(Y-X b)\\[2ex]
+&=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
 \end{align*}
-To find the minimizing argument $$\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)$$ we compute all partial derivatives
+To find the minimizing argument $$\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)$$ we compute the vector containing all partial derivatives
 $$
 \begin{aligned}
-\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &=-2\left(X^{\prime}Y -X^{\prime} Xb\right)
+\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &=-2\left(X^{\prime}Y -X^{\prime} Xb\right).
 \end{aligned}
 $$
-and set them equal to zero which leads to $K$ linear equations (the "normal equations") in $K$ unknowns. This system of equations defines the OLS estimates, $\hat{\beta}$, for a given data-set:
+Setting each partial derivative to zero leads to $K$ linear equations ("normal equations") in $K$ unknowns. This linear system of equations defines the OLS estimates, $\hat{\beta}$, for a given dataset:
 $$
 \begin{aligned}
 -2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)=\underset{(K\times 1)}{0}.
@@ -523,7 +544,7 @@ $$
 $$
 
 
-The following codes computes the estimate $\hat{\beta}$ for a given realization $(Y,X)$ of the random sample $(Y,X)$ with $X_i\in\mathbb{R}^3$. 
+The following codes computes the estimate $\hat{\beta}$ for a given dataset with $X_i\in\mathbb{R}^K$, $K=3$. 
 
 ```{r, fig.align="center"}
 # Some given data
@@ -585,17 +606,20 @@ X'\hat\varepsilon&=&X'M_XY\quad\text{\small(By Def.~of $M_X$)}\\
 <!-- \begin{align} -->
 <!-- X'\hat\varepsilon=\underset{(K\times 1)}{0}.\label{eq:orthXe} -->
 <!-- \end{align} -->
-Note that, in the case with intercept, the result $X'\hat\varepsilon=0$ implies that $\sum_{i=1}^n\hat\varepsilon_i=0$. Moreover, the equation $X'\hat\varepsilon=0$ implies also that the residual vector $\hat{\varepsilon}$ is orthogonal to the predicted values vector, since
+Note that, in the case with intercept, the result $X'\hat\varepsilon=0$ implies that $\sum_{i=1}^n\hat\varepsilon_i=0$. 
+
+
+Moreover, the equation $X'\hat\varepsilon=0$ implies also that the residual vector $\hat{\varepsilon}$ is orthogonal to the predicted values vector, since
 \begin{align*}
 X'\hat\varepsilon&=0\\
 \Rightarrow\;\hat\beta'X'\hat\varepsilon&=\hat\beta'0\\
 \Leftrightarrow\;\hat Y'\hat\varepsilon&=0.
 \end{align*}
 
-Another insight from equation $X'\hat\varepsilon=0$ is that the vector $\hat\varepsilon$ has to satisfy $K$ linear restrictions which means it looses $K$ degrees of freedom. Consequently, the vector of residuals $\hat\varepsilon$ has only $n-K$ so-called *degrees of freedom*.  This loss of $K$ degrees of freedom also appears in the definition of the *unbiased* variance estimator
-\begin{align}
-  s_{UB}^2&=\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon_i^2\label{EqVarEstim}.
-\end{align}
+Another insight from equation $X'\hat{\varepsilon}=0$ is that the vector $\hat\varepsilon$ has to satisfy $K$ linear restrictions which means we loose $K$ degrees of freedom in the data. Consequently, the vector of residuals $\hat\varepsilon$ has only $n-K$ so-called *degrees of freedom*.  This loss of $K$ degrees of freedom also appears in the definition of the *unbiased* variance estimator
+$$
+s_{UB}^2=\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon_i^2.
+$$
 
 ::: {.callout-note}
 The $K$ linear restrictions follow from the fact that 
