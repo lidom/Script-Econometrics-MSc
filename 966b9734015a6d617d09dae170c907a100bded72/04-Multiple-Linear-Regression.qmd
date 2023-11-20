@@ -813,7 +813,7 @@ Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS e
 **Claim:** The OLS estimator is 
 
 * a linear (in $Y$) and 
-* an unbiased estimator
+* an unbiased estimator. 
 
 **Showing linearity:** A function $f(Y)$ is called linear if for $Y_1$ and $Y_2$ such that $Y=Y_1+Y_2$ and for any $a\in\mathbb{R}$ 
 \begin{align*}
@@ -843,15 +843,16 @@ This can be shown as following: Observe that
 $$
 \hat\beta=(X'X)^{-1}X'Y
 $$ 
-consists of two random variables $X$ and $Y.$ Thus one needs to show first the conditional unbiasedness of $\hat\beta$ given $X$ which allows us to focus on randomness due to $\varepsilon$,  
+consists of two multivariate random variables $X$ and $Y.$ Thus one needs to show first the conditional unbiasedness of $\hat\beta$ given $X$ which effectively allows us to focus on randomness due to $\varepsilon,$  
 $$
 \begin{align*}
 \operatorname{Bias}(\hat\beta|X) 
-&= E(\hat\beta|X) - \beta \\
-&= E((X'X)^{-1}X'\underbrace{Y}_{=X\beta+\varepsilon}|X) - \beta \\
-&= E(\underbrace{(X'X)^{-1}X'X}_{I_K}\beta|X) + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
-&=  \beta + E((X'X)^{-1}X'\varepsilon|X) - \beta \\
-&=  (X'X)^{-1}X'\underbrace{E(\varepsilon|X)}_{=0} =0.  
+&= E(\hat\beta|X) - \beta \\[2ex]
+&= E((X'X)^{-1}X'\underbrace{Y}_{=X\beta+\varepsilon}|X) - \beta \\[2ex]
+&= E((X'X)^{-1}X'(X\beta+\varepsilon)|X) \beta \\[2ex]
+&= E(\underbrace{(X'X)^{-1}X'X}_{=I_K}\beta|X) + E((X'X)^{-1}X'\varepsilon|X) - \beta \\[2ex]
+&= \underbrace{E(\beta|X)}_{=\beta} + \underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=(X'X)^{-1}X'E(\varepsilon|X)} - \beta \\[2ex]
+&=  (X'X)^{-1}X'\underbrace{E(\varepsilon|X)}_{=0} =\underset{(K\times 1)}{0}  
 \end{align*}
 $$
 Thus $\hat\beta$ is unbiased conditionally on $X.$ From this if follows, by the iterated law of expectations, that the OLS estimator is also unconditionally unbiased, i.e.  
@@ -859,7 +860,7 @@ $$
 \operatorname{Bias}(\hat\beta) = E\left(\operatorname{Bias}(\hat\beta|X)\right) = E(0) = 0.
 $$
 
-For the Gauss-Markov Theorem, we also need the conditional variance of $\hat\beta$ given $X$ which can be derived as following:
+For the Gauss-Markov Theorem, we also need the **conditional variance of** $\hat\beta$ **given** $X,$ which can be derived as following:
 $$
 \begin{align*}
 Var(\hat\beta|X)
@@ -895,14 +896,14 @@ $$
 Using the definition of the conditional variance (@def-CondVarMult) for multivariate random variables $(Z=(X'X)^{-1}X'\varepsilon)$ we have that 
 $$
 \begin{align*}
-&Var(\hat\beta|X)=\\
-%&=Var(\hat\beta - \beta|X)\\
-&=Var((X'X)^{-1}X'\varepsilon|X)\\
-&=E\Big[\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)\\
-&\phantom{=E\Big(}\,\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)'|X\Big]\\
-&=E\left[((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right]\\
-&=E\left[(X'X)^{-1}X'\varepsilon\varepsilon' X(X'X)^{-1}|X\right]\\
-&=\;\;\;(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1}.
+&Var(\hat\beta|X)=\\[2ex]
+%&=Var(\hat\beta - \beta|X)\\[2ex]
+&=Var((X'X)^{-1}X'\varepsilon|X)\\[2ex]
+&=E\Big[\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)\times\\[2ex]
+&\phantom{=\Big(}\,\times\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)'|X\Big]\\[2ex]
+&=E\left[((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right]\\[2ex]
+&=E\left[(X'X)^{-1}X'\varepsilon\varepsilon' X(X'X)^{-1}|X\right]\\[2ex]
+&=\;\;\;(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1}
 \end{align*}
 $$
 
@@ -925,12 +926,14 @@ Cov(\varepsilon_n,\varepsilon_1|X)&Cov(\varepsilon_n,\varepsilon_2|X)&\dots&Var(
 %& = E\left(\varepsilon\varepsilon'|X\right) - E\left(\varepsilon|X\right) E\left(\varepsilon'|X\right)\\[2ex]
 %& = E\left(\varepsilon\varepsilon'|X\right) - \underset{(K\times K)}{0}\\[2ex]
 \end{align*}
-where $I_n$ is the $(n\times n)$ dimensional identity matrix with ones on the diagonal and zeros everywhere else. Thus under the assumption of spherical errors, we have that
+where $I_n$ is the $(n\times n)$ dimensional identity matrix with ones on the diagonal and zeros everywhere else. 
+
+Thus **under the assumption of spherical errors**, we have that
 $$
 \begin{align*}
 Var(\hat\beta|X)
-&=(X'X)^{-1}X' \left(\sigma^2I_n\right)X(X'X)^{-1}\\
-&=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}\\ 
+&=(X'X)^{-1}X' \left(\sigma^2I_n\right)X(X'X)^{-1}\\[2ex]
+&=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}\\[2ex] 
 &=\sigma^2(X'X)^{-1}.
 \end{align*}
 $$
@@ -938,10 +941,13 @@ $$
 So, we can summarize: 
 
 * The OLS estimator belongs to the large family of **linear** (in $Y$) and **unbiased** estimators of $\beta.$ 
-* Under the assumption of spherical errors, the conditional variance of $\hat\beta$, given $X,$ is $Var(\hat\beta|X)=\sigma^2(X'X)^{-1}.$
+* Under the assumption of spherical errors, the **conditional variance** of $\hat\beta$, given $X,$ is 
+$$
+Var(\hat\beta|X)=\sigma^2(X'X)^{-1}.
+$$
 
 
-The famous **Gauss-Markov Theorem** states that the OLS estimator is the **"best"** (lowest conditional variance) estimator within this family of linear (in $Y$) and unbiased estimators.
+The famous **Gauss-Markov Theorem** states that the OLS estimator is the **"best"** (lowest conditional variance) estimator within the family of linear (in $Y$) and unbiased estimators.
 
 ::: {.callout-note icon=false}
 ##
@@ -949,7 +955,7 @@ The famous **Gauss-Markov Theorem** states that the OLS estimator is the **"best
 
 ##  Gauss-Markov Theorem
 
-If it hold true that 
+If it holds true that 
 
 1. $Y = X\beta + \varepsilon$
 2. $\operatorname{rank}(X)=K$ a.s.
@@ -958,7 +964,7 @@ If it hold true that
 
 then the OLS estimator 
 $$
-\hat\beta=(X'X)^{-1}X'Y
+\underset{(K\times 1)}{\hat\beta}=(X'X)^{-1}X'Y
 $$
 has the smallest conditional variance (given $X$) among all linear and unbiased estimators. That is, for any alternative linear and unbiased estimator $\tilde{\beta}$ we have that 
 $$
@@ -974,7 +980,11 @@ $$
 for all $k=1,\dots,K$. 
 
 ::: {.callout-tip}
-A $(K\times K)$ matrix $D$ is called "positive semidefinite" if $a'Da\geq 0$ for any $K$-dimensional vector $a\in\mathbb{R}^K$.  
+A $(K\times K)$ matrix $D$ is called "positive semidefinite" if 
+$$
+a'Da\geq 0
+$$ 
+for any $K$-dimensional vector $a\in\mathbb{R}^K$.  
 :::
 ::: 
 :::
