@@ -708,15 +708,20 @@ S_n(b)
 &amp;=\sum_{i=1}^n(Y_i-X_i'b)^2\\[2ex]
 &amp;=(Y-X b)^{\prime}(Y-X b)\\[2ex]
 &amp;=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
-\end{align*}\]</span> To find the minimizing argument <span class="math display">\[\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)\]</span> we compute the vector containing all partial derivatives <span class="math display">\[
+\end{align*}\]</span> To find the minimizing argument <span class="math display">\[
+\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)
+\]</span> we compute the vector containing all partial derivatives <span class="math display">\[
 \begin{aligned}
 \underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &amp;=-2\left(X^{\prime}Y -X^{\prime} Xb\right).
 \end{aligned}
 \]</span> Setting each partial derivative to zero leads to <span class="math inline">\(K\)</span> linear equations (“normal equations”) in <span class="math inline">\(K\)</span> unknowns. This linear system of equations defines the OLS estimates, <span class="math inline">\(\hat{\beta}\)</span>, for a given dataset: <span class="math display">\[
-\begin{aligned}
--2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)=\underset{(K\times 1)}{0}.
-\end{aligned}
-\]</span> From our rank assumption (Assumption 3) it follows that <span class="math inline">\(X^{\prime}X\)</span> is an invertible matrix which allows us to solve the equation system by <span class="math display">\[
+\begin{align*}
+-2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)
+&amp;=\underset{(K\times 1)}{0}\\[2ex]
+X^{\prime} X\hat{\beta}
+&amp;=\underset{(K\times 1)}{X^{\prime}Y}.
+\end{align*}
+\]</span> From our rank assumption (Assumption 3) it follows that <span class="math inline">\(X^{\prime}X\)</span> is an invertible <span class="math inline">\((K\times K)\)</span>-dimensional matrix which allows us to solve the equation system by <span class="math display">\[
 \begin{aligned}
 \underset{(K\times 1)}{\hat{\beta}} &amp;=\left(X^{\prime} X\right)^{-1} X^{\prime} Y.
 \end{aligned}
@@ -752,21 +757,50 @@ S_n(b)
 <h2 data-number="4.3" class="anchored" data-anchor-id="some-quantities-of-interest"><span class="header-section-number">4.3</span> Some Quantities of Interest</h2>
 <p><strong>Predicted values and residuals.</strong></p>
 <ul>
-<li>The (OLS) <strong>predicted values</strong>: <span class="math inline">\(\hat{Y}_i=X_i'\hat\beta\)</span>.<br>
-In matrix notation: <span class="math inline">\(\hat Y=X\underbrace{(X'X)^{-1}X'Y}_{\hat\beta}=P_X Y\)</span></li>
-<li>The (OLS) <strong>residuals</strong>: <span class="math inline">\(\hat\varepsilon_i=Y_i-\hat{Y}_i\)</span>. In matrix notation: <span class="math inline">\(\hat\varepsilon=Y-\hat{Y}=\left(I_n-X(X'X)^{-1}X'\right)Y=M_X Y\)</span></li>
+<li>The (OLS) <strong>predicted values</strong>: <span class="math display">\[
+\hat{Y}_i=X_i'\hat\beta, \quad i=1,\dots,n
+\]</span> The <span class="math inline">\((n\times 1)\)</span> vector of predicted values <span class="math display">\[\begin{align*}
+\hat{Y} = \left(\begin{matrix}\hat{Y}_1\\\hat{Y}_2\\ \vdots\\ \hat{Y}_n\end{matrix}\right)
+&amp;=X\hat{\beta}\\[-2ex]
+&amp;=\underbrace{X(X'X)^{-1}X'}_{=P_X}Y\\[2ex]
+&amp;=P_X Y
+\end{align*}\]</span></li>
+<li>The (OLS) <strong>residuals</strong>: <span class="math display">\[
+\hat\varepsilon_i=Y_i-\hat{Y}_i, \quad i=1,\dots,n
+\]</span> The <span class="math inline">\((n\times 1)\)</span> vector of residuals <span class="math display">\[\begin{align*}
+\hat{\varepsilon} =
+\left(\begin{matrix}\hat{\varepsilon}_1\\\hat{\varepsilon}_2\\ \vdots\\ \hat{\varepsilon}_n\end{matrix}\right)
+&amp;=
+\left(\begin{matrix}Y_1\\[.5ex]Y_2\\[.5ex] \vdots\\[.5ex] Y_n\end{matrix}\right)-
+\left(\begin{matrix}\hat{Y}_1\\\hat{Y}_2\\ \vdots\\ \hat{Y}_n\end{matrix}\right)\\[2ex]
+&amp;=Y - \hat{Y}\\[2ex]
+%&amp;=Y - X\hat{\beta}\\[-2ex]
+%&amp;=Y - \underbrace{X(X'X)^{-1}X'}_{=P_X}Y\\[2ex]
+&amp;=Y - P_X Y\\[2ex]
+&amp;=\underbrace{(I_n - P_X)}_{=M_X} Y\\[2ex]
+&amp;=M_XY
+\end{align*}\]</span></li>
 </ul>
 <p><strong>Projection matrices.</strong></p>
 <p>The matrix <span class="math display">\[
 P_X=X(X'X)^{-1}X'
 \]</span> is the <span class="math inline">\((n\times n)\)</span> <strong>projection matrix</strong> that projects any vector from <span class="math inline">\(\mathbb{R}^n\)</span> into the column space spanned by the column vectors of <span class="math inline">\(X\)</span> and <span class="math display">\[
 M_X=I_n-X(X'X)^{-1}X'=I_n-P_X
-\]</span> is the associated <span class="math inline">\((n\times n)\)</span> <strong>orthogonal projection matrix</strong> that projects any vector from <span class="math inline">\(\mathbb{R}^n\)</span> into the vector space that is orthogonal to that spanned by <span class="math inline">\(X\)</span>.</p>
+\]</span> is the associated <span class="math inline">\((n\times n)\)</span> <strong>orthogonal projection matrix</strong> that projects any vector from <span class="math inline">\(\mathbb{R}^n\)</span> into the vector space that is orthogonal to that spanned by the column vectors of <span class="math inline">\(X.\)</span></p>
 <p>The projection matrices <span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> have some nice properties:</p>
 <ol type="a">
-<li><span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> are <strong>symmetric</strong>, i.e.&nbsp;<span class="math inline">\(P_X=P_X'\)</span> and <span class="math inline">\(M_X=M_X'\)</span>.</li>
-<li><span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> are <strong>idempotent</strong>, i.e.&nbsp;<span class="math inline">\(P_XP_X=P_X\)</span> and <span class="math inline">\(M_X M_X=M_X\)</span>.</li>
-<li>Moreover, we have that <span class="math inline">\(X'P_X=X'\)</span>, <span class="math inline">\(P_XX=X\)</span>, <span class="math inline">\(X'M_X=0\)</span>, <span class="math inline">\(M_XX=0\)</span>, and <span class="math inline">\(P_XM_X=0\)</span>.</li>
+<li><span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> are <strong>symmetric</strong>, i.e.&nbsp; <span class="math display">\[
+P_X=P_X'\quad\text{ and }\quad M_X=M_X'
+\]</span></li>
+<li><span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> are <strong>idempotent</strong>, i.e.&nbsp; <span class="math display">\[
+P_XP_X=P_X\quad\text{ and }\quad M_X M_X=M_X
+\]</span></li>
+<li>Moreover, we have that
+<ul>
+<li><span class="math inline">\(X'P_X=X'\)</span> and <span class="math inline">\(P_X X=X\)</span></li>
+<li><span class="math inline">\(X'M_X=0\)</span> and <span class="math inline">\(M_XX=0\)</span></li>
+<li><span class="math inline">\(P_XM_X=0\)</span> and <span class="math inline">\(M_XP_X=0\)</span></li>
+</ul></li>
 </ol>
 <p>The properties (a)-(c) follow directly from the definitions of <span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> (check it out). Using these properties one can show that the residual vector <span class="math inline">\(\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'\)</span> is orthogonal to each of the column vectors in <span class="math inline">\(X\)</span>, i.e <span class="math display">\[\begin{eqnarray}
 X'\hat\varepsilon&amp;=&amp;X'M_XY\quad\text{\small(By Def.~of $M_X$)}\\
@@ -842,7 +876,28 @@ Y'Y&amp;=&amp;(\hat Y+\hat\varepsilon)'(\hat Y+\hat\varepsilon)\notag\\
 <h4 class="unnumbered anchored" data-anchor-id="coefficients-of-determination-r2-and-overliner2">Coefficients of determination: <span class="math inline">\(R^2\)</span> and <span class="math inline">\(\overline{R}^2\)</span></h4>
 <p>The larger the proportion of the explained variance, the better is the fit of the model. This motivates the definition of the so-called <span class="math inline">\(R^2\)</span> coefficient of determination: <span class="math display">\[\begin{eqnarray*}
 R^2=\frac{\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}{\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}\;=\;1-\frac{\sum_{i=1}^n\hat{\varepsilon}_i^2}{\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}
-\end{eqnarray*}\]</span> Obviously, we have that <span class="math inline">\(0\leq R^2\leq 1\)</span>. The closer <span class="math inline">\(R^2\)</span> lies to <span class="math inline">\(1\)</span>, the better is the fit of the model to the observed data. However, a high/low <span class="math inline">\(R^2\)</span> does not mean a validation/falsification of the estimated model. Any relation (i.e., model assumption) needs a plausible explanation from relevant economic theory. The most often criticized disadvantage of the <span class="math inline">\(R^2\)</span> is that additional regressors (relevant or not) will always increase the <span class="math inline">\(R^2\)</span>. Here is an example of the problem.</p>
+\end{eqnarray*}\]</span></p>
+<ul>
+<li><p>Obviously, we have that <span class="math inline">\(0\leq R^2\leq 1\)</span>.</p></li>
+<li><p>The closer <span class="math inline">\(R^2\)</span> lies to <span class="math inline">\(1\)</span>, the better is the fit of the model to the observed data.</p></li>
+</ul>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Danger
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>A high/low <span class="math inline">\(R^2\)</span> value only means that the predictors have high/low <em>predictive power</em>.</p></li>
+<li><p>A high/low <span class="math inline">\(R^2\)</span> does not mean a validation/falsification of the estimated model. Any econometric model needs a plausible explanation from relevant economic theory.</p></li>
+<li><p>The most often criticized disadvantage of the <span class="math inline">\(R^2\)</span> is that additional regressors (relevant or not) will increase the <span class="math inline">\(R^2\)</span>. The below <code>R</code>-codes demonstrates this problem.</p></li>
+</ul>
+</div>
+</div>
 <div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-2_b72cc3231ffe37b0fe606117d3275175">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">100</span>                  <span class="co"># Sample size</span></span>
@@ -857,7 +912,8 @@ R^2=\frac{\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}{\sum_{i=1}^n\left(
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<p>So, <span class="math inline">\(R^2\)</span> increases here even though <code>X_ir</code> is a completely irrelevant explanatory variable. Because of this, the <span class="math inline">\(R^2\)</span> cannot be used as a criterion for model selection. Possible solutions are given by penalized criterions such as the so-called <strong>adjusted</strong> <span class="math inline">\(R^2\)</span>, <span class="math inline">\(\overline{R}^2,\)</span> defined as <span class="math display">\[\begin{eqnarray*}
+<p>So, <span class="math inline">\(R^2\)</span> increases here even though <code>X_ir</code> is a completely irrelevant explanatory variable.</p>
+<p>Because of this, the <span class="math inline">\(R^2\)</span> cannot be used as a criterion for model selection. Possible solutions are given by penalized criterions such as the so-called <strong>adjusted</strong> <span class="math inline">\(R^2\)</span>, <span class="math inline">\(\overline{R}^2,\)</span> defined as <span class="math display">\[\begin{eqnarray*}
   \overline{R}^2&amp;=&amp;1-\frac{\frac{1}{n-K}\sum_{i=1}^n\hat{\varepsilon}^2_i}{\frac{1}{n-1}\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}\leq R^2%\\
   %=\dots=
   %&amp;=&amp;1-\frac{n-1}{n-K}\left(1-R^2\right)\quad{\small\text{(since $1-R^2=(\sum_i\hat\varepsilon_i^2)/(\sum_i(Y_i-\bar{Y}))$)}}\\
@@ -882,7 +938,7 @@ R^2=\frac{\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}{\sum_{i=1}^n\left(
 \]</span></p>
 <p>The linear equation system <span class="math display">\[
 \underset{(K\times 1)}{E(X_i\varepsilon_i)}=\underset{(K\times 1)}{0}
-\]</span> allows us to identify the unknown parameter vector <span class="math inline">\(\beta\in\mathbb{R}^K\)</span> in terms of population moments: <span class="math display">\[
+\]</span> allows us to <strong>identify the unknown parameter vector</strong> <span class="math inline">\(\beta\in\mathbb{R}^K\)</span> in terms of population moments: <span class="math display">\[
 \begin{align*}
 E(X_i(\overbrace{Y_i - X_i'\beta}^{=\varepsilon_i})) &amp;= 0\\
 %\Leftrightarrow \hspace{1.5cm}
@@ -890,7 +946,7 @@ E(X_iY_i) - E(X_iX_i')\beta &amp; = 0\\
 E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 \beta &amp; = \left(E(X_iX_i')\right)^{-1} E(X_iY_i)  \\
 \end{align*}
-\]</span> The fundamental idea behind “method of moments estimation” is to define an estimator by substituting population moments by sample moment analogues (sample means): <span class="math display">\[
+\]</span> The fundamental idea behind <strong>method of moments estimation</strong> is to define an estimator by <strong>substituting population moments by sample moment analogues</strong> (sample means): <span class="math display">\[
 \begin{align*}
 \hat\beta_{mm}
 &amp; = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i,
@@ -907,12 +963,12 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 </section>
 <section id="sec-GMTheorem" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="sec-GMTheorem"><span class="header-section-number">4.5</span> The Gauss-Markov Theorem</h2>
-<p>The OLS estimator is a</p>
+<p><strong>Claim:</strong> The OLS estimator is</p>
 <ul>
-<li>linear (in <span class="math inline">\(Y\)</span>) and</li>
-<li>unbiased estimator</li>
+<li>a linear (in <span class="math inline">\(Y\)</span>) and</li>
+<li>an unbiased estimator</li>
 </ul>
-<p><strong>Showing linearity:</strong> A function <span class="math inline">\(f(Y)\)</span> is called linear if for and <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any <span class="math inline">\(a\in\mathbb{R}\)</span> <span class="math display">\[\begin{align*}
+<p><strong>Showing linearity:</strong> A function <span class="math inline">\(f(Y)\)</span> is called linear if for <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any <span class="math inline">\(a\in\mathbb{R}\)</span> <span class="math display">\[\begin{align*}
 f(Y_1+Y_2)&amp;=f(Y_1)+f(Y_2)\\[2ex]
 f(aY)&amp;=af(Y).
 \end{align*}\]</span> This property applies to the OLS estimator <span class="math display">\[

@@ -524,7 +524,11 @@ S_n(b)
 &=(Y-X b)^{\prime}(Y-X b)\\[2ex]
 &=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
 \end{align*}
-To find the minimizing argument $$\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)$$ we compute the vector containing all partial derivatives
+To find the minimizing argument 
+$$
+\hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)
+$$ 
+we compute the vector containing all partial derivatives
 $$
 \begin{aligned}
 \underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &=-2\left(X^{\prime}Y -X^{\prime} Xb\right).
@@ -532,11 +536,14 @@ $$
 $$
 Setting each partial derivative to zero leads to $K$ linear equations ("normal equations") in $K$ unknowns. This linear system of equations defines the OLS estimates, $\hat{\beta}$, for a given dataset:
 $$
-\begin{aligned}
--2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)=\underset{(K\times 1)}{0}.
-\end{aligned}
+\begin{align*}
+-2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)
+&=\underset{(K\times 1)}{0}\\[2ex]
+X^{\prime} X\hat{\beta}
+&=\underset{(K\times 1)}{X^{\prime}Y}.
+\end{align*}
 $$
-From our rank assumption (Assumption 3) it follows that $X^{\prime}X$ is an invertible matrix which allows us to solve the equation system by 
+From our rank assumption (Assumption 3) it follows that $X^{\prime}X$ is an invertible $(K\times K)$-dimensional matrix which allows us to solve the equation system by 
 $$
 \begin{aligned}
 \underset{(K\times 1)}{\hat{\beta}} &=\left(X^{\prime} X\right)^{-1} X^{\prime} Y.
@@ -572,10 +579,35 @@ plot3d$plane3d(lmobj, lty.box = "solid", col=gray(.5), draw_polygon=TRUE)
 
 **Predicted values and residuals.**
 
-- The (OLS) **predicted values**: $\hat{Y}_i=X_i'\hat\beta$.  
-In matrix notation: $\hat Y=X\underbrace{(X'X)^{-1}X'Y}_{\hat\beta}=P_X Y$
-- The (OLS) **residuals**: $\hat\varepsilon_i=Y_i-\hat{Y}_i$. 
-In matrix notation: $\hat\varepsilon=Y-\hat{Y}=\left(I_n-X(X'X)^{-1}X'\right)Y=M_X Y$
+- The (OLS) **predicted values**: 
+$$
+\hat{Y}_i=X_i'\hat\beta, \quad i=1,\dots,n
+$$ 
+The $(n\times 1)$ vector of predicted values
+\begin{align*}
+\hat{Y} = \left(\begin{matrix}\hat{Y}_1\\\hat{Y}_2\\ \vdots\\ \hat{Y}_n\end{matrix}\right)
+&=X\hat{\beta}\\[-2ex]
+&=\underbrace{X(X'X)^{-1}X'}_{=P_X}Y\\[2ex]
+&=P_X Y
+\end{align*}
+- The (OLS) **residuals**: 
+$$
+\hat\varepsilon_i=Y_i-\hat{Y}_i, \quad i=1,\dots,n
+$$ 
+The $(n\times 1)$ vector of residuals
+\begin{align*}
+\hat{\varepsilon} = 
+\left(\begin{matrix}\hat{\varepsilon}_1\\\hat{\varepsilon}_2\\ \vdots\\ \hat{\varepsilon}_n\end{matrix}\right)
+&=
+\left(\begin{matrix}Y_1\\[.5ex]Y_2\\[.5ex] \vdots\\[.5ex] Y_n\end{matrix}\right)-
+\left(\begin{matrix}\hat{Y}_1\\\hat{Y}_2\\ \vdots\\ \hat{Y}_n\end{matrix}\right)\\[2ex]
+&=Y - \hat{Y}\\[2ex]
+%&=Y - X\hat{\beta}\\[-2ex]
+%&=Y - \underbrace{X(X'X)^{-1}X'}_{=P_X}Y\\[2ex]
+&=Y - P_X Y\\[2ex]
+&=\underbrace{(I_n - P_X)}_{=M_X} Y\\[2ex]
+&=M_XY
+\end{align*}
 
 
 **Projection matrices.** 
@@ -588,14 +620,23 @@ is the $(n\times n)$ **projection matrix** that projects any vector from $\mathb
 $$
 M_X=I_n-X(X'X)^{-1}X'=I_n-P_X
 $$ 
-is the associated $(n\times n)$ **orthogonal projection matrix** that projects any vector from $\mathbb{R}^n$ into the vector space that is orthogonal to that spanned by $X$. 
+is the associated $(n\times n)$ **orthogonal projection matrix** that projects any vector from $\mathbb{R}^n$ into the vector space that is orthogonal to that spanned by the column vectors of $X.$
 
 
 The projection matrices $P_X$ and $M_X$ have some nice properties:
 
-(a) $P_X$ and $M_X$ are **symmetric**, i.e. $P_X=P_X'$ and $M_X=M_X'$.
-(b) $P_X$ and $M_X$ are **idempotent**, i.e. $P_XP_X=P_X$ and $M_X M_X=M_X$.
-(c) Moreover, we have that $X'P_X=X'$, $P_XX=X$, $X'M_X=0$, $M_XX=0$, and $P_XM_X=0$.
+(a) $P_X$ and $M_X$ are **symmetric**, i.e. 
+$$
+P_X=P_X'\quad\text{ and }\quad M_X=M_X'
+$$
+(b) $P_X$ and $M_X$ are **idempotent**, i.e. 
+$$
+P_XP_X=P_X\quad\text{ and }\quad M_X M_X=M_X
+$$
+(c) Moreover, we have that 
+     * $X'P_X=X'$ and $P_X X=X$
+     * $X'M_X=0$ and $M_XX=0$ 
+     * $P_XM_X=0$ and $M_XP_X=0$ 
 
 The properties (a)-(c) follow directly from the definitions of $P_X$ and $M_X$ (check it out).  Using these properties one can show that the residual vector $\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'$ is orthogonal to each of the column vectors in $X$, i.e 
 \begin{eqnarray}
@@ -681,7 +722,18 @@ The larger the proportion of the explained variance, the better is the fit of th
 \begin{eqnarray*}
 R^2=\frac{\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}{\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}\;=\;1-\frac{\sum_{i=1}^n\hat{\varepsilon}_i^2}{\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}
 \end{eqnarray*}
-Obviously, we have that $0\leq R^2\leq 1$. The closer $R^2$ lies to $1$, the better is the fit of the model to the observed data. However, a high/low $R^2$ does not mean a validation/falsification of the estimated model. Any relation (i.e., model assumption) needs a plausible explanation from relevant economic theory.  The most often criticized disadvantage of the $R^2$ is that additional regressors (relevant or not) will always increase the $R^2$. Here is an example of the problem.
+
+* Obviously, we have that $0\leq R^2\leq 1$. 
+
+* The closer $R^2$ lies to $1$, the better is the fit of the model to the observed data. 
+
+::: {.callout-caution}
+* A high/low $R^2$ value only means that the predictors have high/low *predictive power*. 
+
+* A high/low $R^2$ does not mean a validation/falsification of the estimated model. Any econometric model needs a plausible explanation from relevant economic theory.   
+
+* The most often criticized disadvantage of the $R^2$ is that additional regressors (relevant or not) will increase the $R^2$. The below `R`-codes demonstrates this problem.
+:::
 ```{r}
 set.seed(123)
 n     <- 100                  # Sample size
@@ -693,7 +745,9 @@ lm1   <- summary(lm(Y~X))     # Correct OLS regression
 lm2   <- summary(lm(Y~X+X_ir))# OLS regression with X_ir 
 lm1$r.squared < lm2$r.squared
 ```
-So, $R^2$ increases here even though `X_ir` is a completely irrelevant explanatory variable.  Because of this, the $R^2$ cannot be used as a criterion for model selection. Possible solutions are given by penalized criterions such as the so-called **adjusted** $R^2$, $\overline{R}^2,$ defined as
+So, $R^2$ increases here even though `X_ir` is a completely irrelevant explanatory variable.  
+
+Because of this, the $R^2$ cannot be used as a criterion for model selection. Possible solutions are given by penalized criterions such as the so-called **adjusted** $R^2$, $\overline{R}^2,$ defined as
 \begin{eqnarray*}
   \overline{R}^2&=&1-\frac{\frac{1}{n-K}\sum_{i=1}^n\hat{\varepsilon}^2_i}{\frac{1}{n-1}\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}\leq R^2%\\
   %=\dots=
@@ -724,7 +778,7 @@ The linear equation system
 $$
 \underset{(K\times 1)}{E(X_i\varepsilon_i)}=\underset{(K\times 1)}{0}
 $$ 
-allows us to identify the unknown parameter vector $\beta\in\mathbb{R}^K$ in terms of population moments:
+allows us to **identify the unknown parameter vector** $\beta\in\mathbb{R}^K$ in terms of population moments:
 $$
 \begin{align*}
 E(X_i(\overbrace{Y_i - X_i'\beta}^{=\varepsilon_i})) &= 0\\
@@ -734,7 +788,7 @@ E(X_iX_i')\beta & =  E(X_iY_i)  \\
 \beta & = \left(E(X_iX_i')\right)^{-1} E(X_iY_i)  \\
 \end{align*}
 $$
-The fundamental idea behind "method of moments estimation" is to define an estimator by substituting population moments by sample moment analogues (sample means):
+The fundamental idea behind **method of moments estimation** is to define an estimator by **substituting population moments by sample moment analogues** (sample means):
 $$
 \begin{align*}
 \hat\beta_{mm} 
@@ -756,12 +810,12 @@ Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS e
 
 ## The Gauss-Markov Theorem {#sec-GMTheorem}
 
-The OLS estimator is a 
+**Claim:** The OLS estimator is 
 
-* linear (in $Y$) and 
-* unbiased estimator
+* a linear (in $Y$) and 
+* an unbiased estimator
 
-**Showing linearity:** A function $f(Y)$ is called linear if for and $Y_1$ and $Y_2$ such that $Y=Y_1+Y_2$ and for any $a\in\mathbb{R}$ 
+**Showing linearity:** A function $f(Y)$ is called linear if for $Y_1$ and $Y_2$ such that $Y=Y_1+Y_2$ and for any $a\in\mathbb{R}$ 
 \begin{align*}
 f(Y_1+Y_2)&=f(Y_1)+f(Y_2)\\[2ex]
 f(aY)&=af(Y).
