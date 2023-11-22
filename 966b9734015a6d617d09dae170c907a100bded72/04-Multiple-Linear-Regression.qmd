@@ -1275,7 +1275,7 @@ This give the same result as computed by `R`'s `lm()` function using the factor 
 
 ### Detecting Heteroskedasticity
 
-A very simple, but highly effective way to check for heteroskedastic error terms is to plot the residuals. If we have the correct model (hopefully we have), then (and only then) the residuals are good approximations to the realizations of the error terms $\varepsilon_i$. Thus a plot of the residuals can be used to check for heteroskedasticity. 
+A very simple, but highly effective way to check for heteroskedastic error terms is to plot the residuals. If we have the correct model (hopefully we have), then (and only then) the residuals $\hat\varepsilon_i$ are good approximations to the realizations of the error terms $\varepsilon_i$. Thus a plot of the residuals can be used to check for heteroskedasticity. 
 
 You can use `R`'s internal diagnostic plots that can be called using the `plot()` method for `lm`-objects:
 
@@ -1305,7 +1305,7 @@ Interpretation:
 
 ### Checking (Non-)Linearity of the Regression Line
 
-To check whether there are non-linear relationships between the outcome and the predictors, on should take a look at the data, using a pairs-plot function that procures scatter plots for all pairs of variables in a dataset. 
+To check whether there are non-linear relationships between the outcome and the predictors, one should take a look at the data using a pairs-plot function that procures scatter plots for all pairs of variables in a dataset. 
 
 ::: {.panel-tabset}
 

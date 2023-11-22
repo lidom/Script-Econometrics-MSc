@@ -1442,7 +1442,7 @@ X_female -4.103626</code></pre>
 </section>
 <section id="detecting-heteroskedasticity" class="level3" data-number="4.6.2">
 <h3 data-number="4.6.2" class="anchored" data-anchor-id="detecting-heteroskedasticity"><span class="header-section-number">4.6.2</span> Detecting Heteroskedasticity</h3>
-<p>A very simple, but highly effective way to check for heteroskedastic error terms is to plot the residuals. If we have the correct model (hopefully we have), then (and only then) the residuals are good approximations to the realizations of the error terms <span class="math inline">\(\varepsilon_i\)</span>. Thus a plot of the residuals can be used to check for heteroskedasticity.</p>
+<p>A very simple, but highly effective way to check for heteroskedastic error terms is to plot the residuals. If we have the correct model (hopefully we have), then (and only then) the residuals <span class="math inline">\(\hat\varepsilon_i\)</span> are good approximations to the realizations of the error terms <span class="math inline">\(\varepsilon_i\)</span>. Thus a plot of the residuals can be used to check for heteroskedasticity.</p>
 <p>You can use <code>R</code>’s internal diagnostic plots that can be called using the <code>plot()</code> method for <code>lm</code>-objects:</p>
 <div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-13_26d4ae737a650e03363e75fd6a84f9a9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("devtools")</span></span>
@@ -1482,7 +1482,7 @@ Tip
 </section>
 <section id="checking-non-linearity-of-the-regression-line" class="level3" data-number="4.6.3">
 <h3 data-number="4.6.3" class="anchored" data-anchor-id="checking-non-linearity-of-the-regression-line"><span class="header-section-number">4.6.3</span> Checking (Non-)Linearity of the Regression Line</h3>
-<p>To check whether there are non-linear relationships between the outcome and the predictors, on should take a look at the data, using a pairs-plot function that procures scatter plots for all pairs of variables in a dataset.</p>
+<p>To check whether there are non-linear relationships between the outcome and the predictors, one should take a look at the data using a pairs-plot function that procures scatter plots for all pairs of variables in a dataset.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Base <code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Tidyverse <code>R</code></a></li></ul>
 <div class="tab-content">
