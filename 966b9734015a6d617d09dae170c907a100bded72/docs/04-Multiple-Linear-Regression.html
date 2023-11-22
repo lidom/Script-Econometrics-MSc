@@ -247,6 +247,7 @@ div.csl-indent {
   <li><a href="#checking-non-linearity-of-the-regression-line" id="toc-checking-non-linearity-of-the-regression-line" class="nav-link" data-scroll-target="#checking-non-linearity-of-the-regression-line"><span class="toc-section-number">4.6.3</span>  Checking (Non-)Linearity of the Regression Line</a></li>
   <li><a href="#behavior-of-the-ols-estimates-for-resampled-data" id="toc-behavior-of-the-ols-estimates-for-resampled-data" class="nav-link" data-scroll-target="#behavior-of-the-ols-estimates-for-resampled-data"><span class="toc-section-number">4.6.4</span>  Behavior of the OLS Estimates for Resampled Data</a></li>
   </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">4.7</span>  Exercises –&gt;</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -963,12 +964,25 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
 </section>
 <section id="sec-GMTheorem" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="sec-GMTheorem"><span class="header-section-number">4.5</span> The Gauss-Markov Theorem</h2>
-<p><strong>Claim:</strong> The OLS estimator is</p>
+<div class="callout-note callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The OLS estimator <span class="math inline">\(\hat\beta\)</span> is</p>
 <ul>
-<li>a linear (in <span class="math inline">\(Y\)</span>) and</li>
-<li>an unbiased estimator.</li>
+<li>a <strong>linear</strong> (in <span class="math inline">\(Y\)</span>) and</li>
+<li>an <strong>unbiased</strong> estimator</li>
 </ul>
-<p><strong>Showing linearity:</strong> A function <span class="math inline">\(f(Y)\)</span> is called linear if for <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any <span class="math inline">\(a\in\mathbb{R}\)</span> <span class="math display">\[\begin{align*}
+<p>of <span class="math inline">\(\beta\)</span>.</p>
+</div>
+</div>
+<p><strong>Showing linearity:</strong> A function <span class="math inline">\(f(Y)\)</span> is called linear in <span class="math inline">\(Y\in\mathbb{R}^n\)</span> if for any two vectors <span class="math inline">\(Y_1\in\mathbb{R}^n\)</span> and <span class="math inline">\(Y_2\in\mathbb{R}^n\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any scalar <span class="math inline">\(a\in\mathbb{R}\)</span> <span class="math display">\[\begin{align*}
 f(Y_1+Y_2)&amp;=f(Y_1)+f(Y_2)\\[2ex]
 f(aY)&amp;=af(Y).
 \end{align*}\]</span> This property applies to the OLS estimator <span class="math display">\[
@@ -1068,14 +1082,26 @@ Var(\hat\beta|X)
 &amp;=\sigma^2(X'X)^{-1}.
 \end{align*}
 \]</span></p>
-<p>So, we can summarize:</p>
+<div class="callout-note callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Summary:</strong></p>
 <ul>
 <li>The OLS estimator belongs to the large family of <strong>linear</strong> (in <span class="math inline">\(Y\)</span>) and <strong>unbiased</strong> estimators of <span class="math inline">\(\beta.\)</span></li>
-<li>Under the assumption of spherical errors, the <strong>conditional variance</strong> of <span class="math inline">\(\hat\beta\)</span>, given <span class="math inline">\(X,\)</span> is <span class="math display">\[
+<li>Under the assumption of spherical errors, the <strong>conditional variance</strong> of <span class="math inline">\(\hat\beta,\)</span> given <span class="math inline">\(X,\)</span> is <span class="math display">\[
 Var(\hat\beta|X)=\sigma^2(X'X)^{-1}.
 \]</span></li>
 </ul>
-<p>The famous <strong>Gauss-Markov Theorem</strong> states that the OLS estimator is the <strong>“best”</strong> (lowest conditional variance) estimator within the family of linear (in <span class="math inline">\(Y\)</span>) and unbiased estimators.</p>
+</div>
+</div>
+<p>The famous <strong>Gauss-Markov Theorem</strong> states that the OLS estimator is the <strong>“best”</strong> (smallest conditional variance) estimator within the family of linear (in <span class="math inline">\(Y\)</span>) and unbiased estimators.</p>
 <div class="callout-note callout callout-style-default no-icon callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1191,23 +1217,6 @@ Y_i = \beta_1 + \beta_2 X_{i2} + \varepsilon_i
 <p>Here <span class="math display">\[
 X_{i2}\in\{\texttt{male},\texttt{female}\}
 \]</span> is a <em>categorical</em> variable also called <strong>factor variable</strong> with two categories (two <strong>factor levels</strong>).</p>
-<div class="callout-important callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Above in our theoretical part, we have not mentioned the possibility of categorical, i.e., factor variable.</p>
-<ul>
-<li>How can one compute the estimators from non-numeric, verbal factor levels like <code>female</code> and <code>male</code>?</li>
-</ul>
-<p>Well, we need to transform such non-numeric data in numeric data. How this is done, is described in the following.</p>
-</div>
-</div>
 <p>We use data provided in the accompanying materials of Stock and Watson’s <em>Introduction to Econometrics</em> textbook <span class="citation" data-cites="stock2015">(<a href="#ref-stock2015" role="doc-biblioref">Stock and Watson 2015</a>)</span>. You can download the data stored as an xlsx-file <code>cps_ch3.xlsx</code> <a href="https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps_ch3.xlsx">HERE</a>.</p>
 <p>Let us first prepare the dataset:</p>
 <div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-3_02be4f70e7de69f49b3a17d516cb77b3">
@@ -1275,6 +1284,23 @@ Important
 </tbody>
 </table>
 
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Above in our theoretical part, we have not mentioned the possibility of categorical, i.e., factor variables.</p>
+<ul>
+<li>How can one compute the estimators from non-numeric factor levels like <code>female</code> and <code>male</code>?</li>
+</ul>
+<p>Well, we need to transform the non-numeric factor level to numeric data. <code>R</code> and other statistical software-packages do this for us in the background.</p>
 </div>
 </div>
 <p>Computing the estimation results:</p>
@@ -1367,13 +1393,38 @@ X_{i2}=
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Calls<span class="sc">:</span> .main ... eval_with_user_handlers <span class="ot">-&gt;</span> eval <span class="ot">-&gt;</span> eval <span class="ot">-&gt;</span> solve <span class="ot">-&gt;</span> solve.default</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Execution halted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><font color="#FF0000">An error message!</font> 🤬 We stepped into the <strong>dummy variable trap</strong>!</p>
-The estimation result is not computable since <span class="math inline">\((X'X)\)</span> is not invertible due to the perfect multicollinearity between the intercept and the two dummy variables <code>X_female</code> and <code>X_male</code>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<font color="#FF0000">An error message!</font> 🤬
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We stepped into the <strong>dummy variable trap</strong>!</p>
+<p>That is, we constructed a <span class="math inline">\((n\times K)\)</span>-dimensional matrix <span class="math inline">\(X\)</span> for which Assumption 3 <span class="math inline">\((\operatorname{rank}(X)=K)\)</span> is violated. Therefore <span class="math inline">\((X'X)\)</span> does not have full rank and is thus not invertible.</p>
+</div>
+</div>
+The estimation result is not computable since <span class="math inline">\((X'X)\)</span> is not invertible due to the perfect multicollinearity between the intercept and the two dummy variables <code>X_female</code> and <code>X_male</code>, i.e.&nbsp;<br>
 <center>
 <code>X_1</code> = <code>X_female</code> <span class="math inline">\(+\)</span> <code>X_male</code>
 </center>
-<p>which violates Assumption 3 (no perfect multicollinearity).</p>
-<p><strong>Solution:</strong> Use one dummy-variable less than factor levels. I.e., in this example you can either drop <code>X_female</code> or <code>X_male</code>.</p>
+<p><br> which violates Assumption 3 (no perfect multicollinearity).</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use one dummy-variable less than factor levels. I.e., in this example you can either drop <code>X_female</code> or <code>X_male</code>.</p>
+</div>
+</div>
 <div class="cell" data-hash="04-Multiple-Linear-Regression_cache/html/unnamed-chunk-12_1c80b4637625ab9fc11727dd059e3141">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## New model matrix after dropping X_male:</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>X        <span class="ot">&lt;-</span> <span class="fu">cbind</span>(X_1, X_female)</span>
@@ -1709,10 +1760,14 @@ Important
 <p>In the following chapters, we use theoretical arguments to investigate under which assumptions we can make <em>general</em> statements about the distributional properties of the estimator <span class="math inline">\(\hat\beta.\)</span></p>
 </div>
 </div>
-<!-- ## Exercises -->
-<!-- * [Exercises for Chapter 3](Exercises/Ch3_Exercises.pdf) -->
-<!-- * [Exercises of Chapter 3 with Solutions](Exercises/Ch3_Exercises_with_Solutions.pdf) -->
 </section>
+</section>
+<section id="exercises" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">4.7</span> Exercises –&gt;</h2>
+<ul>
+<li><a href="https://www.dropbox.com/scl/fi/305i40sw8s70hq5ekda9x/Ch4_Exercises1.pdf?rlkey=grtj6p813w8vib1m9e55od50f&amp;dl=0">Exercises for Chapter 3</a></li>
+</ul>
+<!-- * [Exercises of Chapter 3 with Solutions](Exercises/Ch3_Exercises_with_Solutions.pdf) -->
 </section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>

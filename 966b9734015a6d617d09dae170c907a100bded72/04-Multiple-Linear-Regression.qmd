@@ -810,12 +810,17 @@ Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS e
 
 ## The Gauss-Markov Theorem {#sec-GMTheorem}
 
-**Claim:** The OLS estimator is 
+::: {.callout-note  icon=false}
+# 
+The OLS estimator $\hat\beta$ is 
 
-* a linear (in $Y$) and 
-* an unbiased estimator. 
+* a **linear** (in $Y$) and 
+* an **unbiased** estimator
 
-**Showing linearity:** A function $f(Y)$ is called linear if for $Y_1$ and $Y_2$ such that $Y=Y_1+Y_2$ and for any $a\in\mathbb{R}$ 
+of $\beta$.
+:::
+
+**Showing linearity:** A function $f(Y)$ is called linear in $Y\in\mathbb{R}^n$ if for any two vectors $Y_1\in\mathbb{R}^n$ and $Y_2\in\mathbb{R}^n$ such that $Y=Y_1+Y_2$ and for any scalar $a\in\mathbb{R}$ 
 \begin{align*}
 f(Y_1+Y_2)&=f(Y_1)+f(Y_2)\\[2ex]
 f(aY)&=af(Y).
@@ -938,16 +943,18 @@ Var(\hat\beta|X)
 \end{align*}
 $$
 
-So, we can summarize: 
+::: {.callout-note  icon=false}
+# 
+**Summary:** 
 
 * The OLS estimator belongs to the large family of **linear** (in $Y$) and **unbiased** estimators of $\beta.$ 
-* Under the assumption of spherical errors, the **conditional variance** of $\hat\beta$, given $X,$ is 
+* Under the assumption of spherical errors, the **conditional variance** of $\hat\beta,$ given $X,$ is 
 $$
 Var(\hat\beta|X)=\sigma^2(X'X)^{-1}.
 $$
+:::
 
-
-The famous **Gauss-Markov Theorem** states that the OLS estimator is the **"best"** (lowest conditional variance) estimator within the family of linear (in $Y$) and unbiased estimators.
+The famous **Gauss-Markov Theorem** states that the OLS estimator is the **"best"** (smallest conditional variance) estimator within the family of linear (in $Y$) and unbiased estimators.
 
 ::: {.callout-note icon=false}
 ##
@@ -1096,13 +1103,6 @@ X_{i2}\in\{\texttt{male},\texttt{female}\}
 $$
 is a *categorical* variable also called **factor variable** with two categories (two **factor levels**). 
 
-::: {.callout-important}
-Above in our theoretical part, we have not mentioned the possibility of categorical, i.e., factor variable. 
-
-* How can one compute the estimators from non-numeric, verbal factor levels like `female` and `male`? 
-
-Well, we need to transform such non-numeric data in numeric data. How this is done, is described in the following. 
-:::
 
 We use data provided in the accompanying materials of Stock and Watson's *Introduction to Econometrics* textbook [@stock2015]. You can download the data stored as an xlsx-file `cps_ch3.xlsx` [HERE](https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps_ch3.xlsx). 
 
@@ -1140,6 +1140,18 @@ The first six lines of the dataset `cps_2008` look as following:
 suppressPackageStartupMessages(library("kableExtra"))
 head(cps_2008) %>% kbl(col.names = c("wage", "gender")) %>%  kable_styling()
 ```
+
+
+
+::: {.callout-important}
+Above in our theoretical part, we have not mentioned the possibility of categorical, i.e., factor variables. 
+
+* How can one compute the estimators from non-numeric factor levels like `female` and `male`? 
+
+Well, we need to transform the non-numeric factor level to numeric data. `R` and other statistical software-packages do this for us in the background. 
+:::
+
+
 
 Computing the estimation results:
 ```{r, echo=TRUE, eval=FALSE}
@@ -1230,17 +1242,24 @@ Error in solve.default(X %*% t(X)) :
 Calls: .main ... eval_with_user_handlers -> eval -> eval -> solve -> solve.default
 Execution halted
 ```
+::: {.callout-important}
+# <font color="#FF0000">An error message!</font>  🤬 
+We stepped into the **dummy variable trap**! 
 
-<font color="#FF0000">An error message!</font>  🤬 We stepped into the **dummy variable trap**!
+That is, we constructed a $(n\times K)$-dimensional matrix $X$ for which Assumption 3 $(\operatorname{rank}(X)=K)$ is violated. Therefore $(X'X)$ does not have full rank and is thus not invertible. 
+::: 
 
-The estimation result is not computable since $(X'X)$ is not invertible due to the perfect multicollinearity between the intercept and the two dummy variables `X_female` and `X_male` 
+The estimation result is not computable since $(X'X)$ is not invertible due to the perfect multicollinearity between the intercept and the two dummy variables `X_female` and `X_male`, i.e. </br> 
 <center>
 `X_1` = `X_female` $+$ `X_male` 
 </center>
+</br>
 which violates Assumption 3 (no perfect multicollinearity). 
 
-
-**Solution:** Use one dummy-variable less than factor levels. I.e., in this example you can either drop `X_female` or `X_male`. 
+::: {.callout-tip}
+# Solution 
+Use one dummy-variable less than factor levels. I.e., in this example you can either drop `X_female` or `X_male`. 
+:::
 
 ```{r}
 ## New model matrix after dropping X_male:
@@ -1605,9 +1624,9 @@ In the following chapters, we use theoretical arguments to investigate under whi
 :::  
 
 
-<!-- ## Exercises -->
+## Exercises -->
 
-<!-- * [Exercises for Chapter 3](Exercises/Ch3_Exercises.pdf) -->
+* [Exercises for Chapter 3](https://www.dropbox.com/scl/fi/305i40sw8s70hq5ekda9x/Ch4_Exercises1.pdf?rlkey=grtj6p813w8vib1m9e55od50f&dl=0)
 
 <!-- * [Exercises of Chapter 3 with Solutions](Exercises/Ch3_Exercises_with_Solutions.pdf) -->
 
