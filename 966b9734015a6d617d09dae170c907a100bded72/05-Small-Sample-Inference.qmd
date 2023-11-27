@@ -8,7 +8,7 @@ It's is very hard to say when a sample size $n$ is small. Often people say somet
 * $n<30$ means small samples and $n\geq 30$ large samples, or
 * $n/K<10$ means small samples and $n/K\geq 10$ large samples,
 
-but these are only a very rough rules of thumb and not apply in practice.  
+but these are only a very rough rules of thumb and may not apply in practice.  
 
 The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem. Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do **exact** inference. 
 
