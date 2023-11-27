@@ -319,12 +319,12 @@ div.csl-indent {
 H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta} - \underset{(q\times 1)}{r} = \underset{(q\times 1)}{0},
 \end{align*}\]</span> where the <span class="math inline">\((q \times K)\)</span> matrix <span class="math inline">\(R\)</span> and the <span class="math inline">\(q\)</span>-vector <span class="math inline">\(r=(r_{1},\dots,r_{q})'\)</span> are chosen by the statistician to specify her/his null hypothesis about the unknown true parameter vector <span class="math inline">\(\beta\)</span>. To make sure that there are no redundant equations, it is required that <span class="math inline">\(\operatorname{rank}(R)=q\)</span>.</p>
 <p>We must also specify the alternative against which we are testing the null hypothesis, for instance <span class="math display">\[\begin{equation*}
-H_A: R\beta -r \neq 0
+H_1: R\beta -r \neq 0
 \end{equation*}\]</span></p>
 <p>The above multiple parameter hypotheses cover also the special case of single parameter hypothesis; for instance, by setting <span class="math inline">\(R=(0,1,0\dots,0)\)</span> and <span class="math inline">\(r=0\)</span> one get’s <span class="math display">\[\begin{equation*}
 \begin{array}{ll}
 H_0:  &amp; \beta_{k}=0 \\
-H_A:  &amp; \beta_{k} \ne 0 \\
+H_1:  &amp; \beta_{k} \ne 0 \\
 \end{array}
 \end{equation*}\]</span></p>
 <p>Under our assumptions (Assumptions 1 to 4<span class="math inline">\(^\ast\)</span>), we have that <span class="math display">\[
@@ -384,7 +384,7 @@ F\overset{H_0}{\sim} F_{(q,n-K)},
 <p>For testing a hypothesis about only one parameter <span class="math inline">\(\beta_k\)</span>, with <span class="math inline">\(k=1,\dots,K\)</span> <span class="math display">\[\begin{equation*}
 \begin{array}{ll}
 H_0: &amp; \beta_k=r\\
-H_A: &amp; \beta_k\ne r\\
+H_1: &amp; \beta_k\ne r\\
 \end{array}
 \end{equation*}\]</span> the <span class="math inline">\((q\times K)\)</span>-matrix <span class="math inline">\(R\)</span> becomes a <span class="math inline">\((1\times K)\)</span> row-vector of zeros but with a one as the <span class="math inline">\(k\)</span>th element. For instance, for testing a null hypothesis about <span class="math inline">\(\beta_k\)</span> with, e.g., <span class="math inline">\(k=2\)</span>, we have <span class="math inline">\(R=(0,1,0,\dots,0),\)</span> and thus the <span class="math inline">\(F\)</span> test statistic simplifies to <span class="math display">\[
 F=\frac{\left(\hat{\beta}_k-r\right)^2}{\widehat{Var}(\hat{\beta}_k|X)}\overset{H_0}{\sim}F_{(1,n-K)},
@@ -474,7 +474,7 @@ P(\text{Type I Error})=P_{H_0}\Big(F\in]c_{1-\alpha},\infty[\Big)=\alpha,
 <p>Two-sided hypothesis: <span class="math display">\[\begin{equation*}
 \begin{array}{ll}
 H_0: &amp; \beta_k=r \\
-H_A: &amp; \beta_k\ne r
+H_1: &amp; \beta_k\ne r
 \end{array}
 \end{equation*}\]</span> In case of a two-sided <span class="math inline">\(t\)</span>-test, we reject the null hypothesis if the observed realization of the <span class="math inline">\(t\)</span>-test, <span class="math inline">\(t_{obs}\)</span>, is “far away” from zero either by being sufficiently smaller or greater than <span class="math inline">\(r\)</span>. The corresponding two-sided critical values are denoted by <span class="math inline">\(-c_{1-\alpha/2}=c_{\alpha/2}&lt;0\)</span> and <span class="math inline">\(c_{1-\alpha/2}&gt;0\)</span>, where <span class="math inline">\(c_{1-\alpha/2}&gt;0\)</span> is the <span class="math inline">\((1-\alpha/2)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, and where <span class="math inline">\(-c_{1-\alpha/2}=c_{\alpha/2}\)</span> due to the symmetry of the <span class="math inline">\(t\)</span>-distribution. These critical values defines the following rejection and the non-rejection regions <span class="math display">\[\begin{align*}
 \text{rejection region:}&amp;\hspace{1cm}]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[\\
@@ -498,25 +498,25 @@ P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1
 \begin{array}{lll}
 &amp;H_0: &amp; \beta_k \leq r\\
 (\text{or}&amp;H_0: &amp; \beta_k \geq r)\\
-&amp;H_A: &amp; \beta_k &gt;r\\
-(\text{or}&amp;H_A: &amp; \beta_k&lt; r)
+&amp;H_1: &amp; \beta_k &gt;r\\
+(\text{or}&amp;H_1: &amp; \beta_k&lt; r)
 \end{array}
-\end{equation*}\]</span> In case of a one-sided <span class="math inline">\(t\)</span>-test, we will reject the null if <span class="math inline">\(t_{obs}\)</span> is sufficiently “far away” from zero in the relevant direction of <span class="math inline">\(H_A\)</span>. The corresponding critical value is either</p>
+\end{equation*}\]</span> In case of a one-sided <span class="math inline">\(t\)</span>-test, we will reject the null if <span class="math inline">\(t_{obs}\)</span> is sufficiently “far away” from zero in the relevant direction of <span class="math inline">\(H_1\)</span>. The corresponding critical value is either</p>
 <ul>
-<li><span class="math inline">\(-c_{1-\alpha}\)</span> (when <span class="math inline">\(H_A:\beta_k&lt; r\)</span>) or</li>
-<li><span class="math inline">\(\phantom{-}c_{1-\alpha}\)</span> (when <span class="math inline">\(H_A:\beta_k&gt; r\)</span>),</li>
+<li><span class="math inline">\(-c_{1-\alpha}\)</span> (when <span class="math inline">\(H_1:\beta_k&lt; r\)</span>) or</li>
+<li><span class="math inline">\(\phantom{-}c_{1-\alpha}\)</span> (when <span class="math inline">\(H_1:\beta_k&gt; r\)</span>),</li>
 </ul>
 <p>where <span class="math inline">\(c_{1-\alpha}\)</span> is the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, and where <span class="math display">\[
 -c_{1-\alpha}=c_{\alpha}
 \]</span> due to the symmetry of the <span class="math inline">\(t\)</span>-distribution.</p>
 <p>The critical value <span class="math inline">\(c_{1-\alpha}\)</span> defines the following rejection and the non-rejection regions:</p>
-<p>For <span class="math inline">\(H_0: \beta_k=0\quad\)</span> versus <span class="math inline">\(\quad H_A: \beta_k &lt; 0\)</span>: <span class="math display">\[\begin{align*}
+<p>For <span class="math inline">\(H_0: \beta_k=0\quad\)</span> versus <span class="math inline">\(\quad H_1: \beta_k &lt; 0\)</span>: <span class="math display">\[\begin{align*}
 \text{rejection region:}   &amp;\hspace{2cm}]-\infty,c_{\alpha}[ \\
 \text{non-rejection region:}&amp;\hspace{2cm}[c_{\alpha},\infty[
 \end{align*}\]</span> such that <span class="math display">\[
 P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha}[\Big)=\alpha.
 \]</span></p>
-<p>For <span class="math inline">\(H_0: \beta_k=0\quad\)</span> versus <span class="math inline">\(\quad H_A: \beta_k &gt; 0\)</span>: <span class="math display">\[\begin{align*}
+<p>For <span class="math inline">\(H_0: \beta_k=0\quad\)</span> versus <span class="math inline">\(\quad H_1: \beta_k &gt; 0\)</span>: <span class="math display">\[\begin{align*}
 \text{rejection region:}&amp;\hspace{1cm}]c_{1-\alpha}, \infty[\\
 \text{non-rejection region:}&amp;\hspace{1cm}]-\infty,c_{1-\alpha}]
 \end{align*}\]</span> such that <span class="math display">\[
@@ -559,16 +559,16 @@ P(\text{Type I Error})=P_{H_0}\Big(t\in\;]c_{1-\alpha}, \infty[\Big)=\alpha.
 </section>
 <section id="type-ii-error-and-power" class="level3" data-number="5.3.3">
 <h3 data-number="5.3.3" class="anchored" data-anchor-id="type-ii-error-and-power"><span class="header-section-number">5.3.3</span> Type II Error and Power</h3>
-<p>A Type II error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a Type II error equals one minus the probability of correctly rejecting the null hypothesis (“Power”). For instance, in the case of using the <span class="math inline">\(t\)</span>-test to test the null hypothesis <span class="math inline">\(H_0: \beta_k=0\)</span> versus the one-sided alternative hypothesis <span class="math inline">\(H_A:\beta_k&gt;0\)</span>) we have that <span class="math display">\[\begin{align*}
+<p>A Type II error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a Type II error equals one minus the probability of correctly rejecting the null hypothesis (“Power”). For instance, in the case of using the <span class="math inline">\(t\)</span>-test to test the null hypothesis <span class="math inline">\(H_0: \beta_k=0\)</span> versus the one-sided alternative hypothesis <span class="math inline">\(H_1:\beta_k&gt;0\)</span>) we have that <span class="math display">\[\begin{align*}
 P(\text{Type II Error})
-&amp;=P_{H_A}\Big(t\;\in\;\overbrace{]-\infty,c_{1-\alpha}]}^{\text{non-rejection region}}\Big)\\
-&amp;=1-\underbrace{P_{H_A}\Big(t\;\in\;\overbrace{]c_{1-\alpha},\infty[}^{\text{rejection region}}\Big)}_{\text{"Power"}},
-\end{align*}\]</span> where <span class="math inline">\(P_{H_A}\)</span> means that we compute the probability under the assumption that <span class="math inline">\(H_A\)</span> is true.</p>
+&amp;=P_{H_1}\Big(t\;\in\;\overbrace{]-\infty,c_{1-\alpha}]}^{\text{non-rejection region}}\Big)\\
+&amp;=1-\underbrace{P_{H_1}\Big(t\;\in\;\overbrace{]c_{1-\alpha},\infty[}^{\text{rejection region}}\Big)}_{\text{"Power"}},
+\end{align*}\]</span> where <span class="math inline">\(P_{H_1}\)</span> means that we compute the probability under the assumption that <span class="math inline">\(H_1\)</span> is true.</p>
 <p>There is a trade off between the probability of making a Type I error and the probability of making a Type II error: a lower significance level <span class="math inline">\(\alpha\)</span>, decreases <span class="math inline">\(P(\text{Type I Error})\)</span>, but necessarily increases <span class="math inline">\(P(\text{Type II Error})\)</span> and vice versa. Ideally, we would have some sense of the costs of making each of these errors, and would choose our significance level to minimize these total costs. However, the costs are often difficult to know. Moreover, the probability of making a Type II error is usually impossible to compute, since we usually do not know the true distribution of <span class="math inline">\(\hat\beta_k\)</span> under the alternative.</p>
 <p>For illustration purposes, consider the case of a <span class="math inline">\(t\)</span> test for a one-sided hypothesis <span class="math display">\[\begin{equation*}
 \begin{array}{ll}
 H_0:  &amp; \beta_k=0 \\
-H_A:  &amp; \beta_k&gt;0,
+H_1:  &amp; \beta_k&gt;0,
 \end{array}
 \end{equation*}\]</span> where the true (usually unknown) parameter value is <span class="math inline">\(\beta_k=3\)</span> and where the true (usually also unknown) standard error is <span class="math inline">\(\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span>. Only with the knowledge about these usually unknown quantities, we can derive the distribution of the <span class="math inline">\(t\)</span>-test statistic under the alternative hypothesis. The distribution of the <span class="math inline">\(t\)</span>-test statistic becomes here a standard normal distribution, since we assume <span class="math inline">\(\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span> to be a <strong>known</strong> quantity for some given sample size <span class="math inline">\(n\)</span>. (This completely unrealistic assumption is only used for illustrative purposes to explain the probability of making a Type II error and the power (i.e.&nbsp;<span class="math inline">\(1-P(\text{Type II Error})\)</span>).)</p>
 <p>Under this setup, the distribution under the null hypothesis (i.e., if <span class="math inline">\(\beta_k=0\)</span> were true) is: <span class="math display">\[
@@ -576,7 +576,7 @@ t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\overset{H_0}{\sim}\math
 \]</span> Likewise, the distribution under the alternative hypothesis (i.e., for the actual <span class="math inline">\(\beta_k=3\)</span>) is: <span class="math display">\[\begin{align*}
 t&amp;=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
 =\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
-&amp;=\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\overset{H_A}{\sim}\mathcal{N}(\Delta,1)
+&amp;=\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\overset{H_1}{\sim}\mathcal{N}(\Delta,1)
 \end{align*}\]</span></p>
 <p>So, the mean-shift <span class="math inline">\(\Delta\)</span> depends on:</p>
 <ul>
@@ -602,9 +602,9 @@ t&amp;=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
 <li><strong><span class="math inline">\(F\)</span>-test:</strong> <span class="math inline">\(p=P_{H_0}(F\geq F_{\text{obs}})\)</span></li>
 <li><strong><span class="math inline">\(t\)</span>-test:</strong>
 <ul>
-<li>Two sided, i.e., <span class="math inline">\(H_0:\beta_k = r\)</span> vs.&nbsp;<span class="math inline">\(H_A:\beta_k\neq r\)</span>: <br> <span class="math inline">\(p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|\geq|t_{obs}|)\)</span> <br> The latter equality holds since the <span class="math inline">\(t\)</span> distrbution is symmetric.</li>
-<li>One sided, i.e., <span class="math inline">\(H_0:\beta_k \leq r\)</span> vs.&nbsp;<span class="math inline">\(H_A:\beta_k&gt; r\)</span>: <br> <span class="math inline">\(p=P_{H_0}(t\geq t_{\text{obs}})\)</span></li>
-<li>One sided, i.e., <span class="math inline">\(H_0:\beta_k \geq r\)</span> vs.&nbsp;<span class="math inline">\(H_A:\beta_k&lt; r\)</span>: <br> <span class="math inline">\(p=P_{H_0}(t\leq t_{\text{obs}})\)</span></li>
+<li>Two sided, i.e., <span class="math inline">\(H_0:\beta_k = r\)</span> vs.&nbsp;<span class="math inline">\(H_1:\beta_k\neq r\)</span>: <br> <span class="math inline">\(p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|\geq|t_{obs}|)\)</span> <br> The latter equality holds since the <span class="math inline">\(t\)</span> distrbution is symmetric.</li>
+<li>One sided, i.e., <span class="math inline">\(H_0:\beta_k \leq r\)</span> vs.&nbsp;<span class="math inline">\(H_1:\beta_k&gt; r\)</span>: <br> <span class="math inline">\(p=P_{H_0}(t\geq t_{\text{obs}})\)</span></li>
+<li>One sided, i.e., <span class="math inline">\(H_0:\beta_k \geq r\)</span> vs.&nbsp;<span class="math inline">\(H_1:\beta_k&lt; r\)</span>: <br> <span class="math inline">\(p=P_{H_0}(t\leq t_{\text{obs}})\)</span></li>
 </ul></li>
 </ul>
 <p>Put another way, the <span class="math inline">\(p\)</span>-value is the greatest significance level for which we just fail to reject the null. Therefore, the <span class="math inline">\(p\)</span>-value is sometimes also called “marginal significance value”.</p>
@@ -915,10 +915,10 @@ X_{i3}&amp;\sim U[12,22]\\
 <h3 data-number="5.5.2" class="anchored" data-anchor-id="check-testing-multiple-parameters"><span class="header-section-number">5.5.2</span> Check: Testing Multiple Parameters</h3>
 <p>In the following, we do inference about multiple parameters. We test <span class="math display">\[\begin{align*}
 H_0:\;&amp;\beta_2=3\quad\text{and}\quad\beta_3=4\\
-\text{versus}\quad H_A:\;&amp;\beta_2\neq 3\quad\text{and/or}\quad\beta_3\neq 4.
+\text{versus}\quad H_1:\;&amp;\beta_2\neq 3\quad\text{and/or}\quad\beta_3\neq 4.
 \end{align*}\]</span> Or equivalently <span class="math display">\[\begin{align*}
 H_0:\;&amp;R\beta -r = 0 \\
-H_A:\;&amp;R\beta -r \neq 0,
+H_1:\;&amp;R\beta -r \neq 0,
 \end{align*}\]</span> where <span class="math display">\[
 R=\left(
 \begin{matrix}
@@ -1013,7 +1013,7 @@ Model 2: Y ~ X_2 + X_3
 </ol>
 <p>Next, we check how well the <span class="math inline">\(F\)</span> test detects certain <strong>violations of the null hypothesis</strong>. We do this by using the same data generating process, but by testing the following <span style="color:#FF0000">incorrect</span> null hypothesis: <span class="math display">\[\begin{align*}
 H_0:\;&amp;{\color{red}\beta_2=4}\quad\text{and}\quad\beta_3=4\\
-H_A:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
+H_1:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 \end{align*}\]</span></p>
 <div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-18_35ed93d0e252cd71d11fdf2f2abb86af">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>B               <span class="ot">&lt;-</span> <span class="dv">5000</span> <span class="co"># MC replications</span></span>
@@ -1068,7 +1068,7 @@ X_3 3.573364 4.564121</code></pre>
 <p>We can use these two-sided confidence intervals to conduct hypotheses tests. This property of confidence intervals is called the <strong>duality of confidence intervals and hypothesis tests</strong>.</p>
 <p>For instance, when testing the null hypothesis <span class="math display">\[\begin{align*}
 H_0:&amp;\beta_2=3\\
-\text{versus}\quad H_A: &amp;\beta_2\neq 3
+\text{versus}\quad H_1: &amp;\beta_2\neq 3
 \end{align*}\]</span> we can either use a <span class="math inline">\(t\)</span>-test or equivalently check whether the confidence interval <span class="math inline">\(\operatorname{CI}_{2,1-\alpha}\)</span> for <span class="math inline">\(\beta_2\)</span> contains the hypothetical value <span class="math inline">\(4\)</span> or not.</p>
 <ul>
 <li>In case of <span class="math inline">\(3 \in\operatorname{CI}_{2,1-\alpha}\)</span>, we cannot reject the null hypothesis H<span class="math inline">\(_0\)</span>: <span class="math inline">\(\beta_2=3.\)</span></li>
@@ -1210,7 +1210,7 @@ P_{H_0}(|t|&gt;t_{obs,j}),\quad j\in\{1,gender, age, income\}
 <li><p><strong>Residual standard error</strong> <span class="math inline">\(\sqrt{\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon^2_i}=\)</span> <code>sqrt(sum(resid(lm_obj)^2)/(n-4))</code> <span class="math inline">\(=\)</span> 0.7908</p></li>
 <li><p><strong>Multiple R-squared:</strong> <span class="math inline">\(R^2=\)</span> <code>lm_obj_summary$r.squared</code> <span class="math inline">\(=\)</span> 0.01885</p></li>
 <li><p><strong>Adjusted R-squared:</strong> <span class="math inline">\(\bar{R}^2=\)</span> <code>lm_obj_summary$adj.r.squared</code> <span class="math inline">\(=\)</span> 0.01829</p></li>
-<li><p><strong>F-statistic:</strong> This is a standard <span class="math inline">\(F\)</span> test that tests the null hypothesis that all parameters except the intercept are zero; i.e.<br> <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_{gender}=\beta_{age}=\beta_{income}=0\)</span><br> versus<br> <span class="math inline">\(H_A\)</span>: At least one parameter is not zero. <code>R</code>’s <code>summary()</code> functions reports an observed <span class="math inline">\(F\)</span> statistic value of <span class="math inline">\(33.22\)</span> which needs to be evaluated for an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(3\)</span> and <span class="math inline">\(5186\)</span> degrees of freedom leading to a <span class="math inline">\(p\)</span>-value <span class="math inline">\(p&lt; 0.00001.\)</span> <br><br> You can replicate this <span class="math inline">\(F\)</span>-test result using the following <code>R</code> code:</p></li>
+<li><p><strong>F-statistic:</strong> This is a standard <span class="math inline">\(F\)</span> test that tests the null hypothesis that all parameters except the intercept are zero; i.e.<br> <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_{gender}=\beta_{age}=\beta_{income}=0\)</span><br> versus<br> <span class="math inline">\(H_1\)</span>: At least one parameter is not zero. <code>R</code>’s <code>summary()</code> functions reports an observed <span class="math inline">\(F\)</span> statistic value of <span class="math inline">\(33.22\)</span> which needs to be evaluated for an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(3\)</span> and <span class="math inline">\(5186\)</span> degrees of freedom leading to a <span class="math inline">\(p\)</span>-value <span class="math inline">\(p&lt; 0.00001.\)</span> <br><br> You can replicate this <span class="math inline">\(F\)</span>-test result using the following <code>R</code> code:</p></li>
 </ul>
 <div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-25_e21b5057c77767f36950ec45c2f33e99">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">linearHypothesis</span>(</span>
