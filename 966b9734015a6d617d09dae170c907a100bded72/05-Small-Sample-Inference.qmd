@@ -1,16 +1,32 @@
 # Small Sample Inference {#sec-ssinf}
 
-The content of this chapter is very much inspired by Chapter 1 of the textbook of @Hayashi2000. 
+The content of this chapter is very much inspired by Chapter 1 of @Hayashi2000. 
 
 
-It's is very hard to say when a sample size $n$ is small. Often people say something like $n<30$ means small samples and $n\geq 30$ large samples, but this is, of course, only a very rough rule of thumb that may fail. The core issue with small sample sizes is that we cannot do inference using the central limit theorem. Thus we need rather strict assumptions on the distribution of the error term, in order to do **exact** inference in finite samples. 
+It's is very hard to say when a sample size $n$ is small. Often people say something like: 
+
+* $n<30$ means small samples and $n\geq 30$ large samples, or
+* $n/K<10$ means small samples and $n/K\geq 10$ large samples,
+
+but these are only a very rough rules of thumb and not apply in practice.  
+
+The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem. Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do **exact** inference. 
 
 **Exact inference:**  By "exact inference" we mean correct inference for each sample size $n$. That is, no asymptotic $(n\to\infty)$ arguments will be used.  
 
-**Assumptions:** Recall that we, in general, did not impose a complete distributional assumption on $\varepsilon$ in Assumption 4 (@sec-MLR); the i.i.d. normal case in Assumption 4 was only one possible *option*.  However, to do exact inference, the normality Assumption on the error terms is not a mere option, but a *necessity*. So for this chapter we assume that Assumptions 1-3 from @sec-MLR hold and that additionally the following assumption holds: 
+**Assumptions:** Recall that we, in general, did not impose a complete distributional assumption on $\varepsilon$ in Assumption 4 (@sec-MLR). For instance, the i.i.d. normal case in Assumption 4 was only one possible *option*.  However, to do exact inference, the normality Assumption on the error terms is not a mere option, but a *necessity*. 
 
-**Assumption 4$^\boldsymbol{\ast}$: Error distribution:** For small sample cases, we assume that the error terms are 
-**i.i.d. normal**, i.e., $\varepsilon_i|X\overset{\operatorname{i.i.d.}}{\sim}\mathcal{N}(0,\sigma^2)$ for all $i=1,\dots,n$ which leads to Gaussian spherical errors. That is, 
+For this chapter we assume that Assumptions 1-3 from @sec-MLR hold and that additionally the following assumption holds: 
+
+**Assumption 4$^\boldsymbol{\ast}$: Conditional Gaussian error distribution:** The error terms are 
+Gaussian and homoskedastik, i.e., 
+$$
+\varepsilon_i|X_i\sim\mathcal{N}(0,\sigma^2)
+$$ 
+for all $i=1,\dots,n.$ 
+
+
+Assumption 4$^\boldsymbol{\ast}$ together with the random sample assumption of Assumption 1, part (b), leads to Gaussian spherical errors conditionally on $X$,
 $$
 \varepsilon|X\sim\mathcal{N}\left(0,\sigma^2I_n\right),
 $$
@@ -18,9 +34,9 @@ where $\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'$.
 
 \bigskip
 
-
+::: {.callout-note icon=false}
+##
 ::: {#thm-normalbeta}
-
 # Normality of $\hat\beta$ 
 
 Under Assumptions 1-4$^\ast$ we have that 
@@ -29,9 +45,17 @@ $$
 $${#eq-ssnorm}
 where $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$.
 :::
+::: 
 
-This result follows from noting that $\hat\beta_n=(X'X)^{-1}X'Y=\beta+(X'X)^{-1}X'\varepsilon$ and because $(X'X)^{-1}X'\varepsilon$ is just a linear combination of the normally distributed error terms $\varepsilon$ which, therefore, is again normally distributed, conditionally on $X$. Note that the specific normal distribution depends on the observed realization of $X$. 
-
+::: {.proof}
+This result follows from noting that 
+\begin{align*}
+\hat\beta_n
+&=(X'X)^{-1}X'Y\\[2ex]
+&=\beta+(X'X)^{-1}X'\varepsilon
+\end{align*} 
+and because $(X'X)^{-1}X'\varepsilon$ is just a linear combination of the normally distributed error terms $\varepsilon$ which, therefore, is again normally distributed, conditionally on $X$. Note that the specific normal distribution depends on the observed realization of $X$. 
+:::
 
 **Remark:** The subscript $n$ in $\hat\beta_n$ is here only to emphasize that the distribution of $\hat\beta_n$ depends on $n$; we will, however, often simply write $\hat\beta$.
 

@@ -247,7 +247,7 @@ div.csl-indent {
   <li><a href="#checking-non-linearity-of-the-regression-line" id="toc-checking-non-linearity-of-the-regression-line" class="nav-link" data-scroll-target="#checking-non-linearity-of-the-regression-line"><span class="toc-section-number">4.6.3</span>  Checking (Non-)Linearity of the Regression Line</a></li>
   <li><a href="#behavior-of-the-ols-estimates-for-resampled-data" id="toc-behavior-of-the-ols-estimates-for-resampled-data" class="nav-link" data-scroll-target="#behavior-of-the-ols-estimates-for-resampled-data"><span class="toc-section-number">4.6.4</span>  Behavior of the OLS Estimates for Resampled Data</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">4.7</span>  Exercises –&gt;</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">4.7</span>  Exercises</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -1001,9 +1001,9 @@ f(aY)&amp;=af(Y).
 <span class="math display">\[
 \begin{align*}
 \operatorname{Bias}(\hat\beta|X)
-&amp;= E(\hat\beta|X) - \beta \\[2ex]
+&amp;= E(\hat\beta|X)                                        - \beta \\[2ex]
 &amp;= E((X'X)^{-1}X'\underbrace{Y}_{=X\beta+\varepsilon}|X) - \beta \\[2ex]
-&amp;= E((X'X)^{-1}X'(X\beta+\varepsilon)|X) \beta \\[2ex]
+&amp;= E((X'X)^{-1}X'(X\beta+\varepsilon)|X)                 - \beta \\[2ex]
 &amp;= E(\underbrace{(X'X)^{-1}X'X}_{=I_K}\beta|X) + E((X'X)^{-1}X'\varepsilon|X) - \beta \\[2ex]
 &amp;= \underbrace{E(\beta|X)}_{=\beta} + \underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=(X'X)^{-1}X'E(\varepsilon|X)} - \beta \\[2ex]
 &amp;=  (X'X)^{-1}X'\underbrace{E(\varepsilon|X)}_{=0} =\underset{(K\times 1)}{0}  
@@ -1024,7 +1024,8 @@ Var(\hat\beta|X)
 &amp;=(X'X)^{-1}X'Y\\
 &amp;=(X'X)^{-1}X'(X\beta+\varepsilon)\\
 &amp;=\beta+(X'X)^{-1}X'\varepsilon\\
-\Leftrightarrow \hat\beta - \beta &amp; = (X'X)^{-1}X'\varepsilon.
+\Leftrightarrow \hat\beta - \beta
+&amp; = (X'X)^{-1}X'\varepsilon.
 \end{align*}
 \]</span></p>
 <div class="callout-note callout callout-style-default no-icon callout-captioned">
@@ -1038,9 +1039,11 @@ Var(\hat\beta|X)
 </div>
 <div class="callout-body-container callout-body">
 <div id="def-CondVarMult" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 4.1 (Conditional Variance of a Multivariate Random Variable) </strong></span>The conditional variance of a multivariate random variable <span class="math inline">\(Z\in\mathbb{R}^K,\)</span> given <span class="math inline">\(X,\)</span> is defined as <span class="math display">\[
-Var(Z|X)=\underbrace{E\Big[\overbrace{(Z-E(Z|X))}^{(K\times 1)}\overbrace{(Z-E(Z|X))'}^{(1\times K)}|X\Big]}_{K\times K}.
-\]</span></p>
+<p><span class="theorem-title"><strong>Definition 4.1 (Conditional Variance of a Multivariate Random Variable) </strong></span>The conditional variance of a multivariate random variable <span class="math inline">\(Z\in\mathbb{R}^K,\)</span> given <span class="math inline">\(X,\)</span> is defined as <span class="math display">\[\begin{align*}
+Var(Z|X)
+&amp;=\underbrace{E\Big[\overbrace{(Z-E(Z|X))}^{(K\times 1)}\overbrace{(Z-E(Z|X))'}^{(1\times K)}|X\Big]}_{K\times K}\\[2ex]
+&amp;=\underbrace{E\big[ZZ'|X\big]}_{K\times K} - \underbrace{E\big[Z|X\big]E\big[Z'|X\big]}_{K\times K}
+\end{align*}\]</span></p>
 </div>
 </div>
 </div>
@@ -1763,11 +1766,11 @@ Important
 </section>
 </section>
 <section id="exercises" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">4.7</span> Exercises –&gt;</h2>
+<h2 data-number="4.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">4.7</span> Exercises</h2>
 <ul>
-<li><a href="https://www.dropbox.com/scl/fi/305i40sw8s70hq5ekda9x/Ch4_Exercises1.pdf?rlkey=grtj6p813w8vib1m9e55od50f&amp;dl=0">Exercises for Chapter 3</a></li>
+<li><p><a href="https://www.dropbox.com/scl/fi/305i40sw8s70hq5ekda9x/Ch4_Exercises1.pdf?rlkey=grtj6p813w8vib1m9e55od50f&amp;dl=0">Exercises for Chapter 3</a></p></li>
+<li><p><a href="https://www.dropbox.com/scl/fi/4097sc7gy9y8meakn1yoq/Ch4_Exercises_with_Solutions1.pdf?rlkey=4iadb0nk7hqbgag2ge87ifef9&amp;dl=0">Exercises of Chapter 3 with Solutions</a></p></li>
 </ul>
-<!-- * [Exercises of Chapter 3 with Solutions](Exercises/Ch3_Exercises_with_Solutions.pdf) -->
 </section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
