@@ -799,39 +799,7 @@ This allows us to compute the power as following:
 \end{align*}
 where $\Phi$ denotes the cumulative distribution function of the standard normal distribution $\mathcal{N}(0,1).$
  
-::: {.callout-note} 
 
-# Power is a function of $\alpha,$ $(\beta_k-\beta_k^{(0)}),$ and $n$
-
-Thus, the power of the $t$-test statistic is a function of 
-
-* the significance level $\alpha$
-* the violation of $H_0$, $(\beta_k-\beta_k^{(0)})>0$
-* the sample size $n$
-
-<!-- \begin{align*}
-\text{Power}(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n})
-&=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right),
-\end{align*} -->
-
-Indeed, for all reasonable test statistics we have that: 
-\begin{align*}
-%&\text{One-Sided $H_1:\beta_k>\beta_k^{(0)}$:}\\
-%&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-%\to 1 \quad \text{as}\quad (\beta_k-\beta_k^{(0)})\to\infty\\[2ex]
-%&\text{One-Sided $H_1:\beta_k<\beta_k^{(0)}$:}\\
-%&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-%\to 1 \quad \text{as}\quad (\beta_k-\beta_k^{(0)})\to-\infty\\[2ex]
-&\text{Two-Sided $H_1:\beta_k\neq\beta_k^{(0)}$:}\\
-&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-\to 1 \quad \text{as}\quad |\beta_k-\beta_k^{(0)}|\to\infty\\[2ex]
-&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-\to 1 \quad \text{as}\quad n\to\infty\\[2ex]
-&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-\to 0 \quad \text{as}\quad \alpha\to 0
-\end{align*}
-<!-- when keeping each of the other arguments fixed.  -->
-:::
 
 <!-- So, the distribution of the test statistic under $H_1$ depends on:
 
@@ -902,6 +870,43 @@ legend(x=-4.5,y=.65, title=NULL, bty="n",
    c(expression("Null Distribution"~"N(0,1)"),"P(type-II-error)","P(type-I-error)", expression(paste("Power")))[-3], 
     fill=c(alpha("grey", 0.5), alpha("darkblue", 0.25), alpha("red", 0.25), alpha("green", 0.5))[-3], horiz=FALSE)
 ```
+
+
+
+::: {.callout-note} 
+
+# Power is a function of $\alpha,$ $(\beta_k-\beta_k^{(0)}),$ and $n$
+
+<!-- Thus, the power of the $t$-test statistic is a function of 
+
+* the significance level $\alpha$
+* the violation of $H_0$, $(\beta_k-\beta_k^{(0)})>0$
+* the sample size $n$ -->
+
+<!-- \begin{align*}
+\text{Power}(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n})
+&=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right),
+\end{align*} -->
+
+Indeed, for all reasonable test statistics we have that: 
+\begin{align*}
+%&\text{One-Sided $H_1:\beta_k>\beta_k^{(0)}$:}\\
+%&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
+%\to 1 \quad \text{as}\quad (\beta_k-\beta_k^{(0)})\to\infty\\[2ex]
+%&\text{One-Sided $H_1:\beta_k<\beta_k^{(0)}$:}\\
+%&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
+%\to 1 \quad \text{as}\quad (\beta_k-\beta_k^{(0)})\to-\infty\\[2ex]
+&\text{Two-Sided $H_1:\beta_k\neq\beta_k^{(0)}$:}\\
+&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
+\to 1 \quad \text{as}\quad |\beta_k-\beta_k^{(0)}|\to\infty\\[2ex]
+&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
+\to 1 \quad \text{as}\quad n\to\infty\\[2ex]
+&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
+\to 0 \quad \text{as}\quad \alpha\to 0
+\end{align*}
+<!-- when keeping each of the other arguments fixed.  -->
+:::
+
 
 
 ### $p$-Value 

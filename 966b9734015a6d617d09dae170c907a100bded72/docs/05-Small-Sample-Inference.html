@@ -809,43 +809,6 @@ T\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).
 &amp;=1-P\left(Z \leq z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right)\\[2ex]
 &amp;=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right),
 \end{align*}\]</span> where <span class="math inline">\(\Phi\)</span> denotes the cumulative distribution function of the standard normal distribution <span class="math inline">\(\mathcal{N}(0,1).\)</span></p>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Power is a function of <span class="math inline">\(\alpha,\)</span> <span class="math inline">\((\beta_k-\beta_k^{(0)}),\)</span> and <span class="math inline">\(n\)</span>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Thus, the power of the <span class="math inline">\(t\)</span>-test statistic is a function of</p>
-<ul>
-<li>the significance level <span class="math inline">\(\alpha\)</span></li>
-<li>the violation of <span class="math inline">\(H_0\)</span>, <span class="math inline">\((\beta_k-\beta_k^{(0)})&gt;0\)</span></li>
-<li>the sample size <span class="math inline">\(n\)</span></li>
-</ul>
-<!-- \begin{align*}
-\text{Power}(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n})
-&=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right),
-\end{align*} -->
-<p>Indeed, for all reasonable test statistics we have that: <span class="math display">\[\begin{align*}
-%&amp;\text{One-Sided $H_1:\beta_k&gt;\beta_k^{(0)}$:}\\
-%&amp;\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-%\to 1 \quad \text{as}\quad (\beta_k-\beta_k^{(0)})\to\infty\\[2ex]
-%&amp;\text{One-Sided $H_1:\beta_k&lt;\beta_k^{(0)}$:}\\
-%&amp;\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-%\to 1 \quad \text{as}\quad (\beta_k-\beta_k^{(0)})\to-\infty\\[2ex]
-&amp;\text{Two-Sided $H_1:\beta_k\neq\beta_k^{(0)}$:}\\
-&amp;\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-\to 1 \quad \text{as}\quad |\beta_k-\beta_k^{(0)}|\to\infty\\[2ex]
-&amp;\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-\to 1 \quad \text{as}\quad n\to\infty\\[2ex]
-&amp;\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-\to 0 \quad \text{as}\quad \alpha\to 0
-\end{align*}\]</span> <!-- when keeping each of the other arguments fixed.  --></p>
-</div>
-</div>
 <!-- So, the distribution of the test statistic under $H_1$ depends on:
 
 * The value of $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}$ (here $1.5$).  
@@ -870,6 +833,42 @@ Power is a function of <span class="math inline">\(\alpha,\)</span> <span class=
 <p></p><figcaption class="figure-caption">Figure&nbsp;5.4: Probability of a type-II-error and the power for a one-sided <span class="math inline">\(t\)</span>-test at significance level <span class="math inline">\(\alpha = 0.05,\)</span> sample size <span class="math inline">\(n=9,\)</span> and violation of the null hypothesis <span class="math inline">\(\beta_k - \beta_k^{(0)}=3.\)</span></figcaption><p></p>
 </figure>
 </div>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Power is a function of <span class="math inline">\(\alpha,\)</span> <span class="math inline">\((\beta_k-\beta_k^{(0)}),\)</span> and <span class="math inline">\(n\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<!-- Thus, the power of the $t$-test statistic is a function of 
+
+* the significance level $\alpha$
+* the violation of $H_0$, $(\beta_k-\beta_k^{(0)})>0$
+* the sample size $n$ -->
+<!-- \begin{align*}
+\text{Power}(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n})
+&=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right),
+\end{align*} -->
+<p>Indeed, for all reasonable test statistics we have that: <span class="math display">\[\begin{align*}
+%&amp;\text{One-Sided $H_1:\beta_k&gt;\beta_k^{(0)}$:}\\
+%&amp;\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
+%\to 1 \quad \text{as}\quad (\beta_k-\beta_k^{(0)})\to\infty\\[2ex]
+%&amp;\text{One-Sided $H_1:\beta_k&lt;\beta_k^{(0)}$:}\\
+%&amp;\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
+%\to 1 \quad \text{as}\quad (\beta_k-\beta_k^{(0)})\to-\infty\\[2ex]
+&amp;\text{Two-Sided $H_1:\beta_k\neq\beta_k^{(0)}$:}\\
+&amp;\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
+\to 1 \quad \text{as}\quad |\beta_k-\beta_k^{(0)}|\to\infty\\[2ex]
+&amp;\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
+\to 1 \quad \text{as}\quad n\to\infty\\[2ex]
+&amp;\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
+\to 0 \quad \text{as}\quad \alpha\to 0
+\end{align*}\]</span> <!-- when keeping each of the other arguments fixed.  --></p>
 </div>
 </div>
 </section>
