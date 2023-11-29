@@ -214,7 +214,7 @@ $$
 $$ 
 and where $t_{(n-K)}$ denotes the $t$-distribution with $n-K$ degrees of freedom. 
 
-Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate distribution to judge whether or not an observed value $T_{obs}$ of the test statistic is "unusually large" under the null hypothesis. 
+Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate distribution to judge whether or not an observed value $T_{\text{obs}}$ of the test statistic is "unusually large" under the null hypothesis. 
 
 ::: {.callout-tip}
 All commonly used statistical software packages report $t$-tests testing the null hypothesis 
@@ -271,41 +271,41 @@ and is thus a random variable.
 
 The observed value 
 $$
-T_{obs}\equiv T((X_{1,obs},Y_{1,obs}),\dots,(X_{n,obs},Y_{n,obs}))
+T_{\text{obs}}\equiv T((X_{1,obs},Y_{1,obs}),\dots,(X_{n,obs},Y_{n,obs}))
 $$
 is used to decide whether we can reject the null hypothesis $H_0$ or not. 
 
 If 
 $$
-T_{obs}\in \{\text{rejection region}\}
+T_{\text{obs}}\in \{\text{rejection region}\}
 $$
 we reject $H_0.$
 
 If 
 $$
-T_{obs}\not\in \{\text{rejection region}\}
+T_{\text{obs}}\not\in \{\text{rejection region}\}
 $$
 we do not reject $H_0.$
 
 Hereby differentiate two decision errors: 
 
-* **Type I error** 
-* **Type II error** 
+* **type-I-error** 
+* **type-II-error** 
 
 
 ::: {.callout-tip}
 
-# Type I error and Size
+# type-I-error and Size
 
-We conduct a type I error if we reject $H_0$ even though $H_0$ is true, i.e. if 
+We conduct a type-I-error if we reject $H_0$ even though $H_0$ is true, i.e. if 
 $$
-T_{obs}\in \{\text{rejection region}\}
+T_{\text{obs}}\in \{\text{rejection region}\}
 $$
 even though $H_0$ is true. 
 
-The probability of a type I error is also called **size** of the test statistic $T,$ 
+The probability of a type-I-error is also called **size** of the test statistic $T,$ 
 \begin{align*}
-\text{Size}=&P(\text{Type I Error})\\[2ex]
+\text{Size}=&P(\text{type-I-error})\\[2ex]
 =&P(\text{reject } H_0| H_0\text{ is true})\\[2ex]
 =&P(T \in \{\text{rejection region}\} | H_0\text{ is true})
 \end{align*}
@@ -314,24 +314,24 @@ and we want this probability to be small.
 
 ::: {.callout-tip}
 
-# Type II error and Power
+# type-II-error and Power
 
-We conduct a type II error if we do not reject $H_0$ even though $H_1$ is true, i.e. if 
+We conduct a type-II-error if we do not reject $H_0$ even though $H_1$ is true, i.e. if 
 $$
-T_{obs}\not \in \{\text{rejection region}\}
+T_{\text{obs}}\not \in \{\text{rejection region}\}
 $$
 even though $H_1$ is true. 
 
-The probability of a type II error is 
+The probability of a type-II-error is 
 \begin{align*}
-&P(\text{Type II Error})\\[2ex]
+&P(\text{type-II-error})\\[2ex]
 =&P(\text{not reject } H_0| H_1\text{ is true})\\[2ex]
 =&P(T \not\in \{\text{rejection region}\} | H_1\text{ is true})
 \end{align*}
 
-One minus the probability of a type II error is called **power**:
+One minus the probability of a type-II-error is called **power**:
 \begin{align*}
-\text{Power}=&1-P(\text{Type II Error})\\[2ex]
+\text{Power}=&1-P(\text{type-II-error})\\[2ex]
 =&1-P(\text{not reject } H_0| H_1\text{ is true})\\[2ex]
 =&P(\text{reject } H_0| H_1\text{ is true})\\[2ex]
 =&P(T\in \{\text{rejection region}\} | H_1\text{ is true})
@@ -341,7 +341,7 @@ Since we want to detect violations of $H_0,$ we want test statistics with a larg
 
 ### Size and Significance Level $\alpha$
 
-A statistical hypothesis test is considered a **valid test** if the probability of a type I error  is bounded from above by the **significance level (nominal size)** $\alpha$, i.e. if  
+A statistical hypothesis test is considered a **valid test** if the probability of a type-I-error  is bounded from above by the **significance level (nominal size)** $\alpha$, i.e. if  
 \begin{align*}
 \underbrace{P(\text{reject } H_0| H_0\text{ is true})}_{\text{Size of $T$}}\quad \leq \underbrace{\alpha}_{\text{Nominal Size}}
 \end{align*}
@@ -356,15 +356,15 @@ Since we want to keep the probability of falsely rejecting $H_0$ small, we choos
 
 A test statistic $T$ is called **exact (or non-conservative)** if 
 $$
-P(\text{Type I Error})=\alpha.
+P(\text{type-I-error})=\alpha.
 $$
 A test statistic $T$ is called **conservative** if
 $$
-P(\text{Type I Error})<\alpha.
+P(\text{type-I-error})<\alpha.
 $$
 A test statistic $T$ is called **invalid** if
 $$
-P(\text{Type I Error})>\alpha.
+P(\text{type-I-error})>\alpha.
 $$
 
 ::: {.callout-tip}
@@ -443,14 +443,14 @@ lines(x=c(q,q), y=c(0,.6),lwd=2,lty=2)
 text(x = q, y = .65, labels = expression(c[1-alpha]==1.9588))
 ```
 
-**The rejection region:** The rejection region describes a range of values of the test statistic $F$ which we rarely see if the null hypothesis is true (only in at most $\alpha \cdot 100\%$ cases). If the observed value of the test statistic, $F_{\text{obs}}$, falls in this region, we will reject the null  hypothesis and accept Type I error rate of $\alpha$. 
+**The rejection region:** The rejection region describes a range of values of the test statistic $F$ which we rarely see if the null hypothesis is true (only in at most $\alpha \cdot 100\%$ cases). If the observed value of the test statistic, $F_{\text{obs}}$, falls in this region, we will reject the null  hypothesis and accept type-I-error rate of $\alpha$. 
 
 **The non-rejection region:** The non-rejection region describes a range of values of the test statistic $F$ which we expect to see (in $(1-\alpha) \cdot 100\%$ cases) if the null hypothesis is true. If the observed value of the test statistic, $F_{\text{obs}}$ falls in this region, we will not reject the null hypothesis. 
 
 ::: {.callout-caution}
 Not rejecting the null hypothesis does not mean that we can conclude that the null hypothesis is true. 
 
-A possible violation of the null hypothesis may only be too small to stand out from the estimation errors (a type II error even). But we do not control the probability of such type II errors---we only control the probability of type I errors.
+A possible violation of the null hypothesis may only be too small to stand out from the estimation errors (a type-II-error even). But we do not control the probability of such type II errors---we only control the probability of type I errors.
 
 Therefore, **never ever** state something like: "I conclude $H_0$ is true."
 ::: 
@@ -477,9 +477,9 @@ crit_value
 
 The two-sided $t$-test allows us to test
 \begin{align*}
-H_0: & \beta_k=\beta_k^{(0)}\\
+& H_0: \beta_k=\beta_k^{(0)}\\
 \text{versus}\quad 
-H_1: & \beta_k\ne \beta_k^{(0)}
+& H_1: \beta_k\ne \beta_k^{(0)}
 \end{align*}
 where $\beta_k$ denotes the true (unknown) parameter value and $\beta_k^{(0)}$ the null hypothetical value specified by the statisticaian (e.g. $\beta_k^{(0)}=0$). 
 
@@ -558,22 +558,23 @@ c_twoSided <- qt(p = 1-alpha/2, df = df)
 c_twoSided
 ```
 
-#### One-Sided $t$-Test {-}
+#### The One-Sided $t$-Test {-}
 
 Possible one-sided hypotheses:
+
 \begin{align*}
-&H_0: & \beta_k \leq \beta_k^{(0)}\\
-\text{versus}\quad &H_1: & \beta_k >    \beta_k^{(0)}\\
+&H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad & H_1: \beta_k >    \beta_k^{(0)}\\
 \end{align*}
 
 or
 
 \begin{align*}
-&H_0: & \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad &H_1: & \beta_k <  \beta_k^{(0)}\\
+&H_0: \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad & H_1: \beta_k <  \beta_k^{(0)}\\
 \end{align*}
 
-In case of a one-sided $t$-test, we will reject the null if $T_{obs}$ is sufficiently "far away" from zero in the relevant direction of $H_1$. 
+<!-- In case of a one-sided $t$-test, we will reject the null if $T_{\text{obs}}$ is sufficiently "far away" from zero in the relevant direction of $H_1$.  -->
 
 We know that
 $$
@@ -587,9 +588,10 @@ These quantiles are the **critical values** that define the **rejection region**
 
 For testing 
 \begin{align*}
-&H_0: & \beta_k \leq \beta_k^{(0)}\\
-\text{versus}\quad &H_1: & \beta_k >    \beta_k^{(0)}\\
+&H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad & H_1: \beta_k >    \beta_k^{(0)}\\
 \end{align*}
+the rejection region is
 $$
 \{\text{rejection region}\}=\;]c_{1-\alpha}, \infty[
 $$
@@ -634,9 +636,10 @@ par(mfrow=c(1,1))
 
 For testing 
 \begin{align*}
-&H_0: & \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad &H_1: & \beta_k <  \beta_k^{(0)}\\
+&H_0:  \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad & H_1:  \beta_k <  \beta_k^{(0)}\\
 \end{align*}
+the rejection region is 
 $$
 \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[
 $$
@@ -698,11 +701,11 @@ c_oneSided
 
 ### Power 
 
-<!-- A Type II error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a Type II error equals one minus the probability of correctly rejecting the null hypothesis ("Power").  -->
+<!-- A type-II-error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a type-II-error equals one minus the probability of correctly rejecting the null hypothesis ("Power").  -->
 
 <!-- For instance, in the case of using the $t$-test to test the null hypothesis $H_0: \beta_k=0$ versus the one-sided alternative hypothesis $H_1:\beta_k>0$) we have that 
 \begin{align*}
-P(\text{Type II Error})
+P(\text{type-II-error})
 &=P_{H_1}\Big(t\;\in\;\overbrace{]-\infty,c_{1-\alpha}]}^{\text{non-rejection region}}\Big)\\
 &=1-\underbrace{P_{H_1}\Big(t\;\in\;\overbrace{]c_{1-\alpha},\infty[}^{\text{rejection region}}\Big)}_{\text{"Power"}},
 \end{align*}
@@ -710,7 +713,7 @@ where $P_{H_1}$ means that we compute the probability under the assumption that 
 
 <!-- 
 ::: {.callout-note}
-There is a trade off between the probability of making a Type I error and the probability of making a Type II error: a lower significance level $\alpha$ decreases $P(\text{Type I Error})$, but necessarily increases $P(\text{Type II Error})$ and vice versa.  
+There is a trade off between the probability of making a type-I-error and the probability of making a type-II-error: a lower significance level $\alpha$ decreases $P(\text{type-I-error})$, but necessarily increases $P(\text{type-II-error})$ and vice versa.  
 Ideally, we would have some sense of the costs of making each of these errors, and would choose our significance level to minimize these total costs. However, the costs are often difficult to know.  
 :::  
 -->
@@ -718,7 +721,7 @@ Ideally, we would have some sense of the costs of making each of these errors, a
 Since we want to detect violations of the null-hypothesis, we want that our test has a large power
 \begin{align*}
 \text{Power} 
-& = 1 - P(\text{Type II Error})\\[2ex]
+& = 1 - P(\text{type-II-error})\\[2ex]
 & = 1 - P(\text{Not reject $H_0$ given $H_1$ is true})\\[2ex]
 & = P(\text{Reject $H_0$ given $H_1$ is true})\\[2ex]
 & = P(\text{Detect a violation of the null})
@@ -730,15 +733,13 @@ Unfortunately, computing the power of a statistical test is usually impossible, 
 In the following, we consider such a restrictive setup for the $t$-test statistic. 
 
 Let's consider the one-sided hypothesis
-\begin{equation*}
-\begin{array}{ll}
-H_0:  & \beta_k\leq \beta_{k}^{(0)}\\
-H_1:  & \beta_k>\beta_{k}^{(0)},
-\end{array}
-\end{equation*}
+\begin{align*}
+&H_0: \beta_k\leq \beta_{k}^{(0)}\\
+&H_1: \beta_k>\beta_{k}^{(0)},
+\end{align*}
 where 
 
-* $\beta_k$ denotes the true (unknown) parameter value 
+* $\beta_k$ denotes the true (unknown) parameter value and 
 * $\beta_{k}^{(0)}$ denotes the hypothetical parameter value, 
 
 and where the true standard error of $\hat\beta_k$ given $X$ is known to be  
@@ -799,6 +800,9 @@ This allows us to compute the power as following:
 where $\Phi$ denotes the cumulative distribution function of the standard normal distribution $\mathcal{N}(0,1).$
  
 ::: {.callout-note} 
+
+# Power is a function of $\alpha,$ $(\beta_k-\beta_k^{(0)}),$ and $n$
+
 Thus, the power of the $t$-test statistic is a function of 
 
 * the significance level $\alpha$
@@ -834,27 +838,24 @@ Indeed, for all reasonable test statistics we have that:
 * The value of $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}$ (here $1.5$).  
 * The difference between the actual parameter value $(\beta_k=3)$ and the hypothetical parameter $(r=0)$ value under the null-hypothesis.  -->
 
-@fig-Power illustrates the probability of a type II error and the power for the case where 
+@fig-Power illustrates the probability of a type-II-error and the power for the case where 
 
 * $\alpha = 0.05$
 * $n=9$ 
 * $\beta_k - \beta_k^{(0)}=3$
 
 such that 
-$$
-\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}=\frac{3\cdot 3}{4.5} = 2.
-$$
 \begin{align*}
 \text{Power} 
-&=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right)\\[2ex]
+&=1-\Phi\Bigg(z_{1-\alpha} - \overbrace{\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}^{=\frac{3\cdot 3}{4.5} = 2}\Bigg)\\[2ex]
 &=1-\Phi\left(1.64  - 2 \right)\\[2ex]
 &=1-0.36=0.64
 \end{align*}
-That is, we detect the  violation of the null hypothesis $(\beta_k - \beta_k^{(0)}=3)$ with probability $0.64;$ i.e., in $64\%$ of resamplings from the random sample. 
+That is, we detect the  violation of the null hypothesis $(\beta_k - \beta_k^{(0)}=3)$ with probability $0.64;$ i.e., we expect to detect the violation of the null hypothesis in $64\%$ of resamplings from the random sample. 
 
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 #| label: fig-Power
-#| fig-cap: Probability of a type II error and the power for a one-sided $t$-test at significance level $\alpha = 0.05,$ sample size $n=9,$ and violation of the null hypothesis $\beta_k - \beta_k^{(0)}=3.$
+#| fig-cap: Probability of a type-II-error and the power for a one-sided $t$-test at significance level $\alpha = 0.05,$ sample size $n=9,$ and violation of the null hypothesis $\beta_k - \beta_k^{(0)}=3.$
 
 library("scales") # transperent color
 mean.alt <- 2
@@ -885,7 +886,7 @@ polygon(c(min(xfit2[i]), xfit2[i], max(xfit2[i])),
         col=alpha("green", 0.25),
         border=alpha("green", 0.25))
 
-## The blue area: P(Type II error)
+## The blue area: P(type-II-error)
 lb <- min(xfit2)
 ub <- round(qnorm(1-alpha),2)
 
@@ -898,19 +899,149 @@ text(x = ub, y = .57, labels = expression(z[1-alpha]==1.64))
 text(x=0+.25,y=.425, "N(0,1)", pos=2)
 text(x=2+.5,y=.425, "N(2,1)", pos=4)
 legend(x=-4.5,y=.65, title=NULL, bty="n", 
-   c(expression("Null Distribution"~"N(0,1)"),"P(Type II Error)","P(Type I Error)", expression(paste("Power")))[-3], 
+   c(expression("Null Distribution"~"N(0,1)"),"P(type-II-error)","P(type-I-error)", expression(paste("Power")))[-3], 
     fill=c(alpha("grey", 0.5), alpha("darkblue", 0.25), alpha("red", 0.25), alpha("green", 0.5))[-3], horiz=FALSE)
 ```
 
 
 ### $p$-Value 
 
-The $p$-value of a test statistic is the significance level we would obtain if we took the sample value of the observed test statistic, $F_{\text{obs}}$ or $t_{\text{obs}},$ as the border between the rejection and non-rejection regions. 
+#### $F$-Test {-}
 
-* **$F$-test:** $p=P_{H_0}(F\geq F_{\text{obs}})$
+The $F$-test allows us to test
+\begin{align*}
+&H_0: R\beta = r\\[2ex]
+\text{versus}\quad 
+&H_1: R\beta\neq r,
+\end{align*}
+where $\beta$ denotes the true (unknown) parameter vector and $r$ the null-hypothetical value specified by the statistician (e.g. $r=0$). 
+
+We know that
+$$
+F\overset{H_0}{\sim}F_{q,n-K}.
+$$
+
+The $p$-value of the $F$-test is the probability of seeing realizations of $F$ that are equal to or larger than the observed value $F_{\text{obs}}$ given that the null hypothesis is true
+$$
+p_{\text{obs}}=P(F\geq F_{\text{obs}}\;|\;H_0 \text{ is true})
+$$
+
+* We reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} < \alpha
+$$
+
+* We cannot reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} \geq \alpha
+$$
+
+
+#### The One-Sided $t$-Test {-}
+
+Possible one-sided hypotheses:
+
+\begin{align*}
+&H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad & H_1:\beta_k >    \beta_k^{(0)}\\
+\end{align*}
+
+or
+
+\begin{align*}
+&H_0: \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad & H_1: \beta_k <  \beta_k^{(0)}\\
+\end{align*}
+
+<!-- In case of a one-sided $t$-test, we will reject the null if $T_{\text{obs}}$ is sufficiently "far away" from zero in the relevant direction of $H_1$.  -->
+
+We know that
+$$
+T\overset{H_0}{\sim}t_{n-K}.
+$$
+
+
+The $p$-value of the one-sided $t$-test for testing 
+\begin{align*}
+&H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad & H_1: \beta_k >    \beta_k^{(0)}\\
+\end{align*}
+is the probability of seeing realizations of $T$ that are equal to or larger than the observed value $T_{\text{obs}}$ given that the null hypothesis is true
+$$
+p_{\text{obs}}=P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true}).
+$$
+* We reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} < \alpha
+$$
+
+* We cannot reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} \geq \alpha
+$$
+
+The $p$-value of the one-sided $t$-test for testing 
+\begin{align*}
+&H_0: \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad & H_1: \beta_k <    \beta_k^{(0)}\\
+\end{align*}
+is the probability of seeing realizations of $T$ that are equal to or smaller than the observed value $T_{\text{obs}}$ given that the null hypothesis is true
+$$
+p_{\text{obs}}=P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}).
+$$
+
+
+* We reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} < \alpha
+$$
+
+* We cannot reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} \geq \alpha
+$$
+
+#### The Two-Sided $t$-Test {-}
+
+The two-sided $t$-test allows us to test
+\begin{align*}
+& H_0: \beta_k=\beta_k^{(0)}\\
+\text{versus}\quad 
+& H_1: \beta_k\ne \beta_k^{(0)}
+\end{align*}
+where $\beta_k$ denotes the true (unknown) parameter value and $\beta_k^{(0)}$ the null hypothetical value specified by the statisticaian (e.g. $\beta_k^{(0)}=0$). 
+
+We know that
+$$
+T\overset{H_0}{\sim}t_{n-K}.
+$$
+
+
+The $p$-value of the two-sided $t$-test is the probability of seeing realizations of $T$ that are equal to or more extreme than the observed value $T_{\text{obs}}$ given that the null hypothesis is true
+\begin{align*}
+p_{\text{obs}}
+&=P(|T|\geq |T_{\text{obs}}|\;|\;H_0 \text{ is true})\\[2ex]
+&=2\cdot\min\{P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}), 
+            P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true})\}
+\end{align*}
+
+* We reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} < \alpha
+$$
+
+* We cannot reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} \geq \alpha
+$$
+
+
+<!-- The $p$-value of a test statistic is the significance level we would obtain if we took the sample value of the observed test statistic, $F_{\text{obs}}$ or $t_{\text{obs}},$ as the border between the rejection and non-rejection regions. 
+
+* **$F$-test:** 
 * **$t$-test:** 
    * Two sided, i.e.,  $H_0:\beta_k = r$ vs. $H_1:\beta_k\neq r$: <br> 
-    $p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|\geq|t_{obs}|)$ <br>
+    $p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|\geq|t_{\text{obs}}|)$ <br>
     The latter equality holds since the $t$ distrbution is symmetric. 
    * One sided, i.e., $H_0:\beta_k \leq r$ vs. $H_1:\beta_k> r$: <br> 
      $p=P_{H_0}(t\geq t_{\text{obs}})$
@@ -919,7 +1050,7 @@ The $p$-value of a test statistic is the significance level we would obtain if w
 
 Put another way, the $p$-value is the greatest significance level for which we just fail to reject the null. Therefore, the $p$-value is sometimes also called "marginal significance value". 
 
-If the $p$-value is strictly smaller than the chosen significance level $\alpha$, we reject the null hypothesis. 
+If the $p$-value is strictly smaller than the chosen significance level $\alpha$, we reject the null hypothesis.  -->
 
 ## Confidence Intervals {#sec-CIsmallsample}
 
@@ -929,27 +1060,39 @@ P\Big(\beta_k\in\operatorname{CI}_{k,1-\alpha}\Big)\geq 1-\alpha.
 $$
 Derivation of the random interval $\operatorname{CI}_{k,1-\alpha}$: 
 
-Observe that
+Observe that (under Ass 1-4$^\ast$)
 $$
 \frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\sim t_{(n-K)}
-$$
+$${#eq-CIDistr}
 Therefore,
 \begin{align*}
-P\left(-t_{1-\alpha/2,n-K}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq t_{1-\alpha/2,n-K}\right)=1-\alpha,
+P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq c_{1-\alpha/2}\right)=1-\alpha,
 \end{align*}
-where $t_{1-\alpha/2,n-K}$ denotes the $(1-\alpha)$ quantile of the $t$-distribution with $n-K$ degrees of freedom. Next, we can do the following equivalent transformations
+where $c_{1-\alpha/2}$ denotes the $(1-\alpha)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom. Next, we can do the following equivalent transformations
 \begin{align*}
-P\left(-t_{1-\alpha/2,n-K}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq t_{1-\alpha/2,n-K}\right)&=1-\alpha\\
-\Leftrightarrow P\left(\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\leq \beta_k\leq\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right)&=1-\alpha\\
-\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]}_{=:\operatorname{CI}_{k,1-\alpha}}\right)&=1-\alpha
+P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq c_{1-\alpha/2}\right)&=1-\alpha\\
+\Leftrightarrow P\left(\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\leq \beta_k\leq\hat\beta_k +c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right)&=1-\alpha\\
+\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]}_{=:\operatorname{CI}_{k,1-\alpha}}\right)&=1-\alpha
 \end{align*}
 That is, the random interval 
 $$
-\operatorname{CI}_{k,1-\alpha}=\left[\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
+\operatorname{CI}_{k,1-\alpha}=\left[\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k + c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
 $$
-is our $(1-\alpha)\cdot 100\%$ percent confidence interval for $\beta_k$.
+is our $(1-\alpha)\cdot 100\%$ confidence interval for $\beta_k$. 
 
-**Interpretation:** The random interval  $\operatorname{CI}_{k,1-\alpha}$ for $\beta_k$ contains the true parameter value $\beta_k$ in $(1-\alpha)\cdot 100\%$ cases of its realizations when considering infinitely many realizations. It's best to take a look at dynamic viszualizations like this one: 
+
+Since the confidence interval is based on the exact distribution (under Assumptions 1-4$^\ast$) in @eq-CIDistr, the confidence interval has an **exact** coverage probability
+\begin{align*}
+P\left(\beta_k\in\operatorname{CI}_{k,1-\alpha}\right)&=1-\alpha
+\end{align*}
+provided the Assumptions 1-4$^\ast$ are true. 
+
+::: {.callout-tip}
+# Interpretation of Confidence Intervals 
+
+The random interval  $\operatorname{CI}_{k,1-\alpha}$ for $\beta_k$ contains the true parameter value $\beta_k$ with probability $1-\alpha;$ i.e. we expect that $\operatorname{CI}_{k,1-\alpha}$ covers $\beta_k$ in $(1-\alpha)\cdot 100\%$ of resamplings from the random sample. 
+
+It's best to take a look at dynamic visualizations like this one: 
 
 <center>
 [https://rpsychologist.com/d3/ci/](https://rpsychologist.com/d3/ci/)
@@ -961,7 +1104,7 @@ Unfortunately, this "frequentist" interpretation is not a statement about a sing
 <center>
 ![](images/Meme_CI_2.jpg)
 </center>
-
+:::
 
 ## Monte Carlo Simulations {#sec-PSSI}
 
@@ -1303,7 +1446,7 @@ car::linearHypothesis(model = lm_obj,
 ```
 
 
-Here, we simulated data "under the null hypothesis" and thus it is not surpising that we cannot reject the null hypothesis at a significance level of, for instance, $\alpha=0.05$. However, in repeated samples we should nevertheless observe $\alpha\cdot 100\%$ type I errors (false rejections of $H_0$) under the null hypothesis. Let's check the type I error rate using the following Monte Carlo simulation:
+Here, we simulated data "under the null hypothesis" and thus it is not surpising that we cannot reject the null hypothesis at a significance level of, for instance, $\alpha=0.05$. However, in repeated samples we should nevertheless observe $\alpha\cdot 100\%$ type I errors (false rejections of $H_0$) under the null hypothesis. Let's check the type-I-error rate using the following Monte Carlo simulation:
 ```{r}
 ## Let's generate 5000 F-test decisions and check 
 ## whether the empirical rate of type I errors is 
@@ -1322,23 +1465,23 @@ for(r in 1:B){
   F_test_pvalues[r] <- p
 }
 
-## Is the significance level ("nominal type I error rate") 
-## smaller or equal to the actual type I error rate?
+## Is the significance level ("nominal type-I-error rate") 
+## smaller or equal to the actual type-I-error rate?
 
 alpha        <-  0.05          # signif level
 rejections   <- F_test_pvalues[F_test_pvalues < alpha]
-round(length(rejections)/B, 4) # actual type I error rate 
+round(length(rejections)/B, 4) # actual type-I-error rate 
 ## 
 alpha        <-  0.01  # signif level
 rejections   <- F_test_pvalues[F_test_pvalues < alpha]
-round(length(rejections)/B, 4) # actual type I error rate 
+round(length(rejections)/B, 4) # actual type-I-error rate 
 ```
 
 Observations:
 
-1. We correctly control for the type I error rate since the empirical type I error rate is not larger than the chosen significance level $\alpha$ (i.e. the nominal type I error rate). 
-2. Second, the $F$ test is not conservative since the empirical type I error rates essentially matche the chosen significance levels $\alpha$  (i.e. the nominal Type I error rate). 
-   2.1 In fact, if we would increase the number of Monte Carlo repetitions, the empirical type I error rate would converge to the nominal type I error rate $\alpha$ due to the law of large numbers.
+1. We correctly control for the type-I-error rate since the empirical type-I-error rate is not larger than the chosen significance level $\alpha$ (i.e. the nominal type-I-error rate). 
+2. Second, the $F$ test is not conservative since the empirical type-I-error rates essentially matche the chosen significance levels $\alpha$  (i.e. the nominal type-I-error rate). 
+   2.1 In fact, if we would increase the number of Monte Carlo repetitions, the empirical type-I-error rate would converge to the nominal type-I-error rate $\alpha$ due to the law of large numbers.
 3. Last but not least: All this works **unconditionally** on $X$ since the distribution of the $F$ statistic does not depend on $X$. 
 <!-- (Thus is also works conditionally on $X$ and you may check this at home.) -->
 
@@ -1371,7 +1514,7 @@ length(rejections)/B  # power
 
 We can now correctly reject the false null hypothesis in approximately `r length(rejections)/B *100` % of all Monte Carlo replications. 
 
-**Caution:** This means that we are not able to detect the violation of the null hypothesis in `r 100 - length(rejections)/B *100` % of cases. Therefore, we can never use an insignificant test result ($p$-value $\geq\alpha$) as a confirmation of the null hypothesis. Obviously, there are type II error events (not rejecting a false $H_0$), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control the type II error rate. We can only control the type I error rate by using a small significance level $\alpha$. 
+**Caution:** This means that we are not able to detect the violation of the null hypothesis in `r 100 - length(rejections)/B *100` % of cases. Therefore, we can never use an insignificant test result ($p$-value $\geq\alpha$) as a confirmation of the null hypothesis. Obviously, there are type-II-error events (not rejecting a false $H_0$), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control the type-II-error rate. We can only control the type-I-error rate by using a small significance level $\alpha$. 
 
 Moreover, note that the $F$ test is not informative about which part of the null hypothesis ($\beta_2=4$ and/or $\beta_3=4$) is violated. We only get the information that at least one of the multiple parameter hypotheses is violated.
 

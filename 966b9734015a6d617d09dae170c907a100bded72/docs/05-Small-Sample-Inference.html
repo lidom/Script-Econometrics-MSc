@@ -395,7 +395,7 @@ T=\frac{\hat{\beta}_k-\beta_k^{(0)}}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X
 \]</span> where <span class="math display">\[
 \widehat{\operatorname{SE}}(\hat{\beta}_k|X)=s_{UB}[(X'X)^{-1/2}]_{kk},
 \]</span> and where <span class="math inline">\(t_{(n-K)}\)</span> denotes the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom.</p>
-<p>Thus the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom is the appropriate distribution to judge whether or not an observed value <span class="math inline">\(T_{obs}\)</span> of the test statistic is “unusually large” under the null hypothesis.</p>
+<p>Thus the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom is the appropriate distribution to judge whether or not an observed value <span class="math inline">\(T_{\text{obs}}\)</span> of the test statistic is “unusually large” under the null hypothesis.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -428,18 +428,18 @@ H_0:\beta_k=0
 T\equiv T((X_1,Y_1),\dots,(X_n,Y_n))
 \]</span> and is thus a random variable.</p>
 <p>The observed value <span class="math display">\[
-T_{obs}\equiv T((X_{1,obs},Y_{1,obs}),\dots,(X_{n,obs},Y_{n,obs}))
+T_{\text{obs}}\equiv T((X_{1,obs},Y_{1,obs}),\dots,(X_{n,obs},Y_{n,obs}))
 \]</span> is used to decide whether we can reject the null hypothesis <span class="math inline">\(H_0\)</span> or not.</p>
 <p>If <span class="math display">\[
-T_{obs}\in \{\text{rejection region}\}
+T_{\text{obs}}\in \{\text{rejection region}\}
 \]</span> we reject <span class="math inline">\(H_0.\)</span></p>
 <p>If <span class="math display">\[
-T_{obs}\not\in \{\text{rejection region}\}
+T_{\text{obs}}\not\in \{\text{rejection region}\}
 \]</span> we do not reject <span class="math inline">\(H_0.\)</span></p>
 <p>Hereby differentiate two decision errors:</p>
 <ul>
-<li><strong>Type I error</strong></li>
-<li><strong>Type II error</strong></li>
+<li><strong>type-I-error</strong></li>
+<li><strong>type-II-error</strong></li>
 </ul>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -447,15 +447,15 @@ T_{obs}\not\in \{\text{rejection region}\}
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Type I error and Size
+type-I-error and Size
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We conduct a type I error if we reject <span class="math inline">\(H_0\)</span> even though <span class="math inline">\(H_0\)</span> is true, i.e.&nbsp;if <span class="math display">\[
-T_{obs}\in \{\text{rejection region}\}
+<p>We conduct a type-I-error if we reject <span class="math inline">\(H_0\)</span> even though <span class="math inline">\(H_0\)</span> is true, i.e.&nbsp;if <span class="math display">\[
+T_{\text{obs}}\in \{\text{rejection region}\}
 \]</span> even though <span class="math inline">\(H_0\)</span> is true.</p>
-<p>The probability of a type I error is also called <strong>size</strong> of the test statistic <span class="math inline">\(T,\)</span> <span class="math display">\[\begin{align*}
-\text{Size}=&amp;P(\text{Type I Error})\\[2ex]
+<p>The probability of a type-I-error is also called <strong>size</strong> of the test statistic <span class="math inline">\(T,\)</span> <span class="math display">\[\begin{align*}
+\text{Size}=&amp;P(\text{type-I-error})\\[2ex]
 =&amp;P(\text{reject } H_0| H_0\text{ is true})\\[2ex]
 =&amp;P(T \in \{\text{rejection region}\} | H_0\text{ is true})
 \end{align*}\]</span> and we want this probability to be small.</p>
@@ -467,20 +467,20 @@ T_{obs}\in \{\text{rejection region}\}
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Type II error and Power
+type-II-error and Power
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We conduct a type II error if we do not reject <span class="math inline">\(H_0\)</span> even though <span class="math inline">\(H_1\)</span> is true, i.e.&nbsp;if <span class="math display">\[
-T_{obs}\not \in \{\text{rejection region}\}
+<p>We conduct a type-II-error if we do not reject <span class="math inline">\(H_0\)</span> even though <span class="math inline">\(H_1\)</span> is true, i.e.&nbsp;if <span class="math display">\[
+T_{\text{obs}}\not \in \{\text{rejection region}\}
 \]</span> even though <span class="math inline">\(H_1\)</span> is true.</p>
-<p>The probability of a type II error is <span class="math display">\[\begin{align*}
-&amp;P(\text{Type II Error})\\[2ex]
+<p>The probability of a type-II-error is <span class="math display">\[\begin{align*}
+&amp;P(\text{type-II-error})\\[2ex]
 =&amp;P(\text{not reject } H_0| H_1\text{ is true})\\[2ex]
 =&amp;P(T \not\in \{\text{rejection region}\} | H_1\text{ is true})
 \end{align*}\]</span></p>
-<p>One minus the probability of a type II error is called <strong>power</strong>: <span class="math display">\[\begin{align*}
-\text{Power}=&amp;1-P(\text{Type II Error})\\[2ex]
+<p>One minus the probability of a type-II-error is called <strong>power</strong>: <span class="math display">\[\begin{align*}
+\text{Power}=&amp;1-P(\text{type-II-error})\\[2ex]
 =&amp;1-P(\text{not reject } H_0| H_1\text{ is true})\\[2ex]
 =&amp;P(\text{reject } H_0| H_1\text{ is true})\\[2ex]
 =&amp;P(T\in \{\text{rejection region}\} | H_1\text{ is true})
@@ -489,7 +489,7 @@ T_{obs}\not \in \{\text{rejection region}\}
 </div>
 <section id="size-and-significance-level-alpha" class="level3" data-number="5.3.1">
 <h3 data-number="5.3.1" class="anchored" data-anchor-id="size-and-significance-level-alpha"><span class="header-section-number">5.3.1</span> Size and Significance Level <span class="math inline">\(\alpha\)</span></h3>
-<p>A statistical hypothesis test is considered a <strong>valid test</strong> if the probability of a type I error is bounded from above by the <strong>significance level (nominal size)</strong> <span class="math inline">\(\alpha\)</span>, i.e.&nbsp;if<br>
+<p>A statistical hypothesis test is considered a <strong>valid test</strong> if the probability of a type-I-error is bounded from above by the <strong>significance level (nominal size)</strong> <span class="math inline">\(\alpha\)</span>, i.e.&nbsp;if<br>
 <span class="math display">\[\begin{align*}
 \underbrace{P(\text{reject } H_0| H_0\text{ is true})}_{\text{Size of $T$}}\quad \leq \underbrace{\alpha}_{\text{Nominal Size}}
 \end{align*}\]</span></p>
@@ -509,11 +509,11 @@ Exact (non-conservative) vs conservative tests vs invalid
 </div>
 <div class="callout-body-container callout-body">
 <p>A test statistic <span class="math inline">\(T\)</span> is called <strong>exact (or non-conservative)</strong> if <span class="math display">\[
-P(\text{Type I Error})=\alpha.
+P(\text{type-I-error})=\alpha.
 \]</span> A test statistic <span class="math inline">\(T\)</span> is called <strong>conservative</strong> if <span class="math display">\[
-P(\text{Type I Error})&lt;\alpha.
+P(\text{type-I-error})&lt;\alpha.
 \]</span> A test statistic <span class="math inline">\(T\)</span> is called <strong>invalid</strong> if <span class="math display">\[
-P(\text{Type I Error})&gt;\alpha.
+P(\text{type-I-error})&gt;\alpha.
 \]</span></p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -564,7 +564,7 @@ F\overset{H_0}{\sim}F_{q,n-K}.
 </div>
 </div>
 </div>
-<p><strong>The rejection region:</strong> The rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we rarely see if the null hypothesis is true (only in at most <span class="math inline">\(\alpha \cdot 100\%\)</span> cases). If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span>, falls in this region, we will reject the null hypothesis and accept Type I error rate of <span class="math inline">\(\alpha\)</span>.</p>
+<p><strong>The rejection region:</strong> The rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we rarely see if the null hypothesis is true (only in at most <span class="math inline">\(\alpha \cdot 100\%\)</span> cases). If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span>, falls in this region, we will reject the null hypothesis and accept type-I-error rate of <span class="math inline">\(\alpha\)</span>.</p>
 <p><strong>The non-rejection region:</strong> The non-rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we expect to see (in <span class="math inline">\((1-\alpha) \cdot 100\%\)</span> cases) if the null hypothesis is true. If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span> falls in this region, we will not reject the null hypothesis.</p>
 <div class="callout-caution callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -577,7 +577,7 @@ Danger
 </div>
 <div class="callout-body-container callout-body">
 <p>Not rejecting the null hypothesis does not mean that we can conclude that the null hypothesis is true.</p>
-<p>A possible violation of the null hypothesis may only be too small to stand out from the estimation errors (a type II error even). But we do not control the probability of such type II errors—we only control the probability of type I errors.</p>
+<p>A possible violation of the null hypothesis may only be too small to stand out from the estimation errors (a type-II-error even). But we do not control the probability of such type II errors—we only control the probability of type I errors.</p>
 <p>Therefore, <strong>never ever</strong> state something like: “I conclude <span class="math inline">\(H_0\)</span> is true.”</p>
 </div>
 </div>
@@ -607,9 +607,9 @@ Danger
 <section id="the-two-sided-t-test" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="the-two-sided-t-test">The Two-Sided <span class="math inline">\(t\)</span>-Test</h4>
 <p>The two-sided <span class="math inline">\(t\)</span>-test allows us to test <span class="math display">\[\begin{align*}
-H_0: &amp; \beta_k=\beta_k^{(0)}\\
+&amp; H_0: \beta_k=\beta_k^{(0)}\\
 \text{versus}\quad
-H_1: &amp; \beta_k\ne \beta_k^{(0)}
+&amp; H_1: \beta_k\ne \beta_k^{(0)}
 \end{align*}\]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statisticaian (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
 <p>We know that <span class="math display">\[
 T\overset{H_0}{\sim}t_{n-K}.
@@ -656,27 +656,28 @@ T\overset{H_0}{\sim}t_{n-K}.
 </div>
 </div>
 </section>
-<section id="one-sided-t-test" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="one-sided-t-test">One-Sided <span class="math inline">\(t\)</span>-Test</h4>
-<p>Possible one-sided hypotheses: <span class="math display">\[\begin{align*}
-&amp;H_0: &amp; \beta_k \leq \beta_k^{(0)}\\
-\text{versus}\quad &amp;H_1: &amp; \beta_k &gt;    \beta_k^{(0)}\\
+<section id="the-one-sided-t-test" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="the-one-sided-t-test">The One-Sided <span class="math inline">\(t\)</span>-Test</h4>
+<p>Possible one-sided hypotheses:</p>
+<p><span class="math display">\[\begin{align*}
+&amp;H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad &amp; H_1: \beta_k &gt;    \beta_k^{(0)}\\
 \end{align*}\]</span></p>
 <p>or</p>
 <p><span class="math display">\[\begin{align*}
-&amp;H_0: &amp; \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad &amp;H_1: &amp; \beta_k &lt;  \beta_k^{(0)}\\
+&amp;H_0: \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad &amp; H_1: \beta_k &lt;  \beta_k^{(0)}\\
 \end{align*}\]</span></p>
-<p>In case of a one-sided <span class="math inline">\(t\)</span>-test, we will reject the null if <span class="math inline">\(T_{obs}\)</span> is sufficiently “far away” from zero in the relevant direction of <span class="math inline">\(H_1\)</span>.</p>
+<!-- In case of a one-sided $t$-test, we will reject the null if $T_{\text{obs}}$ is sufficiently "far away" from zero in the relevant direction of $H_1$.  -->
 <p>We know that <span class="math display">\[
 T\overset{H_0}{\sim}t_{n-K}.
 \]</span></p>
 <p>Let <span class="math inline">\(c_{\alpha}\)</span> and <span class="math inline">\(c_{1-\alpha}\)</span> denote the <span class="math inline">\(\alpha\)</span> and the <span class="math inline">\((1-\alpha)\)</span> quantiles of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
 <p>These quantiles are the <strong>critical values</strong> that define the <strong>rejection region</strong> of the one-sided <span class="math inline">\(t\)</span>-tests:</p>
 <p>For testing <span class="math display">\[\begin{align*}
-&amp;H_0: &amp; \beta_k \leq \beta_k^{(0)}\\
-\text{versus}\quad &amp;H_1: &amp; \beta_k &gt;    \beta_k^{(0)}\\
-\end{align*}\]</span> <span class="math display">\[
+&amp;H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad &amp; H_1: \beta_k &gt;    \beta_k^{(0)}\\
+\end{align*}\]</span> the rejection region is <span class="math display">\[
 \{\text{rejection region}\}=\;]c_{1-\alpha}, \infty[
 \]</span></p>
 <p>Fig <a href="#fig-oneSidedRight">Figure&nbsp;<span>5.2</span></a> shows an example of the rejection region for the case of a significance level <span class="math inline">\(\alpha=0.05\)</span> and <span class="math inline">\(n-K=12\)</span> degrees of freedom.</p>
@@ -691,9 +692,9 @@ T\overset{H_0}{\sim}t_{n-K}.
 </div>
 </div>
 <p>For testing <span class="math display">\[\begin{align*}
-&amp;H_0: &amp; \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad &amp;H_1: &amp; \beta_k &lt;  \beta_k^{(0)}\\
-\end{align*}\]</span> <span class="math display">\[
+&amp;H_0:  \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad &amp; H_1:  \beta_k &lt;  \beta_k^{(0)}\\
+\end{align*}\]</span> the rejection region is <span class="math display">\[
 \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[
 \]</span></p>
 <p>Fig <a href="#fig-oneSidedLeft">Figure&nbsp;<span>5.3</span></a> shows an example of the rejection region for the case of a significance level <span class="math inline">\(\alpha=0.05\)</span> and <span class="math inline">\(n-K=12\)</span> degrees of freedom.</p>
@@ -729,37 +730,35 @@ T\overset{H_0}{\sim}t_{n-K}.
 </section>
 <section id="power" class="level3" data-number="5.3.3">
 <h3 data-number="5.3.3" class="anchored" data-anchor-id="power"><span class="header-section-number">5.3.3</span> Power</h3>
-<!-- A Type II error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a Type II error equals one minus the probability of correctly rejecting the null hypothesis ("Power").  -->
+<!-- A type-II-error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a type-II-error equals one minus the probability of correctly rejecting the null hypothesis ("Power").  -->
 <!-- For instance, in the case of using the $t$-test to test the null hypothesis $H_0: \beta_k=0$ versus the one-sided alternative hypothesis $H_1:\beta_k>0$) we have that 
 \begin{align*}
-P(\text{Type II Error})
+P(\text{type-II-error})
 &=P_{H_1}\Big(t\;\in\;\overbrace{]-\infty,c_{1-\alpha}]}^{\text{non-rejection region}}\Big)\\
 &=1-\underbrace{P_{H_1}\Big(t\;\in\;\overbrace{]c_{1-\alpha},\infty[}^{\text{rejection region}}\Big)}_{\text{"Power"}},
 \end{align*}
 where $P_{H_1}$ means that we compute the probability under the assumption that $H_1$ is true.  -->
 <!-- 
 ::: {.callout-note}
-There is a trade off between the probability of making a Type I error and the probability of making a Type II error: a lower significance level $\alpha$ decreases $P(\text{Type I Error})$, but necessarily increases $P(\text{Type II Error})$ and vice versa.  
+There is a trade off between the probability of making a type-I-error and the probability of making a type-II-error: a lower significance level $\alpha$ decreases $P(\text{type-I-error})$, but necessarily increases $P(\text{type-II-error})$ and vice versa.  
 Ideally, we would have some sense of the costs of making each of these errors, and would choose our significance level to minimize these total costs. However, the costs are often difficult to know.  
 :::  
 -->
 <p>Since we want to detect violations of the null-hypothesis, we want that our test has a large power <span class="math display">\[\begin{align*}
 \text{Power}
-&amp; = 1 - P(\text{Type II Error})\\[2ex]
+&amp; = 1 - P(\text{type-II-error})\\[2ex]
 &amp; = 1 - P(\text{Not reject $H_0$ given $H_1$ is true})\\[2ex]
 &amp; = P(\text{Reject $H_0$ given $H_1$ is true})\\[2ex]
 &amp; = P(\text{Detect a violation of the null})
 \end{align*}\]</span></p>
 <p>Unfortunately, computing the power of a statistical test is usually impossible, since this requires knowing the distribution of the test statistic under the alternative hypothesis <span class="math inline">\(H_1.\)</span> The distribution of a test statistic under <span class="math inline">\(H_1\)</span> can only be derived under quite restrictive setups.</p>
 <p>In the following, we consider such a restrictive setup for the <span class="math inline">\(t\)</span>-test statistic.</p>
-<p>Let’s consider the one-sided hypothesis <span class="math display">\[\begin{equation*}
-\begin{array}{ll}
-H_0:  &amp; \beta_k\leq \beta_{k}^{(0)}\\
-H_1:  &amp; \beta_k&gt;\beta_{k}^{(0)},
-\end{array}
-\end{equation*}\]</span> where</p>
+<p>Let’s consider the one-sided hypothesis <span class="math display">\[\begin{align*}
+&amp;H_0: \beta_k\leq \beta_{k}^{(0)}\\
+&amp;H_1: \beta_k&gt;\beta_{k}^{(0)},
+\end{align*}\]</span> where</p>
 <ul>
-<li><span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value</li>
+<li><span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and</li>
 <li><span class="math inline">\(\beta_{k}^{(0)}\)</span> denotes the hypothetical parameter value,</li>
 </ul>
 <p>and where the true standard error of <span class="math inline">\(\hat\beta_k\)</span> given <span class="math inline">\(X\)</span> is known to be<br>
@@ -816,7 +815,7 @@ T\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Note
+Power is a function of <span class="math inline">\(\alpha,\)</span> <span class="math inline">\((\beta_k-\beta_k^{(0)}),\)</span> and <span class="math inline">\(n\)</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -851,26 +850,24 @@ Note
 
 * The value of $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}$ (here $1.5$).  
 * The difference between the actual parameter value $(\beta_k=3)$ and the hypothetical parameter $(r=0)$ value under the null-hypothesis.  -->
-<p><a href="#fig-Power">Figure&nbsp;<span>5.4</span></a> illustrates the probability of a type II error and the power for the case where</p>
+<p><a href="#fig-Power">Figure&nbsp;<span>5.4</span></a> illustrates the probability of a type-II-error and the power for the case where</p>
 <ul>
 <li><span class="math inline">\(\alpha = 0.05\)</span></li>
 <li><span class="math inline">\(n=9\)</span></li>
 <li><span class="math inline">\(\beta_k - \beta_k^{(0)}=3\)</span></li>
 </ul>
-<p>such that <span class="math display">\[
-\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}=\frac{3\cdot 3}{4.5} = 2.
-\]</span> <span class="math display">\[\begin{align*}
+<p>such that <span class="math display">\[\begin{align*}
 \text{Power}
-&amp;=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right)\\[2ex]
+&amp;=1-\Phi\Bigg(z_{1-\alpha} - \overbrace{\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}^{=\frac{3\cdot 3}{4.5} = 2}\Bigg)\\[2ex]
 &amp;=1-\Phi\left(1.64  - 2 \right)\\[2ex]
 &amp;=1-0.36=0.64
-\end{align*}\]</span> That is, we detect the violation of the null hypothesis <span class="math inline">\((\beta_k - \beta_k^{(0)}=3)\)</span> with probability <span class="math inline">\(0.64;\)</span> i.e., in <span class="math inline">\(64\%\)</span> of resamplings from the random sample.</p>
-<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/fig-Power_c479dc973a1104bef5cf4063823a816b">
+\end{align*}\]</span> That is, we detect the violation of the null hypothesis <span class="math inline">\((\beta_k - \beta_k^{(0)}=3)\)</span> with probability <span class="math inline">\(0.64;\)</span> i.e., we expect to detect the violation of the null hypothesis in <span class="math inline">\(64\%\)</span> of resamplings from the random sample.</p>
+<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/fig-Power_688e4f7f4d7b30030eae9e3369dc009e">
 <div class="cell-output-display">
 <div id="fig-Power" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="05-Small-Sample-Inference_files/figure-html/fig-Power-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5.4: Probability of a type II error and the power for a one-sided <span class="math inline">\(t\)</span>-test at significance level <span class="math inline">\(\alpha = 0.05,\)</span> sample size <span class="math inline">\(n=9,\)</span> and violation of the null hypothesis <span class="math inline">\(\beta_k - \beta_k^{(0)}=3.\)</span></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5.4: Probability of a type-II-error and the power for a one-sided <span class="math inline">\(t\)</span>-test at significance level <span class="math inline">\(\alpha = 0.05,\)</span> sample size <span class="math inline">\(n=9,\)</span> and violation of the null hypothesis <span class="math inline">\(\beta_k - \beta_k^{(0)}=3.\)</span></figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -878,18 +875,112 @@ Note
 </section>
 <section id="p-value" class="level3" data-number="5.3.4">
 <h3 data-number="5.3.4" class="anchored" data-anchor-id="p-value"><span class="header-section-number">5.3.4</span> <span class="math inline">\(p\)</span>-Value</h3>
-<p>The <span class="math inline">\(p\)</span>-value of a test statistic is the significance level we would obtain if we took the sample value of the observed test statistic, <span class="math inline">\(F_{\text{obs}}\)</span> or <span class="math inline">\(t_{\text{obs}},\)</span> as the border between the rejection and non-rejection regions.</p>
+<section id="f-test" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="f-test"><span class="math inline">\(F\)</span>-Test</h4>
+<p>The <span class="math inline">\(F\)</span>-test allows us to test <span class="math display">\[\begin{align*}
+&amp;H_0: R\beta = r\\[2ex]
+\text{versus}\quad
+&amp;H_1: R\beta\neq r,
+\end{align*}\]</span> where <span class="math inline">\(\beta\)</span> denotes the true (unknown) parameter vector and <span class="math inline">\(r\)</span> the null-hypothetical value specified by the statistician (e.g.&nbsp;<span class="math inline">\(r=0\)</span>).</p>
+<p>We know that <span class="math display">\[
+F\overset{H_0}{\sim}F_{q,n-K}.
+\]</span></p>
+<p>The <span class="math inline">\(p\)</span>-value of the <span class="math inline">\(F\)</span>-test is the probability of seeing realizations of <span class="math inline">\(F\)</span> that are equal to or larger than the observed value <span class="math inline">\(F_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[
+p_{\text{obs}}=P(F\geq F_{\text{obs}}\;|\;H_0 \text{ is true})
+\]</span></p>
 <ul>
-<li><strong><span class="math inline">\(F\)</span>-test:</strong> <span class="math inline">\(p=P_{H_0}(F\geq F_{\text{obs}})\)</span></li>
-<li><strong><span class="math inline">\(t\)</span>-test:</strong>
-<ul>
-<li>Two sided, i.e., <span class="math inline">\(H_0:\beta_k = r\)</span> vs.&nbsp;<span class="math inline">\(H_1:\beta_k\neq r\)</span>: <br> <span class="math inline">\(p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|\geq|t_{obs}|)\)</span> <br> The latter equality holds since the <span class="math inline">\(t\)</span> distrbution is symmetric.</li>
-<li>One sided, i.e., <span class="math inline">\(H_0:\beta_k \leq r\)</span> vs.&nbsp;<span class="math inline">\(H_1:\beta_k&gt; r\)</span>: <br> <span class="math inline">\(p=P_{H_0}(t\geq t_{\text{obs}})\)</span></li>
-<li>One sided, i.e., <span class="math inline">\(H_0:\beta_k \geq r\)</span> vs.&nbsp;<span class="math inline">\(H_1:\beta_k&lt; r\)</span>: <br> <span class="math inline">\(p=P_{H_0}(t\leq t_{\text{obs}})\)</span></li>
-</ul></li>
+<li><p>We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} &lt; \alpha
+\]</span></p></li>
+<li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} \geq \alpha
+\]</span></p></li>
 </ul>
-<p>Put another way, the <span class="math inline">\(p\)</span>-value is the greatest significance level for which we just fail to reject the null. Therefore, the <span class="math inline">\(p\)</span>-value is sometimes also called “marginal significance value”.</p>
-<p>If the <span class="math inline">\(p\)</span>-value is strictly smaller than the chosen significance level <span class="math inline">\(\alpha\)</span>, we reject the null hypothesis.</p>
+</section>
+<section id="the-one-sided-t-test-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="the-one-sided-t-test-1">The One-Sided <span class="math inline">\(t\)</span>-Test</h4>
+<p>Possible one-sided hypotheses:</p>
+<p><span class="math display">\[\begin{align*}
+&amp;H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad &amp; H_1:\beta_k &gt;    \beta_k^{(0)}\\
+\end{align*}\]</span></p>
+<p>or</p>
+<p><span class="math display">\[\begin{align*}
+&amp;H_0: \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad &amp; H_1: \beta_k &lt;  \beta_k^{(0)}\\
+\end{align*}\]</span></p>
+<!-- In case of a one-sided $t$-test, we will reject the null if $T_{\text{obs}}$ is sufficiently "far away" from zero in the relevant direction of $H_1$.  -->
+<p>We know that <span class="math display">\[
+T\overset{H_0}{\sim}t_{n-K}.
+\]</span></p>
+<p>The <span class="math inline">\(p\)</span>-value of the one-sided <span class="math inline">\(t\)</span>-test for testing <span class="math display">\[\begin{align*}
+&amp;H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad &amp; H_1: \beta_k &gt;    \beta_k^{(0)}\\
+\end{align*}\]</span> is the probability of seeing realizations of <span class="math inline">\(T\)</span> that are equal to or larger than the observed value <span class="math inline">\(T_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[
+p_{\text{obs}}=P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true}).
+\]</span> * We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} &lt; \alpha
+\]</span></p>
+<ul>
+<li>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} \geq \alpha
+\]</span></li>
+</ul>
+<p>The <span class="math inline">\(p\)</span>-value of the one-sided <span class="math inline">\(t\)</span>-test for testing <span class="math display">\[\begin{align*}
+&amp;H_0: \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad &amp; H_1: \beta_k &lt;    \beta_k^{(0)}\\
+\end{align*}\]</span> is the probability of seeing realizations of <span class="math inline">\(T\)</span> that are equal to or smaller than the observed value <span class="math inline">\(T_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[
+p_{\text{obs}}=P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}).
+\]</span></p>
+<ul>
+<li><p>We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} &lt; \alpha
+\]</span></p></li>
+<li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} \geq \alpha
+\]</span></p></li>
+</ul>
+</section>
+<section id="the-two-sided-t-test-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="the-two-sided-t-test-1">The Two-Sided <span class="math inline">\(t\)</span>-Test</h4>
+<p>The two-sided <span class="math inline">\(t\)</span>-test allows us to test <span class="math display">\[\begin{align*}
+&amp; H_0: \beta_k=\beta_k^{(0)}\\
+\text{versus}\quad
+&amp; H_1: \beta_k\ne \beta_k^{(0)}
+\end{align*}\]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statisticaian (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
+<p>We know that <span class="math display">\[
+T\overset{H_0}{\sim}t_{n-K}.
+\]</span></p>
+<p>The <span class="math inline">\(p\)</span>-value of the two-sided <span class="math inline">\(t\)</span>-test is the probability of seeing realizations of <span class="math inline">\(T\)</span> that are equal to or more extreme than the observed value <span class="math inline">\(T_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[\begin{align*}
+p_{\text{obs}}
+&amp;=P(|T|\geq |T_{\text{obs}}|\;|\;H_0 \text{ is true})\\[2ex]
+&amp;=2\cdot\min\{P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}),
+            P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true})\}
+\end{align*}\]</span></p>
+<ul>
+<li><p>We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} &lt; \alpha
+\]</span></p></li>
+<li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} \geq \alpha
+\]</span></p></li>
+</ul>
+<!-- The $p$-value of a test statistic is the significance level we would obtain if we took the sample value of the observed test statistic, $F_{\text{obs}}$ or $t_{\text{obs}},$ as the border between the rejection and non-rejection regions. 
+
+* **$F$-test:** 
+* **$t$-test:** 
+   * Two sided, i.e.,  $H_0:\beta_k = r$ vs. $H_1:\beta_k\neq r$: <br> 
+    $p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|\geq|t_{\text{obs}}|)$ <br>
+    The latter equality holds since the $t$ distrbution is symmetric. 
+   * One sided, i.e., $H_0:\beta_k \leq r$ vs. $H_1:\beta_k> r$: <br> 
+     $p=P_{H_0}(t\geq t_{\text{obs}})$
+   * One sided, i.e., $H_0:\beta_k \geq r$ vs. $H_1:\beta_k< r$: <br> 
+     $p=P_{H_0}(t\leq t_{\text{obs}})$
+
+Put another way, the $p$-value is the greatest significance level for which we just fail to reject the null. Therefore, the $p$-value is sometimes also called "marginal significance value". 
+
+If the $p$-value is strictly smaller than the chosen significance level $\alpha$, we reject the null hypothesis.  -->
+</section>
 </section>
 </section>
 <section id="sec-CIsmallsample" class="level2" data-number="5.4">
@@ -897,18 +988,32 @@ Note
 <p>We define a two-sided <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> percent confidence interval for the <em>deterministic</em> (unknown) true <span class="math inline">\(\beta_k\)</span> as the <strong>random interval</strong> <span class="math inline">\(\operatorname{CI}_{k,1-\alpha}\)</span> for which <span class="math display">\[
 P\Big(\beta_k\in\operatorname{CI}_{k,1-\alpha}\Big)\geq 1-\alpha.
 \]</span> Derivation of the random interval <span class="math inline">\(\operatorname{CI}_{k,1-\alpha}\)</span>:</p>
-<p>Observe that <span class="math display">\[
+<p>Observe that (under Ass 1-4<span class="math inline">\(^\ast\)</span>) <span id="eq-CIDistr"><span class="math display">\[
 \frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\sim t_{(n-K)}
-\]</span> Therefore, <span class="math display">\[\begin{align*}
-P\left(-t_{1-\alpha/2,n-K}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq t_{1-\alpha/2,n-K}\right)=1-\alpha,
-\end{align*}\]</span> where <span class="math inline">\(t_{1-\alpha/2,n-K}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom. Next, we can do the following equivalent transformations <span class="math display">\[\begin{align*}
-P\left(-t_{1-\alpha/2,n-K}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq t_{1-\alpha/2,n-K}\right)&amp;=1-\alpha\\
-\Leftrightarrow P\left(\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\leq \beta_k\leq\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right)&amp;=1-\alpha\\
-\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]}_{=:\operatorname{CI}_{k,1-\alpha}}\right)&amp;=1-\alpha
+\tag{5.4}\]</span></span> Therefore, <span class="math display">\[\begin{align*}
+P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq c_{1-\alpha/2}\right)=1-\alpha,
+\end{align*}\]</span> where <span class="math inline">\(c_{1-\alpha/2}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom. Next, we can do the following equivalent transformations <span class="math display">\[\begin{align*}
+P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq c_{1-\alpha/2}\right)&amp;=1-\alpha\\
+\Leftrightarrow P\left(\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\leq \beta_k\leq\hat\beta_k +c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right)&amp;=1-\alpha\\
+\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]}_{=:\operatorname{CI}_{k,1-\alpha}}\right)&amp;=1-\alpha
 \end{align*}\]</span> That is, the random interval <span class="math display">\[
-\operatorname{CI}_{k,1-\alpha}=\left[\hat\beta_k-t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +t_{1-\alpha/2,n-K}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
-\]</span> is our <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> percent confidence interval for <span class="math inline">\(\beta_k\)</span>.</p>
-<p><strong>Interpretation:</strong> The random interval <span class="math inline">\(\operatorname{CI}_{k,1-\alpha}\)</span> for <span class="math inline">\(\beta_k\)</span> contains the true parameter value <span class="math inline">\(\beta_k\)</span> in <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> cases of its realizations when considering infinitely many realizations. It’s best to take a look at dynamic viszualizations like this one:</p>
+\operatorname{CI}_{k,1-\alpha}=\left[\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k + c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
+\]</span> is our <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> confidence interval for <span class="math inline">\(\beta_k\)</span>.</p>
+<p>Since the confidence interval is based on the exact distribution (under Assumptions 1-4<span class="math inline">\(^\ast\)</span>) in <a href="#eq-CIDistr">Equation&nbsp;<span>5.4</span></a>, the confidence interval has an <strong>exact</strong> coverage probability <span class="math display">\[\begin{align*}
+P\left(\beta_k\in\operatorname{CI}_{k,1-\alpha}\right)&amp;=1-\alpha
+\end{align*}\]</span> provided the Assumptions 1-4<span class="math inline">\(^\ast\)</span> are true.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Interpretation of Confidence Intervals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The random interval <span class="math inline">\(\operatorname{CI}_{k,1-\alpha}\)</span> for <span class="math inline">\(\beta_k\)</span> contains the true parameter value <span class="math inline">\(\beta_k\)</span> with probability <span class="math inline">\(1-\alpha;\)</span> i.e.&nbsp;we expect that <span class="math inline">\(\operatorname{CI}_{k,1-\alpha}\)</span> covers <span class="math inline">\(\beta_k\)</span> in <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> of resamplings from the random sample.</p>
+<p>It’s best to take a look at dynamic visualizations like this one:</p>
 <center>
 <a href="https://rpsychologist.com/d3/ci/">https://rpsychologist.com/d3/ci/</a>
 </center>
@@ -916,6 +1021,8 @@ P\left(-t_{1-\alpha/2,n-K}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{
 <center>
 <img src="images/Meme_CI_2.jpg" class="img-fluid">
 </center>
+</div>
+</div>
 </section>
 <section id="sec-PSSI" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="sec-PSSI"><span class="header-section-number">5.5</span> Monte Carlo Simulations</h2>
@@ -1250,8 +1357,8 @@ Model 2: Y ~ X_2 + X_3
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">hypothesis.matrix =</span> R, </span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rhs =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here, we simulated data “under the null hypothesis” and thus it is not surpising that we cannot reject the null hypothesis at a significance level of, for instance, <span class="math inline">\(\alpha=0.05\)</span>. However, in repeated samples we should nevertheless observe <span class="math inline">\(\alpha\cdot 100\%\)</span> type I errors (false rejections of <span class="math inline">\(H_0\)</span>) under the null hypothesis. Let’s check the type I error rate using the following Monte Carlo simulation:</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-19_190408123689d09fc5ec90a1972f8993">
+<p>Here, we simulated data “under the null hypothesis” and thus it is not surpising that we cannot reject the null hypothesis at a significance level of, for instance, <span class="math inline">\(\alpha=0.05\)</span>. However, in repeated samples we should nevertheless observe <span class="math inline">\(\alpha\cdot 100\%\)</span> type I errors (false rejections of <span class="math inline">\(H_0\)</span>) under the null hypothesis. Let’s check the type-I-error rate using the following Monte Carlo simulation:</p>
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-19_3ed41823d5fb326830a0c9c59e15dd1c">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Let's generate 5000 F-test decisions and check </span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="do">## whether the empirical rate of type I errors is </span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="do">## close to the theoretical significance level. </span></span>
@@ -1269,27 +1376,27 @@ Model 2: Y ~ X_2 + X_3
 <span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  F_test_pvalues[r] <span class="ot">&lt;-</span> p</span>
 <span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Is the significance level ("nominal type I error rate") </span></span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="do">## smaller or equal to the actual type I error rate?</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Is the significance level ("nominal type-I-error rate") </span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="do">## smaller or equal to the actual type-I-error rate?</span></span>
 <span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>alpha        <span class="ot">&lt;-</span>  <span class="fl">0.05</span>          <span class="co"># signif level</span></span>
 <span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>rejections   <span class="ot">&lt;-</span> F_test_pvalues[F_test_pvalues <span class="sc">&lt;</span> alpha]</span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(rejections)<span class="sc">/</span>B, <span class="dv">4</span>) <span class="co"># actual type I error rate </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(rejections)<span class="sc">/</span>B, <span class="dv">4</span>) <span class="co"># actual type-I-error rate </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0504</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>alpha        <span class="ot">&lt;-</span>  <span class="fl">0.01</span>  <span class="co"># signif level</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>rejections   <span class="ot">&lt;-</span> F_test_pvalues[F_test_pvalues <span class="sc">&lt;</span> alpha]</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(rejections)<span class="sc">/</span>B, <span class="dv">4</span>) <span class="co"># actual type I error rate </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(rejections)<span class="sc">/</span>B, <span class="dv">4</span>) <span class="co"># actual type-I-error rate </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0074</code></pre>
 </div>
 </div>
 <p>Observations:</p>
 <ol type="1">
-<li>We correctly control for the type I error rate since the empirical type I error rate is not larger than the chosen significance level <span class="math inline">\(\alpha\)</span> (i.e.&nbsp;the nominal type I error rate).</li>
-<li>Second, the <span class="math inline">\(F\)</span> test is not conservative since the empirical type I error rates essentially matche the chosen significance levels <span class="math inline">\(\alpha\)</span> (i.e.&nbsp;the nominal Type I error rate). 2.1 In fact, if we would increase the number of Monte Carlo repetitions, the empirical type I error rate would converge to the nominal type I error rate <span class="math inline">\(\alpha\)</span> due to the law of large numbers.</li>
+<li>We correctly control for the type-I-error rate since the empirical type-I-error rate is not larger than the chosen significance level <span class="math inline">\(\alpha\)</span> (i.e.&nbsp;the nominal type-I-error rate).</li>
+<li>Second, the <span class="math inline">\(F\)</span> test is not conservative since the empirical type-I-error rates essentially matche the chosen significance levels <span class="math inline">\(\alpha\)</span> (i.e.&nbsp;the nominal type-I-error rate). 2.1 In fact, if we would increase the number of Monte Carlo repetitions, the empirical type-I-error rate would converge to the nominal type-I-error rate <span class="math inline">\(\alpha\)</span> due to the law of large numbers.</li>
 <li>Last but not least: All this works <strong>unconditionally</strong> on <span class="math inline">\(X\)</span> since the distribution of the <span class="math inline">\(F\)</span> statistic does not depend on <span class="math inline">\(X\)</span>. <!-- (Thus is also works conditionally on $X$ and you may check this at home.) --></li>
 </ol>
 <p>Next, we check how well the <span class="math inline">\(F\)</span> test detects certain <strong>violations of the null hypothesis</strong>. We do this by using the same data generating process, but by testing the following <span style="color:#FF0000">incorrect</span> null hypothesis: <span class="math display">\[\begin{align*}
@@ -1321,7 +1428,7 @@ H_1:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 </div>
 </div>
 <p>We can now correctly reject the false null hypothesis in approximately 20.7 % of all Monte Carlo replications.</p>
-<p><strong>Caution:</strong> This means that we are not able to detect the violation of the null hypothesis in 79.3 % of cases. Therefore, we can never use an insignificant test result (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\geq\alpha\)</span>) as a confirmation of the null hypothesis. Obviously, there are type II error events (not rejecting a false <span class="math inline">\(H_0\)</span>), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control the type II error rate. We can only control the type I error rate by using a small significance level <span class="math inline">\(\alpha\)</span>.</p>
+<p><strong>Caution:</strong> This means that we are not able to detect the violation of the null hypothesis in 79.3 % of cases. Therefore, we can never use an insignificant test result (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\geq\alpha\)</span>) as a confirmation of the null hypothesis. Obviously, there are type-II-error events (not rejecting a false <span class="math inline">\(H_0\)</span>), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control the type-II-error rate. We can only control the type-I-error rate by using a small significance level <span class="math inline">\(\alpha\)</span>.</p>
 <p>Moreover, note that the <span class="math inline">\(F\)</span> test is not informative about which part of the null hypothesis (<span class="math inline">\(\beta_2=4\)</span> and/or <span class="math inline">\(\beta_3=4\)</span>) is violated. We only get the information that at least one of the multiple parameter hypotheses is violated.</p>
 </section>
 <section id="check-dualty-of-confidence-intervals-and-hypothesis-tests" class="level3" data-number="5.5.3">
