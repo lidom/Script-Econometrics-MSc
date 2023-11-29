@@ -356,12 +356,25 @@ H_0: & \beta_k=r \\
 H_1: & \beta_k\ne r
 \end{array}
 \end{equation*}
-In case of a two-sided $t$-test, we reject the null hypothesis if the observed realization of the $t$-test, $t_{obs}$, is "far away" from zero either by being sufficiently smaller or greater than $r$. The corresponding two-sided critical values are denoted by $-c_{1-\alpha/2}=c_{\alpha/2}<0$ and $c_{1-\alpha/2}>0$, where $c_{1-\alpha/2}>0$ is the $(1-\alpha/2)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom, and where $-c_{1-\alpha/2}=c_{\alpha/2}$ due to the symmetry of the $t$-distribution. These critical values defines the following rejection and the non-rejection regions 
+In case of a two-sided $t$-test, we reject the null hypothesis if the observed realization of the $t$-test, $t_{obs}$, is "far away" from zero either by being sufficiently smaller or greater than $r$. 
+
+The corresponding two-sided critical values are denoted by 
+
+* $c_{\alpha/2}<0$ and 
+* $c_{1-\alpha/2}>0$, 
+
+where $c_{1-\alpha/2}>0$ is the $(1-\alpha/2)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom, and where 
+$$
+c_{1-\alpha/2}=-c_{\alpha/2}
+$$ 
+due to the symmetry of the $t$-distribution. 
+
+These critical values define the following rejection and the non-rejection regions 
 \begin{align*}
 \text{rejection region:}&\hspace{1cm}]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[\\
 \text{non-rejection region:}&\hspace{1cm}[c_{\alpha/2},c_{1-\alpha/2}].
 \end{align*}
-For this rejection region it holds true that
+It holds true that
 $$
 P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[\Big)=\alpha.
 $$
@@ -412,17 +425,17 @@ One-sided hypothesis:
 \end{equation*}
 In case of a one-sided $t$-test, we will reject the null if $t_{obs}$ is sufficiently "far away" from zero in the relevant direction of $H_1$. The corresponding critical value is either 
 
-* $-c_{1-\alpha}$ (when $H_1:\beta_k< r$) or 
-* $\phantom{-}c_{1-\alpha}$ (when $H_1:\beta_k> r$), 
+* $c_{\alpha}$ (when $H_1:\beta_k< r$) 
 
-where $c_{1-\alpha}$ is the $(1-\alpha)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom, and where 
-$$
--c_{1-\alpha}=c_{\alpha}
-$$ 
+or 
+
+* $c_{1-\alpha}$ (when $H_1:\beta_k> r$), 
+
+where $c_{\alpha}$ is the $\alpha$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom, and where $c_{1-\alpha}=-c_{\alpha}$ 
 due to the symmetry of the $t$-distribution. 
 
 
-The critical value $c_{1-\alpha}$ defines the following rejection and the non-rejection regions:
+This leads to the following rejection and the non-rejection regions:
 
 
 For $H_0: \beta_k=0\quad$ versus $\quad H_1: \beta_k < 0$:
@@ -430,7 +443,7 @@ For $H_0: \beta_k=0\quad$ versus $\quad H_1: \beta_k < 0$:
 \text{rejection region:}   &\hspace{2cm}]-\infty,c_{\alpha}[ \\
 \text{non-rejection region:}&\hspace{2cm}[c_{\alpha},\infty[
 \end{align*}
-such that 
+with
 $$
 P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha}[\Big)=\alpha.
 $$
@@ -442,7 +455,7 @@ For $H_0: \beta_k=0\quad$ versus $\quad H_1: \beta_k > 0$:
 \text{rejection region:}&\hspace{1cm}]c_{1-\alpha}, \infty[\\
 \text{non-rejection region:}&\hspace{1cm}]-\infty,c_{1-\alpha}]
 \end{align*}
-such that 
+with
 $$
 P(\text{Type I Error})=P_{H_0}\Big(t\in\;]c_{1-\alpha}, \infty[\Big)=\alpha.
 $$
@@ -511,45 +524,107 @@ c_twoSided
 ```
 
 
-### Type II Error and Power
+### Power 
 
-A Type II error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a Type II error equals one minus the probability of correctly rejecting the null hypothesis ("Power"). For instance, in the case of using the $t$-test to test the null hypothesis $H_0: \beta_k=0$ versus the one-sided alternative hypothesis $H_1:\beta_k>0$) we have that 
+A Type II error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a Type II error equals one minus the probability of correctly rejecting the null hypothesis ("Power"). 
+
+<!-- For instance, in the case of using the $t$-test to test the null hypothesis $H_0: \beta_k=0$ versus the one-sided alternative hypothesis $H_1:\beta_k>0$) we have that 
 \begin{align*}
 P(\text{Type II Error})
 &=P_{H_1}\Big(t\;\in\;\overbrace{]-\infty,c_{1-\alpha}]}^{\text{non-rejection region}}\Big)\\
 &=1-\underbrace{P_{H_1}\Big(t\;\in\;\overbrace{]c_{1-\alpha},\infty[}^{\text{rejection region}}\Big)}_{\text{"Power"}},
 \end{align*}
-where $P_{H_1}$ means that we compute the probability under the assumption that $H_1$ is true. 
+where $P_{H_1}$ means that we compute the probability under the assumption that $H_1$ is true.  -->
 
-There is a trade off between the probability of making a Type I error and the probability of making a Type II error: a lower significance level $\alpha$, decreases $P(\text{Type I Error})$, but necessarily increases $P(\text{Type II Error})$ and vice versa.  Ideally, we would have some sense of the costs of making each of these errors, and would choose our significance level to minimize these total costs. However, the costs are often difficult to know. Moreover, the probability of making a Type II error is usually impossible to compute, since we usually do not know the true distribution of $\hat\beta_k$ under the alternative. 
+<!-- 
+::: {.callout-note}
+There is a trade off between the probability of making a Type I error and the probability of making a Type II error: a lower significance level $\alpha$ decreases $P(\text{Type I Error})$, but necessarily increases $P(\text{Type II Error})$ and vice versa.  
+Ideally, we would have some sense of the costs of making each of these errors, and would choose our significance level to minimize these total costs. However, the costs are often difficult to know.  
+:::  
+-->
 
-
-For illustration purposes, consider the case of a $t$ test for a one-sided hypothesis
-\begin{equation*}
-\begin{array}{ll}
-H_0:  & \beta_k=0 \\
-H_1:  & \beta_k>0,
-\end{array}
-\end{equation*}
-where the true (usually unknown) parameter value is $\beta_k=3$ and where the true (usually also unknown) standard error is $\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$. Only with the knowledge about these usually unknown quantities, we can derive the distribution of the $t$-test statistic under the alternative hypothesis. The distribution of the $t$-test statistic becomes here a standard normal distribution, since we assume $\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$ to be a **known** quantity for some given sample size $n$. (This completely unrealistic assumption is only used for illustrative purposes to explain the probability of making a Type II error and the power (i.e. $1-P(\text{Type II Error})$).)  
-
-Under this setup, the distribution under the null hypothesis (i.e., if $\beta_k=0$ were true) is:
-$$
-t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\overset{H_0}{\sim}\mathcal{N}(0,1)
-$$
-Likewise, the distribution under the alternative hypothesis (i.e., for the actual $\beta_k=3$) is:
+Since we want to detect violations of the null-hypothesis, we want that our test has a large power
 \begin{align*}
-t&=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
-=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
-&=\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\overset{H_1}{\sim}\mathcal{N}(\Delta,1)
+\text{Power} 
+& = 1 - P(\text{Type II Error})\\[2ex]
+& = 1 - P(\text{Not reject H$_0$ given H$_1$ is true})\\[2ex]
+& = P(\text{Reject H$_0$ given H$_1$ is true})\\[2ex]
+& = P(\text{Detect a violation of the null})
 \end{align*}
 
-So, the mean-shift $\Delta$ depends on:
+
+Unfortunately, computing the power of a statistical test is usually impossible, since this would require knowing the distribution of the test statistic under the alternative hypothesis H$_1.$
+
+We can, however derive the power of the $t$ test for some given scenario. 
+
+Let's consider the one-sided hypothesis
+\begin{equation*}
+\begin{array}{ll}
+H_0:  & \beta_k\leq \beta_{k}^{(0)}\\
+H_1:  & \beta_k>\beta_{k}^{(0)},
+\end{array}
+\end{equation*}
+where 
+
+* $\beta_k$ denotes the true (unknown) parameter value 
+* $\beta_{k}^{(0)}$ denotes the hypothetical parameter value, 
+
+and where the true standard error of $\hat\beta_k$ given $X$ is known to be  
+$$
+\operatorname{SE}(\hat\beta_k|X)=\frac{1}{\sqrt{n}}4.5.
+$$
+
+::: {.callout-tip}
+Of course, usually we do not know the standard error of the estimator, but have to estimate it. 
+
+But it is true that the standard error of the OLS estimator $\hat{\beta}_k$ is proportional to $1/\sqrt{n}.$
+:::
+
+Under this setup, the $t$-test statistic is normally distributed, since we do not need to estimate the standard error $\operatorname{SE}(\hat\beta_k|X)=(1/\sqrt{n})4.5.$
+
+If H$_0$ is true with $\beta_k=\beta_k^{(0)},$ then
+\begin{align*}
+t
+&=\frac{\hat\beta_k-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
+&=\frac{\sqrt{n}(\hat\beta_k-\beta_k)}{4.5} \sim \mathcal{N}(0,1).
+\end{align*}
+
+If H$_1$ is true with $\beta_k-\beta_k^{(0)}>0,$ then 
+\begin{align*}
+t&=\frac{\hat\beta_k-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}
+=\frac{\hat\beta_k\overbrace{-\beta_k+\beta_k}^{=0}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
+&=\underbrace{\frac{\sqrt{n}(\hat\beta_k-\beta_k)}{4.5}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}_{=\text{mean-shift}}\\[2ex] 
+&\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right)
+\end{align*}
+
+Power: 
+\begin{align*}
+\text{Power} 
+& = P(\text{Reject H$_0$ given H$_1$ is true})\\[2ex]
+& = P(t \in \left]z_{1-\alpha},\infty\right[ \;\;|\; H_1\text{ is true})\\[2ex]
+& = P(t > z_{1-\alpha}),
+\end{align*}
+where 
+$$
+t\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right)
+$$
+and where $z_{1-\alpha}$ denotes the $(1-\alpha)$ quantile of the standard normal distribution $\mathcal{N}(0,1).$  
+
+<!-- So, the distribution of the test statistic under $H_1$ depends on:
 
 * The value of $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}$ (here $1.5$).  
-* The difference between the actual parameter value $(\beta_k=3)$ and the hypothetical parameter $(r=0)$ value under the null-hypothesis. 
+* The difference between the actual parameter value $(\beta_k=3)$ and the hypothetical parameter $(r=0)$ value under the null-hypothesis.  -->
 
-The following Graphic illustrates the probability of a type II error and the power for the case where $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5$ such that $\Delta=3/1.5=2$. 
+The following Graphic illustrates the probability of a type II error and the power for the case where 
+
+* $\alpha = 0.05$
+* $n=9$ 
+* $\beta_k - \beta_k^{(0)}=3$
+
+such that 
+$$
+\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5} = 2.
+$$
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 library("scales") # transperent color
 mean.alt <- 2
@@ -588,7 +663,7 @@ i <- xfit2 >= lb & xfit2 <= ub
 polygon(c(lb,xfit2[i],ub), c(0,yfit2[i],0), col=alpha("darkblue", 0.25), border=alpha("darkblue", 0.25))
 
 lines(x=c(ub,ub), y=c(0,.47),lwd=2,lty=2)
-text(x = ub, y = .57, labels = expression(c[1-alpha]==1.64))
+text(x = ub, y = .57, labels = expression(z[1-alpha]==1.64))
 
 text(x=0+.25,y=.425, "N(0,1)", pos=2)
 text(x=2+.5,y=.425, "N(2,1)", pos=4)

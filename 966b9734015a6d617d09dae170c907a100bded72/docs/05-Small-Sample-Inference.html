@@ -237,7 +237,7 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#significance-level-alpha" id="toc-significance-level-alpha" class="nav-link" data-scroll-target="#significance-level-alpha"><span class="toc-section-number">5.3.1</span>  Significance Level <span class="math inline">\(\alpha\)</span></a></li>
   <li><a href="#critical-values" id="toc-critical-values" class="nav-link" data-scroll-target="#critical-values"><span class="toc-section-number">5.3.2</span>  Critical Values</a></li>
-  <li><a href="#type-ii-error-and-power" id="toc-type-ii-error-and-power" class="nav-link" data-scroll-target="#type-ii-error-and-power"><span class="toc-section-number">5.3.3</span>  Type II Error and Power</a></li>
+  <li><a href="#power" id="toc-power" class="nav-link" data-scroll-target="#power"><span class="toc-section-number">5.3.3</span>  Power</a></li>
   <li><a href="#p-value" id="toc-p-value" class="nav-link" data-scroll-target="#p-value"><span class="toc-section-number">5.3.4</span>  <span class="math inline">\(p\)</span>-Value</a></li>
   </ul></li>
   <li><a href="#sec-CIsmallsample" id="toc-sec-CIsmallsample" class="nav-link" data-scroll-target="#sec-CIsmallsample"><span class="toc-section-number">5.4</span>  Confidence Intervals</a></li>
@@ -476,10 +476,19 @@ P(\text{Type I Error})=P_{H_0}\Big(F\in]c_{1-\alpha},\infty[\Big)=\alpha,
 H_0: &amp; \beta_k=r \\
 H_1: &amp; \beta_k\ne r
 \end{array}
-\end{equation*}\]</span> In case of a two-sided <span class="math inline">\(t\)</span>-test, we reject the null hypothesis if the observed realization of the <span class="math inline">\(t\)</span>-test, <span class="math inline">\(t_{obs}\)</span>, is “far away” from zero either by being sufficiently smaller or greater than <span class="math inline">\(r\)</span>. The corresponding two-sided critical values are denoted by <span class="math inline">\(-c_{1-\alpha/2}=c_{\alpha/2}&lt;0\)</span> and <span class="math inline">\(c_{1-\alpha/2}&gt;0\)</span>, where <span class="math inline">\(c_{1-\alpha/2}&gt;0\)</span> is the <span class="math inline">\((1-\alpha/2)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, and where <span class="math inline">\(-c_{1-\alpha/2}=c_{\alpha/2}\)</span> due to the symmetry of the <span class="math inline">\(t\)</span>-distribution. These critical values defines the following rejection and the non-rejection regions <span class="math display">\[\begin{align*}
+\end{equation*}\]</span> In case of a two-sided <span class="math inline">\(t\)</span>-test, we reject the null hypothesis if the observed realization of the <span class="math inline">\(t\)</span>-test, <span class="math inline">\(t_{obs}\)</span>, is “far away” from zero either by being sufficiently smaller or greater than <span class="math inline">\(r\)</span>.</p>
+<p>The corresponding two-sided critical values are denoted by</p>
+<ul>
+<li><span class="math inline">\(c_{\alpha/2}&lt;0\)</span> and</li>
+<li><span class="math inline">\(c_{1-\alpha/2}&gt;0\)</span>,</li>
+</ul>
+<p>where <span class="math inline">\(c_{1-\alpha/2}&gt;0\)</span> is the <span class="math inline">\((1-\alpha/2)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, and where <span class="math display">\[
+c_{1-\alpha/2}=-c_{\alpha/2}
+\]</span> due to the symmetry of the <span class="math inline">\(t\)</span>-distribution.</p>
+<p>These critical values define the following rejection and the non-rejection regions <span class="math display">\[\begin{align*}
 \text{rejection region:}&amp;\hspace{1cm}]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[\\
 \text{non-rejection region:}&amp;\hspace{1cm}[c_{\alpha/2},c_{1-\alpha/2}].
-\end{align*}\]</span> For this rejection region it holds true that <span class="math display">\[
+\end{align*}\]</span> It holds true that <span class="math display">\[
 P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[\Big)=\alpha.
 \]</span></p>
 <div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-6_36dfa5f6f6e892bd3763843e193e246d">
@@ -503,23 +512,24 @@ P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1
 \end{array}
 \end{equation*}\]</span> In case of a one-sided <span class="math inline">\(t\)</span>-test, we will reject the null if <span class="math inline">\(t_{obs}\)</span> is sufficiently “far away” from zero in the relevant direction of <span class="math inline">\(H_1\)</span>. The corresponding critical value is either</p>
 <ul>
-<li><span class="math inline">\(-c_{1-\alpha}\)</span> (when <span class="math inline">\(H_1:\beta_k&lt; r\)</span>) or</li>
-<li><span class="math inline">\(\phantom{-}c_{1-\alpha}\)</span> (when <span class="math inline">\(H_1:\beta_k&gt; r\)</span>),</li>
+<li><span class="math inline">\(c_{\alpha}\)</span> (when <span class="math inline">\(H_1:\beta_k&lt; r\)</span>)</li>
 </ul>
-<p>where <span class="math inline">\(c_{1-\alpha}\)</span> is the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, and where <span class="math display">\[
--c_{1-\alpha}=c_{\alpha}
-\]</span> due to the symmetry of the <span class="math inline">\(t\)</span>-distribution.</p>
-<p>The critical value <span class="math inline">\(c_{1-\alpha}\)</span> defines the following rejection and the non-rejection regions:</p>
+<p>or</p>
+<ul>
+<li><span class="math inline">\(c_{1-\alpha}\)</span> (when <span class="math inline">\(H_1:\beta_k&gt; r\)</span>),</li>
+</ul>
+<p>where <span class="math inline">\(c_{\alpha}\)</span> is the <span class="math inline">\(\alpha\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, and where <span class="math inline">\(c_{1-\alpha}=-c_{\alpha}\)</span> due to the symmetry of the <span class="math inline">\(t\)</span>-distribution.</p>
+<p>This leads to the following rejection and the non-rejection regions:</p>
 <p>For <span class="math inline">\(H_0: \beta_k=0\quad\)</span> versus <span class="math inline">\(\quad H_1: \beta_k &lt; 0\)</span>: <span class="math display">\[\begin{align*}
 \text{rejection region:}   &amp;\hspace{2cm}]-\infty,c_{\alpha}[ \\
 \text{non-rejection region:}&amp;\hspace{2cm}[c_{\alpha},\infty[
-\end{align*}\]</span> such that <span class="math display">\[
+\end{align*}\]</span> with <span class="math display">\[
 P(\text{Type I Error})=P_{H_0}\Big(t\in\;]-\infty,c_{\alpha}[\Big)=\alpha.
 \]</span></p>
 <p>For <span class="math inline">\(H_0: \beta_k=0\quad\)</span> versus <span class="math inline">\(\quad H_1: \beta_k &gt; 0\)</span>: <span class="math display">\[\begin{align*}
 \text{rejection region:}&amp;\hspace{1cm}]c_{1-\alpha}, \infty[\\
 \text{non-rejection region:}&amp;\hspace{1cm}]-\infty,c_{1-\alpha}]
-\end{align*}\]</span> such that <span class="math display">\[
+\end{align*}\]</span> with <span class="math display">\[
 P(\text{Type I Error})=P_{H_0}\Big(t\in\;]c_{1-\alpha}, \infty[\Big)=\alpha.
 \]</span></p>
 <div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-7_a4bc9b6f3a548d0e0f6e1a09bfaf84b1">
@@ -557,35 +567,93 @@ P(\text{Type I Error})=P_{H_0}\Big(t\in\;]c_{1-\alpha}, \infty[\Big)=\alpha.
 </section>
 </section>
 </section>
-<section id="type-ii-error-and-power" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="type-ii-error-and-power"><span class="header-section-number">5.3.3</span> Type II Error and Power</h3>
-<p>A Type II error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a Type II error equals one minus the probability of correctly rejecting the null hypothesis (“Power”). For instance, in the case of using the <span class="math inline">\(t\)</span>-test to test the null hypothesis <span class="math inline">\(H_0: \beta_k=0\)</span> versus the one-sided alternative hypothesis <span class="math inline">\(H_1:\beta_k&gt;0\)</span>) we have that <span class="math display">\[\begin{align*}
+<section id="power" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="power"><span class="header-section-number">5.3.3</span> Power</h3>
+<p>A Type II error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a Type II error equals one minus the probability of correctly rejecting the null hypothesis (“Power”).</p>
+<!-- For instance, in the case of using the $t$-test to test the null hypothesis $H_0: \beta_k=0$ versus the one-sided alternative hypothesis $H_1:\beta_k>0$) we have that 
+\begin{align*}
 P(\text{Type II Error})
-&amp;=P_{H_1}\Big(t\;\in\;\overbrace{]-\infty,c_{1-\alpha}]}^{\text{non-rejection region}}\Big)\\
-&amp;=1-\underbrace{P_{H_1}\Big(t\;\in\;\overbrace{]c_{1-\alpha},\infty[}^{\text{rejection region}}\Big)}_{\text{"Power"}},
-\end{align*}\]</span> where <span class="math inline">\(P_{H_1}\)</span> means that we compute the probability under the assumption that <span class="math inline">\(H_1\)</span> is true.</p>
-<p>There is a trade off between the probability of making a Type I error and the probability of making a Type II error: a lower significance level <span class="math inline">\(\alpha\)</span>, decreases <span class="math inline">\(P(\text{Type I Error})\)</span>, but necessarily increases <span class="math inline">\(P(\text{Type II Error})\)</span> and vice versa. Ideally, we would have some sense of the costs of making each of these errors, and would choose our significance level to minimize these total costs. However, the costs are often difficult to know. Moreover, the probability of making a Type II error is usually impossible to compute, since we usually do not know the true distribution of <span class="math inline">\(\hat\beta_k\)</span> under the alternative.</p>
-<p>For illustration purposes, consider the case of a <span class="math inline">\(t\)</span> test for a one-sided hypothesis <span class="math display">\[\begin{equation*}
-\begin{array}{ll}
-H_0:  &amp; \beta_k=0 \\
-H_1:  &amp; \beta_k&gt;0,
-\end{array}
-\end{equation*}\]</span> where the true (usually unknown) parameter value is <span class="math inline">\(\beta_k=3\)</span> and where the true (usually also unknown) standard error is <span class="math inline">\(\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span>. Only with the knowledge about these usually unknown quantities, we can derive the distribution of the <span class="math inline">\(t\)</span>-test statistic under the alternative hypothesis. The distribution of the <span class="math inline">\(t\)</span>-test statistic becomes here a standard normal distribution, since we assume <span class="math inline">\(\operatorname{SE}(\hat\beta_k|X)=\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span> to be a <strong>known</strong> quantity for some given sample size <span class="math inline">\(n\)</span>. (This completely unrealistic assumption is only used for illustrative purposes to explain the probability of making a Type II error and the power (i.e.&nbsp;<span class="math inline">\(1-P(\text{Type II Error})\)</span>).)</p>
-<p>Under this setup, the distribution under the null hypothesis (i.e., if <span class="math inline">\(\beta_k=0\)</span> were true) is: <span class="math display">\[
-t=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\overset{H_0}{\sim}\mathcal{N}(0,1)
-\]</span> Likewise, the distribution under the alternative hypothesis (i.e., for the actual <span class="math inline">\(\beta_k=3\)</span>) is: <span class="math display">\[\begin{align*}
-t&amp;=\frac{\hat\beta_k-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}
-=\frac{\hat\beta_k+3-3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}\\[2ex]
-&amp;=\underbrace{\frac{\hat\beta_k-3}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{3-0}{\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}}}_{=\Delta\text{ (mean-shift)}}\overset{H_1}{\sim}\mathcal{N}(\Delta,1)
+&=P_{H_1}\Big(t\;\in\;\overbrace{]-\infty,c_{1-\alpha}]}^{\text{non-rejection region}}\Big)\\
+&=1-\underbrace{P_{H_1}\Big(t\;\in\;\overbrace{]c_{1-\alpha},\infty[}^{\text{rejection region}}\Big)}_{\text{"Power"}},
+\end{align*}
+where $P_{H_1}$ means that we compute the probability under the assumption that $H_1$ is true.  -->
+<!-- 
+::: {.callout-note}
+There is a trade off between the probability of making a Type I error and the probability of making a Type II error: a lower significance level $\alpha$ decreases $P(\text{Type I Error})$, but necessarily increases $P(\text{Type II Error})$ and vice versa.  
+Ideally, we would have some sense of the costs of making each of these errors, and would choose our significance level to minimize these total costs. However, the costs are often difficult to know.  
+:::  
+-->
+<p>Since we want to detect violations of the null-hypothesis, we want that our test has a large power <span class="math display">\[\begin{align*}
+\text{Power}
+&amp; = 1 - P(\text{Type II Error})\\[2ex]
+&amp; = 1 - P(\text{Not reject H$_0$ given H$_1$ is true})\\[2ex]
+&amp; = P(\text{Reject H$_0$ given H$_1$ is true})\\[2ex]
+&amp; = P(\text{Detect a violation of the null})
 \end{align*}\]</span></p>
-<p>So, the mean-shift <span class="math inline">\(\Delta\)</span> depends on:</p>
+<p>Unfortunately, computing the power of a statistical test is usually impossible, since this would require knowing the distribution of the test statistic under the alternative hypothesis H<span class="math inline">\(_1.\)</span></p>
+<p>We can, however derive the power of the <span class="math inline">\(t\)</span> test for some given scenario.</p>
+<p>Let’s consider the one-sided hypothesis <span class="math display">\[\begin{equation*}
+\begin{array}{ll}
+H_0:  &amp; \beta_k\leq \beta_{k}^{(0)}\\
+H_1:  &amp; \beta_k&gt;\beta_{k}^{(0)},
+\end{array}
+\end{equation*}\]</span> where</p>
 <ul>
-<li>The value of <span class="math inline">\(\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}\)</span> (here <span class="math inline">\(1.5\)</span>).<br>
-</li>
-<li>The difference between the actual parameter value <span class="math inline">\((\beta_k=3)\)</span> and the hypothetical parameter <span class="math inline">\((r=0)\)</span> value under the null-hypothesis.</li>
+<li><span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value</li>
+<li><span class="math inline">\(\beta_{k}^{(0)}\)</span> denotes the hypothetical parameter value,</li>
 </ul>
-<p>The following Graphic illustrates the probability of a type II error and the power for the case where <span class="math inline">\(\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}=1.5\)</span> such that <span class="math inline">\(\Delta=3/1.5=2\)</span>.</p>
-<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-9_0f939ddc00c4d0337a8692b7419e2a13">
+<p>and where the true standard error of <span class="math inline">\(\hat\beta_k\)</span> given <span class="math inline">\(X\)</span> is known to be<br>
+<span class="math display">\[
+\operatorname{SE}(\hat\beta_k|X)=\frac{1}{\sqrt{n}}4.5.
+\]</span></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Of course, usually we do not know the standard error of the estimator, but have to estimate it.</p>
+<p>But it is true that the standard error of the OLS estimator <span class="math inline">\(\hat{\beta}_k\)</span> is proportional to <span class="math inline">\(1/\sqrt{n}.\)</span></p>
+</div>
+</div>
+<p>Under this setup, the <span class="math inline">\(t\)</span>-test statistic is normally distributed, since we do not need to estimate the standard error <span class="math inline">\(\operatorname{SE}(\hat\beta_k|X)=(1/\sqrt{n})4.5.\)</span></p>
+<p>If H<span class="math inline">\(_0\)</span> is true with <span class="math inline">\(\beta_k=\beta_k^{(0)},\)</span> then <span class="math display">\[\begin{align*}
+t
+&amp;=\frac{\hat\beta_k-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
+&amp;=\frac{\sqrt{n}(\hat\beta_k-\beta_k)}{4.5} \sim \mathcal{N}(0,1).
+\end{align*}\]</span></p>
+<p>If H<span class="math inline">\(_1\)</span> is true with <span class="math inline">\(\beta_k-\beta_k^{(0)}&gt;0,\)</span> then <span class="math display">\[\begin{align*}
+t&amp;=\frac{\hat\beta_k-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}
+=\frac{\hat\beta_k\overbrace{-\beta_k+\beta_k}^{=0}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
+&amp;=\underbrace{\frac{\sqrt{n}(\hat\beta_k-\beta_k)}{4.5}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}_{=\text{mean-shift}}\\[2ex]
+&amp;\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right)
+\end{align*}\]</span></p>
+<p>Power: <span class="math display">\[\begin{align*}
+\text{Power}
+&amp; = P(\text{Reject H$_0$ given H$_1$ is true})\\[2ex]
+&amp; = P(t \in \left]z_{1-\alpha},\infty\right[ \;\;|\; H_1\text{ is true})\\[2ex]
+&amp; = P(t &gt; z_{1-\alpha}),
+\end{align*}\]</span> where <span class="math display">\[
+t\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right)
+\]</span> and where <span class="math inline">\(z_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span> quantile of the standard normal distribution <span class="math inline">\(\mathcal{N}(0,1).\)</span></p>
+<!-- So, the distribution of the test statistic under $H_1$ depends on:
+
+* The value of $\sqrt{\sigma^2[(X'X)^{-1}]_{kk}}$ (here $1.5$).  
+* The difference between the actual parameter value $(\beta_k=3)$ and the hypothetical parameter $(r=0)$ value under the null-hypothesis.  -->
+<p>The following Graphic illustrates the probability of a type II error and the power for the case where</p>
+<ul>
+<li><span class="math inline">\(\alpha = 0.05\)</span></li>
+<li><span class="math inline">\(n=9\)</span></li>
+<li><span class="math inline">\(\beta_k - \beta_k^{(0)}=3\)</span></li>
+</ul>
+<p>such that <span class="math display">\[
+\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5} = 2.
+\]</span></p>
+<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-9_155f57041841dccd7c9bb97697601706">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
