@@ -1106,7 +1106,7 @@ $$
 is a *categorical* variable also called **factor variable** with two categories (two **factor levels**). 
 
 
-We use data provided in the accompanying materials of Stock and Watson's *Introduction to Econometrics* textbook [@stock2015]. You can download the data stored as an xlsx-file `cps_ch3.xlsx` [HERE](https://github.com/lidom/Script-Econometrics-MSc/blob/main/85467d963958861b842aa28b9eb262b1ea250101/data/cps_ch3.xlsx). 
+We use data provided in the accompanying materials of Stock and Watson's *Introduction to Econometrics* textbook [@stock2015]. You can download the data stored as an xlsx-file `cps_ch3.xlsx` [HERE](https://github.com/lidom/Script-Econometrics-MSc/raw/main/966b9734015a6d617d09dae170c907a100bded72/data/cps_ch3.xlsx). 
 
 
 Let us first prepare the dataset:
