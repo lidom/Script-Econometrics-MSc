@@ -235,10 +235,11 @@ div.csl-indent {
   <li><a href="#sec-testingsinglep" id="toc-sec-testingsinglep" class="nav-link" data-scroll-target="#sec-testingsinglep"><span class="toc-section-number">5.2</span>  Tests about One Parameter (t-Tests)</a></li>
   <li><a href="#testtheory" id="toc-testtheory" class="nav-link" data-scroll-target="#testtheory"><span class="toc-section-number">5.3</span>  Testtheory</a>
   <ul class="collapse">
-  <li><a href="#size-and-significance-level-alpha" id="toc-size-and-significance-level-alpha" class="nav-link" data-scroll-target="#size-and-significance-level-alpha"><span class="toc-section-number">5.3.1</span>  Size and Significance Level <span class="math inline">\(\alpha\)</span></a></li>
-  <li><a href="#critical-values" id="toc-critical-values" class="nav-link" data-scroll-target="#critical-values"><span class="toc-section-number">5.3.2</span>  Critical Values</a></li>
-  <li><a href="#power" id="toc-power" class="nav-link" data-scroll-target="#power"><span class="toc-section-number">5.3.3</span>  Power</a></li>
-  <li><a href="#p-value" id="toc-p-value" class="nav-link" data-scroll-target="#p-value"><span class="toc-section-number">5.3.4</span>  <span class="math inline">\(p\)</span>-Value</a></li>
+  <li><a href="#test-decisions-and-decisions-errors" id="toc-test-decisions-and-decisions-errors" class="nav-link" data-scroll-target="#test-decisions-and-decisions-errors"><span class="toc-section-number">5.3.1</span>  Test Decisions and Decisions Errors</a></li>
+  <li><a href="#size-and-significance-level-alpha" id="toc-size-and-significance-level-alpha" class="nav-link" data-scroll-target="#size-and-significance-level-alpha"><span class="toc-section-number">5.3.2</span>  Size and Significance Level <span class="math inline">\(\alpha\)</span></a></li>
+  <li><a href="#rejection-regions-critical-values" id="toc-rejection-regions-critical-values" class="nav-link" data-scroll-target="#rejection-regions-critical-values"><span class="toc-section-number">5.3.3</span>  Rejection Regions / Critical Values</a></li>
+  <li><a href="#power-1" id="toc-power-1" class="nav-link" data-scroll-target="#power-1"><span class="toc-section-number">5.3.4</span>  Power</a></li>
+  <li><a href="#sec-pValue" id="toc-sec-pValue" class="nav-link" data-scroll-target="#sec-pValue"><span class="toc-section-number">5.3.5</span>  <span class="math inline">\(p\)</span>-Value</a></li>
   </ul></li>
   <li><a href="#sec-CIsmallsample" id="toc-sec-CIsmallsample" class="nav-link" data-scroll-target="#sec-CIsmallsample"><span class="toc-section-number">5.4</span>  Confidence Intervals</a></li>
   <li><a href="#sec-PSSI" id="toc-sec-PSSI" class="nav-link" data-scroll-target="#sec-PSSI"><span class="toc-section-number">5.5</span>  Monte Carlo Simulations</a>
@@ -408,7 +409,7 @@ F\overset{H_0}{\sim} F_{(q,n-K)},
 <p>By contrast to <span class="math inline">\(W,\)</span> <span class="math inline">\(F\)</span> is now a practically useful test statistic, and we can use the observed value <span class="math inline">\(F_{\text{obs}}\)</span> to measure the distance of our observed estimate <span class="math inline">\(R\hat\beta_n\)</span> from its hypothetical value <span class="math inline">\(r.\)</span></p>
 <p>Observed values, <span class="math inline">\(F_{\text{obs}}\)</span>, that are “unusually large” under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution <span class="math inline">\(F_{(q,n-K)}\)</span> of <span class="math inline">\(F\)</span> is used to judge what’s “unusually large” under the null hypothesis.</p>
 <p><strong>The F distribution.</strong> The F distribution is a ratio of two <span class="math inline">\(\chi^2\)</span> distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See <a href="02-Probability.html#sec-Fdist"><span>Section&nbsp;2.2.10.6</span></a> for more information on the <span class="math inline">\(F\)</span> distribution.</p>
-<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-1_c0e52edffc08555ebf8880c3905e5752">
+<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-1_76d034464f9058789a631625532ab1d2">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -473,19 +474,26 @@ H_0:\beta_k=0
 <p>Every statistical test statistic is a function of the random sample, i.e. <span class="math display">\[
 T\equiv T((X_1,Y_1),\dots,(X_n,Y_n))
 \]</span> and is thus a random variable.</p>
+<p><strong>Caution:</strong> In this section, <span class="math inline">\(T\)</span> denotes <em>any</em> real test statistic. Specific examples for <span class="math inline">\(T\)</span> are, for instance, the <span class="math inline">\(F\)</span>-test statistic (<a href="#sec-testmultp"><span>Section&nbsp;5.1</span></a>) or the <span class="math inline">\(t\)</span>-test statistic (<a href="#sec-testingsinglep"><span>Section&nbsp;5.2</span></a>).</p>
+<p>Generally, we can only derive the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0;\)</span> i.e.&nbsp;under the scenario that <span class="math inline">\(H_0\)</span> is true. For instance,</p>
+<ul>
+<li><p>in <a href="#sec-testmultp"><span>Section&nbsp;5.1</span></a> we showed that <span class="math inline">\(F\overset{H_0}{\sim} F_{(q,n-K)}.\)</span></p></li>
+<li><p>in <a href="#sec-testingsinglep"><span>Section&nbsp;5.2</span></a> we showed that <span class="math inline">\(T\overset{H_0}{\sim} t_{(n-K)}\)</span></p></li>
+</ul>
+<p>Typically, we do <strong>not know</strong> the distribution of a test statistic under <span class="math inline">\(H_1.\)</span></p>
+<section id="test-decisions-and-decisions-errors" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="test-decisions-and-decisions-errors"><span class="header-section-number">5.3.1</span> Test Decisions and Decisions Errors</h3>
 <p>The observed value <span class="math display">\[
 T_{\text{obs}}\equiv T((X_{1,obs},Y_{1,obs}),\dots,(X_{n,obs},Y_{n,obs}))
 \]</span> is used to decide whether we can reject the null hypothesis <span class="math inline">\(H_0\)</span> or not.</p>
-<p>If the observed value <span class="math inline">\(T_{\text{obs}}\)</span> is in the <strong>rejection region</strong> <span class="math display">\[
-T_{\text{obs}}\in \{\text{rejection region}\}
-\]</span> we reject <span class="math inline">\(H_0.\)</span></p>
-<p>If the observed value <span class="math inline">\(T_{\text{obs}}\)</span> is not in the <strong>rejection region</strong> <span class="math display">\[
-T_{\text{obs}}\not\in \{\text{rejection region}\}
-\]</span> we do not reject <span class="math inline">\(H_0.\)</span></p>
+<ul>
+<li><p>We <strong>can reject</strong> <span class="math inline">\(H_0:\)</span> <br>if the observed value <span class="math inline">\(T_{\text{obs}}\)</span> is surprisingly extreme (i.e.&nbsp;very large or very small depending on <span class="math inline">\(H_1\)</span>) in comparison to the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0.\)</span> <!-- </br>(Extreme: in direction of $H_1;$ i.e. very large or very small in comparision to the null distribution of $T.$)  --></p></li>
+<li><p>We <strong>cannot reject</strong> <span class="math inline">\(H_0:\)</span> <br>if the observed value <span class="math inline">\(T_{\text{obs}}\)</span> is in the range of typical <span class="math inline">\(T\)</span> realizations under <span class="math inline">\(H_0.\)</span></p></li>
+</ul>
 <p>We differentiate two decision errors:</p>
 <ul>
-<li><strong>type-I-error</strong></li>
-<li><strong>type-II-error</strong></li>
+<li><strong>type-I-error:</strong> If we reject <span class="math inline">\(H_0\)</span> even though <span class="math inline">\(H_0\)</span> is true</li>
+<li><strong>type-II-error:</strong> If we do not reject <span class="math inline">\(H_0\)</span> even though <span class="math inline">\(H_1\)</span> is true</li>
 </ul>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -493,18 +501,16 @@ T_{\text{obs}}\not\in \{\text{rejection region}\}
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Type-I-error and Size of a Test Statistic <span class="math inline">\(T\)</span>
+Size
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We conduct a type-I-error if we reject <span class="math inline">\(H_0\)</span> even though <span class="math inline">\(H_0\)</span> is true, i.e.&nbsp;if <span class="math display">\[
-T_{\text{obs}}\in \{\text{rejection region}\}
-\]</span> even though <span class="math inline">\(H_0\)</span> is true.</p>
-<p>The probability of a type-I-error is also called <strong>size</strong> of the test statistic <span class="math inline">\(T,\)</span> <span class="math display">\[\begin{align*}
+<p>The probability of a type-I-error event is also called <strong>size</strong> of the test statistic <span class="math inline">\(T,\)</span> <span class="math display">\[\begin{align*}
 \text{Size}=&amp;P(\text{type-I-error})\\[2ex]
-=&amp;P(\text{reject } H_0| H_0\text{ is true})\\[2ex]
-=&amp;P(T \in \{\text{rejection region}\} | H_0\text{ is true})
-\end{align*}\]</span> and we want this probability to be small.</p>
+=&amp;P(\text{reject } H_0| H_0\text{ is true})
+%\\[2ex]
+%=&amp;P(T \in \{\text{rejection region}\} | H_0\text{ is true})
+\end{align*}\]</span> Since we want to be sure that we correctly reject <span class="math inline">\(H_0,\)</span> we want test statistics for which we can control the size (e.g.&nbsp;size<span class="math inline">\(\;&lt;\alpha=0.05\)</span>).</p>
 </div>
 </div>
 <div class="callout-tip callout callout-style-default callout-captioned">
@@ -513,38 +519,34 @@ T_{\text{obs}}\in \{\text{rejection region}\}
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Type-II-error and Power of a Test Statistic <span class="math inline">\(T\)</span>
+Power
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We conduct a type-II-error if we do not reject <span class="math inline">\(H_0\)</span> even though <span class="math inline">\(H_1\)</span> is true, i.e.&nbsp;if <span class="math display">\[
-T_{\text{obs}}\not \in \{\text{rejection region}\}
-\]</span> even though <span class="math inline">\(H_1\)</span> is true.</p>
-<p>The probability of a type-II-error is <span class="math display">\[\begin{align*}
-&amp;P(\text{type-II-error})\\[2ex]
-=&amp;P(\text{not reject } H_0| H_1\text{ is true})\\[2ex]
-=&amp;P(T \not\in \{\text{rejection region}\} | H_1\text{ is true})
-\end{align*}\]</span></p>
 <p>One minus the probability of a type-II-error is called <strong>power</strong>: <span class="math display">\[\begin{align*}
 \text{Power}=&amp;1-P(\text{type-II-error})\\[2ex]
 =&amp;1-P(\text{not reject } H_0| H_1\text{ is true})\\[2ex]
-=&amp;P(\text{reject } H_0| H_1\text{ is true})\\[2ex]
-=&amp;P(T\in \{\text{rejection region}\} | H_1\text{ is true})
+=&amp;P(\text{reject } H_0| H_1\text{ is true})
+%\\[2ex]
+%=&amp;P(T\in \{\text{rejection region}\} | H_1\text{ is true})
 \end{align*}\]</span> Since we want to detect violations of <span class="math inline">\(H_0,\)</span> we want test statistics with a large power.</p>
 </div>
 </div>
-<section id="size-and-significance-level-alpha" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="size-and-significance-level-alpha"><span class="header-section-number">5.3.1</span> Size and Significance Level <span class="math inline">\(\alpha\)</span></h3>
-<p>A statistical hypothesis test is considered a <strong>valid test</strong> if the probability of a type-I-error (size) is bounded from above by the <strong>significance level (nominal size)</strong> <span class="math inline">\(\alpha\)</span>, i.e.&nbsp;if<br>
+</section>
+<section id="size-and-significance-level-alpha" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="size-and-significance-level-alpha"><span class="header-section-number">5.3.2</span> Size and Significance Level <span class="math inline">\(\alpha\)</span></h3>
+<p>Let <span class="math inline">\(\alpha\)</span> with <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denote the <strong>significance level</strong> chosen by the statistician/econometrician.</p>
+<p>A statistical hypothesis test, <span class="math inline">\(T,\)</span> is a <strong>valid test</strong> if its size (probability of a type-I-error) can be bounded from above by the <strong>significance level (nominal size)</strong> <span class="math inline">\(\alpha\)</span>, i.e.&nbsp;if<br>
 <span class="math display">\[\begin{align*}
-\underbrace{P(\text{reject } H_0| H_0\text{ is true})}_{\text{Size}}\quad \leq \underbrace{\alpha}_{\text{Nominal Size}}
+\text{Size}=P(\text{reject } H_0| H_0\text{ is true})\; \leq\; \alpha = \text{Nominal Size}
 \end{align*}\]</span></p>
 <p>Since we want to keep the probability of falsely rejecting <span class="math inline">\(H_0\)</span> small, we choose small singificance levels such as</p>
 <ul>
 <li><span class="math inline">\(\alpha=0.05\)</span> or</li>
 <li><span class="math inline">\(\alpha=0.01\)</span> or</li>
-<li><span class="math inline">\(\alpha=0.001\)</span></li>
+<li><span class="math inline">\(\alpha=0.001,\)</span></li>
 </ul>
+<p>but of course, these values are only conventions and you can also choose, for instance, <span class="math inline">\(\alpha=0.026.\)</span></p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -572,18 +574,25 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Under Assumption 1-4<span class="math inline">\(^\ast,\)</span> the <span class="math inline">\(F\)</span>-test and the <span class="math inline">\(t\)</span>-test are <strong>exact</strong> test statistics.</p>
+<p>Under Assumptions 1-4<span class="math inline">\(^\ast,\)</span> the <span class="math inline">\(F\)</span>-test and the <span class="math inline">\(t\)</span>-test are <strong>exact</strong> test statistics.</p>
 </div>
 </div>
 </div>
 </div>
 <!-- and a given alternative hypothesis, we can divide the range of all possible values of the test statistic (i.e., $\mathbb{R}$ since both $t\in\mathbb{R}$ and $F\in\mathbb{R}$) into a **rejection region** and a **non-rejection region** by using **critical values** derived from the distribution of the test statistic under the null hypothesis.  We can do this because the test statistics $t$ and $F$ have known distributions under the null hypothesis ($t\overset{H_0}{\sim}t_{n-K}$ and $F\overset{H_0}{\sim}F_{(q,n-K)}$).  -->
 </section>
-<section id="critical-values" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="critical-values"><span class="header-section-number">5.3.2</span> Critical Values</h3>
-<p>The <strong>rejection region</strong> for a statistical test statistic <span class="math inline">\(T\)</span> is defined using <strong>critical values</strong> which are certain quantiles of the distribution of the test statistic <span class="math inline">\(T\)</span> under the assumption that <span class="math inline">\(H_0\)</span> is true.</p>
-<section id="the-f-test" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="the-f-test">The <span class="math inline">\(F\)</span>-Test</h4>
+<section id="rejection-regions-critical-values" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="rejection-regions-critical-values"><span class="header-section-number">5.3.3</span> Rejection Regions / Critical Values</h3>
+<p>To decide whether we can reject <span class="math inline">\(H_0\)</span>, we need to compare the observed value <span class="math inline">\(T_{\text{obs}}\)</span> with the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0.\)</span> This can be done using</p>
+<ul>
+<li><strong>rejection regions/critical value,</strong></li>
+<li><strong><span class="math inline">\(p\)</span>-values</strong> (<a href="#sec-pValue"><span>Section&nbsp;5.3.5</span></a>) or<br>
+</li>
+<li><strong>confidence intervals</strong> (<a href="#sec-CIsmallsample"><span>Section&nbsp;5.4</span></a>)</li>
+</ul>
+<p>The <strong>rejection region</strong> for a statistical test statistic <span class="math inline">\(T\)</span> is defined using <strong>critical values</strong> which are certain quantiles of the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0.\)</span></p>
+<section id="rejection-regions-critical-values-of-the-f-test" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="rejection-regions-critical-values-of-the-f-test">Rejection Regions / Critical Values of the <span class="math inline">\(F\)</span>-Test</h4>
 <p>The <span class="math inline">\(F\)</span>-test allows us to test <span class="math display">\[\begin{align*}
 &amp;H_0: R\beta = r^{(0)}\\[2ex]
 \text{versus}\quad
@@ -592,12 +601,20 @@ Tip
 <p>We know that <span class="math display">\[
 F\overset{H_0}{\sim}F_{q,n-K}.
 \]</span></p>
-<p>Let <span class="math inline">\(c_{1-\alpha}\)</span> denote the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\((q,n-K)\)</span> degrees of freedom.</p>
+<p>Let <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denote the significance level and let <span class="math inline">\(c_{1-\alpha}\)</span> denote the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\((q,n-K)\)</span> degrees of freedom.</p>
 <p>This quantile <span class="math inline">\(c_{1-\alpha}\)</span> is the <strong>critical value</strong> that defines the <strong>rejection region</strong>: <span class="math display">\[
 \{\text{rejection region}\}=\; ]c_{1-\alpha},\infty[
 \]</span> <!-- , and 
 - non-rejection region, $]0,c_{1-\alpha}]$  --></p>
-<p>Thus <span class="math display">\[\begin{align*}
+<ul>
+<li>We can rejection <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+F_{obs}\in \{\text{rejection region}\}=\; ]c_{1-\alpha},\infty[
+\]</span></li>
+<li>We cannot rejection <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+F_{obs}\not \in \{\text{rejection region}\}=\; ]c_{1-\alpha},\infty[
+\]</span></li>
+</ul>
+<p>This allows us to show that the <span class="math inline">\(F\)</span>-test is an exact test under Assumptions 1-4<span class="math inline">\(^\ast\)</span>: <span class="math display">\[\begin{align*}
 \text{Size}=&amp;P(\text{reject } H_0 \;\;|\;\; H_0\text{ is true})\\[2ex]
 =&amp;P(F \in \{\text{rejection region}\} \;\;|\;\; H_0\text{ is true})\\[2ex]
 =&amp;P\Big(F &gt; c_{1-\alpha}\;\;|\;\; H_0\text{ is true}\Big)=\alpha,
@@ -611,8 +628,8 @@ F\overset{H_0}{\sim}F_{q,n-K}.
 </div>
 </div>
 </div>
-<p><strong>The rejection region:</strong> The rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we rarely see if the null hypothesis is true (only in at most <span class="math inline">\(\alpha \cdot 100\%\)</span> cases). If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span>, falls in this region, we will reject the null hypothesis and accept type-I-error rate of <span class="math inline">\(\alpha\)</span>.</p>
-<p><strong>The non-rejection region:</strong> The non-rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we expect to see (in <span class="math inline">\((1-\alpha) \cdot 100\%\)</span> cases) if the null hypothesis is true. If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span> falls in this region, we will not reject the null hypothesis.</p>
+<p><strong>The rejection region:</strong> The rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we rarely see if the null hypothesis is true (only in at most <span class="math inline">\(\alpha \cdot 100\%\)</span> cases). If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span>, falls in this region, we will reject the null hypothesis and acknowledge a type-I-error rate of at most <span class="math inline">\(\alpha\)</span>.</p>
+<p><strong>The non-rejection region:</strong> The non-rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we expect to see (in <span class="math inline">\((1-\alpha) \cdot 100\%\)</span> cases) if the null hypothesis is true. If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span> falls in this region, we cannot reject the null hypothesis.</p>
 <div class="callout-caution callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -662,11 +679,19 @@ Danger
 <p>We know that <span class="math display">\[
 T\overset{H_0}{\sim}t_{n-K}.
 \]</span></p>
-<p>Let <span class="math inline">\(c_{\alpha/2}\)</span> and <span class="math inline">\(c_{1-\alpha/2}\)</span> denote the <span class="math inline">\(\alpha/2\)</span> and the <span class="math inline">\((1-\alpha/2)\)</span> quantiles of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
+<p>Let <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denote the significance level and let <span class="math inline">\(c_{\alpha/2}\)</span> and <span class="math inline">\(c_{1-\alpha/2}\)</span> denote the <span class="math inline">\(\alpha/2\)</span> and the <span class="math inline">\((1-\alpha/2)\)</span> quantiles of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
 <p>These quantiles are the <strong>critical values</strong> that define the <strong>rejection region</strong> of the two-sided <span class="math inline">\(t\)</span>-test: <span class="math display">\[
 \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
 \]</span></p>
-<p>Thus <span class="math display">\[\begin{align*}
+<ul>
+<li>We can rejection <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+T_{obs}\in \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+\]</span></li>
+<li>We cannot rejection <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+T_{obs}\not \in \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+\]</span></li>
+</ul>
+<p>This allows us to show that the <span class="math inline">\(t\)</span>-test is an exact test under Assumptions 1-4<span class="math inline">\(^\ast\)</span>: <span class="math display">\[\begin{align*}
 &amp;P(\text{reject } H_0 | H_0\text{ is true})\\[2ex]
 =&amp;P(T \in \{\text{rejection region}\} | H_0\text{ is true})\\[2ex]
 =&amp;P\Big(T &lt; c_{\alpha/2}\quad\text{or}\quad T&gt;c_{1-\alpha/2}| H_0\text{ is true}\Big)\\[2ex]
@@ -776,8 +801,8 @@ T\overset{H_0}{\sim}t_{n-K}.
 </div>
 </section>
 </section>
-<section id="power" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="power"><span class="header-section-number">5.3.3</span> Power</h3>
+<section id="power-1" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="power-1"><span class="header-section-number">5.3.4</span> Power</h3>
 <!-- A type-II-error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a type-II-error equals one minus the probability of correctly rejecting the null hypothesis ("Power").  -->
 <!-- For instance, in the case of using the $t$-test to test the null hypothesis $H_0: \beta_k=0$ versus the one-sided alternative hypothesis $H_1:\beta_k>0$) we have that 
 \begin{align*}
@@ -920,8 +945,8 @@ Power is a function of <span class="math inline">\(\alpha,\)</span> <span class=
 </div>
 </div>
 </section>
-<section id="p-value" class="level3" data-number="5.3.4">
-<h3 data-number="5.3.4" class="anchored" data-anchor-id="p-value"><span class="header-section-number">5.3.4</span> <span class="math inline">\(p\)</span>-Value</h3>
+<section id="sec-pValue" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="sec-pValue"><span class="header-section-number">5.3.5</span> <span class="math inline">\(p\)</span>-Value</h3>
 <section id="f-test" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="f-test"><span class="math inline">\(F\)</span>-Test</h4>
 <p>The <span class="math inline">\(F\)</span>-test allows us to test <span class="math display">\[\begin{align*}

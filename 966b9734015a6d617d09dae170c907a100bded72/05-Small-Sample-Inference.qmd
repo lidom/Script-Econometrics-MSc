@@ -193,6 +193,7 @@ for (i in 1:2) {
 }  
 legend(x = "topright", legend = c("F(3,5)", "F(3,15)", "F(3,500)"),
        lwd = 2, col = 1:3)
+# Plot 2: Changing df1 and fix df2       
 curve(expr = df(x = x, df1 = 1, df2 = 30),
       xlab = "", ylab = "", main = "",
       lwd = 2, col = 1, xlim = c(0, 4),
@@ -201,10 +202,10 @@ curve(expr = df(x = x, df1 = 1, df2 = 30),
 for (i in 1:2) {
   curve(expr = df(x = x, df1  = c(3,15)[i], 
                   df2=30),
-        lwd = 2, col = (4:6)[i], add = TRUE)
+        lwd = 2, col = (4:5)[i], add = TRUE)
 }  
 legend(x = "topright", legend = c("F(1,30)", "F(3,30)", "F(15,30)"),
-       lwd = 2, col = 4:6)
+       lwd = 2, col = c(1,4,5))
 ```
 
 
@@ -296,84 +297,80 @@ T\equiv T((X_1,Y_1),\dots,(X_n,Y_n))
 $$
 and is thus a random variable. 
 
+**Caution:** In this section, $T$ denotes *any* real test statistic. Specific examples for $T$ are, for instance, the $F$-test statistic (@sec-testmultp) or the $t$-test statistic (@sec-testingsinglep).
+
+Generally, we can only derive the distribution of $T$ under $H_0;$ i.e. under the scenario that $H_0$ is true. For instance,
+
+* in @sec-testmultp we showed that $F\overset{H_0}{\sim} F_{(q,n-K)}.$
+
+* in @sec-testingsinglep we showed that $T\overset{H_0}{\sim} t_{(n-K)}$
+
+Typically, we do **not know** the distribution of a test statistic under $H_1.$
+
+
+
+### Test Decisions and Decisions Errors 
+
 The observed value 
 $$
 T_{\text{obs}}\equiv T((X_{1,obs},Y_{1,obs}),\dots,(X_{n,obs},Y_{n,obs}))
 $$
 is used to decide whether we can reject the null hypothesis $H_0$ or not. 
 
-If the observed value $T_{\text{obs}}$ is in the **rejection region**
-$$
-T_{\text{obs}}\in \{\text{rejection region}\}
-$$
-we reject $H_0.$
+* We **can reject** $H_0:$ </br>if the observed value $T_{\text{obs}}$ is surprisingly extreme (i.e. very large or very small depending on $H_1$) in comparison to the distribution of $T$ under $H_0.$ 
+<!-- </br>(Extreme: in direction of $H_1;$ i.e. very large or very small in comparision to the null distribution of $T.$)  -->
 
-If the observed value $T_{\text{obs}}$ is not in the **rejection region**
-$$
-T_{\text{obs}}\not\in \{\text{rejection region}\}
-$$
-we do not reject $H_0.$
+* We **cannot reject** $H_0:$ </br>if the observed value $T_{\text{obs}}$ is in the range of typical $T$ realizations under $H_0.$
+
+
 
 We differentiate two decision errors: 
 
-* **type-I-error** 
-* **type-II-error** 
+* **type-I-error:** If we reject $H_0$ even though $H_0$ is true 
+* **type-II-error:** If we do not reject $H_0$ even though $H_1$ is true 
 
 
 ::: {.callout-tip}
-# Type-I-error and Size of a Test Statistic $T$
-We conduct a type-I-error if we reject $H_0$ even though $H_0$ is true, i.e. if 
-$$
-T_{\text{obs}}\in \{\text{rejection region}\}
-$$
-even though $H_0$ is true. 
-
-The probability of a type-I-error is also called **size** of the test statistic $T,$ 
+# Size 
+The probability of a type-I-error event is also called **size** of the test statistic $T,$ 
 \begin{align*}
 \text{Size}=&P(\text{type-I-error})\\[2ex]
-=&P(\text{reject } H_0| H_0\text{ is true})\\[2ex]
-=&P(T \in \{\text{rejection region}\} | H_0\text{ is true})
+=&P(\text{reject } H_0| H_0\text{ is true})
+%\\[2ex]
+%=&P(T \in \{\text{rejection region}\} | H_0\text{ is true})
 \end{align*}
-and we want this probability to be small. 
+Since we want to be sure that we correctly reject $H_0,$ we want test statistics for which we can control the size (e.g. size$\;<\alpha=0.05$). 
 :::
 
 ::: {.callout-tip}
-# Type-II-error and Power of a Test Statistic $T$
-We conduct a type-II-error if we do not reject $H_0$ even though $H_1$ is true, i.e. if 
-$$
-T_{\text{obs}}\not \in \{\text{rejection region}\}
-$$
-even though $H_1$ is true. 
-
-The probability of a type-II-error is 
-\begin{align*}
-&P(\text{type-II-error})\\[2ex]
-=&P(\text{not reject } H_0| H_1\text{ is true})\\[2ex]
-=&P(T \not\in \{\text{rejection region}\} | H_1\text{ is true})
-\end{align*}
-
+# Power
 One minus the probability of a type-II-error is called **power**:
 \begin{align*}
 \text{Power}=&1-P(\text{type-II-error})\\[2ex]
 =&1-P(\text{not reject } H_0| H_1\text{ is true})\\[2ex]
-=&P(\text{reject } H_0| H_1\text{ is true})\\[2ex]
-=&P(T\in \{\text{rejection region}\} | H_1\text{ is true})
+=&P(\text{reject } H_0| H_1\text{ is true})
+%\\[2ex]
+%=&P(T\in \{\text{rejection region}\} | H_1\text{ is true})
 \end{align*}
 Since we want to detect violations of $H_0,$ we want test statistics with a large power.
 :::
 
 ### Size and Significance Level $\alpha$
 
-A statistical hypothesis test is considered a **valid test** if the probability of a type-I-error (size) is bounded from above by the **significance level (nominal size)** $\alpha$, i.e. if  
+Let $\alpha$ with $0<\alpha<1$ denote the **significance level** chosen by the statistician/econometrician. 
+
+A statistical hypothesis test, $T,$ is a **valid test** if its size (probability of a type-I-error) can be bounded from above by the **significance level (nominal size)** $\alpha$, i.e. if  
 \begin{align*}
-\underbrace{P(\text{reject } H_0| H_0\text{ is true})}_{\text{Size}}\quad \leq \underbrace{\alpha}_{\text{Nominal Size}}
+\text{Size}=P(\text{reject } H_0| H_0\text{ is true})\; \leq\; \alpha = \text{Nominal Size}
 \end{align*}
 
 Since we want to keep the probability of falsely rejecting $H_0$ small, we choose small singificance levels such as 
 
 * $\alpha=0.05$ or
 * $\alpha=0.01$ or 
-* $\alpha=0.001$
+* $\alpha=0.001,$
+
+but of course, these values are only conventions and you can also choose, for instance, $\alpha=0.026.$
 
 ::: {.callout-note}
 # Exact vs conservative vs invalid
@@ -392,7 +389,7 @@ $$
 $$
 
 ::: {.callout-tip}
-Under Assumption 1-4$^\ast,$ the $F$-test and the $t$-test are **exact** test statistics. 
+Under Assumptions 1-4$^\ast,$ the $F$-test and the $t$-test are **exact** test statistics. 
 :::
 :::
 
@@ -401,11 +398,18 @@ Under Assumption 1-4$^\ast,$ the $F$-test and the $t$-test are **exact** test st
 
 
 
-### Critical Values 
+### Rejection Regions / Critical Values 
 
-The **rejection region** for a statistical test statistic $T$ is defined using **critical values** which are certain quantiles of the distribution of the test statistic $T$ under the assumption that $H_0$ is true.  
 
-#### The $F$-Test {-}
+To decide whether we can reject $H_0$, we need to compare the observed value $T_{\text{obs}}$ with the distribution of $T$ under $H_0.$ This can be done using 
+
+* **rejection regions/critical value,** 
+* **$p$-values** (@sec-pValue) or  
+* **confidence intervals** (@sec-CIsmallsample)
+
+The **rejection region** for a statistical test statistic $T$ is defined using **critical values** which are certain quantiles of the distribution of $T$ under $H_0.$  
+
+#### Rejection Regions / Critical Values of the $F$-Test {-}
 
 The $F$-test allows us to test
 \begin{align*}
@@ -420,7 +424,7 @@ $$
 F\overset{H_0}{\sim}F_{q,n-K}.
 $$
 
-Let $c_{1-\alpha}$ denote the $(1-\alpha)$ quantile of the $F$-distribution with $(q,n-K)$ degrees of freedom. 
+Let $0<\alpha<1$ denote the significance level and let $c_{1-\alpha}$ denote the $(1-\alpha)$ quantile of the $F$-distribution with $(q,n-K)$ degrees of freedom. 
 
 This quantile $c_{1-\alpha}$ is the **critical value** that defines the **rejection region**: 
 $$
@@ -429,7 +433,17 @@ $$
 <!-- , and 
 - non-rejection region, $]0,c_{1-\alpha}]$  -->
 
-Thus 
+* We can rejection $H_0$ if
+$$
+F_{obs}\in \{\text{rejection region}\}=\; ]c_{1-\alpha},\infty[
+$$
+* We cannot rejection $H_0$ if
+$$
+F_{obs}\not \in \{\text{rejection region}\}=\; ]c_{1-\alpha},\infty[
+$$
+
+
+This allows us to show that the $F$-test is an exact test under Assumptions 1-4$^\ast$:
 \begin{align*}
 \text{Size}=&P(\text{reject } H_0 \;\;|\;\; H_0\text{ is true})\\[2ex]
 =&P(F \in \{\text{rejection region}\} \;\;|\;\; H_0\text{ is true})\\[2ex]
@@ -467,9 +481,9 @@ lines(x=c(q,q), y=c(0,.6),lwd=2,lty=2)
 text(x = q, y = .65, labels = expression(c[1-alpha]==1.9588))
 ```
 
-**The rejection region:** The rejection region describes a range of values of the test statistic $F$ which we rarely see if the null hypothesis is true (only in at most $\alpha \cdot 100\%$ cases). If the observed value of the test statistic, $F_{\text{obs}}$, falls in this region, we will reject the null  hypothesis and accept type-I-error rate of $\alpha$. 
+**The rejection region:** The rejection region describes a range of values of the test statistic $F$ which we rarely see if the null hypothesis is true (only in at most $\alpha \cdot 100\%$ cases). If the observed value of the test statistic, $F_{\text{obs}}$, falls in this region, we will reject the null  hypothesis and acknowledge a type-I-error rate of at most $\alpha$. 
 
-**The non-rejection region:** The non-rejection region describes a range of values of the test statistic $F$ which we expect to see (in $(1-\alpha) \cdot 100\%$ cases) if the null hypothesis is true. If the observed value of the test statistic, $F_{\text{obs}}$ falls in this region, we will not reject the null hypothesis. 
+**The non-rejection region:** The non-rejection region describes a range of values of the test statistic $F$ which we expect to see (in $(1-\alpha) \cdot 100\%$ cases) if the null hypothesis is true. If the observed value of the test statistic, $F_{\text{obs}}$ falls in this region, we cannot reject the null hypothesis. 
 
 ::: {.callout-caution}
 Not rejecting the null hypothesis does not mean that we can conclude that the null hypothesis is true. 
@@ -514,14 +528,23 @@ $$
 T\overset{H_0}{\sim}t_{n-K}.
 $$
 
-Let $c_{\alpha/2}$ and $c_{1-\alpha/2}$ denote the $\alpha/2$ and the $(1-\alpha/2)$ quantiles of the $t$-distribution with $(n-K)$ degrees of freedom. 
+Let $0<\alpha<1$ denote the significance level and let $c_{\alpha/2}$ and $c_{1-\alpha/2}$ denote the $\alpha/2$ and the $(1-\alpha/2)$ quantiles of the $t$-distribution with $(n-K)$ degrees of freedom. 
 
 These quantiles are the **critical values** that define the **rejection region** of the two-sided $t$-test: 
 $$
 \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
 $$
 
-Thus 
+* We can rejection $H_0$ if
+$$
+T_{obs}\in \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+$$
+* We cannot rejection $H_0$ if
+$$
+T_{obs}\not \in \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+$$
+
+This allows us to show that the $t$-test is an exact test under Assumptions 1-4$^\ast$:
 \begin{align*}
 &P(\text{reject } H_0 | H_0\text{ is true})\\[2ex]
 =&P(T \in \{\text{rejection region}\} | H_0\text{ is true})\\[2ex]
@@ -935,7 +958,7 @@ Indeed, for all reasonable test statistics we have that:
 
 
 
-### $p$-Value 
+### $p$-Value {#sec-pValue}
 
 #### $F$-Test {-}
 
