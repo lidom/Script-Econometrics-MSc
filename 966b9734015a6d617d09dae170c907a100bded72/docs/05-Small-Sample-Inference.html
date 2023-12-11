@@ -647,7 +647,7 @@ Danger
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Not rejecting the null hypothesis does not mean that we can conclude that the null hypothesis is true.</p>
+<p>If we cannot reject <span class="math inline">\(H_0,\)</span> does not mean that we confirm <span class="math inline">\(H_0.\)</span></p>
 <p>A possible violation of the null hypothesis may only be too small to stand out from the estimation errors; i.e.&nbsp;we may do a type-II-error. However, we do not control the probability of type-II-errors—we only control the probability of type-I-errors.</p>
 <p>Therefore, if you were not able to reject <span class="math inline">\(H_0,\)</span> <strong>never ever</strong> state something like: “I conclude <span class="math inline">\(H_0\)</span> is true.”</p>
 <div class="callout-tip callout callout-style-default no-icon callout-captioned">
@@ -671,11 +671,11 @@ H_0:\beta_k=0,
 </div>
 </div>
 <p>To find the critical value <span class="math inline">\(c_{1-\alpha}\)</span> we can use <code>R</code> as following:</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-4_5b232829a5529d4f90405d7229f420e4">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-4_5aa8a0adbf52f9f5f108b9b1cc4ca834">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen significance level</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df1   <span class="ot">&lt;-</span> <span class="dv">9</span>    <span class="co"># numerator df</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df2   <span class="ot">&lt;-</span> <span class="dv">120</span>  <span class="co"># denominator df</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># significance level</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Critical value:</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>crit_value <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="at">p =</span> <span class="dv">1</span><span class="sc">-</span>alpha, <span class="at">df1 =</span> df1, <span class="at">df2 =</span> df2)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>crit_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -683,7 +683,7 @@ H_0:\beta_k=0,
 <pre><code>[1] 1.958763</code></pre>
 </div>
 </div>
-<p>Changing the significance level from <span class="math inline">\(\alpha=0.05\)</span> to <span class="math inline">\(\alpha=0.01\)</span> makes the critical value <span class="math inline">\(c_{1-\alpha}\)</span> larger and, therefore, the rejection region smaller (fewer Type I errors)</p>
+<p>Changing the significance level from <span class="math inline">\(\alpha=0.05\)</span> to <span class="math inline">\(\alpha=0.01\)</span> makes the critical value <span class="math inline">\(c_{1-\alpha}\)</span> larger and, therefore, the rejection region smaller (smaller probability of type-I-errors).</p>
 <div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-5_3db7f3d16f39886ad343c3aeff3192e6">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.01</span> <span class="co"># chosen significance level</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Critical value:</span></span>
@@ -739,11 +739,11 @@ T_{obs}
 </div>
 </div>
 </div>
-<p>To find the critical values we can use <code>R</code> as following:</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-7_bf8176d38dc6109d74eebdfa1555752e">
+<p>To find the <span class="math inline">\(c_{\alpha/2}\)</span> and <span class="math inline">\(c_{1-\alpha/2}\)</span> critical values we can use <code>R</code> as following:</p>
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-7_442443f44de57f545e75d45db2d6ffca">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen signficance level </span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df    <span class="ot">&lt;-</span> <span class="dv">12</span>   <span class="co"># degrees of freedom </span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># significance level</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Two-sided critical value (= (1-alpha/2) quantile):</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>c_twoSided <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="at">p =</span> <span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> df)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -807,9 +807,22 @@ T_{obs}
 </div>
 </div>
 </div>
+<p>To find the <span class="math inline">\(c_{1-\alpha}\)</span> critical value we can use <code>R</code> as following:</p>
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-9_eeefe5dfd984320487985ab580cdc845">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen significance level </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df    <span class="ot">&lt;-</span> <span class="dv">12</span>   <span class="co"># degrees of freedom </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## One-sided critical value (1-alpha) quantile:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>c_oneSided <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="at">p =</span> <span class="dv">1</span><span class="sc">-</span>alpha, <span class="at">df =</span> df)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>c_oneSided</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.782288</code></pre>
+</div>
+</div>
 <p>For testing <span class="math display">\[\begin{align*}
 &amp;H_0:  \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad &amp; H_1:  \beta_k &lt;  \beta_k^{(0)}\\
+\text{versus}\quad
+&amp;H_1:  \beta_k &lt;  \beta_k^{(0)}\\
 \end{align*}\]</span> the rejection region is <span class="math display">\[
 \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[
 \]</span></p>
@@ -836,23 +849,16 @@ T_{obs}
 </div>
 </div>
 </div>
-<p>To find the critical values we can use <code>R</code> as following:</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-10_c782137bbc860253cdf166cd4897b63a">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen significance level </span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df    <span class="ot">&lt;-</span> <span class="dv">12</span>   <span class="co"># degrees of freedom </span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># significance level</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="do">## One-sided critical value (alpha) quantile:</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>c_oneSided <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="at">p =</span> alpha, <span class="at">df =</span> df)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>c_oneSided</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To find the <span class="math inline">\(c_{\alpha}\)</span> critical value we can use <code>R</code> as following:</p>
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-11_355f386bd97891e91137edfe0249b17f">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen significance level </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df    <span class="ot">&lt;-</span> <span class="dv">12</span>   <span class="co"># degrees of freedom </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">## One-sided critical value (alpha) quantile:</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>c_oneSided <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="at">p =</span> alpha, <span class="at">df =</span> df)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>c_oneSided</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -1.782288</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## One-sided critical value (1-alpha) quantile:</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>c_oneSided <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="at">p =</span> <span class="dv">1</span><span class="sc">-</span>alpha, <span class="at">df =</span> df)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>c_oneSided</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.782288</code></pre>
 </div>
 </div>
 </section>
@@ -878,7 +884,7 @@ Ideally, we would have some sense of the costs of making each of these errors, a
 &amp; = 1 - P(\text{type-II-error})\\[2ex]
 &amp; = 1 - P(\text{Not reject $H_0$ given $H_1$ is true})\\[2ex]
 &amp; = P(\text{Reject $H_0$ given $H_1$ is true})\\[2ex]
-&amp; = P(\text{Detect a violation of the null})
+&amp; = P(\text{Detect a true violation of the null})
 \end{align*}\]</span></p>
 <p>Unfortunately, computing the power of a statistical test is usually impossible, since this requires knowing the distribution of the test statistic under the alternative hypothesis <span class="math inline">\(H_1.\)</span> The distribution of a test statistic under <span class="math inline">\(H_1\)</span> can only be derived under quite restrictive setups.</p>
 <p>In the following, we consider such a restrictive setup for the <span class="math inline">\(t\)</span>-test statistic.</p>
@@ -1162,7 +1168,7 @@ X_{i3}&amp;\sim U[12,22]\\
 \varepsilon_i|X&amp;\sim\mathcal{N}(0,3^2),
 \end{align*}\]</span> where <span class="math inline">\((Y_i,X_i)\)</span> is i.i.d. across <span class="math inline">\(i=1,\dots,n\)</span>. Let us consider a small sample size of <span class="math inline">\(n=7\)</span>.</p>
 <p>The below function <code>myDataGenerator()</code> allows to sample new realizations of <span class="math inline">\(Y_1,\dots,Y_n\)</span> conditionally on a given data matrix <span class="math inline">\(X\)</span>. Moreover, you can provide your own values for the sample size <span class="math inline">\(n\)</span> and for the parameter vector <span class="math inline">\(\beta=(\beta_1,\beta_2,\beta_3)'\)</span>.</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-12_87033c8c2aceebb086c8b70905d0affa">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-13_c89c9df00b014cb1d209eca13c2f4477">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Function to generate artificial data</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">## If the user provides 'X_cond' data, </span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">## the sampling of new Y variables is </span></span>
@@ -1207,17 +1213,17 @@ X_{i3}&amp;\sim U[12,22]\\
 <span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="do">## compare</span></span>
 <span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data,     <span class="dv">3</span>), <span class="dv">2</span>)    <span class="co"># New Y, new X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       Y X_1  X_2   X_3
-1 100.00   1 8.98 17.00
-2  94.84   1 5.78 19.37
-3  71.94   1 2.64 15.39</code></pre>
+<pre><code>      Y X_1  X_2   X_3
+1 86.59   1 2.28 18.90
+2 93.89   1 3.64 19.97
+3 68.35   1 2.28 14.19</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">head</span>(test_data_X_cond, <span class="dv">3</span>), <span class="dv">2</span>) <span class="co"># New Y, old X (conditionally on X)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Y X_1  X_2   X_3
-1 98.71   1 8.98 17.00
-2 92.65   1 5.78 19.37
-3 68.27   1 2.64 15.39</code></pre>
+1 86.47   1 2.28 18.90
+2 96.44   1 3.64 19.97
+3 64.55   1 2.28 14.19</code></pre>
 </div>
 </div>
 <section id="check-distribution-of-hatbetax-vs-distribution-of-hatbeta" class="level3" data-number="5.5.1">
@@ -1233,7 +1239,7 @@ X_{i3}&amp;\sim U[12,22]\\
 <p>Then estimate the distributons from both Monte Carlo samples and compare them with the theoretical distribution <span class="math display">\[
 \hat\beta_2|X\sim\mathcal{N}(\beta_k,\sigma^2[(X'X)^{-1}]_{22})
 \]</span></p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-13_dddc4e5a7b4421217ed0ab9b33be347b">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-14_547ef01231b8d5d74328bfa3e413bf49">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11100</span>) <span class="co"># seed of the random number generator</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="do">## A function to generate realizations of the estimator </span></span>
@@ -1286,7 +1292,7 @@ X_{i3}&amp;\sim U[12,22]\\
 <span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expression</span>(<span class="st">"Empirical Density based on the 10000 MC realizations of"</span><span class="sc">~</span><span class="fu">hat</span>(beta)[<span class="dv">2</span>]<span class="sc">~</span><span class="st">'|'</span><span class="sc">~</span>X),</span>
 <span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expression</span>(<span class="st">"Empirical Density based on the 10000 MC realizations of"</span><span class="sc">~</span><span class="fu">hat</span>(beta)[<span class="dv">2</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Observations:</p>
@@ -1301,23 +1307,23 @@ X_{i3}&amp;\sim U[12,22]\\
 <center>
 <span class="math inline">\(Var(\hat{\beta}_2|X)=\sigma^2[(X'X)^{-1}]_{22}=\)</span> <code>var_true_beta_2</code>.
 </center>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-14_5535eaf70aeb30981ec9d796dc9d0cfc">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-15_0062f22263d68a735821d42df079fb63">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>var_true_beta_2 <span class="ot">&lt;-</span> sigma<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">solve</span>(<span class="fu">t</span>(X_cond) <span class="sc">%*%</span> X_cond)[<span class="dv">2</span>,<span class="dv">2</span>]</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(var_true_beta_2, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.285</code></pre>
+<pre><code>[1] 0.553</code></pre>
 </div>
 </div>
 <p>The Monte Carlo realizations of <span class="math inline">\(\hat{\beta}_2|X\)</span>, i.e.&nbsp;conditionally on <span class="math inline">\(X\)</span>, have an empirical variance of</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-15_e19d1eff4c580152faedbd3ba8eed0c9">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-16_9c86feaf7a1c2418da82b13d121f1f64">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">var</span>(hatbeta2_sim_cond), <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.284</code></pre>
+<pre><code>[1] 0.547</code></pre>
 </div>
 </div>
 <p>which basically matches the theoretical counterpart.</p>
 <p>The Monte Carlo realizations of <span class="math inline">\(\hat{\beta}_2\)</span>, i.e.&nbsp;<strong>un</strong>conditionally on <span class="math inline">\(X\)</span>, have an empirical variance of</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-16_33d8f6e8560791f83305ad5eda94244b">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-17_a5f91af35304d3a59ae1527fcd2c2a01">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">var</span>(hatbeta2_sim_uncond), <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.477</code></pre>
@@ -1443,7 +1449,7 @@ R=\left(
 \end{matrix}\right)\quad\text{ and }\quad
 r=\left(\begin{matrix}3\\4\\\end{matrix}\right).
 \]</span> The following <code>R</code> code can be used to test this hypothesis:</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-17_6f8c48ad10ae60b2c30b302909f3f919">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-18_1411550f38dd1dcf15a099fe1be507f7">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Library containing the function 'linearHyothesis()' </span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="do">## for testing multiple parameters </span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">"car"</span>)) </span>
@@ -1477,7 +1483,7 @@ Model 2: Y ~ X_2 + X_3
 </div>
 <p>The <span class="math inline">\(p\)</span>-value <span class="math inline">\(p=\)</span> 0.3538 is larger than the chosen significance level <span class="math inline">\(\alpha=0.05\)</span> thus we cannot reject the null hypothesis “<span class="math inline">\(H_0:\;\beta_2=3\)</span> and <span class="math inline">\(\beta_3=4.\)</span>”</p>
 <p>The following codes gives an alternative, equivalent way to compute the test result:</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-18_b00f8c561117e0b2890aba45b328d039">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-19_973fa55a49512155ed958ca8bb5a069e">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option 2:</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>),</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
@@ -1487,7 +1493,7 @@ Model 2: Y ~ X_2 + X_3
 </div>
 <p>Here, we simulated data “under the null hypothesis” and thus it is not surpising that we cannot reject the null hypothesis at a significance level of, for instance, <span class="math inline">\(\alpha=0.05\)</span>.</p>
 <p>However, in repeated samples we should nevertheless observe <span class="math inline">\(\alpha\cdot 100\%\)</span> type I errors (false rejections of <span class="math inline">\(H_0\)</span>) under the null hypothesis. Let’s check the type-I-error rate using the following Monte Carlo simulation:</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-19_3ed41823d5fb326830a0c9c59e15dd1c">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-20_1cd8866321451553dc7ce76f6c9aebae">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Let's generate 5000 F-test decisions and check </span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="do">## whether the empirical rate of type I errors is </span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="do">## close to the theoretical significance level. </span></span>
@@ -1532,7 +1538,7 @@ Model 2: Y ~ X_2 + X_3
 H_0:\;&amp;{\color{red}\beta_2=4}\quad\text{and}\quad\beta_3=4\\
 H_1:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 \end{align*}\]</span></p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-20_ee792751d8fc6cc97c9a3f20846b871d">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-21_09949e2cddfec62a2c82edc35e200160">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>B               <span class="ot">&lt;-</span> <span class="dv">5000</span> <span class="co"># MC replications</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>F_test_pvalues  <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times=</span>B)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
@@ -1563,7 +1569,7 @@ H_1:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 <section id="check-dualty-of-confidence-intervals-and-hypothesis-tests" class="level3" data-number="5.5.3">
 <h3 data-number="5.5.3" class="anchored" data-anchor-id="check-dualty-of-confidence-intervals-and-hypothesis-tests"><span class="header-section-number">5.5.3</span> Check: Dualty of Confidence Intervals and Hypothesis Tests</h3>
 <p>Confidence intervals can be computed using <code>R</code> as following:</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-21_d72dbe92cb1a42c70156201f9564b669">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-22_e9b2936d2c29f871859cefea37d0ec65">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Significance level</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>alpha        <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Confidence level</span></span>
@@ -1592,7 +1598,7 @@ H_0:&amp;\beta_2=3\\
 <li>In case of <span class="math inline">\(3\not\in\operatorname{CI}_{2,1-\alpha}\)</span>, we can reject the null hypothesis <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_2=3.\)</span></li>
 </ul>
 <p>If the Assumptions 1-4<span class="math inline">\(^\ast\)</span> hold true, then <span class="math inline">\(\operatorname{CI}_{2,1-\alpha}\)</span> is an exact confidence interval. That is, under the null hypothesis, it falsely rejects the null hypothesis in only <span class="math inline">\(\alpha\cdot 100\%\)</span> of resamplings. Let’s check this in the following Monte Carlo simulation:</p>
-<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-22_13b4c980b58636a803ce3eed4b45f47c">
+<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-23_71a474e0044cc2a61437820612632745">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Significance level</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>alpha      <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Container to save all CI realizations</span></span>
@@ -1625,7 +1631,7 @@ H_0:&amp;\beta_2=3\\
 </div>
 </div>
 <p>The following code computes the relative frequency of confidence intervals <strong>not containing</strong> the true parameter value <span class="math inline">\((\beta_2=3)\)</span>:</p>
-<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-23_f8602873dbaf94dc7944c2b907460958">
+<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-24_16e27bc4333db52ddfaa7274dda2cf18">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">length</span>(inside_CI[inside_CI <span class="sc">==</span> <span class="cn">FALSE</span>])<span class="sc">/</span>B, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.048</code></pre>
@@ -1633,7 +1639,7 @@ H_0:&amp;\beta_2=3\\
 </div>
 <p>That’s good! The relative frequency is basically equal to the chosen <span class="math inline">\(\alpha=0.05\)</span> value.</p>
 <p>Next, we visualize a subsample of <code>100</code> confidence intervals from the total sample of <code>5000</code> generated confidence interval realizations:</p>
-<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-24_a0caf75ca8b44c9c598e9ec023726298">
+<div class="cell" data-layout-align="center" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-25_3786807d3c1a4958675a7d46d1bb5962">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>nCIs <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">0</span>,<span class="at">type=</span><span class="st">"n"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,nCIs), <span class="at">ylim=</span><span class="fu">range</span>(confint_m[,<span class="dv">1</span><span class="sc">:</span>nCIs]),</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">""</span>, <span class="at">xlab=</span><span class="st">"Resamplings"</span>, <span class="at">main=</span><span class="st">"Confidence Intervals"</span>)</span>
@@ -1649,7 +1655,7 @@ H_0:&amp;\beta_2=3\\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img"></p>
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1659,7 +1665,7 @@ H_0:&amp;\beta_2=3\\
 </section>
 <section id="sec-RDSSInf" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="sec-RDSSInf"><span class="header-section-number">5.6</span> Real Data Example</h2>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-25_6723f005b673bfdb1c96c217a2e3111e">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-26_0539b0c5a7e63938cc7e046f49d0a079">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="do">## The AER package contains a lot of datasets </span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(AER))</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1679,7 +1685,7 @@ Y_i = \beta_1 + \beta_{gender} X_{gender,i}
 <li><span class="math inline">\(X_{income,i}\)</span> is the annual income of subject <span class="math inline">\(i\)</span> in tens of thousands of dollars</li>
 </ul>
 <p>The following <code>R</code> codes produces the classic regression output table (simular tables are produced by all statistical/econometric software packages):</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-26_4cd639305e6b1e94689e029dd292f3bd">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-27_113d0a29483c85230ff89e7eca363a61">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>lm_obj_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(lm_obj)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>lm_obj_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1729,7 +1735,7 @@ P_{H_0}(|t|&gt;t_{obs,j}),\quad j\in\{1,gender, age, income\}
 <li><p><strong>Adjusted R-squared:</strong> <span class="math inline">\(\bar{R}^2=\)</span> <code>lm_obj_summary$adj.r.squared</code> <span class="math inline">\(=\)</span> 0.01829</p></li>
 <li><p><strong>F-statistic:</strong> This is a standard <span class="math inline">\(F\)</span> test that tests the null hypothesis that all parameters except the intercept are zero; i.e.<br> <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_{gender}=\beta_{age}=\beta_{income}=0\)</span><br> versus<br> <span class="math inline">\(H_1\)</span>: At least one parameter is not zero. <code>R</code>’s <code>summary()</code> functions reports an observed <span class="math inline">\(F\)</span> statistic value of <span class="math inline">\(33.22\)</span> which needs to be evaluated for an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(3\)</span> and <span class="math inline">\(5186\)</span> degrees of freedom leading to a <span class="math inline">\(p\)</span>-value <span class="math inline">\(p&lt; 0.00001.\)</span> <br><br> You can replicate this <span class="math inline">\(F\)</span>-test result using the following <code>R</code> code:</p></li>
 </ul>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-27_b87ceb55f926be65cbaae6010fe2d460">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-28_bc75aee8559bafccb0a1c983096b363b">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">linearHypothesis</span>(</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">model =</span> lm_obj, </span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">hypothesis.matrix =</span> <span class="fu">c</span>(<span class="st">"genderfemale=0"</span>, <span class="st">"age=0"</span>, <span class="st">"income=0"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1756,11 +1762,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="r-package-stargazer" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="r-package-stargazer"><code>R</code> Package Stargazer</h4>
 <p>Beautiful and “publication ready” regression outputs can be produced using the <code>R</code> package <code>stargazer</code> and its function <code>stargazer()</code>:</p>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-28_645da944ec53e22711632520b084905e">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-29_c9332a9c6df540201c4ca185390bac3f">
 
 </div>
 <center>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-29_ceb2c6d174a45c8314561ad0c06f8be6">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-30_2d0b4d8305a43d13b96d438e0a44a32e">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Hint: use type = "latex" </span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="do">## to produce a latex table</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(lm_obj, <span class="at">type=</span><span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1950,12 +1956,12 @@ F Statistic
 Consequently, the error term <span class="math inline">\(\varepsilon_i\)</span> <strong>cannot be normal distributed</strong>.</li>
 <li>The diagnostic plot (“Residuals versus Fitted”) indicates a possible issue <strong>violation of the homoskedasticity assumption</strong>. In case of homokedastic variances, the data points <span class="math inline">\((\hat\varepsilon_i,\hat{Y}_i)\)</span>, <span class="math inline">\(i=1,\dots,n\)</span> should roughly show a homogenous scattering across the fitted values <span class="math inline">\(\hat{Y}_i=X\hat\beta\)</span>. This seems not to be the case here.</li>
 </ol>
-<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-30_537c50a55394db028d1144140a24c3f0">
+<div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-31_e1d7318e31e90b852faccecefeddfb78">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Diagonstic Plot </span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals versus fitted values</span></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_obj, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+<p><img src="05-Small-Sample-Inference_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Lukily, the data set <code>DoctorVisits</code> actually has a <strong>large sample size</strong> of <span class="math inline">\(n=\)</span> 5190 and thus there is a way out of this problem: The large sample inference framework introduced in the next chapter.</p>

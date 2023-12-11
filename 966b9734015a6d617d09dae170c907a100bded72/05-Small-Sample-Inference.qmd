@@ -498,7 +498,7 @@ text(x = q, y = .65, labels = expression(c[1-alpha]==1.9588))
 **The non-rejection region:** The non-rejection region describes a range of values of the test statistic $F$ which we expect to see (in $(1-\alpha) \cdot 100\%$ cases) if the null hypothesis is true. If the observed value of the test statistic, $F_{\text{obs}}$ falls in this region, we cannot reject the null hypothesis. 
 
 ::: {.callout-caution}
-Not rejecting the null hypothesis does not mean that we can conclude that the null hypothesis is true. 
+If we cannot reject $H_0,$ does not mean that we confirm $H_0.$ 
 
 A possible violation of the null hypothesis may only be too small to stand out from the estimation errors; i.e. we may do a type-II-error. However, we do not control the probability of type-II-errors---we only control the probability of type-I-errors.
 
@@ -521,12 +521,12 @@ To find the critical value $c_{1-\alpha}$ we can use `R` as following:
 alpha <- 0.05 # chosen significance level
 df1   <- 9    # numerator df
 df2   <- 120  # denominator df
-alpha <- 0.05 # significance level
+
 ## Critical value:
 crit_value <- qf(p = 1-alpha, df1 = df1, df2 = df2)
 crit_value
 ```
-Changing the significance level from $\alpha=0.05$ to $\alpha=0.01$ makes the critical value $c_{1-\alpha}$ larger and, therefore, the  rejection region smaller (fewer Type I errors)
+Changing the significance level from $\alpha=0.05$ to $\alpha=0.01$ makes the critical value $c_{1-\alpha}$ larger and, therefore, the  rejection region smaller (smaller probability of type-I-errors).
 ```{r}
 alpha <- 0.01 # chosen significance level
 ## Critical value:
@@ -619,11 +619,11 @@ text(x = -q, y = .45, labels = expression(c[alpha/2]==-2.18))
 ```
 
 
-To find the critical values we can use `R` as following:
+To find the $c_{\alpha/2}$ and $c_{1-\alpha/2}$ critical values we can use `R` as following:
 ```{r}
 alpha <- 0.05 # chosen signficance level 
 df    <- 12   # degrees of freedom 
-alpha <- 0.05 # significance level
+
 ## Two-sided critical value (= (1-alpha/2) quantile):
 c_twoSided <- qt(p = 1-alpha/2, df = df)
 
@@ -722,12 +722,21 @@ legend("topright", pch=c(22,22), lty=c(NA,NA), lwd=c(NA,NA), cex=1,
 par(mfrow=c(1,1))
 ```
 
+To find the $c_{1-\alpha}$ critical value we can use `R` as following:
+```{r}
+alpha <- 0.05 # chosen significance level 
+df    <- 12   # degrees of freedom 
 
+## One-sided critical value (1-alpha) quantile:
+c_oneSided <- qt(p = 1-alpha, df = df)
+c_oneSided
+```
 
 For testing 
 \begin{align*}
 &H_0:  \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad & H_1:  \beta_k <  \beta_k^{(0)}\\
+\text{versus}\quad 
+&H_1:  \beta_k <  \beta_k^{(0)}\\
 \end{align*}
 the rejection region is 
 $$
@@ -787,20 +796,13 @@ par(mfrow=c(1,1))
 ```
 
 
-
-
-To find the critical values we can use `R` as following:
+To find the $c_{\alpha}$ critical value we can use `R` as following:
 ```{r}
 alpha <- 0.05 # chosen significance level 
 df    <- 12   # degrees of freedom 
-alpha <- 0.05 # significance level
 
 ## One-sided critical value (alpha) quantile:
 c_oneSided <- qt(p = alpha, df = df)
-c_oneSided
-
-## One-sided critical value (1-alpha) quantile:
-c_oneSided <- qt(p = 1-alpha, df = df)
 c_oneSided
 ```
 
@@ -830,7 +832,7 @@ Since we want to detect violations of the null-hypothesis, we want that our test
 & = 1 - P(\text{type-II-error})\\[2ex]
 & = 1 - P(\text{Not reject $H_0$ given $H_1$ is true})\\[2ex]
 & = P(\text{Reject $H_0$ given $H_1$ is true})\\[2ex]
-& = P(\text{Detect a violation of the null})
+& = P(\text{Detect a true violation of the null})
 \end{align*}
 
 
