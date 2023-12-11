@@ -103,10 +103,17 @@ $$
 \end{align*}
 $$ 
 
-That is, 
 
-* the realizations of $(R\hat\beta_n -r^{(0)})|X$ will scatter around the *unknown* $(R\beta -r^{(0)})$ in a Gaussian fashion. 
-* if $H_0$ is correct (i.e., if $R\beta-r^{(0)}=0$), the realizations of $(R\hat\beta_n-r^{(0)})|X$ scatter around the $(q\times 1)$ vector $0$.  
+* The realizations of 
+$$
+(R\hat\beta_n -r^{(0)})|X
+$$ 
+will scatter around the *unknown* mean $(R\beta -r^{(0)})$ in a Gaussian fashion. 
+* If $H_0$ is correct (i.e., if $R\beta-r^{(0)}=0$), the realizations of 
+$$
+(R\hat\beta_n-r^{(0)})|X
+$$ 
+will scatter around the $(q\times 1)$ vector $0$.  
 
 We use a test statistic to detect a systematic location shift away from the zero vector. 
 
@@ -317,17 +324,19 @@ T_{\text{obs}}\equiv T((X_{1,obs},Y_{1,obs}),\dots,(X_{n,obs},Y_{n,obs}))
 $$
 is used to decide whether we can reject the null hypothesis $H_0$ or not. 
 
-* We **can reject** $H_0:$ </br>if the observed value $T_{\text{obs}}$ is surprisingly extreme (i.e. very large or very small depending on $H_1$) in comparison to the distribution of $T$ under $H_0.$ 
+* We **can reject** $H_0,$ </br>if the observed value $T_{\text{obs}}$ is in the range of extreme (i.e. very large or very small depending on $H_1$) $T$ realizations under $H_0.$ 
 <!-- </br>(Extreme: in direction of $H_1;$ i.e. very large or very small in comparision to the null distribution of $T.$)  -->
 
-* We **cannot reject** $H_0:$ </br>if the observed value $T_{\text{obs}}$ is in the range of typical $T$ realizations under $H_0.$
+* We **cannot reject** $H_0,$ </br>if the observed value $T_{\text{obs}}$ is in the range of typical $T$ realizations under $H_0.$
 
 
 
 We differentiate two decision errors: 
 
-* **type-I-error:** If we reject $H_0$ even though $H_0$ is true 
-* **type-II-error:** If we do not reject $H_0$ even though $H_1$ is true 
+* **type-I-error:**</br> 
+If we reject $H_0$ even though $H_0$ is true. 
+* **type-II-error:**</br>
+If we do not reject $H_0$ even though $H_1$ is true. 
 
 
 ::: {.callout-tip}
@@ -339,7 +348,10 @@ The probability of a type-I-error event is also called **size** of the test stat
 %\\[2ex]
 %=&P(T \in \{\text{rejection region}\} | H_0\text{ is true})
 \end{align*}
-Since we want to be sure that we correctly reject $H_0,$ we want test statistics for which we can control the size (e.g. size$\;<\alpha=0.05$). 
+Since we want to be sure that we correctly reject $H_0,$ we want test statistics for which we can control the probability of a type-I-error event (i.e. the size) from above by some chosen level; e.g. 
+
+* $\text{Size}\,\leq 0.05$ or
+* $\text{Size}\,\leq 0.01.$ 
 :::
 
 ::: {.callout-tip}
@@ -355,11 +367,11 @@ One minus the probability of a type-II-error is called **power**:
 Since we want to detect violations of $H_0,$ we want test statistics with a large power.
 :::
 
-### Size and Significance Level $\alpha$
+### Size and Significance Level 
 
 Let $\alpha$ with $0<\alpha<1$ denote the **significance level** chosen by the statistician/econometrician. 
 
-A statistical hypothesis test, $T,$ is a **valid test** if its size (probability of a type-I-error) can be bounded from above by the **significance level (nominal size)** $\alpha$, i.e. if  
+A statistical hypothesis test, $T,$ is a **valid test** if its size (probability of a type-I-error) can be bounded from above by the chosen **significance level (nominal size)** $\alpha$, i.e. if  
 \begin{align*}
 \text{Size}=P(\text{reject } H_0| H_0\text{ is true})\; \leq\; \alpha = \text{Nominal Size}
 \end{align*}
@@ -403,7 +415,7 @@ Under Assumptions 1-4$^\ast,$ the $F$-test and the $t$-test are **exact** test s
 
 To decide whether we can reject $H_0$, we need to compare the observed value $T_{\text{obs}}$ with the distribution of $T$ under $H_0.$ This can be done using 
 
-* **rejection regions/critical value,** 
+* **rejection regions/critical values,** 
 * **$p$-values** (@sec-pValue) or  
 * **confidence intervals** (@sec-CIsmallsample)
 
@@ -488,15 +500,25 @@ text(x = q, y = .65, labels = expression(c[1-alpha]==1.9588))
 ::: {.callout-caution}
 Not rejecting the null hypothesis does not mean that we can conclude that the null hypothesis is true. 
 
-A possible violation of the null hypothesis may only be too small to stand out from the estimation errors (a type-II-error even). But we do not control the probability of such type II errors---we only control the probability of type I errors.
+A possible violation of the null hypothesis may only be too small to stand out from the estimation errors; i.e. we may do a type-II-error. However, we do not control the probability of type-II-errors---we only control the probability of type-I-errors.
 
-Therefore, **never ever** state something like: "I conclude $H_0$ is true."
+Therefore, if you were not able to reject $H_0,$ **never ever** state something like: "I conclude $H_0$ is true."
 
-Absence of evidence (against $H_0:\beta_k=0$) is not evidence of absence (i.e. is no evidence of $H_0:\beta_k=0$).
+::: {.callout-tip icon="false"}
+For the special case of a "no-effect" null hypothesis 
+$$
+H_0:\beta_k=0,
+$$ 
+there's a famous sentence which goes back to @Altman_Bland_1995 :</br> 
+<center>
+"Absence of evidence is not evidence of absence." 
+</center>
+:::
 ::: 
 
 To find the critical value $c_{1-\alpha}$ we can use `R` as following: 
 ```{r}
+alpha <- 0.05 # chosen significance level
 df1   <- 9    # numerator df
 df2   <- 120  # denominator df
 alpha <- 0.05 # significance level
@@ -506,7 +528,7 @@ crit_value
 ```
 Changing the significance level from $\alpha=0.05$ to $\alpha=0.01$ makes the critical value $c_{1-\alpha}$ larger and, therefore, the  rejection region smaller (fewer Type I errors)
 ```{r}
-alpha <- 0.01
+alpha <- 0.01 # chosen significance level
 ## Critical value:
 crit_value <- qf(p = 1-alpha, df1 = df1, df2 = df2)
 crit_value
@@ -535,14 +557,18 @@ $$
 \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
 $$
 
-* We can rejection $H_0$ if
-$$
-T_{obs}\in \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
-$$
-* We cannot rejection $H_0$ if
-$$
-T_{obs}\not \in \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
-$$
+* We can reject $H_0$ if
+\begin{align*}
+T_{obs} 
+& \in \{\text{rejection region}\}\\[2ex]
+& \in \;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+\end{align*}
+* We cannot reject $H_0$ if
+\begin{align*}
+T_{obs} 
+&\not \in \{\text{rejection region}\}\\[2ex]
+&\not \in \;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+\end{align*}
 
 This allows us to show that the $t$-test is an exact test under Assumptions 1-4$^\ast$:
 \begin{align*}
@@ -554,8 +580,7 @@ This allows us to show that the $t$-test is an exact test under Assumptions 1-4$
 &=\frac{\alpha}{2}+\frac{\alpha}{2}=\alpha.
 \end{align*}
 
-
-Fig @fig-twoSided shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
+@fig-twoSided shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
 
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 #| label: fig-twoSided
@@ -596,6 +621,7 @@ text(x = -q, y = .45, labels = expression(c[alpha/2]==-2.18))
 
 To find the critical values we can use `R` as following:
 ```{r}
+alpha <- 0.05 # chosen signficance level 
 df    <- 12   # degrees of freedom 
 alpha <- 0.05 # significance level
 ## Two-sided critical value (= (1-alpha/2) quantile):
@@ -638,14 +664,29 @@ These quantiles are the **critical values** that define the **rejection region**
 For testing 
 \begin{align*}
 &H_0: \beta_k \leq \beta_k^{(0)}\\
-\text{versus}\quad & H_1: \beta_k >    \beta_k^{(0)}\\
+\text{versus}\quad 
+& H_1: \beta_k >    \beta_k^{(0)}\\
 \end{align*}
 the rejection region is
 $$
 \{\text{rejection region}\}=\;]c_{1-\alpha}, \infty[
 $$
 
-Fig @fig-oneSidedRight shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
+
+* We can reject $H_0$ if
+\begin{align*}
+T_{obs} 
+& \in \{\text{rejection region}\}\\[2ex]
+& \in \;]c_{1-\alpha}, \infty[
+\end{align*}
+* We cannot reject $H_0$ if
+\begin{align*}
+T_{obs} 
+&\not \in \{\text{rejection region}\}\\[2ex]
+&\not \in \;]c_{1-\alpha}, \infty[
+\end{align*}
+
+@fig-oneSidedRight shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
 
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 #| label: fig-oneSidedRight
@@ -693,7 +734,22 @@ $$
 \{\text{rejection region}\}=\;]-\infty,c_{\alpha/2}[
 $$
 
-Fig @fig-oneSidedLeft shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
+
+* We can reject $H_0$ if
+\begin{align*}
+T_{obs} 
+& \in \{\text{rejection region}\}\\[2ex]
+& \in \;]-\infty,c_{\alpha}[
+\end{align*}
+* We cannot reject $H_0$ if
+\begin{align*}
+T_{obs} 
+&\not \in \{\text{rejection region}\}\\[2ex]
+&\not \in \;]-\infty,c_{\alpha}[
+\end{align*}
+
+
+@fig-oneSidedLeft shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
 
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 #| label: fig-oneSidedLeft
@@ -735,6 +791,7 @@ par(mfrow=c(1,1))
 
 To find the critical values we can use `R` as following:
 ```{r}
+alpha <- 0.05 # chosen significance level 
 df    <- 12   # degrees of freedom 
 alpha <- 0.05 # significance level
 
