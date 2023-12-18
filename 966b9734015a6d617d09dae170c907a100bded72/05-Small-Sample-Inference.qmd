@@ -306,13 +306,13 @@ and is thus a random variable.
 
 **Caution:** In this section, $T$ denotes *any* real test statistic. Specific examples for $T$ are, for instance, the $F$-test statistic (@sec-testmultp) or the $t$-test statistic (@sec-testingsinglep).
 
-Generally, we can only derive the distribution of $T$ under $H_0;$ i.e. under the scenario that $H_0$ is true. For instance,
+Generally, we can only derive the distribution of $T$ under $H_0;$ i.e. under the scenario that $H_0$ is true. The distribution of a test statistic $T$ under $H_1$ is typically unknown. 
 
-* in @sec-testmultp we showed that $F\overset{H_0}{\sim} F_{(q,n-K)}.$
+<!-- * in @sec-testmultp we discussed that $F\overset{H_0}{\sim} F_{(q,n-K)}.$
 
-* in @sec-testingsinglep we showed that $T\overset{H_0}{\sim} t_{(n-K)}$
+* in @sec-testingsinglep we discussed (for simple null hypothesis) that $T\overset{H_0}{\sim} t_{(n-K)}$ -->
 
-Typically, we do **not know** the distribution of a test statistic under $H_1.$
+
 
 We use the observed realization
 $$

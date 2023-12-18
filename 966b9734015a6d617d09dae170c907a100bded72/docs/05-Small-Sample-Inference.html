@@ -480,12 +480,10 @@ H_0:\beta_k=0
 T\equiv T((X_1,Y_1),\dots,(X_n,Y_n))
 \]</span> and is thus a random variable.</p>
 <p><strong>Caution:</strong> In this section, <span class="math inline">\(T\)</span> denotes <em>any</em> real test statistic. Specific examples for <span class="math inline">\(T\)</span> are, for instance, the <span class="math inline">\(F\)</span>-test statistic (<a href="#sec-testmultp"><span>Section&nbsp;5.1</span></a>) or the <span class="math inline">\(t\)</span>-test statistic (<a href="#sec-testingsinglep"><span>Section&nbsp;5.2</span></a>).</p>
-<p>Generally, we can only derive the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0;\)</span> i.e.&nbsp;under the scenario that <span class="math inline">\(H_0\)</span> is true. For instance,</p>
-<ul>
-<li><p>in <a href="#sec-testmultp"><span>Section&nbsp;5.1</span></a> we showed that <span class="math inline">\(F\overset{H_0}{\sim} F_{(q,n-K)}.\)</span></p></li>
-<li><p>in <a href="#sec-testingsinglep"><span>Section&nbsp;5.2</span></a> we showed that <span class="math inline">\(T\overset{H_0}{\sim} t_{(n-K)}\)</span></p></li>
-</ul>
-<p>Typically, we do <strong>not know</strong> the distribution of a test statistic under <span class="math inline">\(H_1.\)</span></p>
+<p>Generally, we can only derive the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0;\)</span> i.e.&nbsp;under the scenario that <span class="math inline">\(H_0\)</span> is true. The distribution of a test statistic <span class="math inline">\(T\)</span> under <span class="math inline">\(H_1\)</span> is typically unknown.</p>
+<!-- * in @sec-testmultp we discussed that $F\overset{H_0}{\sim} F_{(q,n-K)}.$
+
+* in @sec-testingsinglep we discussed (for simple null hypothesis) that $T\overset{H_0}{\sim} t_{(n-K)}$ -->
 <p>We use the observed realization <span class="math display">\[
 T_{\text{obs}}\equiv T((X_{1,\text{obs}},Y_{1,\text{obs}}),\dots,(X_{n,\text{obs}},Y_{n,\text{obs}}))
 \]</span> <span class="math inline">\(T_{\text{obs}},\)</span> of the random test statistic <span class="math inline">\(T\)</span> to decide whether we cannot reject a null hypothesis <span class="math inline">\(H_0\)</span> about some parameter <span class="math inline">\(\theta\)</span> or wether we can reject <span class="math inline">\(H_0\)</span> in favor of the alternative hypothesis <span class="math inline">\(H_1\)</span> <span class="math display">\[\begin{equation*}
