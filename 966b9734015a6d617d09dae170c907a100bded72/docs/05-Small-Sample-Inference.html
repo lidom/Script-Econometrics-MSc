@@ -1418,15 +1418,15 @@ X_{i3}&amp;\sim U[12,22]\\
 H_0:\;&amp;\beta_2=3\quad\text{and}\quad\beta_3=4\\
 \text{versus}\quad H_1:\;&amp;\beta_2\neq 3\quad\text{and/or}\quad\beta_3\neq 4.
 \end{align*}\]</span> Or equivalently <span class="math display">\[\begin{align*}
-H_0:\;&amp;R\beta -r = 0 \\
-H_1:\;&amp;R\beta -r \neq 0,
+H_0:\;&amp;R\beta  = r^{(0)} \\
+H_1:\;&amp;R\beta  \neq r^{(0)},
 \end{align*}\]</span> where <span class="math display">\[
 R=\left(
 \begin{matrix}
 0&amp;1&amp;0\\
 0&amp;0&amp;1\\
 \end{matrix}\right)\quad\text{ and }\quad
-r=\left(\begin{matrix}3\\4\\\end{matrix}\right).
+r^{(0)}=\left(\begin{matrix}3\\4\\\end{matrix}\right).
 \]</span> The following <code>R</code> code can be used to test this hypothesis:</p>
 <div class="cell" data-hash="05-Small-Sample-Inference_cache/html/unnamed-chunk-14_41a34cbaf2ff9c1abdabafcfbbe9318c">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Library containing the function 'linearHyothesis()' </span></span>
@@ -1577,8 +1577,8 @@ X_3 4.055278 6.408284</code></pre>
 </div>
 <p>We can use these two-sided confidence intervals to conduct hypotheses tests. This property of confidence intervals is called the <strong>duality of confidence intervals and hypothesis tests</strong>.</p>
 <p>For instance, when testing the null hypothesis <span class="math display">\[\begin{align*}
-H_0:&amp;\beta_2=3\\
-\text{versus}\quad H_1: &amp;\beta_2\neq 3
+H_0:&amp;\;\beta_2=3\\
+\text{versus}\quad H_1: &amp;\;\beta_2\neq 3
 \end{align*}\]</span> we can either use a <span class="math inline">\(t\)</span>-test or equivalently check whether the confidence interval <span class="math inline">\(\operatorname{CI}_{2,1-\alpha}\)</span> for <span class="math inline">\(\beta_2\)</span> contains the hypothetical value <span class="math inline">\(4\)</span> or not.</p>
 <ul>
 <li>In case of <span class="math inline">\(3 \in\operatorname{CI}_{2,1-\alpha}\)</span>, we cannot reject the null hypothesis <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_2=3.\)</span></li>
@@ -1716,7 +1716,7 @@ F-statistic: 33.22 on 3 and 5186 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>The square root of the diagonal <code>sqrt(diag(vcov(lm_obj)))</code> allows you to compute the estimated standard errors shown in the regression table.</li>
 </ul></li>
 <li><p><strong>t value:</strong> The column “t value” contains the observed <span class="math inline">\(t\)</span> test statistics <span class="math display">\[
-t_{obs,j}=\frac{\hat\beta_{j}}{\widehat{\operatorname{SE}}(\hat\beta_{j}|X)},\quad j\in\{1,gender, age, income\}
+T_{obs,j}=\frac{\hat\beta_{j}-0}{\widehat{\operatorname{SE}}(\hat\beta_{j}|X)},\quad j\in\{1,gender, age, income\}
 \]</span> You can extract the values using <code>lm_obj_summary$coefficients[,3]</code>.</p></li>
 <li><p><strong>Pr(&gt;|t|):</strong> The column “Pr(&gt;|t|)” contains the <span class="math inline">\(p\)</span> values <span class="math display">\[
 P_{H_0}(|t|&gt;t_{obs,j}),\quad j\in\{1,gender, age, income\}
@@ -1961,9 +1961,9 @@ Consequently, the error term <span class="math inline">\(\varepsilon_i\)</span> 
 <section id="exercises" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.7</span> Exercises</h2>
 <ul>
-<li><a href="https://www.dropbox.com/scl/fi/g6hiwoprjewwsbr09t217/Ch5_Exercises1.pdf?rlkey=s6642zm8ufj173mhmbtoj0wvf&amp;dl=0">Exercises for Chapter 5</a></li>
+<li><p><a href="https://www.dropbox.com/scl/fi/g6hiwoprjewwsbr09t217/Ch5_Exercises1.pdf?rlkey=s6642zm8ufj173mhmbtoj0wvf&amp;dl=0">Exercises for Chapter 5</a></p></li>
+<li><p><a href="https://www.dropbox.com/scl/fi/codmlxtkr9p4wugd7knm0/Ch5_Exercises_with_Solutions1.pdf?rlkey=4s4g3nu4k2ycvlg4cm2n5xcat&amp;dl=0">Exercises of Chapter 5 with Solutions</a></p></li>
 </ul>
-<!-- * [Exercises of Chapter 5 with Solutions](Exercises/Ch5_Exercises_with_Solutions.pdf) -->
 </section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>

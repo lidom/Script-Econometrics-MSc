@@ -1473,8 +1473,8 @@ H_0:\;&\beta_2=3\quad\text{and}\quad\beta_3=4\\
 \end{align*}
 Or equivalently
 \begin{align*}
-H_0:\;&R\beta -r = 0 \\
-H_1:\;&R\beta -r \neq 0,
+H_0:\;&R\beta  = r^{(0)} \\
+H_1:\;&R\beta  \neq r^{(0)},
 \end{align*}
 where 
 $$
@@ -1483,7 +1483,7 @@ R=\left(
 0&1&0\\
 0&0&1\\
 \end{matrix}\right)\quad\text{ and }\quad 
-r=\left(\begin{matrix}3\\4\\\end{matrix}\right).
+r^{(0)}=\left(\begin{matrix}3\\4\\\end{matrix}\right).
 $$
 The following `R` code can be used to test this hypothesis:
 ```{r}
@@ -1621,8 +1621,8 @@ We can use these two-sided confidence intervals to conduct hypotheses tests. Thi
 
 For instance, when testing the null hypothesis
 \begin{align*}
-H_0:&\beta_2=3\\
-\text{versus}\quad H_1: &\beta_2\neq 3
+H_0:&\;\beta_2=3\\
+\text{versus}\quad H_1: &\;\beta_2\neq 3
 \end{align*}
 we can either use a $t$-test or equivalently check whether the confidence interval $\operatorname{CI}_{2,1-\alpha}$ for $\beta_2$ contains the hypothetical value $4$ or not. 
 
@@ -1735,7 +1735,7 @@ $$
 
 * **t value:** The column "t value" contains the observed $t$ test statistics 
 $$
-t_{obs,j}=\frac{\hat\beta_{j}}{\widehat{\operatorname{SE}}(\hat\beta_{j}|X)},\quad j\in\{1,gender, age, income\}
+T_{obs,j}=\frac{\hat\beta_{j}-0}{\widehat{\operatorname{SE}}(\hat\beta_{j}|X)},\quad j\in\{1,gender, age, income\}
 $$
 You can extract the values using `lm_obj_summary$coefficients[,3]`.
 
@@ -1810,7 +1810,7 @@ Lukily, the data set `DoctorVisits` actually has a **large sample size** of $n=$
 * [Exercises for Chapter 5](https://www.dropbox.com/scl/fi/g6hiwoprjewwsbr09t217/Ch5_Exercises1.pdf?rlkey=s6642zm8ufj173mhmbtoj0wvf&dl=0)
 
 
-<!-- * [Exercises of Chapter 5 with Solutions](Exercises/Ch5_Exercises_with_Solutions.pdf) -->
+* [Exercises of Chapter 5 with Solutions](https://www.dropbox.com/scl/fi/codmlxtkr9p4wugd7knm0/Ch5_Exercises_with_Solutions1.pdf?rlkey=4s4g3nu4k2ycvlg4cm2n5xcat&dl=0)
 
 ## References {-}
 
