@@ -101,7 +101,7 @@ Use the realizations $\hat\theta_{n,1,obs},\dots,\hat\theta_{n,B,obs}$ to approx
 ::: {.callout-note}
 Step 2 of the above algorithm works, since the empirical distribution function 
 $$
-\hat{F}_{\hat{\theta}_n,B}(x)=\frac{1}{B}\sum_{j=1}^BI_{(\hat\theta_{n,1,obs} \leq x)}
+\hat{F}_{\hat{\theta}_n,B}(x)=\frac{1}{B}\sum_{j=1}^BI_{(\hat\theta_{n,j} \leq x)}
 $$
 approximates the true (unknown) distribution function of $\hat{\theta}_n$
 $$
