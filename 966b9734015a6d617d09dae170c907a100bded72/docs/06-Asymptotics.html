@@ -478,10 +478,18 @@ Z_n\to_{d}  \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{d} f(\alpha)
 <!-- %This is easily seen using the expression %$\E[(z_n-\alpha)^2]=Var(z_n)+(\E(z_n)-\alpha)^2$ and the  --> <!-- %application of Jensen's inequality (see below). --></p>
 <p><strong>Examples:</strong> As a consequence of the CMT (<a href="#thm-Preserv">Theorem&nbsp;<span>6.2</span></a>) we have that the usual arithmetic operations preserve convergence in probability (and equivalently for almost sure convergence and convergence in distribution):</p>
 <ul>
-<li><p>If <span class="math inline">\(X_n\to_{p} \beta\)</span> and <span class="math inline">\(Y_n\to_{p} \gamma\)</span> then <span class="math inline">\(X_n+Y_n\to_{p} \beta+\gamma\)</span></p></li>
-<li><p>If <span class="math inline">\(X_n\to_{p} \beta\)</span> and <span class="math inline">\(Y_n\to_{p} \gamma\)</span> then <span class="math inline">\(x_n\cdot y_n\to_{p} \beta\cdot\gamma\)</span></p></li>
-<li><p>If <span class="math inline">\(X_n\to_{p} \beta\)</span> and <span class="math inline">\(Y_n\to_{p} \gamma\)</span> then <span class="math inline">\(X_n/Y_n\to_{p} \beta/\gamma\)</span>, provided that <span class="math inline">\(\gamma\neq 0\)</span></p></li>
-<li><p>If <span class="math inline">\(X_n'X_n\to_{p} \Sigma_{X'X}\)</span> then <span class="math inline">\((X_n'X_n)^{-1}\to_{p} \Sigma_{X'X}^{-1}\)</span>, provided <span class="math inline">\(\Sigma_{X'X}\)</span> is a nonsingular/invertible matrix.</p></li>
+<li><p>If <span class="math inline">\(X_n\to_{p} \beta\)</span> and <span class="math inline">\(Y_n\to_{p} \gamma,\)</span> then <span class="math display">\[
+X_n+Y_n\to_{p} \beta+\gamma
+\]</span></p></li>
+<li><p>If <span class="math inline">\(X_n\to_{p} \beta\)</span> and <span class="math inline">\(Y_n\to_{p} \gamma,\)</span> then <span class="math display">\[
+x_n\cdot y_n\to_{p} \beta\cdot\gamma
+\]</span></p></li>
+<li><p>If <span class="math inline">\(X_n\to_{p} \beta\)</span> and <span class="math inline">\(Y_n\to_{p} \gamma,\)</span> then <span class="math display">\[
+X_n/Y_n\to_{p} \beta/\gamma,
+\]</span> provided that <span class="math inline">\(\gamma\neq 0\)</span></p></li>
+<li><p>If <span class="math inline">\(X_n'X_n\to_{p} \Sigma_{X'X},\)</span> then <span class="math display">\[
+(X_n'X_n)^{-1}\to_{p} \Sigma_{X'X}^{-1},
+\]</span> provided <span class="math inline">\(\Sigma_{X'X}\)</span> is a nonsingular/invertible matrix.</p></li>
 </ul>
 <!-- The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n, y_n\right)'$, $\boldsymbol\alpha=\left(\beta, \gamma\right)'$, and $\mathbf{a}(\boldsymbol\alpha)=(1,1)\boldsymbol\alpha$, similarly for all others.  -->
 </section>
@@ -501,10 +509,17 @@ Z_n\to_{d}  \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{d} f(\alpha)
 <div id="thm-Slutsky" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 6.3 (Slutsky’s Theorem) </strong></span>Let <span class="math inline">\(X_n\)</span> and <span class="math inline">\(Y_n\)</span> denote sequences of random scalars or vectors and let <span class="math inline">\(A_n\)</span> denote a sequences of random matrices. Moreover, <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(A\)</span> are deterministic limits of appropriate dimensions and <span class="math inline">\(X\)</span> is a <em>random</em> limit of appropriate dimension.</p>
 <ul>
-<li><p>If <span class="math inline">\(X_n\to_{d} X\quad\)</span> and <span class="math inline">\(\quad Y_n\to_{p} \alpha,\quad\)</span> then <span class="math inline">\(\quad X_n+Y_n\to_{d} X + \alpha\)</span></p></li>
-<li><p>If <span class="math inline">\(X_n\to_{d} X\quad\)</span> and <span class="math inline">\(\quad Y_n\to_{p} 0,\quad\)</span> then <span class="math inline">\(\quad X_n'Y_n\to_{p} 0\)</span></p></li>
-<li><p>If <span class="math inline">\(X_n\to_{d} X\quad\)</span> and <span class="math inline">\(\quad A_n\to_{p} A,\quad\)</span> then <span class="math inline">\(\quad A_n X_n\to_{d} AX\)</span>, where it is assumed that <span class="math inline">\(A_n\)</span> and <span class="math inline">\(X_n\)</span> are “conformable” (i.e., the matrix- and vector-dimensions fit to each other).</p></li>
+<li><p>If <span class="math inline">\(X_n\to_{d} X\quad\)</span> and <span class="math inline">\(\quad Y_n\to_{p} \alpha,\quad\)</span> then <span class="math display">\[
+X_n+Y_n\to_{d} X + \alpha.
+\]</span></p></li>
+<li><p>If <span class="math inline">\(X_n\to_{d} X\quad\)</span> and <span class="math inline">\(\quad Y_n\to_{p} 0,\quad\)</span> then <span class="math display">\[
+X_n'Y_n\to_{p} 0.
+\]</span></p></li>
+<li><p>If <span class="math inline">\(X_n\to_{d} X\quad\)</span> and <span class="math inline">\(\quad A_n\to_{p} A,\quad\)</span> then <span class="math display">\[
+A_n X_n\to_{d} AX.
+\]</span></p></li>
 </ul>
+<p>Above, we assume that <span class="math inline">\(X_n,\)</span> <span class="math inline">\(Y_n,\)</span> and <span class="math inline">\(A_n\)</span> are “conformable” (i.e., the matrix- and vector-dimensions fit to each other).</p>
 </div>
 </div>
 </div>

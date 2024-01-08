@@ -217,13 +217,26 @@ Proofs of @thm-Preserv can be found, e.g., in @Vaart2000 (see Theorem 2.3)  or h
 
 **Examples:** As a consequence of the CMT (@thm-Preserv) we have that the usual arithmetic operations preserve convergence in probability (and equivalently for almost sure convergence and convergence in distribution): 
 
-- If $X_n\to_{p} \beta$ and $Y_n\to_{p} \gamma$ then $X_n+Y_n\to_{p} \beta+\gamma$
+- If $X_n\to_{p} \beta$ and $Y_n\to_{p} \gamma,$ then 
+$$
+X_n+Y_n\to_{p} \beta+\gamma
+$$
 
-- If $X_n\to_{p} \beta$ and $Y_n\to_{p} \gamma$ then $x_n\cdot y_n\to_{p} \beta\cdot\gamma$
+- If $X_n\to_{p} \beta$ and $Y_n\to_{p} \gamma,$ then 
+$$
+x_n\cdot y_n\to_{p} \beta\cdot\gamma
+$$
 
-- If $X_n\to_{p} \beta$ and $Y_n\to_{p} \gamma$ then $X_n/Y_n\to_{p} \beta/\gamma$, provided that $\gamma\neq 0$
+- If $X_n\to_{p} \beta$ and $Y_n\to_{p} \gamma,$ then $$
+X_n/Y_n\to_{p} \beta/\gamma,
+$$ 
+provided that $\gamma\neq 0$
 
-- If $X_n'X_n\to_{p} \Sigma_{X'X}$ then $(X_n'X_n)^{-1}\to_{p} \Sigma_{X'X}^{-1}$, provided $\Sigma_{X'X}$ is a nonsingular/invertible matrix.
+- If $X_n'X_n\to_{p} \Sigma_{X'X},$ then 
+$$
+(X_n'X_n)^{-1}\to_{p} \Sigma_{X'X}^{-1},
+$$ 
+provided $\Sigma_{X'X}$ is a nonsingular/invertible matrix.
 
 <!-- The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n, y_n\right)'$, $\boldsymbol\alpha=\left(\beta, \gamma\right)'$, and $\mathbf{a}(\boldsymbol\alpha)=(1,1)\boldsymbol\alpha$, similarly for all others.  -->
 
@@ -239,11 +252,23 @@ The following results are concerned with combinations of convergence in probabil
 
 Let $X_n$ and $Y_n$ denote sequences of random scalars or vectors and let $A_n$ denote a sequences of random matrices. Moreover, $\alpha$ and $A$ are deterministic limits of appropriate dimensions and $X$ is a *random* limit of appropriate dimension. 
 
-* If $X_n\to_{d} X\quad$ and $\quad Y_n\to_{p} \alpha,\quad$  then $\quad X_n+Y_n\to_{d} X + \alpha$
+* If $X_n\to_{d} X\quad$ and $\quad Y_n\to_{p} \alpha,\quad$  then 
+$$
+X_n+Y_n\to_{d} X + \alpha.
+$$
 
-* If $X_n\to_{d} X\quad$ and $\quad Y_n\to_{p} 0,\quad$ then $\quad X_n'Y_n\to_{p} 0$
+* If $X_n\to_{d} X\quad$ and $\quad Y_n\to_{p} 0,\quad$ then 
+$$
+X_n'Y_n\to_{p} 0.
+$$
 
-* If $X_n\to_{d} X\quad$ and $\quad A_n\to_{p} A,\quad$ then $\quad A_n X_n\to_{d} AX$, where it is assumed that $A_n$ and $X_n$ are "conformable" (i.e., the matrix- and vector-dimensions fit to each other). 
+
+* If $X_n\to_{d} X\quad$ and $\quad A_n\to_{p} A,\quad$ then 
+$$
+A_n X_n\to_{d} AX.
+$$ 
+
+Above, we assume that $X_n,$ $Y_n,$ and $A_n$ are "conformable" (i.e., the matrix- and vector-dimensions fit to each other). 
 :::
 :::
 
