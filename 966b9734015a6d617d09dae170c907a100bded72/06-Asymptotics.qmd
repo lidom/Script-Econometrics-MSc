@@ -132,7 +132,19 @@ We call $F$ the **asymptotic (or limit) distribution** of $Z_n$.
 
 Remarks on @def-conv_distr:
 
-1. Often you will see statements like $Z_n\to_{d} N(0,1)$ or $Z_n\overset{a}{\sim}N(0,1)$, which should be read as $\lim_{n\to\infty}F_n(x) = \Phi(x)$ for all $x\in\mathbb{R},$ where $\Phi$ denotes the  distribution function of the standard normal distribution. 
+1. Often you will see statements like 
+$$
+Z_n\to_{d} N(0,1)
+$$ 
+or 
+$$
+Z_n\overset{a}{\sim}N(0,1),
+$$ 
+which should be read as 
+$$
+\lim_{n\to\infty}F_n(x) = \Phi(x)
+$$ 
+for all $x\in\mathbb{R},$ where $\Phi$ denotes the  distribution function of the standard normal distribution. 
 2. A stochastic sequence $\{Z_n\}$ can also convergence in distribution to a **constant** $\alpha$. In this case $\alpha$ is treated as a degenerated random variable with cdf 
 $$
 F_\alpha(x)=\left\{
