@@ -29,16 +29,28 @@ https://uni-bonn.zoom.us/j/99283287705?pwd=UHFoRTlwYkNqb0k2ODRjdEluY2FXZz09) (Me
 
 ### Literature {-}
 
-It's not must, but you can read any of the usual econometrics textbooks additionally to this script. I can recommend the following ones, but there are many other good books: 
+The script is self-contained and to prepare well for the exam, it's a good idea to read this script. 
 
+Further textbooks I can recommend:  
+
+* *All of Statistics: A Concise Course in Statistical Inference*, by Larry Wasserman
+* *Econometrics*, by F. Hayashi
 * *Econometrics*, by Bruce E. Hansen
 * *Probability and Statistics for Economists*, by Bruce E. Hansen
-* *Econometrics*, by F. Hayashi
 * *Econometric theory and methods*, by R. Davidson and J.G. MacKinnon
 <!-- * *Introduction to econometrics*, by J. Stock and M.W. Watson 
   * E-Book: [https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983](https://bonnus.ulb.uni-bonn.de/SummonRecord/FETCH-bonn_catalog_45089983) -->
 <!-- * *A primer in econometric theory*, by J. Stachurski -->
 
+
+### Information on the Exam {-}
+
+* Mock Exam with 5 multiple-choice problems and 1 free-text problem: [Download](https://www.dropbox.com/scl/fi/ib7z8bp2d5q775u2hoty0/Mock_Exam1.pdf?rlkey=m5yus4dkxnekpzaoydf6eqok5&dl=0) 
+   * Note: The actual exam will contain 10 multiple-choice problems and 2 free-text problems.
+* You are allowed to use a handwritten cheat-sheet (**one side** of a DIN A4 page).
+* You are allowed to use a non-programmable scientific calculator.
+* Please, do **not** use a pencil.
+* Exam dates and times are published by the [examinations office](https://www.econ.uni-bonn.de/examinations/en/dates/dates?set_language=en)
 
 <!-- ### Communication {-}
 

@@ -312,13 +312,14 @@ Z_i,\quad i=1,\dots,n,
 </div>
 <div class="callout-body-container callout-body">
 <div id="def-conv_prop" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.1 (Convergence in Probability) </strong></span>A sequence of random scalars <span class="math inline">\(\{Z_n\}\)</span> <strong>converges in probability</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if, for any (arbitrarily small) <span class="math inline">\(\varepsilon&gt;0\)</span>, <span class="math display">\[\begin{eqnarray*}
+<p><span class="theorem-title"><strong>Definition 6.1 (Convergence in Probability) </strong></span>A sequence of real valued random scalars <span class="math inline">\(\{Z_n\}\)</span> <strong>converges in probability</strong> to a constant (non-random) <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if, for any (arbitrarily small) <span class="math inline">\(\varepsilon&gt;0\)</span>, <span class="math display">\[\begin{eqnarray*}
   \lim_{n\to\infty} P\left(|Z_n-\alpha|&gt;\epsilon\right)=0.
 \end{eqnarray*}\]</span> We write: <span class="math display">\[
 \operatorname{plim}_{n\to\infty}Z_n=\alpha
 \]</span> or more shortly <span class="math display">\[
 Z_n\to_{p}\alpha,\quad\text{as}\quad n\to\infty.
-\]</span> Convergence in probability of a sequence of random vectors or matrices <span class="math inline">\(\{Z_n\}\)</span> to a constant vector or matrix <span class="math inline">\(\alpha\)</span> requires <strong>element-wise</strong> convergence in probability.</p>
+\]</span></p>
+<p><strong>Note:</strong> Convergence in probability of a sequence of random vectors or matrices <span class="math inline">\(\{Z_n\}\)</span> to a constant vector or matrix <span class="math inline">\(\alpha\)</span> requires <strong>element-wise</strong> convergence in probability.</p>
 </div>
 </div>
 </div>
@@ -335,11 +336,12 @@ Z_n\to_{p}\alpha,\quad\text{as}\quad n\to\infty.
 </div>
 <div class="callout-body-container callout-body">
 <div id="def-conv_as" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.2 (Almost Sure Convergence) </strong></span>A sequence of random scalars <span class="math inline">\(\{Z_n\}\)</span> <strong>converges almost surely</strong> to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[\begin{eqnarray*}
+<p><span class="theorem-title"><strong>Definition 6.2 (Almost Sure Convergence) </strong></span>A sequence of real valued random scalars <span class="math inline">\(\{Z_n\}\)</span> <strong>converges almost surely</strong> to a constant (non-random) <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if <span class="math display">\[\begin{eqnarray*}
 P\left(\lim_{n\to\infty}Z_n=\alpha\right)=1.
 \end{eqnarray*}\]</span> We write: <span class="math display">\[
 Z_n\to_{as}\alpha,\quad\text{as}\quad n\to\infty.
-\]</span> Almost sure convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{Z_n\}\)</span> to a constant vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <strong>element-wise</strong> almost sure convergence.</p>
+\]</span></p>
+<p><strong>Note:</strong> Almost sure convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{Z_n\}\)</span> to a constant vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <strong>element-wise</strong> almost sure convergence.</p>
 </div>
 </div>
 </div>
@@ -356,13 +358,14 @@ Z_n\to_{as}\alpha,\quad\text{as}\quad n\to\infty.
 </div>
 <div class="callout-body-container callout-body">
 <div id="def-conv_ms" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.3 (Convergence in Mean Square) </strong></span>A sequence of random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in mean square</strong> (or <strong>in quadratic mean</strong>) to a constant (non-random) <span class="math inline">\(\alpha\)</span> if <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 6.3 (Convergence in Mean Square) </strong></span>A sequence of real valued random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in mean square</strong> (or <strong>in quadratic mean</strong>) to a constant (non-random) <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if <span class="math display">\[
 \begin{align*}
   \lim_{n\to\infty}E\left((Z_n-\alpha)^2\right)&amp;=0.
 \end{align*}
 \]</span> We write: <span class="math display">\[
 Z_n\to_{ms}\alpha,\quad\text{as}\quad n\to\infty.
-\]</span> Mean square convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{Z_n\}\)</span> to a deterministic vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> mean square convergence.</p>
+\]</span></p>
+<p><strong>Note:</strong> Mean square convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{Z_n\}\)</span> to a deterministic vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> mean square convergence.</p>
 </div>
 </div>
 </div>
@@ -379,7 +382,8 @@ Z_n\to_{ms}\alpha,\quad\text{as}\quad n\to\infty.
 </div>
 <div class="callout-body-container callout-body">
 <div id="def-conv_distr" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.4 (Convergence in Distribution) </strong></span>Let <span class="math inline">\(F_n\)</span> be the cumulative distribution function (cdf) of <span class="math inline">\(Z_n\)</span> and <span class="math inline">\(F\)</span> the cdf of <span class="math inline">\(Z\)</span>. A sequence of real valued random variables <span class="math inline">\(\{Z_n\}\)</span> <strong>converges in distribution</strong> to a real valued random variable <span class="math inline">\(Z\)</span> if <span class="math display">\[\begin{eqnarray*}
+<p><span class="theorem-title"><strong>Definition 6.4 (Convergence in Distribution) </strong></span>Let <span class="math inline">\(F_n\)</span> be the cumulative distribution function (cdf) of the real valued random scalar <span class="math inline">\(Z_n\in\mathbb{R}\)</span> and <span class="math inline">\(F\)</span> the cdf of the real valued random scalar <span class="math inline">\(Z\in\mathbb{R}.\)</span></p>
+<p>A sequence of real valued random scalars <span class="math inline">\(\{Z_n\}\)</span> <strong>converges in distribution</strong> to a real valued random scalar <span class="math inline">\(Z\)</span> if <span class="math display">\[\begin{eqnarray*}
   \lim_{n\to\infty}F_n(x)=F(x)
 \end{eqnarray*}\]</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span> at which <span class="math inline">\(F(x)\)</span> is continuous.</p>
 <p>We write: <span class="math display">\[
@@ -488,13 +492,13 @@ Z_n\to_{d}  \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{d} f(\alpha)
 X_n+Y_n\to_{p} \beta+\gamma
 \]</span></p></li>
 <li><p>If <span class="math inline">\(X_n\to_{p} \beta\)</span> and <span class="math inline">\(Y_n\to_{p} \gamma,\)</span> then <span class="math display">\[
-x_n\cdot y_n\to_{p} \beta\cdot\gamma
+X_n\cdot Y_n\to_{p} \beta\cdot\gamma
 \]</span></p></li>
 <li><p>If <span class="math inline">\(X_n\to_{p} \beta\)</span> and <span class="math inline">\(Y_n\to_{p} \gamma,\)</span> then <span class="math display">\[
 X_n/Y_n\to_{p} \beta/\gamma,
 \]</span> provided that <span class="math inline">\(\gamma\neq 0\)</span></p></li>
-<li><p>If <span class="math inline">\(X_n'X_n\to_{p} \Sigma_{X'X},\)</span> then <span class="math display">\[
-(X_n'X_n)^{-1}\to_{p} \Sigma_{X'X}^{-1},
+<li><p>If <span class="math inline">\(\frac{1}{n}X_n'X_n\to_{p} \Sigma_{X'X},\)</span> then <span class="math display">\[
+\left(\frac{1}{n}X_n'X_n\right)^{-1}\to_{p} \Sigma_{X'X}^{-1},
 \]</span> provided <span class="math inline">\(\Sigma_{X'X}\)</span> is a nonsingular/invertible matrix.</p></li>
 </ul>
 <!-- The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n, y_n\right)'$, $\boldsymbol\alpha=\left(\beta, \gamma\right)'$, and $\mathbf{a}(\boldsymbol\alpha)=(1,1)\boldsymbol\alpha$, similarly for all others.  -->
@@ -532,10 +536,10 @@ A_n X_n\to_{d} AX.
 <p>Proofs of <a href="#thm-Slutsky">Theorem&nbsp;<span>6.3</span></a> can be found, e.g., in <span class="citation" data-cites="Vaart2000">Van der Vaart (<a href="#ref-Vaart2000" role="doc-biblioref">2000</a>)</span> (see Theorem 2.8) or here: <a href="https://www.statlect.com/asymptotic-theory/Slutsky-theorem">https://www.statlect.com/asymptotic-theory/Slutsky-theorem</a></p>
 <p><strong>Remark:</strong> Sometimes, only the first two points in <a href="#thm-Slutsky">Theorem&nbsp;<span>6.3</span></a> are called “Slutsky’s theorem.”</p>
 <p>Important special case of <a href="#thm-Slutsky">Theorem&nbsp;<span>6.3</span></a>:</p>
-<p>If <span class="math display">\[
-X_n\to_{d} N(0,\Sigma)\quad\text{and}\quad A_n\to_{p} A
+<p>Let <span class="math inline">\(\{X_n\}\)</span> and <span class="math inline">\(\{X_n\}\)</span> be sequences of real valued <span class="math inline">\((K\times 1)\)</span>-dimensional random vectors. If <span class="math display">\[
+X_n\to_{d}\mathcal{N}_K(0,\Sigma)\quad\text{and}\quad A_n\to_{p} A
 \]</span> then <span class="math display">\[
-A_nX_n\to_{d} N(0,A\Sigma A').
+A_nX_n\to_{d}\mathcal{N}_K(0,A\Sigma A').
 \]</span></p>
 </section>
 <section id="law-of-large-numbers-and-central-limit-theorems" class="level3" data-number="6.1.4">

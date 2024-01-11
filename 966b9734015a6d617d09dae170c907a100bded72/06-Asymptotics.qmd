@@ -45,7 +45,7 @@ In order to show that some stochastic sequence converges in probability to its l
 ::: {#def-conv_prop}
 ## Convergence in Probability 
 
-A sequence of random scalars $\{Z_n\}$ **converges in probability** to a constant (non-random) $\alpha$ if, for any (arbitrarily small) $\varepsilon>0$,
+A sequence of real valued random scalars $\{Z_n\}$ **converges in probability** to a constant (non-random) $\alpha\in\mathbb{R}$ if, for any (arbitrarily small) $\varepsilon>0$,
 \begin{eqnarray*}
   \lim_{n\to\infty} P\left(|Z_n-\alpha|>\epsilon\right)=0.
 \end{eqnarray*}
@@ -57,7 +57,8 @@ or more shortly
 $$
 Z_n\to_{p}\alpha,\quad\text{as}\quad n\to\infty.
 $$
-Convergence in probability of a sequence of random vectors or matrices $\{Z_n\}$ to a constant vector or matrix $\alpha$ requires **element-wise** convergence in probability.
+
+**Note:** Convergence in probability of a sequence of random vectors or matrices $\{Z_n\}$ to a constant vector or matrix $\alpha$ requires **element-wise** convergence in probability.
 :::
 :::
 
@@ -69,7 +70,7 @@ Every sequence that converges almost surely, also converges in probability.
 #
 ::: {#def-conv_as}
 ## Almost Sure Convergence 
-A sequence of random scalars $\{Z_n\}$ **converges almost surely** to a constant (non-random) $\alpha$ if
+A sequence of real valued random scalars $\{Z_n\}$ **converges almost surely** to a constant (non-random) $\alpha\in\mathbb{R}$ if
 \begin{eqnarray*}
 P\left(\lim_{n\to\infty}Z_n=\alpha\right)=1.
 \end{eqnarray*}
@@ -77,7 +78,8 @@ We write:
 $$
 Z_n\to_{as}\alpha,\quad\text{as}\quad n\to\infty.
 $$
-Almost sure convergence of a sequence of random vectors (or matrices) $\{Z_n\}$ to a constant vector (or matrix) $\alpha$ requires **element-wise** almost sure convergence. 
+
+**Note:** Almost sure convergence of a sequence of random vectors (or matrices) $\{Z_n\}$ to a constant vector (or matrix) $\alpha$ requires **element-wise** almost sure convergence. 
 :::
 :::
 
@@ -89,7 +91,7 @@ Every sequence that converges in mean square, also converges in probability.
 #
 ::: {#def-conv_ms}
 ## Convergence in Mean Square 
-A sequence of random scalars $\{z_n\}$ **converges in mean square** (or **in quadratic mean**) to a constant (non-random) $\alpha$ if
+A sequence of real valued random scalars $\{z_n\}$ **converges in mean square** (or **in quadratic mean**) to a constant (non-random) $\alpha\in\mathbb{R}$ if
 $$
 \begin{align*}
   \lim_{n\to\infty}E\left((Z_n-\alpha)^2\right)&=0.
@@ -99,7 +101,8 @@ We write:
 $$
 Z_n\to_{ms}\alpha,\quad\text{as}\quad n\to\infty.
 $$
-Mean square convergence of a sequence of random vectors (or matrices) $\{Z_n\}$ to a deterministic vector (or matrix) $\alpha$ requires *element-wise* mean square convergence. 
+
+**Note:** Mean square convergence of a sequence of random vectors (or matrices) $\{Z_n\}$ to a deterministic vector (or matrix) $\alpha$ requires *element-wise* mean square convergence. 
 :::
 :::
 
@@ -116,7 +119,9 @@ Mean square convergence of a sequence of random vectors (or matrices) $\{Z_n\}$ 
 ::: {#def-conv_distr}
 ## Convergence in Distribution 
 
-Let $F_n$ be the cumulative distribution function (cdf) of $Z_n$ and $F$ the cdf of $Z$. A sequence of real valued random variables $\{Z_n\}$ **converges in distribution** to a real valued random variable $Z$ if 
+Let $F_n$ be the cumulative distribution function (cdf) of the real valued random scalar $Z_n\in\mathbb{R}$ and $F$ the cdf of the real valued random scalar $Z\in\mathbb{R}.$ 
+
+A sequence of real valued random scalars $\{Z_n\}$ **converges in distribution** to a real valued random scalar $Z$ if 
 \begin{eqnarray*}
   \lim_{n\to\infty}F_n(x)=F(x)
 \end{eqnarray*}
@@ -236,7 +241,7 @@ $$
 
 - If $X_n\to_{p} \beta$ and $Y_n\to_{p} \gamma,$ then 
 $$
-x_n\cdot y_n\to_{p} \beta\cdot\gamma
+X_n\cdot Y_n\to_{p} \beta\cdot\gamma
 $$
 
 - If $X_n\to_{p} \beta$ and $Y_n\to_{p} \gamma,$ then $$
@@ -244,9 +249,9 @@ X_n/Y_n\to_{p} \beta/\gamma,
 $$ 
 provided that $\gamma\neq 0$
 
-- If $X_n'X_n\to_{p} \Sigma_{X'X},$ then 
+- If $\frac{1}{n}X_n'X_n\to_{p} \Sigma_{X'X},$ then 
 $$
-(X_n'X_n)^{-1}\to_{p} \Sigma_{X'X}^{-1},
+\left(\frac{1}{n}X_n'X_n\right)^{-1}\to_{p} \Sigma_{X'X}^{-1},
 $$ 
 provided $\Sigma_{X'X}$ is a nonsingular/invertible matrix.
 
@@ -292,15 +297,14 @@ Proofs of @thm-Slutsky can be found, e.g., in @Vaart2000 (see Theorem 2.8) or he
 
 Important special case of @thm-Slutsky: 
 
-If 
+Let $\{X_n\}$ and $\{X_n\}$ be sequences of real valued $(K\times 1)$-dimensional random vectors. If 
 $$
-X_n\to_{d} N(0,\Sigma)\quad\text{and}\quad A_n\to_{p} A
+X_n\to_{d}\mathcal{N}_K(0,\Sigma)\quad\text{and}\quad A_n\to_{p} A
 $$ 
 then
 $$
-A_nX_n\to_{d} N(0,A\Sigma A').
+A_nX_n\to_{d}\mathcal{N}_K(0,A\Sigma A').
 $$
-
 
 
 ### Law of Large Numbers and Central Limit Theorems
