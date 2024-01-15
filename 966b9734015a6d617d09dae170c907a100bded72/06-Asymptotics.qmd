@@ -924,25 +924,27 @@ fractional((1/12)*(256/5))
 For our above specified data generating process, we can derive all (usually unknown) population quantities. 
 
 - From the assumed distributions of $X_{i2}$ and $X_{i3}$ we have that:
-$$
-\Sigma_{X'X}=E(S_{X'X})=E(X_iX_i')
-=\left(\begin{matrix}1&0&0\\0&E(X_{i2}^2)&0\\0&0&E(X_{i3}^2)\end{matrix}\right)
-=\left(\begin{matrix}1&0&0\\0&\frac{16}{3}&0\\0&0&\frac{25}{3}\end{matrix}\right)
-$$
+\begin{align*}
+\Sigma_{X'X}
+&=E(S_{X'X})\\[2ex]
+&=E(X_iX_i')\\[2ex]
+&=\left(\begin{matrix}1&0&0\\0&E(X_{i2}^2)&0\\0&0&E(X_{i3}^2)\end{matrix}\right)\\[2ex]
+&=\left(\begin{matrix}1&0&0\\0&\frac{16}{3}&0\\0&0&\frac{25}{3}\end{matrix}\right)
+\end{align*}
 The above result follows from observing that $E(X^2)=Var(X)$ if $X$ has mean zero, and that the variance of uniform $U[a,b]$ distributed random variables is given by $\frac{1}{12}(b-a)^2$.
 
 - Moreover, $E(\varepsilon^2_iX_iX_i')=E(X_iX_i'E(\varepsilon^2_i|X_i))=E\left(X_iX_i'\left(\frac{1}{12}X_{i2}^2\right)\right)$ such that
 \begin{align*}
 E(\varepsilon^2_iX_iX_i')
-&=\left(\begin{matrix}E\left(\frac{1}{12}X_{i2}^2\right)&0&0\\
+&=\left(\begin{matrix}E\left(\frac{1}{12}X_{i2}^2\right)&0&0\\[2ex]
                    0&E\left(X_{i2}^2\cdot\frac{1}{12}X_{i2}^2\right)&0\\0&0&E\left(X_{i3}^2\cdot\frac{1}{12}X_{i2}^2\right)
-      \end{matrix}\right)\\
+      \end{matrix}\right)\\[2ex]
 &=\left(\begin{matrix}\frac{1}{12}E\left(X_{i2}^2\right)&0&0\\
        0&\frac{1}{12}E\left(X_{i2}^4\right)&0\\0&0&\frac{1}{12}E\left(X_{i2}^2\right)\,E\left(X_{i3}^2\right)
-\end{matrix}\right)\\      
+\end{matrix}\right)\\[2ex]      
 &=\left(\begin{matrix}\frac{1}{12}\frac{16}{3}&0&0\\
                       0&\frac{1}{12}\frac{256}{5}&0\\
-                      0&0&\frac{1}{12}\frac{16}{3}\frac{25}{3}\end{matrix}\right)\\
+                      0&0&\frac{1}{12}\frac{16}{3}\frac{25}{3}\end{matrix}\right)\\[2ex]
 &=\left(\begin{matrix}\frac{4}{9}&0&0\\0&\frac{64}{15}&0\\0&0&\frac{100}{27}\end{matrix}\right)
 \end{align*}
 The above result follow from observing that for $X\sim U[a,b]$ one has $E(X^k)=\frac{b^{k+1}-a^{k+1}}{(k+1)(b-a)}$, $k=1,2,\dots$; see, for instance, [Wikipedia](https://en.wikipedia.org/wiki/Continuous_uniform_distribution).
@@ -950,14 +952,14 @@ The above result follow from observing that for $X\sim U[a,b]$ one has $E(X^k)=\
 So, for instance, for $\hat{\beta}_2$ we have the following theoretical large sample distribution:
 $$
 \begin{align}
-\hat\beta_{n,2}\to_d&\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[\left(\begin{matrix}1&0&0\\0&\frac{16}{3}&0\\0&0&\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&0&0\\0&\frac{64}{15}&0\\0&0&\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&0&0\\0&\frac{16}{3}&0\\0&0&\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)\\
+\hat\beta_{n,2}\to_d&\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[\left(\begin{matrix}1&0&0\\0&\frac{16}{3}&0\\0&0&\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&0&0\\0&\frac{64}{15}&0\\0&0&\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&0&0\\0&\frac{16}{3}&0\\0&0&\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)\\[2ex]
 \hat\beta_{n,2}\to_d&\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[
   \left(
   \begin{matrix}
   0.444 & 0 &0\\
   0 & 0.15 &0\\
   0&0&0.053
-  \end{matrix}\right)\right]_{22}\right)\\
+  \end{matrix}\right)\right]_{22}\right)\\[2ex]
 \hat\beta_{n,2}\to_d&\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;0.15\right)
 \end{align}
 $$
@@ -1072,10 +1074,11 @@ OK, at least on average the `5000` simulated realizations of $\hat\beta_2$ are b
 ## empirical variance of beta_hat_2 estimates
 c(round(var_true_beta_2, 4), round(var(beta_hat_2), 4))
 ```
-Ouch! The theoretical large sample variance $Var(\hat\beta_2)=0.15/n=0.03$ is about 50% smaller than the actual (small sample) variance of $\hat\beta_2$ approximated by the empirical variance of the `5000` simulated realizations of $\hat\beta_2$. That is, **we cannot simply use a large sample result in small samples**. 
+Ouch! The theoretical variance $Var(\hat\beta_2)=0.15/n=0.03$ is about 50% smaller than the actual (small sample) variance of $\hat\beta_2$ approximated by the empirical variance of the `5000` simulated realizations of $\hat\beta_2$. That is, **we cannot simply use a large sample result in small samples**. 
+
+Reason: In small samples, the Law of Large Numbers has not kicked in yet; therefore, we cannot neglect the variability in the sample statistic $S_{X'X}^{-1}.$ 
 
 This issue can also seen when comparing the theoretical large sample distribution of $\hat\beta_2$ with an estimate of the actual finite-sample distribution of $\hat\beta_2.$
-
 
 ```{r, fig.align="center", echo=TRUE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
 ## True normal distribution of beta_hat_2 versus 
@@ -1113,8 +1116,8 @@ H_0:\;&\beta_2=3\quad\text{and}\quad\beta_3=4\\
 \end{align*}
 Or equivalently
 \begin{align*}
-H_0:\;&R\beta -r = 0 \\
-H_1:\;&R\beta -r \neq 0,
+H_0:\;&R\beta -r^{(0)} = 0 \\
+H_1:\;&R\beta -r^{(0)} \neq 0,
 \end{align*}
 where 
 $$
@@ -1123,7 +1126,7 @@ R=\left(
 0&1&0\\
 0&0&1\\
 \end{matrix}\right)\quad\text{ and }\quad 
-r=\left(\begin{matrix}3\\5\\\end{matrix}\right).
+r^{(0)}=\left(\begin{matrix}3\\5\\\end{matrix}\right).
 $$
 The following `R` code can be used to test this hypothesis. Note that we use HC3 robust variance estimation `sandwich::vcovHC(lm_obj, type="HC3")` to take into account that the error terms are heteroskedastic. 
 ```{r}

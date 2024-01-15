@@ -1135,35 +1135,37 @@ Var(\varepsilon_i)
 </div>
 <p>For our above specified data generating process, we can derive all (usually unknown) population quantities.</p>
 <ul>
-<li><p>From the assumed distributions of <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> we have that: <span class="math display">\[
-\Sigma_{X'X}=E(S_{X'X})=E(X_iX_i')
-=\left(\begin{matrix}1&amp;0&amp;0\\0&amp;E(X_{i2}^2)&amp;0\\0&amp;0&amp;E(X_{i3}^2)\end{matrix}\right)
-=\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)
-\]</span> The above result follows from observing that <span class="math inline">\(E(X^2)=Var(X)\)</span> if <span class="math inline">\(X\)</span> has mean zero, and that the variance of uniform <span class="math inline">\(U[a,b]\)</span> distributed random variables is given by <span class="math inline">\(\frac{1}{12}(b-a)^2\)</span>.</p></li>
+<li><p>From the assumed distributions of <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> we have that: <span class="math display">\[\begin{align*}
+\Sigma_{X'X}
+&amp;=E(S_{X'X})\\[2ex]
+&amp;=E(X_iX_i')\\[2ex]
+&amp;=\left(\begin{matrix}1&amp;0&amp;0\\0&amp;E(X_{i2}^2)&amp;0\\0&amp;0&amp;E(X_{i3}^2)\end{matrix}\right)\\[2ex]
+&amp;=\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)
+\end{align*}\]</span> The above result follows from observing that <span class="math inline">\(E(X^2)=Var(X)\)</span> if <span class="math inline">\(X\)</span> has mean zero, and that the variance of uniform <span class="math inline">\(U[a,b]\)</span> distributed random variables is given by <span class="math inline">\(\frac{1}{12}(b-a)^2\)</span>.</p></li>
 <li><p>Moreover, <span class="math inline">\(E(\varepsilon^2_iX_iX_i')=E(X_iX_i'E(\varepsilon^2_i|X_i))=E\left(X_iX_i'\left(\frac{1}{12}X_{i2}^2\right)\right)\)</span> such that <span class="math display">\[\begin{align*}
 E(\varepsilon^2_iX_iX_i')
-&amp;=\left(\begin{matrix}E\left(\frac{1}{12}X_{i2}^2\right)&amp;0&amp;0\\
+&amp;=\left(\begin{matrix}E\left(\frac{1}{12}X_{i2}^2\right)&amp;0&amp;0\\[2ex]
                  0&amp;E\left(X_{i2}^2\cdot\frac{1}{12}X_{i2}^2\right)&amp;0\\0&amp;0&amp;E\left(X_{i3}^2\cdot\frac{1}{12}X_{i2}^2\right)
-    \end{matrix}\right)\\
+    \end{matrix}\right)\\[2ex]
 &amp;=\left(\begin{matrix}\frac{1}{12}E\left(X_{i2}^2\right)&amp;0&amp;0\\
      0&amp;\frac{1}{12}E\left(X_{i2}^4\right)&amp;0\\0&amp;0&amp;\frac{1}{12}E\left(X_{i2}^2\right)\,E\left(X_{i3}^2\right)
-\end{matrix}\right)\\      
+\end{matrix}\right)\\[2ex]      
 &amp;=\left(\begin{matrix}\frac{1}{12}\frac{16}{3}&amp;0&amp;0\\
                     0&amp;\frac{1}{12}\frac{256}{5}&amp;0\\
-                    0&amp;0&amp;\frac{1}{12}\frac{16}{3}\frac{25}{3}\end{matrix}\right)\\
+                    0&amp;0&amp;\frac{1}{12}\frac{16}{3}\frac{25}{3}\end{matrix}\right)\\[2ex]
 &amp;=\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)
 \end{align*}\]</span> The above result follow from observing that for <span class="math inline">\(X\sim U[a,b]\)</span> one has <span class="math inline">\(E(X^k)=\frac{b^{k+1}-a^{k+1}}{(k+1)(b-a)}\)</span>, <span class="math inline">\(k=1,2,\dots\)</span>; see, for instance, <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">Wikipedia</a>.</p></li>
 </ul>
 <p>So, for instance, for <span class="math inline">\(\hat{\beta}_2\)</span> we have the following theoretical large sample distribution: <span class="math display">\[
 \begin{align}
-\hat\beta_{n,2}\to_d&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)\\
+\hat\beta_{n,2}\to_d&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)\\[2ex]
 \hat\beta_{n,2}\to_d&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[
   \left(
   \begin{matrix}
   0.444 &amp; 0 &amp;0\\
   0 &amp; 0.15 &amp;0\\
   0&amp;0&amp;0.053
-  \end{matrix}\right)\right]_{22}\right)\\
+  \end{matrix}\right)\right]_{22}\right)\\[2ex]
 \hat\beta_{n,2}\to_d&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;0.15\right)
 \end{align}
 \]</span> Let’s use a Monte Carlo simulation to check how well the theoretical large sample (<span class="math inline">\(n\to\infty\)</span>) distribution of <span class="math inline">\(\hat\beta_2\)</span> works as an approximative distribution for a practical largish sample size of <span class="math inline">\(n=100\)</span>.</p>
@@ -1289,7 +1291,8 @@ stic case).  --></p>
 <pre><code>[1] 0.0300 0.0562</code></pre>
 </div>
 </div>
-<p>Ouch! The theoretical large sample variance <span class="math inline">\(Var(\hat\beta_2)=0.15/n=0.03\)</span> is about 50% smaller than the actual (small sample) variance of <span class="math inline">\(\hat\beta_2\)</span> approximated by the empirical variance of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span>. That is, <strong>we cannot simply use a large sample result in small samples</strong>.</p>
+<p>Ouch! The theoretical variance <span class="math inline">\(Var(\hat\beta_2)=0.15/n=0.03\)</span> is about 50% smaller than the actual (small sample) variance of <span class="math inline">\(\hat\beta_2\)</span> approximated by the empirical variance of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span>. That is, <strong>we cannot simply use a large sample result in small samples</strong>.</p>
+<p>Reason: In small samples, the Law of Large Numbers has not kicked in yet; therefore, we cannot neglect the variability in the sample statistic <span class="math inline">\(S_{X'X}^{-1}.\)</span></p>
 <p>This issue can also seen when comparing the theoretical large sample distribution of <span class="math inline">\(\hat\beta_2\)</span> with an estimate of the actual finite-sample distribution of <span class="math inline">\(\hat\beta_2.\)</span></p>
 <div class="cell" data-layout-align="center" data-hash="06-Asymptotics_cache/html/unnamed-chunk-8_7413bebb0d29d46624a94a7a6d783c5e">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## True normal distribution of beta_hat_2 versus </span></span>
@@ -1328,15 +1331,15 @@ stic case).  --></p>
 H_0:\;&amp;\beta_2=3\quad\text{and}\quad\beta_3=4\\
 \text{versus}\quad H_1:\;&amp;\beta_2\neq 3\quad\text{and/or}\quad\beta_3\neq 4.
 \end{align*}\]</span> Or equivalently <span class="math display">\[\begin{align*}
-H_0:\;&amp;R\beta -r = 0 \\
-H_1:\;&amp;R\beta -r \neq 0,
+H_0:\;&amp;R\beta -r^{(0)} = 0 \\
+H_1:\;&amp;R\beta -r^{(0)} \neq 0,
 \end{align*}\]</span> where <span class="math display">\[
 R=\left(
 \begin{matrix}
 0&amp;1&amp;0\\
 0&amp;0&amp;1\\
 \end{matrix}\right)\quad\text{ and }\quad
-r=\left(\begin{matrix}3\\5\\\end{matrix}\right).
+r^{(0)}=\left(\begin{matrix}3\\5\\\end{matrix}\right).
 \]</span> The following <code>R</code> code can be used to test this hypothesis. Note that we use HC3 robust variance estimation <code>sandwich::vcovHC(lm_obj, type="HC3")</code> to take into account that the error terms are heteroskedastic.</p>
 <div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-9_acdcbb91ab40d4667d917f3f415e0cbb">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">"car"</span>)) <span class="co"># for linearHyothesis()</span></span>
