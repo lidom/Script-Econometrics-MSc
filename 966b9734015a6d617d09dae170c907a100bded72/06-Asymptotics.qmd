@@ -606,7 +606,7 @@ For the following, it will be useful to introduce some notation that allows us t
 \hat\beta_n 
 &=\left(X'X\right)^{-1}X'Y\\[2ex]
 &=\left(\frac{1}{n}X'X\right)^{-1}\frac{1}{n} X'Y\\[2ex]
-&=S_{X'X}^{-1}\frac{1}{n} X'Y,
+&=\;\;\;\;S_{X'X}^{-1}\;\;\;\;\frac{1}{n} X'Y,
 \end{align*}
 where 
 $$
@@ -615,12 +615,15 @@ $$
 and where the mean of the $(K\times K)$ matrix $S_{X'X}$ will be denoted as
 \begin{align*}
 \Sigma_{X'X}
-&=E\left(S_{X'X}\right)=E(n^{-1}X'X)\\[2ex]
-&=E\left(n^{-1}\sum_{i=1}^nX_iX_i'\right) = E\left(X_iX_i'\right).
+&=E\left(S_{X'X}\right)\\[2ex]
+&=E\left(\frac{1}{n}X'X\right)\\[2ex]
+&=E\left(\frac{1}{n}\sum_{i=1}^nX_iX_i'\right)\\[2ex]
+&=\frac{n}{n}E\left(X_iX_i'\right)\\[2ex]
+&=E\left(X_iX_i'\right).
 \end{align*}
 For the below results, we need to restate the full rank assumption (Assumption 3 of @sec-MLR) with respect to $\Sigma_{X'X}.$
 
-**Assumption 3$^\ast$: Rank Condition (for Asymptotics)** </br>
+**Assumption 3$^\ast$: (Population) Rank Condition** </br>
 The $(K\times K)$ matrix 
 $$
 \Sigma_{X'X}=E(S_{X'X})
@@ -652,7 +655,7 @@ has full rank $K$. I.e., $\Sigma_{X'X}$ is nonsingular and invertible.
 Under Assumptions 1, 2, 3$^\ast$, and 4, and under the assumption that $X_i$ has finite second moments, 
 we have that
 $$
-\left(\frac{1}{n}X'X\right)^{-1}=:S_{X'X}^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1},\quad\text{as}\quad n\to\infty.
+S_{X'X}^{-1} = \left(\frac{1}{n}X'X\right)^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1},\quad\text{as}\quad n\to\infty.
 $$
 :::
 :::
@@ -692,7 +695,7 @@ Var(\varepsilon|X)=\sigma^2I_n,
 $$ 
 we have that
 $$
-\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right),\quad\text{as}\quad n\to\infty.
+\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right),\quad\text{as}\quad n\to\infty.
 $$
 :::
 ::: 
@@ -719,15 +722,15 @@ The proof of @thm-Consistency_s1 is skipped, but a detailed proof can be found h
 
 ### The Case of Heteroskedasticity {#sec-CaseHetero}
 
-@thm-OLSnormality1 can also be stated and proofed for conditionally heteroskedastic error terms. In this case one gets
+@thm-OLSnormality1 can also be stated (and proofed) for conditionally heteroskedastic error terms. In this case one gets
 $$
-\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)
+\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}_K\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)
 $${#eq-OLSnormality1Rob}
 as $n\to\infty.$ 
 
 The asymptotic variance 
 $$
-\lim_{n\to\infty}Var(\sqrt{n}(\hat\beta_n-\beta))=\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}
+\lim_{n\to\infty}Var(\sqrt{n}(\hat\beta_n-\beta))=\underbrace{\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}}_{(K\times K)}
 $$ 
 is, of course, usually unknown and needs to be estimated from the data by some consistent estimator such that 
 $$
@@ -735,7 +738,7 @@ S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\to_{p} \Sigma_{X'X}^
 $$
 as $n\to\infty.$ 
 
-The $\widehat{E}(\varepsilon^2_iX_iX_i')$ is here a placeholder for one of the existing Heteroskedasticity Consistent (HC) estimators of $E(\varepsilon^2X_iX_i')$:
+The $\widehat{E}(\varepsilon^2_iX_iX_i')$ is here a placeholder for one of the existing **Heteroskedasticity Consistent (HC)** estimators of $E(\varepsilon^2X_iX_i')$:
 
 HC-Type  | Formular
 ------|------------
@@ -748,19 +751,22 @@ HC4    | $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{
 HC3 is the most often used HC-estimator. 
 
 
-\paragraph*{Side Note.} The statistic $h_i:=[P_X]_{ii}$ is called the **leverage statistic** of $X_i,$ where 
+::: {.callout-tip}
+The statistic $h_i:=[P_X]_{ii}$ is called the **leverage statistic** of $X_i,$ where 
 
 * $1/n\leq h_i\leq 1$ and 
 * $\bar{h}=n^{-1}\sum_{i=1}^nh_i=K/n$. 
 
 Observations $X_i$ with leverage statistics $h_i$ that greatly exceed the average leverage value $K/n$ are referred to as "high leverage" observations. High leverage observations $X_i$ are observations that are far away from all other observations $X_j$, $i\neq j=1,\dots,n.$ 
 
-High leverage observations $X_i$ have the potential to distort the estimation results, $\hat\beta_n$. Indeed, a high leverage observation $X_i$ will have an distorting effect on the estimation results if the absolute value of the corresponding residual $|\hat{\varepsilon}_i|$ is unusually large---such observations are called **influencial outliers**. Such observations increase the estimation uncertainty. 
+High leverage observations $X_i$ have the potential to distort the estimation results, $\hat\beta_n$. Indeed, a high leverage observation $X_i$ will have an distorting effect on the estimation results if the absolute value of the corresponding residual $|\hat{\varepsilon}_i|$ is unusually large---such observations are called **influential outliers**. Such observations increase the estimation uncertainty. 
 
+General idea of the HC2-HC4 estimators is to increase the estimated variance in order to account for the effects of influential outliers. The residuals $\hat\varepsilon_i$ belonging to $X_i$ values that have a large leverage $h_i$ receive a higher weight and thus increase the value of $\widehat{E}(\varepsilon^2_iX_iX_i').$ This strategy takes into account increased estimation uncertainties due to single influential outliers. <!-- (Too small variance estimates lead to false inference, too large variance estimates lead to conservative inference.) -->
+:::
 
 The estimator HC0 was suggested in the econometrics literature by @White1980 and is justified by asymptotic ($n\to\infty$) arguments. The estimators HC1, HC2 and HC3 were suggested by @MacKinnon_White_1985 to improve the finite sample performance of HC0. Using an extensive Monte Carlo simulation study comparing HC0-HC3, @Long_Ervin_2000 concludes that HC3 provides the best overall performance in finite samples. @Cribari_2004 suggested the estimator HC4 to further improve the performance in finite sample behavior, especially in the presence of influential observations (large $h_i$ values).
 
-General idea of the HC1-HC4 estimators is to increase the estimated variance in oder to account for the effects of influencial outliers. The residuals $\hat\varepsilon_i$ belonging to $X_i$ values that have a large leverate $h_i$ are multiplied by a factor $\gg 1$ leading to increased $\widehat{E}(\varepsilon^2_iX_iX_i')$. This strategy takes into account increased estimation uncertainties due to single influencial outliers. <!-- (Too small variance estimates lead to false inference, too large variance estimates lead to conservative inference.) -->
+
 
 ### Robust Inference 
 
@@ -775,10 +781,10 @@ H_1: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  \neq \underset{(q\t
 \end{align*}
 where the $(q \times K)$ matrix $R$ and the $q$-vector $r=(r_{1},\dots,r_{q})'$ are chosen by the statistician to specify her/his null hypothesis about the unknown true parameter vector $\beta$. To make sure that there are no redundant equations, it is required that $\operatorname{rank}(R)=q$.
 
-By contrast to the multiple parameter tests for small samples (see @sec-testmultp), we can work here with a heterosedasticity robust test statistic which is applicable for heteroskedastic error terms:
+By contrast to the multiple parameter tests for small samples (see @sec-testmultp), we can work here with a **heteroskedasticity robust** test statistic which is applicable for heteroskedastic error terms:
 $$
 \begin{align*}
-W&=n(R\hat\beta_n -r)'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r)\\ 
+W&=n(R\hat\beta_n -r)'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r)\\[2ex] 
 W&\overset{H_0}{\to}_d\chi^2(q), \quad\text{as}\quad n\to\infty. 
 \end{align*}
 $${#eq-Ftestasymp}
@@ -795,7 +801,9 @@ $$
 
 ::: {.callout-tip}
 # Finite-sample correction 
-In order to improve the finite-sample performance of this test, one usually uses the $F_{q,n-K}$ distribution with $q$ and $n-K$ degrees of freedoms instead of the $\chi^2(q)$ distribution. Asymptotically ($n\to\infty$), $F_{q,n-K}$ is equivalent to $\chi^2(q)$. However, for finite sample sizes $n$ (i.e., the practically relevant case) $F_{q,n-K}$ leads to larger critical values which helps to account for the estimation errors in $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}$ (or in $s_{ub}^2S_{X'X}^{-1}$) which are otherwise neglected by the pure asymptotic perspective. 
+In order to improve the finite-sample performance of this test, one usually uses the $F_{q,n-K}$ distribution with $q$ and $n-K$ degrees of freedoms instead of the $\chi^2(q)$ distribution. 
+
+Asymptotically ($n\to\infty$), $F_{q,n-K}$ is equivalent to $\chi^2(q)$. However, for any finite sample size $n$ (i.e., the practically relevant case) $F_{q,n-K}$ leads to larger critical values which helps to account for the estimation errors in $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}$ (or in $s_{ub}^2S_{X'X}^{-1}$) which are otherwise neglected by the pure asymptotic perspective. 
 ::: 
 
 #### Robust Hypothesis Testing: Single Parameters
@@ -810,11 +818,11 @@ H_1: & \beta_k\ne \beta_k^{(0)}\\
 We can selecting the $k$th diagonal element of the test-statistic in @eq-Ftestasymp and taking the square root yields 
 $$
 \begin{align*}
-T&=\frac{\sqrt{n}\left(\hat{\beta}_k-r\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{kk}}}\\[1.5ex] 
+T&=\frac{\sqrt{n}\left(\hat{\beta}_k-\beta_k^{(0)}\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{kk}}}\\[1.5ex] 
 \text{where}\qquad T&\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty. 
 \end{align*}
 $$
-This $t$-test statistic allows for heteroskedastic error terms. 
+This $t$-test statistic allows for **heteroskedastic** error terms. 
 
 In case of homoskedastic error terms, one can substitute 
 $$
@@ -827,7 +835,9 @@ $$
 
 ::: {.callout-tip}
 # Finite-sample correction
-In order to improve the finite-sample performance of this $t$ test, one usually uses the $t_{(n-K)}$ distribution with $n-K$ degrees of freedoms instead of the $\mathcal{N}(0,1)$ distribution. Asymptotically ($n\to\infty$), $t_{(n-K)}$ is equivalent to $\mathcal{N}(0,1)$. However, for finite sample sizes $n$ (i.e., the practically relevant case) $t_{n-K}$ leads to larger critical values which helps to account for the estimation errors in $[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}$ (or in $s_{ub}^2[S_{X'X}^{-1}]_{kk}$) which are otherwise neglected by the pure asymptotic perspective. 
+In order to improve the finite-sample performance of this $t$ test, one usually uses the $t_{(n-K)}$ distribution with $n-K$ degrees of freedoms instead of the $\mathcal{N}(0,1)$ distribution. 
+
+Asymptotically ($n\to\infty$), $t_{(n-K)}$ is equivalent to $\mathcal{N}(0,1)$. However, for finite sample sizes $n$ (i.e., the practically relevant case) $t_{n-K}$ leads to larger critical values which helps to account for the estimation errors in $[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}$ (or in $s_{ub}^2[S_{X'X}^{-1}]_{kk}$) which are otherwise neglected by the pure asymptotic perspective. 
 :::
 
 
@@ -854,11 +864,11 @@ X_{i3}&\sim U[-5,5]\\
 \end{align*}
 where $(Y_i,X_i)$ is assumed i.i.d. across $i=1,\dots,n$ with $X_{i2}$ and $X_{i3}$ being independent of each other. 
 
-By contrast to Chapter @sec-PSSI, the error terms are **heteroskedastic** 
+By contrast to our simulations in Chapter @sec-PSSI, we consider here a **non-Gaussian** and **heteroskedastic** error term
 $$
-Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2
+Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2.
 $$ 
-and **not Gaussian**. 
+
 
 > As a side note: The unconditional variance follows by the law of total variance and is given by 
 > \begin{align*}
@@ -868,7 +878,7 @@ and **not Gaussian**.
 > &=\frac{1}{12}\left(\frac{1}{12}(4-(-4))^2\right)=\frac{4}{9}.
 > \end{align*}
 
-Moreover, the large sample normality result in @eq-OLSnormality1Rob does not need a conditioning on $X$. Consequently, the option to condition on $X$ is removed in the following `R`-function `myDataGenerator()`.
+The following `R`-function `myDataGenerator()` allows us to generate data from the above described data generating processes:
 ```{r}
 ## Function to generate artificial data
 myDataGenerator <- function(n, beta){
@@ -877,9 +887,14 @@ myDataGenerator <- function(n, beta){
                  runif(n, -4, 4), 
                  runif(n, -5, 5))
   ##
-  eps  <- runif(n, - 0.5 * abs(X[,2]), + 0.5 * abs(X[,2]))
+  eps  <- runif(n, min = - 0.5 * abs(X[,2]), 
+                   max = + 0.5 * abs(X[,2]))
   Y    <- X %*% beta + eps
-  data <- data.frame("Y"=Y, "X_1"=X[,1], "X_2"=X[,2], "X_3"=X[,3])
+  ##
+  data <- data.frame("Y"   = Y, 
+                     "X_1" = X[,1], 
+                     "X_2" = X[,2], 
+                     "X_3" = X[,3])
   ##
   return(data)
 }
