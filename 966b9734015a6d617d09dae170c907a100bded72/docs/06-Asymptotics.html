@@ -244,6 +244,7 @@ div.csl-indent {
   <li><a href="#check-testing-single-parameters" id="toc-check-testing-single-parameters" class="nav-link" data-scroll-target="#check-testing-single-parameters"><span class="toc-section-number">6.3.3</span>  Check: Testing Single Parameters</a></li>
   </ul></li>
   <li><a href="#sec-RDLSInf" id="toc-sec-RDLSInf" class="nav-link" data-scroll-target="#sec-RDLSInf"><span class="toc-section-number">6.4</span>  Real Data Example</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="toc-section-number">6.5</span>  Exercises</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -732,28 +733,12 @@ n\to\infty
 </div>
 <div class="callout-body-container callout-body">
 <div id="def-ANorm" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.8 (Asymptotic Normality and Asymptotic Variance) </strong></span>An estimator <span class="math inline">\(\hat\theta_n\)</span> is asymptotically normal distributed if <span class="math display">\[
-\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\Sigma),\quad\text{as}\quad n\to\infty,
+<p><span class="theorem-title"><strong>Definition 6.8 (Asymptotic Normality, Asymptotic Variance, <span class="math inline">\(\sqrt{n}\)</span>-Consistent) </strong></span>An estimator <span class="math inline">\(\hat\theta_n\)</span> is called asymptotically normal if <span class="math display">\[
+\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\sigma^2),\quad\text{as}\quad n\to\infty,
 \]</span> where <span class="math display">\[
-\Sigma=\lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))=\lim_{n\to\infty}Var(\sqrt{n}\hat\theta_n)
-\]</span> is called the asymptotic variance of <span class="math inline">\(\sqrt{n}(\hat\theta_n-\theta)\)</span>.</p>
-</div>
-</div>
-</div>
-<div class="callout-note callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div id="def-RootnConsistent" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.9 (<span class="math inline">\(\sqrt{n}\)</span>-Consistent) </strong></span>Consistent estimators are called <span class="math inline">\(\sqrt{n}\)</span>-consistent if <span class="math display">\[
-\sqrt{n}(\hat\theta_n-\theta)\to_{d} z,\quad\text{as}\quad n\to\infty,
-\]</span> where <span class="math inline">\(z\sim F.\)</span></p>
+\sigma^2=\lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))
+\]</span> is called the asymptotic variance.</p>
+<p>Due to the <span class="math inline">\(\sqrt{n}\)</span>-scaling, <span class="math inline">\(\theta_n\)</span> is also called <span class="math inline">\(\sqrt{n}\)</span>-consistent.</p>
 </div>
 </div>
 </div>
@@ -768,7 +753,7 @@ n\to\infty
 </div>
 <div class="callout-body-container callout-body">
 <div id="def-MSE" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 6.10 (Mean Squared Error (MSE)) </strong></span><span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 6.9 (Mean Squared Error (MSE)) </strong></span><span class="math display">\[
 \operatorname{MSE}(\hat\theta_n) = E\left((\hat\theta_n - \theta)^2\right)
 \]</span> is called the <strong>mean squared error (MSE)</strong> of the estimator <span class="math inline">\(\hat\theta_n.\)</span></p>
 </div>
@@ -1784,14 +1769,13 @@ F Statistic (df = 3; 5186)
 
 </tbody></table>
 </div>
-<!-- ## Exercises -->
-<!-- * [Exercises for Chapter 6](Exercises/Ch6_Exercises.pdf) -->
+</section>
+<section id="exercises" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.5</span> Exercises</h2>
+<ul>
+<li><a href="https://www.dropbox.com/scl/fi/kcnfmyndye4gg1lsrctlm/Ch6_Exercises1.pdf?rlkey=w8api48mkhul3hlyojdkyo1z0&amp;dl=0">Exercises for Chapter 6</a></li>
+</ul>
 <!-- * [Exercises of Chapter 6 with Solutions](Exercises/Ch6_Exercises_with_Solutions.pdf) -->
-<!-- 
-### Variance Inflation
-
-https://online.stat.psu.edu/stat462/node/180/
- -->
 </section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>

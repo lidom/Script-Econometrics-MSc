@@ -491,32 +491,21 @@ If $\text{ABias}(\hat\theta_n,\theta)=0$, then $\hat\theta_n$ is called an **asy
 ::: {.callout-note icon="false"}
 #
 ::: {#def-ANorm}
-## Asymptotic Normality and Asymptotic Variance 
+## Asymptotic Normality, Asymptotic Variance, $\sqrt{n}$-Consistent 
 
-An estimator $\hat\theta_n$ is asymptotically normal distributed if
+An estimator $\hat\theta_n$ is called asymptotically normal if
 $$
-\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\Sigma),\quad\text{as}\quad n\to\infty,
+\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\sigma^2),\quad\text{as}\quad n\to\infty,
 $$
 where 
 $$
-\Sigma=\lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))=\lim_{n\to\infty}Var(\sqrt{n}\hat\theta_n)
+\sigma^2=\lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))
 $$ 
-is called the asymptotic variance of $\sqrt{n}(\hat\theta_n-\theta)$.
-:::
-:::
+is called the asymptotic variance. 
 
-::: {.callout-note icon="false"}
-#
-::: {#def-RootnConsistent}
-## $\sqrt{n}$-Consistent 
-
-Consistent estimators are called $\sqrt{n}$-consistent if
-$$
-\sqrt{n}(\hat\theta_n-\theta)\to_{d} z,\quad\text{as}\quad n\to\infty,
-$$
-where $z\sim F.$ 
+Due to the $\sqrt{n}$-scaling, $\theta_n$ is also called $\sqrt{n}$-consistent. 
 :::
-::: 
+:::
 
 
 ::: {.callout-note icon="false"}
@@ -1300,17 +1289,11 @@ stargazer(lm_obj, lm_obj,
 ```
 
 
-<!-- ## Exercises -->
+## Exercises
 
-<!-- * [Exercises for Chapter 6](Exercises/Ch6_Exercises.pdf) -->
+* [Exercises for Chapter 6](https://www.dropbox.com/scl/fi/kcnfmyndye4gg1lsrctlm/Ch6_Exercises1.pdf?rlkey=w8api48mkhul3hlyojdkyo1z0&dl=0)
 
 <!-- * [Exercises of Chapter 6 with Solutions](Exercises/Ch6_Exercises_with_Solutions.pdf) -->
-
-<!-- 
-### Variance Inflation
-
-https://online.stat.psu.edu/stat462/node/180/
- -->
 
 
 # References {-}
