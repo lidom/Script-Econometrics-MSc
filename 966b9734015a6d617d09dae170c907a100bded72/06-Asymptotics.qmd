@@ -659,7 +659,7 @@ The proof of @thm-Sxx1 is done in the lecture.
 ::: {#thm-bconsistent1}
 ## Consistency of $\hat\beta$
 
-Under Assumptions 1, 2, 3$^\ast$, and 4, and under the assumption that $X_i$ has a finite second moment, and $\varepsilon_i$ has a finite first moment, we have that
+Under Assumptions 1, 2, 3$^\ast$, and 4, and under the assumption that $X_i$ has finite second moments, and $\varepsilon_i$ has finite first moments, we have that
 $$
 \hat\beta_n\to_{p}\beta\quad\text{as}\quad n\to\infty.
 $$
