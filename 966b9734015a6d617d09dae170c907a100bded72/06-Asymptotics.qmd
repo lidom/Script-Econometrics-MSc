@@ -409,11 +409,11 @@ $$
 converges to the **multivariate**, $K$-dimensional, normal distribution $\mathcal{N}_K(0,\Sigma)$ as $n\to\infty$, we need to check whether **for any**  $\lambda\in\mathbb{R}^K$: 
 
 * the **uni**variate stochastic sequence $\{\lambda'Z_i\}$ is i.i.d. 
-* with $E(\lambda'Z_i)=\lambda'\mu$ for all $i=1,\dots,n$ and 
-* $Var(\lambda'Z_i)=\lambda'\Sigma\lambda$ for all $i=1,\dots,n$
+* with $E(\lambda'Z_i)=\lambda'\mu$ for all $i=1,\dots,n,$ where $E(Z_i)=\mu\in\mathbb{R}^K$, and 
+* with $Var(\lambda'Z_i)=\lambda'\Sigma\lambda$ for all $i=1,\dots,n,$ where $Var(Z_i)=\Sigma$ denotes the $(K\times K)$ dimensional variance-covariance matrix. 
  
 
-The latter is the case if the multivariate stochastic sequence $\{Z_i\}$ is an i.i.d. sequence with $E(Z_i)=\mu$ and $Var(Z_i)=\Sigma.$
+These points are fulfilled if the multivariate stochastic sequence $\{Z_i\}$ is an i.i.d. sequence with $E(Z_i)=\mu$ and $Var(Z_i)=\Sigma.$
 
 ::: {.callout-tip}
 The LLNs and the CLT are stated with respect to sequences of sample means $\{\bar{Z}_n\}$; i.e., the simplest estimators you probably can think of. We will see, however, that this is all we need in order to analyze also more complicated estimators such as the OLS estimator.
