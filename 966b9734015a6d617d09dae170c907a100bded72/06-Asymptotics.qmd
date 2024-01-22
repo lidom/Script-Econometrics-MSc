@@ -526,7 +526,7 @@ If we can show that the MSE of $\hat\theta_n$ converges to zero,
 $$
 \operatorname{MSE}(\hat\theta_n) \to 0,\quad n\to\infty,
 $$ 
-then we have shown that $\hat\theta_n$ converges to zero in the mean square sense 
+then we have shown that $\hat\theta_n$ converges to $\theta$ in the mean square sense 
 $$
 \hat\theta_n  \to_{ms} \theta,\quad n\to\infty,
 $$ 

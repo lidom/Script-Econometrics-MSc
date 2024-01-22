@@ -433,7 +433,7 @@ One minus the probability of a type-II-error is called **power** of $T.$
 The power of $T$ is defined as 
 \begin{align*}
 \text{Power}=&1-P(\text{type-II-error})\\[2ex]
-=&P(T\in \mathcal{R} | \theta\in\Omega_1)
+=&P(T\in \mathcal{R} | \theta\in \Theta_1)
 \end{align*}
 Since we want to detect violations of $H_0,$ we want test statistics with a large power.
 :::
