@@ -1083,10 +1083,11 @@ Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2.
 Var(\varepsilon_i)
 &amp;=E(Var(\varepsilon_i|X_i))+Var(E(\varepsilon_i|X_i))\\
 &amp;=E\left(\frac{1}{12}X_{i2}^2\right)+0\\
-&amp;=\frac{1}{12}\left(\frac{1}{12}(4-(-4))^2\right)=\frac{4}{9}.
-\end{align*}\]</span></p>
+&amp;=\frac{1}{12}\;E\left(X_{i2}^2\right)\\
+&amp;=\frac{1}{12}\;Var\left(X_{i2}\right)\quad\text{(since $E(X_{i2}=0)$)}\\
+&amp;=\frac{1}{12}\left(\frac{1}{12}(4-(-4))^2\right)=\frac{4}{9},
+\end{align*}\]</span> where the last steps follows from applying the variance formula for uniform random variables. The following <code>R</code>-function <code>myDataGenerator()</code> allows us to generate data from the above described data generating processes:</p>
 </blockquote>
-<p>The following <code>R</code>-function <code>myDataGenerator()</code> allows us to generate data from the above described data generating processes:</p>
 <div class="cell" data-hash="06-Asymptotics_cache/html/unnamed-chunk-1_4ba55d070be8292c5ceed18120df03b2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Function to generate artificial data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>myDataGenerator <span class="ot">&lt;-</span> <span class="cf">function</span>(n, beta){</span>

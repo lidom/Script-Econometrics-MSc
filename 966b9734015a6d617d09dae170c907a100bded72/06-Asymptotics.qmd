@@ -864,9 +864,11 @@ $$
 > Var(\varepsilon_i)
 > &=E(Var(\varepsilon_i|X_i))+Var(E(\varepsilon_i|X_i))\\
 > &=E\left(\frac{1}{12}X_{i2}^2\right)+0\\
-> &=\frac{1}{12}\left(\frac{1}{12}(4-(-4))^2\right)=\frac{4}{9}.
+> &=\frac{1}{12}\;E\left(X_{i2}^2\right)\\
+> &=\frac{1}{12}\;Var\left(X_{i2}\right)\quad\text{(since $E(X_{i2}=0)$)}\\
+> &=\frac{1}{12}\left(\frac{1}{12}(4-(-4))^2\right)=\frac{4}{9},
 > \end{align*}
-
+> where the last steps follows from applying the variance formula for uniform random variables. 
 The following `R`-function `myDataGenerator()` allows us to generate data from the above described data generating processes:
 ```{r}
 ## Function to generate artificial data
