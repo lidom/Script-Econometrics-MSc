@@ -493,7 +493,9 @@ If $\text{ABias}(\hat\theta_n,\theta)=0$, then $\hat\theta_n$ is called an **asy
 ::: {#def-ANorm}
 ## Asymptotic Normality, Asymptotic Variance, $\sqrt{n}$-Consistent 
 
-An estimator $\hat\theta_n$ is called asymptotically normal if
+</br>
+
+An estimator $\hat\theta_n$ is called **asymptotically normal** if
 $$
 \sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\sigma^2),\quad\text{as}\quad n\to\infty,
 $$
@@ -506,9 +508,9 @@ $$
 & = \lim_{n\to\infty}n Var(\hat\theta_n)\\
 \end{align}
 $$ 
-is called the asymptotic variance of $\hat\theta_n.$ 
+is called the **asymptotic variance** of $\hat\theta_n.$ 
 
-Due to the $\sqrt{n}$-scaling, $\theta_n$ is also called $\sqrt{n}$-consistent. 
+Due to the $\sqrt{n}$-scaling, $\theta_n$ is called **$\sqrt{n}$-consistent**. 
 :::
 :::
 
