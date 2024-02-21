@@ -736,8 +736,13 @@ n\to\infty
 <p><span class="theorem-title"><strong>Definition 6.8 (Asymptotic Normality, Asymptotic Variance, <span class="math inline">\(\sqrt{n}\)</span>-Consistent) </strong></span>An estimator <span class="math inline">\(\hat\theta_n\)</span> is called asymptotically normal if <span class="math display">\[
 \sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\sigma^2),\quad\text{as}\quad n\to\infty,
 \]</span> where <span class="math display">\[
-\sigma^2=\lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))
-\]</span> is called the asymptotic variance.</p>
+\begin{align}
+\sigma^2
+&amp; = \lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))\\
+&amp; = \lim_{n\to\infty}n Var(\hat\theta_n-\theta)\\
+&amp; = \lim_{n\to\infty}n Var(\hat\theta_n)\\
+\end{align}
+\]</span> is called the asymptotic variance of <span class="math inline">\(\hat\theta_n.\)</span></p>
 <p>Due to the <span class="math inline">\(\sqrt{n}\)</span>-scaling, <span class="math inline">\(\theta_n\)</span> is also called <span class="math inline">\(\sqrt{n}\)</span>-consistent.</p>
 </div>
 </div>
