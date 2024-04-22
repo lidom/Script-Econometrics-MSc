@@ -623,7 +623,7 @@ The two-sided $t$-test allows us to test
 \text{versus}\quad 
 & H_1: \beta_k\ne \beta_k^{(0)}
 \end{align*}
-where $\beta_k$ denotes the true (unknown) parameter value and $\beta_k^{(0)}$ the null hypothetical value specified by the statisticaian (e.g. $\beta_k^{(0)}=0$). 
+where $\beta_k$ denotes the true (unknown) parameter value and $\beta_k^{(0)}$ the null hypothetical value specified by the statistician (e.g. $\beta_k^{(0)}=0$). 
 
 Under Assumptions 1-4$^\ast$ (see @sec-testingsinglep), we have that 
 $$
