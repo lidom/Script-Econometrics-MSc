@@ -1807,13 +1807,13 @@ Lukily, the data set `DoctorVisits` actually has a **large sample size** of $n=$
 
 ## Exercises
 
-* [Exercises for Chapter 5](https://www.dropbox.com/scl/fi/g6hiwoprjewwsbr09t217/Ch5_Exercises1.pdf?rlkey=s6642zm8ufj173mhmbtoj0wvf&dl=0)
+<!-- * [Exercises for Chapter 5](https://www.dropbox.com/scl/fi/g6hiwoprjewwsbr09t217/Ch5_Exercises1.pdf?rlkey=s6642zm8ufj173mhmbtoj0wvf&dl=0)
 
 
 * [Exercises of Chapter 5 with Solutions](https://www.dropbox.com/scl/fi/codmlxtkr9p4wugd7knm0/Ch5_Exercises_with_Solutions1.pdf?rlkey=4s4g3nu4k2ycvlg4cm2n5xcat&dl=0)
 
 
-* [Exercises of Chapter 5 with Solutions (annotated version)](https://www.dropbox.com/scl/fi/ddbrhec01cptrrtlrca5z/Ch5_Exercises_with_Solutions1_annotated.pdf?rlkey=jkcf4ywcichtm31vi6u1aal7p&dl=0)
+* [Exercises of Chapter 5 with Solutions (annotated version)](https://www.dropbox.com/scl/fi/ddbrhec01cptrrtlrca5z/Ch5_Exercises_with_Solutions1_annotated.pdf?rlkey=jkcf4ywcichtm31vi6u1aal7p&dl=0) -->
 
 ## References {-}
 
