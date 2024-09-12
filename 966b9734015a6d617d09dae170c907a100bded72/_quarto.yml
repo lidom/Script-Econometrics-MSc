@@ -15,10 +15,11 @@ book:
     - index.qmd
     - 01-Introduction-to-R.qmd
     - 02-Probability.qmd
-    - 03-Monte-Carlo-Simulations.qmd
-    - 04-Multiple-Linear-Regression.qmd
-    - 05-Small-Sample-Inference.qmd
-    - 06-Asymptotics.qmd
+    - 03-Matrix-Algebra.qmd
+    - 04-Monte-Carlo-Simulations.qmd
+    - 05-Multiple-Linear-Regression.qmd
+    - 06-Small-Sample-Inference.qmd
+    - 07-Asymptotics.qmd
     # - 07-Instrumental-Variables.qmd
 
 bibliography: references.bib
@@ -34,8 +35,6 @@ format:
     html-math-method:
       method: mathjax
       url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML"
-    monofont: Fira Mono
-    mathfont: Leto
     number-sections: true
     code-link: true
     reference-links: true
