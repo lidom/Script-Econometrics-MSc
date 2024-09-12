@@ -16,11 +16,9 @@ timetable %>% kbl() %>%  kable_styling()
 
 ### Lecture Material  
 
+* This online script
 * [eWhiteboard for lecture notes](https://www.dropbox.com/scl/fi/47ct5cqnpwbx8zsqqfbby/eWhiteboard_Metrics_2023.pdf?rlkey=yslrjdqrsgxhufbxaz10fe0z1&dl=0)
-* [This online script](https://www.dliebl.com/Script-Econometrics-MSc/)
-* **To-Do List for October 9, 2023:** [To-Do List (PDF)](https://www.dropbox.com/scl/fi/99tn24ky5xgsm5ghpyzhk/ToDo_List_4_Students.pdf?rlkey=mvh7z6kr0qr9drf47stcgtx9j&dl=0)
-
-The above links can also be found at [eCampus](https://ecampus.uni-bonn.de/goto_ecampus_crs_3107358.html).
+<!-- * **To-Do List for October 9, 2023:** [To-Do List (PDF)](https://www.dropbox.com/scl/fi/99tn24ky5xgsm5ghpyzhk/ToDo_List_4_Students.pdf?rlkey=mvh7z6kr0qr9drf47stcgtx9j&dl=0) -->
 
 
 For students not yet in Bonn, I'll stream the lectures via [Zoom](
@@ -45,8 +43,8 @@ Further textbooks I can recommend:
 
 ### Information on the Exam {-}
 
-* Mock Exam with 5 multiple-choice problems and 1 free-text problem: [Download](https://www.dropbox.com/scl/fi/ib7z8bp2d5q775u2hoty0/Mock_Exam1.pdf?rlkey=m5yus4dkxnekpzaoydf6eqok5&dl=0) 
-   * Note: The actual exam will contain 10 multiple-choice problems and 2 free-text problems.
+<!-- * Mock Exam with 5 multiple-choice problems and 1 free-text problem: [Download](https://www.dropbox.com/scl/fi/ib7z8bp2d5q775u2hoty0/Mock_Exam1.pdf?rlkey=m5yus4dkxnekpzaoydf6eqok5&dl=0) 
+   * Note: The actual exam will contain 10 multiple-choice problems and 2 free-text problems. -->
 * You are allowed to use a handwritten cheat-sheet (**one side** of a DIN A4 page).
 * You are allowed to use a non-programmable scientific calculator.
 * Please, do **not** use a pencil.

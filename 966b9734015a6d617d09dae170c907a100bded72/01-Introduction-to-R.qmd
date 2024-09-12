@@ -236,6 +236,7 @@ myFirst.Dataframe <- data.frame(
 
 \
 
+<!-- 
 
 ## Simple Regression Analysis using R 
 
@@ -318,11 +319,14 @@ abline(a=alpha,
        b=beta, col="red")
 ```
 
-\
+\ 
+-->
 
 
 
 ## Programming in R
+
+### Simulating Data 
 
 Let's write, i.e., program our own R-function for estimating linear regression models. In order to be able to validate our function, we start with **simulating data** for which we then *know* all true parameters. Simulating data is like being the "Data-God": For instance, we generate realizations of the error term $\varepsilon_i$, i.e., something which we *never* observe in real data. 
 
@@ -330,8 +334,10 @@ Let's write, i.e., program our own R-function for estimating linear regression m
 
 Let us consider the following multiple regression model:
 
-$$y_i=\beta_1 +\beta_2 x_{2i}+\beta_3 x_{3i}+\varepsilon_{i},\quad i=1,\dots,n,$$
-where $\varepsilon_{i}$ is a heteroscedastic error term
+$$
+y_i=\beta_1 +\beta_2 x_{2i}+\beta_3 x_{3i}+\varepsilon_{i},\quad i=1,\dots,n,
+$$
+where $\varepsilon_{i}$ is a heteroskedastic error term
 $$\varepsilon_{i}\sim N(0,\sigma_i^2),\quad \sigma_i=|x_{3i}|,$$
 
 and where for all $i=1,\dots,n=50$:
@@ -350,7 +356,6 @@ X.3 <- rt(n, df=5, ncp=2)        # Draw realizations form a t-distr.
 X   <- cbind(X.1, X.2, X.3)      # Save as a Nx3-dimensional data matrix.
 ```
 
-
 OK, we have regressors, i.e., data that we also have in real data sets. 
 
 Now we define the elements of the $\beta$-vector. Be aware of the difference: In real data sets we do not know the true $\beta$-vector, but try to estimate it. However, when simulating data, we determine (as "Data-Gods") the true $\beta$-vector and can compare our estimate $\hat{\beta}$ with the true $\beta$:
@@ -360,7 +365,6 @@ beta.vec  <- c(1,-5,5)
 ```
 
 
-\
 We still need to simulate realizations of the dependent variable $y_i$. Remember that $y_i=\beta_1 x_{1i}+\beta_1 x_{2i}+\beta_3 x_{3i}+\varepsilon_{i}$. That is, we only need realizations from the error terms $\varepsilon_i$ in order to compute the realizations from $y_i$. This is how you can simulate realizations from the heteroscedastic error terms $\varepsilon_i$:
 
 ```{r}
@@ -368,7 +372,7 @@ We still need to simulate realizations of the dependent variable $y_i$. Remember
 eps       <- abs(X.3) * rnorm(n, mean=0, sd=1)
 ```
 
-Take a look at the heteroscedasticity in the error term:
+Take a look at the heteroskedasticity in the error term:
 
 ```{r, fig.margin = TRUE, fig.width=4.5, fig.height=3.5, cache=TRUE}
 plot(y=eps, x=X.3, 
@@ -389,11 +393,15 @@ mydata    <- data.frame("Y"=y, "X.1"=X.1, "X.2"=X.2, "X.3"=X.3)
 pairs(mydata[,-2]) # The '-2' removes the intercept variable "X.1"
 ```
 
-\
+
+
+### Writing an R Function 
 
 
 Once we have data, we can compute the OLS estimate of the true $\beta$ vector. Remember the formula:
-$$\hat{\beta}=(X^\top X)^{-1}X^\top y$$
+$$
+\hat{\beta}=(X^\top X)^{-1}X^\top y
+$$
 In R-Code this is: $(X^\top X)^{-1}=$`solve(t(X) %*% X)`, i.e.:
 ```{r}
 ## Computation of the beta-Vector:
@@ -432,7 +440,7 @@ myOLSFun(y=y, x=X)
 \
 
 
-Can you extend the function for the computation of the covariance matrix of the slope-estimates, several measures of fits (R$^2$, adj.-R$^2$, etc.), t-tests, ...?
+You can extend the function for the computation of the covariance matrix of the slope-estimates, several measures of fits (e.g. R$^2$ and adj.-R$^2$), etc.
 
 
 
