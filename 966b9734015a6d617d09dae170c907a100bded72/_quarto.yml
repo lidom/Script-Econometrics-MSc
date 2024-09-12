@@ -3,13 +3,14 @@ project:
   output-dir: docs
   
 book:
-  title: Econometrics M.Sc.
+  title: Basis Module Econometrics (M.Sc.)
   author: Prof. Dr. Dominik Liebl 
   date: last-modified
   date-format: "[Last Updated on] MMMM DD, YYYY"
   search: true
-  logo: images/Uni_Bonn_Logo.jpeg
-  number-depth: 3
+  sidebar: 
+    logo: images/Uni_Bonn_Logo.jpeg
+    number-depth: 3
   chapters:
     - index.qmd
     - 01-Introduction-to-R.qmd

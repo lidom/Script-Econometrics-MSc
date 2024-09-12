@@ -24,7 +24,7 @@ The above links can also be found at [eCampus](https://ecampus.uni-bonn.de/goto_
 
 
 For students not yet in Bonn, I'll stream the lectures via [Zoom](
-https://uni-bonn.zoom.us/j/99283287705?pwd=UHFoRTlwYkNqb0k2ODRjdEluY2FXZz09) (Meeting-ID: 992 8328 7705, Pwd: 708587) during the first lecture weeks. 
+https://uni-bonn.zoom-x.de/j/99283287705?pwd=UHFoRTlwYkNqb0k2ODRjdEluY2FXZz09) (Meeting-ID: 992 8328 7705, Pwd: 708587) during the first lecture weeks. 
 
 
 ### Literature {-}
