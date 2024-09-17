@@ -605,7 +605,7 @@ iii) $A \geq 0$  if $A$ is positive
 iv) $A \leq 0$  if $A$ is negative semi-definite
 
 The notation $A > B$ means that the matrix
-$A - B$ is positive definite.e ch
+$A - B$ is positive definite. 
 
 
 ## Advanced Concepts
