@@ -244,24 +244,30 @@ window.Quarto = {
   </ul>
 </li>
   <li>
-<a href="#advanced-concepts" id="toc-advanced-concepts" class="nav-link" data-scroll-target="#advanced-concepts"><span class="header-section-number">3.4</span> Advanced Concepts</a>
+<a href="#further-concepts" id="toc-further-concepts" class="nav-link" data-scroll-target="#further-concepts"><span class="header-section-number">3.4</span> Further Concepts</a>
   <ul class="collapse">
 <li><a href="#trace" id="toc-trace" class="nav-link" data-scroll-target="#trace"><span class="header-section-number">3.4.1</span> Trace</a></li>
   <li><a href="#idempotent-matrix" id="toc-idempotent-matrix" class="nav-link" data-scroll-target="#idempotent-matrix"><span class="header-section-number">3.4.2</span> Idempotent Matrix</a></li>
-  <li><a href="#eigendecomposition" id="toc-eigendecomposition" class="nav-link" data-scroll-target="#eigendecomposition"><span class="header-section-number">3.4.3</span> Eigendecomposition</a></li>
-  <li><a href="#definite-matrix" id="toc-definite-matrix" class="nav-link" data-scroll-target="#definite-matrix"><span class="header-section-number">3.4.4</span> Definite Matrix</a></li>
-  <li><a href="#cholesky-decomposition" id="toc-cholesky-decomposition" class="nav-link" data-scroll-target="#cholesky-decomposition"><span class="header-section-number">3.4.5</span> Cholesky Decomposition</a></li>
-  <li><a href="#vectorization" id="toc-vectorization" class="nav-link" data-scroll-target="#vectorization"><span class="header-section-number">3.4.6</span> Vectorization</a></li>
-  <li><a href="#kronecker-product" id="toc-kronecker-product" class="nav-link" data-scroll-target="#kronecker-product"><span class="header-section-number">3.4.7</span> Kronecker Product</a></li>
-  <li><a href="#vector-and-matrix-norm" id="toc-vector-and-matrix-norm" class="nav-link" data-scroll-target="#vector-and-matrix-norm"><span class="header-section-number">3.4.8</span> Vector and Matrix Norm</a></li>
+  <li><a href="#definite-matrix" id="toc-definite-matrix" class="nav-link" data-scroll-target="#definite-matrix"><span class="header-section-number">3.4.3</span> Definite Matrix</a></li>
   </ul>
 </li>
   <li>
-<a href="#matrix-calculus" id="toc-matrix-calculus" class="nav-link" data-scroll-target="#matrix-calculus"><span class="header-section-number">3.5</span> Matrix Calculus</a>
+<a href="#advanced-concepts" id="toc-advanced-concepts" class="nav-link" data-scroll-target="#advanced-concepts"><span class="header-section-number">3.5</span> Advanced Concepts</a>
   <ul class="collapse">
-<li><a href="#gradient" id="toc-gradient" class="nav-link" data-scroll-target="#gradient"><span class="header-section-number">3.5.1</span> Gradient</a></li>
-  <li><a href="#hessian" id="toc-hessian" class="nav-link" data-scroll-target="#hessian"><span class="header-section-number">3.5.2</span> Hessian</a></li>
-  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization"><span class="header-section-number">3.5.3</span> Optimization</a></li>
+<li><a href="#eigendecomposition" id="toc-eigendecomposition" class="nav-link" data-scroll-target="#eigendecomposition"><span class="header-section-number">3.5.1</span> Eigendecomposition</a></li>
+  <li><a href="#definiteness-property-and-eigenvalues" id="toc-definiteness-property-and-eigenvalues" class="nav-link" data-scroll-target="#definiteness-property-and-eigenvalues"><span class="header-section-number">3.5.2</span> Definiteness Property and Eigenvalues</a></li>
+  <li><a href="#cholesky-decomposition" id="toc-cholesky-decomposition" class="nav-link" data-scroll-target="#cholesky-decomposition"><span class="header-section-number">3.5.3</span> Cholesky Decomposition</a></li>
+  <li><a href="#vectorization" id="toc-vectorization" class="nav-link" data-scroll-target="#vectorization"><span class="header-section-number">3.5.4</span> Vectorization</a></li>
+  <li><a href="#kronecker-product" id="toc-kronecker-product" class="nav-link" data-scroll-target="#kronecker-product"><span class="header-section-number">3.5.5</span> Kronecker Product</a></li>
+  <li><a href="#vector-and-matrix-norm" id="toc-vector-and-matrix-norm" class="nav-link" data-scroll-target="#vector-and-matrix-norm"><span class="header-section-number">3.5.6</span> Vector and Matrix Norm</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#matrix-calculus" id="toc-matrix-calculus" class="nav-link" data-scroll-target="#matrix-calculus"><span class="header-section-number">3.6</span> Matrix Calculus</a>
+  <ul class="collapse">
+<li><a href="#gradient" id="toc-gradient" class="nav-link" data-scroll-target="#gradient"><span class="header-section-number">3.6.1</span> Gradient</a></li>
+  <li><a href="#hessian" id="toc-hessian" class="nav-link" data-scroll-target="#hessian"><span class="header-section-number">3.6.2</span> Hessian</a></li>
+  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization"><span class="header-section-number">3.6.3</span> Optimization</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -293,12 +299,14 @@ window.Quarto = {
 <p>A <strong>vector</strong> <span class="math inline">\(a\)</span> of length <span class="math inline">\(k\)</span> is a <span class="math inline">\(k \times 1\)</span> list of real numbers <span class="math display">\[
 a = \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_k \end{pmatrix}.
 \]</span> By default, when we refer to a vector, we always mean a column vector. We write <span class="math inline">\(a \in \mathbb R^k\)</span>. The value <span class="math inline">\(a_i\)</span> is called <span class="math inline">\(i\)</span>-th entry or <span class="math inline">\(i\)</span>-th component of <span class="math inline">\(a\)</span>. A scalar is a vector of length 1. A row vector of length <span class="math inline">\(k\)</span> is written as <span class="math inline">\(b = (b_1, \ldots, b_k)\)</span>.</p>
-<p>A <strong>matrix</strong> <span class="math inline">\(A\)</span> of order <span class="math inline">\(k \times m\)</span> is a rectangular array of real numbers <span class="math display">\[A =\begin{pmatrix}
+<p>A <strong>matrix</strong> <span class="math inline">\(A\)</span> of order (or dimension) <span class="math inline">\(k \times m\)</span> is a rectangular array of real numbers <span class="math display">\[
+A =\begin{pmatrix}
              a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1m}\\
              a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2m}\\
              \vdots &amp; \vdots &amp;       &amp; \vdots\\
              a_{k1} &amp; a_{k2} &amp; \cdots &amp; a_{km}
-\end{pmatrix}\]</span> with <span class="math inline">\(k\)</span> rows and <span class="math inline">\(m\)</span> columns. We write <span class="math inline">\(A \in \mathbb R^{k \times m}\)</span>. The value <span class="math inline">\(a_{ij}\)</span> is called <span class="math inline">\((i,j)\)</span>-th entry or <span class="math inline">\((i,j)\)</span>-th component of <span class="math inline">\(A\)</span>. We also use the notation <span class="math inline">\((A)_{i,j}\)</span> to denote the <span class="math inline">\((i,j)\)</span>-th entry. A vector of length <span class="math inline">\(k\)</span> is a <span class="math inline">\(k \times 1\)</span> matrix. A row vector of length <span class="math inline">\(k\)</span> is a <span class="math inline">\(1 \times k\)</span> matrix. A scalar is a matrix of order <span class="math inline">\(1 \times 1\)</span>.</p>
+\end{pmatrix}
+\]</span> with <span class="math inline">\(k\)</span> rows and <span class="math inline">\(m\)</span> columns. We write <span class="math inline">\(A \in \mathbb R^{k \times m}\)</span>. The value <span class="math inline">\(a_{ij}\)</span> is called <span class="math inline">\((i,j)\)</span>-th entry or <span class="math inline">\((i,j)\)</span>-th component of <span class="math inline">\(A\)</span>. We also use the notation <span class="math inline">\((A)_{i,j}\)</span> to denote the <span class="math inline">\((i,j)\)</span>-th entry. A vector of length <span class="math inline">\(k\)</span> is a <span class="math inline">\(k \times 1\)</span> matrix. A row vector of length <span class="math inline">\(k\)</span> is a <span class="math inline">\(1 \times k\)</span> matrix. A scalar is a matrix of order <span class="math inline">\(1 \times 1\)</span>.</p>
 <p>We may describe a matrix <span class="math inline">\(A\)</span> by its column or row vectors as <span class="math display">\[
 A = \begin{pmatrix} a_1 &amp; a_2 &amp; \ldots &amp; a_m \end{pmatrix}
 = \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_k \end{pmatrix},
@@ -710,8 +718,8 @@ A = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}, \quad
 <li><span class="math inline">\(({A} {B})^{-1} = {B}^{-1} {A}^{-1}\)</span></li>
 <li><span class="math inline">\((A B C)^{-1} = C^{-1} B^{-1} A^{-1}\)</span></li>
 <li>If <span class="math inline">\({A}\)</span> is symmetric, then <span class="math inline">\({A}^{-1}\)</span> is symmetric.</li>
-</ol></section></section><section id="advanced-concepts" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="advanced-concepts">
-<span class="header-section-number">3.4</span> Advanced Concepts</h2>
+</ol></section></section><section id="further-concepts" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="further-concepts">
+<span class="header-section-number">3.4</span> Further Concepts</h2>
 <section id="trace" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="trace">
 <span class="header-section-number">3.4.1</span> Trace</h3>
 <p>The <strong>trace</strong> of a <span class="math inline">\(k \times k\)</span> square matrix <span class="math inline">\(A\)</span> is the sum of the diagonal entries: <span class="math display">\[\mathop{\mathrm{tr}}(A) = \sum_{i=1}^n a_{ii}\]</span> <em>Example:</em> <span class="math display">\[
@@ -758,10 +766,28 @@ A A
 \end{pmatrix}
 = A.
 \end{align*}\]</span></p>
-</section><section id="eigendecomposition" class="level3" data-number="3.4.3"><h3 data-number="3.4.3" class="anchored" data-anchor-id="eigendecomposition">
-<span class="header-section-number">3.4.3</span> Eigendecomposition</h3>
-<section id="eigenvalues" class="level4" data-number="3.4.3.1"><h4 data-number="3.4.3.1" class="anchored" data-anchor-id="eigenvalues">
-<span class="header-section-number">3.4.3.1</span> Eigenvalues</h4>
+</section><section id="definite-matrix" class="level3" data-number="3.4.3"><h3 data-number="3.4.3" class="anchored" data-anchor-id="definite-matrix">
+<span class="header-section-number">3.4.3</span> Definite Matrix</h3>
+<p>The <span class="math inline">\(k \times k\)</span> square matrix <span class="math inline">\({A}\)</span> is called <strong>positive definite</strong> if <span class="math display">\[{c}'{Ac}&gt;0\]</span> holds for all nonzero vectors <span class="math inline">\({c}\in \mathbb{R}^k\)</span>. If <span class="math display">\[{c}'{Ac}\geq 0\]</span></p>
+<p>for all vectors <span class="math inline">\({c}\in \mathbb{R}^k\)</span>, the matrix is called <strong>positive semi-definite</strong>. Analogously, <span class="math inline">\(A\)</span> is called <strong>negative definite</strong> if <span class="math inline">\({c}'{Ac}&lt;0\)</span> and <strong>negative semi-definite</strong> if <span class="math inline">\({c}'{Ac}\leq 0\)</span> for all nonzero vectors <span class="math inline">\(c \in \mathbb R^k\)</span>. A matrix that is neither positive semi-definite nor negative semi-definite is called <strong>indefinite</strong></p>
+<p>The matrix analog of a positive or negative number (scalar) is a positive definite or negative definite matrix. Therefore, we use the notation</p>
+<ol type="i">
+<li>
+<span class="math inline">\(A &gt; 0\)</span> &nbsp;if <span class="math inline">\(A\)</span> is positive definite</li>
+<li>
+<span class="math inline">\(A &lt; 0\)</span> &nbsp;if <span class="math inline">\(A\)</span> is negative definite</li>
+<li>
+<span class="math inline">\(A \geq 0\)</span> &nbsp;if <span class="math inline">\(A\)</span> is positive semi-definite</li>
+<li>
+<span class="math inline">\(A \leq 0\)</span> &nbsp;if <span class="math inline">\(A\)</span> is negative semi-definite</li>
+</ol>
+<p>The notation <span class="math inline">\(A &gt; B\)</span> means that the matrix <span class="math inline">\(A - B\)</span> is positive definite.e ch</p>
+</section></section><section id="advanced-concepts" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="advanced-concepts">
+<span class="header-section-number">3.5</span> Advanced Concepts</h2>
+<section id="eigendecomposition" class="level3" data-number="3.5.1"><h3 data-number="3.5.1" class="anchored" data-anchor-id="eigendecomposition">
+<span class="header-section-number">3.5.1</span> Eigendecomposition</h3>
+<section id="eigenvalues" class="level4" data-number="3.5.1.1"><h4 data-number="3.5.1.1" class="anchored" data-anchor-id="eigenvalues">
+<span class="header-section-number">3.5.1.1</span> Eigenvalues</h4>
 <p>An <strong>eigenvalue</strong> <span class="math inline">\(\lambda\)</span> of a <span class="math inline">\(k \times k\)</span> square matrix is a solution to the equation <span class="math display">\[
   \det(\lambda I_k - A) = 0.
 \]</span> The function <span class="math inline">\(f(\lambda) = \det(\lambda I_k - A)\)</span> has exactly <span class="math inline">\(k\)</span> roots so that <span class="math inline">\(\det(\lambda I_k - A) = 0\)</span> has exactly <span class="math inline">\(k\)</span> solutions. The solutions <span class="math inline">\(\lambda_1, \ldots, \lambda_k\)</span> are the <span class="math inline">\(k\)</span> eigenvalues of <span class="math inline">\(A\)</span>.</p>
@@ -774,20 +800,20 @@ A A
 <span class="math inline">\(A\)</span> is nonsingular if and only if all eigenvalues are nonzero</li>
 <li>
 <span class="math inline">\(A B\)</span> and <span class="math inline">\(B A\)</span> have the same eigenvalues.</li>
-</ol></section><section id="eigenvectors" class="level4" data-number="3.4.3.2"><h4 data-number="3.4.3.2" class="anchored" data-anchor-id="eigenvectors">
-<span class="header-section-number">3.4.3.2</span> Eigenvectors</h4>
+</ol></section><section id="eigenvectors" class="level4" data-number="3.5.1.2"><h4 data-number="3.5.1.2" class="anchored" data-anchor-id="eigenvectors">
+<span class="header-section-number">3.5.1.2</span> Eigenvectors</h4>
 <p>If <span class="math inline">\(\lambda_i\)</span> is an eigenvalue of <span class="math inline">\(A\)</span>, then <span class="math inline">\(\lambda_i I_k - A\)</span> is singular, which implies that there exists a linear combination vector <span class="math inline">\(v_i\)</span> with <span class="math inline">\((\lambda_i I_k - A) v_i = 0\)</span>. Equivalently, <span class="math display">\[
   A v_i = \lambda_i v_i,
 \]</span></p>
 <p>which can be solved by Gaussian elimination. It is convenient to normalize any solution such that <span class="math inline">\(v_i'v_i = 1\)</span>. The solutions <span class="math inline">\(v_1, \ldots, v_k\)</span> are called eigenvectors of <span class="math inline">\(A\)</span> to corresponding eigenvalues <span class="math inline">\(\lambda_1, \ldots, \lambda_k\)</span>.</p>
-</section><section id="spectral-decomposition" class="level4" data-number="3.4.3.3"><h4 data-number="3.4.3.3" class="anchored" data-anchor-id="spectral-decomposition">
-<span class="header-section-number">3.4.3.3</span> Spectral Decomposition</h4>
+</section><section id="spectral-decomposition" class="level4" data-number="3.5.1.3"><h4 data-number="3.5.1.3" class="anchored" data-anchor-id="spectral-decomposition">
+<span class="header-section-number">3.5.1.3</span> Spectral Decomposition</h4>
 <p>If <span class="math inline">\(A\)</span> is symmetric, then <span class="math inline">\(v_1, \ldots, v_k\)</span> are pairwise orthogonal (i.e., <span class="math inline">\(v_i' v_j = 0\)</span> for <span class="math inline">\(i \neq j\)</span>). Let <span class="math inline">\(V = \begin{pmatrix} v_1 &amp; \ldots &amp; v_k \end{pmatrix}\)</span> be the <span class="math inline">\(k \times k\)</span> matrix of eigenvectors and let <span class="math inline">\(\Lambda = \mathop{\mathrm{diag}}(\lambda_1, \ldots, \lambda_k)\)</span> be the <span class="math inline">\(k \times k\)</span> diagonal matrix with the eigenvalues on the main diagonal. Then, we can write <span class="math display">\[
   A = V \Lambda V',
 \]</span></p>
 <p>which is called the <strong>spectral decomposition</strong> of <span class="math inline">\(A\)</span>. The matrix of eigenvalues can be written as <span class="math inline">\(\Lambda = V' A V\)</span>.</p>
-</section><section id="eigendecomposition-in-r" class="level4" data-number="3.4.3.4"><h4 data-number="3.4.3.4" class="anchored" data-anchor-id="eigendecomposition-in-r">
-<span class="header-section-number">3.4.3.4</span> Eigendecomposition in <code>R</code>
+</section><section id="eigendecomposition-in-r" class="level4" data-number="3.5.1.4"><h4 data-number="3.5.1.4" class="anchored" data-anchor-id="eigendecomposition-in-r">
+<span class="header-section-number">3.5.1.4</span> Eigendecomposition in <code>R</code>
 </h4>
 <p>The function <code><a href="https://rdrr.io/r/base/eigen.html">eigen()</a></code> computes the eigenvalues and corresponding eigenvectors.</p>
 <div class="cell" data-layout-align="center">
@@ -812,10 +838,8 @@ $vectors
 [3,] -0.3312839  0.8190121  0.4684764</code></pre>
 </div>
 </div>
-</section></section><section id="definite-matrix" class="level3" data-number="3.4.4"><h3 data-number="3.4.4" class="anchored" data-anchor-id="definite-matrix">
-<span class="header-section-number">3.4.4</span> Definite Matrix</h3>
-<p>The <span class="math inline">\(k \times k\)</span> square matrix <span class="math inline">\({A}\)</span> is called <strong>positive definite</strong> if <span class="math display">\[{c}'{Ac}&gt;0\]</span> holds for all nonzero vectors <span class="math inline">\({c}\in \mathbb{R}^k\)</span>. If <span class="math display">\[{c}'{Ac}\geq 0\]</span></p>
-<p>for all vectors <span class="math inline">\({c}\in \mathbb{R}^k\)</span>, the matrix is called <strong>positive semi-definite</strong>. Analogously, <span class="math inline">\(A\)</span> is called <strong>negative definite</strong> if <span class="math inline">\({c}'{Ac}&lt;0\)</span> and <strong>negative semi-definite</strong> if <span class="math inline">\({c}'{Ac}\leq 0\)</span> for all nonzero vectors <span class="math inline">\(c \in \mathbb R^k\)</span>. A matrix that is neither positive semi-definite nor negative semi-definite is called <strong>indefinite</strong></p>
+</section></section><section id="definiteness-property-and-eigenvalues" class="level3" data-number="3.5.2"><h3 data-number="3.5.2" class="anchored" data-anchor-id="definiteness-property-and-eigenvalues">
+<span class="header-section-number">3.5.2</span> Definiteness Property and Eigenvalues</h3>
 <p>The definiteness property of a symmetric matrix <span class="math inline">\(A\)</span> can be determined using its eigenvalues:</p>
 <ol type="i">
 <li>
@@ -833,20 +857,8 @@ $vectors
 <pre><code>[1] 234.827160  12.582227   3.590613</code></pre>
 </div>
 </div>
-<p>The matrix analog of a positive or negative number (scalar) is a positive definite or negative definite matrix. Therefore, we use the notation</p>
-<ol type="i">
-<li>
-<span class="math inline">\(A &gt; 0\)</span> &nbsp;if <span class="math inline">\(A\)</span> is positive definite</li>
-<li>
-<span class="math inline">\(A &lt; 0\)</span> &nbsp;if <span class="math inline">\(A\)</span> is negative definite</li>
-<li>
-<span class="math inline">\(A \geq 0\)</span> &nbsp;if <span class="math inline">\(A\)</span> is positive semi-definite</li>
-<li>
-<span class="math inline">\(A \leq 0\)</span> &nbsp;if <span class="math inline">\(A\)</span> is negative semi-definite</li>
-</ol>
-<p>The notation <span class="math inline">\(A &gt; B\)</span> means that the matrix <span class="math inline">\(A - B\)</span> is positive definite.</p>
-</section><section id="cholesky-decomposition" class="level3" data-number="3.4.5"><h3 data-number="3.4.5" class="anchored" data-anchor-id="cholesky-decomposition">
-<span class="header-section-number">3.4.5</span> Cholesky Decomposition</h3>
+</section><section id="cholesky-decomposition" class="level3" data-number="3.5.3"><h3 data-number="3.5.3" class="anchored" data-anchor-id="cholesky-decomposition">
+<span class="header-section-number">3.5.3</span> Cholesky Decomposition</h3>
 <p>Any positive definite and symmetric matrix <span class="math inline">\(B\)</span> can be written as <span class="math display">\[
   B = P P',
 \]</span> where <span class="math inline">\(P\)</span> is a lower triangular matrix with strictly positive diagonal entries <span class="math inline">\(p_{jj} &gt; 0\)</span>. This representation is called <strong>Cholesky decomposition</strong>. The matrix <span class="math inline">\(P\)</span> is unique. For a <span class="math inline">\(2 \times 2\)</span> matrix <span class="math inline">\(B\)</span> we have <span class="math display">\[\begin{align*}
@@ -878,8 +890,8 @@ B = \begin{pmatrix} 1 &amp; -0.5 &amp; 0.6 \\ -0.5 &amp; 1 &amp; 0.25 \\ 0.6 &am
 [3,]    0  0.0000000 0.4864840</code></pre>
 </div>
 </div>
-</section><section id="vectorization" class="level3" data-number="3.4.6"><h3 data-number="3.4.6" class="anchored" data-anchor-id="vectorization">
-<span class="header-section-number">3.4.6</span> Vectorization</h3>
+</section><section id="vectorization" class="level3" data-number="3.5.4"><h3 data-number="3.5.4" class="anchored" data-anchor-id="vectorization">
+<span class="header-section-number">3.5.4</span> Vectorization</h3>
 <p>The <strong>vectorization operator</strong> <span class="math inline">\(\mathop{\mathrm{vec}}()\)</span> stacks the matrix entries column-wise into a large vector. The vectorized <span class="math inline">\(k \times m\)</span> matrix <span class="math inline">\(A\)</span> is the <span class="math inline">\(km \times 1\)</span> vector <span class="math display">\[
 \mathop{\mathrm{vec}}(A) = (a_{11}, \ldots, a_{k1}, a_{12}, \ldots, a_{k2}, \ldots, a_{1m}, \ldots, a_{km})'.
 \]</span></p>
@@ -889,8 +901,8 @@ B = \begin{pmatrix} 1 &amp; -0.5 &amp; 0.6 \\ -0.5 &amp; 1 &amp; 0.25 \\ 0.6 &am
 <pre><code>[1]  1  3  0  2  9 11  3  1  5</code></pre>
 </div>
 </div>
-</section><section id="kronecker-product" class="level3" data-number="3.4.7"><h3 data-number="3.4.7" class="anchored" data-anchor-id="kronecker-product">
-<span class="header-section-number">3.4.7</span> Kronecker Product</h3>
+</section><section id="kronecker-product" class="level3" data-number="3.5.5"><h3 data-number="3.5.5" class="anchored" data-anchor-id="kronecker-product">
+<span class="header-section-number">3.5.5</span> Kronecker Product</h3>
 <p>The <strong>Kronecker product</strong> <span class="math inline">\(\otimes\)</span> multiplies each element of the left-hand side matrix with the entire matrix on the right-hand side. For a <span class="math inline">\(k \times m\)</span> matrix <span class="math inline">\(A\)</span> and a <span class="math inline">\(r \times s\)</span> matrix <span class="math inline">\(B\)</span>, we get the <span class="math inline">\(kr\times ms\)</span> matrix <span class="math display">\[
 A \otimes B = \begin{pmatrix} a_{11}B &amp; \ldots &amp; a_{1m}B \\ \vdots &amp; &amp; \vdots \\ a_{k1}B &amp; \ldots &amp; a_{km}B \end{pmatrix},
 \]</span> where each entry <span class="math inline">\(a_{ij} B\)</span> is a <span class="math inline">\(r \times s\)</span> matrix.</p>
@@ -909,8 +921,8 @@ A \otimes B = \begin{pmatrix} a_{11}B &amp; \ldots &amp; a_{1m}B \\ \vdots &amp;
  [9,]  0.0  0.00 0.00  6.6  2.75 11.00  3.0  1.25 5.00</code></pre>
 </div>
 </div>
-</section><section id="vector-and-matrix-norm" class="level3" data-number="3.4.8"><h3 data-number="3.4.8" class="anchored" data-anchor-id="vector-and-matrix-norm">
-<span class="header-section-number">3.4.8</span> Vector and Matrix Norm</h3>
+</section><section id="vector-and-matrix-norm" class="level3" data-number="3.5.6"><h3 data-number="3.5.6" class="anchored" data-anchor-id="vector-and-matrix-norm">
+<span class="header-section-number">3.5.6</span> Vector and Matrix Norm</h3>
 <p>A norm <span class="math inline">\(\|\cdot\|\)</span> of a vector or a matrix is a measure of distance from the origin. The most commonly used norms are the Euclidean vector norm <span class="math display">\[
   \|a\| = \sqrt{a' a} = \sqrt{\sum_{i=1}^k a_i^2}
 \]</span> for <span class="math inline">\(a \in \mathbb R^k\)</span>, and the Frobenius matrix norm <span class="math display">\[
@@ -924,11 +936,11 @@ A \otimes B = \begin{pmatrix} a_{11}B &amp; \ldots &amp; a_{1m}B \\ \vdots &amp;
 <span class="math inline">\(\|A + B\| \leq \|A\| + \|B\|\)</span> (triangle inequality)</li>
 <li>
 <span class="math inline">\(\|A\| = 0\)</span> implies <span class="math inline">\(A = 0\)</span> (definiteness)</li>
-</ol></section></section><section id="matrix-calculus" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="matrix-calculus">
-<span class="header-section-number">3.5</span> Matrix Calculus</h2>
+</ol></section></section><section id="matrix-calculus" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="matrix-calculus">
+<span class="header-section-number">3.6</span> Matrix Calculus</h2>
 <p>Let <span class="math inline">\(f(\beta_1, \ldots, \beta_k) = f({\beta})\)</span> be a twice-differential real-valued function that depends on some vector <span class="math inline">\(\beta = (\beta_1, \ldots, \beta_k)'\)</span>. Examples that frequently appear in econometrics are functions of the inner product form <span class="math inline">\(f(\beta) = a' \beta\)</span>, where <span class="math inline">\(a \in \mathbb R^k\)</span>, and functions of the sandwich form <span class="math inline">\(f(\beta) = \beta' A \beta\)</span>, where <span class="math inline">\(A \in \mathbb R^{k \times k}\)</span>.</p>
-<section id="gradient" class="level3" data-number="3.5.1"><h3 data-number="3.5.1" class="anchored" data-anchor-id="gradient">
-<span class="header-section-number">3.5.1</span> Gradient</h3>
+<section id="gradient" class="level3" data-number="3.6.1"><h3 data-number="3.6.1" class="anchored" data-anchor-id="gradient">
+<span class="header-section-number">3.6.1</span> Gradient</h3>
 <p>The <strong>first derivatives vector</strong> or <strong>gradient</strong> is <span class="math display">\[
 \frac{\partial f(\beta)}{\partial{\beta}}  = \begin{pmatrix}\frac{\partial f(\beta)}{\partial \beta_1} \\ \vdots \\ \frac{\partial f(\beta)}{\partial \beta_k} \end{pmatrix}
 \]</span> If the gradient is evaluated at some particular value <span class="math inline">\(\beta = b\)</span>, we write <span class="math display">\[
@@ -937,8 +949,8 @@ A \otimes B = \begin{pmatrix} a_{11}B &amp; \ldots &amp; a_{1m}B \\ \vdots &amp;
 (i)&amp; \quad &amp;&amp;\frac{\partial (a' \beta)}{\partial \beta}  = a \\
 (ii)&amp; \quad &amp;&amp;\frac{\partial ( \beta' A \beta)}{\partial \beta}   = (A + A') \beta.
 \end{align*}\]</span></p>
-</section><section id="hessian" class="level3" data-number="3.5.2"><h3 data-number="3.5.2" class="anchored" data-anchor-id="hessian">
-<span class="header-section-number">3.5.2</span> Hessian</h3>
+</section><section id="hessian" class="level3" data-number="3.6.2"><h3 data-number="3.6.2" class="anchored" data-anchor-id="hessian">
+<span class="header-section-number">3.6.2</span> Hessian</h3>
 <p>The <strong>second derivatives matrix</strong> or <strong>Hessian</strong> is the <span class="math inline">\(k \times k\)</span> matrix <span class="math display">\[
     \frac{\partial^2 f(\beta)}{\partial{\beta }\partial {\beta}'}
     =  \begin{pmatrix}\frac{\partial^2 f(\beta)}{\partial \beta_1 \partial \beta_1} &amp; \ldots &amp; \frac{\partial^2 f(\beta)}{\partial \beta_k \partial \beta_1} \\
@@ -957,8 +969,8 @@ A \otimes B = \begin{pmatrix} a_{11}B &amp; \ldots &amp; a_{1m}B \\ \vdots &amp;
 <p>The Hessian of a sandwich form function is <span class="math display">\[
   \frac{\partial^2 ( \beta' A \beta)}{\partial \beta \partial \beta'}  = A + A'.
 \]</span></p>
-</section><section id="optimization" class="level3" data-number="3.5.3"><h3 data-number="3.5.3" class="anchored" data-anchor-id="optimization">
-<span class="header-section-number">3.5.3</span> Optimization</h3>
+</section><section id="optimization" class="level3" data-number="3.6.3"><h3 data-number="3.6.3" class="anchored" data-anchor-id="optimization">
+<span class="header-section-number">3.6.3</span> Optimization</h3>
 <p>Recall the <em>first-order</em> (necessary) and <em>second-order</em> (sufficient) conditions for optimum (maximum or minimum) in the univariate case:</p>
 <ul>
 <li>

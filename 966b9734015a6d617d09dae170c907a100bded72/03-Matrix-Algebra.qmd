@@ -518,11 +518,7 @@ vii) If ${A}$ is symmetric, then ${A}^{-1}$ is
      symmetric.
 
 
-
-
-
-
-## Advanced Concepts
+## Further Concepts
 
 ### Trace
 
@@ -578,6 +574,41 @@ A A
 \end{pmatrix}
 = A.
 \end{align*}
+
+
+
+
+### Definite Matrix
+
+The $k \times k$ square matrix ${A}$ is called **positive
+definite** if $${c}'{Ac}>0$$ holds for all nonzero
+vectors ${c}\in \mathbb{R}^k$. If
+$${c}'{Ac}\geq 0$$
+
+for all vectors ${c}\in \mathbb{R}^k$, the matrix is called
+**positive semi-definite**. Analogously, $A$ is called
+**negative definite** if ${c}'{Ac}<0$ and
+**negative semi-definite** if ${c}'{Ac}\leq 0$ for
+all nonzero vectors $c \in \mathbb R^k$. A matrix that is
+neither positive semi-definite nor negative semi-definite is called
+**indefinite**
+
+
+The matrix analog of a positive or negative number (scalar) is a
+positive definite or negative definite matrix. Therefore, we use the
+notation
+
+i)  $A > 0$  if $A$ is positive definite
+ii) $A < 0$  if $A$ is negative definite
+iii) $A \geq 0$  if $A$ is positive
+     semi-definite
+iv) $A \leq 0$  if $A$ is negative semi-definite
+
+The notation $A > B$ means that the matrix
+$A - B$ is positive definite.e ch
+
+
+## Advanced Concepts
 
 ### Eigendecomposition
 
@@ -650,20 +681,8 @@ B #A'A is symmetric
 eigen(B) #eigenvalues and eigenvector matrix
 ```
 
-### Definite Matrix
+### Definiteness Property and Eigenvalues
 
-The $k \times k$ square matrix ${A}$ is called **positive
-definite** if $${c}'{Ac}>0$$ holds for all nonzero
-vectors ${c}\in \mathbb{R}^k$. If
-$${c}'{Ac}\geq 0$$
-
-for all vectors ${c}\in \mathbb{R}^k$, the matrix is called
-**positive semi-definite**. Analogously, $A$ is called
-**negative definite** if ${c}'{Ac}<0$ and
-**negative semi-definite** if ${c}'{Ac}\leq 0$ for
-all nonzero vectors $c \in \mathbb R^k$. A matrix that is
-neither positive semi-definite nor negative semi-definite is called
-**indefinite**
 
 The definiteness property of a symmetric matrix $A$ can be
 determined using its eigenvalues:
@@ -681,18 +700,6 @@ iv) $A$ is negative semi-definite  $\Leftrightarrow$   all
 eigen(B)$values #B is positive definite (all eigenvalues positive)
 ```
 
-The matrix analog of a positive or negative number (scalar) is a
-positive definite or negative definite matrix. Therefore, we use the
-notation
-
-i)  $A > 0$  if $A$ is positive definite
-ii) $A < 0$  if $A$ is negative definite
-iii) $A \geq 0$  if $A$ is positive
-     semi-definite
-iv) $A \leq 0$  if $A$ is negative semi-definite
-
-The notation $A > B$ means that the matrix
-$A - B$ is positive definite.
 
 ### Cholesky Decomposition
 
