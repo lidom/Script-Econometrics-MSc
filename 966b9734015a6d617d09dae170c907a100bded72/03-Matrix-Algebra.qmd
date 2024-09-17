@@ -9,21 +9,27 @@ Let's start with some basic definitions and specific examples.
 A **scalar** $a$ is a single real number. We write $a \in \mathbb R$.
 
 A **vector** $a$ of length $k$ is a $k \times 1$ list of
-real numbers $$
+real numbers 
+$$
 a = \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_k \end{pmatrix}.
-$$ By default, when we refer to a vector, we always mean a column
+$$ 
+By default, when we refer to a vector, we always mean a column
 vector. We write $a \in \mathbb R^k$. The value $a_i$ is
 called $i$-th entry or $i$-th component of $a$. A scalar is
 a vector of length 1. A row vector of length $k$ is written as
 $b = (b_1, \ldots, b_k)$.
 
-A **matrix** $A$ of order $k \times m$ is a rectangular
-array of real numbers $$A =\begin{pmatrix}
+A **matrix** $A$ of order (or dimension) $k \times m$ is a rectangular
+array of real numbers 
+$$
+A =\begin{pmatrix}
              a_{11} & a_{12} & \cdots & a_{1m}\\
              a_{21} & a_{22} & \cdots & a_{2m}\\
              \vdots & \vdots &       & \vdots\\
              a_{k1} & a_{k2} & \cdots & a_{km}
-\end{pmatrix}$$ with $k$ rows and $m$ columns. We write
+\end{pmatrix}
+$$ 
+with $k$ rows and $m$ columns. We write
 $A \in \mathbb R^{k \times m}$. The value $a_{ij}$ is called
 $(i,j)$-th entry or $(i,j)$-th component of $A$. We also use
 the notation $(A)_{i,j}$ to denote the $(i,j)$-th entry. A
