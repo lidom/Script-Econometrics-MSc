@@ -1,63 +1,66 @@
 # Matrix Algebra
 
-## Basic definitions
+## Basic Definitions
 
 Let's start with some basic definitions and specific examples.
 
-### Scalar, vector, and matrix
+### Scalar, Vector and Matrix 
 
 A **scalar** $a$ is a single real number. We write $a \in \mathbb R$.
 
-A **vector** $\boldsymbol a$ of length $k$ is a $k \times 1$ list of
+A **vector** $a$ of length $k$ is a $k \times 1$ list of
 real numbers $$
-\boldsymbol a = \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_k \end{pmatrix}.
+a = \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_k \end{pmatrix}.
 $$ By default, when we refer to a vector, we always mean a column
-vector. We write $\boldsymbol a \in \mathbb R^k$. The value $a_i$ is
-called $i$-th entry or $i$-th component of $\boldsymbol a$. A scalar is
+vector. We write $a \in \mathbb R^k$. The value $a_i$ is
+called $i$-th entry or $i$-th component of $a$. A scalar is
 a vector of length 1. A row vector of length $k$ is written as
-$\boldsymbol b = (b_1, \ldots, b_k)$.
+$b = (b_1, \ldots, b_k)$.
 
-A **matrix** $\boldsymbol A$ of order $k \times m$ is a rectangular
-array of real numbers $$\boldsymbol A =\begin{pmatrix}
+A **matrix** $A$ of order $k \times m$ is a rectangular
+array of real numbers $$A =\begin{pmatrix}
              a_{11} & a_{12} & \cdots & a_{1m}\\
              a_{21} & a_{22} & \cdots & a_{2m}\\
              \vdots & \vdots &       & \vdots\\
              a_{k1} & a_{k2} & \cdots & a_{km}
 \end{pmatrix}$$ with $k$ rows and $m$ columns. We write
-$\boldsymbol A \in \mathbb R^{k \times m}$. The value $a_{ij}$ is called
-$(i,j)$-th entry or $(i,j)$-th component of $\boldsymbol A$. We also use
-the notation $(\boldsymbol A)_{i,j}$ to denote the $(i,j)$-th entry. A
+$A \in \mathbb R^{k \times m}$. The value $a_{ij}$ is called
+$(i,j)$-th entry or $(i,j)$-th component of $A$. We also use
+the notation $(A)_{i,j}$ to denote the $(i,j)$-th entry. A
 vector of length $k$ is a $k \times 1$ matrix. A row vector of length
 $k$ is a $1 \times k$ matrix. A scalar is a matrix of order
 $1 \times 1$.
 
-We may describe a matrix $\boldsymbol A$ by its column or row vectors as
+We may describe a matrix $A$ by its column or row vectors as
 $$
-\boldsymbol A = \begin{pmatrix} \boldsymbol a_1 & \boldsymbol a_2 & \ldots & \boldsymbol a_m \end{pmatrix} 
-= \begin{pmatrix} \boldsymbol \alpha_1 \\ \vdots \\ \boldsymbol \alpha_k \end{pmatrix},
+A = \begin{pmatrix} a_1 & a_2 & \ldots & a_m \end{pmatrix} 
+= \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_k \end{pmatrix},
 $$ where $$
-\boldsymbol a_i = \begin{pmatrix} a_{1i} \\ \vdots \\ a_{ki} \end{pmatrix}
-$$ is the $i$-th column of $\boldsymbol A$ and
-$\boldsymbol \alpha_i = (a_{i1}, \ldots, a_{im})$ is the $i$-th row.
+a_i = \begin{pmatrix} a_{1i} \\ \vdots \\ a_{ki} \end{pmatrix}
+$$ is the $i$-th column of $A$ and
+$\alpha_i = (a_{i1}, \ldots, a_{im})$ is the $i$-th row.
 
-### Some specific matrices
+
+
+
+### Some Specific Matrices
 
 A matrix is called **square matrix** if the numbers of rows and columns
 coincide (i.e., $k=m$).
-$$\boldsymbol{B} = \begin{pmatrix}1 & 2 \\ 3 & 4 \end{pmatrix}$$ is a
+$${B} = \begin{pmatrix}1 & 2 \\ 3 & 4 \end{pmatrix}$$ is a
 square matrix. A square matrix is called **diagonal matrix** if all
 off-diagonal elements are zero.
-$$\boldsymbol{C} = \begin{pmatrix}1 & 0 \\ 0 & 4 \end{pmatrix}$$ is a
+$${C} = \begin{pmatrix}1 & 0 \\ 0 & 4 \end{pmatrix}$$ is a
 diagonal matrix. We also write
-$\boldsymbol C = \mathop{\mathrm{diag}}(1,4)$. A square matrix is called
+$C = \mathop{\mathrm{diag}}(1,4)$. A square matrix is called
 **upper triangular** if all elements below the main diagonal are zero,
 and **lower triangular** if all elements above the main diagonal are
-zero. Examples of an upper triangular matrix $\boldsymbol D$ and a lower
-triangular matrix $\boldsymbol E$ are
-$$\boldsymbol{D} = \begin{pmatrix}1 & 2 \\ 0 & 4 \end{pmatrix},
+zero. Examples of an upper triangular matrix $D$ and a lower
+triangular matrix $E$ are
+$${D} = \begin{pmatrix}1 & 2 \\ 0 & 4 \end{pmatrix},
 \quad
-\boldsymbol{E} = \begin{pmatrix}1 & 0 \\ 3 & 4 \end{pmatrix}.
-$$ The $k \times k$ diagonal matrix $$\boldsymbol{I}_k=
+{E} = \begin{pmatrix}1 & 0 \\ 3 & 4 \end{pmatrix}.
+$$ The $k \times k$ diagonal matrix $${I}_k=
       \begin{pmatrix}
       1      & 0      & \cdots & 0\\
       0      & 1      & \cdots & 0\\
@@ -65,52 +68,52 @@ $$ The $k \times k$ diagonal matrix $$\boldsymbol{I}_k=
       0      & 0      & \cdots & 1
       \end{pmatrix} = \mathop{\mathrm{diag}}(1, \ldots, 1)$$ is called
 **identity matrix** of order $k$. The $k \times m$ matrix
-$$\boldsymbol{0}_{k\times m}
+$${0}_{k\times m}
        =\begin{pmatrix}
              0      & \cdots & 0\\
             \vdots &  \ddots      & \vdots\\
             0      & \cdots & 0
        \end{pmatrix}
       $$ is called **zero matrix**. The **zero vector** of length $k$ is
-$$\boldsymbol{0}_{k}
+$${0}_{k}
        =\begin{pmatrix}
              0   \\
             \vdots \\
             0 
        \end{pmatrix}.
       $$ If the order becomes clear from the context, we omit the
-indices and write $\boldsymbol I$ for the identity matrix and
-$\boldsymbol 0$ for the zero matrix or zero vector.
+indices and write $I$ for the identity matrix and
+$0$ for the zero matrix or zero vector.
 
 ### Transposition
 
-The **transpose** $\boldsymbol A'$ of the matrix $\boldsymbol A$ is
+The **transpose** $A'$ of the matrix $A$ is
 obtained by flipping rows and columns on the main diagonal:
-$$\boldsymbol{A}'=\begin{pmatrix}
+$${A}'=\begin{pmatrix}
     a_{11} & a_{21} & \cdots & a_{k1}\\
     a_{12} & a_{22} & \cdots & a_{k2}\\
     \vdots & \vdots &       & \vdots\\
     a_{1m} & a_{2m} & \cdots & a_{km}
-\end{pmatrix}.$$ If $\boldsymbol A$ is a matrix of order $k\times m$,
-then $\boldsymbol A'$ is a matrix of order $m \times k$. *Example:*
-$$\boldsymbol{A}=\begin{pmatrix}
+\end{pmatrix}.$$ If $A$ is a matrix of order $k\times m$,
+then $A'$ is a matrix of order $m \times k$. *Example:*
+$${A}=\begin{pmatrix}
         1 & 2\\
         4 & 5\\
         7 & 8
 \end{pmatrix}\quad\Rightarrow\quad
-\boldsymbol{A}'=\begin{pmatrix}
+{A}'=\begin{pmatrix}
         1 & 4 & 7\\
         2 & 5 & 8
 \end{pmatrix}$$ The definition implies that transposing twice produces
 the original matrix: $$
-(\boldsymbol A')' = \boldsymbol A.
+(A')' = A.
 $$ The transpose of a (column) vector is a row vector: $$
-\boldsymbol a' = (a_1, \ldots, a_k)
+a' = (a_1, \ldots, a_k)
 $$
 
-A **symmetric matrix** is a square matrix $\boldsymbol A$ with
-$\boldsymbol{A}'=\boldsymbol{A}$. An example of a symmetric matrix is
-$$\boldsymbol A = \begin{aligned}         \left(\begin{matrix}1 & 2 \\ 2 & 4 \end{matrix}\right)\end{aligned}.$$
+A **symmetric matrix** is a square matrix $A$ with
+${A}'={A}$. An example of a symmetric matrix is
+$$A = \begin{aligned}         \left(\begin{matrix}1 & 2 \\ 2 & 4 \end{matrix}\right)\end{aligned}.$$
 
 ### Matrices in `R`
 
@@ -135,9 +138,9 @@ dim(A) #number of rows and columns
 
 ### Matrix summation
 
-Let $\boldsymbol A$ and $\boldsymbol B$ both be matrices of order
+Let $A$ and $B$ both be matrices of order
 $k \times m$. Their sum is defined componentwise:
-$$\boldsymbol{A} + \boldsymbol{B}
+$${A} + {B}
 =\begin{pmatrix}
 a_{11}+ b_{11} & a_{12}+ b_{12} & \cdots & a_{1m}+ b_{1m} \\
 a_{21}+ b_{21} & a_{22}+ b_{22} & \cdots & a_{2m}+ b_{2m} \\
@@ -145,36 +148,36 @@ a_{21}+ b_{21} & a_{22}+ b_{22} & \cdots & a_{2m}+ b_{2m} \\
 a_{k1}+ b_{k1} & a_{k2}+ b_{k2} & \cdots & a_{km}+ b_{km}
 \end{pmatrix}.$$ Only two matrices of the same order can be added.
 *Example:*
-$$\boldsymbol{A}=\begin{pmatrix}2&0\\1&5\\3&2\end{pmatrix}\,,\quad
-\boldsymbol{B}=\begin{pmatrix}-1&1\\7&1\\-5&2\end{pmatrix}\,,\quad
-\boldsymbol{A}+\boldsymbol{B}=\begin{pmatrix}1&1\\8&6\\-2&4\end{pmatrix}\,.$$
+$${A}=\begin{pmatrix}2&0\\1&5\\3&2\end{pmatrix}\,,\quad
+{B}=\begin{pmatrix}-1&1\\7&1\\-5&2\end{pmatrix}\,,\quad
+{A}+{B}=\begin{pmatrix}1&1\\8&6\\-2&4\end{pmatrix}\,.$$
 
 The matrix summation satisfies the following rules:
 $$\begin{array}{@{}rr@{\ }c@{\ }l@{}r@{}}
-\text{(i)}    & \boldsymbol{A}+\boldsymbol{B}         &=& \boldsymbol{B}+\boldsymbol{A}\,               &  \text{(commutativity)} \\
-\text{(ii)}   & (\boldsymbol{A}+\boldsymbol{B})+\boldsymbol{C}  &=& \boldsymbol{A}+(\boldsymbol{B}+\boldsymbol{C})\,        &  \text{(associativity)} \\
-\text{(iii)}    & \boldsymbol A + \boldsymbol 0 &=& \boldsymbol A &   {\text{(identity element)}}     \\
-\text{(iv)}   & (\boldsymbol A + \boldsymbol B)' &=& \boldsymbol A' + \boldsymbol B'     & 
+\text{(i)}    & {A}+{B}         &=& {B}+{A}\,               &  \text{(commutativity)} \\
+\text{(ii)}   & ({A}+{B})+{C}  &=& {A}+({B}+{C})\,        &  \text{(associativity)} \\
+\text{(iii)}    & A + 0 &=& A &   {\text{(identity element)}}     \\
+\text{(iv)}   & (A + B)' &=& A' + B'     & 
 {\text{(transposition)}}          
 \end{array}$$
 
 ### Scalar-matrix multiplication
 
-The product of a $k \times m$ matrix $\boldsymbol{A}$ with a scalar
+The product of a $k \times m$ matrix ${A}$ with a scalar
 $\lambda\in\mathbb{R}$ is defined componentwise:
-$$\lambda \boldsymbol{A} =
+$$\lambda {A} =
 \begin{pmatrix}
    \lambda a_{11}   & \lambda a_{12} & \cdots  & \lambda a_{1n} \\
    \lambda a_{21}   & \lambda a_{22} & \cdots  & \lambda a_{2n} \\
    \vdots           & \vdots &                & \vdots         \\
    \lambda a_{m1}   & \lambda a_{m2} & \cdots  & \lambda a_{mn}
 \end{pmatrix}.$$ *Example:*
-$$\lambda=2, \quad \boldsymbol{A}=\begin{pmatrix}2&0\\1&5\\3&2\end{pmatrix},\quad
-\lambda\boldsymbol{A}=\begin{pmatrix}4&0\\2&10\\6&4\end{pmatrix}.$$
+$$\lambda=2, \quad {A}=\begin{pmatrix}2&0\\1&5\\3&2\end{pmatrix},\quad
+\lambda{A}=\begin{pmatrix}4&0\\2&10\\6&4\end{pmatrix}.$$
 Scalar-matrix multiplication satisfies the distributivity law:
 $$\begin{array}{@{}rr@{\ }c@{\ }l@{}r@{}}
-\text{(i)}    & \lambda(\boldsymbol{A}+\boldsymbol{B})&=& \lambda\boldsymbol{A}+\lambda\boldsymbol{B}\, &    \\
-\text{(ii)}   & (\lambda+\mu)\boldsymbol{A} &=& \lambda\boldsymbol{A}+\mu\boldsymbol{A}\,     & 
+\text{(i)}    & \lambda({A}+{B})&=& \lambda{A}+\lambda{B}\, &    \\
+\text{(ii)}   & (\lambda+\mu){A} &=& \lambda{A}+\mu{A}\,     & 
 \end{array}$$
 
 ### Element-by-element operations in R
@@ -196,34 +199,34 @@ A*B #element-wise multiplication
 #### Inner product
 
 The **inner product** (also known as dot product) of two vectors
-$\boldsymbol{a},\boldsymbol{b}\in\mathbb{R}^k$ is
-$$\boldsymbol{a}'\boldsymbol{b} = a_1 b_1+a_2b_2+\ldots+a_kb_k=\sum_{i=1}^k a_ib_i\in\mathbb{R}.$$
-*Example:* $$\boldsymbol{a}=\begin{pmatrix}1\\2\\3\end{pmatrix},\quad
-\boldsymbol{b}=\begin{pmatrix}-2\\0\\2\end{pmatrix},\quad
-\boldsymbol{a}'\boldsymbol{b}=1\cdot(-2)+2\cdot0+3\cdot2=4.$$
+${a},{b}\in\mathbb{R}^k$ is
+$${a}'{b} = a_1 b_1+a_2b_2+\ldots+a_kb_k=\sum_{i=1}^k a_ib_i\in\mathbb{R}.$$
+*Example:* $${a}=\begin{pmatrix}1\\2\\3\end{pmatrix},\quad
+{b}=\begin{pmatrix}-2\\0\\2\end{pmatrix},\quad
+{a}'{b}=1\cdot(-2)+2\cdot0+3\cdot2=4.$$
 
 The inner product is commutative: \begin{align*}
-  \boldsymbol a' \boldsymbol b = \boldsymbol b' \boldsymbol a.
-\end{align*} Two vectors $\boldsymbol a$ and $\boldsymbol b$ are called
-**orthogonal** if $\boldsymbol a' \boldsymbol b = 0$. The vectors
-$\boldsymbol a$ and $\boldsymbol b$ are called **orthonormal** if, in
-addition to $\boldsymbol a'\boldsymbol b$, we have
-$\boldsymbol a' \boldsymbol a = 1$ and $\boldsymbol b' \boldsymbol b=1$.
+  a' b = b' a.
+\end{align*} Two vectors $a$ and $b$ are called
+**orthogonal** if $a' b = 0$. The vectors
+$a$ and $b$ are called **orthonormal** if, in
+addition to $a'b$, we have
+$a' a = 1$ and $b' b=1$.
 
 #### Outer product
 
 The outer product (also known as dyadic product) of two vectors
-$\boldsymbol{x} \in \mathbb R^k$ and $\boldsymbol{y}\in\mathbb{R}^m$ is
-$$\boldsymbol{x}\boldsymbol{y}' = 
+${x} \in \mathbb R^k$ and ${y}\in\mathbb{R}^m$ is
+$${x}{y}' = 
 \left(\begin{matrix}
 x_1 y_1 & x_1 y_2  &\ldots & x_1 y_m \\ 
 x_2 y_1 & x_2 y_2 & \ldots & x_2 y_m \\ 
 \vdots   & \vdots &      & \vdots    \\
 x_k y_1 & x_k y_2 & \ldots & x_k y_m
 \end{matrix}\right)\in  \mathbb{R}^{k \times m}.$$ *Example:*
-$$\boldsymbol{x}=\begin{pmatrix}1\\2\end{pmatrix}\,,\quad
-\boldsymbol{y}=\begin{pmatrix}-2\\0\\2\end{pmatrix}\,,\quad
-\boldsymbol{x}\boldsymbol{y}'=\left(\begin{matrix}
+$${x}=\begin{pmatrix}1\\2\end{pmatrix}\,,\quad
+{y}=\begin{pmatrix}-2\\0\\2\end{pmatrix}\,,\quad
+{x}{y}'=\left(\begin{matrix}
 -2 & 0 & 2 \\
 -4 & 0 & 4
 \end{matrix}\right).$$
@@ -243,33 +246,33 @@ c(1,2) %*% t(c(-2,0,2)) #the example from above
 
 ### Matrix-matrix multiplication
 
-The **matrix product** of a $k \times m$ matrix $\boldsymbol{A}$ and a
-$m \times n$ matrix $\boldsymbol{B}$ is the $k\times n$ matrix
-$\boldsymbol C = \boldsymbol{A}\boldsymbol{B}$ with the components
-$$c_{ij} = a_{i1}b_{1j}+a_{i2}b_{2j}+\ldots+a_{im}b_{mj}=\sum_{l=1}^m a_{il}b_{lj} = \boldsymbol a_i' \boldsymbol b_j,$$
-where $\boldsymbol a_i = (a_{i1}, \ldots, a_{im})'$ is the $i$-th row of
-$\boldsymbol A$ written as a column vector, and
-$\boldsymbol b_j = (b_{1j}, \ldots, b_{mj})'$ is the $j$-th column of
-$\boldsymbol B$. The full matrix product can be written as $$
-\boldsymbol A \boldsymbol B = \begin{pmatrix} \boldsymbol a_1' \\ \vdots \\ \boldsymbol a_k' \end{pmatrix}
-\begin{pmatrix} \boldsymbol b_1 & \ldots & \boldsymbol b_n \end{pmatrix}
-= \begin{pmatrix} \boldsymbol a_1' \boldsymbol b_1 & \ldots & \boldsymbol a_1' \boldsymbol b_n \\ \vdots & & \vdots \\ \boldsymbol a_k' \boldsymbol b_1 & \ldots & \boldsymbol a_k' \boldsymbol b_n \end{pmatrix}.
+The **matrix product** of a $k \times m$ matrix ${A}$ and a
+$m \times n$ matrix ${B}$ is the $k\times n$ matrix
+$C = {A}{B}$ with the components
+$$c_{ij} = a_{i1}b_{1j}+a_{i2}b_{2j}+\ldots+a_{im}b_{mj}=\sum_{l=1}^m a_{il}b_{lj} = a_i' b_j,$$
+where $a_i = (a_{i1}, \ldots, a_{im})'$ is the $i$-th row of
+$A$ written as a column vector, and
+$b_j = (b_{1j}, \ldots, b_{mj})'$ is the $j$-th column of
+$B$. The full matrix product can be written as $$
+A B = \begin{pmatrix} a_1' \\ \vdots \\ a_k' \end{pmatrix}
+\begin{pmatrix} b_1 & \ldots & b_n \end{pmatrix}
+= \begin{pmatrix} a_1' b_1 & \ldots & a_1' b_n \\ \vdots & & \vdots \\ a_k' b_1 & \ldots & a_k' b_n \end{pmatrix}.
 $$ The matrix product is only defined if the number of columns of the
 first matrix equals the number of rows of the second matrix. Therefore,
-we say that the $k \times m$ matrix $\boldsymbol A$ and the $m \times n$
-matrix $\boldsymbol B$ are **conformable for matrix multiplication**.
+we say that the $k \times m$ matrix $A$ and the $m \times n$
+matrix $B$ are **conformable for matrix multiplication**.
 
 *Example:* Let $$\begin{aligned}
-    \boldsymbol{A}=\begin{pmatrix}
+    {A}=\begin{pmatrix}
     1 & 0\\
     0 & 1\\
     2 & 1
 \end{pmatrix}, \quad 
-\boldsymbol{B}=\begin{pmatrix}
+{B}=\begin{pmatrix}
     -1 & 2\\
     -3 & 0
 \end{pmatrix}.\end{aligned}$$ Their matrix product is $$\begin{aligned}
-\boldsymbol{A} \boldsymbol{B} &= \begin{pmatrix}
+{A} {B} &= \begin{pmatrix}
     1 & 0\\
     0 & 1\\
     2 & 1
@@ -288,110 +291,110 @@ A %*% B
 ```
 
 Matrix multiplication is **not commutative**. In general, we have
-$\boldsymbol A \boldsymbol B \neq \boldsymbol B \boldsymbol A$.
+$A B \neq B A$.
 *Example:* $$\begin{aligned}
-    \boldsymbol{A}\boldsymbol{B} = \begin{pmatrix} 1 & 2\\ 3 & 4\end{pmatrix}
+    {A}{B} = \begin{pmatrix} 1 & 2\\ 3 & 4\end{pmatrix}
     \begin{pmatrix} 1 & 1\\ 1 & 2\end{pmatrix}
     &=
     \begin{pmatrix} 3 & 5\\ 7 & 11\end{pmatrix}\,,\\
-    \boldsymbol{B}\boldsymbol{A} = \begin{pmatrix} 1 & 1\\ 1 & 2\end{pmatrix}
+    {B}{A} = \begin{pmatrix} 1 & 1\\ 1 & 2\end{pmatrix}
     \begin{pmatrix} 1 & 2\\ 3 & 4\end{pmatrix}
     &=
     \begin{pmatrix} 4 & 6\\ 7 & 10\end{pmatrix}\,.\end{aligned}$$ Even
 if neither of the two matrices contains zeros, the matrix product can
 give the zero matrix:
 $$
-\boldsymbol{A}\boldsymbol{B} = \begin{pmatrix} 1 & 2\\ 2 & 4\end{pmatrix}
+{A}{B} = \begin{pmatrix} 1 & 2\\ 2 & 4\end{pmatrix}
     \begin{pmatrix} 2 & -4\\ -1 & 2\end{pmatrix}
     =
-    \begin{pmatrix} 0 & 0\\ 0 & 0\end{pmatrix}=\boldsymbol{0}.
+    \begin{pmatrix} 0 & 0\\ 0 & 0\end{pmatrix}={0}.
 $$
 
 The following rules of calculation apply (provided the matrices are
 conformable): 
 $$
 \begin{array}{rrcl@{}r@{}}
-\text{(i)}   & \boldsymbol{A}(\boldsymbol{B}\boldsymbol{C})       & = & (\boldsymbol{A}\boldsymbol{B})\boldsymbol{C}\,     &\text{(associativity)} \\
-\text{(ii)}  &   \boldsymbol{A}(\boldsymbol{B}+\boldsymbol{D})    & = & \boldsymbol{A}\boldsymbol{B}+\boldsymbol{A}\boldsymbol{D}\,  & \text{(distributivity)} \\
-\text{(iii)}   &   (\boldsymbol{B}+\boldsymbol{D})\boldsymbol{C}    & = & \boldsymbol{B}\boldsymbol{C}+\boldsymbol{D}\boldsymbol{C}\,  & \text{(distributivity)} \\
-\text{(iv)}  &   \boldsymbol{A}(\lambda \boldsymbol{B}) & = & \lambda(\boldsymbol{A}\boldsymbol{B})\,  & \text{(scalar commutativity)}\\
-\text{(v)}  & \boldsymbol{A}\boldsymbol{I}_{n} & = & \boldsymbol{A}\,,              & \text{(identity element)}\\
-\text{(vi)} & \boldsymbol{I}_{m}\boldsymbol{A} & = & \boldsymbol{A}\,               &
+\text{(i)}   & {A}({B}{C})       & = & ({A}{B}){C}\,     &\text{(associativity)} \\
+\text{(ii)}  &   {A}({B}+{D})    & = & {A}{B}+{A}{D}\,  & \text{(distributivity)} \\
+\text{(iii)}   &   ({B}+{D}){C}    & = & {B}{C}+{D}{C}\,  & \text{(distributivity)} \\
+\text{(iv)}  &   {A}(\lambda {B}) & = & \lambda({A}{B})\,  & \text{(scalar commutativity)}\\
+\text{(v)}  & {A}{I}_{n} & = & {A}\,,              & \text{(identity element)}\\
+\text{(vi)} & {I}_{m}{A} & = & {A}\,               &
 \text{(identity element)}     \\
-\text{(vii)} &   (\boldsymbol{A}\boldsymbol{B})'  & = & \boldsymbol{B}'\boldsymbol{A}'\,         & \text{(product transposition)} \\
-\text{(viii)} &   (\boldsymbol{A}\boldsymbol{B} \boldsymbol C)'  & = & \boldsymbol C' \boldsymbol{B}'\boldsymbol{A}'\,  & \text{(product transposition)}
+\text{(vii)} &   ({A}{B})'  & = & {B}'{A}'\,         & \text{(product transposition)} \\
+\text{(viii)} &   ({A}{B} C)'  & = & C' {B}'{A}'\,  & \text{(product transposition)}
 \end{array}
 $$
 
 
-## Rank and inverse
+## Rank and Inverse
 
-### Linear combination
+### Linear Combination
 
-Let $\boldsymbol x_1, \ldots, \boldsymbol x_n$ be vectors of the same
+Let $x_1, \ldots, x_n$ be vectors of the same
 order, and let $\lambda_1, \ldots, \lambda_n$ be scalars. The vector
-$$ \lambda_1 \boldsymbol x_1 + \lambda_2 \boldsymbol x_2 + \ldots + \lambda_n \boldsymbol x_n $$
+$$ \lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_n x_n $$
 
 is called **linear combination** of
-$\boldsymbol x_1, \ldots, \boldsymbol x_n$. A linear combination can
+$x_1, \ldots, x_n$. A linear combination can
 also be written as a matrix-vector product. Let
-$\boldsymbol X =\begin{pmatrix} \boldsymbol x_1 & \ldots & \boldsymbol x_n \end{pmatrix}$
-be the matrix with columns $\boldsymbol x_1, \ldots, \boldsymbol x_n$,
-and let $\boldsymbol \lambda = (\lambda_1, \ldots, \lambda_n)'$. Then,
-$$ \lambda_1 \boldsymbol x_1 + \lambda_2 \boldsymbol x_2 + \ldots + \lambda_n \boldsymbol x_n = \boldsymbol X \boldsymbol \lambda.$$
-The vectors $\boldsymbol x_1, \ldots, \boldsymbol x_n$ are called
+$X =\begin{pmatrix} x_1 & \ldots & x_n \end{pmatrix}$
+be the matrix with columns $x_1, \ldots, x_n$,
+and let $\lambda = (\lambda_1, \ldots, \lambda_n)'$. Then,
+$$ \lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_n x_n = X \lambda.$$
+The vectors $x_1, \ldots, x_n$ are called
 **linearly dependent** if at least one can be written as a linear
 combination of the others. That is, there exists a nonzero vector
-$\boldsymbol \lambda$ with $$
-\boldsymbol X \boldsymbol \lambda = \lambda_1 \boldsymbol x_1 + \ldots + \lambda_n \boldsymbol x_n = \boldsymbol 0.
-$$ The vectors $\boldsymbol x_1, \ldots, \boldsymbol x_n$ are called
+$\lambda$ with $$
+X \lambda = \lambda_1 x_1 + \ldots + \lambda_n x_n = 0.
+$$ The vectors $x_1, \ldots, x_n$ are called
 **linearly independent** if $$
-\boldsymbol X \boldsymbol \lambda = \lambda_1 \boldsymbol x_1 + \ldots + \lambda_n \boldsymbol x_n \neq \boldsymbol 0
-$$ for all nonzero vectors $\boldsymbol \lambda$.
+X \lambda = \lambda_1 x_1 + \ldots + \lambda_n x_n \neq 0
+$$ for all nonzero vectors $\lambda$.
 
 To check whether the vectors are linearly independent, we can solve the
-system of equations $\boldsymbol X \boldsymbol \lambda = \boldsymbol 0$
-by Gaussian elimination. If $\boldsymbol \lambda = \boldsymbol 0$ is the
-only solution, then the columns of $\boldsymbol X$ are linearly
-independent. If there is a solution $\boldsymbol \lambda$ with
-$\boldsymbol \lambda \neq \boldsymbol 0$, then the columns of
-$\boldsymbol X$ are linearly dependent.
+system of equations $X \lambda = 0$
+by Gaussian elimination. If $\lambda = 0$ is the
+only solution, then the columns of $X$ are linearly
+independent. If there is a solution $\lambda$ with
+$\lambda \neq 0$, then the columns of
+$X$ are linearly dependent.
 
-### Column rank
+### Column Rank
 
 The **rank** of a $k \times m$ matrix
-$\boldsymbol A = \begin{pmatrix} \boldsymbol a_1 & \ldots & \boldsymbol a_m \end{pmatrix}$,
-written as $\mathop{\mathrm{rank}}(\boldsymbol A)$, is the number of
-linearly independent columns $\boldsymbol a_i$. We say that
-$\boldsymbol A$ has **full column rank** if
-$\mathop{\mathrm{rank}}(\boldsymbol X) = m$.
+$A = \begin{pmatrix} a_1 & \ldots & a_m \end{pmatrix}$,
+written as $\mathop{\mathrm{rank}}(A)$, is the number of
+linearly independent columns $a_i$. We say that
+$A$ has **full column rank** if
+$\mathop{\mathrm{rank}}(X) = m$.
 
-The identity matrix $\boldsymbol I_k$ has full column rank (i.e.,
-$\mathop{\mathrm{rank}}(\boldsymbol I_n) = k$). As another example,
+The identity matrix $I_k$ has full column rank (i.e.,
+$\mathop{\mathrm{rank}}(I_n) = k$). As another example,
 consider $$
-\boldsymbol X = \begin{pmatrix} 2 & 1 & 4 \\ 0 & 1 & 2 \end{pmatrix},
+X = \begin{pmatrix} 2 & 1 & 4 \\ 0 & 1 & 2 \end{pmatrix},
 $$ which has linearly dependent columns since the third column is a
 linear combination of the first two columns: $$
 \begin{pmatrix} 4 \\ 2 \end{pmatrix} = 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}.
 $$ The first two columns are linearly independent since $\lambda_1 = 0$
 and $\lambda_2 = 0$ are the only solutions to the equation $$
 \lambda_1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + \lambda_2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}.
-$$ Therefore, we have $\mathop{\mathrm{rank}}(\boldsymbol X) = 2$, i.e.,
-$\boldsymbol X$ does not have a full column rank.
+$$ Therefore, we have $\mathop{\mathrm{rank}}(X) = 2$, i.e.,
+$X$ does not have a full column rank.
 
 Some useful properties are
 
-i)  $\mathop{\mathrm{rank}}(\boldsymbol A) \leq \min(k,m)$
-ii) $\mathop{\mathrm{rank}}(\boldsymbol A) = \mathop{\mathrm{rank}}(\boldsymbol A')$
-iii) $\mathop{\mathrm{rank}}(\boldsymbol A \boldsymbol B) = \min(\mathop{\mathrm{rank}}(\boldsymbol A), \mathop{\mathrm{rank}}(\boldsymbol B))$
-iv) $\mathop{\mathrm{rank}}(\boldsymbol A) = \mathop{\mathrm{rank}}(\boldsymbol A' \boldsymbol A) = \mathop{\mathrm{rank}}(\boldsymbol A \boldsymbol A')$.
+i)  $\mathop{\mathrm{rank}}(A) \leq \min(k,m)$
+ii) $\mathop{\mathrm{rank}}(A) = \mathop{\mathrm{rank}}(A')$
+iii) $\mathop{\mathrm{rank}}(A B) = \min(\mathop{\mathrm{rank}}(A), \mathop{\mathrm{rank}}(B))$
+iv) $\mathop{\mathrm{rank}}(A) = \mathop{\mathrm{rank}}(A' A) = \mathop{\mathrm{rank}}(A A')$.
 
 We can use the `qr()` function to extract the rank in `R`. Let's compute
 the rank of the matrices $$
-\boldsymbol A = \begin{pmatrix}
+A = \begin{pmatrix}
 1 & 2 & 3 \\ 3 & 9 & 1 \\ 0 & 11 & 5
 \end{pmatrix},
-$$ $\boldsymbol B = \boldsymbol I_3$, and $\boldsymbol X$ from the
+$$ $B = I_3$, and $X$ from the
 example above:
 
 ```{r}
@@ -403,33 +406,33 @@ X = matrix(c(2,0,1,1,4,2), ncol=3)
 qr(X)$rank
 ```
 
-### Nonsingular matrix
+### Nonsingular Matrix
 
-A square $k \times k$ matrix $\boldsymbol A$ is called **nonsingular**
-if it has full rank, i.e., $\mathop{\mathrm{rank}}(\boldsymbol A) = k$.
-Conversely, $\boldsymbol A$ is called **singular** if it does not have
-full rank, i.e., $\mathop{\mathrm{rank}}(\boldsymbol A) < k$.
+A square $k \times k$ matrix $A$ is called **nonsingular**
+if it has full rank, i.e., $\mathop{\mathrm{rank}}(A) = k$.
+Conversely, $A$ is called **singular** if it does not have
+full rank, i.e., $\mathop{\mathrm{rank}}(A) < k$.
 
 ### Determinant
 
-Consider a square $k \times k$ matrix $\boldsymbol A$. The determinant
-$\det(\boldsymbol A)$ is a measure of the volume of the geometric object
-formed by the columns of $\boldsymbol A$ (a parallelogram for $k=2$, a
+Consider a square $k \times k$ matrix $A$. The determinant
+$\det(A)$ is a measure of the volume of the geometric object
+formed by the columns of $A$ (a parallelogram for $k=2$, a
 parallelepiped for $k=3$, a hyper-parallelepiped for $k>3$). For
 $2 \times 2$ matrices, the determinant is easy to calculate: $$
-\boldsymbol A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}, \quad
-\det(\boldsymbol A) = ad - bc.
+A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}, \quad
+\det(A) = ad - bc.
 $$
 
-If $\boldsymbol A$ is triangular (upper or lower), the determinant is
+If $A$ is triangular (upper or lower), the determinant is
 the product of the diagonal entries, i.e.,
-$\det(\boldsymbol A) = \prod_{i=1}^k a_{ii}$. Hence, Gaussian
+$\det(A) = \prod_{i=1}^k a_{ii}$. Hence, Gaussian
 elimination can be used to compute the determinant by transforming the
 matrix to a triangular one. The exact definition of the determinant is
 technical and of little importance to us. A useful relation is the
 following: \begin{align*}
-  \det(\boldsymbol A) = 0 \quad &\Leftrightarrow \quad \boldsymbol A \ \text{is singular} \\
-   \det(\boldsymbol A) \neq 0 \quad &\Leftrightarrow \quad \boldsymbol A \ \text{is nonsingular}.
+  \det(A) = 0 \quad &\Leftrightarrow \quad A \ \text{is singular} \\
+   \det(A) \neq 0 \quad &\Leftrightarrow \quad A \ \text{is nonsingular}.
 \end{align*}
 
 In `R`, we have the `det()` function to compute the determinant:
@@ -439,38 +442,38 @@ det(A)
 det(B)
 ```
 
-Since $\det(\boldsymbol A) \neq 0$ and $\det(\boldsymbol B) = 0$, we
-conclude that $\boldsymbol A$ is nonsingular and $\boldsymbol B$ is
+Since $\det(A) \neq 0$ and $\det(B) = 0$, we
+conclude that $A$ is nonsingular and $B$ is
 singular.
 
-### Inverse matrix
+### Inverse Matrix
 
-The **inverse** $\boldsymbol{A}^{-1}$ of a square $k \times k$ matrix
-$\boldsymbol A$ is defined by the property
-$$\boldsymbol{A} \boldsymbol{A}^{-1} = \boldsymbol{A}^{-1} \boldsymbol{A} =\boldsymbol{I}_k.$$
+The **inverse** ${A}^{-1}$ of a square $k \times k$ matrix
+$A$ is defined by the property
+$${A} {A}^{-1} = {A}^{-1} {A} ={I}_k.$$
 When multiplied from the left or the right, the inverse matrix produces
-the identity matrix. The inverse exists if and only if $\boldsymbol{A}$
-is nonsingular, i.e., $\det(\boldsymbol A) \neq 0$. Therefore, a
+the identity matrix. The inverse exists if and only if ${A}$
+is nonsingular, i.e., $\det(A) \neq 0$. Therefore, a
 nonsingular matrix is also called **invertible matrix**. Note that only
 square matrices can be inverted.
 
 For $2 \times 2$ matrices, there exists a simple formula:
-$$\boldsymbol{A}^{-1} = \frac{1}{\det(\boldsymbol{A})} \begin{pmatrix}d&-b\\-c&a\end{pmatrix}\,,$$
-where $\det(\boldsymbol{A}) = ad - bc$. We swap the main diagonal
+$${A}^{-1} = \frac{1}{\det({A})} \begin{pmatrix}d&-b\\-c&a\end{pmatrix}\,,$$
+where $\det({A}) = ad - bc$. We swap the main diagonal
 elements, reverse the sign of the off-diagonal elements, and divide all
 entries by the determinant. *Example:*
-$$\displaystyle\boldsymbol{A}=\begin{pmatrix}5&6\\1&2\end{pmatrix}$$ We
-have $\det(\boldsymbol{A}) = ad-bc=5\cdot2-6\cdot1=4$, and
-$$\boldsymbol{A}^{-1}= \frac{1}{4} \cdot \begin{pmatrix}2&-6\\-1&5\end{pmatrix}.$$
-Indeed, $\boldsymbol A^{-1}$ is the inverse of $\boldsymbol A$ since
-$$\boldsymbol{A}\boldsymbol{A}^{-1}
+$$\displaystyle{A}=\begin{pmatrix}5&6\\1&2\end{pmatrix}$$ We
+have $\det({A}) = ad-bc=5\cdot2-6\cdot1=4$, and
+$${A}^{-1}= \frac{1}{4} \cdot \begin{pmatrix}2&-6\\-1&5\end{pmatrix}.$$
+Indeed, $A^{-1}$ is the inverse of $A$ since
+$${A}{A}^{-1}
 =\begin{pmatrix}5&6\\1&2\end{pmatrix} \cdot \frac{1}{4} \cdot \begin{pmatrix}2&-6\\-1&5\end{pmatrix}
 =\frac{1}{4} \cdot \begin{pmatrix}4&0\\0&4\end{pmatrix} 
 = \left(\begin{matrix}1 & 0 \\ 0 & 1 \end{matrix}\right)
-= \boldsymbol{I}_2.$$
+= {I}_2.$$
 
 One way to calculate the inverse of higher order square matrices is to
-solve equation $\boldsymbol A \boldsymbol A^{-1} = \boldsymbol I$ with
+solve equation $A A^{-1} = I$ with
 Gaussian elimination. `R` can compute the inverse matrix quickly using
 the function `solve()`:
 
@@ -479,33 +482,33 @@ solve(A) #inverse if A
 ```
 
 We have the following relationship between invertibility, rank, and
-determinant of a square matrix $\boldsymbol A$:
+determinant of a square matrix $A$:
 
 ```{=tex}
 \begin{align*}
-  &\boldsymbol A \ \text{is nonsingular} \\
-  \Leftrightarrow \quad &\text{all columns of} \ \boldsymbol A \ \text{are linearly independent} \\
-  \Leftrightarrow \quad &\boldsymbol A \ \text{has full column rank} \\
-  \Leftrightarrow \quad &\text{the determinant is nonzero} \ (\det(\boldsymbol A) \neq 0).
+  &A \ \text{is nonsingular} \\
+  \Leftrightarrow \quad &\text{all columns of} \ A \ \text{are linearly independent} \\
+  \Leftrightarrow \quad &A \ \text{has full column rank} \\
+  \Leftrightarrow \quad &\text{the determinant is nonzero} \ (\det(A) \neq 0).
 \end{align*}
 ```
 Similarly, \begin{align*}
-  &\boldsymbol A \ \text{is singular} \\
-  \Leftrightarrow \quad &\boldsymbol A \ \text{has linearly dependent columns} \\
-  \Leftrightarrow \quad &\boldsymbol A \ \text{does not have full rank} \\
-  \Leftrightarrow \quad &\text{the determinant is zero} \ (\det(\boldsymbol A) = 0).
+  &A \ \text{is singular} \\
+  \Leftrightarrow \quad &A \ \text{has linearly dependent columns} \\
+  \Leftrightarrow \quad &A \ \text{does not have full rank} \\
+  \Leftrightarrow \quad &\text{the determinant is zero} \ (\det(A) = 0).
 \end{align*}
 
 Below you will find some important properties for nonsingular matrices:
 
-i)  $(\boldsymbol{A}^{-1})^{-1} = \boldsymbol{A}$
-ii) $(\boldsymbol{A}')^{-1} = (\boldsymbol{A}^{-1})'$
-iii) $(\lambda\boldsymbol{A})^{-1} = \frac{1}{\lambda}\boldsymbol{A}^{-1}$
+i)  $({A}^{-1})^{-1} = {A}$
+ii) $({A}')^{-1} = ({A}^{-1})'$
+iii) $(\lambda{A})^{-1} = \frac{1}{\lambda}{A}^{-1}$
      for any $\lambda \neq 0$
-iv) $\det(\boldsymbol A^{-1}) = \frac{1}{\det(\boldsymbol A)}$
-v)  $(\boldsymbol{A} \boldsymbol{B})^{-1} = \boldsymbol{B}^{-1} \boldsymbol{A}^{-1}$
-vi) $(\boldsymbol A \boldsymbol B \boldsymbol C)^{-1} = \boldsymbol C^{-1} \boldsymbol B^{-1} \boldsymbol A^{-1}$
-vii) If $\boldsymbol{A}$ is symmetric, then $\boldsymbol{A}^{-1}$ is
+iv) $\det(A^{-1}) = \frac{1}{\det(A)}$
+v)  $({A} {B})^{-1} = {B}^{-1} {A}^{-1}$
+vi) $(A B C)^{-1} = C^{-1} B^{-1} A^{-1}$
+vii) If ${A}$ is symmetric, then ${A}^{-1}$ is
      symmetric.
 
 
@@ -513,17 +516,17 @@ vii) If $\boldsymbol{A}$ is symmetric, then $\boldsymbol{A}^{-1}$ is
 
 
 
-## Advanced concepts
+## Advanced Concepts
 
 ### Trace
 
-The **trace** of a $k \times k$ square matrix $\boldsymbol A$ is the sum
+The **trace** of a $k \times k$ square matrix $A$ is the sum
 of the diagonal entries:
-$$\mathop{\mathrm{tr}}(\boldsymbol A) = \sum_{i=1}^n a_{ii}$$ *Example:*
+$$\mathop{\mathrm{tr}}(A) = \sum_{i=1}^n a_{ii}$$ *Example:*
 $$
-\boldsymbol A = \begin{pmatrix}
+A = \begin{pmatrix}
 1 & 2 & 3 \\ 3 & 9 & 1 \\ 0 & 11 & 5
-\end{pmatrix} \quad \Rightarrow \quad \mathop{\mathrm{tr}}(\boldsymbol A) = 1+9+5 = 15
+\end{pmatrix} \quad \Rightarrow \quad \mathop{\mathrm{tr}}(A) = 1+9+5 = 15
 $$ In `R`we have
 
 ```{r}
@@ -531,30 +534,30 @@ A = matrix(c(1,3,0,2,9,11,3,1,5), nrow=3)
 sum(diag(A))  #trace = sum of diagonal entries
 ```
 
-The following properties hold for square matrices $\boldsymbol A$ and
-$\boldsymbol B$ and scalars $\lambda$:
+The following properties hold for square matrices $A$ and
+$B$ and scalars $\lambda$:
 
-i)  $\mathop{\mathrm{tr}}(\lambda \boldsymbol A) = \lambda \mathop{\mathrm{tr}}(\boldsymbol A)$
-ii) $\mathop{\mathrm{tr}}(\boldsymbol A + \boldsymbol B) = \mathop{\mathrm{tr}}(\boldsymbol A) + \mathop{\mathrm{tr}}(\boldsymbol B)$
-iii) $\mathop{\mathrm{tr}}(\boldsymbol A') = \mathop{\mathrm{tr}}(\boldsymbol A)$
-iv) $\mathop{\mathrm{tr}}(\boldsymbol I_k) = k$
+i)  $\mathop{\mathrm{tr}}(\lambda A) = \lambda \mathop{\mathrm{tr}}(A)$
+ii) $\mathop{\mathrm{tr}}(A + B) = \mathop{\mathrm{tr}}(A) + \mathop{\mathrm{tr}}(B)$
+iii) $\mathop{\mathrm{tr}}(A') = \mathop{\mathrm{tr}}(A)$
+iv) $\mathop{\mathrm{tr}}(I_k) = k$
 
-For $\boldsymbol A\in \mathbb R^{k \times m}$ and
-$\boldsymbol B \in \mathbb R^{m \times k}$ we have $$
-\mathop{\mathrm{tr}}(\boldsymbol A \boldsymbol B) = \mathop{\mathrm{tr}}(\boldsymbol B \boldsymbol A).
+For $A\in \mathbb R^{k \times m}$ and
+$B \in \mathbb R^{m \times k}$ we have $$
+\mathop{\mathrm{tr}}(A B) = \mathop{\mathrm{tr}}(B A).
 $$
 
-### Idempotent matrix
+### Idempotent Matrix
 
-The square matrix $\boldsymbol A$ is called **idempotent** if
-$\boldsymbol A \boldsymbol A = \boldsymbol A$. The identity matrix is
-idempotent: $\boldsymbol I_n \boldsymbol I_n = \boldsymbol I_n$. Another
+The square matrix $A$ is called **idempotent** if
+$A A = A$. The identity matrix is
+idempotent: $I_n I_n = I_n$. Another
 example is the matrix $$
-\boldsymbol A = \begin{pmatrix}
+A = \begin{pmatrix}
 4 & -1 \\ 12 & -3
 \end{pmatrix}.
 $$ We have \begin{align*}
-\boldsymbol A \boldsymbol A 
+A A 
 &= \begin{pmatrix}
 4 & -1 \\ 12 & -3
 \end{pmatrix}
@@ -567,7 +570,7 @@ $$ We have \begin{align*}
 &= \begin{pmatrix}
 4 & -1 \\ 12 & -3
 \end{pmatrix}
-= \boldsymbol A.
+= A.
 \end{align*}
 
 ### Eigendecomposition
@@ -576,12 +579,12 @@ $$ We have \begin{align*}
 
 An **eigenvalue** $\lambda$ of a $k \times k$ square matrix is a
 solution to the equation $$
-  \det(\lambda \boldsymbol I_k - \boldsymbol A) = 0.
+  \det(\lambda I_k - A) = 0.
 $$ The function
-$f(\lambda) = \det(\lambda \boldsymbol I_k - \boldsymbol A)$ has exactly
-$k$ roots so that $\det(\lambda \boldsymbol I_k - \boldsymbol A) = 0$
+$f(\lambda) = \det(\lambda I_k - A)$ has exactly
+$k$ roots so that $\det(\lambda I_k - A) = 0$
 has exactly $k$ solutions. The solutions $\lambda_1, \ldots, \lambda_k$
-are the $k$ eigenvalues of $\boldsymbol A$.
+are the $k$ eigenvalues of $A$.
 
 Most applications of eigenvalues in econometrics concern symmetric
 matrices. In this case, all eigenvalues are real-valued. In the case of
@@ -590,45 +593,45 @@ non-symmetric matrices, some eigenvalues may be complex-valued.
 Useful properties of the eigenvalues of a symmetric $k \times k$ matrix
 are:
 
-i)  $\det(\boldsymbol A) = \lambda_1 \cdot \ldots \cdot \lambda_k$
-ii) $\mathop{\mathrm{tr}}(\boldsymbol A) = \lambda_1 + \ldots + \lambda_k$
-iii) $\boldsymbol A$ is nonsingular if and only if all eigenvalues are
+i)  $\det(A) = \lambda_1 \cdot \ldots \cdot \lambda_k$
+ii) $\mathop{\mathrm{tr}}(A) = \lambda_1 + \ldots + \lambda_k$
+iii) $A$ is nonsingular if and only if all eigenvalues are
      nonzero
-iv) $\boldsymbol A \boldsymbol B$ and $\boldsymbol B \boldsymbol A$ have
+iv) $A B$ and $B A$ have
     the same eigenvalues.
 
 #### Eigenvectors
 
-If $\lambda_i$ is an eigenvalue of $\boldsymbol A$, then
-$\lambda_i \boldsymbol I_k - \boldsymbol A$ is singular, which implies
-that there exists a linear combination vector $\boldsymbol v_i$ with
-$(\lambda_i \boldsymbol I_k - \boldsymbol A) \boldsymbol v_i = \boldsymbol 0$.
+If $\lambda_i$ is an eigenvalue of $A$, then
+$\lambda_i I_k - A$ is singular, which implies
+that there exists a linear combination vector $v_i$ with
+$(\lambda_i I_k - A) v_i = 0$.
 Equivalently, $$
-  \boldsymbol A \boldsymbol v_i = \lambda_i \boldsymbol v_i,
+  A v_i = \lambda_i v_i,
 $$
 
 which can be solved by Gaussian elimination. It is convenient to
-normalize any solution such that $\boldsymbol v_i'\boldsymbol v_i = 1$.
-The solutions $\boldsymbol v_1, \ldots, \boldsymbol v_k$ are called
-eigenvectors of $\boldsymbol A$ to corresponding eigenvalues
+normalize any solution such that $v_i'v_i = 1$.
+The solutions $v_1, \ldots, v_k$ are called
+eigenvectors of $A$ to corresponding eigenvalues
 $\lambda_1, \ldots, \lambda_k$.
 
-#### Spectral decomposition
+#### Spectral Decomposition
 
-If $\boldsymbol A$ is symmetric, then
-$\boldsymbol v_1, \ldots, \boldsymbol v_k$ are pairwise orthogonal
-(i.e., $\boldsymbol v_i' \boldsymbol v_j = 0$ for $i \neq j$). Let
-$\boldsymbol V = \begin{pmatrix} \boldsymbol v_1 & \ldots & \boldsymbol v_k \end{pmatrix}$
+If $A$ is symmetric, then
+$v_1, \ldots, v_k$ are pairwise orthogonal
+(i.e., $v_i' v_j = 0$ for $i \neq j$). Let
+$V = \begin{pmatrix} v_1 & \ldots & v_k \end{pmatrix}$
 be the $k \times k$ matrix of eigenvectors and let
-$\boldsymbol \Lambda = \mathop{\mathrm{diag}}(\lambda_1, \ldots, \lambda_k)$
+$\Lambda = \mathop{\mathrm{diag}}(\lambda_1, \ldots, \lambda_k)$
 be the $k \times k$ diagonal matrix with the eigenvalues on the main
 diagonal. Then, we can write $$
-  \boldsymbol A = \boldsymbol V \boldsymbol \Lambda \boldsymbol V',
+  A = V \Lambda V',
 $$
 
-which is called the **spectral decomposition** of $\boldsymbol A$. The
+which is called the **spectral decomposition** of $A$. The
 matrix of eigenvalues can be written as
-$\boldsymbol \Lambda = \boldsymbol V' \boldsymbol A \boldsymbol V$.
+$\Lambda = V' A V$.
 
 #### Eigendecomposition in `R`
 
@@ -641,32 +644,32 @@ B #A'A is symmetric
 eigen(B) #eigenvalues and eigenvector matrix
 ```
 
-### Definite matrix
+### Definite Matrix
 
-The $k \times k$ square matrix $\boldsymbol{A}$ is called **positive
-definite** if $$\boldsymbol{c}'\boldsymbol{Ac}>0$$ holds for all nonzero
-vectors $\boldsymbol{c}\in \mathbb{R}^k$. If
-$$\boldsymbol{c}'\boldsymbol{Ac}\geq 0$$
+The $k \times k$ square matrix ${A}$ is called **positive
+definite** if $${c}'{Ac}>0$$ holds for all nonzero
+vectors ${c}\in \mathbb{R}^k$. If
+$${c}'{Ac}\geq 0$$
 
-for all vectors $\boldsymbol{c}\in \mathbb{R}^k$, the matrix is called
-**positive semi-definite**. Analogously, $\boldsymbol A$ is called
-**negative definite** if $\boldsymbol{c}'\boldsymbol{Ac}<0$ and
-**negative semi-definite** if $\boldsymbol{c}'\boldsymbol{Ac}\leq 0$ for
-all nonzero vectors $\boldsymbol c \in \mathbb R^k$. A matrix that is
+for all vectors ${c}\in \mathbb{R}^k$, the matrix is called
+**positive semi-definite**. Analogously, $A$ is called
+**negative definite** if ${c}'{Ac}<0$ and
+**negative semi-definite** if ${c}'{Ac}\leq 0$ for
+all nonzero vectors $c \in \mathbb R^k$. A matrix that is
 neither positive semi-definite nor negative semi-definite is called
 **indefinite**
 
-The definiteness property of a symmetric matrix $\boldsymbol A$ can be
+The definiteness property of a symmetric matrix $A$ can be
 determined using its eigenvalues:
 
-i)  $\boldsymbol A$ is positive definite  $\Leftrightarrow$  all
-    eigenvalues of $\boldsymbol A$ are strictly positive
-ii) $\boldsymbol A$ is negative definite  $\Leftrightarrow$   all
-    eigenvalues of $\boldsymbol A$ are strictly negative
-iii) $\boldsymbol A$ is positive semi-definite  $\Leftrightarrow$   all
-     eigenvalues of $\boldsymbol A$ are non-negative
-iv) $\boldsymbol A$ is negative semi-definite  $\Leftrightarrow$   all
-    eigenvalues of $\boldsymbol A$ are non-positive
+i)  $A$ is positive definite  $\Leftrightarrow$  all
+    eigenvalues of $A$ are strictly positive
+ii) $A$ is negative definite  $\Leftrightarrow$   all
+    eigenvalues of $A$ are strictly negative
+iii) $A$ is positive semi-definite  $\Leftrightarrow$   all
+     eigenvalues of $A$ are non-negative
+iv) $A$ is negative semi-definite  $\Leftrightarrow$   all
+    eigenvalues of $A$ are non-positive
 
 ```{r}
 eigen(B)$values #B is positive definite (all eigenvalues positive)
@@ -676,24 +679,24 @@ The matrix analog of a positive or negative number (scalar) is a
 positive definite or negative definite matrix. Therefore, we use the
 notation
 
-i)  $\boldsymbol A > 0$  if $\boldsymbol A$ is positive definite
-ii) $\boldsymbol A < 0$  if $\boldsymbol A$ is negative definite
-iii) $\boldsymbol A \geq 0$  if $\boldsymbol A$ is positive
+i)  $A > 0$  if $A$ is positive definite
+ii) $A < 0$  if $A$ is negative definite
+iii) $A \geq 0$  if $A$ is positive
      semi-definite
-iv) $\boldsymbol A \leq 0$  if $\boldsymbol A$ is negative semi-definite
+iv) $A \leq 0$  if $A$ is negative semi-definite
 
-The notation $\boldsymbol A > \boldsymbol B$ means that the matrix
-$\boldsymbol A - \boldsymbol B$ is positive definite.
+The notation $A > B$ means that the matrix
+$A - B$ is positive definite.
 
-### Cholesky decomposition
+### Cholesky Decomposition
 
-Any positive definite and symmetric matrix $\boldsymbol B$ can be
+Any positive definite and symmetric matrix $B$ can be
 written as $$
-  \boldsymbol B = \boldsymbol P \boldsymbol P',
+  B = P P',
 $$ where $P$ is a lower triangular matrix with strictly positive
 diagonal entries $p_{jj} > 0$. This representation is called **Cholesky
-decomposition**. The matrix $\boldsymbol P$ is unique. For a
-$2 \times 2$ matrix $\boldsymbol B$ we have \begin{align*}
+decomposition**. The matrix $P$ is unique. For a
+$2 \times 2$ matrix $B$ we have \begin{align*}
 \begin{pmatrix} b_{11} & b_{12} \\ b_{21} & b_{22} \end{pmatrix}
 &= \begin{pmatrix} p_{11} & 0 \\ p_{21} & p_{22} \end{pmatrix}
 \begin{pmatrix} p_{11} & p_{21} \\ 0 & p_{22} \end{pmatrix} \\
@@ -716,7 +719,7 @@ p_{32}= \frac{b_{32}-p_{21}p_{31}}{p_{22}}, \ \ p_{33} = \sqrt{b_{33} - p_{31}^2
 \end{gather*}
 ```
 Let's compute the Cholesky decomposition of $$
-\boldsymbol B = \begin{pmatrix} 1 & -0.5 & 0.6 \\ -0.5 & 1 & 0.25 \\ 0.6 & 0.25 & 1 \end{pmatrix}
+B = \begin{pmatrix} 1 & -0.5 & 0.6 \\ -0.5 & 1 & 0.25 \\ 0.6 & 0.25 & 1 \end{pmatrix}
 $$ using the `R` function `chol()`:
 
 ```{r}
@@ -728,102 +731,102 @@ chol(B)
 
 The **vectorization operator** $\mathop{\mathrm{vec}}()$ stacks the
 matrix entries column-wise into a large vector. The vectorized
-$k \times m$ matrix $\boldsymbol A$ is the $km \times 1$ vector $$
-\mathop{\mathrm{vec}}(\boldsymbol A) = (a_{11}, \ldots, a_{k1}, a_{12}, \ldots, a_{k2}, \ldots, a_{1m}, \ldots, a_{km})'.
+$k \times m$ matrix $A$ is the $km \times 1$ vector $$
+\mathop{\mathrm{vec}}(A) = (a_{11}, \ldots, a_{k1}, a_{12}, \ldots, a_{k2}, \ldots, a_{1m}, \ldots, a_{km})'.
 $$
 
 ```{r}
 c(A) #vectorize the matrix A
 ```
 
-### Kronecker product
+### Kronecker Product
 
 The **Kronecker product** $\otimes$ multiplies each element of the
 left-hand side matrix with the entire matrix on the right-hand side. For
-a $k \times m$ matrix $\boldsymbol A$ and a $r \times s$ matrix
-$\boldsymbol B$, we get the $kr\times ms$ matrix $$
-A \otimes B = \begin{pmatrix} a_{11}\boldsymbol B & \ldots & a_{1m}\boldsymbol B \\ \vdots & & \vdots \\ a_{k1}\boldsymbol B & \ldots & a_{km}\boldsymbol B \end{pmatrix},
-$$ where each entry $a_{ij} \boldsymbol B$ is a $r \times s$ matrix.
+a $k \times m$ matrix $A$ and a $r \times s$ matrix
+$B$, we get the $kr\times ms$ matrix $$
+A \otimes B = \begin{pmatrix} a_{11}B & \ldots & a_{1m}B \\ \vdots & & \vdots \\ a_{k1}B & \ldots & a_{km}B \end{pmatrix},
+$$ where each entry $a_{ij} B$ is a $r \times s$ matrix.
 
 ```{r}
 A %x% B #Kronecker product in R
 ```
 
-### Vector and matrix norm
+### Vector and Matrix Norm
 
 A norm $\|\cdot\|$ of a vector or a matrix is a measure of distance from
 the origin. The most commonly used norms are the Euclidean vector norm
 $$
-  \|\boldsymbol a\| = \sqrt{\boldsymbol a' \boldsymbol a} = \sqrt{\sum_{i=1}^k a_i^2}
-$$ for $\boldsymbol a \in \mathbb R^k$, and the Frobenius matrix norm $$
-  \|\boldsymbol A \| = \sqrt{\sum_{i=1}^k \sum_{j=1}^m a_{ij}^2}
-$$ for $\boldsymbol A \in \mathbb R^{k \times m}$.
+  \|a\| = \sqrt{a' a} = \sqrt{\sum_{i=1}^k a_i^2}
+$$ for $a \in \mathbb R^k$, and the Frobenius matrix norm $$
+  \|A \| = \sqrt{\sum_{i=1}^k \sum_{j=1}^m a_{ij}^2}
+$$ for $A \in \mathbb R^{k \times m}$.
 
 A norm satisfies the following properties:
 
-i)  $\|\lambda \boldsymbol A\| = |\lambda| \|\boldsymbol A\|$ for any
+i)  $\|\lambda A\| = |\lambda| \|A\|$ for any
     scalar $\lambda$ (absolute homogeneity)
-ii) $\|\boldsymbol A + \boldsymbol B\| \leq \|\boldsymbol A\| + \|\boldsymbol B\|$
+ii) $\|A + B\| \leq \|A\| + \|B\|$
     (triangle inequality)
-iii) $\|\boldsymbol A\| = 0$ implies $\boldsymbol A = \boldsymbol 0$
+iii) $\|A\| = 0$ implies $A = 0$
      (definiteness)
 
 
 
 
 
-## Matrix calculus
+## Matrix Calculus
 
-Let $f(\beta_1, \ldots, \beta_k) = f(\boldsymbol{\beta})$ be a
+Let $f(\beta_1, \ldots, \beta_k) = f({\beta})$ be a
 twice-differential real-valued function that depends on some vector
-$\boldsymbol \beta = (\beta_1, \ldots, \beta_k)'$. Examples that
+$\beta = (\beta_1, \ldots, \beta_k)'$. Examples that
 frequently appear in econometrics are functions of the inner product
-form $f(\boldsymbol \beta) = \boldsymbol a' \boldsymbol \beta$, where
-$\boldsymbol a \in \mathbb R^k$, and functions of the sandwich form
-$f(\boldsymbol \beta) = \boldsymbol \beta' \boldsymbol A \boldsymbol \beta$,
-where $\boldsymbol A \in \mathbb R^{k \times k}$.
+form $f(\beta) = a' \beta$, where
+$a \in \mathbb R^k$, and functions of the sandwich form
+$f(\beta) = \beta' A \beta$,
+where $A \in \mathbb R^{k \times k}$.
 
 ### Gradient
 
 The **first derivatives vector** or **gradient** is $$
-\frac{\partial f(\boldsymbol \beta)}{\partial\boldsymbol{\beta}}  = \begin{pmatrix}\frac{\partial f(\boldsymbol \beta)}{\partial \beta_1} \\ \vdots \\ \frac{\partial f(\boldsymbol \beta)}{\partial \beta_k} \end{pmatrix}
+\frac{\partial f(\beta)}{\partial{\beta}}  = \begin{pmatrix}\frac{\partial f(\beta)}{\partial \beta_1} \\ \vdots \\ \frac{\partial f(\beta)}{\partial \beta_k} \end{pmatrix}
 $$ If the gradient is evaluated at some particular value
-$\boldsymbol \beta = \boldsymbol b$, we write $$
-\frac{\partial f}{\partial\boldsymbol{\beta}}(\boldsymbol b)
+$\beta = b$, we write $$
+\frac{\partial f}{\partial{\beta}}(b)
 $$ Useful properties for inner product and sandwich forms are
 \begin{align*}
-(i)& \quad &&\frac{\partial (\boldsymbol a' \boldsymbol \beta)}{\partial \boldsymbol \beta}  = \boldsymbol a \\
-(ii)& \quad &&\frac{\partial ( \boldsymbol \beta' \boldsymbol A \boldsymbol \beta)}{\partial \boldsymbol \beta}   = (\boldsymbol A + \boldsymbol A') \boldsymbol \beta.
+(i)& \quad &&\frac{\partial (a' \beta)}{\partial \beta}  = a \\
+(ii)& \quad &&\frac{\partial ( \beta' A \beta)}{\partial \beta}   = (A + A') \beta.
 \end{align*}
 
 ### Hessian
 
 The **second derivatives matrix** or **Hessian** is the $k \times k$
 matrix $$
-    \frac{\partial^2 f(\boldsymbol \beta)}{\partial\boldsymbol{\beta }\partial \boldsymbol{\beta}'}
-    =  \begin{pmatrix}\frac{\partial^2 f(\boldsymbol \beta)}{\partial \beta_1 \partial \beta_1} & \ldots & \frac{\partial^2 f(\boldsymbol \beta)}{\partial \beta_k \partial \beta_1} \\ 
+    \frac{\partial^2 f(\beta)}{\partial{\beta }\partial {\beta}'}
+    =  \begin{pmatrix}\frac{\partial^2 f(\beta)}{\partial \beta_1 \partial \beta_1} & \ldots & \frac{\partial^2 f(\beta)}{\partial \beta_k \partial \beta_1} \\ 
     \vdots & & \vdots \\
-    \frac{\partial^2 f(\boldsymbol \beta)}{\partial \beta_1 \partial \beta_k} & \ldots & \frac{\partial^2 f(\boldsymbol \beta)}{\partial \beta_k \partial \beta_k}
+    \frac{\partial^2 f(\beta)}{\partial \beta_1 \partial \beta_k} & \ldots & \frac{\partial^2 f(\beta)}{\partial \beta_k \partial \beta_k}
     \end{pmatrix}.$$
 
 If the Hessian is evaluated at some particular value
-$\boldsymbol \beta = \boldsymbol b$, we write $$
-\frac{\partial^2 f}{\partial\boldsymbol{\beta }\partial \boldsymbol{\beta}'}(\boldsymbol b)
+$\beta = b$, we write $$
+\frac{\partial^2 f}{\partial{\beta }\partial {\beta}'}(b)
 $$
 
 The Hessian is symmetric. Each column of the Hessian is the derivative
 of the components of the gradient for the corresponding variable in
-$\boldsymbol \beta'$:
+$\beta'$:
 
 ```{=tex}
 \begin{align*}
-\frac{\partial^2 f(\boldsymbol \beta)}{\partial\boldsymbol{\beta }\partial \boldsymbol{\beta}'}
-    &= \frac{\partial(\partial f(\boldsymbol \beta)/\partial \boldsymbol \beta)}{\partial \boldsymbol \beta'} \\
-    &= \Bigg[ \frac{\partial(\partial f(\boldsymbol \beta)/\partial \boldsymbol \beta)}{\partial \beta_1} \ \frac{\partial(\partial f(\boldsymbol \beta)/\partial \boldsymbol \beta)}{\partial \beta_2} \ \ldots \ \frac{\partial(\partial f(\boldsymbol \beta)/\partial \boldsymbol \beta)}{\partial \beta_n} \Bigg]
+\frac{\partial^2 f(\beta)}{\partial{\beta }\partial {\beta}'}
+    &= \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta'} \\
+    &= \Bigg[ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_1} \ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_2} \ \ldots \ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_n} \Bigg]
 \end{align*}
 ```
 The Hessian of a sandwich form function is $$
-  \frac{\partial^2 ( \boldsymbol \beta' \boldsymbol A \boldsymbol \beta)}{\partial \boldsymbol \beta \partial \boldsymbol \beta'}  = \boldsymbol A + \boldsymbol A'.
+  \frac{\partial^2 ( \beta' A \beta)}{\partial \beta \partial \beta'}  = A + A'.
 $$
 
 ### Optimization
@@ -837,12 +840,12 @@ conditions for optimum (maximum or minimum) in the univariate case:
     negative for a maximum and positive for a minimum.
 
 Similarly, we formulate first and second-order conditions for a function
-$f(\boldsymbol \beta)$. The **first-order condition** for an optimum
-(maximum or minimum) at $\boldsymbol b$ is $$
-  \frac{\partial f}{\partial\boldsymbol{\beta}}(\boldsymbol b)  = \boldsymbol 0.
+$f(\beta)$. The **first-order condition** for an optimum
+(maximum or minimum) at $b$ is $$
+  \frac{\partial f}{\partial{\beta}}(b)  = 0.
 $$ The **second-order condition** is \begin{align*}
-  &\frac{\partial^2 f}{\partial\boldsymbol{\beta }\partial \boldsymbol{\beta}'}(\boldsymbol b) > 0 \quad \text{for a minimum at} \ \boldsymbol b, \\
-  &\frac{\partial^2 f}{\partial\boldsymbol{\beta }\partial \boldsymbol{\beta}'}(\boldsymbol b) < 0 \quad \text{for a maximum at} \ \boldsymbol b.
+  &\frac{\partial^2 f}{\partial{\beta }\partial {\beta}'}(b) > 0 \quad \text{for a minimum at} \ b, \\
+  &\frac{\partial^2 f}{\partial{\beta }\partial {\beta}'}(b) < 0 \quad \text{for a maximum at} \ b.
 \end{align*} Recall that, in the context of matrices, the notation
 "$> 0$" means positive definite, and "$< 0$" means negative definite.
 
