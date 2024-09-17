@@ -1,6 +1,6 @@
 # Matrix Algebra
 
-## Basic Definitions
+## Basic Definitions 
 
 Let's start with some basic definitions and specific examples.
 
