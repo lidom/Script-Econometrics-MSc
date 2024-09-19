@@ -301,20 +301,17 @@ window.Quarto = {
 <p>Assumption 4<span class="math inline">\(^\boldsymbol{\ast}\)</span> together with the random sample assumption of Assumption 1, part (b), leads to Gaussian spherical errors conditionally on <span class="math inline">\(X\)</span>, <span class="math display">\[
 \varepsilon|X\sim\mathcal{N}\left(0,\sigma^2I_n\right),
 \]</span> where <span class="math inline">\(\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'\)</span>.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="thm-normalbeta" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 6.1 (Normality of <span class="math inline">\(\hat\beta\)</span>)</strong></span> Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> we have that <span id="eq-ssnorm"><span class="math display">\[
 \hat\beta_n|X \sim \mathcal{N}\left(\beta,Var(\hat\beta_n|X)\right),
 \qquad(6.1)\]</span></span> where <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}\)</span>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -401,7 +398,7 @@ Note
 <p>Note that the test statistic <span class="math inline">\(W\)</span> is simply measuring the distance (it’s a weighted L2-distance) between the <span class="math inline">\((q\times 1)\)</span> vectors <span class="math inline">\(R\hat\beta_n\)</span> and <span class="math inline">\(r^{(0)}.\)</span></p>
 </div>
 </div>
-<p>Under the null hypothesis (i.e., if <span class="math inline">\(H_0\)</span> is true), <span class="math inline">\(W|X\)</span> is a sum of <span class="math inline">\(q\)</span>-many independent squared standard normal random variables. Therefore, under the null hypothesis, <span class="math inline">\(W|X\)</span> is chi-square distributed with <span class="math inline">\(q\)</span> degrees of freedom (see <span class="quarto-unresolved-ref">?sec-chisqdist</span>), <span class="math display">\[
+<p>Under the null hypothesis (i.e., if <span class="math inline">\(H_0\)</span> is true), <span class="math inline">\(W|X\)</span> is a sum of <span class="math inline">\(q\)</span>-many independent squared standard normal random variables. Therefore, under the null hypothesis, <span class="math inline">\(W|X\)</span> is chi-square distributed with <span class="math inline">\(q\)</span> degrees of freedom (see <a href="02-Probability.html#sec-chisqdist" class="quarto-xref"><span>Section 2.2.10.3</span></a>), <span class="math display">\[
 \begin{align*}
 W|X&amp;\overset{H_0}{\sim} \chi^2_{(q)}\\
 \Rightarrow \quad\quad W&amp;\overset{H_0}{\sim} \chi^2_{(q)}
@@ -422,7 +419,7 @@ F\overset{H_0}{\sim} F_{(q,n-K)},
 <p>The distributional statements in <a href="#eq-distsquared" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> and <a href="#eq-Ftest" class="quarto-xref">Equation&nbsp;<span>6.3</span></a> are a little cumbersome to derive and we do not go into details here, but in case you’re interested you can find some more details, for instance, in Chapter 1 of <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>.</p>
 <p>By contrast to <span class="math inline">\(W,\)</span> <span class="math inline">\(F\)</span> is now a practically useful test statistic, and we can use the observed value <span class="math inline">\(F_{\text{obs}}\)</span> to measure the distance of our observed estimate <span class="math inline">\(R\hat\beta_n\)</span> from its hypothetical value <span class="math inline">\(r.\)</span></p>
 <p>Observed values, <span class="math inline">\(F_{\text{obs}}\)</span>, that are “unusually large” under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution <span class="math inline">\(F_{(q,n-K)}\)</span> of <span class="math inline">\(F\)</span> is used to judge what’s “unusually large” under the null hypothesis.</p>
-<p><strong>The F distribution.</strong> The F distribution is a ratio of two <span class="math inline">\(\chi^2\)</span> distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See <span class="quarto-unresolved-ref">?sec-Fdist</span> for more information on the <span class="math inline">\(F\)</span> distribution.</p>
+<p><strong>The F distribution.</strong> The F distribution is a ratio of two <span class="math inline">\(\chi^2\)</span> distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See <a href="02-Probability.html#sec-Fdist" class="quarto-xref"><span>Section 2.2.10.6</span></a> for more information on the <span class="math inline">\(F\)</span> distribution.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -448,12 +445,13 @@ F\overset{H_0}{\sim} F_{(q,n-K)},
 <p>Thus the <span class="math inline">\(F\)</span>-test statistic simplifies to <span class="math display">\[
 F=\frac{\left(\hat{\beta}_k-\beta_k^{(0)}\right)^2}{\widehat{Var}(\hat{\beta}_k|X)}\overset{H_0}{\sim}F_{(1,n-K)},
 \]</span> where <span class="math display">\[
-\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{kk}.
-\]</span> Taking square roots yields the <span class="math inline">\(t\)</span> test statistic <span class="math display">\[
+\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{(k,k)},
+\]</span> where <span class="math inline">\([(X'X)^{-1}]_{(k,k)}\)</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\((X'X)^{-1}.\)</span></p>
+<p>Taking square roots yields the <span class="math inline">\(t\)</span> test statistic <span class="math display">\[
 T=\frac{\hat{\beta}_k-\beta_k^{(0)}}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)}\overset{H_0}{\sim}t_{(n-K)},
 \]</span> where <span class="math display">\[
 \widehat{\operatorname{SE}}(\hat{\beta}_k|X)
-=\sqrt{\widehat{Var}(\hat{\beta}_k|X)}=s_{UB}[(X'X)^{-1/2}]_{kk},
+=\sqrt{\widehat{Var}(\hat{\beta}_k|X)}=s_{UB}[(X'X)^{-1/2}]_{(k,k)},
 \]</span> and where <span class="math inline">\(t_{(n-K)}\)</span> denotes the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom.</p>
 <p>Thus the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom is the appropriate distribution to judge whether or not an observed value <span class="math inline">\(T_{\text{obs}}\)</span> of the test statistic is “unusually large” under the null hypothesis.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -471,7 +469,7 @@ H_0:\beta_k=0
 \]</span> for each <span class="math inline">\(k=1,\dots,K.\)</span> This means to test the null hypothesis that <span class="math inline">\(X_k\)</span> has “no (linear) effect” on the conditional mean of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X.\)</span></p>
 </div>
 </div>
-<p><strong>The <span class="math inline">\(t\)</span> distribution.</strong> The following plot illustrates that as the degrees of freedom increase, the shape of the <span class="math inline">\(t\)</span> distribution comes closer to that of a standard normal bell curve. Already for <span class="math inline">\(25\)</span> degrees of freedom we find little difference to the standard normal density. In case of small degrees of freedom values, we find the distribution to have heavier tails than a standard normal. See <span class="quarto-unresolved-ref">?sec-tdist</span> for more information about the <span class="math inline">\(t\)</span>-distribution.</p>
+<p><strong>The <span class="math inline">\(t\)</span> distribution.</strong> The following plot illustrates that as the degrees of freedom increase, the shape of the <span class="math inline">\(t\)</span> distribution comes closer to that of a standard normal bell curve. Already for <span class="math inline">\(25\)</span> degrees of freedom we find little difference to the standard normal density. In case of small degrees of freedom values, we find the distribution to have heavier tails than a standard normal. See <a href="02-Probability.html#sec-tdist" class="quarto-xref"><span>Section 2.2.10.4</span></a> for more information about the <span class="math inline">\(t\)</span>-distribution.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">

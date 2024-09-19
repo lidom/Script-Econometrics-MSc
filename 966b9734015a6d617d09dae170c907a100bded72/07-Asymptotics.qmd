@@ -40,7 +40,7 @@ Probably the most often used mode of convergence is **convergence in probability
 
 In order to show that some stochastic sequence converges in probability to its limit, one typically uses a *(weak) law of large numbers*.
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#def-conv_prop}
 ## Convergence in Probability 
@@ -66,7 +66,7 @@ A stricter mode of convergence is **almost sure convergence**. Almost sure conve
 
 Every sequence that converges almost surely, also converges in probability. 
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#def-conv_as}
 ## Almost Sure Convergence 
@@ -87,7 +87,7 @@ $$
 
 Every sequence that converges in mean square, also converges in probability. 
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#def-conv_ms}
 ## Convergence in Mean Square 
@@ -114,7 +114,7 @@ $$
 **Convergence in distribution** is the weakest and at the same time most important mode of convergence. 
 
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#def-conv_distr}
 ## Convergence in Distribution 
@@ -164,13 +164,13 @@ By contrast to all other modes of convergence, @def-conv_distr only addresses th
 
 To handle **multivariate convergence in distribution**, we need the following theorem known as the Cramér-Wold device. 
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#thm-CramerWold}
 ## Cramér-Wold
 Let $Z_n\in\mathbb{R}^K$ and $Z\in\mathbb{R}^K$ be $(K\times 1)$-dimensional random vectors, then
 $$
-Z_n\to_{d} Z\text{\quad if and only if \quad}\lambda'Z_n\to_{d}\lambda'Z
+Z_n\to_{d} Z\quad\text{if and only if}\quad\lambda'Z_n\to_{d}\lambda'Z
 $$ 
 for any $\lambda\in\mathbb{R}^K$. 
 :::
@@ -185,7 +185,7 @@ The Cramér-Wold theorem (@thm-CramerWold) is needed since element-wise converge
 
 ### Relations among Modes of Convergence {-}
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#lem-Relations}
 ## Relationship among the four modes of convergence
@@ -212,7 +212,7 @@ Proofs of the result in @lem-Relations can be found, e.g., here: [https://www.st
 
 ### Continuous Mapping Theorem (CMT)
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#thm-Preserv}
 ## Preservation of convergence for continuous transformations (or "continuous mapping theorem (CMT)")
@@ -262,7 +262,7 @@ provided $\Sigma_{X'X}$ is a nonsingular/invertible matrix.
 
 The following results are concerned with combinations of convergence in probability and convergence in distribution. These are particularly important for the derivation of the asymptotic distribution of estimators.  
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#thm-Slutsky}
 ## Slutsky's Theorem
@@ -337,7 +337,7 @@ converge in probability, almost surely, and in distribution, respectively:
 
 In the following we introduce the most well-known versions of a WLLN, SLLN, and a CLT.
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#thm-WLLN1}
 ## Weak LLN (by Chebychev)
@@ -355,7 +355,7 @@ $$
 A proof of @thm-WLLN1 can be found, for instance, here: [https://www.statlect.com/asymptotic-theory/law-of-large-numbers](https://www.statlect.com/asymptotic-theory/law-of-large-numbers)
 
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#thm-SLLN1}
 ## Strong LLN (by Kolmogorov)
@@ -379,7 +379,7 @@ A proof of @thm-SLLN1 can be found, e.g., in *Linear Statistical Inference and I
 
 **Note:** The WLLN and the SLLN for **random vectors** follow from applying the the theorem separately for each element of the random vectors.
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#thm-CLT1}
 ## CLT (Lindeberg-Levy)
@@ -444,7 +444,7 @@ If an estimator $\hat\theta_n$ converges in probability to its limit $\theta$, w
 
 <!-- **Note:**Under the asymptotic perspective ($n\to\infty$) it's not necessary anymore to condition on $X$ since as $n\to\infty$ the stochastic influence of $X$ on  vanishes  -->
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#def-WConsist}
 ## (Weak) Consistency 
@@ -456,7 +456,7 @@ $$
 :::
 :::
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#def-SConsist}
 ## Strong Consistency 
@@ -470,7 +470,7 @@ $$
 
 A necessary requirement for weak and strong consistency is that the estimator is asymptotically unbiased. 
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#def-ABias}
 ## Asymptotic Bias
@@ -488,7 +488,7 @@ If $\text{ABias}(\hat\theta_n,\theta)=0$, then $\hat\theta_n$ is called an **asy
 :::
 
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#def-ANorm}
 ## Asymptotic Normality, Asymptotic Variance, $\sqrt{n}$-Consistent 
@@ -515,7 +515,7 @@ Due to the $\sqrt{n}$-scaling, $\theta_n$ is called **$\sqrt{n}$-consistent**.
 :::
 
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#def-MSE}
 ## Mean Squared Error (MSE)
@@ -643,7 +643,7 @@ has full rank $K$. I.e., $\Sigma_{X'X}$ is nonsingular and invertible.
 
 
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#thm-Sxx1}
 ## Consistency of $S_{X'X}^{-1}$ 
@@ -661,7 +661,7 @@ The proof of @thm-Sxx1 is done in the lecture.
 
 <!-- Under Assumption 1$^\ast$, 2 and 3$^\ast$ we have that -->
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#thm-bconsistent1}
 ## Consistency of $\hat\beta$
@@ -681,7 +681,7 @@ The proof of @thm-bconsistent1 is done in the lecture.
 
 Moreover, we can show that the appropriately scaled OLS estimator is asymptotically normal distributed. The following theorem is stated for the simpler homoskedastic case, the heteroskedastic case is presented in @sec-CaseHetero.
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#thm-OLSnormality1}
 ## Asymptotic Normality of $\hat{\beta}$ (Homoskedastic Case)
@@ -701,7 +701,7 @@ The proof of @thm-OLSnormality1 is done in the lecture.
 In principle, we can derive the usual test statistics from the latter result. Though, as long as we do not know (we usually don't) $\sigma^2$ and $\Sigma_{X'X}$ we need to plug-in the (consistent!) estimators $S_{X'X}^{-1}$ and $s_{ub}^2$, where the consistency of the former estimator is provided by @thm-Sxx1 and the consistency of $s_{ub}^2$ is provided by the following result.
 
 
-::: {.callout-note icon="false"}
+::: {.callout icon=false}
 #
 ::: {#thm-Consistency_s1}
 ## Consistency of $s^2_{UB}$
@@ -811,29 +811,31 @@ H_0: & \beta_k=\beta_k^{(0)}\\
 H_1: & \beta_k\ne \beta_k^{(0)}\\
 \end{array}
 \end{equation*}
-We can selecting the $k$th diagonal element of the test-statistic in @eq-Ftestasymp and taking the square root yields 
+Selecting the $k$th diagonal element of the test-statistic in @eq-Ftestasymp and taking the square root yields 
 $$
 \begin{align*}
-T&=\frac{\sqrt{n}\left(\hat{\beta}_k-\beta_k^{(0)}\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{kk}}}\\[1.5ex] 
-\text{where}\qquad T&\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty. 
+T&=\frac{\sqrt{n}\left(\hat{\beta}_k-\beta_k^{(0)}\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}}}\\[1.5ex] 
+\text{where}\qquad T&\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty,
 \end{align*}
+and where $\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}.$
 $$
 This $t$-test statistic allows for **heteroskedastic** error terms. 
 
 In case of homoskedastic error terms, one can substitute 
 $$
-[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}
+[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}
 $$ 
 by 
 $$
-s_{ub}^2[S_{X'X}^{-1}]_{kk}.
+s_{ub}^2[S_{X'X}^{-1}]_{(k,k)}
 $$ 
+where $[S_{X'X}^{-1}]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $S_{X'X}^{-1}.$
 
 ::: {.callout-tip}
 # Finite-sample correction
 In order to improve the finite-sample performance of this $t$ test, one usually uses the $t_{(n-K)}$ distribution with $n-K$ degrees of freedoms instead of the $\mathcal{N}(0,1)$ distribution. 
 
-Asymptotically ($n\to\infty$), $t_{(n-K)}$ is equivalent to $\mathcal{N}(0,1)$. However, for finite sample sizes $n$ (i.e., the practically relevant case) $t_{n-K}$ leads to larger critical values which helps to account for the estimation errors in $[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}$ (or in $s_{ub}^2[S_{X'X}^{-1}]_{kk}$) which are otherwise neglected by the pure asymptotic perspective. 
+Asymptotically ($n\to\infty$), $t_{(n-K)}$ is equivalent to $\mathcal{N}(0,1)$. However, for finite sample sizes $n$ (i.e., the practically relevant case) $t_{n-K}$ leads to larger critical values which helps to account for the estimation errors in $[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}$ (or in $s_{ub}^2[S_{X'X}^{-1}]_{(k,k)}$) which are otherwise neglected by the pure asymptotic perspective. 
 :::
 
 
@@ -842,7 +844,7 @@ Asymptotically ($n\to\infty$), $t_{(n-K)}$ is equivalent to $\mathcal{N}(0,1)$. 
 Following the derivations in Chapter @sec-CIsmallsample, but using the expression for the robust standard errors, we get the following heteroskedasticity robust (random) $(1-\alpha)\cdot 100\%$ confidence interval 
 $$
 \operatorname{CI}_{1-\alpha}=
-\left[\hat\beta_k\pm t_{1-\alpha/2,n-K}\sqrt{n^{-1}[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}}\right].
+\left[\hat\beta_k\pm t_{1-\alpha/2,n-K}\sqrt{n^{-1}[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}}\right].
 $$
 Here, the coverage probability is an asymptotic coverage probability with $P(\beta_k\in\operatorname{CI}_{1-\alpha})\to \gamma$ as $n\to\infty$, where $\gamma\geq 1-\alpha.$ 
 
@@ -903,11 +905,11 @@ myDataGenerator <- function(n, beta){
 
 The above data generating process fulfills our regulatory assumptions of this chapter. So, by theory, the estimators $\hat\beta_k$ should be normal distributed for sufficiently large sample sizes $n$. 
 $$
-\sqrt{n}\left(\hat\beta_{n,k}-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
+\sqrt{n}\left(\hat\beta_{n,k}-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right)
 $$
 or (slight abuse of notation):
 $$
-\hat\beta_{n,k}\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
+\hat\beta_{n,k}\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right)
 $$
 as $n\to\infty.$ 
 

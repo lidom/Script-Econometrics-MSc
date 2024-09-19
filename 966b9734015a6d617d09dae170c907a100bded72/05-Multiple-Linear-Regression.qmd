@@ -165,7 +165,7 @@ see the crash course on ranks below.
 
 This rank assumption is a bit dicey and its violation belongs to one of the classic problems in applied econometrics (keywords: dummy variable trap, multicollinearity, variance inflation).  The violation of this assumption harms any economic interpretation since we cannot disentangle the explanatory variables' individual effects on $Y$. Therefore, this assumption is also often called an **identification assumption**.
 
-
+<!-- 
 ::: {.callout-tip}
 # Crash Course on Ranks and Matrix Inverse:
 
@@ -220,7 +220,8 @@ The above crash course on linear algebra contains all concepts relevant for this
 * in Frank Pinter's lecture notes: [LINK](https://www.frankpinter.com/notes/linear-algebra-notes.pdf)
 * in Cesar Aguilar's lecture notes: [Link](lecture_scripts/Linear_Algebra_Aguilar.pdf)
 * in the free book: [Linear Algebra and Optimization with Applications to Machine Learning](https://www.cis.upenn.edu/~jean/gbooks/linalg.html)
-:::
+::: 
+-->
 
 
 ::: {.callout-tip}
@@ -349,7 +350,7 @@ are equal to the constant $\sigma^2>0$ for all $i=1,\dots,n$ and for every possi
 ### Some Implications of the Exogeneity Assumption 
 
 
-::: {.callout-note icon=false}
+::: {.callout icon=false}
 ##
 
 ::: {#thm-a}
@@ -382,7 +383,7 @@ E(XY)=0.
 $$ 
 The exogeneity assumption (Assumption 2) is sometimes also called "orthogonality" assumption, due to the following result:  
 
-::: {.callout-note icon=false}
+::: {.callout icon=false}
 ##
 ::: {#thm-b}
 
@@ -399,8 +400,8 @@ for all $i=1,\dots,n$ and all $k=1,\dots,K.$
 ::: {.proof}
 \begin{align*}
 E(X_{ik}\varepsilon_i)
-&=E(E(X_{ik}\varepsilon_i|X_{ik}))\quad{\small\text{(By the Law of Total Expectations)}}\\
-&=E(X_{ik}E(\varepsilon_i|X_{ik}))\quad{\small\text{(By the linearity of cond.~expectations)}}
+&=E(E(X_{ik}\varepsilon_i|X_{ik}))\quad{\text{(By the Law of Total Expectations)}}\\
+&=E(X_{ik}E(\varepsilon_i|X_{ik}))\quad{\text{(By the linearity of cond.~expectations)}}
 \end{align*}
 Now, to show that $E(X_{ik}\varepsilon_i)=0$, we need to show that $E(\varepsilon_i|X_{ik})=0,$ which is done in the following:
 
@@ -422,7 +423,7 @@ which completes the proof. $\square$
 
 Because the mean of the error term is zero ($E(\varepsilon_i)=0$ for all $i$ (see @thm-a), it follows that the orthogonality property, $E(X_{ik}\varepsilon_i)=0,$ is equivalent to a zero correlation property. 
 
-::: {.callout-note icon=false}
+::: {.callout icon=false}
 ##
 ::: {#thm-c}
 
@@ -687,7 +688,7 @@ $$
 $$
 is the basis for the well-known variance decomposition result for OLS regressions. 
 
-::: {.callout-note icon=false}
+::: {.callout icon=false}
 ##
 ::: {#thm-vardecomp}
 For the linear regression model with intercept (@eq-LinMod), the total sample variance of the dependent variable $Y_1,\dots,Y_n$ can be decomposed as following:
@@ -885,7 +886,7 @@ $$
 \end{align*}
 $$
 
-::: {.callout-note icon=false}
+::: {.callout icon=false}
 ##
 ::: {#def-CondVarMult}
 
@@ -958,7 +959,7 @@ $$
 
 The famous **Gauss-Markov Theorem** states that the OLS estimator is the **"best"** (smallest conditional variance) estimator within the family of linear (in $Y$) and unbiased estimators.
 
-::: {.callout-note icon=false}
+::: {.callout icon=false}
 ##
 ::: {#thm-GMTheorem}
 

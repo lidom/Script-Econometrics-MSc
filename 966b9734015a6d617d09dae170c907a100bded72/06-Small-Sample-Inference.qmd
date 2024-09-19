@@ -33,7 +33,7 @@ where $\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'$.
 
 \bigskip
 
-::: {.callout-note icon=false}
+::: {.callout icon=false}
 ##
 ::: {#thm-normalbeta}
 # Normality of $\hat\beta$ 
@@ -236,8 +236,10 @@ F=\frac{\left(\hat{\beta}_k-\beta_k^{(0)}\right)^2}{\widehat{Var}(\hat{\beta}_k|
 $$
 where 
 $$
-\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{kk}.
+\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{(k,k)},
 $$ 
+where $[(X'X)^{-1}]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $(X'X)^{-1}.$
+
 Taking square roots yields the $t$ test statistic 
 $$
 T=\frac{\hat{\beta}_k-\beta_k^{(0)}}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)}\overset{H_0}{\sim}t_{(n-K)},
@@ -245,7 +247,7 @@ $$
 where 
 $$
 \widehat{\operatorname{SE}}(\hat{\beta}_k|X)
-=\sqrt{\widehat{Var}(\hat{\beta}_k|X)}=s_{UB}[(X'X)^{-1/2}]_{kk},
+=\sqrt{\widehat{Var}(\hat{\beta}_k|X)}=s_{UB}[(X'X)^{-1/2}]_{(k,k)},
 $$ 
 and where $t_{(n-K)}$ denotes the $t$-distribution with $n-K$ degrees of freedom. 
 

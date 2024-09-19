@@ -307,16 +307,12 @@ Z_i,\quad i=1,\dots,n,
 </section><section id="four-important-modes-of-convergence" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="four-important-modes-of-convergence">Four Important Modes of Convergence</h3>
 <p>Probably the most often used mode of convergence is <strong>convergence in probability</strong>. It states that a stochastic sequence <span class="math inline">\(\{Z_n\}\)</span> concentrates around its limit <span class="math inline">\(\alpha\)</span> such that deviations <span class="math inline">\(|Z_n-\epsilon|\)</span> larger than some small <span class="math inline">\(\epsilon &gt;0\)</span> occur eventually (as <span class="math inline">\(n\to\infty\)</span>) with probability zero.</p>
 <p>In order to show that some stochastic sequence converges in probability to its limit, one typically uses a <em>(weak) law of large numbers</em>.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="def-conv_prop" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 7.1 (Convergence in Probability)</strong></span> A sequence of real valued random scalars <span class="math inline">\(\{Z_n\}\)</span> <strong>converges in probability</strong> to a constant (non-random) <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if, for any (arbitrarily small) <span class="math inline">\(\varepsilon&gt;0\)</span>, <span class="math display">\[\begin{eqnarray*}
   \lim_{n\to\infty} P\left(|Z_n-\alpha|&gt;\epsilon\right)=0.
@@ -329,18 +325,15 @@ Z_n\to_{p}\alpha,\quad\text{as}\quad n\to\infty.
 </div>
 </div>
 </div>
+</div>
 <p>A stricter mode of convergence is <strong>almost sure convergence</strong>. Almost sure convergence is (usually) rather hard to derive, since the probability is about an event concerning an infinite sequence. Fortunately, however, there are established <em>strong laws of large numbers</em> that we can use to argue that some stochastic sequence converges almost surely to its limit.</p>
 <p>Every sequence that converges almost surely, also converges in probability.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="def-conv_as" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 7.2 (Almost Sure Convergence)</strong></span> A sequence of real valued random scalars <span class="math inline">\(\{Z_n\}\)</span> <strong>converges almost surely</strong> to a constant (non-random) <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if <span class="math display">\[\begin{eqnarray*}
 P\left(\lim_{n\to\infty}Z_n=\alpha\right)=1.
@@ -351,18 +344,15 @@ Z_n\to_{as}\alpha,\quad\text{as}\quad n\to\infty.
 </div>
 </div>
 </div>
+</div>
 <p><strong>Convergence in mean square</strong> is typically the most intuitive mode of convergence. If a stochastic sequence converges to a certain limit, then the mean of the stochastic sequence <span class="math inline">\(E(Z_n)\)</span> must converge to this limit and the variance of the stochastic sequence must converge to zero. Convergence in mean square is typically easy to show.</p>
 <p>Every sequence that converges in mean square, also converges in probability.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="def-conv_ms" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 7.3 (Convergence in Mean Square)</strong></span> A sequence of real valued random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in mean square</strong> (or <strong>in quadratic mean</strong>) to a constant (non-random) <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if <span class="math display">\[
 \begin{align*}
@@ -375,18 +365,15 @@ Z_n\to_{ms}\alpha,\quad\text{as}\quad n\to\infty.
 </div>
 </div>
 </div>
+</div>
 <!-- **Convergence to a Random Variable:**The above presented definitions of convergence can be also applied to limits that are random variables. We say that a sequence of random vectors $\{\mathbf{z}_n\}$ converges to a random vector $\mathbf{z}$ and write $\mathbf{z}_n\to_{p}\mathbf{z}$ if the sequence $\{\mathbf{z}_n-\mathbf{z}\}$ converges to $\mathbf{0}$. Similarly, for $\mathbf{z}_n\to_{as}\mathbf{z}$ and $\mathbf{z}_n\to_{ms}\mathbf{z}$.  -->
 <p><strong>Convergence in distribution</strong> is the weakest and at the same time most important mode of convergence.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="def-conv_distr" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 7.4 (Convergence in Distribution)</strong></span> Let <span class="math inline">\(F_n\)</span> be the cumulative distribution function (cdf) of the real valued random scalar <span class="math inline">\(Z_n\in\mathbb{R}\)</span> and <span class="math inline">\(F\)</span> the cdf of the real valued random scalar <span class="math inline">\(Z\in\mathbb{R}.\)</span></p>
 <p>A sequence of real valued random scalars <span class="math inline">\(\{Z_n\}\)</span> <strong>converges in distribution</strong> to a real valued random scalar <span class="math inline">\(Z\)</span> if <span class="math display">\[\begin{eqnarray*}
@@ -395,6 +382,7 @@ Note
 <p>We write: <span class="math display">\[
 Z_n\to_{d}Z,\quad\text{as}\quad n\to\infty
 \]</span> We call <span class="math inline">\(F\)</span> the <strong>asymptotic (or limit) distribution</strong> of <span class="math inline">\(Z_n\)</span>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -418,20 +406,17 @@ F_\alpha(x)=\left\{
 </ol>
 <p>By contrast to all other modes of convergence, <a href="#def-conv_distr" class="quarto-xref">Definition&nbsp;<span>7.4</span></a> only addresses the scalar (uni-variate) case. The reason for this is that <a href="#def-conv_distr" class="quarto-xref">Definition&nbsp;<span>7.4</span></a> cannot simply applied element-wise since this would ignore the possible dependencies between the different uni-variate random variables elements of a random vector.</p>
 <p>To handle <strong>multivariate convergence in distribution</strong>, we need the following theorem known as the Cramér-Wold device.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="thm-CramerWold" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 7.1 (Cramér-Wold)</strong></span> Let <span class="math inline">\(Z_n\in\mathbb{R}^K\)</span> and <span class="math inline">\(Z\in\mathbb{R}^K\)</span> be <span class="math inline">\((K\times 1)\)</span>-dimensional random vectors, then <span class="math display">\[
-Z_n\to_{d} Z\text{\quad if and only if \quad}\lambda'Z_n\to_{d}\lambda'Z
+Z_n\to_{d} Z\quad\text{if and only if}\quad\lambda'Z_n\to_{d}\lambda'Z
 \]</span> for any <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -439,16 +424,12 @@ Z_n\to_{d} Z\text{\quad if and only if \quad}\lambda'Z_n\to_{d}\lambda'Z
 <p>The Cramér-Wold theorem (<a href="#thm-CramerWold" class="quarto-xref">Theorem&nbsp;<span>7.1</span></a>) is needed since element-wise convergence in distribution does generally not imply convergence of the <em>joint</em> distribution of <span class="math inline">\(Z_n\)</span> to the <em>joint</em> distribution of <span class="math inline">\(Z\)</span>; except, if all elements in the random vectors <span class="math inline">\(Z_n\)</span> and <span class="math inline">\(Z\)</span> are independent from each other.</p>
 <!-- **Remark:**Note that convergence in distribution, as the name suggests, only involves the distributions of the random variables. Thus, the random variables need not even be defined on the same probability space (that is, they need not be defined for the same random experiment), and indeed we don't even need the random variables at all. (But all this is just thought provoking \dots typically, we'll only consider cases with a common probability space.) -->
 </section><section id="relations-among-modes-of-convergence" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="relations-among-modes-of-convergence">Relations among Modes of Convergence</h3>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="lem-Relations" class="theorem lemma">
 <p><span class="theorem-title"><strong>Lemma 7.1 (Relationship among the four modes of convergence)</strong></span> The following relationships hold:</p>
 <ol type="i">
@@ -468,25 +449,23 @@ Z_n\to_{d}\alpha\quad \Leftrightarrow\quad Z_n\to_{p}\alpha
 </div>
 </div>
 </div>
+</div>
 <p>Proofs of the result in <a href="#lem-Relations" class="quarto-xref">Lemma&nbsp;<span>7.1</span></a> can be found, e.g., here: <a href="https://www.statlect.com/asymptotic-theory/relations-among-modes-of-convergence">https://www.statlect.com/asymptotic-theory/relations-among-modes-of-convergence</a></p>
 </section><section id="continuous-mapping-theorem-cmt" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="continuous-mapping-theorem-cmt">
 <span class="header-section-number">7.1.2</span> Continuous Mapping Theorem (CMT)</h3>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="thm-Preserv" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 7.2 (Preservation of convergence for continuous transformations (or “continuous mapping theorem (CMT)”))</strong></span> Suppose <span class="math inline">\(\{Z_n\}\)</span> is a stochastic sequence of random scalars, vectors, or matrices and that <span class="math inline">\(f\)</span> is a <em>continuous</em> function that does not depended on <span class="math inline">\(n\)</span>. Then <span class="math display">\[\begin{align*}
 Z_n\to_{p}  \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{p} f(\alpha)\\[2ex]
 Z_n\to_{as} \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{as} f(\alpha)\\[2ex]
 Z_n\to_{d}  \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{d} f(\alpha)
 \end{align*}\]</span></p>
+</div>
 </div>
 </div>
 </div>
@@ -510,16 +489,12 @@ X_n/Y_n\to_{p} \beta/\gamma,
 <!-- The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n, y_n\right)'$, $\boldsymbol\alpha=\left(\beta, \gamma\right)'$, and $\mathbf{a}(\boldsymbol\alpha)=(1,1)\boldsymbol\alpha$, similarly for all others.  --></section><section id="slutskys-theorem" class="level3" data-number="7.1.3"><h3 data-number="7.1.3" class="anchored" data-anchor-id="slutskys-theorem">
 <span class="header-section-number">7.1.3</span> Slutsky’s Theorem</h3>
 <p>The following results are concerned with combinations of convergence in probability and convergence in distribution. These are particularly important for the derivation of the asymptotic distribution of estimators.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="thm-Slutsky" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 7.3 (Slutsky’s Theorem)</strong></span> Let <span class="math inline">\(X_n\)</span> and <span class="math inline">\(Y_n\)</span> denote sequences of random scalars or vectors and let <span class="math inline">\(A_n\)</span> denote a sequences of random matrices. Moreover, <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(A\)</span> are deterministic limits of appropriate dimensions and <span class="math inline">\(X\)</span> is a <em>random</em> limit of appropriate dimension.</p>
 <ul>
@@ -534,6 +509,7 @@ A_n X_n\to_{d} AX.
 \]</span></p></li>
 </ul>
 <p>Above, we assume that <span class="math inline">\(X_n,\)</span> <span class="math inline">\(Y_n,\)</span> and <span class="math inline">\(A_n\)</span> are “conformable” (i.e., the matrix- and vector-dimensions fit to each other).</p>
+</div>
 </div>
 </div>
 </div>
@@ -563,16 +539,12 @@ A_nX_n\to_{d}\mathcal{N}_K(0,A\Sigma A').
 <li><p>CLT: <span class="math inline">\(\sqrt{n}(\bar{Z}_n-\mu)\to_{d}N(0,\sigma^2)\)</span></p></li>
 </ul>
 <p>In the following we introduce the most well-known versions of a WLLN, SLLN, and a CLT.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="thm-WLLN1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 7.4 (Weak LLN (by Chebychev))</strong></span> If</p>
 <ul>
@@ -587,17 +559,14 @@ Note
 </div>
 </div>
 </div>
+</div>
 <p>A proof of <a href="#thm-WLLN1" class="quarto-xref">Theorem&nbsp;<span>7.4</span></a> can be found, for instance, here: <a href="https://www.statlect.com/asymptotic-theory/law-of-large-numbers">https://www.statlect.com/asymptotic-theory/law-of-large-numbers</a></p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="thm-SLLN1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 7.5 (Strong LLN (by Kolmogorov))</strong></span> If <span class="math inline">\(\{Z_i\}\)</span> is an</p>
 <ul>
@@ -611,21 +580,18 @@ Note
 </div>
 </div>
 </div>
+</div>
 <p>A proof of <a href="#thm-SLLN1" class="quarto-xref">Theorem&nbsp;<span>7.5</span></a> can be found, e.g., in <em>Linear Statistical Inference and Its Applications</em>, Rao (1973), pp.&nbsp;112-114.</p>
 <!-- 
 > **Interactive visualization of the Law of Large Numbers:** [http://shiny.webpopix.org/sia/LLN/](http://shiny.webpopix.org/sia/LLN/) 
 -->
 <p><strong>Note:</strong> The WLLN and the SLLN for <strong>random vectors</strong> follow from applying the the theorem separately for each element of the random vectors.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="thm-CLT1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 7.6 (CLT (Lindeberg-Levy))</strong></span> If <span class="math inline">\(\{Z_i\}\)</span> is</p>
 <ul>
@@ -640,6 +606,7 @@ Note
 <p>then <span class="math display">\[
 \sqrt{n}(\bar{Z}_n-\mu)\to_{d} N(0,\sigma^2),\quad\text{as}\quad n\to\infty
 \]</span></p>
+</div>
 </div>
 </div>
 </div>
@@ -681,16 +648,12 @@ n\to\infty
 \]</span> nothing but a <strong>sequence of random variables</strong> converging (hopefully) to the correct limit; namely, to the parameter value <span class="math inline">\(\theta\)</span> we aim to estimate.</p>
 <p>If an estimator <span class="math inline">\(\hat\theta_n\)</span> converges in probability to its limit <span class="math inline">\(\theta\)</span>, we call the estimator <strong>weakly consistent</strong> or simply <strong>consistent</strong>. If it converges almost surely to <span class="math inline">\(\theta,\)</span> we call the estimator <strong>strongly consistent</strong>.</p>
 <!-- **Note:**Under the asymptotic perspective ($n\to\infty$) it's not necessary anymore to condition on $X$ since as $n\to\infty$ the stochastic influence of $X$ on  vanishes  -->
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="def-WConsist" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 7.5 ((Weak) Consistency)</strong></span> We say that an estimator <span class="math inline">\(\hat\theta_n\)</span> is <em>(weakly) consistent for <span class="math inline">\(\theta\)</span></em> if <span class="math display">\[
 \hat\theta_n\to_{p}\theta,\quad\text{as}\quad n\to\infty.
@@ -698,16 +661,13 @@ Note
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="def-SConsist" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 7.6 (Strong Consistency)</strong></span> We say that an estimator <span class="math inline">\(\hat\theta_n\)</span> is <em>strongly consistent for <span class="math inline">\(\theta\)</span></em> if <span class="math display">\[
 \hat\theta_n\to_{as}\theta,\quad\text{as}\quad n\to\infty.
@@ -715,17 +675,14 @@ Note
 </div>
 </div>
 </div>
+</div>
 <p>A necessary requirement for weak and strong consistency is that the estimator is asymptotically unbiased.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="def-ABias" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 7.7 (Asymptotic Bias)</strong></span> The asymptotic bias of an estimator <span class="math inline">\(\hat\theta_n\)</span> of some parameter <span class="math inline">\(\theta\)</span> is defined as <span class="math display">\[
 \begin{align*}
@@ -737,16 +694,13 @@ Note
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="def-ANorm" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 7.8 (Asymptotic Normality, Asymptotic Variance, <span class="math inline">\(\sqrt{n}\)</span>-Consistent)</strong></span> </p>
 <p>An estimator <span class="math inline">\(\hat\theta_n\)</span> is called <strong>asymptotically normal</strong> if <span class="math display">\[
@@ -763,20 +717,18 @@ Note
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="def-MSE" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 7.9 (Mean Squared Error (MSE))</strong></span> <span class="math display">\[
 \operatorname{MSE}(\hat\theta_n) = E\left((\hat\theta_n - \theta)^2\right)
 \]</span> is called the <strong>mean squared error (MSE)</strong> of the estimator <span class="math inline">\(\hat\theta_n.\)</span></p>
+</div>
 </div>
 </div>
 </div>
@@ -861,16 +813,12 @@ s^2_{ub,n}=\frac{1}{n-K}\sum_{i=1}^n\hat\epsilon_i^2
 <!-- **Note:** Assumption 3$^\ast$ implies the existence and finiteness of the first two moments of $X_i$ (even without Assumption 1$^\ast$). -->
 <!-- % Under the Assumptions 1$^\ast$, 2, 3$^\ast$, and 4, we can show the following results. -->
 <p><!-- 1$^\ast$ and 3$^\ast$  --></p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="thm-Sxx1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 7.7 (Consistency of <span class="math inline">\(S_{X'X}^{-1}\)</span>)</strong></span> Under Assumptions 1, 2, 3<span class="math inline">\(^\ast\)</span>, and 4, and under the assumption that <span class="math inline">\(X_i\)</span> has finite second moments, we have that <span class="math display">\[
 S_{X'X}^{-1} = \left(\frac{1}{n}X'X\right)^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1},\quad\text{as}\quad n\to\infty.
@@ -878,18 +826,15 @@ S_{X'X}^{-1} = \left(\frac{1}{n}X'X\right)^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1
 </div>
 </div>
 </div>
+</div>
 <p>The proof of <a href="#thm-Sxx1" class="quarto-xref">Theorem&nbsp;<span>7.7</span></a> is done in the lecture.</p>
 <!-- Under Assumption 1$^\ast$, 2 and 3$^\ast$ we have that -->
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="thm-bconsistent1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 7.8 (Consistency of <span class="math inline">\(\hat\beta\)</span>)</strong></span> Under Assumptions 1, 2, 3<span class="math inline">\(^\ast\)</span>, and 4, and under the assumption that <span class="math inline">\(X_i\)</span> has finite second moments, and <span class="math inline">\(\varepsilon_i\)</span> has finite first moments, we have that <span class="math display">\[
 \hat\beta_n\to_{p}\beta\quad\text{as}\quad n\to\infty.
@@ -897,19 +842,16 @@ Note
 </div>
 </div>
 </div>
+</div>
 <p>The proof of <a href="#thm-bconsistent1" class="quarto-xref">Theorem&nbsp;<span>7.8</span></a> is done in the lecture.</p>
 <!-- **Note:** In @thm-bconsistent1 it would suffice to assume that $\varepsilon_i$ has only a finite *first* moment, but since we need also a finite second moment for the error term in the following theorems, we may also require two moments in @thm-bconsistent1.   -->
 <p>Moreover, we can show that the appropriately scaled OLS estimator is asymptotically normal distributed. The following theorem is stated for the simpler homoskedastic case, the heteroskedastic case is presented in <a href="#sec-CaseHetero" class="quarto-xref"><span>Section 7.2.1</span></a>.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="thm-OLSnormality1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 7.9 (Asymptotic Normality of <span class="math inline">\(\hat{\beta}\)</span> (Homoskedastic Case))</strong></span> Under Assumption 1, 2, 3<span class="math inline">\(^\ast\)</span>, and 4, and under the assumption that <span class="math inline">\(X_i\)</span> and <span class="math inline">\(\varepsilon_i\)</span> have finite second moments, and under the simplifying assumption of spherical errors <span class="math display">\[
 Var(\varepsilon|X)=\sigma^2I_n,
@@ -919,22 +861,20 @@ Var(\varepsilon|X)=\sigma^2I_n,
 </div>
 </div>
 </div>
+</div>
 <p>The proof of <a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a> is done in the lecture.</p>
 <p>In principle, we can derive the usual test statistics from the latter result. Though, as long as we do not know (we usually don’t) <span class="math inline">\(\sigma^2\)</span> and <span class="math inline">\(\Sigma_{X'X}\)</span> we need to plug-in the (consistent!) estimators <span class="math inline">\(S_{X'X}^{-1}\)</span> and <span class="math inline">\(s_{ub}^2\)</span>, where the consistency of the former estimator is provided by <a href="#thm-Sxx1" class="quarto-xref">Theorem&nbsp;<span>7.7</span></a> and the consistency of <span class="math inline">\(s_{ub}^2\)</span> is provided by the following result.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <div id="thm-Consistency_s1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 7.10 (Consistency of <span class="math inline">\(s^2_{UB}\)</span>)</strong></span> Under the assumptions of <a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a>, but with the additional requirement that <span class="math inline">\(\varepsilon_i\)</span> has finite fourth moments, we have that <span class="math display">\[
 s_{ub}^2\to_{p}\sigma^2,\quad\text{as}\quad n\to\infty.
 \]</span></p>
+</div>
 </div>
 </div>
 </div>
@@ -1047,17 +987,18 @@ Finite-sample correction
 H_0: &amp; \beta_k=\beta_k^{(0)}\\
 H_1: &amp; \beta_k\ne \beta_k^{(0)}\\
 \end{array}
-\end{equation*}\]</span> We can selecting the <span class="math inline">\(k\)</span>th diagonal element of the test-statistic in <a href="#eq-Ftestasymp" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> and taking the square root yields <span class="math display">\[
+\end{equation*}\]</span> Selecting the <span class="math inline">\(k\)</span>th diagonal element of the test-statistic in <a href="#eq-Ftestasymp" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> and taking the square root yields <span class="math display">\[
 \begin{align*}
-T&amp;=\frac{\sqrt{n}\left(\hat{\beta}_k-\beta_k^{(0)}\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{kk}}}\\[1.5ex]
-\text{where}\qquad T&amp;\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty.
+T&amp;=\frac{\sqrt{n}\left(\hat{\beta}_k-\beta_k^{(0)}\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}}}\\[1.5ex]
+\text{where}\qquad T&amp;\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty,
 \end{align*}
+and where $\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}.$
 \]</span> This <span class="math inline">\(t\)</span>-test statistic allows for <strong>heteroskedastic</strong> error terms.</p>
 <p>In case of homoskedastic error terms, one can substitute <span class="math display">\[
-[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}
+[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}
 \]</span> by <span class="math display">\[
-s_{ub}^2[S_{X'X}^{-1}]_{kk}.
-\]</span></p>
+s_{ub}^2[S_{X'X}^{-1}]_{(k,k)}
+\]</span> where <span class="math inline">\([S_{X'X}^{-1}]_{(k,k)}\)</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\(S_{X'X}^{-1}.\)</span></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1069,14 +1010,14 @@ Finite-sample correction
 </div>
 <div class="callout-body-container callout-body">
 <p>In order to improve the finite-sample performance of this <span class="math inline">\(t\)</span> test, one usually uses the <span class="math inline">\(t_{(n-K)}\)</span> distribution with <span class="math inline">\(n-K\)</span> degrees of freedoms instead of the <span class="math inline">\(\mathcal{N}(0,1)\)</span> distribution.</p>
-<p>Asymptotically (<span class="math inline">\(n\to\infty\)</span>), <span class="math inline">\(t_{(n-K)}\)</span> is equivalent to <span class="math inline">\(\mathcal{N}(0,1)\)</span>. However, for finite sample sizes <span class="math inline">\(n\)</span> (i.e., the practically relevant case) <span class="math inline">\(t_{n-K}\)</span> leads to larger critical values which helps to account for the estimation errors in <span class="math inline">\([S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}\)</span> (or in <span class="math inline">\(s_{ub}^2[S_{X'X}^{-1}]_{kk}\)</span>) which are otherwise neglected by the pure asymptotic perspective.</p>
+<p>Asymptotically (<span class="math inline">\(n\to\infty\)</span>), <span class="math inline">\(t_{(n-K)}\)</span> is equivalent to <span class="math inline">\(\mathcal{N}(0,1)\)</span>. However, for finite sample sizes <span class="math inline">\(n\)</span> (i.e., the practically relevant case) <span class="math inline">\(t_{n-K}\)</span> leads to larger critical values which helps to account for the estimation errors in <span class="math inline">\([S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}\)</span> (or in <span class="math inline">\(s_{ub}^2[S_{X'X}^{-1}]_{(k,k)}\)</span>) which are otherwise neglected by the pure asymptotic perspective.</p>
 </div>
 </div>
 </section><section id="robust-confidence-intervals" class="level4" data-number="7.2.2.3"><h4 data-number="7.2.2.3" class="anchored" data-anchor-id="robust-confidence-intervals">
 <span class="header-section-number">7.2.2.3</span> Robust Confidence Intervals</h4>
 <p>Following the derivations in Chapter <a href="06-Small-Sample-Inference.html#sec-CIsmallsample" class="quarto-xref"><span>Section 6.4</span></a>, but using the expression for the robust standard errors, we get the following heteroskedasticity robust (random) <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> confidence interval <span class="math display">\[
 \operatorname{CI}_{1-\alpha}=
-\left[\hat\beta_k\pm t_{1-\alpha/2,n-K}\sqrt{n^{-1}[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{kk}}\right].
+\left[\hat\beta_k\pm t_{1-\alpha/2,n-K}\sqrt{n^{-1}[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}}\right].
 \]</span> Here, the coverage probability is an asymptotic coverage probability with <span class="math inline">\(P(\beta_k\in\operatorname{CI}_{1-\alpha})\to \gamma\)</span> as <span class="math inline">\(n\to\infty\)</span>, where <span class="math inline">\(\gamma\geq 1-\alpha.\)</span></p>
 </section></section></section><section id="sec-MCLS" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="sec-MCLS">
 <span class="header-section-number">7.3</span> Monte Carlo Simulations</h2>
@@ -1124,9 +1065,9 @@ Var(\varepsilon_i)
 <span class="header-section-number">7.3.1</span> Check: Distribution of <span class="math inline">\(\hat\beta_n\)</span>
 </h3>
 <p>The above data generating process fulfills our regulatory assumptions of this chapter. So, by theory, the estimators <span class="math inline">\(\hat\beta_k\)</span> should be normal distributed for sufficiently large sample sizes <span class="math inline">\(n\)</span>. <span class="math display">\[
-\sqrt{n}\left(\hat\beta_{n,k}-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
+\sqrt{n}\left(\hat\beta_{n,k}-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right)
 \]</span> or (slight abuse of notation): <span class="math display">\[
-\hat\beta_{n,k}\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{kk}\right)
+\hat\beta_{n,k}\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right)
 \]</span> as <span class="math inline">\(n\to\infty.\)</span></p>
 <p>Mathematically, the latter is a bit sloppy since the right hand side of <span class="math inline">\(\to_d\)</span> depends on <span class="math inline">\(n\)</span>, i.e., is not the stable limit object for <span class="math inline">\(n\to\infty\)</span>. However, this sloppiness is nevertheless instructive since it gives us the approximative distribution for given largish sample sizes like <span class="math inline">\(n=100\)</span>.</p>
 <p>For our above specified data generating process, we can derive all (usually unknown) population quantities.</p>
