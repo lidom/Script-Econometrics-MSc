@@ -17,8 +17,9 @@ timetable %>% kbl() %>%  kable_styling()
 ### Lecture Material  
 
 * This online script
-* [eWhiteboard for lecture notes](https://www.dropbox.com/scl/fi/47ct5cqnpwbx8zsqqfbby/eWhiteboard_Metrics_2023.pdf?rlkey=yslrjdqrsgxhufbxaz10fe0z1&dl=0)
-<!-- * **To-Do List for October 9, 2023:** [To-Do List (PDF)](https://www.dropbox.com/scl/fi/99tn24ky5xgsm5ghpyzhk/ToDo_List_4_Students.pdf?rlkey=mvh7z6kr0qr9drf47stcgtx9j&dl=0) -->
+* [eWhiteboard for lecture notes](https://www.dropbox.com/scl/fi/jua5dtszi9cafr3sm7t0a/eWhiteboard_Metrics_2024.xopp?rlkey=yg721zwp7jolq83lgpm5xgb8f&dl=0)
+* [`R`-Script used during the lectures](https://www.dropbox.com/scl/fi/dxly0elcsozh57ec6waay/R_Script_Metrics_20024.R?rlkey=gbaluzj4wqcr3fsru0zk7siia&dl=0)
+
 
 #### Zoom 
 
