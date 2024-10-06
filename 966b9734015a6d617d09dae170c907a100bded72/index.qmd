@@ -17,7 +17,7 @@ timetable %>% kbl() %>%  kable_styling()
 ### Lecture Material  
 
 * This online script
-* [eWhiteboard for lecture notes](https://www.dropbox.com/scl/fi/jua5dtszi9cafr3sm7t0a/eWhiteboard_Metrics_2024.xopp?rlkey=yg721zwp7jolq83lgpm5xgb8f&dl=0)
+* [eWhiteboard for lecture notes](https://www.dropbox.com/scl/fi/3ep7iggn63g89o720624c/eWhiteboard_Metrics_2024_annotated.pdf?rlkey=rbjtbs2vqxev7d1z820ix7l8q&dl=0)
 * [`R`-Script used during the lectures](https://www.dropbox.com/scl/fi/dxly0elcsozh57ec6waay/R_Script_Metrics_20024.R?rlkey=gbaluzj4wqcr3fsru0zk7siia&dl=0)
 
 
