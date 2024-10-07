@@ -434,9 +434,9 @@ P(A B)=P(A) P(B).
 <p>Or more generally, a whole set of events <span class="math inline">\(\{A_i|i\in I\}\)</span> is independent if</p>
 <p><span class="math display">\[
 P\left(\bigcap_{i \in J} A_{i}\right)=\prod_{i \in J}P\left(A_{i}\right)
-\]</span> for every finite subset <span class="math inline">\(J\)</span> of <span class="math inline">\(I\)</span>, where <span class="math inline">\(I\)</span> denotes the not necessarily finite index set (e.g.&nbsp;<span class="math inline">\(I=\{1,2,\dots\}\)</span>).</p>
+\]</span> for every finite subset <span class="math inline">\(J\)</span> of <span class="math inline">\(I\)</span>, where <span class="math inline">\(I\)</span> denotes the not necessarily finite index set <span class="math inline">\((\)</span>e.g.&nbsp;<span class="math inline">\(I=\{1,2,\dots\}).\)</span></p>
 <p>Independence can arise in two distinct ways. Sometimes, we <strong>explicitly assume</strong> that two events are independent. For example, in tossing a coin twice, we usually assume the tosses are independent which reflects the fact that the coin has no memory of the first toss.</p>
-<p>In other instances, we <strong>derive</strong> independence by verifying that the definition of independence <span class="math inline">\(P(A B)=P(A)P(B)\)</span> holds. For example, in tossing a fair die , let <span class="math inline">\(A=\{2,4,6\}\)</span> be the event of observing an even number and let <span class="math inline">\(B=\{1,2,3,4\}\)</span> be the event of observing no <span class="math inline">\(5\)</span> and no <span class="math inline">\(6\)</span>. Then, <span class="math inline">\(A \cap B=\{2,4\}\)</span> is the event of observing either a <span class="math inline">\(2\)</span> or a <span class="math inline">\(4\)</span>. Are the events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> independent?<br><span class="math display">\[
+<p>In other instances, we <strong>derive</strong> independence by verifying that the definition of independence <span class="math inline">\(P(A B)=P(A)P(B)\)</span> holds. For example, in tossing a fair die <em>once</em>, let <span class="math inline">\(A=\{2,4,6\}\)</span> be the event of observing an even number and let <span class="math inline">\(B=\{1,2,3,4\}\)</span> be the event of observing no <span class="math inline">\(5\)</span> and no <span class="math inline">\(6\)</span>. Then, <span class="math inline">\(A \cap B=\{2,4\}\)</span> is the event of observing either a <span class="math inline">\(2\)</span> or a <span class="math inline">\(4\)</span>. Are the events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> independent?<br><span class="math display">\[
 P(A B)=\frac{2}{6}=P(A)P(B)=\frac{1}{2}\cdot \frac{2}{3}
 \]</span> and so <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent. In this case, we didn’t assume that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent it just turned out that they were.</p>
 <p><strong>Cautionary Note:</strong> Suppose that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>disjoint events</strong>, i.e.&nbsp; <span class="math display">\[
@@ -482,7 +482,7 @@ P(A \mid B)=\frac{P(A B)}{P(B)}.
 \end{array}
 \]</span> From the definition of conditional probability, we have:</p>
 <ul>
-<li>Sensitivity of the test: <span class="math display">\[\begin{align*}
+<li>Sensitivity of the test: $$ <span class="math display">\[\begin{align*}
 P(+\mid D)
 &amp; = \frac{P(+\cap D)}{P(D)}\\[2ex]
 &amp; = \frac{0.0081}{(0.0081+0.0009)}=0.9
@@ -492,8 +492,7 @@ P(+\mid D)
 P(-\mid D^{c})
 &amp; = \frac{P(-\cap D^{c})}{P(D^{c})}\\[2ex]
 &amp; = \frac{0.9010}{(0.9010+0.0900)}\approx 0.9
-\end{align*}\]</span>
-</li>
+\end{align*}\]</span> $$</li>
 </ul>
 <p>Apparently, the test is fairly accurate:</p>
 <ul>
@@ -501,11 +500,13 @@ P(-\mid D^{c})
 <li>Healthy people yield a negative test result about 90 percent of the time.</li>
 </ul>
 <p>Now, suppose you go for a test and get a positive result. What is the probability you have the disease? Most people answer <span class="math inline">\(0.90=90\%\)</span>. However, this conclusion is a fallacy (“prosecutor’s fallacy”) and not correct.</p>
-<p>The correct answer is <span class="math display">\[\begin{align*}
+<p>The correct answer is <span class="math display">\[
+\begin{align*}
 P(D \mid+)
 &amp; = \frac{P(+\cap D)}{P(+)}\\[2ex]
 &amp; = \frac{0.0081}{(0.0081+0.0900)}=0.08 = 8\%.
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <p>The lesson here is that you need to compute the answer numerically. Don’t trust your intuition.</p>
 <section id="independence-via-conditional-probabilities" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="independence-via-conditional-probabilities">Independence via Conditional Probabilities</h4>
 <p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>independent events</strong> then <span class="math display">\[
@@ -596,7 +597,9 @@ P(A B)
 F_{X}(x)=\mathbb{P}(X \leq x).
 \]</span></p>
 <p>You might wonder why we bother to define the cdf. The reason is that it effectively contains all the information about the random variable. Indeed, let <span class="math inline">\(X\in\mathbb{R}\)</span> have cdf <span class="math inline">\(F\)</span> and let <span class="math inline">\(Y\in\mathbb{R}\)</span> have cdf <span class="math inline">\(G\)</span>. If <span class="math inline">\(F(x)=G(x)\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span> then <span class="math inline">\(P(X \in A)=P(Y \in A)\)</span> for all <span class="math inline">\(A\subset\mathbb{R}\)</span>. In order to denote that two random variables, here <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, have the same distribution, one can write shortly <span class="math inline">\(X\overset{d}{=}Y\)</span>.</p>
-<!-- **Caution:** Equality in distribution, $X\overset{d}{=}Y$, does generally **not** mean equality in realizations, that is $X\overset{d}{=}Y \not\Rightarrow X(\omega)=Y(\omega)$ for all $\omega\in\Omega$.  -->
+<!-- 
+**Caution:** Equality in distribution, $X\overset{d}{=}Y$, does generally **not** mean equality in realizations, that is $X\overset{d}{=}Y \not\Rightarrow X(\omega)=Y(\omega)$ for all $\omega\in\Omega$.  
+-->
 <p><strong>The defining properties of a cdf:</strong> A function <span class="math inline">\(F\)</span> mapping the real line to <span class="math inline">\([0,1]\)</span>, short <span class="math inline">\(F:\mathbb{R}\to[0,1],\)</span> is called a cdf for some probability measure <span class="math inline">\(P\)</span> if and only if it satisfies the following three properties:</p>
 <ol type="1">
 <li><p><span class="math inline">\(F\)</span> is non-decreasing i.e.&nbsp;<span class="math inline">\(x_{1}&lt;x_{2}\)</span> implies that <span class="math inline">\(F\left(x_{1}\right) \leq F\left(x_{2}\right)\)</span>.</p></li>
@@ -635,7 +638,9 @@ F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) dt\quad\text{and}\quad f_{X}(x)=F_{X}^{\pri
 <p>A <span class="math inline">\(d\)</span>-dimensional random vector is a column-vector <span class="math inline">\(X=(X_1,\dots,X_d)^\prime\)</span>, where each element is a univariate random variable.</p>
 <section id="multidimensional-distribution-function" class="level4" data-number="2.2.2.1"><h4 data-number="2.2.2.1" class="anchored" data-anchor-id="multidimensional-distribution-function">
 <span class="header-section-number">2.2.2.1</span> Multidimensional Distribution Function</h4>
-<p>The <strong>multivariate distribution function</strong> <span class="math inline">\(F\)</span> is given by <span class="math display">\[F(a_1,\dots,a_d)=P(X_1\le a_1,\dots,X_d\le a_d).\]</span></p>
+<p>The <strong>multivariate distribution function</strong> <span class="math inline">\(F\)</span> is given by <span class="math display">\[
+F(a_1,\dots,a_d)=P(X_1\le a_1,\dots,X_d\le a_d).
+\]</span></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Install the package if not installed yet</span></span>
 <span><span class="co"># install.packages("mnormt")</span></span>
@@ -670,17 +675,21 @@ x_i=\left(\begin{matrix}x_{i1}\\\vdots \\ x_{id}\end{matrix}\right)\in\mathbb{R}
 <p><span class="math display">\[
 f_{X}(x)=\mathbb{P}(X=x)\quad\text{for all}\quad x\in\{x_1,x_2,\dots\}
 \]</span></p>
-<!-- $p(\mathbf{x}_i)=P(X=\mathbf{x}_i)$ for $i=1,2,\dots$. That is, 
+<!-- 
+$p(\mathbf{x}_i)=P(X=\mathbf{x}_i)$ for $i=1,2,\dots$. That is, 
 \begin{align*}
 P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=
 \sum_{\mathbf{x}_i\in [a_1,b_1]\times\dots\times [a_d,b_d]}p(\mathbf{x}_i).
-\end{align*} -->
+\end{align*} 
+-->
 </section><section id="multidimensional-density-function" class="level4" data-number="2.2.2.3"><h4 data-number="2.2.2.3" class="anchored" data-anchor-id="multidimensional-density-function">
 <span class="header-section-number">2.2.2.3</span> Multidimensional Density Function</h4>
-<p><strong>Continuous random vectors:</strong> <span class="math inline">\(X\)</span> takes values in <span class="math inline">\(\mathbb{R}^d\)</span> and has a <strong>multidimensional density function</strong> <span class="math inline">\(f(x_1,\dots,x_d)\)</span>. That is, <span class="math display">\[\begin{align*}
+<p><strong>Continuous random vectors:</strong> <span class="math inline">\(X\)</span> takes values in <span class="math inline">\(\mathbb{R}^d\)</span> and has a <strong>multidimensional density function</strong> <span class="math inline">\(f(x_1,\dots,x_d)\)</span>. That is, <span class="math display">\[
+\begin{align*}
 &amp;P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=\\[2ex]
 =&amp;\int\limits_{a_d}^{b_d}\dots \int\limits _{a_1}^{b_1}f(x_1,\dots,x_d)dx_1\dots dx_d.
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <p>Properties of <strong>multivariate density</strong> functions:</p>
 <ul>
 <li><span class="math inline">\(\displaystyle f(x_1,\dots,x_d)\geq 0\)</span></li>
@@ -760,11 +769,12 @@ E(X)=(E(X_1),\dots,E(X_d))'.
 \]</span></p>
 </section><section id="conditional-means" class="level3" data-number="2.2.5"><h3 data-number="2.2.5" class="anchored" data-anchor-id="conditional-means">
 <span class="header-section-number">2.2.5</span> Conditional Means</h3>
-<p>Of central importance in <strong>regression analysis</strong> is the <strong>conditional mean</strong>. The conditional mean of <span class="math inline">\(X_1\)</span> for given values <span class="math inline">\(X_2=x_2,\ldots,X_d=x_d\)</span>: <span class="math display">\[\begin{align*}
+<p>Of central importance in <strong>regression analysis</strong> is the <strong>conditional mean</strong>. The conditional mean of <span class="math inline">\(X_1\)</span> for given values <span class="math inline">\(X_2=x_2,\ldots,X_d=x_d\)</span>: <span class="math display">\[
+\begin{align*}
   m(x_2,\dots,x_d):&amp;=E(X_1|X_2=x_2,\ldots,X_d=x_d)\\
                    &amp;= \int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1,
-\end{align*}\]</span><br>
-where <span class="math inline">\(m(x_2,\dots,x_d)\)</span> denotes the <strong>regression function</strong>.</p>
+\end{align*}                  
+\]</span> where <span class="math inline">\(m(x_2,\dots,x_d)\)</span> denotes the <strong>regression function</strong>.</p>
 </section><section id="means-of-transformed-random-variables-and-moments" class="level3" data-number="2.2.6"><h3 data-number="2.2.6" class="anchored" data-anchor-id="means-of-transformed-random-variables-and-moments">
 <span class="header-section-number">2.2.6</span> Means of Transformed Random Variables and Moments</h3>
 <p>The <strong>mean of a transformed random variable</strong> <span class="math inline">\(r(X)\)</span> is given by <span class="math display">\[
@@ -790,25 +800,31 @@ E(r(X))=\int r(x) f_{X}(x)dx.
 <p>As long as we do not fix the values of the conditioning variables, <span class="math inline">\(X_2,\dots,X_d\)</span>, they are random variables. Consequently, the conditional mean is generally itself a random variable <span class="math display">\[
 E(X_1|X_2,\ldots,X_d)=\int x_1 f(x_1\mid X_2,\ldots,X_d)dx_1
 \]</span> due to the randomness in <span class="math inline">\(X_2,\ldots,X_d\)</span>.</p>
-<p>Note that <span class="math inline">\(f(x_1\mid X_2,\ldots,X_d)\)</span> is just a transformation of the random variables <span class="math inline">\(X_2,\dots,X_d\)</span>. So we can easily compute the unconditional mean <span class="math inline">\(E(X_1)\)</span> by taking the mean of <span class="math inline">\(E(X_1|X_2,\ldots,X_d)\)</span> as following, <span class="math display">\[\begin{align*}
+<p>Note that <span class="math inline">\(f(x_1\mid X_2,\ldots,X_d)\)</span> is just a transformation of the random variables <span class="math inline">\(X_2,\dots,X_d\)</span>. So we can easily compute the unconditional mean <span class="math inline">\(E(X_1)\)</span> by taking the mean of <span class="math inline">\(E(X_1|X_2,\ldots,X_d)\)</span> as following, <span class="math display">\[
+\begin{align*}
 &amp;E\big({\color{RedViolet}E(X_1|X_2,\ldots,X_d)}\big)=\\
 &amp;=\int\dots\int\;{\color{RedViolet}\int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1}\;f_{X_2,\dots,X_d}(x_2,\ldots,x_d)dx_2\dots dx_d\\
 &amp;=\int x_1 \left({\color{blue}\int\dots\int f(x_1,x_2,\ldots,x_d)dx_2\dots dx_d}\right)dx_1\\
 &amp;=\int x_1 {\color{blue}f_{X_1}(x_1)}dx_1\\
 &amp;=E(X_1).
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <p>The result that <span class="math display">\[
 E\big(E(X_1|X_2,\ldots,X_d)\big)=E(X_1)
 \]</span> is called <strong>law of total expectation</strong> or <strong>law of iterated expectation</strong>.</p>
 </section></section><section id="independent-random-variables" class="level3" data-number="2.2.7"><h3 data-number="2.2.7" class="anchored" data-anchor-id="independent-random-variables">
 <span class="header-section-number">2.2.7</span> Independent Random Variables</h3>
-<p>Random variables <span class="math inline">\(X_1,\dots,X_d\)</span> are mutually <strong>independent</strong> if for all <span class="math inline">\(x=(x_1,\dots,x_d)^\prime\)</span> it is true that <span class="math display">\[\begin{align*}
+<p>Random variables <span class="math inline">\(X_1,\dots,X_d\)</span> are mutually <strong>independent</strong> if for all <span class="math inline">\(x=(x_1,\dots,x_d)^\prime\)</span> it is true that <span class="math display">\[
+\begin{align*}
   F(x_1,\dots,x_d)&amp;=F_1(x_1)\cdot F_2(x_2)\cdot\ldots\cdot F_d(x_d)\\
   f(x_1,\dots,x_d)&amp;=f_1(x_1)\cdot f_2(x_2)\cdot\ldots\cdot f_d(x_d)
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <p>The following holds true:</p>
 <ul>
-<li>Two real-valued random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent from each other <em>if and only if</em> the marginal density of <span class="math inline">\(X\)</span> equals the conditional density of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span>, <span class="math display">\[f_X(x)=f_{X|Y}(x\mid y)\quad \text{ for all } y\in\mathbb{R}.\]</span> Of course, the same statement applies to the marginal density of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X=x\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>. That is, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are two independent real-valued random variables <span class="math inline">\(f_Y(y)=f_{Y|X}(y\mid x)\)</span> for all <span class="math inline">\(x\in\mathbb{R}.\)</span>
+<li>Two real-valued random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent from each other <em>if and only if</em> the marginal density of <span class="math inline">\(X\)</span> equals the conditional density of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span>, <span class="math display">\[
+f_X(x)=f_{X|Y}(x\mid y)\quad \text{ for all } y\in\mathbb{R}.
+\]</span> Of course, the same statement applies to the marginal density of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X=x\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>. That is, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are two independent real-valued random variables <em>if and only if</em> <span class="math inline">\(f_Y(y)=f_{Y|X}(y\mid x)\)</span> for all <span class="math inline">\(x\in\mathbb{R}.\)</span>
 </li>
 <li>If a real-valued random variable <span class="math inline">\(X\)</span> is independent from a real-valued random variable <span class="math inline">\(Y\)</span>, then the conditional mean of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=y\)</span> equals the unconditional mean of <span class="math inline">\(X\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span> <span class="math display">\[
 E(X\mid Y=y)=E(X)
@@ -979,9 +995,11 @@ g_{X,Y}(x,y) = f_X(x) f_Y(y) = \frac{1}{2\pi} \cdot \exp \left\{ -\frac{1}{2}\le
 </section><section id="sec-chisqdist" class="level4" data-number="2.2.10.3"><h4 data-number="2.2.10.3" class="anchored" data-anchor-id="sec-chisqdist">
 <span class="header-section-number">2.2.10.3</span> The Chi-Squared Distribution</h4>
 <p>The chi-squared distribution is another distribution relevant in econometrics. It is often needed when testing special types of hypotheses frequently encountered when dealing with regression models.</p>
-<p>The sum of <span class="math inline">\(M\)</span> squared <em>independent standard normal</em> distributed random variables, <span class="math inline">\(Z_1,\dots,Z_M\)</span> follows a chi-squared distribution with <span class="math inline">\(M\)</span> degrees of freedom: <span class="math display">\[\begin{align*}
+<p>The sum of <span class="math inline">\(M\)</span> squared <em>independent standard normal</em> distributed random variables, <span class="math inline">\(Z_1,\dots,Z_M\)</span> follows a chi-squared distribution with <span class="math inline">\(M\)</span> degrees of freedom: <span class="math display">\[
+\begin{align*}
 Z_1^2 + \dots + Z_M^2 = \sum_{m=1}^M Z_m^2 \sim \chi^2_M.
-\end{align*}\]</span> A <span class="math inline">\(\chi^2\)</span> distributed random variable with <span class="math inline">\(M\)</span> degrees of freedom has expectation <span class="math inline">\(M\)</span>, mode at <span class="math inline">\(M-2\)</span> for <span class="math inline">\(M \geq 2\)</span> and variance <span class="math inline">\(2 \cdot M\)</span>.</p>
+\end{align*}
+\]</span> A <span class="math inline">\(\chi^2\)</span> distributed random variable with <span class="math inline">\(M\)</span> degrees of freedom has expectation <span class="math inline">\(M\)</span>, mode at <span class="math inline">\(M-2\)</span> for <span class="math inline">\(M \geq 2\)</span> and variance <span class="math inline">\(2 \cdot M\)</span>.</p>
 <p>Using the code below, we can display the pdf and the distribution function or <strong>cumulated density function (cdf)</strong> of a <span class="math inline">\(\chi^2_3\)</span> random variable in a single plot. This is achieved by setting the argument <code>add = TRUE"</code> in the second call of <code>"curve()"</code>. Further we adjust limits of both axes using <code>"xlim"</code> and <code>"ylim"</code> and choose different colors to make both functions better distinguishable. The plot is completed by adding a legend with help of <code>"legend()"</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># plot the PDF</span></span>
@@ -1049,10 +1067,12 @@ Z_1^2 + \dots + Z_M^2 = \sum_{m=1}^M Z_m^2 \sim \chi^2_M.
 \frac{Z}{\sqrt{W/\nu}} =:X \sim t_\nu
 \]</span> and <span class="math inline">\(X\)</span> follows a <em>Student <span class="math inline">\(t\)</span> distribution</em> (or simply <span class="math inline">\(t\)</span> distribution) with <span class="math inline">\(\nu\)</span> degrees of freedom.</p>
 <p>The shape of a <span class="math inline">\(t_\nu\)</span> distribution depends on <span class="math inline">\(\nu\)</span>. <span class="math inline">\(t\)</span> distributions are symmetric, bell-shaped and look similar to a normal distribution, especially when <span class="math inline">\(\nu\)</span> is large. This is not a coincidence: for a sufficiently large <span class="math inline">\(\nu\)</span>, the <span class="math inline">\(t_\nu\)</span> distribution can be approximated by the standard normal distribution. This approximation works reasonably well for <span class="math inline">\(\nu\geq 30\)</span>.</p>
-<p>A <span class="math inline">\(t_\nu\)</span> distributed random variable <span class="math inline">\(X\)</span> has an expectation if <span class="math inline">\(\nu&gt;1\)</span> and it has a variance if <span class="math inline">\(\nu&gt;2\)</span>. <span class="math display">\[\begin{align*}
+<p>A <span class="math inline">\(t_\nu\)</span> distributed random variable <span class="math inline">\(X\)</span> has an expectation if <span class="math inline">\(\nu&gt;1\)</span> and it has a variance if <span class="math inline">\(\nu&gt;2\)</span>. <span class="math display">\[
+\begin{align*}
   E(X) =&amp; 0, \ M&gt;1 \\
   \text{Var}(X) =&amp; \frac{M}{M-2}, \ M&gt;2
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <p>Let us plot some <span class="math inline">\(t\)</span> distributions with different degrees of freedoms <span class="math inline">\(\nu\)</span> and compare them to the standard normal distribution.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># plot the standard normal density</span></span>
@@ -1108,7 +1128,9 @@ f(x)=\frac{1}{\pi\left(1+x^{2}\right)}.
 </section><section id="sec-Fdist" class="level4" data-number="2.2.10.6"><h4 data-number="2.2.10.6" class="anchored" data-anchor-id="sec-Fdist">
 <span class="header-section-number">2.2.10.6</span> The F Distribution</h4>
 <p>Another ratio of random variables important to econometricians is the ratio of two independent <span class="math inline">\(\chi^2\)</span> distributed random variables that are divided by their degrees of freedom <span class="math inline">\(M\)</span> and <span class="math inline">\(n\)</span>. The quantity</p>
-<p><span class="math display">\[ \frac{W/M}{V/n} \sim F_{M,n} \ \ \text{with} \ \ W \sim \chi^2_M \ \ , \ \ V \sim \chi^2_n \]</span> follows an <span class="math inline">\(F\)</span> distribution with numerator degrees of freedom <span class="math inline">\(M\)</span> and denominator degrees of freedom <span class="math inline">\(n\)</span>, denoted <span class="math inline">\(F_{M,n}\)</span>. The distribution was first derived by George Snedecor but was named in honor of <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Sir Ronald Fisher</a>.</p>
+<p><span class="math display">\[
+\frac{W/M}{V/n} \sim F_{M,n} \ \ \text{with} \ \ W \sim \chi^2_M \ \ , \ \ V \sim \chi^2_n
+\]</span> follows an <span class="math inline">\(F\)</span> distribution with numerator degrees of freedom <span class="math inline">\(M\)</span> and denominator degrees of freedom <span class="math inline">\(n\)</span>, denoted <span class="math inline">\(F_{M,n}\)</span>. The distribution was first derived by George Snedecor but was named in honor of <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">Sir Ronald Fisher</a>.</p>
 <p>By definition, the support of both PDF and CDF of an <span class="math inline">\(F_{M,n}\)</span> distributed random variable is <span class="math inline">\(\mathbb{R}_{\geq0}\)</span>.</p>
 <p>Say we have an <span class="math inline">\(F\)</span> distributed random variable <span class="math inline">\(Y\)</span> with numerator degrees of freedom <span class="math inline">\(3\)</span> and denominator degrees of freedom <span class="math inline">\(14\)</span> and are interested in <span class="math inline">\(P(Y \geq 2)\)</span>. This can be computed with help of the function <code>"pf()"</code>. By setting the argument <code>"lower.tail"</code> to <code>"FALSE"</code> we ensure that <code>R</code> computes <span class="math inline">\(1- P(Y \leq 2)\)</span>, i.e,the probability mass in the tail right of <span class="math inline">\(2\)</span>.</p>
 <div class="cell" data-layout-align="center">

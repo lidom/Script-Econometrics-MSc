@@ -192,13 +192,13 @@ Or more generally, a whole set of events $\{A_i|i\in I\}$ is independent if
 $$
 P\left(\bigcap_{i \in J} A_{i}\right)=\prod_{i \in J}P\left(A_{i}\right)
 $$
-for every finite subset $J$ of $I$, where $I$ denotes the not necessarily finite index set (e.g. $I=\{1,2,\dots\}$).
+for every finite subset $J$ of $I$, where $I$ denotes the not necessarily finite index set $($e.g. $I=\{1,2,\dots\}).$
 
  
 
 Independence can arise in two distinct ways. Sometimes, we **explicitly assume** that two events are independent. For example, in tossing a coin twice, we usually assume the tosses are independent which reflects the fact that the coin has no memory of the first toss.
 
-In other instances, we **derive** independence by verifying that the definition of independence $P(A B)=P(A)P(B)$ holds. For example, in tossing a fair die \textit{once}, let $A=\{2,4,6\}$ be the event of observing an even number and let $B=\{1,2,3,4\}$ be the event of observing no $5$ and no $6$. Then, 
+In other instances, we **derive** independence by verifying that the definition of independence $P(A B)=P(A)P(B)$ holds. For example, in tossing a fair die *once*, let $A=\{2,4,6\}$ be the event of observing an even number and let $B=\{1,2,3,4\}$ be the event of observing no $5$ and no $6$. Then, 
 $A \cap B=\{2,4\}$ is the event of observing either a $2$ or a $4$. Are the events $A$ and $B$ independent?  
 $$
 P(A B)=\frac{2}{6}=P(A)P(B)=\frac{1}{2}\cdot \frac{2}{3}
@@ -260,6 +260,7 @@ $$
 From the definition of conditional probability, we have: 
 
 - Sensitivity of the test:
+$$
 \begin{align*}
 P(+\mid D) 
 & = \frac{P(+\cap D)}{P(D)}\\[2ex]
@@ -271,6 +272,7 @@ P(-\mid D^{c})
 & = \frac{P(-\cap D^{c})}{P(D^{c})}\\[2ex]
 & = \frac{0.9010}{(0.9010+0.0900)}\approx 0.9
 \end{align*}
+$$
 
 Apparently, the test is fairly accurate: 
 
@@ -280,11 +282,13 @@ Apparently, the test is fairly accurate:
 Now, suppose you go for a test and get a positive result. What is the probability you have the disease? Most people answer $0.90=90\%$. However, this conclusion is a fallacy ("prosecutor's fallacy") and not correct.
 
 The correct answer is 
+$$
 \begin{align*}
 P(D \mid+)
 & = \frac{P(+\cap D)}{P(+)}\\[2ex]
 & = \frac{0.0081}{(0.0081+0.0900)}=0.08 = 8\%.
 \end{align*} 
+$$
 
 The lesson here is that you need to compute the answer numerically. Don't trust your intuition.
 
@@ -382,7 +386,9 @@ You might wonder why we bother to define the cdf. The reason is that it effectiv
 about the random variable. Indeed, let $X\in\mathbb{R}$ have cdf $F$ and let $Y\in\mathbb{R}$ have cdf $G$.  If $F(x)=G(x)$ for all $x\in\mathbb{R}$ then $P(X \in A)=P(Y \in A)$ for all $A\subset\mathbb{R}$. In order to denote that two random variables, here $X$ and $Y$, have the same distribution, one can write shortly $X\overset{d}{=}Y$. 
 
 
-<!-- **Caution:** Equality in distribution, $X\overset{d}{=}Y$, does generally **not** mean equality in realizations, that is $X\overset{d}{=}Y \not\Rightarrow X(\omega)=Y(\omega)$ for all $\omega\in\Omega$.  -->
+<!-- 
+**Caution:** Equality in distribution, $X\overset{d}{=}Y$, does generally **not** mean equality in realizations, that is $X\overset{d}{=}Y \not\Rightarrow X(\omega)=Y(\omega)$ for all $\omega\in\Omega$.  
+-->
 
 
 **The defining properties of a cdf:** A function $F$ mapping the real line to $[0,1]$, short $F:\mathbb{R}\to[0,1],$ is called a cdf for some probability measure $P$ if and only if it satisfies the following three properties:
@@ -443,7 +449,9 @@ A $d$-dimensional random vector is a column-vector $X=(X_1,\dots,X_d)^\prime$, w
 
 
 The **multivariate distribution function** $F$ is given by
-$$F(a_1,\dots,a_d)=P(X_1\le a_1,\dots,X_d\le a_d).$$
+$$
+F(a_1,\dots,a_d)=P(X_1\le a_1,\dots,X_d\le a_d).
+$$
 
 ```{r, fig.align="center"}
 ## Install the package if not installed yet
@@ -483,21 +491,25 @@ $$
 f_{X}(x)=\mathbb{P}(X=x)\quad\text{for all}\quad x\in\{x_1,x_2,\dots\}
 $$
 
-<!-- $p(\mathbf{x}_i)=P(X=\mathbf{x}_i)$ for $i=1,2,\dots$. That is, 
+<!-- 
+$p(\mathbf{x}_i)=P(X=\mathbf{x}_i)$ for $i=1,2,\dots$. That is, 
 \begin{align*}
 P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=
 \sum_{\mathbf{x}_i\in [a_1,b_1]\times\dots\times [a_d,b_d]}p(\mathbf{x}_i).
-\end{align*} -->
+\end{align*} 
+-->
 
 
 
 #### Multidimensional Density Function 
 
 **Continuous random vectors:** $X$ takes values in $\mathbb{R}^d$ and has a **multidimensional density function** $f(x_1,\dots,x_d)$. That is, 
+$$
 \begin{align*}
 &P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=\\[2ex]
 =&\int\limits_{a_d}^{b_d}\dots \int\limits _{a_1}^{b_1}f(x_1,\dots,x_d)dx_1\dots dx_d.
 \end{align*}
+$$
 
 Properties of **multivariate density** functions: 
 
@@ -683,10 +695,12 @@ $$
 ### Conditional Means 
 
 Of central importance in **regression analysis** is the **conditional mean**.  The conditional mean of $X_1$ for given values  $X_2=x_2,\ldots,X_d=x_d$:
+$$
 \begin{align*}
   m(x_2,\dots,x_d):&=E(X_1|X_2=x_2,\ldots,X_d=x_d)\\
                    &= \int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1,
 \end{align*}                  
+$$
 where $m(x_2,\dots,x_d)$ denotes the **regression function**. 
 
 
@@ -733,6 +747,7 @@ due to the randomness in $X_2,\ldots,X_d$.
 
 
 Note that $f(x_1\mid X_2,\ldots,X_d)$ is just a transformation of the random variables $X_2,\dots,X_d$. So we can easily compute the unconditional mean $E(X_1)$ by taking the mean of $E(X_1|X_2,\ldots,X_d)$ as following, 
+$$
 \begin{align*}
 &E\big({\color{RedViolet}E(X_1|X_2,\ldots,X_d)}\big)=\\
 &=\int\dots\int\;{\color{RedViolet}\int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1}\;f_{X_2,\dots,X_d}(x_2,\ldots,x_d)dx_2\dots dx_d\\
@@ -740,6 +755,7 @@ Note that $f(x_1\mid X_2,\ldots,X_d)$ is just a transformation of the random var
 &=\int x_1 {\color{blue}f_{X_1}(x_1)}dx_1\\
 &=E(X_1).
 \end{align*}
+$$
 
 The result that 
 $$
@@ -752,16 +768,20 @@ is called **law of total expectation** or **law of iterated expectation**.
 ### Independent Random Variables 
 
 Random variables $X_1,\dots,X_d$ are mutually **independent** if for all $x=(x_1,\dots,x_d)^\prime$ it is true that
+$$
 \begin{align*}
   F(x_1,\dots,x_d)&=F_1(x_1)\cdot F_2(x_2)\cdot\ldots\cdot F_d(x_d)\\
   f(x_1,\dots,x_d)&=f_1(x_1)\cdot f_2(x_2)\cdot\ldots\cdot f_d(x_d)
 \end{align*}
+$$
 
 The following holds true:
 
 - Two real-valued random variables $X$ and $Y$ are independent from each other *if and only if* the marginal density of $X$ equals the conditional density of $X$ given $Y=y$ for all $y\in\mathbb{R}$,
-$$f_X(x)=f_{X|Y}(x\mid y)\quad \text{ for all } y\in\mathbb{R}.$$
-Of course, the same statement applies to the marginal density of $Y$ given $X=x$ for all $x\in\mathbb{R}$. That is, $X$ and $Y$ are two independent real-valued random variables \textit{if and only if} 
+$$
+f_X(x)=f_{X|Y}(x\mid y)\quad \text{ for all } y\in\mathbb{R}.
+$$
+Of course, the same statement applies to the marginal density of $Y$ given $X=x$ for all $x\in\mathbb{R}$. That is, $X$ and $Y$ are two independent real-valued random variables *if and only if* 
 $f_Y(y)=f_{Y|X}(y\mid x)$ for all $x\in\mathbb{R}.$
 - If a real-valued random variable $X$ is independent from a real-valued random variable $Y$, then the conditional mean of $X$ given $Y=y$ equals the unconditional mean of $X$ for all $y\in\mathbb{R}$ 
 $$
@@ -957,9 +977,11 @@ $$
 The chi-squared distribution is another distribution relevant in econometrics. It is often needed when testing special types of hypotheses frequently encountered when dealing with regression models. 
 
 The sum of $M$ squared *independent standard normal* distributed random variables, $Z_1,\dots,Z_M$ follows a chi-squared distribution with $M$ degrees of freedom:
+$$
 \begin{align*}
 Z_1^2 + \dots + Z_M^2 = \sum_{m=1}^M Z_m^2 \sim \chi^2_M. 
 \end{align*}
+$$
 A $\chi^2$ distributed random variable with $M$ degrees of freedom has expectation $M$, mode at $M-2$ for $M \geq 2$ and variance $2 \cdot M$. 
 
 
@@ -1035,10 +1057,12 @@ and $X$ follows a *Student $t$ distribution* (or simply $t$ distribution) with $
 The shape of a $t_\nu$ distribution depends on $\nu$. $t$ distributions are symmetric, bell-shaped and look similar to a normal distribution, especially when $\nu$ is large. This is not a coincidence: for a sufficiently large $\nu$, the $t_\nu$ distribution can be approximated by the standard normal distribution. This approximation works reasonably well for $\nu\geq 30$. 
 
 A $t_\nu$ distributed random variable $X$ has an expectation if $\nu>1$ and it has a variance if $\nu>2$.
+$$
 \begin{align*}
   E(X) =& 0, \ M>1 \\
   \text{Var}(X) =& \frac{M}{M-2}, \ M>2
 \end{align*}
+$$
 
 Let us plot some $t$ distributions with different degrees of freedoms $\nu$ and compare them to the standard normal distribution.
 
@@ -1112,7 +1136,9 @@ What this means in practice is that if you take a sample $x_{1}, x_{2}, \ldots, 
 
 Another ratio of random variables important to econometricians is the ratio of two independent $\chi^2$ distributed random variables that are divided by their degrees of freedom $M$ and $n$. The quantity 
 
-$$ \frac{W/M}{V/n} \sim F_{M,n} \ \ \text{with} \ \ W \sim \chi^2_M \ \ , \ \ V \sim \chi^2_n $$
+$$
+\frac{W/M}{V/n} \sim F_{M,n} \ \ \text{with} \ \ W \sim \chi^2_M \ \ , \ \ V \sim \chi^2_n 
+$$
 follows an $F$ distribution with numerator degrees of freedom $M$ and denominator degrees of freedom $n$, denoted $F_{M,n}$. The distribution was first derived by George Snedecor but was named in honor of [Sir Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher).
 
 By definition, the support of both PDF and CDF of an $F_{M,n}$ distributed random variable is $\mathbb{R}_{\geq0}$.
