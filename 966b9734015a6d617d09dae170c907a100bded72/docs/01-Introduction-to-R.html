@@ -220,7 +220,7 @@ window.Quarto = {
   <li>
 <a href="#programming-in-r" id="toc-programming-in-r" class="nav-link" data-scroll-target="#programming-in-r"><span class="header-section-number">1.4</span> Programming in R</a>
   <ul class="collapse">
-<li><a href="#simulating-data" id="toc-simulating-data" class="nav-link" data-scroll-target="#simulating-data"><span class="header-section-number">1.4.1</span> Simulating Data</a></li>
+<li><a href="#simulating-data-playing-data-god" id="toc-simulating-data-playing-data-god" class="nav-link" data-scroll-target="#simulating-data-playing-data-god"><span class="header-section-number">1.4.1</span> Simulating Data (Playing Data-God)</a></li>
   <li><a href="#writing-an-r-function" id="toc-writing-an-r-function" class="nav-link" data-scroll-target="#writing-an-r-function"><span class="header-section-number">1.4.2</span> Writing an R Function</a></li>
   </ul>
 </li>
@@ -311,7 +311,7 @@ For instance, check out one of the following repositories:
 <span class="header-section-number">1.2</span> First Steps</h2>
 <p>A good idea is to use a script file such as <code>yourFavoritFileName.R</code> in order to store your <code>R</code> commands. You can send single lines or marked regions of your R-code to the console by pressing the keys <code>STRG+ENTER</code>.</p>
 <p>To begin with baby steps, do some simple computations:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span><span class="op">+</span><span class="fl">2</span> <span class="co"># and all the others: *,/,-,^2,^3,... </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
@@ -319,7 +319,7 @@ For instance, check out one of the following repositories:
 </div>
 <p>Note: Everything that is written after the <code>#</code>-sign is ignored by R, which is very useful to comment your code.</p>
 <p>The <strong>assignment operator</strong> will be your most often used tool. Here an example to create a <strong>scalar</strong> variable:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">4</span> </span>
 <span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -333,7 +333,7 @@ For instance, check out one of the following repositories:
 </div>
 <p>Note: The R community loves the <code>&lt;-</code> assignment operator, which is a very unusual syntax. Alternatively, you can use the <code>=</code> operator.</p>
 <p>And now a more interesting object - a <strong>vector</strong>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">7</span>,<span class="fl">4</span>,<span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -341,7 +341,7 @@ For instance, check out one of the following repositories:
 </div>
 </div>
 <p>The command <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> shows the total content of your current workspace, and the command <code>rm(list=ls())</code> deletes all elements of your current workspace:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span> <span class="co"># only the first 5 elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "pandoc_dir"      "quarto_bin_path" "x"               "y"              
@@ -355,7 +355,7 @@ For instance, check out one of the following repositories:
 </div>
 <p>Note: RStudio’s <strong>Environment</strong> pane also lists all the elements in your current workspace. That is, the command <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> becomes a bit obsolete when working with RStudio.</p>
 <p>Let’s try how we can compute with vectors and scalars in R.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">7</span>,<span class="fl">4</span>,<span class="fl">1</span><span class="op">)</span></span>
 <span></span>
@@ -369,7 +369,7 @@ For instance, check out one of the following repositories:
 </div>
 </div>
 <p>Performing vector multiplications as you might expect from your last math-course, e.g., an outer product: <span class="math inline">\(y\,y^\top\)</span>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">y</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4]
@@ -380,7 +380,7 @@ For instance, check out one of the following repositories:
 </div>
 </div>
 <p>Or an inner product <span class="math inline">\(y^\top y\)</span>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1]
@@ -389,7 +389,7 @@ For instance, check out one of the following repositories:
 </div>
 <p>Note: Sometimes, R’s treatment of vectors can be annoying. The product <code>y %*% y</code> is treated as the product <code>t(y) %*% y</code>.</p>
 <p>The term-by-term execution as in the above example, <code>y*y</code>, is actually a central strength of R. We can conduct many operations <strong>vector-wisely</strong>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">y</span><span class="op">^</span><span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  4 49 16  1</code></pre>
@@ -412,7 +412,7 @@ For instance, check out one of the following repositories:
 </div>
 </div>
 <p>This is a central characteristic of so called matrix based languages like R (or Matlab). Other programming languages often have to use <strong>loops</strong> instead:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
 <span><span class="fl">1</span><span class="op">:</span><span class="va">N</span></span>
 <span></span>
@@ -429,14 +429,14 @@ For instance, check out one of the following repositories:
 <p>The <code>for()</code>-loop is the most common loop. But there is also a <code>while()</code>-loop and a <code>repeat()</code>-loop. However, loops in R can be rather slow, therefore, try to avoid them!</p>
 <!-- Try to write your own loop, which computes the element-wise logarithms of a vector `y` and finally prints these values as well as their mean!  -->
 <p>Useful commands to produce <strong>sequences</strong> of numbers:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
 <span><span class="op">-</span><span class="fl">10</span><span class="op">:</span><span class="fl">10</span></span>
 <span><span class="op">?</span><span class="va">seq</span> <span class="co"># Help for the seq()-function</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">1</span>, to<span class="op">=</span><span class="fl">100</span>, by<span class="op">=</span><span class="fl">7</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Using the sequence command <code>1:16</code>, we can go for our first <strong>matrix</strong>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">matrix</span></span>
 <span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>data<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, nrow<span class="op">=</span><span class="fl">4</span>, ncol<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -450,7 +450,7 @@ For instance, check out one of the following repositories:
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, <span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that a matrix has always two <strong>dimensions</strong>, but a vector has only one dimension:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span>    <span class="co"># Dimension of matrix A?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4 4</code></pre>
@@ -465,13 +465,13 @@ For instance, check out one of the following repositories:
 </div>
 </div>
 <p>Lets play a bit with the matrix <code>A</code> and the vector <code>y</code>. As we have seen in the loop above, the <code>[]</code>-operator <strong>selects elements</strong> of vectors and matrices:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">A</span><span class="op">[</span><span class="fl">4</span>,<span class="fl">4</span><span class="op">]</span></span>
 <span><span class="va">y</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This can be done on a more <strong>logical</strong> basis, too. For example, if you want to know which elements in the first column of matrix <code>A</code> are strictly greater than 2:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">[</span><span class="va">A</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">&gt;</span><span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3 4</code></pre>
@@ -492,12 +492,12 @@ For instance, check out one of the following repositories:
 <span class="header-section-number">1.3</span> Further Data Objects</h2>
 <p>Besides classical data objects such as scalars, vectors, and matrices there are three further data objects in R:<br><br>
 1. The <strong>array</strong>: As a matrix but with more dimensions. Here is an example of a <span class="math inline">\(2\times 2\times 2\)</span>-dimensional <code>array</code>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">myFirst.Array</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span>, dim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># Take a look at it!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br><br>
 2. The <strong>list</strong>: In <code>lists</code> you can organize different kinds of data. E.g., consider the following example:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">myFirst.List</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>  <span class="st">"Some_Numbers"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">66</span>, <span class="fl">76</span>, <span class="fl">55</span>, <span class="fl">12</span>, <span class="fl">4</span>, <span class="fl">66</span>, <span class="fl">8</span>, <span class="fl">99</span><span class="op">)</span>, </span>
 <span>  <span class="st">"Animals"</span>      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Rabbit"</span>, <span class="st">"Cat"</span>, <span class="st">"Elefant"</span><span class="op">)</span>,</span>
@@ -505,7 +505,7 @@ For instance, check out one of the following repositories:
 <span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A very useful function to find specific values and entries within lists is the <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>-function:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">myFirst.List</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 3
@@ -516,7 +516,7 @@ For instance, check out one of the following repositories:
 </div>
 <p><br><br>
 3. The <strong>data frame</strong>: A <code>data.frame</code> is a <code>list</code>-object but with some more formal restrictions (e.g., equal number of rows for all columns). As indicated by its name, a <code>data.frame</code>-object is designed to store data:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">myFirst.Dataframe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  <span class="st">"Credit_Default"</span>   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, </span>
 <span>  <span class="st">"Age"</span>              <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span>,<span class="fl">41</span>,<span class="fl">55</span>,<span class="fl">36</span>,<span class="fl">44</span>,<span class="fl">26</span><span class="op">)</span>, </span>
@@ -534,7 +534,7 @@ Alright, let's do some statistics with real data. You can download the data [HER
 
 
 
-::: {.cell}
+::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 # ATTENTION! YOU HAVE TO CHANGE "\" TO "/":
@@ -555,7 +555,7 @@ If you have problems to read the data into R, go on with these commands. (For th
 
 
 
-::: {.cell}
+::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 # install.packages("readr")
@@ -581,7 +581,7 @@ You can select specific variables of the `auto.data` using the `$`-operator:
 
 
 
-::: {.cell}
+::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 gasolin.consumption      <- auto.data$MPG.city
@@ -618,7 +618,7 @@ This is how you can produce your first plot:
 
 
 
-::: {.cell}
+::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 ## Plot the data:
@@ -629,7 +629,7 @@ plot(y=gasolin.consumption, x=car.weight,
 ```
 
 ::: {.cell-output-display}
-![](01-Introduction-to-R_files/figure-html/unnamed-chunk-22-1.png){width=672}
+![](01-Introduction-to-R_files/figure-html/unnamed-chunk-22-1.png){fig-align='center' width=672}
 :::
 :::
 
@@ -649,7 +649,7 @@ The command `lm()` computes the estimates of this linear regression model. The c
 
 
 
-::: {.cell}
+::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
 lm.result   <- lm(gasolin.consumption~car.weight)
@@ -740,21 +740,33 @@ abline(a=alpha,
 -->
 </section><section id="programming-in-r" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="programming-in-r">
 <span class="header-section-number">1.4</span> Programming in R</h2>
-<section id="simulating-data" class="level3" data-number="1.4.1"><h3 data-number="1.4.1" class="anchored" data-anchor-id="simulating-data">
-<span class="header-section-number">1.4.1</span> Simulating Data</h3>
-<p>Let’s write, i.e., program our own R-function for estimating linear regression models. In order to be able to validate our function, we start with <strong>simulating data</strong> for which we then <em>know</em> all true parameters. Simulating data is like being the “Data-God”: For instance, we generate realizations of the error term <span class="math inline">\(\varepsilon_i\)</span>, i.e., something which we <em>never</em> observe in real data.</p>
-<p><br></p>
-<p>Let us consider the following multiple regression model:</p>
+<section id="simulating-data-playing-data-god" class="level3" data-number="1.4.1"><h3 data-number="1.4.1" class="anchored" data-anchor-id="simulating-data-playing-data-god">
+<span class="header-section-number">1.4.1</span> Simulating Data (Playing Data-God)</h3>
+<section id="defining-a-data-generating-process" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="defining-a-data-generating-process">Defining a Data Generating Process</h4>
+<p>Let’s write, i.e., program our own R-function for estimating linear regression models. In order to be able to validate our function, we start with <strong>simulating data</strong> for which we then <em>know</em> all true parameters. Simulating data is like being the “Data-God”: For instance, we can generate realizations of the error term <span class="math inline">\(\varepsilon_i\)</span>, i.e., something which we <strong>never</strong> observe in real data.</p>
+<p>Let us design the data generating process from which to generate artificial data. We consider the following multiple regression model:</p>
 <p><span class="math display">\[
-y_i=\beta_1 +\beta_2 x_{2i}+\beta_3 x_{3i}+\varepsilon_{i},\quad i=1,\dots,n,
-\]</span> where <span class="math inline">\(\varepsilon_{i}\)</span> is a heteroskedastic error term <span class="math display">\[\varepsilon_{i}\sim N(0,\sigma_i^2),\quad \sigma_i=|x_{3i}|,\]</span></p>
-<p>and where for all <span class="math inline">\(i=1,\dots,n=50\)</span>:</p>
+Y_i=\beta_1  X_{i1} + \beta_2 X_{i2}+\beta_3 X_{i3}+\varepsilon_{i},\quad i=1,\dots,n,
+\]</span> where <span class="math inline">\(\varepsilon_{i}\)</span> is a heteroskedastic error term <span class="math display">\[
+\varepsilon_{i}\sim \mathcal{N}(0,\sigma_i^2),\quad \sigma_i=|x_{3i}|,
+\]</span></p>
+<p>for all <span class="math inline">\(i=1,\dots,n,\)</span> and where</p>
 <ul>
-<li><span class="math inline">\(x_{2i}\sim N(10,1.5^2)\)</span></li>
 <li>
-<span class="math inline">\(x_{3i}\)</span> comes from a t-distribution with 5 degrees of freedom and non-centrality parameter 2</li>
-</ul>
-<div class="cell">
+<span class="math inline">\(n=50\)</span> (sample size)</li>
+<li>
+<span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i=1,\dots,n=50\)</span>
+</li>
+<li><span class="math inline">\(X_{i2}\sim \mathcal{N}(10,1.5^2)\)</span></li>
+<li>
+<span class="math inline">\(X_{i3}\)</span> comes from a t-distribution with 5 degrees of freedom and non-centrality parameter 2</li>
+<li>
+<span class="math inline">\(\beta_1 = 1,\;\)</span> <span class="math inline">\(\beta_2 = -5,\;\)</span> <span class="math inline">\(\beta_3 = 5,\;\)</span>
+</li>
+</ul></section><section id="generating-artificial-data-i.e.-generating-realizations-from-a-data-generating-process" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="generating-artificial-data-i.e.-generating-realizations-from-a-data-generating-process">Generating Artificial Data; I.e. Generating Realizations from a Data Generating Process</h4>
+<p>The above setup completely defines the (usually unknown) data generating process.</p>
+<p>Now we can use <code>R</code> to generate realizations from this data generating process. We begin with generating realizations of the regressors:</p>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">109</span><span class="op">)</span> <span class="co"># Sets the "seed" of the random number generators:</span></span>
 <span><span class="va">n</span>   <span class="op">&lt;-</span> <span class="fl">50</span>     <span class="co"># Number of observations</span></span>
 <span></span>
@@ -764,34 +776,35 @@ y_i=\beta_1 +\beta_2 x_{2i}+\beta_3 x_{3i}+\varepsilon_{i},\quad i=1,\dots,n,
 <span><span class="va">X.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">rt</a></span><span class="op">(</span><span class="va">n</span>, df<span class="op">=</span><span class="fl">5</span>, ncp<span class="op">=</span><span class="fl">2</span><span class="op">)</span>        <span class="co"># Draw realizations form a t-distr.</span></span>
 <span><span class="va">X</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">X.1</span>, <span class="va">X.2</span>, <span class="va">X.3</span><span class="op">)</span>      <span class="co"># Save as a Nx3-dimensional data matrix.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>OK, we have regressors, i.e., data that we also have in real data sets.</p>
-<p>Now we define the elements of the <span class="math inline">\(\beta\)</span>-vector. Be aware of the difference: In real data sets we do not know the true <span class="math inline">\(\beta\)</span>-vector, but try to estimate it. However, when simulating data, we determine (as “Data-Gods”) the true <span class="math inline">\(\beta\)</span>-vector and can compare our estimate <span class="math inline">\(\hat{\beta}\)</span> with the true <span class="math inline">\(\beta\)</span>:</p>
-<div class="cell">
+<p>Now we define the elements of the <span class="math inline">\(\beta\)</span>-vector. Be aware of the difference: In real data sets we do not know the true <span class="math inline">\(\beta\)</span>-vector, but try to estimate it. However, when simulating data, we determine (as “Data-Gods”) the true <span class="math inline">\(\beta\)</span>-vector and can compare our estimates <span class="math inline">\(\hat{\beta}_1,\hat{\beta}_2,\)</span> and <span class="math inline">\(\hat{\beta}_3\)</span> with the true values <span class="math inline">\(\beta_1=1,\)</span> <span class="math inline">\(\beta_2=-5,\)</span> and <span class="math inline">\(\beta_3=5.\)</span></p>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Define the slope-coefficients</span></span>
 <span><span class="va">beta.vec</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">5</span>,<span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We still need to simulate realizations of the dependent variable <span class="math inline">\(y_i\)</span>. Remember that <span class="math inline">\(y_i=\beta_1 x_{1i}+\beta_1 x_{2i}+\beta_3 x_{3i}+\varepsilon_{i}\)</span>. That is, we only need realizations from the error terms <span class="math inline">\(\varepsilon_i\)</span> in order to compute the realizations from <span class="math inline">\(y_i\)</span>. This is how you can simulate realizations from the heteroscedastic error terms <span class="math inline">\(\varepsilon_i\)</span>:</p>
-<div class="cell">
+<p>We still need to simulate realizations of the dependent variable <span class="math inline">\(y_i\)</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> Remember that <span class="math display">\[
+Y_i=\beta_1 X_{i1} +\beta_2 X_{i2}+\beta_3 x_{i3} + \varepsilon_{i}.
+\]</span> That is, we only need realizations from the error terms <span class="math inline">\(\varepsilon_i\)</span> in order to compute the realizations from <span class="math inline">\(y_i\)</span>. This is how you can simulate realizations from the heteroskedastic error terms <span class="math inline">\(\varepsilon_{i}\sim \mathcal{N}(0,\sigma_i^2)\)</span> with <span class="math inline">\(\sigma_i=|x_{3i}|\)</span>:</p>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Generate realizations from the heteroscadastic error term</span></span>
 <span><span class="va">eps</span>       <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">X.3</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Take a look at the heteroskedasticity in the error term:</p>
-<div class="cell" data-fig.margin="true">
+<div class="cell" data-layout-align="center" data-fig.margin="true">
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">eps</span>, x<span class="op">=</span><span class="va">X.3</span>, </span>
 <span>     main<span class="op">=</span><span class="st">"Realizations of the \nHeteroscedastic Error Term"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="432"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="432"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>With the (pseudo-random) realizations from <span class="math inline">\(\varepsilon_i\)</span>, we can finally generate realizations from the dependent variable <span class="math inline">\(y_i\)</span>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Dependent variable:</span></span>
 <span><span class="va">y</span>   <span class="op">&lt;-</span> <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">beta.vec</span> <span class="op">+</span> <span class="va">eps</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Let’s take a look at the data:</p>
+<p>Let’s take a look at the artificial data:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mydata</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"Y"</span><span class="op">=</span><span class="va">y</span>, <span class="st">"X.1"</span><span class="op">=</span><span class="va">X.1</span>, <span class="st">"X.2"</span><span class="op">=</span><span class="va">X.2</span>, <span class="st">"X.3"</span><span class="op">=</span><span class="va">X.3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">mydata</span><span class="op">[</span>,<span class="op">-</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="co"># The '-2' removes the intercept variable "X.1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -802,12 +815,12 @@ y_i=\beta_1 +\beta_2 x_{2i}+\beta_3 x_{3i}+\varepsilon_{i},\quad i=1,\dots,n,
 </div>
 </div>
 </div>
-</section><section id="writing-an-r-function" class="level3" data-number="1.4.2"><h3 data-number="1.4.2" class="anchored" data-anchor-id="writing-an-r-function">
+</section></section><section id="writing-an-r-function" class="level3" data-number="1.4.2"><h3 data-number="1.4.2" class="anchored" data-anchor-id="writing-an-r-function">
 <span class="header-section-number">1.4.2</span> Writing an R Function</h3>
 <p>Once we have data, we can compute the OLS estimate of the true <span class="math inline">\(\beta\)</span> vector. Remember the formula: <span class="math display">\[
 \hat{\beta}=(X^\top X)^{-1}X^\top y
 \]</span> In R-Code this is: <span class="math inline">\((X^\top X)^{-1}=\)</span><code>solve(t(X) %*% X)</code>, i.e.:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Computation of the beta-Vector:</span></span>
 <span><span class="va">beta.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">X</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">y</span></span>
 <span><span class="va">beta.hat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -818,9 +831,8 @@ X.2 -4.692735
 X.3  5.078342</code></pre>
 </div>
 </div>
-<p><br></p>
 <p>Well done. Using the above lines of code we can easily program our own <code>myOLSFun()</code> function!</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">myOLSFun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, <span class="va">add.intercept</span><span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">{</span></span>
 <span>  </span>
 <span>  <span class="co">## Number of Observations:</span></span>
@@ -875,11 +887,11 @@ X.3  5.078342</code></pre>
 <span class="header-section-number">1.6</span> Tidyverse</h2>
 <p>The <code>tidyverse</code> package is a collection of packages that lets you import, manipulate, explore, visualize and model data in a harmonized and consistent way which helps you to be more productive.</p>
 <p>Installing the <code>tidyverse</code> package:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To use the <code>tidyverse</code> package load it using the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Chick Weight Data</strong></p>
@@ -888,7 +900,7 @@ X.3  5.078342</code></pre>
 <p><em>“The body weights of the chicks were measured at birth and every second day thereafter until day 20. They were also measured on day 21. There were four groups of chicks on different protein diets.”</em></p>
 </blockquote>
 <p>You can get more information, including references by typing:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="st">"ChickWeight"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>The Data: </strong> There are 578 observations (rows) and 4 variables:</p>
@@ -904,14 +916,14 @@ X.3  5.078342</code></pre>
 </ul>
 <p>Note: <code>weight</code> has a lower case <code>w</code> (recall R is case sensitive).</p>
 <p>Store the data locally:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ChickWeight</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Chick</span>, <span class="va">Diet</span>, <span class="va">Time</span>, <span class="va">weight</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">Chick</span>, <span class="va">Diet</span>, <span class="va">Time</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="st">"data/ChickWeight.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>First we will import the data from a file called <code>ChickWeight.csv</code> using the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function from the <code>readr</code> package (part of the <code>tidyverse</code>). The first thing to do, outside of R, is to open the file <code>ChickWeight.csv</code> to check what it contains and that it makes sense. Now we can import the data as follows:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">CW</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/ChickWeight.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 578 Columns: 4
@@ -928,7 +940,7 @@ dbl (4): Chick, Diet, Time, weight
 working directory ...</code></pre>
 <p><strong>Changing the working directory:</strong> In RStudio you can use the menu bar (“Session - Set Working Directory - Choose Directory…”). Alternatively, you can use the function <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code>.</p>
 <p><strong>Looking at the Dataset:</strong> To look at the data type just type the object (dataset) name:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">CW</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 578 × 4
@@ -948,7 +960,7 @@ working directory ...</code></pre>
 </div>
 </div>
 <p>If there are too many variables then not all them may be printed. To overcome this issue we can use the <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> function which makes it possible to see every column in your dataset (called a “data frame” in R speak).</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">CW</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 578
@@ -960,7 +972,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 </div>
 </div>
 <p>The function <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> allows for a spread-sheet type of view on the data:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">CW</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="tidyverse-plotting-basics" class="level3" data-number="1.6.1"><h3 data-number="1.6.1" class="anchored" data-anchor-id="tidyverse-plotting-basics">
@@ -986,20 +998,20 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 </div>
 </div>
 <p>Add color for <code>Diet</code>. The graph above does not differentiate between the diets. Let’s use a different color for each diet.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Adding colour for diet</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">CW</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Time</span>,<span class="va">weight</span>,colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Diet</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/addColourPlot-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/addColourPlot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>It is difficult to conclude anything from this graph as the points are printed on top of one another (with diet 1 underneath and diet 4 at the top).</p>
 <p><strong>Factor Variables:</strong> Before we continue, we have to make an important change to the <code>CW</code> dataset by making <code>Diet</code> and <code>Time</code> <em>factor variables</em>. This means that R will treat them as categorical variables (see the <code>&lt;fct&gt;</code> variables below) instead of continuous variables. It will simplify our coding. The next section will explain the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">CW</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">CW</span>, Diet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Diet</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">CW</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">CW</span>, Time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Time</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">CW</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1013,15 +1025,15 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 </div>
 </div>
 <p>The <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> function: To plot each diet separately in a grid using <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Adding jitter to the points</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">CW</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Time</span>, <span class="va">weight</span>, colour<span class="op">=</span><span class="va">Diet</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">Diet</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/ScatterPlot-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/ScatterPlot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1038,35 +1050,35 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 <!-- ``` -->
 <p><strong>Interpretation:</strong> Diet 4 has the least variability but we can’t really say anything about the mean effect of each diet although diet 3 seems to have the highest.</p>
 <p>Next we will plot the <strong>mean changes</strong> over time for each diet using the <code><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary()</a></code> function:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">CW</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Time</span>, <span class="va">weight</span>, </span>
 <span>               group<span class="op">=</span><span class="va">Diet</span>, colour<span class="op">=</span><span class="va">Diet</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary</a></span><span class="op">(</span>fun<span class="op">=</span><span class="st">"mean"</span>, geom<span class="op">=</span><span class="st">"line"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/meanlinesPlot-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/meanlinesPlot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p><strong>Interpretation:</strong> We can see that diet 3 has the highest mean weight gains by the end of the experiment. However, we don’t have any information about the variation (uncertainty) in the data.</p>
 <p>To see variation between the different diets we use <code>geom_boxplot</code> to plot a box-whisker plot. A note of caution is that the number of chicks per diet is relatively low to produce this plot.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">CW</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Time</span>, <span class="va">weight</span>, colour<span class="op">=</span><span class="va">Diet</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">Diet</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Chick Weight over Time by Diet"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/boxPlot-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/boxPlot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p><strong>Interpretation:</strong> Diet 3 seems to have the highest “average” weight gain but it has more variation than diet 4 which is consistent with our findings so far.</p>
 <p>Let’s finish with a plot that you might include in a publication.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">CW</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Time</span>, <span class="va">weight</span>, group<span class="op">=</span><span class="va">Diet</span>, </span>
 <span>                             colour<span class="op">=</span><span class="va">Diet</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">Diet</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1079,8 +1091,8 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Time (days)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Weight (grams)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/finalPlot-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="01-Introduction-to-R_files/figure-html/finalPlot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1090,7 +1102,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 <p>In this section we will learn how to wrangle (manipulate) datasets using the <code>tidyverse</code> package. Let’s start with the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> functions.</p>
 <p><br></p>
 <p><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>: Adds a new variable (column) or modifies an existing one. We already used this above to create factor variables.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Added a column</span></span>
 <span><span class="va">CWm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">CW</span>, weightKg <span class="op">=</span> <span class="va">weight</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="va">CWm1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1118,7 +1130,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 </div>
 <p><br></p>
 <p><code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>: Keeps, drops or reorders variables.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Drop the weight variable from CWm1 using minus</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">CWm1</span>, <span class="op">-</span><span class="va">weight</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1144,7 +1156,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 </div>
 <p><br></p>
 <p><code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>: Renames variables whilst keeping all variables.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="va">CW</span>, Group <span class="op">=</span> <span class="va">Diet</span>, Weight <span class="op">=</span> <span class="va">weight</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 578 × 4
@@ -1158,7 +1170,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 </div>
 <p><br></p>
 <p><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>: Keeps or drops observations (rows).</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb96"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">CW</span>, <span class="va">Time</span><span class="op">==</span><span class="fl">21</span> <span class="op">&amp;</span> <span class="va">weight</span><span class="op">&gt;</span><span class="fl">300</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 4
@@ -1173,7 +1185,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 <p>For comparing values in vectors use: <code>&lt;</code> (less than), <code>&gt;</code> (greater than), <code>&lt;=</code> (less than and equal to), <code>&gt;=</code> (greater than and equal to), <code>==</code> (equal to) and <code>!=</code> (not equal to). These can be combined logically using <code>&amp;</code> (and) and <code>|</code> (or).</p>
 <p><br></p>
 <p><code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>: Changes the order of the observations.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">CW</span>, <span class="va">Chick</span>, <span class="va">Time</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 578 × 4
@@ -1200,7 +1212,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 <span class="header-section-number">1.6.3</span> The pipe operator <code>%&gt;%</code>
 </h3>
 <p>In reality you will end up doing multiple data wrangling steps that you want to save. The pipe operator <code>%&gt;%</code> makes your code nice and readable:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">CW21</span> <span class="op">&lt;-</span> <span class="va">CW</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Time</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">21</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>Weight <span class="op">=</span> <span class="va">weight</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -1223,7 +1235,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 <p>Create a new dataset (object) called <code>CW21</code> using dataset <code>CW</code> <strong><em>then</em></strong> keep the data for days 0 and 21 <strong><em>then</em></strong> rename variable <code>weight</code> to <code>Weight</code> <strong><em>then</em></strong> create a variable called <code>Group</code> <strong><em>then</em></strong> keep variables <code>Chick</code>, <code>Group</code>, <code>Time</code> and <code>Weight</code> and <strong><em>then</em></strong> finally arrange the data by variables <code>Chick</code> and <code>Time</code>.</p>
 </blockquote>
 <p>This is the same code:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">CW21</span> <span class="op">&lt;-</span> <span class="va">CW</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">Time</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">21</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="va">.</span>, Weight <span class="op">=</span> <span class="va">weight</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -1235,7 +1247,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 </section><section id="the-group_by-function" class="level3" data-number="1.6.4"><h3 data-number="1.6.4" class="anchored" data-anchor-id="the-group_by-function">
 <span class="header-section-number">1.6.4</span> The <code>group_by()</code> function</h3>
 <p>From the data visualizations above we concluded that the diet 3 has the highest mean and diet 4 the least variation. In this section, we will quantify the effects of the diets using <strong>summmary statistics</strong>. We start by looking at the number of observations and the mean by <strong>diet</strong> and <strong>time</strong>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mnsdCW</span> <span class="op">&lt;-</span> <span class="va">CW</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Diet</span>, <span class="va">Time</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>, Mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -1258,7 +1270,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 </div>
 <p>For each distinct combination of <code>Diet</code> and <code>Time</code>, the chick weight data is summarized into the number of observations (<code>N</code>) and the mean (<code>Mean</code>) of <code>weight</code>.</p>
 <p><strong>Further summaries:</strong> Let’s also calculate the standard deviation, median, minimum and maximum values but only at days 0 and 21.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb109"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sumCW</span> <span class="op">&lt;-</span>  <span class="va">CW</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Time</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">21</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Diet</span>, <span class="va">Time</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -1286,7 +1298,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 </div>
 </div>
 <p>Let’s make the summaries “prettier”, say, for a report or publication.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb113"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/">"knitr"</a></span><span class="op">)</span> <span class="co"># to use the kable() function</span></span>
 <span><span class="va">prettySumCW</span> <span class="op">&lt;-</span> <span class="va">sumCW</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>`Mean (SD)` <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">Mean</span>, digits<span class="op">=</span><span class="fl">1</span><span class="op">)</span>,</span>
@@ -1297,7 +1309,7 @@ $ weight &lt;dbl&gt; 39, 35, 41, 45, 49, 51, 57, 51, 54, 41, 49, 56, 64, 68, 68,
 <span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">"latex"</span><span class="op">)</span></span>
 <span><span class="va">prettySumCW</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead><tr class="header">

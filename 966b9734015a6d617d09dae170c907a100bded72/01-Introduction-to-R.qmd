@@ -326,24 +326,36 @@ abline(a=alpha,
 
 ## Programming in R
 
-### Simulating Data 
+### Simulating Data (Playing Data-God)
 
-Let's write, i.e., program our own R-function for estimating linear regression models. In order to be able to validate our function, we start with **simulating data** for which we then *know* all true parameters. Simulating data is like being the "Data-God": For instance, we generate realizations of the error term $\varepsilon_i$, i.e., something which we *never* observe in real data. 
+#### Defining a Data Generating Process {-}
 
-\
+Let's write, i.e., program our own R-function for estimating linear regression models. In order to be able to validate our function, we start with **simulating data** for which we then *know* all true parameters. Simulating data is like being the "Data-God": For instance, we can generate realizations of the error term $\varepsilon_i$, i.e., something which we **never** observe in real data. 
 
-Let us consider the following multiple regression model:
+
+Let us design the data generating process from which to generate artificial data. We consider the following multiple regression model:
 
 $$
-y_i=\beta_1 +\beta_2 x_{2i}+\beta_3 x_{3i}+\varepsilon_{i},\quad i=1,\dots,n,
+Y_i=\beta_1  X_{i1} + \beta_2 X_{i2}+\beta_3 X_{i3}+\varepsilon_{i},\quad i=1,\dots,n,
 $$
 where $\varepsilon_{i}$ is a heteroskedastic error term
-$$\varepsilon_{i}\sim N(0,\sigma_i^2),\quad \sigma_i=|x_{3i}|,$$
+$$
+\varepsilon_{i}\sim \mathcal{N}(0,\sigma_i^2),\quad \sigma_i=|x_{3i}|,
+$$
 
-and where for all $i=1,\dots,n=50$:
+for all $i=1,\dots,n,$ and where
 
-* $x_{2i}\sim N(10,1.5^2)$
-* $x_{3i}$ comes from a t-distribution with 5 degrees of freedom and non-centrality parameter 2
+* $n=50$ (sample size)
+* $X_{i1}=1$ for all $i=1,\dots,n=50$
+* $X_{i2}\sim \mathcal{N}(10,1.5^2)$
+* $X_{i3}$ comes from a t-distribution with 5 degrees of freedom and non-centrality parameter 2
+* $\beta_1 = 1,\;$ $\beta_2 = -5,\;$ $\beta_3 = 5,\;$
+
+
+#### Generating Artificial Data; I.e. Generating Realizations from a Data Generating Process {-}
+
+The above setup completely defines the (usually unknown) data generating process. Now we can use `R` to generate realizations from this data generating process. We begin with generating realizations of the regressors:
+
 
 ```{r}
 set.seed(109) # Sets the "seed" of the random number generators:
@@ -356,16 +368,19 @@ X.3 <- rt(n, df=5, ncp=2)        # Draw realizations form a t-distr.
 X   <- cbind(X.1, X.2, X.3)      # Save as a Nx3-dimensional data matrix.
 ```
 
-OK, we have regressors, i.e., data that we also have in real data sets. 
 
-Now we define the elements of the $\beta$-vector. Be aware of the difference: In real data sets we do not know the true $\beta$-vector, but try to estimate it. However, when simulating data, we determine (as "Data-Gods") the true $\beta$-vector and can compare our estimate $\hat{\beta}$ with the true $\beta$:
+Now we define the elements of the $\beta$-vector. Be aware of the difference: In real data sets we do not know the true $\beta$-vector, but try to estimate it. However, when simulating data, we determine (as "Data-Gods") the true $\beta$-vector and can compare our estimates $\hat{\beta}_1,\hat{\beta}_2,$ and $\hat{\beta}_3$ with the true values $\beta_1=1,$ $\beta_2=-5,$ and $\beta_3=5.$
 ```{r}
 ## Define the slope-coefficients
 beta.vec  <- c(1,-5,5)
 ```
 
 
-We still need to simulate realizations of the dependent variable $y_i$. Remember that $y_i=\beta_1 x_{1i}+\beta_1 x_{2i}+\beta_3 x_{3i}+\varepsilon_{i}$. That is, we only need realizations from the error terms $\varepsilon_i$ in order to compute the realizations from $y_i$. This is how you can simulate realizations from the heteroscedastic error terms $\varepsilon_i$:
+We still need to simulate realizations of the dependent variable $y_i$ for all $i=1,\dots,n.$ Remember that 
+$$
+Y_i=\beta_1 X_{i1} +\beta_2 X_{i2}+\beta_3 x_{i3} + \varepsilon_{i}. 
+$$ 
+That is, we only need realizations from the error terms $\varepsilon_i$ in order to compute the realizations from $y_i$. This is how you can simulate realizations from the heteroskedastic error terms $\varepsilon_{i}\sim \mathcal{N}(0,\sigma_i^2)$ with $\sigma_i=|x_{3i}|$:
 
 ```{r}
 ## Generate realizations from the heteroscadastic error term
@@ -387,7 +402,7 @@ y   <- X %*% beta.vec + eps
 ```
 
 
-Let's take a look at the data:
+Let's take a look at the artificial data:
 ```{r,fig.width=10, fig.height=5, out.width='\\textwidth', fig.align='center'}
 mydata    <- data.frame("Y"=y, "X.1"=X.1, "X.2"=X.2, "X.3"=X.3)
 pairs(mydata[,-2]) # The '-2' removes the intercept variable "X.1"
@@ -409,7 +424,6 @@ beta.hat <- solve(t(X) %*% X) %*% t(X) %*% y
 beta.hat
 ```
 
-\
 
 
 Well done. Using the above lines of code we can easily program our own `myOLSFun()` function!
