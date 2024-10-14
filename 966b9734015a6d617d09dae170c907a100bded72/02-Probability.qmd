@@ -749,7 +749,7 @@ where $\mu=E(X)$.
 **Note:** Moments determine the tail of a distribution (but not much else); see @LB2000. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g. the uniform distribution $\mathcal{U}[a,b]$) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support; see @sec-NormalDistr. 
 
 
-#### Law of Total Expectation
+#### Law of Total Expectation 
 
 As long as we do not fix the values of the conditioning variables, $X_2,\dots,X_d$, they are random variables.  Consequently, the conditional mean is generally itself a random variable 
 $$
