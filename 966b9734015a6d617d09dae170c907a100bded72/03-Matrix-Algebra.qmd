@@ -46,7 +46,11 @@ where
 $$
 a_i = \begin{pmatrix} a_{1i} \\ \vdots \\ a_{ki} \end{pmatrix}
 $$ 
-is the $i$-th column of $A$ and $\alpha_i = (a_{i1}, \ldots, a_{im})$ is the $i$-th row.
+is the $i$-th column of $A$ and 
+$$
+\alpha_i = (a_{i1}, \ldots, a_{im})
+$$ 
+is the $i$-th row.
 
 
 
@@ -54,28 +58,32 @@ is the $i$-th column of $A$ and $\alpha_i = (a_{i1}, \ldots, a_{im})$ is the $i$
 ### Some Specific Matrices
 
 A matrix is called **square matrix** if the numbers of rows and columns
-coincide (i.e., $k=m$).
+coincide (i.e., $k=m$). For instance, 
 $$
 {B} = \begin{pmatrix}1 & 2 \\ 3 & 4 \end{pmatrix}
 $$ 
-is a square matrix. A square matrix is called **diagonal matrix** if all
+is a $(2\times 2)$ square matrix. A square matrix is called **diagonal matrix** if all
 off-diagonal elements are zero.
 $$
 {C} = \begin{pmatrix}1 & 0 \\ 0 & 4 \end{pmatrix}
 $$ 
 is a diagonal matrix. We also write
-$C = \mathop{\mathrm{diag}}(1,4)$. A square matrix is called
+$$
+C = \mathop{\mathrm{diag}}(1,4). 
+$$ 
+A square matrix is called
 **upper triangular** if all elements below the main diagonal are zero,
 and **lower triangular** if all elements above the main diagonal are
 zero. Examples of an upper triangular matrix $D$ and a lower
 triangular matrix $E$ are
 $$
-{D} = \begin{pmatrix}1 & 2 \\ 0 & 4 \end{pmatrix},
-\quad
+{D} = \begin{pmatrix}1 & 2 \\ 0 & 4 \end{pmatrix}
+\quad \text{and}\quad 
 {E} = \begin{pmatrix}1 & 0 \\ 3 & 4 \end{pmatrix}.
 $$ 
 The $k \times k$ diagonal matrix 
-$${I}_k=
+$$
+{I}_k=
       \begin{pmatrix}
       1      & 0      & \cdots & 0\\
       0      & 1      & \cdots & 0\\
@@ -85,16 +93,18 @@ $${I}_k=
 $$ 
 is called **identity matrix** of order $k$. The $k \times m$ matrix
 $$
-{0}_{k\times m}
-       =\begin{pmatrix}
+\underset{(k\times m)}{0}\;=0=\begin{pmatrix}
              0      & \cdots & 0\\
             \vdots &  \ddots      & \vdots\\
             0      & \cdots & 0
        \end{pmatrix}
 $$ 
-is called **zero matrix**. The **zero vector** of length $k$ is
+is called **zero matrix**. 
+
+
+The **zero (column) vector** of length $k$ is
 $$
-{0}_{k}
+\underset{(k\times 1)}{0}\; 0 
        =\begin{pmatrix}
              0   \\
             \vdots \\
@@ -167,7 +177,7 @@ dim(A) #number of rows and columns
 
 ## Sums and Products
 
-### Matrix summation
+### Matrix Summation
 
 Let $A$ and $B$ both be matrices of order
 $k \times m$. Their sum is defined componentwise:
@@ -199,7 +209,7 @@ $$
 \end{array}
 $$
 
-### Scalar-matrix multiplication
+### Scalar-Matrix Multiplication
 
 The product of a $k \times m$ matrix ${A}$ with a scalar
 $\lambda\in\mathbb{R}$ is defined componentwise:
@@ -224,7 +234,7 @@ $$\begin{array}{@{}rr@{\ }c@{\ }l@{}r@{}}
 \end{array}
 $$
 
-### Element-by-element operations in R
+### Element-by-Element Operations in R
 
 Basic arithmetic operations work on an element-by-element basis in `R`:
 
@@ -238,9 +248,9 @@ A/2 #division of entries by 2
 A*B #element-wise multiplication
 ```
 
-### Vector-vector multiplication
+### Vector-Vector Multiplication
 
-#### Inner product
+#### Inner Product
 
 The **inner product** (also known as dot product) of two vectors
 ${a},{b}\in\mathbb{R}^k$ is
@@ -267,7 +277,7 @@ $a$ and $b$ are called **orthonormal** if, in
 addition to $a'b$, we have
 $a' a = 1$ and $b' b=1$.
 
-#### Outer product
+#### Outer Product
 
 The outer product (also known as dyadic product) of two vectors
 ${x} \in \mathbb R^k$ and ${y}\in\mathbb{R}^m$ is
@@ -290,7 +300,7 @@ $$
 \end{matrix}\right).
 $$
 
-#### Vector multiplication in `R`
+#### Vector Multiplication in `R`
 
 For vector multiplication in `R`, we use the operator `%*%` (recall that
 `*` is already reserved for element-wise multiplication). Let's
@@ -303,7 +313,7 @@ y %*% t(y) #the outer product of y with itself
 c(1,2) %*% t(c(-2,0,2)) #the example from above
 ```
 
-### Matrix-matrix multiplication
+### Matrix-Matrix Multiplication
 
 The **matrix product** of a $k \times m$ matrix ${A}$ and a
 $m \times n$ matrix ${B}$ is the $k\times n$ matrix

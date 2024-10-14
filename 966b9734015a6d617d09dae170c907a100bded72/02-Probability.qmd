@@ -367,7 +367,7 @@ $x$ | $P_X(X=x)$
 2   | $1 / 4$
 
 <!-- Try generalizing this to $n$ flips. -->
-Here, $P_{X}$ is not the same probability function as $P$, because $P$ maps from the sample space events, $\omega$, to $[0,1]$, while $P_X$ maps from the random-variable events, $X(\omega)$, to $[0,1]$.  We will typically forget about the sample space $\Omega$ and just think of the random variable as an experiment with real-valued (possible multivariate) outcomes. We will therefore write $P\left(X=x_{k}\right)$ instead of $P_{X}\left(X=x_{k}\right)$ to simplify the notation.
+Here, $P_{X}$ is not the same probability function as $P$, because $P$ maps from the sample space events, $\omega$, to $[0,1],$ while $P_X$ maps from the random-variable events, $X(\omega),$ to $[0,1].$  We will typically forget about the sample space $\Omega$ and just think of the random variable as an experiment with real-valued (possible multivariate) outcomes. We will therefore write $P\left(X=x_{k}\right)$ instead of $P_{X}\left(X=x_{k}\right)$ to simplify the notation.
 
 
 ### Univariate Distribution and Probability Functions  
@@ -426,9 +426,9 @@ $$
 
 A random variable $X$ is *continuous* if there exists a function $f_{X}$ such that 
 
-- $f_{X}(x)\geq 0$ for all $x$
-- $\int_{-\infty}^{\infty}f_{X}(x)dx=1$ and 
-- $\mathbb{P}(a<X<b)=\int_{a}^{b} f_{X}(x) dx$ for every $a\leq b$.
+- $f_{X}(x)\geq 0\quad$ for all $\quad x$
+- $\int_{-\infty}^{\infty}f_{X}(x)dx=1 \quad$ and 
+- $\mathbb{P}(a<X<b)=\int_{a}^{b} f_{X}(x) dx\quad$ for every $\quad a\leq b$.
 
 The function $f_{X}$ is called the **probability density function (pdf)** or short **density function**. 
 
@@ -473,7 +473,7 @@ persp(x, y, z, theta = -30, phi = 25,
 
 
 
-#### Multidimensional Probability Function 
+#### Multidimensional Probability Mass Function 
 
 **Discrete random vectors:** $X$ takes only countably many (i.e. discrete) values 
 $$
@@ -503,7 +503,14 @@ P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=
 
 #### Multidimensional Density Function 
 
-**Continuous random vectors:** $X$ takes values in $\mathbb{R}^d$ and has a **multidimensional density function** $f(x_1,\dots,x_d)$. That is, 
+
+**Continuous random vectors:** $X$ takes values in $\mathbb{R}^d$ 
+
+$$
+X=\left(\begin{matrix}X_{1}\\ X_{2}\\ \vdots \\ X_{d}\end{matrix}\right)\in\mathbb{R}^d
+$$
+
+and has a **multidimensional density function** $f(x_1,\dots,x_d)$. That is, 
 $$
 \begin{align*}
 &P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=\\[2ex]
@@ -540,6 +547,11 @@ In the following we focus only on continuous random vectors, but the discrete ca
 
 #### Marginal Distribution Functions and Marginal Density Functions 
 
+Let
+
+$$
+X=\left(\begin{matrix}X_{1}\\ X_{2}\\ \vdots \\ X_{d}\end{matrix}\right)\in\mathbb{R}^d
+$$
 
 Each random element, $X_j$, with $j=1,\dots,d$, of the random vector $X$ has its own **marginal distribution** $F_j$. This is just the univariate distribution of $X_j$ when ignoring all other random variables in $X$. Formally we have:
 
@@ -734,7 +746,7 @@ $$
 where $\mu=E(X)$. 
 
 
-**Note:** Moments determine the tail of a distribution (but not much else); see @LB2000. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g. the uniform distribution $\mathcal{U}[a,b]$) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support since $\phi(x)>0$ for all $x\in\mathbb{R}$. 
+**Note:** Moments determine the tail of a distribution (but not much else); see @LB2000. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g. the uniform distribution $\mathcal{U}[a,b]$) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support; see @sec-NormalDistr. 
 
 
 #### Law of Total Expectation
@@ -919,7 +931,7 @@ runif(n = n, min = a, max = b)
 ```
 
 
-#### The Normal (or Gaussian) Distribution 
+#### The Normal (or Gaussian) Distribution {#sec-NormalDistr}
 
 $X$ has a Normal (or Gaussian) distribution with parameters $\mu$ and $\sigma,$ denoted by $X \sim N\left(\mu, \sigma^{2}\right),$ if
 $$

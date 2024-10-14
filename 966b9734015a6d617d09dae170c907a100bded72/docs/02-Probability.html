@@ -588,7 +588,7 @@ P(A B)
 </tr>
 </tbody>
 </table>
-<!-- Try generalizing this to $n$ flips. --><p>Here, <span class="math inline">\(P_{X}\)</span> is not the same probability function as <span class="math inline">\(P\)</span>, because <span class="math inline">\(P\)</span> maps from the sample space events, <span class="math inline">\(\omega\)</span>, to <span class="math inline">\([0,1]\)</span>, while <span class="math inline">\(P_X\)</span> maps from the random-variable events, <span class="math inline">\(X(\omega)\)</span>, to <span class="math inline">\([0,1]\)</span>. We will typically forget about the sample space <span class="math inline">\(\Omega\)</span> and just think of the random variable as an experiment with real-valued (possible multivariate) outcomes. We will therefore write <span class="math inline">\(P\left(X=x_{k}\right)\)</span> instead of <span class="math inline">\(P_{X}\left(X=x_{k}\right)\)</span> to simplify the notation.</p>
+<!-- Try generalizing this to $n$ flips. --><p>Here, <span class="math inline">\(P_{X}\)</span> is not the same probability function as <span class="math inline">\(P\)</span>, because <span class="math inline">\(P\)</span> maps from the sample space events, <span class="math inline">\(\omega\)</span>, to <span class="math inline">\([0,1],\)</span> while <span class="math inline">\(P_X\)</span> maps from the random-variable events, <span class="math inline">\(X(\omega),\)</span> to <span class="math inline">\([0,1].\)</span> We will typically forget about the sample space <span class="math inline">\(\Omega\)</span> and just think of the random variable as an experiment with real-valued (possible multivariate) outcomes. We will therefore write <span class="math inline">\(P\left(X=x_{k}\right)\)</span> instead of <span class="math inline">\(P_{X}\left(X=x_{k}\right)\)</span> to simplify the notation.</p>
 <section id="univariate-distribution-and-probability-functions" class="level3" data-number="2.2.1"><h3 data-number="2.2.1" class="anchored" data-anchor-id="univariate-distribution-and-probability-functions">
 <span class="header-section-number">2.2.1</span> Univariate Distribution and Probability Functions</h3>
 <section id="cumulative-distribution-function" class="level4" data-number="2.2.1.1"><h4 data-number="2.2.1.1" class="anchored" data-anchor-id="cumulative-distribution-function">
@@ -622,12 +622,12 @@ f_{X}(x)=\mathbb{P}(X=x)\quad\text{for all}\quad x\in\{x_1,x_2,\dots\}
 <p>A random variable <span class="math inline">\(X\)</span> is <em>continuous</em> if there exists a function <span class="math inline">\(f_{X}\)</span> such that</p>
 <ul>
 <li>
-<span class="math inline">\(f_{X}(x)\geq 0\)</span> for all <span class="math inline">\(x\)</span>
+<span class="math inline">\(f_{X}(x)\geq 0\quad\)</span> for all <span class="math inline">\(\quad x\)</span>
 </li>
 <li>
-<span class="math inline">\(\int_{-\infty}^{\infty}f_{X}(x)dx=1\)</span> and</li>
+<span class="math inline">\(\int_{-\infty}^{\infty}f_{X}(x)dx=1 \quad\)</span> and</li>
 <li>
-<span class="math inline">\(\mathbb{P}(a&lt;X&lt;b)=\int_{a}^{b} f_{X}(x) dx\)</span> for every <span class="math inline">\(a\leq b\)</span>.</li>
+<span class="math inline">\(\mathbb{P}(a&lt;X&lt;b)=\int_{a}^{b} f_{X}(x) dx\quad\)</span> for every <span class="math inline">\(\quad a\leq b\)</span>.</li>
 </ul>
 <p>The function <span class="math inline">\(f_{X}\)</span> is called the <strong>probability density function (pdf)</strong> or short <strong>density function</strong>.</p>
 <p>For density functions, we have that <span class="math display">\[
@@ -664,8 +664,8 @@ F(a_1,\dots,a_d)=P(X_1\le a_1,\dots,X_d\le a_d).
 </div>
 </div>
 </div>
-</section><section id="multidimensional-probability-function" class="level4" data-number="2.2.2.2"><h4 data-number="2.2.2.2" class="anchored" data-anchor-id="multidimensional-probability-function">
-<span class="header-section-number">2.2.2.2</span> Multidimensional Probability Function</h4>
+</section><section id="multidimensional-probability-mass-function" class="level4" data-number="2.2.2.2"><h4 data-number="2.2.2.2" class="anchored" data-anchor-id="multidimensional-probability-mass-function">
+<span class="header-section-number">2.2.2.2</span> Multidimensional Probability Mass Function</h4>
 <p><strong>Discrete random vectors:</strong> <span class="math inline">\(X\)</span> takes only countably many (i.e.&nbsp;discrete) values <span class="math display">\[
 X\in\{x_1, x_2,\dots\}
 \]</span> with <span class="math display">\[
@@ -684,7 +684,11 @@ P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=
 -->
 </section><section id="multidimensional-density-function" class="level4" data-number="2.2.2.3"><h4 data-number="2.2.2.3" class="anchored" data-anchor-id="multidimensional-density-function">
 <span class="header-section-number">2.2.2.3</span> Multidimensional Density Function</h4>
-<p><strong>Continuous random vectors:</strong> <span class="math inline">\(X\)</span> takes values in <span class="math inline">\(\mathbb{R}^d\)</span> and has a <strong>multidimensional density function</strong> <span class="math inline">\(f(x_1,\dots,x_d)\)</span>. That is, <span class="math display">\[
+<p><strong>Continuous random vectors:</strong> <span class="math inline">\(X\)</span> takes values in <span class="math inline">\(\mathbb{R}^d\)</span></p>
+<p><span class="math display">\[
+X=\left(\begin{matrix}X_{1}\\ X_{2}\\ \vdots \\ X_{d}\end{matrix}\right)\in\mathbb{R}^d
+\]</span></p>
+<p>and has a <strong>multidimensional density function</strong> <span class="math inline">\(f(x_1,\dots,x_d)\)</span>. That is, <span class="math display">\[
 \begin{align*}
 &amp;P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=\\[2ex]
 =&amp;\int\limits_{a_d}^{b_d}\dots \int\limits _{a_1}^{b_1}f(x_1,\dots,x_d)dx_1\dots dx_d.
@@ -719,6 +723,10 @@ P(X\in [a_1,b_1]\times\dots\times [a_d,b_d])=
 <p>In the following we focus only on continuous random vectors, but the discrete cases are treated analogously.</p>
 </section><section id="marginal-distribution-functions-and-marginal-density-functions" class="level4" data-number="2.2.2.4"><h4 data-number="2.2.2.4" class="anchored" data-anchor-id="marginal-distribution-functions-and-marginal-density-functions">
 <span class="header-section-number">2.2.2.4</span> Marginal Distribution Functions and Marginal Density Functions</h4>
+<p>Let</p>
+<p><span class="math display">\[
+X=\left(\begin{matrix}X_{1}\\ X_{2}\\ \vdots \\ X_{d}\end{matrix}\right)\in\mathbb{R}^d
+\]</span></p>
 <p>Each random element, <span class="math inline">\(X_j\)</span>, with <span class="math inline">\(j=1,\dots,d\)</span>, of the random vector <span class="math inline">\(X\)</span> has its own <strong>marginal distribution</strong> <span class="math inline">\(F_j\)</span>. This is just the univariate distribution of <span class="math inline">\(X_j\)</span> when ignoring all other random variables in <span class="math inline">\(X\)</span>. Formally we have:</p>
 <ul>
 <li>
@@ -794,7 +802,7 @@ E(r(X))=\int r(x) f_{X}(x)dx.
 \mu^c_{k}=\mathrm{E}\left[(X-\mathrm{E}[X])^{k}\right]=\int_{-\infty}^{+\infty}(x-\mu)^{k} f_X(x)d x,
 \]</span> where <span class="math inline">\(\mu=E(X)\)</span>.</p></li>
 </ul>
-<p><strong>Note:</strong> Moments determine the tail of a distribution (but not much else); see <span class="citation" data-cites="LB2000">Lindsay and Basak (<a href="#ref-LB2000" role="doc-biblioref">2000</a>)</span>. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g.&nbsp;the uniform distribution <span class="math inline">\(\mathcal{U}[a,b]\)</span>) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support since <span class="math inline">\(\phi(x)&gt;0\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>.</p>
+<p><strong>Note:</strong> Moments determine the tail of a distribution (but not much else); see <span class="citation" data-cites="LB2000">Lindsay and Basak (<a href="#ref-LB2000" role="doc-biblioref">2000</a>)</span>. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g.&nbsp;the uniform distribution <span class="math inline">\(\mathcal{U}[a,b]\)</span>) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support; see <a href="#sec-NormalDistr" class="quarto-xref"><span>Section 2.2.10.2</span></a>.</p>
 <section id="law-of-total-expectation" class="level4" data-number="2.2.6.1"><h4 data-number="2.2.6.1" class="anchored" data-anchor-id="law-of-total-expectation">
 <span class="header-section-number">2.2.6.1</span> Law of Total Expectation</h4>
 <p>As long as we do not fix the values of the conditioning variables, <span class="math inline">\(X_2,\dots,X_d\)</span>, they are random variables. Consequently, the conditional mean is generally itself a random variable <span class="math display">\[
@@ -944,7 +952,7 @@ F(x)=\left\{\begin{array}{ll}
  [7] 0.69714201 0.17104008 0.25448233 0.01813812</code></pre>
 </div>
 </div>
-</section><section id="the-normal-or-gaussian-distribution" class="level4" data-number="2.2.10.2"><h4 data-number="2.2.10.2" class="anchored" data-anchor-id="the-normal-or-gaussian-distribution">
+</section><section id="sec-NormalDistr" class="level4" data-number="2.2.10.2"><h4 data-number="2.2.10.2" class="anchored" data-anchor-id="sec-NormalDistr">
 <span class="header-section-number">2.2.10.2</span> The Normal (or Gaussian) Distribution</h4>
 <p><span class="math inline">\(X\)</span> has a Normal (or Gaussian) distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma,\)</span> denoted by <span class="math inline">\(X \sim N\left(\mu, \sigma^{2}\right),\)</span> if <span class="math display">\[
 f(x)=\frac{1}{\sigma \sqrt{2 \pi}} \exp \left\{-\frac{1}{2 \sigma^{2}}(x-\mu)^{2}\right\}, \quad x \in \mathbb{R}
