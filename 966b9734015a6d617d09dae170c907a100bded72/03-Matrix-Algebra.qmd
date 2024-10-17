@@ -16,8 +16,12 @@ $$
 By default, when we refer to a vector, we always mean a column
 vector. We write $a \in \mathbb R^k$. The value $a_i$ is
 called $i$-th entry or $i$-th component of $a$. A scalar is
-a vector of length 1. A row vector of length $k$ is written as
-$b = (b_1, \ldots, b_k)$.
+a vector of length 1. 
+
+A row vector of length $k$ is written as
+$$
+b = (b_1, \ldots, b_k).
+$$
 
 A **matrix** $A$ of order (or dimension) $k \times m$ is a rectangular
 array of real numbers 
