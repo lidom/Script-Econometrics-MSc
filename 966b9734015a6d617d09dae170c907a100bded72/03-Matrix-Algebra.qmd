@@ -62,7 +62,7 @@ is the $i$-th row.
 ### Some Specific Matrices
 
 A matrix is called **square matrix** if the numbers of rows and columns
-coincide (i.e., $k=m$). For instance, 
+coincide, i.e., $k=m.$ For instance, 
 $$
 {B} = \begin{pmatrix}1 & 2 \\ 3 & 4 \end{pmatrix}
 $$ 
@@ -124,6 +124,14 @@ $0$ for the zero matrix or zero vector.
 The **transpose** $A'$ of the matrix $A$ is
 obtained by flipping rows and columns on the main diagonal:
 $$
+A =\begin{pmatrix}
+             a_{11} & a_{12} & \cdots & a_{1m}\\
+             a_{21} & a_{22} & \cdots & a_{2m}\\
+             \vdots & \vdots &       & \vdots\\
+             a_{k1} & a_{k2} & \cdots & a_{km}
+\end{pmatrix}
+$$ 
+$$
 {A}'=\begin{pmatrix}
     a_{11} & a_{21} & \cdots & a_{k1}\\
     a_{12} & a_{22} & \cdots & a_{k2}\\
@@ -162,8 +170,6 @@ $$
 
 ### Matrices in `R`
 
-Let's define some matrices in `R`:
-
 ```{r}
 A = matrix(c(1,4,7,2,5,8), nrow = 3, ncol = 2)
 A
@@ -176,7 +182,6 @@ diag(1, nrow = 3) #identity matrix
 matrix(0, nrow=2, ncol=5) #matrix of zeros
 dim(A) #number of rows and columns
 ```
-
 
 
 ## Sums and Products
@@ -195,7 +200,9 @@ a_{k1}+ b_{k1} & a_{k2}+ b_{k2} & \cdots & a_{km}+ b_{km}
 \end{pmatrix}.
 $$ 
 Only two matrices of the same order can be added.
-*Example:*
+
+
+Example:
 $$
 {A}=\begin{pmatrix}2&0\\1&5\\3&2\end{pmatrix}\,,\quad
 {B}=\begin{pmatrix}-1&1\\7&1\\-5&2\end{pmatrix}\,,\quad
@@ -205,11 +212,10 @@ $$
 The matrix summation satisfies the following rules:
 $$
 \begin{array}{@{}rr@{\ }c@{\ }l@{}r@{}}
-\text{(i)}    & {A}+{B}         &=& {B}+{A}\,               &  \text{(commutativity)} \\
-\text{(ii)}   & ({A}+{B})+{C}  &=& {A}+({B}+{C})\,        &  \text{(associativity)} \\
-\text{(iii)}    & A + 0 &=& A &   {\text{(identity element)}}     \\
-\text{(iv)}   & (A + B)' &=& A' + B'     & 
-{\text{(transposition)}}          
+\text{(i)}   & {A}+{B}       &=& {B}+{A}\,       & \text{(commutativity)}   \\
+\text{(ii)}  & ({A}+{B})+{C} &=& {A}+({B}+{C})\, & \text{(associativity)}   \\
+\text{(iii)} & A + 0         &=& A               & \text{(identity element)}\\
+\text{(iv)}  & (A + B)'      &=& A' + B'         & \text{(transposition)}          
 \end{array}
 $$
 
@@ -276,10 +282,16 @@ $$
 \end{align*} 
 $$
 Two vectors $a$ and $b$ are called
-**orthogonal** if $a' b = 0$. The vectors
-$a$ and $b$ are called **orthonormal** if, in
+**orthogonal** if 
+$$
+a' b = 0.
+$$ 
+
+The vectors $a$ and $b$ are called **orthonormal** if, in
 addition to $a'b$, we have
-$a' a = 1$ and $b' b=1$.
+$$
+a' a = 1\quad\text{and}\quad b' b=1.
+$$
 
 #### Outer Product
 
@@ -402,15 +414,15 @@ The following rules of calculation apply (provided the matrices are
 conformable): 
 $$
 \begin{array}{rrcl@{}r@{}}
-\text{(i)}   & {A}({B}{C})       & = & ({A}{B}){C}\,     &\text{(associativity)} \\
+\text{(i)}   & {A}({B}{C})       & = & ({A}{B}){C}\,    &\text{(associativity)} \\
 \text{(ii)}  &   {A}({B}+{D})    & = & {A}{B}+{A}{D}\,  & \text{(distributivity)} \\
-\text{(iii)}   &   ({B}+{D}){C}    & = & {B}{C}+{D}{C}\,  & \text{(distributivity)} \\
-\text{(iv)}  &   {A}(\lambda {B}) & = & \lambda({A}{B})\,  & \text{(scalar commutativity)}\\
-\text{(v)}  & {A}{I}_{n} & = & {A}\,,              & \text{(identity element)}\\
-\text{(vi)} & {I}_{m}{A} & = & {A}\,               &
+\text{(iii)} &   ({B}+{D}){C}    & = & {B}{C}+{D}{C}\,  & \text{(distributivity)} \\
+\text{(iv)}  &   {A}(\lambda {B})& = & \lambda({A}{B})\,& \text{(scalar commutativity)}\\
+\text{(v)}   & {A}{I}_{n}        & = & {A}\,            & \text{(identity element)}\\
+\text{(vi)}  & {I}_{m}{A}        & = & {A}\,            &
 \text{(identity element)}     \\
 \text{(vii)} &   ({A}{B})'  & = & {B}'{A}'\,         & \text{(product transposition)} \\
-\text{(viii)} &   ({A}{B} C)'  & = & C' {B}'{A}'\,  & \text{(product transposition)}
+\text{(viii)}&   ({A}{B} C)'  & = & C' {B}'{A}'\,  & \text{(product transposition)}
 \end{array}
 $$
 
@@ -447,9 +459,11 @@ X \lambda = \lambda_1 x_1 + \ldots + \lambda_n x_n \neq 0
 $$ 
 for all nonzero vectors $\lambda$.
 
-To check whether the vectors are linearly independent, we can solve the
-system of equations $X \lambda = 0$
-by Gaussian elimination. If $\lambda = 0$ is the
+To check whether the vectors are linearly independent, we can solve the system of equations 
+$$
+X \lambda = 0
+$$
+by [Gaussian elimination](https://math.libretexts.org/Bookshelves/Algebra/Algebra_and_Trigonometry_1e_(OpenStax)/11%3A_Systems_of_Equations_and_Inequalities/11.06%3A_Solving_Systems_with_Gaussian_Elimination). If $\lambda = 0$ is the
 only solution, then the columns of $X$ are linearly
 independent. If there is a solution $\lambda$ with
 $\lambda \neq 0$, then the columns of
@@ -512,9 +526,17 @@ qr(X)$rank
 ### Nonsingular Matrix
 
 A square $k \times k$ matrix $A$ is called **nonsingular**
-if it has full rank, i.e., $\mathop{\mathrm{rank}}(A) = k$.
+if it has full rank, i.e., 
+$$
+\mathop{\mathrm{rank}}(A) = k.
+$$
 Conversely, $A$ is called **singular** if it does not have
-full rank, i.e., $\mathop{\mathrm{rank}}(A) < k$.
+full rank, i.e., 
+$$
+\mathop{\mathrm{rank}}(A) < k.
+$$
+
+
 
 ### Determinant
 
@@ -530,8 +552,7 @@ $$
 
 If $A$ is triangular (upper or lower), the determinant is
 the product of the diagonal entries, i.e.,
-$\det(A) = \prod_{i=1}^k a_{ii}$. Hence, Gaussian
-elimination can be used to compute the determinant by transforming the
+$\det(A) = \prod_{i=1}^k a_{ii}$. Hence, [Gaussian elimination](https://math.libretexts.org/Bookshelves/Algebra/Algebra_and_Trigonometry_1e_(OpenStax)/11%3A_Systems_of_Equations_and_Inequalities/11.06%3A_Solving_Systems_with_Gaussian_Elimination) can be used to compute the determinant by transforming the
 matrix to a triangular one. The exact definition of the determinant is
 technical and of little importance to us. A useful relation is the
 following: 

@@ -321,7 +321,7 @@ a_i = \begin{pmatrix} a_{1i} \\ \vdots \\ a_{ki} \end{pmatrix}
 \]</span> is the <span class="math inline">\(i\)</span>-th row.</p>
 </section><section id="some-specific-matrices" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="some-specific-matrices">
 <span class="header-section-number">3.1.2</span> Some Specific Matrices</h3>
-<p>A matrix is called <strong>square matrix</strong> if the numbers of rows and columns coincide (i.e., <span class="math inline">\(k=m\)</span>). For instance, <span class="math display">\[
+<p>A matrix is called <strong>square matrix</strong> if the numbers of rows and columns coincide, i.e., <span class="math inline">\(k=m.\)</span> For instance, <span class="math display">\[
 {B} = \begin{pmatrix}1 &amp; 2 \\ 3 &amp; 4 \end{pmatrix}
 \]</span> is a <span class="math inline">\((2\times 2)\)</span> square matrix. A square matrix is called <strong>diagonal matrix</strong> if all off-diagonal elements are zero. <span class="math display">\[
 {C} = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; 4 \end{pmatrix}
@@ -357,6 +357,13 @@ C = \mathop{\mathrm{diag}}(1,4).
 </section><section id="transposition" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="transposition">
 <span class="header-section-number">3.1.3</span> Transposition</h3>
 <p>The <strong>transpose</strong> <span class="math inline">\(A'\)</span> of the matrix <span class="math inline">\(A\)</span> is obtained by flipping rows and columns on the main diagonal: <span class="math display">\[
+A =\begin{pmatrix}
+             a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1m}\\
+             a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2m}\\
+             \vdots &amp; \vdots &amp;       &amp; \vdots\\
+             a_{k1} &amp; a_{k2} &amp; \cdots &amp; a_{km}
+\end{pmatrix}
+\]</span> <span class="math display">\[
 {A}'=\begin{pmatrix}
     a_{11} &amp; a_{21} &amp; \cdots &amp; a_{k1}\\
     a_{12} &amp; a_{22} &amp; \cdots &amp; a_{k2}\\
@@ -384,7 +391,6 @@ A = \begin{aligned}         \left(\begin{matrix}1 &amp; 2 \\ 2 &amp; 4 \end{matr
 </section><section id="matrices-in-r" class="level3" data-number="3.1.4"><h3 data-number="3.1.4" class="anchored" data-anchor-id="matrices-in-r">
 <span class="header-section-number">3.1.4</span> Matrices in <code>R</code>
 </h3>
-<p>Let’s define some matrices in <code>R</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span>,<span class="fl">7</span>,<span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">8</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">A</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -445,18 +451,18 @@ a_{21}+ b_{21} &amp; a_{22}+ b_{22} &amp; \cdots &amp; a_{2m}+ b_{2m} \\
 \vdots        &amp; \vdots        &amp;       &amp; \vdots        \\
 a_{k1}+ b_{k1} &amp; a_{k2}+ b_{k2} &amp; \cdots &amp; a_{km}+ b_{km}
 \end{pmatrix}.
-\]</span> Only two matrices of the same order can be added. <em>Example:</em> <span class="math display">\[
+\]</span> Only two matrices of the same order can be added.</p>
+<p>Example: <span class="math display">\[
 {A}=\begin{pmatrix}2&amp;0\\1&amp;5\\3&amp;2\end{pmatrix}\,,\quad
 {B}=\begin{pmatrix}-1&amp;1\\7&amp;1\\-5&amp;2\end{pmatrix}\,,\quad
 {A}+{B}=\begin{pmatrix}1&amp;1\\8&amp;6\\-2&amp;4\end{pmatrix}\,.
 \]</span></p>
 <p>The matrix summation satisfies the following rules: <span class="math display">\[
 \begin{array}{@{}rr@{\ }c@{\ }l@{}r@{}}
-\text{(i)}    &amp; {A}+{B}         &amp;=&amp; {B}+{A}\,               &amp;  \text{(commutativity)} \\
-\text{(ii)}   &amp; ({A}+{B})+{C}  &amp;=&amp; {A}+({B}+{C})\,        &amp;  \text{(associativity)} \\
-\text{(iii)}    &amp; A + 0 &amp;=&amp; A &amp;   {\text{(identity element)}}     \\
-\text{(iv)}   &amp; (A + B)' &amp;=&amp; A' + B'     &amp;
-{\text{(transposition)}}          
+\text{(i)}   &amp; {A}+{B}       &amp;=&amp; {B}+{A}\,       &amp; \text{(commutativity)}   \\
+\text{(ii)}  &amp; ({A}+{B})+{C} &amp;=&amp; {A}+({B}+{C})\, &amp; \text{(associativity)}   \\
+\text{(iii)} &amp; A + 0         &amp;=&amp; A               &amp; \text{(identity element)}\\
+\text{(iv)}  &amp; (A + B)'      &amp;=&amp; A' + B'         &amp; \text{(transposition)}          
 \end{array}
 \]</span></p>
 </section><section id="scalar-matrix-multiplication" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="scalar-matrix-multiplication">
@@ -535,7 +541,12 @@ a_{k1}+ b_{k1} &amp; a_{k2}+ b_{k2} &amp; \cdots &amp; a_{km}+ b_{km}
 \begin{align*}
   a' b = b' a.
 \end{align*}
-\]</span> Two vectors <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are called <strong>orthogonal</strong> if <span class="math inline">\(a' b = 0\)</span>. The vectors <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are called <strong>orthonormal</strong> if, in addition to <span class="math inline">\(a'b\)</span>, we have <span class="math inline">\(a' a = 1\)</span> and <span class="math inline">\(b' b=1\)</span>.</p>
+\]</span> Two vectors <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are called <strong>orthogonal</strong> if <span class="math display">\[
+a' b = 0.
+\]</span></p>
+<p>The vectors <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are called <strong>orthonormal</strong> if, in addition to <span class="math inline">\(a'b\)</span>, we have <span class="math display">\[
+a' a = 1\quad\text{and}\quad b' b=1.
+\]</span></p>
 </section><section id="outer-product" class="level4" data-number="3.2.4.2"><h4 data-number="3.2.4.2" class="anchored" data-anchor-id="outer-product">
 <span class="header-section-number">3.2.4.2</span> Outer Product</h4>
 <p>The outer product (also known as dyadic product) of two vectors <span class="math inline">\({x} \in \mathbb R^k\)</span> and <span class="math inline">\({y}\in\mathbb{R}^m\)</span> is <span class="math display">\[
@@ -643,15 +654,15 @@ A B = \begin{pmatrix} a_1' \\ \vdots \\ a_k' \end{pmatrix}
 \]</span></p>
 <p>The following rules of calculation apply (provided the matrices are conformable): <span class="math display">\[
 \begin{array}{rrcl@{}r@{}}
-\text{(i)}   &amp; {A}({B}{C})       &amp; = &amp; ({A}{B}){C}\,     &amp;\text{(associativity)} \\
+\text{(i)}   &amp; {A}({B}{C})       &amp; = &amp; ({A}{B}){C}\,    &amp;\text{(associativity)} \\
 \text{(ii)}  &amp;   {A}({B}+{D})    &amp; = &amp; {A}{B}+{A}{D}\,  &amp; \text{(distributivity)} \\
-\text{(iii)}   &amp;   ({B}+{D}){C}    &amp; = &amp; {B}{C}+{D}{C}\,  &amp; \text{(distributivity)} \\
-\text{(iv)}  &amp;   {A}(\lambda {B}) &amp; = &amp; \lambda({A}{B})\,  &amp; \text{(scalar commutativity)}\\
-\text{(v)}  &amp; {A}{I}_{n} &amp; = &amp; {A}\,,              &amp; \text{(identity element)}\\
-\text{(vi)} &amp; {I}_{m}{A} &amp; = &amp; {A}\,               &amp;
+\text{(iii)} &amp;   ({B}+{D}){C}    &amp; = &amp; {B}{C}+{D}{C}\,  &amp; \text{(distributivity)} \\
+\text{(iv)}  &amp;   {A}(\lambda {B})&amp; = &amp; \lambda({A}{B})\,&amp; \text{(scalar commutativity)}\\
+\text{(v)}   &amp; {A}{I}_{n}        &amp; = &amp; {A}\,            &amp; \text{(identity element)}\\
+\text{(vi)}  &amp; {I}_{m}{A}        &amp; = &amp; {A}\,            &amp;
 \text{(identity element)}     \\
 \text{(vii)} &amp;   ({A}{B})'  &amp; = &amp; {B}'{A}'\,         &amp; \text{(product transposition)} \\
-\text{(viii)} &amp;   ({A}{B} C)'  &amp; = &amp; C' {B}'{A}'\,  &amp; \text{(product transposition)}
+\text{(viii)}&amp;   ({A}{B} C)'  &amp; = &amp; C' {B}'{A}'\,  &amp; \text{(product transposition)}
 \end{array}
 \]</span></p>
 </section></section><section id="rank-and-inverse" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="rank-and-inverse">
@@ -667,7 +678,9 @@ X \lambda = \lambda_1 x_1 + \ldots + \lambda_n x_n = 0.
 \]</span> The vectors <span class="math inline">\(x_1, \ldots, x_n\)</span> are called <strong>linearly independent</strong> if <span class="math display">\[
 X \lambda = \lambda_1 x_1 + \ldots + \lambda_n x_n \neq 0
 \]</span> for all nonzero vectors <span class="math inline">\(\lambda\)</span>.</p>
-<p>To check whether the vectors are linearly independent, we can solve the system of equations <span class="math inline">\(X \lambda = 0\)</span> by Gaussian elimination. If <span class="math inline">\(\lambda = 0\)</span> is the only solution, then the columns of <span class="math inline">\(X\)</span> are linearly independent. If there is a solution <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(\lambda \neq 0\)</span>, then the columns of <span class="math inline">\(X\)</span> are linearly dependent.</p>
+<p>To check whether the vectors are linearly independent, we can solve the system of equations <span class="math display">\[
+X \lambda = 0
+\]</span> by <a href="https://math.libretexts.org/Bookshelves/Algebra/Algebra_and_Trigonometry_1e_(OpenStax)/11%3A_Systems_of_Equations_and_Inequalities/11.06%3A_Solving_Systems_with_Gaussian_Elimination">Gaussian elimination</a>. If <span class="math inline">\(\lambda = 0\)</span> is the only solution, then the columns of <span class="math inline">\(X\)</span> are linearly independent. If there is a solution <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(\lambda \neq 0\)</span>, then the columns of <span class="math inline">\(X\)</span> are linearly dependent.</p>
 </section><section id="column-rank" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="column-rank">
 <span class="header-section-number">3.3.2</span> Column Rank</h3>
 <p>The <strong>rank</strong> of a <span class="math inline">\(k \times m\)</span> matrix <span class="math inline">\(A = \begin{pmatrix} a_1 &amp; \ldots &amp; a_m \end{pmatrix}\)</span>, written as <span class="math inline">\(\mathop{\mathrm{rank}}(A)\)</span>, is the number of linearly independent columns <span class="math inline">\(a_i\)</span>. We say that <span class="math inline">\(A\)</span> has <strong>full column rank</strong> if <span class="math inline">\(\mathop{\mathrm{rank}}(X) = m\)</span>.</p>
@@ -710,14 +723,18 @@ A = \begin{pmatrix}
 </div>
 </section><section id="nonsingular-matrix" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="nonsingular-matrix">
 <span class="header-section-number">3.3.3</span> Nonsingular Matrix</h3>
-<p>A square <span class="math inline">\(k \times k\)</span> matrix <span class="math inline">\(A\)</span> is called <strong>nonsingular</strong> if it has full rank, i.e., <span class="math inline">\(\mathop{\mathrm{rank}}(A) = k\)</span>. Conversely, <span class="math inline">\(A\)</span> is called <strong>singular</strong> if it does not have full rank, i.e., <span class="math inline">\(\mathop{\mathrm{rank}}(A) &lt; k\)</span>.</p>
+<p>A square <span class="math inline">\(k \times k\)</span> matrix <span class="math inline">\(A\)</span> is called <strong>nonsingular</strong> if it has full rank, i.e., <span class="math display">\[
+\mathop{\mathrm{rank}}(A) = k.
+\]</span> Conversely, <span class="math inline">\(A\)</span> is called <strong>singular</strong> if it does not have full rank, i.e., <span class="math display">\[
+\mathop{\mathrm{rank}}(A) &lt; k.
+\]</span></p>
 </section><section id="determinant" class="level3" data-number="3.3.4"><h3 data-number="3.3.4" class="anchored" data-anchor-id="determinant">
 <span class="header-section-number">3.3.4</span> Determinant</h3>
 <p>Consider a square <span class="math inline">\(k \times k\)</span> matrix <span class="math inline">\(A\)</span>. The determinant <span class="math inline">\(\det(A)\)</span> is a measure of the volume of the geometric object formed by the columns of <span class="math inline">\(A\)</span> (a parallelogram for <span class="math inline">\(k=2\)</span>, a parallelepiped for <span class="math inline">\(k=3\)</span>, a hyper-parallelepiped for <span class="math inline">\(k&gt;3\)</span>). For <span class="math inline">\(2 \times 2\)</span> matrices, the determinant is easy to calculate: <span class="math display">\[
 A = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}, \quad
 \det(A) = ad - bc.
 \]</span></p>
-<p>If <span class="math inline">\(A\)</span> is triangular (upper or lower), the determinant is the product of the diagonal entries, i.e., <span class="math inline">\(\det(A) = \prod_{i=1}^k a_{ii}\)</span>. Hence, Gaussian elimination can be used to compute the determinant by transforming the matrix to a triangular one. The exact definition of the determinant is technical and of little importance to us. A useful relation is the following: <span class="math display">\[
+<p>If <span class="math inline">\(A\)</span> is triangular (upper or lower), the determinant is the product of the diagonal entries, i.e., <span class="math inline">\(\det(A) = \prod_{i=1}^k a_{ii}\)</span>. Hence, <a href="https://math.libretexts.org/Bookshelves/Algebra/Algebra_and_Trigonometry_1e_(OpenStax)/11%3A_Systems_of_Equations_and_Inequalities/11.06%3A_Solving_Systems_with_Gaussian_Elimination">Gaussian elimination</a> can be used to compute the determinant by transforming the matrix to a triangular one. The exact definition of the determinant is technical and of little importance to us. A useful relation is the following: <span class="math display">\[
 \begin{align*}
   \det(A) = 0 \quad &amp;\Leftrightarrow \quad A \ \text{is singular} \\
    \det(A) \neq 0 \quad &amp;\Leftrightarrow \quad A \ \text{is nonsingular}.
