@@ -1,5 +1,12 @@
 # Matrix Algebra
 
+Relevance for the exam: 
+
+* Chapters 3.1 to 3.4 
+* For Chapter 3.5 there will be a exercise question, however, for the exam "only" a general/basic understanding is sufficient
+* Chapter 3.6 is not relevant for the exam of this course, but may/will be useful in more advanced courses.
+
+
 ## Basic Definitions 
 
 Let's start with some basic definitions and specific examples.
@@ -140,7 +147,10 @@ $$
 \end{pmatrix}.
 $$ 
 If $A$ is a matrix of order $k\times m$,
-then $A'$ is a matrix of order $m \times k$. *Example:*
+then $A'$ is a matrix of order $m \times k$. 
+
+
+**Example:**
 $$
 {A}=\begin{pmatrix}
         1 & 2\\
@@ -233,7 +243,7 @@ $$
 \end{pmatrix}.
 $$ 
 
-*Example:*
+**Example:**
 $$
 \lambda=2, \quad {A}=\begin{pmatrix}2&0\\1&5\\3&2\end{pmatrix},\quad
 \lambda{A}=\begin{pmatrix}4&0\\2&10\\6&4\end{pmatrix}.$$
@@ -268,7 +278,7 @@ $$
 {a}'{b} = a_1 b_1+a_2b_2+\ldots+a_kb_k=\sum_{i=1}^k a_ib_i\in\mathbb{R}.
 $$
 
-*Example:* 
+**Example:** 
 $$
 {a}=\begin{pmatrix}1\\2\\3\end{pmatrix},\quad
 {b}=\begin{pmatrix}-2\\0\\2\end{pmatrix},\quad
@@ -306,7 +316,7 @@ x_2 y_1 & x_2 y_2 & \ldots & x_2 y_m \\
 x_k y_1 & x_k y_2 & \ldots & x_k y_m
 \end{matrix}\right)\in  \mathbb{R}^{k \times m}.
 $$ 
-*Example:*
+**Example:**
 $$
 {x}=\begin{pmatrix}1\\2\end{pmatrix}\,,\quad
 {y}=\begin{pmatrix}-2\\0\\2\end{pmatrix}\,,\quad
@@ -351,7 +361,7 @@ first matrix equals the number of rows of the second matrix. Therefore,
 we say that the $k \times m$ matrix $A$ and the $m \times n$
 matrix $B$ are **conformable for matrix multiplication**.
 
-*Example:* Let 
+**Example:** Let 
 $$\begin{aligned}
     {A}=\begin{pmatrix}
     1 & 0\\
@@ -388,7 +398,7 @@ A %*% B
 Matrix multiplication is **not commutative**. In general, we have
 $A B \neq B A$.
 
-*Example:* 
+**Example:** 
 $$
 \begin{aligned}
     {A}{B} = \begin{pmatrix} 1 & 2\\ 3 & 4\end{pmatrix}
@@ -516,8 +526,12 @@ A = \begin{pmatrix}
 1 & 2 & 3 \\ 3 & 9 & 1 \\ 0 & 11 & 5
 \end{pmatrix},
 $$ 
-$B = I_3$, and $X$ from the
-example above:
+$$
+B = \begin{pmatrix}
+1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1
+\end{pmatrix},
+$$ 
+and $X$ from the example above:
 
 ```{r}
 A = matrix(c(1,3,0,2,9,11,3,1,5), nrow=3)
@@ -527,6 +541,7 @@ qr(B)$rank
 X = matrix(c(2,0,1,1,4,2), ncol=3)
 qr(X)$rank
 ```
+
 
 ### Nonsingular Matrix
 
@@ -545,22 +560,33 @@ $$
 
 ### Determinant
 
-Consider a square $k \times k$ matrix $A$. The determinant
+Consider a square $k \times k$ matrix $A$. 
+
+The determinant
 $\det(A)$ is a measure of the volume of the geometric object
-formed by the columns of $A$ (a parallelogram for $k=2$, a
-parallelepiped for $k=3$, a hyper-parallelepiped for $k>3$). For
-$2 \times 2$ matrices, the determinant is easy to calculate: 
+formed by the columns of $A$ 
+
+* a parallelogram for $k=2$, 
+* a parallelepiped for $k=3$, 
+* a hyper-parallelepiped for $k>3$. 
+
+For $2 \times 2$ matrices, the determinant is easy to calculate: 
 $$
 A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}, \quad
 \det(A) = ad - bc.
 $$
 
-If $A$ is triangular (upper or lower), the determinant is
-the product of the diagonal entries, i.e.,
-$\det(A) = \prod_{i=1}^k a_{ii}$. Hence, [Gaussian elimination](https://math.libretexts.org/Bookshelves/Algebra/Algebra_and_Trigonometry_1e_(OpenStax)/11%3A_Systems_of_Equations_and_Inequalities/11.06%3A_Solving_Systems_with_Gaussian_Elimination) can be used to compute the determinant by transforming the
-matrix to a triangular one. The exact definition of the determinant is
-technical and of little importance to us. A useful relation is the
-following: 
+If $A$ is (upper or lower) **triangular**, the determinant is the product of the diagonal entries, i.e.,
+$$
+\det(A) = \prod_{i=1}^k a_{ii}.
+$$ 
+Hence, [Gaussian elimination](https://math.libretexts.org/Bookshelves/Algebra/Algebra_and_Trigonometry_1e_(OpenStax)/11%3A_Systems_of_Equations_and_Inequalities/11.06%3A_Solving_Systems_with_Gaussian_Elimination) can be used to compute the determinant by transforming the
+matrix to a triangular one. 
+
+The exact definition of the determinant is
+technical and of little importance to us. 
+
+A useful relation is the following: 
 $$
 \begin{align*}
   \det(A) = 0 \quad &\Leftrightarrow \quad A \ \text{is singular} \\
@@ -576,8 +602,12 @@ det(B)
 ```
 
 Since $\det(A) \neq 0$ and $\det(B) = 0$, we
-conclude that $A$ is nonsingular and $B$ is
-singular.
+conclude that 
+
+* $A$ is nonsingular and 
+* $B$ is singular.
+
+
 
 ### Inverse Matrix
 
@@ -585,57 +615,99 @@ The **inverse** ${A}^{-1}$ of a square $k \times k$ matrix
 $A$ is defined by the property
 $${A} {A}^{-1} = {A}^{-1} {A} ={I}_k.$$
 When multiplied from the left or the right, the inverse matrix produces
-the identity matrix. The inverse exists if and only if ${A}$
-is nonsingular, i.e., $\det(A) \neq 0$. Therefore, a
+the identity matrix. 
+
+
+The **inverse exists** if and only if ${A}$ is **nonsingular**, i.e., $\det(A) \neq 0$. Therefore, a
 nonsingular matrix is also called **invertible matrix**. Note that only
 square matrices can be inverted.
 
 For $2 \times 2$ matrices, there exists a simple formula:
-$${A}^{-1} = \frac{1}{\det({A})} \begin{pmatrix}d&-b\\-c&a\end{pmatrix}\,,$$
-where $\det({A}) = ad - bc$. We swap the main diagonal
+$$
+{A}^{-1} = \frac{1}{\det({A})} \begin{pmatrix}d&-b\\-c&a\end{pmatrix}\,,
+$$
+where $\det({A}) = ad - bc$. I.e., we swap the main diagonal
 elements, reverse the sign of the off-diagonal elements, and divide all
-entries by the determinant. *Example:*
-$$\displaystyle{A}=\begin{pmatrix}5&6\\1&2\end{pmatrix}$$ We
-have $\det({A}) = ad-bc=5\cdot2-6\cdot1=4$, and
-$${A}^{-1}= \frac{1}{4} \cdot \begin{pmatrix}2&-6\\-1&5\end{pmatrix}.$$
+entries by the determinant. 
+
+
+**Example:**
+$$
+\displaystyle{A}=\begin{pmatrix}5&6\\1&2\end{pmatrix}
+$$ 
+We have $\det({A}) = ad-bc=5\cdot2-6\cdot1=4$, and
+$$
+{A}^{-1}= \frac{1}{4} \cdot \begin{pmatrix}2&-6\\-1&5\end{pmatrix}.
+$$
 Indeed, $A^{-1}$ is the inverse of $A$ since
-$${A}{A}^{-1}
-=\begin{pmatrix}5&6\\1&2\end{pmatrix} \cdot \frac{1}{4} \cdot \begin{pmatrix}2&-6\\-1&5\end{pmatrix}
-=\frac{1}{4} \cdot \begin{pmatrix}4&0\\0&4\end{pmatrix} 
+$$
+\begin{align*}
+{A}{A}^{-1}
+& =\begin{pmatrix}5&6\\1&2\end{pmatrix} \, \frac{1}{4} \, \begin{pmatrix}2&-6\\-1&5\end{pmatrix}\\[2ex]
+&=\frac{1}{4} \, \begin{pmatrix}4&0\\0&4\end{pmatrix} 
 = \left(\begin{matrix}1 & 0 \\ 0 & 1 \end{matrix}\right)
-= {I}_2.$$
+= {I}_2
+\end{align*}
+$$
+and since 
+$$
+\begin{align*}
+{A}^{-1}{A}
+&= \frac{1}{4} \begin{pmatrix}2&-6\\-1&5\end{pmatrix} \begin{pmatrix}5&6\\1&2\end{pmatrix} \\[2ex]
+&=\frac{1}{4}  \begin{pmatrix}4&0\\0&4\end{pmatrix} 
+= \left(\begin{matrix}1 & 0 \\ 0 & 1 \end{matrix}\right)
+= {I}_2
+\end{align*}
+$$
+
 
 One way to calculate the inverse of higher order square matrices is to
-solve equation $A A^{-1} = I$ with
-Gaussian elimination. `R` can compute the inverse matrix quickly using
-the function `solve()`:
+solve equation 
+$$
+A A^{-1} = I
+$$ 
+with [Gaussian elimination](https://math.libretexts.org/Bookshelves/Algebra/Algebra_and_Trigonometry_1e_(OpenStax)/11%3A_Systems_of_Equations_and_Inequalities/11.06%3A_Solving_Systems_with_Gaussian_Elimination). 
+
+`R` can compute the inverse matrix quickly using the function `solve()`:
 
 ```{r}
-solve(A) #inverse if A
+A_inf <- solve(A) # inverse of A
+
+
+A_inf %*% A 
+A     %*% A_inf 
 ```
 
-We have the following relationship between invertibility, rank, and
-determinant of a square matrix $A$:
 
-```{=tex}
+We have the following relationships between 
+
+* linear dependency,
+* invertibility, 
+* rank, and
+* determinant 
+
+of a $k\times k$ square matrix $A$:
+
+$$
 \begin{align*}
-  &A \ \text{is nonsingular} \\
-  \Leftrightarrow \quad &\text{all columns of} \ A \ \text{are linearly independent} \\
-  \Leftrightarrow \quad &A \ \text{has full column rank} \\
+  &A \ \text{is nonsingular, i.e., invertible} \\[2ex]
+  \Leftrightarrow \quad &\text{all $k$ columns of} \ A \ \text{are linearly independent} \\[2ex]
+  \Leftrightarrow \quad &A \ \text{has full column rank} \ (\mathop{\mathrm{rank}}(A)=k)\\[2ex]
   \Leftrightarrow \quad &\text{the determinant is nonzero} \ (\det(A) \neq 0).
 \end{align*}
-```
+$$
+
 Similarly, 
 $$
 \begin{align*}
-  &A \ \text{is singular} \\
-  \Leftrightarrow \quad &A \ \text{has linearly dependent columns} \\
-  \Leftrightarrow \quad &A \ \text{does not have full rank} \\
+  &A \ \text{is singular, i.e., not invertible} \\[2ex]
+  \Leftrightarrow \quad &A \ \text{has linearly dependent columns} \\[2ex]
+  \Leftrightarrow \quad &A \ \text{does not have full rank} \ (\mathop{\mathrm{rank}}(A)<k)\\[2ex]
   \Leftrightarrow \quad &\text{the determinant is zero} \ (\det(A) = 0).
 \end{align*}
 $$
 
-Below you will find some important properties for nonsingular matrices:
+Important properties for **nonsingular** matrices:
 
 i)  $({A}^{-1})^{-1} = {A}$
 ii) $({A}')^{-1} = ({A}^{-1})'$
@@ -654,7 +726,10 @@ vii) If ${A}$ is symmetric, then ${A}^{-1}$ is
 
 The **trace** of a $k \times k$ square matrix $A$ is the sum
 of the diagonal entries:
-$$\mathop{\mathrm{tr}}(A) = \sum_{i=1}^n a_{ii}$$ *Example:*
+$$\mathop{\mathrm{tr}}(A) = \sum_{i=1}^n a_{ii}$$ 
+
+
+**Example:**
 $$
 A = \begin{pmatrix}
 1 & 2 & 3 \\ 3 & 9 & 1 \\ 0 & 11 & 5
@@ -680,6 +755,9 @@ $B \in \mathbb R^{m \times k}$ we have
 $$
 \mathop{\mathrm{tr}}(A B) = \mathop{\mathrm{tr}}(B A).
 $$
+
+This is often called the **trace-trick**.
+
 
 ### Idempotent Matrix
 
@@ -744,7 +822,103 @@ The notation $A > B$ means that the matrix
 $A - B$ is positive definite. 
 
 
-## Advanced Concepts
+
+
+
+## Matrix Calculus
+
+Let $f(\beta_1, \ldots, \beta_k) = f({\beta})$ be a
+twice-differential real-valued function that depends on some vector
+$\beta = (\beta_1, \ldots, \beta_k)'$. Examples that
+frequently appear in econometrics are functions of the inner product
+form $f(\beta) = a' \beta$, where
+$a \in \mathbb R^k$, and functions of the sandwich form
+$f(\beta) = \beta' A \beta$,
+where $A \in \mathbb R^{k \times k}$.
+
+### Gradient
+
+The **first derivatives vector** or **gradient** is 
+$$
+\frac{\partial f(\beta)}{\partial{\beta}}  = \begin{pmatrix}\frac{\partial f(\beta)}{\partial \beta_1} \\ \vdots \\ \frac{\partial f(\beta)}{\partial \beta_k} \end{pmatrix}
+$$ 
+If the gradient is evaluated at some particular value
+$\beta = b$, we write 
+$$
+\frac{\partial f}{\partial{\beta}}(b)
+$$ 
+Useful properties for inner product and sandwich forms are
+$$
+\begin{align*}
+(i)& \quad &&\frac{\partial (a' \beta)}{\partial \beta}  = a \\
+(ii)& \quad &&\frac{\partial ( \beta' A \beta)}{\partial \beta}   = (A + A') \beta.
+\end{align*}
+$$
+
+### Hessian
+
+The **second derivatives matrix** or **Hessian** is the $k \times k$
+matrix 
+$$
+    \frac{\partial^2 f(\beta)}{\partial{\beta }\partial {\beta}'}
+    =  \begin{pmatrix}\frac{\partial^2 f(\beta)}{\partial \beta_1 \partial \beta_1} & \ldots & \frac{\partial^2 f(\beta)}{\partial \beta_k \partial \beta_1} \\ 
+    \vdots & & \vdots \\
+    \frac{\partial^2 f(\beta)}{\partial \beta_1 \partial \beta_k} & \ldots & \frac{\partial^2 f(\beta)}{\partial \beta_k \partial \beta_k}
+    \end{pmatrix}.
+$$
+
+If the Hessian is evaluated at some particular value
+$\beta = b$, we write 
+$$
+\frac{\partial^2 f}{\partial{\beta }\partial {\beta}'}(b)
+$$
+
+The Hessian is symmetric. Each column of the Hessian is the derivative
+of the components of the gradient for the corresponding variable in
+$\beta'$:
+
+```{=tex}
+\begin{align*}
+\frac{\partial^2 f(\beta)}{\partial{\beta }\partial {\beta}'}
+    &= \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta'} \\
+    &= \Bigg[ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_1} \ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_2} \ \ldots \ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_n} \Bigg]
+\end{align*}
+```
+The Hessian of a sandwich form function is 
+$$
+  \frac{\partial^2 ( \beta' A \beta)}{\partial \beta \partial \beta'}  = A + A'.
+$$
+
+### Optimization
+
+Recall the *first-order* (necessary) and *second-order* (sufficient)
+conditions for optimum (maximum or minimum) in the univariate case:
+
+-   **First-order condition**: the first derivative evaluated at the
+    optimum is zero.
+-   **Second-order condition**: the second derivative at the optimum is
+    negative for a maximum and positive for a minimum.
+
+Similarly, we formulate first and second-order conditions for a function
+$f(\beta)$. The **first-order condition** for an optimum
+(maximum or minimum) at $b$ is 
+$$
+\frac{\partial f}{\partial{\beta}}(b)  = 0.
+$$ 
+The **second-order condition** is 
+$$
+\begin{align*}
+  &\frac{\partial^2 f}{\partial{\beta }\partial {\beta}'}(b) > 0 \quad \text{for a minimum at} \ b, \\
+  &\frac{\partial^2 f}{\partial{\beta }\partial {\beta}'}(b) < 0 \quad \text{for a maximum at} \ b.
+\end{align*} 
+$$
+Recall that, in the context of matrices, the notation
+"$> 0$" means positive definite, and "$< 0$" means negative definite.
+
+
+
+
+## Advanced Concepts 
 
 ### Eigendecomposition
 
@@ -941,97 +1115,6 @@ iii) $\|A\| = 0$ implies $A = 0$
 
 
 
-
-
-## Matrix Calculus
-
-Let $f(\beta_1, \ldots, \beta_k) = f({\beta})$ be a
-twice-differential real-valued function that depends on some vector
-$\beta = (\beta_1, \ldots, \beta_k)'$. Examples that
-frequently appear in econometrics are functions of the inner product
-form $f(\beta) = a' \beta$, where
-$a \in \mathbb R^k$, and functions of the sandwich form
-$f(\beta) = \beta' A \beta$,
-where $A \in \mathbb R^{k \times k}$.
-
-### Gradient
-
-The **first derivatives vector** or **gradient** is 
-$$
-\frac{\partial f(\beta)}{\partial{\beta}}  = \begin{pmatrix}\frac{\partial f(\beta)}{\partial \beta_1} \\ \vdots \\ \frac{\partial f(\beta)}{\partial \beta_k} \end{pmatrix}
-$$ 
-If the gradient is evaluated at some particular value
-$\beta = b$, we write 
-$$
-\frac{\partial f}{\partial{\beta}}(b)
-$$ 
-Useful properties for inner product and sandwich forms are
-$$
-\begin{align*}
-(i)& \quad &&\frac{\partial (a' \beta)}{\partial \beta}  = a \\
-(ii)& \quad &&\frac{\partial ( \beta' A \beta)}{\partial \beta}   = (A + A') \beta.
-\end{align*}
-$$
-
-### Hessian
-
-The **second derivatives matrix** or **Hessian** is the $k \times k$
-matrix 
-$$
-    \frac{\partial^2 f(\beta)}{\partial{\beta }\partial {\beta}'}
-    =  \begin{pmatrix}\frac{\partial^2 f(\beta)}{\partial \beta_1 \partial \beta_1} & \ldots & \frac{\partial^2 f(\beta)}{\partial \beta_k \partial \beta_1} \\ 
-    \vdots & & \vdots \\
-    \frac{\partial^2 f(\beta)}{\partial \beta_1 \partial \beta_k} & \ldots & \frac{\partial^2 f(\beta)}{\partial \beta_k \partial \beta_k}
-    \end{pmatrix}.
-$$
-
-If the Hessian is evaluated at some particular value
-$\beta = b$, we write 
-$$
-\frac{\partial^2 f}{\partial{\beta }\partial {\beta}'}(b)
-$$
-
-The Hessian is symmetric. Each column of the Hessian is the derivative
-of the components of the gradient for the corresponding variable in
-$\beta'$:
-
-```{=tex}
-\begin{align*}
-\frac{\partial^2 f(\beta)}{\partial{\beta }\partial {\beta}'}
-    &= \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta'} \\
-    &= \Bigg[ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_1} \ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_2} \ \ldots \ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_n} \Bigg]
-\end{align*}
-```
-The Hessian of a sandwich form function is 
-$$
-  \frac{\partial^2 ( \beta' A \beta)}{\partial \beta \partial \beta'}  = A + A'.
-$$
-
-### Optimization
-
-Recall the *first-order* (necessary) and *second-order* (sufficient)
-conditions for optimum (maximum or minimum) in the univariate case:
-
--   **First-order condition**: the first derivative evaluated at the
-    optimum is zero.
--   **Second-order condition**: the second derivative at the optimum is
-    negative for a maximum and positive for a minimum.
-
-Similarly, we formulate first and second-order conditions for a function
-$f(\beta)$. The **first-order condition** for an optimum
-(maximum or minimum) at $b$ is 
-$$
-\frac{\partial f}{\partial{\beta}}(b)  = 0.
-$$ 
-The **second-order condition** is 
-$$
-\begin{align*}
-  &\frac{\partial^2 f}{\partial{\beta }\partial {\beta}'}(b) > 0 \quad \text{for a minimum at} \ b, \\
-  &\frac{\partial^2 f}{\partial{\beta }\partial {\beta}'}(b) < 0 \quad \text{for a maximum at} \ b.
-\end{align*} 
-$$
-Recall that, in the context of matrices, the notation
-"$> 0$" means positive definite, and "$< 0$" means negative definite.
 
 
 ## Exercises

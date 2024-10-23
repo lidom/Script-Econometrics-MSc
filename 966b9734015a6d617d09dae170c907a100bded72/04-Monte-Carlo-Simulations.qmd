@@ -41,7 +41,7 @@ $$
 
 **Examples:**
 
-* The sample mean as an estimator of the population mean $E(X_i) =\theta$:
+* The sample mean as an estimator of the population mean $E(X_i) =\theta:$
 $$
 \hat\theta_n=\bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i
 $$ 
@@ -50,7 +50,7 @@ $$
 \hat\theta_{n,obs}=\bar{X}_{n,obs}=\frac{1}{n}\sum_{i=1}^nX_{i,obs}
 $$ 
 
-* The sample variance as an estimator of the population variance $Var(X_i) =\theta$:
+* The sample variance as an estimator of the population variance $Var(X_i) =\theta:$
 $$
 \hat\theta_n=s_{UB}^2=\frac{1}{n-1}\sum_{i=1}^n\left(X_i - \bar{X}_n\right)^2
 $$ 
