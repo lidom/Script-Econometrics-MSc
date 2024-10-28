@@ -383,7 +383,20 @@ Var\left(\hat\theta_n\right) = E\left[\left(\hat\theta_n - E(\hat\theta_n)\right
 <p><span class="math display">\[
 \underbrace{E\left[\left(\hat\theta_n - \theta\right)^2\right]}_{\operatorname{MSE}\left(\hat\theta_n\right)} = \underbrace{E\left[\left(\hat\theta_n - E\left(\hat\theta_n\right)\right)^2\right]}_{ Var\left(\hat\theta_n\right)}
 \]</span></p>
-<p>Unfortunately, it is often difficult to derive the above assessment metrics for given sample sizes <span class="math inline">\(n\)</span> and given data distributions <span class="math inline">\(F_X\)</span>. Monte Carlo simulations allow us to solve this issue.</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Monte Carlo (MC) Simulations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p></p>
+<p>Unfortunately, it is often difficult to derive the above assessment metrics for given sample sizes <span class="math inline">\(n\)</span> and given data distributions <span class="math inline">\(F_X,\)</span> since for given <span class="math inline">\(n\)</span> we typically do not know the distribution of the estimator <span class="math inline">\(\hat\theta_n\)</span> and thus also not its bias and variance. Monte Carlo simulations allow us to solve this issue.</p>
+</div>
+</div>
 </section><section id="approximating-bias-variance-and-mse-using-mc-simulations" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="approximating-bias-variance-and-mse-using-mc-simulations">
 <span class="header-section-number">4.3</span> Approximating Bias, Variance, and MSE using MC Simulations</h2>
 <p>Any of the the above assessment metrics require us to compute <strong>means</strong>, i.e.&nbsp;<span class="math inline">\(E()\)</span>, of random variables:</p>

@@ -182,8 +182,14 @@ $$
 $$
 
 
-Unfortunately, it is often difficult to derive the above assessment metrics for given sample sizes $n$ and given data distributions $F_X$. Monte Carlo simulations allow us to solve this issue.
+::: {.callout}
 
+# Monte Carlo (MC) Simulations 
+
+</br>
+
+Unfortunately, it is often difficult to derive the above assessment metrics for given sample sizes $n$ and given data distributions $F_X,$ since for given $n$ we typically do not know the distribution of the estimator $\hat\theta_n$ and thus also not its bias and variance. Monte Carlo simulations allow us to solve this issue.
+::: 
 
 
 ## Approximating Bias, Variance, and MSE using MC Simulations 
