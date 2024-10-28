@@ -290,12 +290,15 @@ window.Quarto = {
 \begin{align}
   Y_i=\sum_{k=1}^K\beta_k X_{ik}+\varepsilon_i, \quad i=1,\dots,n.
 \end{align}
-\qquad(5.1)\]</span></span> Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.</p>
+\qquad(5.1)\]</span></span> Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i=1,\dots,n.\)</span></p>
 <ul>
 <li>
 <span class="math inline">\(Y_i\)</span> is called “dependent variable” or “outcome variable” or “regressand”</li>
 <li>
-<span class="math inline">\(X_{ik}\)</span> is called the <span class="math inline">\(k\)</span>th “predictor variable” or “regressor” or “explanatory variable” or “control variable.” Each of these names emphasizes a slightly different perspective on <span class="math inline">\(X_{ik}.\)</span>
+<span class="math inline">\(X_{ik}\)</span> is called the <span class="math inline">\(k\)</span>th “predictor variable” or “regressor” or “explanatory variable” or “control variable.”
+<ul>
+<li>In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.</li>
+</ul>
 </li>
 </ul>
 <p>It is convenient to write <a href="#eq-LinMod" class="quarto-xref">Equation&nbsp;<span>5.1</span></a> using matrix notation <span class="math display">\[
@@ -303,8 +306,8 @@ window.Quarto = {
   Y_i&amp;=&amp;\underset{(1\times K)}{X_i'}\underset{(K\times 1)}{\beta} +\varepsilon_i, \quad i=1,\dots,n,
 \end{eqnarray*}
 \]</span> where <span class="math display">\[
-  X_i=\left(\begin{matrix}X_{i1}\\ \vdots\\  X_{iK}\end{matrix}\right)
-  \quad\text{and}\quad
+X_i=\left(\begin{matrix}X_{i1}\\ \vdots\\  X_{iK}\end{matrix}\right)
+\quad\text{and}\quad
 \beta=\left(\begin{matrix}\beta_1\\ \vdots\\ \beta_K\end{matrix}\right).
 \]</span> Stacking all individual rows <span class="math inline">\(i=1,\dots,n\)</span> leads to <span class="math display">\[
 \begin{eqnarray*}\label{LM}
@@ -469,6 +472,7 @@ d  & -b\\
 -c & a\\
 \end{bmatrix},
 $$
+
 where $ad - bc$ is the **determinant** of the matrix, which has to be non-zero, otherwise the matrix is not invertible.  
 
 The above crash course on linear algebra contains all concepts relevant for this course. Further, way more extensive material on linear algebra can be found, for instance: 
@@ -506,16 +510,24 @@ Tip
 <li>
 <strong>Conditional distribution:</strong> <span class="math display">\[
 \varepsilon_i|X_i \sim f_{\varepsilon|X}
-\]</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and for any distribution <span class="math inline">\(f_{\varepsilon|X}\)</span> with two (or more) finite moments.</li>
+\]</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and for any distribution <span class="math inline">\(f_{\varepsilon|X}\)</span> with two (or more) finite moments.
+<ul>
 <li>
-<strong>Conditional normal distribution:</strong> <span class="math display">\[
+<strong>Example: Conditional normal distribution</strong> <span class="math display">\[
 \varepsilon_i|X_i \sim \mathcal{N}(0,\sigma^2(X_i))
 \]</span> for all <span class="math inline">\(i=1,\dots,n\)</span>.</li>
-<li>
-<strong>Independence between error and predictors:</strong> <span class="math inline">\(\varepsilon_i\sim f_\varepsilon\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> such that <span class="math inline">\(f_\varepsilon=f_{\varepsilon|X}\)</span> and such that <span class="math inline">\(f_\varepsilon\)</span> has two (or more) finite moments.<br>
+</ul>
 </li>
 <li>
-<strong>Independence between error and predictors and normal:</strong> As above, but with <span class="math inline">\(f_\varepsilon=\mathcal{N}(0,\sigma^2)\)</span>.</li>
+<strong>Independence between error and predictors:</strong> <span class="math inline">\(\varepsilon_i\sim f_\varepsilon\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> such that <span class="math inline">\(f_\varepsilon=f_{\varepsilon|X}\)</span> and such that <span class="math inline">\(f_\varepsilon\)</span> has two (or more) finite moments.
+<ul>
+<li>
+<strong>Example: Independence between Gaussian error and predictors</strong> <span class="math display">\[
+    f_\varepsilon=\mathcal{N}(0,\sigma^2),
+    \]</span> where <span class="math inline">\(\sigma^2\)</span> is independent of <span class="math inline">\(X.\)</span>
+</li>
+</ul>
+</li>
 <li>
 <strong>Spherical errors (“Gauss-Markov assumptions”):</strong> The conditional distributions of <span class="math inline">\(\varepsilon_i|X_i\)</span> may generally depend on <span class="math inline">\(X_i\)</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> but only such that <span class="math display">\[
 E(\varepsilon|X)=\underset{(n\times 1)}{0}
@@ -556,7 +568,7 @@ allowed to depend on $X_i$ (see Assumption 2: Exogeneity). -->
 with $X_{i2}\sim U[-4,4]$. This error term is mean independent of $X_i$ since 
 $E(\varepsilon_i|X_i)=0$, but it has heteroskedastic conditional variance 
 $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$. -->
-<p>The exogeneity assumption (Assumption 2: Exogeneity) requires that the conditional mean of <span class="math inline">\(\varepsilon_i\)</span> is independent of <span class="math inline">\(X_i\)</span>. Besides this, dependencies between <span class="math inline">\(\varepsilon_i\)</span> and <span class="math inline">\(X_{i1},\dots,X_{iK}\)</span> are allowed. For instance, the variance of <span class="math inline">\(\varepsilon_i\)</span> can be a function of <span class="math inline">\(X_{i1},\dots,X_{iK}\)</span>. If this is the case, <span class="math inline">\(\varepsilon_i\)</span> is said to be <strong>“heteroskedastic.”</strong></p>
+<p>The exogeneity assumption (Assumption 2: Exogeneity) requires that the conditional mean of <span class="math inline">\(\varepsilon_i\)</span> is independent of <span class="math inline">\(X_i\)</span>. Besides this, dependencies between <span class="math inline">\(\varepsilon_i\)</span> and <span class="math inline">\(X_{i1},\dots,X_{iK}\)</span> are allowed. For instance, the variance of <span class="math inline">\(\varepsilon_i\)</span> can be a function of <span class="math inline">\(X_{i1},\dots,X_{iK}.\)</span> If this is the case, <span class="math inline">\(\varepsilon_i\)</span> is said to be <strong>“heteroskedastic.”</strong></p>
 <ul>
 <li>
 <strong>Heteroskedastic error terms:</strong> The conditional variances <span class="math inline">\(Var(\varepsilon_i|X_i=x_i)=\sigma^2(x_i)\)</span> are equal to a non-constant variance-function <span class="math inline">\(\sigma^2(x_i)&gt;0.\)</span>
@@ -624,7 +636,7 @@ E(X_{ik}\varepsilon_i)=0
 <p><span class="proof-title"><em>Proof</em>. </span><span class="math display">\[\begin{align*}
 E(X_{ik}\varepsilon_i)
 &amp;=E(E(X_{ik}\varepsilon_i|X_{ik}))\quad{\text{(By the Law of Total Expectations)}}\\
-&amp;=E(X_{ik}E(\varepsilon_i|X_{ik}))\quad{\text{(By the linearity of cond.~expectations)}}
+&amp;=E(X_{ik}E(\varepsilon_i|X_{ik}))\quad{\text{(By the linearity of cond. expectations)}}
 \end{align*}\]</span> Now, to show that <span class="math inline">\(E(X_{ik}\varepsilon_i)=0\)</span>, we need to show that <span class="math inline">\(E(\varepsilon_i|X_{ik})=0,\)</span> which is done in the following:</p>
 <p>Since <span class="math inline">\(X_{ik}\)</span> is an element of <span class="math inline">\(X_i,\)</span> a slightly more sophisticated use of the <em>Law of Total Expectations</em> (i.e., <span class="math inline">\(E(Y|X)=E(E(Y|X,Z)|X)\)</span>) implies that <span class="math display">\[
 E(\varepsilon_i|X_{ik})=E(E(\varepsilon_i|X_i)|X_{ik}).
@@ -821,16 +833,20 @@ P_XP_X=P_X\quad\text{ and }\quad M_X M_X=M_X
 </ul>
 </li>
 </ol>
-<p>The properties (a)-(c) follow directly from the definitions of <span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> (check it out). Using these properties one can show that the residual vector <span class="math inline">\(\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'\)</span> is orthogonal to each of the column vectors in <span class="math inline">\(X\)</span>, i.e <span class="math display">\[\begin{eqnarray}
-X'\hat\varepsilon&amp;=&amp;X'M_XY\quad\text{\small(By Def.~of $M_X$)}\\
+<p>The properties (a)-(c) follow directly from the definitions of <span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> (check it out). Using these properties one can show that the residual vector <span class="math inline">\(\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'\)</span> is orthogonal to each of the column vectors in <span class="math inline">\(X\)</span>, i.e <span class="math display">\[
+\begin{eqnarray}
+X'\hat\varepsilon&amp;=&amp;X'M_XY\quad\text{\small(By Def. of $M_X$)}\\
 \Leftrightarrow X'\hat\varepsilon&amp;=&amp;\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad\text{\small(since $X'M_X=0$)}\\
 \Leftrightarrow X'\hat\varepsilon&amp;=&amp;\underset{(K\times 1)}{0}.
-\end{eqnarray}\]</span> <!-- \begin{align} --> <!-- X'\hat\varepsilon=\underset{(K\times 1)}{0}.\label{eq:orthXe} --> <!-- \end{align} --> Note that, in the case with intercept, the result <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies that <span class="math inline">\(\sum_{i=1}^n\hat\varepsilon_i=0\)</span>.</p>
-<p>Moreover, the equation <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies also that the residual vector <span class="math inline">\(\hat{\varepsilon}\)</span> is orthogonal to the predicted values vector, since <span class="math display">\[\begin{align*}
+\end{eqnarray}
+\]</span> Note that, in the case with intercept, the result <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies that <span class="math inline">\(\sum_{i=1}^n\hat\varepsilon_i=0\)</span>.</p>
+<p>Moreover, the equation <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies also that the residual vector <span class="math inline">\(\hat{\varepsilon}\)</span> is orthogonal to the predicted values vector, since <span class="math display">\[
+\begin{align*}
 X'\hat\varepsilon&amp;=0\\
 \Rightarrow\;\hat\beta'X'\hat\varepsilon&amp;=\hat\beta'0\\
 \Leftrightarrow\;\hat Y'\hat\varepsilon&amp;=0.
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <p>Another insight from equation <span class="math inline">\(X'\hat{\varepsilon}=0\)</span> is that the vector <span class="math inline">\(\hat\varepsilon\)</span> has to satisfy <span class="math inline">\(K\)</span> linear restrictions which means we loose <span class="math inline">\(K\)</span> degrees of freedom in the data. Consequently, the vector of residuals <span class="math inline">\(\hat\varepsilon\)</span> has only <span class="math inline">\(n-K\)</span> so-called <em>degrees of freedom</em>. This loss of <span class="math inline">\(K\)</span> degrees of freedom also appears in the definition of the <em>unbiased</em> variance estimator <span class="math display">\[
 s_{UB}^2=\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon_i^2.
 \]</span></p>

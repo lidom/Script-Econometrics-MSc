@@ -20,10 +20,11 @@ $$
   Y_i=\sum_{k=1}^K\beta_k X_{ik}+\varepsilon_i, \quad i=1,\dots,n.
 \end{align}
 $${#eq-LinMod}
-Usually, a constant (intercept) is included, in this case $X_{i1}=1$ for all $i=1,\dots,n.$ In the following we will always assume that $X_{i1}=1$ for all $i$, unless otherwise stated.   
+Usually, a constant (intercept) is included, in this case $X_{i1}=1$ for all $i=1,\dots,n.$ 
 
 * $Y_i$ is called "dependent variable" or "outcome variable" or "regressand"
-* $X_{ik}$ is called the $k$th "predictor variable" or "regressor" or "explanatory variable" or "control variable." Each of these names emphasizes a slightly different perspective on $X_{ik}.$
+* $X_{ik}$ is called the $k$th "predictor variable" or "regressor" or "explanatory variable" or "control variable." 
+   * In the following we will always assume that $X_{i1}=1$ for all $i$, unless otherwise stated.
 
 It is convenient to write @eq-LinMod using matrix notation
 $$
@@ -33,8 +34,8 @@ $$
 $$
 where 
 $$
-  X_i=\left(\begin{matrix}X_{i1}\\ \vdots\\  X_{iK}\end{matrix}\right)
-  \quad\text{and}\quad 
+X_i=\left(\begin{matrix}X_{i1}\\ \vdots\\  X_{iK}\end{matrix}\right)
+\quad\text{and}\quad 
 \beta=\left(\begin{matrix}\beta_1\\ \vdots\\ \beta_K\end{matrix}\right).
 $$ 
 Stacking all individual rows $i=1,\dots,n$ leads to
@@ -248,13 +249,17 @@ $$
 \varepsilon_i|X_i \sim f_{\varepsilon|X}
 $$ 
 for all $i=1,\dots,n$ and for any distribution $f_{\varepsilon|X}$ with two (or more) finite moments.
-- **Conditional normal distribution:** 
-$$
-\varepsilon_i|X_i \sim \mathcal{N}(0,\sigma^2(X_i))
-$$ 
-for all $i=1,\dots,n$.
+   - **Example: Conditional normal distribution** 
+   $$
+   \varepsilon_i|X_i \sim \mathcal{N}(0,\sigma^2(X_i))
+   $$ 
+   for all $i=1,\dots,n$.
 - **Independence between error and predictors:** $\varepsilon_i\sim f_\varepsilon$ for all $i=1,\dots,n$ such that $f_\varepsilon=f_{\varepsilon|X}$ and such that $f_\varepsilon$ has two (or more) finite moments.  
-- **Independence between error and predictors and normal:** As above, but with $f_\varepsilon=\mathcal{N}(0,\sigma^2)$. 
+     - **Example: Independence between Gaussian error and predictors** 
+      $$
+      f_\varepsilon=\mathcal{N}(0,\sigma^2),
+      $$
+      where $\sigma^2$ is independent of $X.$ 
 - **Spherical errors ("Gauss-Markov assumptions"):** The conditional distributions of  $\varepsilon_i|X_i$ may generally depend on $X_i$ for all $i=1,\dots,n,$ but only such that
 $$
 E(\varepsilon|X)=\underset{(n\times 1)}{0}
@@ -401,7 +406,7 @@ for all $i=1,\dots,n$ and all $k=1,\dots,K.$
 \begin{align*}
 E(X_{ik}\varepsilon_i)
 &=E(E(X_{ik}\varepsilon_i|X_{ik}))\quad{\text{(By the Law of Total Expectations)}}\\
-&=E(X_{ik}E(\varepsilon_i|X_{ik}))\quad{\text{(By the linearity of cond.~expectations)}}
+&=E(X_{ik}E(\varepsilon_i|X_{ik}))\quad{\text{(By the linearity of cond. expectations)}}
 \end{align*}
 Now, to show that $E(X_{ik}\varepsilon_i)=0$, we need to show that $E(\varepsilon_i|X_{ik})=0,$ which is done in the following:
 
@@ -640,23 +645,24 @@ $$
      * $P_XM_X=0$ and $M_XP_X=0$ 
 
 The properties (a)-(c) follow directly from the definitions of $P_X$ and $M_X$ (check it out).  Using these properties one can show that the residual vector $\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'$ is orthogonal to each of the column vectors in $X$, i.e 
+$$
 \begin{eqnarray}
-X'\hat\varepsilon&=&X'M_XY\quad\text{\small(By Def.~of $M_X$)}\\
+X'\hat\varepsilon&=&X'M_XY\quad\text{\small(By Def. of $M_X$)}\\
 \Leftrightarrow X'\hat\varepsilon&=&\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad\text{\small(since $X'M_X=0$)}\\
 \Leftrightarrow X'\hat\varepsilon&=&\underset{(K\times 1)}{0}.
 \end{eqnarray}
-<!-- \begin{align} -->
-<!-- X'\hat\varepsilon=\underset{(K\times 1)}{0}.\label{eq:orthXe} -->
-<!-- \end{align} -->
+$$
 Note that, in the case with intercept, the result $X'\hat\varepsilon=0$ implies that $\sum_{i=1}^n\hat\varepsilon_i=0$. 
 
 
 Moreover, the equation $X'\hat\varepsilon=0$ implies also that the residual vector $\hat{\varepsilon}$ is orthogonal to the predicted values vector, since
+$$
 \begin{align*}
 X'\hat\varepsilon&=0\\
 \Rightarrow\;\hat\beta'X'\hat\varepsilon&=\hat\beta'0\\
 \Leftrightarrow\;\hat Y'\hat\varepsilon&=0.
 \end{align*}
+$$
 
 Another insight from equation $X'\hat{\varepsilon}=0$ is that the vector $\hat\varepsilon$ has to satisfy $K$ linear restrictions which means we loose $K$ degrees of freedom in the data. Consequently, the vector of residuals $\hat\varepsilon$ has only $n-K$ so-called *degrees of freedom*.  This loss of $K$ degrees of freedom also appears in the definition of the *unbiased* variance estimator
 $$
