@@ -369,7 +369,9 @@ Var\left(\hat\theta_n\right) = E\left[\left(\hat\theta_n - E(\hat\theta_n)\right
 </div>
 </div>
 </div>
-<p>We would like to have estimators with a small as possible mean squared error, and the mean squared error should decline as the sample size increases, such that <span class="math inline">\(\lim_{n\to\infty}\operatorname{MSE}\left(\hat\theta_n\right)=0\)</span>.</p>
+<p>We would like to have estimators with a small as possible mean squared error, and the mean squared error should decline as the sample size increases, such that <span class="math display">\[
+\lim_{n\to\infty}\operatorname{MSE}\left(\hat\theta_n\right)=0.
+\]</span></p>
 <p>The following holds true:</p>
 <ul>
 <li>The mean squared error equals the sum of the squared bias and the variance:</li>
@@ -399,13 +401,13 @@ Monte Carlo (MC) Simulations
 </div>
 </section><section id="approximating-bias-variance-and-mse-using-mc-simulations" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="approximating-bias-variance-and-mse-using-mc-simulations">
 <span class="header-section-number">4.3</span> Approximating Bias, Variance, and MSE using MC Simulations</h2>
-<p>Any of the the above assessment metrics require us to compute <strong>means</strong>, i.e.&nbsp;<span class="math inline">\(E()\)</span>, of random variables:</p>
+<p>Any of the the above assessment metrics requires us to compute <strong>means</strong>, i.e.&nbsp;<span class="math inline">\(E(\cdot)\)</span>, of random variables:</p>
 <ul>
 <li><p>For the <span class="math inline">\(\operatorname{Bias}\left(\hat\theta_n\right)\)</span> we need to compute <span class="math inline">\(E\left(\hat\theta_n\right)-\theta\)</span></p></li>
 <li><p>For the <span class="math inline">\(Var\left(\hat\theta_n\right)\)</span> we need to compute <span class="math inline">\(E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^2\right]\)</span>.</p></li>
 <li><p>For the <span class="math inline">\(\operatorname{MSE}\left(\hat\theta_n\right)\)</span> we need to compute <span class="math inline">\(E\left[\left(\hat\theta_n - \theta\right)^2\right]\)</span>.</p></li>
 </ul>
-<p>We can use a Monte Carlo (MC) simulation to approximate these means by <strong>sample means</strong> using the <strong>law of large numbers</strong> (see <a href="07-Asymptotics.html#thm-SLLN1" class="quarto-xref">Theorem&nbsp;<span>7.5</span></a> in <a href="07-Asymptotics.html" class="quarto-xref"><span>Chapter 7</span></a>) which states that a sample mean over iid random variables is able to approximate the population mean of these random variables as the number of random variables to average over gets large.</p>
+<p>We can use a Monte Carlo (MC) simulation to approximate these means by <strong>sample means</strong> using the <strong>law of large numbers</strong> which states that a sample mean over iid random variables is able to approximate the population mean of these random variables as the number of random variables to average over gets large (see <a href="07-Asymptotics.html#thm-SLLN1" class="quarto-xref">Theorem&nbsp;<span>7.5</span></a> in <a href="07-Asymptotics.html" class="quarto-xref"><span>Chapter 7</span></a>).</p>
 <p>The core part of a MC-simulation generates a large number of <span class="math inline">\(B\)</span> (e.g.&nbsp;<span class="math inline">\(B=10,000\)</span>) many realizations of <span class="math inline">\(\hat{\theta}_n\)</span> for</p>
 <ul>
 <li>a given sample size <span class="math inline">\(n\)</span> and</li>
@@ -423,7 +425,7 @@ Core Part of the MC-Simulation Algorithm:
 </div>
 <div class="callout-body-container callout-body">
 <p></p>
-<p><strong>1. Step:</strong> Use a (pseudo-)random number generator to draw a realizations of the random sample <span class="math inline">\(\{X_1,\dots,X_n\}\)</span> for a given distribution <span class="math inline">\(F_X\)</span> and a given sample size <span class="math inline">\(n:\)</span> <span class="math display">\[\begin{align*}
+<p><strong>1. Step:</strong> Use a (pseudo-)random number generator to draw a realization of the random sample <span class="math inline">\(\{X_1,\dots,X_n\}\)</span> for a given distribution <span class="math inline">\(F_X\)</span> and a given sample size <span class="math inline">\(n:\)</span> <span class="math display">\[\begin{align*}
 &amp;(X_{1,j,obs},\dots,X_{n,j,obs})\\
 %&amp;(X_{1,2,obs},\dots,X_{n,2,obs})\\
 %&amp; \hspace{2cm}\vdots \\
@@ -435,7 +437,7 @@ Core Part of the MC-Simulation Algorithm:
 %&amp;\vdots\\
 %\hat\theta_{n,B,obs} &amp;= \hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})
 \end{align*}\]</span></p>
-<p><strong>Repeat</strong> the two steps for <span class="math inline">\(j=1,\dots,B\)</span> with <span class="math inline">\(B\)</span> being a large number (e.g.&nbsp;<span class="math inline">\(B=10,000\)</span>) to generate <span class="math inline">\(B\)</span> independent realizations of <span class="math inline">\(\hat\theta_n\)</span> <span class="math display">\[\begin{align*}
+<p><strong>Repeat</strong> the two steps above for <span class="math inline">\(j=1,\dots,B\)</span> with <span class="math inline">\(B\)</span> being a large number (e.g.&nbsp;<span class="math inline">\(B=10,000\)</span>) to generate <span class="math inline">\(B\)</span> independent realizations of <span class="math inline">\(\hat\theta_n\)</span> <span class="math display">\[\begin{align*}
 \hat{\theta}_{n,1,obs} &amp;= \hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})\\
 \hat{\theta}_{n,2,obs} &amp;= \hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})\\
 &amp;\;\vdots\\
@@ -445,7 +447,7 @@ Core Part of the MC-Simulation Algorithm:
 </div>
 <p>We can use the above core part of the MC-Simulation algorithm to generate <span class="math inline">\(B\)</span> many realizations of the estimator <span class="math inline">\(\hat{\theta}_n\)</span> <span class="math display">\[
 \hat{\theta}_{n,1,obs},\dots,\hat{\theta}_{n,B,obs}
-\]</span> which allow us to compute the following Monte Carlo (MC) approximations based on sample means over the generated <span class="math inline">\(B\)</span> realizations of <span class="math inline">\(\hat\theta_n\)</span>:</p>
+\]</span> which allow us to compute the following MC-approximations based on sample means over the generated <span class="math inline">\(B\)</span> realizations of <span class="math inline">\(\hat\theta_n\)</span>:</p>
 <ul>
 <li>The bias of <span class="math inline">\(\operatorname{Bias}\left(\hat\theta_n\right)=E\left(\hat\theta_n\right)-\theta\)</span> can be approximated by</li>
 </ul>
@@ -470,14 +472,16 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>By the law of large numbers (see <a href="07-Asymptotics.html#thm-SLLN1" class="quarto-xref">Theorem&nbsp;<span>7.5</span></a> in <a href="07-Asymptotics.html" class="quarto-xref"><span>Chapter 7</span></a>) these approximations get arbitrarily precise as <span class="math inline">\(B \to \infty,\)</span> i.e. <span class="math display">\[\begin{align*}
+<p>By the law of large numbers (see <a href="07-Asymptotics.html#thm-SLLN1" class="quarto-xref">Theorem&nbsp;<span>7.5</span></a> in <a href="07-Asymptotics.html" class="quarto-xref"><span>Chapter 7</span></a>) these approximations get arbitrarily precise as <span class="math inline">\(B \to \infty,\)</span> i.e. <span class="math display">\[
+\begin{align*}
 \widehat{\operatorname{Bias}}_{MC}\left(\hat\theta_n\right)&amp;\to_p
 \operatorname{Bias}\left(\hat\theta_n\right)\quad\text{as}\quad B\to\infty\\[2ex]
 \widehat{Var}_{MC}\left(\hat\theta_n\right)&amp;\to_p
 Var\left(\hat\theta_n\right)\quad\text{as}\quad B\to\infty\\[2ex]
 \widehat{\operatorname{MSE}}_{MC}\left(\hat\theta_n\right)&amp;\to_p
 \operatorname{MSE}\left(\hat\theta_n\right)\quad\text{as}\quad B\to\infty
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <p>So for large <span class="math inline">\(B\)</span> (e.g.&nbsp;<span class="math inline">\(B=10,000\)</span>) we can consider <span class="math display">\[
 \widehat{\operatorname{Bias}}_{MC}(\hat\theta_n),
 \widehat{Var}_{MC}(\hat\theta_n),\text{ and }\;\;  
@@ -581,7 +585,27 @@ Table&nbsp;4.1: Monte Carlo approximations for the true bias, true variance, and
 <ul>
 <li><p>The bias <span class="math inline">\(\operatorname{Bias}(\bar{X}_n)\)</span> is effectively zero for all sample sizes <span class="math inline">\(n\in\{5,15,50\}\)</span></p></li>
 <li><p>The mean squared error <span class="math inline">\(\operatorname{MSE}(\bar{X}_n)\)</span> is decreasing as the sample size <span class="math inline">\(n\)</span> gets larger.</p></li>
+<li><p>The Log-Log plot has a slope of <span class="math inline">\(-1\)</span> which suggests that <span class="math inline">\(\operatorname{MSE}(\bar{X}_n)\)</span> is proportional to <span class="math inline">\(n^{-1}.\)</span></p></li>
 </ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">MC_MSE_n_seq</span>,  </span>
+<span>     x <span class="op">=</span> <span class="va">n_seq</span>, </span>
+<span>     type <span class="op">=</span> <span class="st">"o"</span>, </span>
+<span>     log <span class="op">=</span> <span class="st">"xy"</span>, </span>
+<span>     ylab <span class="op">=</span> <span class="st">"MSE (log scale)"</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"n (log scale)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="04-Monte-Carlo-Simulations_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Slope: </span></span>
+<span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">0.1</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">50</span><span class="op">/</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1</code></pre>
+</div>
+</div>
 <!-- 
 ## Deriving the Distribution of Estimators 
 
@@ -876,11 +900,13 @@ We can use Monte Carlo simulations to approximate the *exact* distribution of an
 :::
 
 
---><!-- * At least on average, the estimates $\bar{X}_n$ are close to the target parameter $\mu=10$ for each sample size $n\in\{5,15,50\}$. This feature of the estimator's distribution is summarized by the **bias** (see next section) of an estimator.
+-->
+<!-- * At least on average, the estimates $\bar{X}_n$ are close to the target parameter $\mu=10$ for each sample size $n\in\{5,15,50\}$. This feature of the estimator's distribution is summarized by the **bias** (see next section) of an estimator.
 
 * As the sample size increases, the distributions of the estimators $\bar{X}_n$ concentrate around the target parameter $\mu=10$. This feature of the estimator's distribution is summarized by the **mean squared error** (see next section) of an estimator.
 
-Thus here the quality of the estimator $\bar{X}_n$ gets better as $n$ gets large. To describe the quality of estimators more compactly, statisticians/econometricians use specific metrics like bias, variance and the mean squared error of the distribution of a estimator $\hat\theta$. --></section><section id="exercises" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="exercises">
+Thus here the quality of the estimator $\bar{X}_n$ gets better as $n$ gets large. To describe the quality of estimators more compactly, statisticians/econometricians use specific metrics like bias, variance and the mean squared error of the distribution of a estimator $\hat\theta$. -->
+</section><section id="exercises" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">4.5</span> Exercises</h2>
 <ul>
 <li><a href="https://www.dropbox.com/scl/fi/9n1vtd5uuvx7x2jcv6nse/Ch4_Exercises1.pdf?rlkey=0tnuqnb0dqa4r7d76tatjq7x1&amp;dl=0">Exercises for Chapter 4</a></li>

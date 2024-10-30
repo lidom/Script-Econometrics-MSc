@@ -165,7 +165,10 @@ $$
 :::
 :::
 
-We would like to have estimators with a small as possible mean squared error, and the mean squared error should decline as the sample size increases, such that $\lim_{n\to\infty}\operatorname{MSE}\left(\hat\theta_n\right)=0$.
+We would like to have estimators with a small as possible mean squared error, and the mean squared error should decline as the sample size increases, such that 
+$$
+\lim_{n\to\infty}\operatorname{MSE}\left(\hat\theta_n\right)=0.
+$$
 
 The following holds true:
 
@@ -194,7 +197,7 @@ Unfortunately, it is often difficult to derive the above assessment metrics for 
 
 ## Approximating Bias, Variance, and MSE using MC Simulations 
 
-Any of the the above assessment metrics require us to compute **means**, i.e. $E()$, of random variables: 
+Any of the the above assessment metrics requires us to compute **means**, i.e. $E(\cdot)$, of random variables: 
 
 * For the $\operatorname{Bias}\left(\hat\theta_n\right)$ we need to compute $E\left(\hat\theta_n\right)-\theta$
 
@@ -203,7 +206,7 @@ Any of the the above assessment metrics require us to compute **means**, i.e. $E
 * For the $\operatorname{MSE}\left(\hat\theta_n\right)$ we need to compute $E\left[\left(\hat\theta_n - \theta\right)^2\right]$.
 
 
-We can use a Monte Carlo (MC) simulation to approximate these means by **sample means** using the **law of large numbers** (see @thm-SLLN1 in @sec-lsinf) which states that a sample mean over iid random variables is able to approximate the population mean of these random variables as the number of random variables to average over gets large.
+We can use a Monte Carlo (MC) simulation to approximate these means by **sample means** using the **law of large numbers** which states that a sample mean over iid random variables is able to approximate the population mean of these random variables as the number of random variables to average over gets large (see @thm-SLLN1 in @sec-lsinf).
 
 
 The core part of a MC-simulation generates a large number of $B$ (e.g. $B=10,000$) many realizations of $\hat{\theta}_n$ for 
@@ -217,7 +220,7 @@ The core part of a MC-simulation generates a large number of $B$ (e.g. $B=10,000
 
 </br>
 
-**1. Step:** Use a (pseudo-)random number generator to draw a realizations of the random sample $\{X_1,\dots,X_n\}$ for a given distribution $F_X$ and a given sample size $n:$ 
+**1. Step:** Use a (pseudo-)random number generator to draw a realization of the random sample $\{X_1,\dots,X_n\}$ for a given distribution $F_X$ and a given sample size $n:$ 
 \begin{align*}
 &(X_{1,j,obs},\dots,X_{n,j,obs})\\
 %&(X_{1,2,obs},\dots,X_{n,2,obs})\\
@@ -233,7 +236,7 @@ The core part of a MC-simulation generates a large number of $B$ (e.g. $B=10,000
 %\hat\theta_{n,B,obs} &= \hat\theta(X_{1,B,obs},\dots,X_{n,B,obs})
 \end{align*} 
 
-**Repeat** the two steps for $j=1,\dots,B$ with $B$ being a large number (e.g. $B=10,000$) to generate $B$ independent realizations of $\hat\theta_n$
+**Repeat** the two steps above for $j=1,\dots,B$ with $B$ being a large number (e.g. $B=10,000$) to generate $B$ independent realizations of $\hat\theta_n$
 \begin{align*}
 \hat{\theta}_{n,1,obs} &= \hat\theta(X_{1,1,obs},\dots,X_{n,1,obs})\\
 \hat{\theta}_{n,2,obs} &= \hat\theta(X_{1,2,obs},\dots,X_{n,2,obs})\\
@@ -247,7 +250,7 @@ We can use the above core part of the MC-Simulation algorithm to generate $B$ ma
 $$
 \hat{\theta}_{n,1,obs},\dots,\hat{\theta}_{n,B,obs}
 $$ 
-which allow us to compute the following Monte Carlo (MC) approximations based on sample means over the generated $B$ realizations of $\hat\theta_n$:
+which allow us to compute the following MC-approximations based on sample means over the generated $B$ realizations of $\hat\theta_n$:
 
 * The bias of $\operatorname{Bias}\left(\hat\theta_n\right)=E\left(\hat\theta_n\right)-\theta$ can be approximated by 
 
@@ -268,6 +271,7 @@ $$
 ::: {.callout-note}
 
 By the law of large numbers (see @thm-SLLN1 in @sec-lsinf) these approximations get arbitrarily precise as $B \to \infty,$ i.e.
+$$
 \begin{align*}
 \widehat{\operatorname{Bias}}_{MC}\left(\hat\theta_n\right)&\to_p
 \operatorname{Bias}\left(\hat\theta_n\right)\quad\text{as}\quad B\to\infty\\[2ex]
@@ -276,6 +280,7 @@ Var\left(\hat\theta_n\right)\quad\text{as}\quad B\to\infty\\[2ex]
 \widehat{\operatorname{MSE}}_{MC}\left(\hat\theta_n\right)&\to_p
 \operatorname{MSE}\left(\hat\theta_n\right)\quad\text{as}\quad B\to\infty
 \end{align*} 
+$$
 
 So for large $B$ (e.g. $B=10,000$) we can consider 
 $$
@@ -366,8 +371,19 @@ The Monte Carlo approximations in @tbl-mcbvmse indicate that:
 
 - The mean squared error $\operatorname{MSE}(\bar{X}_n)$ is decreasing as the sample size $n$ gets larger. 
 
+- The Log-Log plot has a slope of $-1$ which suggests that $\operatorname{MSE}(\bar{X}_n)$ is proportional to $n^{-1}.$
 
+```{r}
+plot(y = MC_MSE_n_seq,  
+     x = n_seq, 
+     type = "o", 
+     log = "xy", 
+     ylab = "MSE (log scale)",
+     xlab = "n (log scale)")
 
+## Slope: 
+-log(1/0.1)/log(50/5)
+```
 
 
 

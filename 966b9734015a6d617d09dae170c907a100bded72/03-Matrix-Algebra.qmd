@@ -427,7 +427,7 @@ $$
 \text{(i)}   & {A}({B}{C})       & = & ({A}{B}){C}\,    &\text{(associativity)} \\
 \text{(ii)}  &   {A}({B}+{D})    & = & {A}{B}+{A}{D}\,  & \text{(distributivity)} \\
 \text{(iii)} &   ({B}+{D}){C}    & = & {B}{C}+{D}{C}\,  & \text{(distributivity)} \\
-\text{(iv)}  &   {A}(\lambda {B})& = & \lambda({A}{B})\,& \text{(scalar commutativity)}\\
+\text{(iv)}  &   {A}(\lambda {B})& = & \lambda({A}{B})\,& \text{(scalar ($\lambda\in\mathbb{R}$) commutativity)}\\
 \text{(v)}   & {A}{I}_{n}        & = & {A}\,            & \text{(identity element)}\\
 \text{(vi)}  & {I}_{m}{A}        & = & {A}\,            &
 \text{(identity element)}     \\
@@ -498,16 +498,20 @@ which has linearly dependent columns since the third column is a
 linear combination of the first two columns: 
 $$
 \begin{align*}
-&\qquad\qquad\begin{pmatrix} 4 \\ 2 \end{pmatrix} = 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}\\
-&\Leftrightarrow\quad - 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} - 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} + \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\
-&\Leftrightarrow\quad\begin{pmatrix} 2&1&4 \\ 0&1&2 \end{pmatrix} \begin{pmatrix} -1 \\ -2\\1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\
+&\qquad\qquad\begin{pmatrix} 4 \\ 2 \end{pmatrix} = 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}\\[2ex]
+&\Leftrightarrow\quad - 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} - 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} + \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\[2ex]
+&\Leftrightarrow\quad\underbrace{\begin{pmatrix} 2&1&4 \\ 0&1&2 \end{pmatrix}}_{=X} \underbrace{\begin{pmatrix} -1 \\ -2\\1 \end{pmatrix}}_{=\lambda} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\
 \end{align*}
 $$
 
 However, the first two columns are linearly independent since $\lambda_1 = 0$
 and $\lambda_2 = 0$ are the only solutions to the equation 
 $$
-\lambda_1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + \lambda_2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}.
+\begin{align*}
+&\qquad\qquad
+\lambda_1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + \lambda_2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\[2ex]
+&\Leftrightarrow\quad \begin{pmatrix} 2&1 \\ 0&1 \end{pmatrix} \begin{pmatrix} \lambda_1 \\ \lambda_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\
+\end{align*}
 $$ 
 Therefore, we have $\mathop{\mathrm{rank}}(X) = 2$, i.e.,
 $X$ does not have a full column rank.

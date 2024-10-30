@@ -664,7 +664,7 @@ A B = \begin{pmatrix} a_1' \\ \vdots \\ a_k' \end{pmatrix}
 \text{(i)}   &amp; {A}({B}{C})       &amp; = &amp; ({A}{B}){C}\,    &amp;\text{(associativity)} \\
 \text{(ii)}  &amp;   {A}({B}+{D})    &amp; = &amp; {A}{B}+{A}{D}\,  &amp; \text{(distributivity)} \\
 \text{(iii)} &amp;   ({B}+{D}){C}    &amp; = &amp; {B}{C}+{D}{C}\,  &amp; \text{(distributivity)} \\
-\text{(iv)}  &amp;   {A}(\lambda {B})&amp; = &amp; \lambda({A}{B})\,&amp; \text{(scalar commutativity)}\\
+\text{(iv)}  &amp;   {A}(\lambda {B})&amp; = &amp; \lambda({A}{B})\,&amp; \text{(scalar ($\lambda\in\mathbb{R}$) commutativity)}\\
 \text{(v)}   &amp; {A}{I}_{n}        &amp; = &amp; {A}\,            &amp; \text{(identity element)}\\
 \text{(vi)}  &amp; {I}_{m}{A}        &amp; = &amp; {A}\,            &amp;
 \text{(identity element)}     \\
@@ -695,13 +695,17 @@ X \lambda = 0
 X = \begin{pmatrix} 2 &amp; 1 &amp; 4 \\ 0 &amp; 1 &amp; 2 \end{pmatrix},
 \]</span> which has linearly dependent columns since the third column is a linear combination of the first two columns: <span class="math display">\[
 \begin{align*}
-&amp;\qquad\qquad\begin{pmatrix} 4 \\ 2 \end{pmatrix} = 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}\\
-&amp;\Leftrightarrow\quad - 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} - 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} + \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\
-&amp;\Leftrightarrow\quad\begin{pmatrix} 2&amp;1&amp;4 \\ 0&amp;1&amp;2 \end{pmatrix} \begin{pmatrix} -1 \\ -2\\1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\
+&amp;\qquad\qquad\begin{pmatrix} 4 \\ 2 \end{pmatrix} = 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}\\[2ex]
+&amp;\Leftrightarrow\quad - 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} - 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} + \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\[2ex]
+&amp;\Leftrightarrow\quad\underbrace{\begin{pmatrix} 2&amp;1&amp;4 \\ 0&amp;1&amp;2 \end{pmatrix}}_{=X} \underbrace{\begin{pmatrix} -1 \\ -2\\1 \end{pmatrix}}_{=\lambda} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\
 \end{align*}
 \]</span></p>
 <p>However, the first two columns are linearly independent since <span class="math inline">\(\lambda_1 = 0\)</span> and <span class="math inline">\(\lambda_2 = 0\)</span> are the only solutions to the equation <span class="math display">\[
-\lambda_1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + \lambda_2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}.
+\begin{align*}
+&amp;\qquad\qquad
+\lambda_1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + \lambda_2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\[2ex]
+&amp;\Leftrightarrow\quad \begin{pmatrix} 2&amp;1 \\ 0&amp;1 \end{pmatrix} \begin{pmatrix} \lambda_1 \\ \lambda_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\
+\end{align*}
 \]</span> Therefore, we have <span class="math inline">\(\mathop{\mathrm{rank}}(X) = 2\)</span>, i.e., <span class="math inline">\(X\)</span> does not have a full column rank.</p>
 <p>Some useful properties are</p>
 <ol type="i">
