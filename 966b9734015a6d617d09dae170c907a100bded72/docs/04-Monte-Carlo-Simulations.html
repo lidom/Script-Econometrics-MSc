@@ -585,25 +585,35 @@ Table&nbsp;4.1: Monte Carlo approximations for the true bias, true variance, and
 <ul>
 <li><p>The bias <span class="math inline">\(\operatorname{Bias}(\bar{X}_n)\)</span> is effectively zero for all sample sizes <span class="math inline">\(n\in\{5,15,50\}\)</span></p></li>
 <li><p>The mean squared error <span class="math inline">\(\operatorname{MSE}(\bar{X}_n)\)</span> is decreasing as the sample size <span class="math inline">\(n\)</span> gets larger.</p></li>
-<li><p>The Log-Log plot has a slope of <span class="math inline">\(-1\)</span> which suggests that <span class="math inline">\(\operatorname{MSE}(\bar{X}_n)\)</span> is proportional to <span class="math inline">\(n^{-1}.\)</span></p></li>
+<li><p>The log-log plot (<a href="#fig-loglog" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>) has a slope of <span class="math inline">\(-1\)</span> which suggests that <span class="math inline">\(\operatorname{MSE}(\bar{X}_n)\)</span> is proportional to <span class="math inline">\(n^{-1};\)</span> i.e. <span class="math display">\[
+\begin{align*}
+\operatorname{MSE}(\bar{X}_n) &amp;= \texttt{Constant} \cdot n^{-1}\\[2ex]
+\Leftrightarrow\log\left(\operatorname{MSE}(\bar{X}_n)\right) &amp;= \log\left(\texttt{Constant}\right) -1 \cdot \log\left(n\right)
+\end{align*}
+\]</span></p></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">MC_MSE_n_seq</span>,  </span>
-<span>     x <span class="op">=</span> <span class="va">n_seq</span>, </span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>y    <span class="op">=</span> <span class="va">MC_MSE_n_seq</span>,  </span>
+<span>     x    <span class="op">=</span> <span class="va">n_seq</span>, </span>
 <span>     type <span class="op">=</span> <span class="st">"o"</span>, </span>
-<span>     log <span class="op">=</span> <span class="st">"xy"</span>, </span>
+<span>     log  <span class="op">=</span> <span class="st">"xy"</span>, </span>
 <span>     ylab <span class="op">=</span> <span class="st">"MSE (log scale)"</span>,</span>
-<span>     xlab <span class="op">=</span> <span class="st">"n (log scale)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="04-Monte-Carlo-Simulations_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Slope: </span></span>
-<span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">0.1</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">50</span><span class="op">/</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>     xlab <span class="op">=</span> <span class="st">"n (log scale)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Slope: </span></span>
+<span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -1</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-loglog" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-loglog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-Monte-Carlo-Simulations_files/figure-html/fig-loglog-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-loglog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Plotting the logarithm of the MSE-values against the logarithm of the sample size values <span class="math inline">\(n\)</span> allows to approximate the convergence rate of the MSE-values as the sample size increases by the slope of the graph.
+</figcaption></figure>
+</div>
 </div>
 </div>
 <!-- 

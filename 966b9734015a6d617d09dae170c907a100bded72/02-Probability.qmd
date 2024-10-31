@@ -459,16 +459,17 @@ $$
 
 library(mnormt)
 
-x     <- seq(-5, 5, 0.25) 
-y     <- seq(-5, 5, 0.25)
-mu    <- c(0, 0)
-sigma <- matrix(c(2, -1, -1, 2), nrow = 2)
-f     <- function(x, y) pmnorm(cbind(x, y), mu, sigma)
-z     <- outer(x, y, f)
+x1     <- seq(-5, 5, 0.25) 
+x2     <- seq(-5, 5, 0.25)
+mu     <- c(0, 0)
+sigma  <- matrix(c(2, -1, -1, 2), nrow = 2)
+f      <- function(x_1, x_2) pmnorm(cbind(x_1, x_2), mu, sigma)
+f_x1x2 <- outer(x1, x2, f)
 
-persp(x, y, z, theta = -30, phi = 25, 
+persp(x = x1, y = x2, z = f_x1x2, theta = -30, phi = 25, 
       shade = 0.75, col = "blue", expand = 0.5, r = 2, 
-      ltheta = 25, ticktype = "detailed")
+      ltheta = 25, ticktype = "detailed", 
+      xlab = "x\u2081", ylab = "x\u2082", zlab = "")
 ```
 
 
@@ -529,16 +530,17 @@ Properties of **multivariate density** functions:
 ## Load the package
 library(mnormt)
 
-x     <- seq(-5, 5, 0.25) 
-y     <- seq(-5, 5, 0.25)
-mu    <- c(0, 0)
-sigma <- matrix(c(2, -1, -1, 2), nrow = 2)
-f     <- function(x, y) dmnorm(cbind(x, y), mu, sigma)
-z     <- outer(x, y, f)
+x1     <- seq(-5, 5, 0.25) 
+x2     <- seq(-5, 5, 0.25)
+mu     <- c(0, 0)
+sigma  <- matrix(c(2, -1, -1, 2), nrow = 2)
+f      <- function(x_1, x_2) dmnorm(cbind(x_1, x_2), mu, sigma)
+f_x1x2 <- outer(x1, x2, f)
 
-persp(x, y, z, theta = -30, phi = 25, 
+persp(x = x1, y = x2, z = f_x1x2, theta = -30, phi = 25, 
       shade = 0.75, col = "blue", expand = 0.5, r = 2, 
-      ltheta = 25, ticktype = "detailed")
+      ltheta = 25, ticktype = "detailed", 
+      xlab = "x\u2081", ylab = "x\u2082", zlab = "")
 ```
 
 
@@ -583,7 +585,7 @@ x2 <- seq(-3, 3, length.out=50)
 z     <- bivariate.normal(t(expand.grid(x1,x2)),mu,Sigma)
 dim(z)<-c(length(x1),length(x2))
 contour(x1, x2, z, col="#4545FF", drawlabels=FALSE, nlevels=5,
-        xlab=expression(X[2]), ylab=expression(X[1]),  lwd=1,xlim=c(-3,4),ylim=range(x2),frame.plot=FALSE,axes=FALSE,xaxs = "i", yaxs = "i")
+        xlab=expression(x[2]), ylab=expression(x[1]),  lwd=1,xlim=c(-3,4),ylim=range(x2),frame.plot=FALSE,axes=FALSE,xaxs = "i", yaxs = "i")
 image(x1, x2, z, col=gray(seq(1,.2,len=10)), add=TRUE)
 contour(x1, x2, z, col=alpha("darkblue", 0.5), drawlabels=FALSE, nlevels=5, add=TRUE)
 #box(lwd=.5)
@@ -655,7 +657,7 @@ x2 <- seq(-3, 3, length.out=50)
 z     <- bivariate.normal(t(expand.grid(x1,x2)),mu,Sigma)
 dim(z)<-c(length(x1),length(x2))
 contour(x1, x2, z, col="#4545FF", drawlabels=FALSE, nlevels=5,
-        xlab=expression(X[2]), ylab=expression(X[1]),  lwd=1,xlim=c(-3,4),ylim=range(x2),frame.plot=FALSE,axes=FALSE,xaxs = "i", yaxs = "i")
+        xlab=expression(x[2]), ylab=expression(x[1]),  lwd=1,xlim=c(-3,4),ylim=range(x2),frame.plot=FALSE,axes=FALSE,xaxs = "i", yaxs = "i")
 image(x1, x2, z, col=gray(seq(1,.2,len=10)), add=TRUE)
 contour(x1, x2, z, col=alpha("darkblue", 0.5), drawlabels=FALSE, nlevels=5, add=TRUE)
 

@@ -590,17 +590,20 @@ $$
 \hat{Y}_i=X_i'\hat\beta, \quad i=1,\dots,n
 $$ 
 The $(n\times 1)$ vector of predicted values
+$$
 \begin{align*}
 \hat{Y} = \left(\begin{matrix}\hat{Y}_1\\\hat{Y}_2\\ \vdots\\ \hat{Y}_n\end{matrix}\right)
 &=X\hat{\beta}\\[-2ex]
 &=\underbrace{X(X'X)^{-1}X'}_{=P_X}Y\\[2ex]
 &=P_X Y
 \end{align*}
+$$
 - The (OLS) **residuals**: 
 $$
 \hat\varepsilon_i=Y_i-\hat{Y}_i, \quad i=1,\dots,n
 $$ 
 The $(n\times 1)$ vector of residuals
+$$
 \begin{align*}
 \hat{\varepsilon} = 
 \left(\begin{matrix}\hat{\varepsilon}_1\\\hat{\varepsilon}_2\\ \vdots\\ \hat{\varepsilon}_n\end{matrix}\right)
@@ -614,7 +617,7 @@ The $(n\times 1)$ vector of residuals
 &=\underbrace{(I_n - P_X)}_{=M_X} Y\\[2ex]
 &=M_XY
 \end{align*}
-
+$$
 
 **Projection matrices.** 
 

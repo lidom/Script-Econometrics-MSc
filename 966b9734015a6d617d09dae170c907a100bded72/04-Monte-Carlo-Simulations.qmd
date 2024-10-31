@@ -371,20 +371,28 @@ The Monte Carlo approximations in @tbl-mcbvmse indicate that:
 
 - The mean squared error $\operatorname{MSE}(\bar{X}_n)$ is decreasing as the sample size $n$ gets larger. 
 
-- The Log-Log plot has a slope of $-1$ which suggests that $\operatorname{MSE}(\bar{X}_n)$ is proportional to $n^{-1}.$
+- The log-log plot (@fig-loglog) has a slope of $-1$ which suggests that $\operatorname{MSE}(\bar{X}_n)$ is proportional to $n^{-1};$ i.e.
+$$
+\begin{align*}
+\operatorname{MSE}(\bar{X}_n) &= \texttt{Constant} \cdot n^{-1}\\[2ex]
+\Leftrightarrow\log\left(\operatorname{MSE}(\bar{X}_n)\right) &= \log\left(\texttt{Constant}\right) -1 \cdot \log\left(n\right),
+\end{align*}
+$$
+where $\texttt{Constant}$ depends only on the data generating process and the estimator. 
 
 ```{r}
-plot(y = MC_MSE_n_seq,  
-     x = n_seq, 
+#| label: fig-loglog
+#| fig-cap: "Plotting the logarithm of the MSE-values against the logarithm of the sample size values $n$ allows to approximate the convergence rate of the MSE-values as the sample size increases by the slope of the graph." 
+plot(y    = MC_MSE_n_seq,  
+     x    = n_seq, 
      type = "o", 
-     log = "xy", 
+     log  = "xy", 
      ylab = "MSE (log scale)",
      xlab = "n (log scale)")
 
 ## Slope: 
--log(1/0.1)/log(50/5)
+(log(0.1) - log(1)) / (log(50) - log(5))
 ```
-
 
 
 
