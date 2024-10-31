@@ -371,7 +371,7 @@ The Monte Carlo approximations in @tbl-mcbvmse indicate that:
 
 - The mean squared error $\operatorname{MSE}(\bar{X}_n)$ is decreasing as the sample size $n$ gets larger. 
 
-- The log-log plot (@fig-loglog) has a slope of $-1$ which suggests that $\operatorname{MSE}(\bar{X}_n)$ is proportional to $n^{-1};$ i.e.
+- The log-log plot in @fig-loglog suggests a convergence rate of $-1$ for $\operatorname{MSE}(\bar{X}_n)$ i.e.
 $$
 \begin{align*}
 \operatorname{MSE}(\bar{X}_n) &= \texttt{Constant} \cdot n^{-1}\\[2ex]
