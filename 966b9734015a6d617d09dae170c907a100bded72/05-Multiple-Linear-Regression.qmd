@@ -20,11 +20,10 @@ $$
   Y_i=\sum_{k=1}^K\beta_k X_{ik}+\varepsilon_i, \quad i=1,\dots,n.
 \end{align}
 $${#eq-LinMod}
-Usually, a constant (intercept) is included, in this case $X_{i1}=1$ for all $i=1,\dots,n.$ 
+Usually, a constant (intercept) is included, in this case $X_{i1}=1$ for all $i=1,\dots,n.$ In the following we will always assume that $X_{i1}=1$ for all $i$, unless otherwise stated.
 
 * $Y_i$ is called "dependent variable" or "outcome variable" or "regressand"
 * $X_{ik}$ is called the $k$th "predictor variable" or "regressor" or "explanatory variable" or "control variable." 
-   * In the following we will always assume that $X_{i1}=1$ for all $i$, unless otherwise stated.
 
 It is convenient to write @eq-LinMod using matrix notation
 $$

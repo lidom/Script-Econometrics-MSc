@@ -290,16 +290,12 @@ window.Quarto = {
 \begin{align}
   Y_i=\sum_{k=1}^K\beta_k X_{ik}+\varepsilon_i, \quad i=1,\dots,n.
 \end{align}
-\qquad(5.1)\]</span></span> Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i=1,\dots,n.\)</span></p>
+\qquad(5.1)\]</span></span> Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.</p>
 <ul>
 <li>
 <span class="math inline">\(Y_i\)</span> is called “dependent variable” or “outcome variable” or “regressand”</li>
 <li>
-<span class="math inline">\(X_{ik}\)</span> is called the <span class="math inline">\(k\)</span>th “predictor variable” or “regressor” or “explanatory variable” or “control variable.”
-<ul>
-<li>In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.</li>
-</ul>
-</li>
+<span class="math inline">\(X_{ik}\)</span> is called the <span class="math inline">\(k\)</span>th “predictor variable” or “regressor” or “explanatory variable” or “control variable.”</li>
 </ul>
 <p>It is convenient to write <a href="#eq-LinMod" class="quarto-xref">Equation&nbsp;<span>5.1</span></a> using matrix notation <span class="math display">\[
 \begin{eqnarray*}
@@ -777,16 +773,19 @@ X^{\prime} X\hat{\beta}
 <ul>
 <li>The (OLS) <strong>predicted values</strong>: <span class="math display">\[
 \hat{Y}_i=X_i'\hat\beta, \quad i=1,\dots,n
-\]</span> The <span class="math inline">\((n\times 1)\)</span> vector of predicted values <span class="math display">\[\begin{align*}
+\]</span> The <span class="math inline">\((n\times 1)\)</span> vector of predicted values <span class="math display">\[
+\begin{align*}
 \hat{Y} = \left(\begin{matrix}\hat{Y}_1\\\hat{Y}_2\\ \vdots\\ \hat{Y}_n\end{matrix}\right)
 &amp;=X\hat{\beta}\\[-2ex]
 &amp;=\underbrace{X(X'X)^{-1}X'}_{=P_X}Y\\[2ex]
 &amp;=P_X Y
-\end{align*}\]</span>
+\end{align*}
+\]</span>
 </li>
 <li>The (OLS) <strong>residuals</strong>: <span class="math display">\[
 \hat\varepsilon_i=Y_i-\hat{Y}_i, \quad i=1,\dots,n
-\]</span> The <span class="math inline">\((n\times 1)\)</span> vector of residuals <span class="math display">\[\begin{align*}
+\]</span> The <span class="math inline">\((n\times 1)\)</span> vector of residuals <span class="math display">\[
+\begin{align*}
 \hat{\varepsilon} =
 \left(\begin{matrix}\hat{\varepsilon}_1\\\hat{\varepsilon}_2\\ \vdots\\ \hat{\varepsilon}_n\end{matrix}\right)
 &amp;=
@@ -798,7 +797,8 @@ X^{\prime} X\hat{\beta}
 &amp;=Y - P_X Y\\[2ex]
 &amp;=\underbrace{(I_n - P_X)}_{=M_X} Y\\[2ex]
 &amp;=M_XY
-\end{align*}\]</span>
+\end{align*}
+\]</span>
 </li>
 </ul>
 <p><strong>Projection matrices.</strong></p>
