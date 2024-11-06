@@ -238,7 +238,7 @@ window.Quarto = {
 <li>
 <a href="#sec-LinModAssumptions" id="toc-sec-LinModAssumptions" class="nav-link active" data-scroll-target="#sec-LinModAssumptions"><span class="header-section-number">5.1</span> Assumptions</a>
   <ul class="collapse">
-<li><a href="#some-implications-of-the-exogeneity-assumption" id="toc-some-implications-of-the-exogeneity-assumption" class="nav-link" data-scroll-target="#some-implications-of-the-exogeneity-assumption"><span class="header-section-number">5.1.1</span> Some Implications of the Exogeneity Assumption</a></li>
+<li><a href="#some-implications-of-the-exogeneity-assumption-ass-2" id="toc-some-implications-of-the-exogeneity-assumption-ass-2" class="nav-link" data-scroll-target="#some-implications-of-the-exogeneity-assumption-ass-2"><span class="header-section-number">5.1.1</span> Some Implications of the Exogeneity Assumption (Ass 2)</a></li>
   </ul>
 </li>
   <li><a href="#deriving-the-expression-of-the-ols-estimator" id="toc-deriving-the-expression-of-the-ols-estimator" class="nav-link" data-scroll-target="#deriving-the-expression-of-the-ols-estimator"><span class="header-section-number">5.2</span> Deriving the Expression of the OLS Estimator</a></li>
@@ -293,9 +293,11 @@ window.Quarto = {
 \qquad(5.1)\]</span></span> Usually, a constant (intercept) is included, in this case <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> In the following we will always assume that <span class="math inline">\(X_{i1}=1\)</span> for all <span class="math inline">\(i\)</span>, unless otherwise stated.</p>
 <ul>
 <li>
-<span class="math inline">\(Y_i\)</span> is called “dependent variable” or “outcome variable” or “regressand”</li>
+<span class="math inline">\(Y_i\)</span> is called “dependent variable” or “outcome variable” or “regressand”.</li>
 <li>
-<span class="math inline">\(X_{ik}\)</span> is called the <span class="math inline">\(k\)</span>th “predictor variable” or “regressor” or “explanatory variable” or “control variable.”</li>
+<span class="math inline">\(X_{ik}\)</span> is called the <span class="math inline">\(k\)</span>th “independent variable” or “predictor variable” or “regressor” or “explanatory variable” or “control variable.”</li>
+<li>
+<span class="math inline">\(\varepsilon_i\)</span> denotes the statistical error term.</li>
 </ul>
 <p>It is convenient to write <a href="#eq-LinMod" class="quarto-xref">Equation&nbsp;<span>5.1</span></a> using matrix notation <span class="math display">\[
 \begin{eqnarray*}
@@ -519,13 +521,13 @@ Tip
 <ul>
 <li>
 <strong>Example: Independence between Gaussian error and predictors</strong> <span class="math display">\[
-    f_\varepsilon=\mathcal{N}(0,\sigma^2),
+    \varepsilon_i\sim \mathcal{N}(0,\sigma^2),
     \]</span> where <span class="math inline">\(\sigma^2\)</span> is independent of <span class="math inline">\(X.\)</span>
 </li>
 </ul>
 </li>
 <li>
-<strong>Spherical errors (“Gauss-Markov assumptions”):</strong> The conditional distributions of <span class="math inline">\(\varepsilon_i|X_i\)</span> may generally depend on <span class="math inline">\(X_i\)</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> but only such that <span class="math display">\[
+<strong>Spherical errors (“Gauss-Markov assumptions”):</strong> The conditional distributions of <span class="math inline">\(\varepsilon_i|X_i\)</span> may generally depend on <span class="math inline">\(X_i,\)</span> but only such that <span class="math display">\[
 E(\varepsilon|X)=\underset{(n\times 1)}{0}
 \]</span> and <span class="math display">\[
 \begin{align*}
@@ -544,13 +546,17 @@ Cov(\varepsilon_n,\varepsilon_1|X)&amp;Cov(\varepsilon_n,\varepsilon_2|X)&amp;\d
 \end{matrix}\right)
 = \sigma^2 I_n,
 \end{align*}
-\]</span> where <span class="math inline">\(I_n\)</span> denotes the <span class="math inline">\((n\times n)\)</span> identity matrix with ones on the diagonal and zeros else. Thus, under the spherical errors assumption, one has, for all possible realizations of <span class="math inline">\(X\)</span>, that:
+\]</span> where <span class="math inline">\(I_n\)</span> denotes the <span class="math inline">\((n\times n)\)</span> identity matrix. Under the spherical errors assumption, one has, for all possible realizations of <span class="math inline">\(X\)</span>, that:
 <ul>
 <li>
-<strong>uncorrelated:</strong> <span class="math inline">\(Cov(\varepsilon_i,\varepsilon_j|X)=0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and all <span class="math inline">\(j=1,\dots,n\)</span> such that <span class="math inline">\(i\neq j\)</span>
+<strong>uncorrelated:</strong> <span class="math display">\[
+  Cov(\varepsilon_i,\varepsilon_j|X)=0
+  \]</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and all <span class="math inline">\(j=1,\dots,n\)</span> such that <span class="math inline">\(i\neq j\)</span>
 </li>
 <li>
-<strong>homoskedastic:</strong> <span class="math inline">\(Var(\varepsilon_i|X)=\sigma^2\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>
+<strong>homoskedastic:</strong> <span class="math display">\[
+  Var(\varepsilon_i|X)=\sigma^2
+  \]</span> for all <span class="math inline">\(i=1,\dots,n\)</span>
 </li>
 </ul>
 </li>
@@ -565,11 +571,20 @@ with $X_{i2}\sim U[-4,4]$. This error term is mean independent of $X_i$ since
 $E(\varepsilon_i|X_i)=0$, but it has heteroskedastic conditional variance 
 $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$. -->
 <p>The exogeneity assumption (Assumption 2: Exogeneity) requires that the conditional mean of <span class="math inline">\(\varepsilon_i\)</span> is independent of <span class="math inline">\(X_i\)</span>. Besides this, dependencies between <span class="math inline">\(\varepsilon_i\)</span> and <span class="math inline">\(X_{i1},\dots,X_{iK}\)</span> are allowed. For instance, the variance of <span class="math inline">\(\varepsilon_i\)</span> can be a function of <span class="math inline">\(X_{i1},\dots,X_{iK}.\)</span> If this is the case, <span class="math inline">\(\varepsilon_i\)</span> is said to be <strong>“heteroskedastic.”</strong></p>
-<ul>
-<li>
-<strong>Heteroskedastic error terms:</strong> The conditional variances <span class="math inline">\(Var(\varepsilon_i|X_i=x_i)=\sigma^2(x_i)\)</span> are equal to a non-constant variance-function <span class="math inline">\(\sigma^2(x_i)&gt;0.\)</span>
-</li>
-</ul>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-heteroskedastic" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 5.1 (Heteroskedastic Error Terms)</strong></span> The error terms <span class="math inline">\(\varepsilon_i\)</span> are called heteroskedastic if the conditional variance <span class="math display">\[
+Var(\varepsilon_i|X_i=x_i)=\sigma^2(x_i)
+\]</span> equals a <strong>non-constant</strong> variance function <span class="math inline">\(\sigma^2(x_i)&gt;0\)</span> for every possible realization <span class="math inline">\(X_i=x_i.\)</span></p>
+</div>
+</div>
+</div>
+</div>
 <p><strong>Example:</strong> <span class="math display">\[
 \varepsilon_i|X_i\sim U[-0.5|X_{i2}|, 0.5|X_{i2}|],
 \]</span> with <span class="math display">\[
@@ -577,19 +592,28 @@ X_{i2}\sim U[-4,4]
 \]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> This error term is mean independent of <span class="math inline">\(X_i\)</span> since <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span>, but it has a heteroskedastic conditional variance since <span class="math display">\[
 Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2
 \]</span> depends on <span class="math inline">\(X_{i2}.\)</span></p>
-<p>Sometimes, we need to be more restrictive by assuming that also the variances of the error terms <span class="math inline">\(\varepsilon_i\)</span> are independent from <span class="math inline">\(X_i\)</span>. For instance, to do small sample inference (see <a href="06-Small-Sample-Inference.html" class="quarto-xref"><span>Chapter 6</span></a>), we will assume that the error terms are homoskedastik. (Higher moments may still depend on <span class="math inline">\(X_i\)</span>.) This assumption leads to <strong>“homoskedastic”</strong> error terms.</p>
-<ul>
-<li>
-<strong>Homoskedastic error terms:</strong> The conditional variances <span class="math inline">\(Var(\varepsilon_i|X_i=x_i)=\sigma^2\)</span> are equal to some constant <span class="math inline">\(\sigma^2&gt;0\)</span> for every possible realization <span class="math inline">\(X_i=x_i.\)</span>
-</li>
-</ul>
-<!-- Sometimes, we need to be even more restrictive by assuming that the error terms $\varepsilon_i$  --><!-- are themselves **i.i.d.** across $i=1,\dots,n$. This is more restrictive than the assumption that the  --><!-- multivariate random variables $(\varepsilon_i,X_{i1},\dots,X_{iK})$ are i.i.d. across $i=1,\dots,n$  --><!-- since it implies that the whole distribution (not only the first two moments) of $\varepsilon_i$  --><!-- does not depend on $X_i$. This assumption also implies  **homoskedastic** error terms since when  --><!-- the whole distribution of $\varepsilon_i$ does not depend on $X_i\in\mathbb{R}^K$ also its variance  --><!-- doesn't depend on $X_i$.  --><p><strong>Example:</strong> <span class="math display">\[
+<p>Sometimes, we need to be more restrictive by assuming that also the variances of the error terms <span class="math inline">\(\varepsilon_i\)</span> are independent of <span class="math inline">\(X_i;\)</span> for instance, to do small sample inference (see <a href="06-Small-Sample-Inference.html" class="quarto-xref"><span>Chapter 6</span></a>).</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-heteroskedastic" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 5.2 (Homoskedastic Error Terms)</strong></span> The error terms <span class="math inline">\(\varepsilon_i\)</span> are called heteroskedastic if the conditional variance <span class="math display">\[
+Var(\varepsilon_i|X_i=x_i)=\sigma^2
+\]</span> equals some <strong>constant</strong> <span class="math inline">\(\sigma^2&gt;0\)</span> for every possible realization <span class="math inline">\(X_i=x_i.\)</span></p>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Example:</strong> <span class="math display">\[
 \varepsilon_i\sim{\mathcal N} (0, \sigma^2)
 \]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> Here, the conditional variance of the error terms <span class="math inline">\(\varepsilon_i\)</span> given <span class="math inline">\(X_i\)</span> <span class="math display">\[
 Var(\varepsilon_i|X_i)=Var(\varepsilon_i)=\sigma^2
 \]</span> are equal to the constant <span class="math inline">\(\sigma^2&gt;0\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span> and for every possible realization of <span class="math inline">\(X_i.\)</span></p>
-</section><section id="some-implications-of-the-exogeneity-assumption" class="level3" data-number="5.1.1"><h3 data-number="5.1.1" class="anchored" data-anchor-id="some-implications-of-the-exogeneity-assumption">
-<span class="header-section-number">5.1.1</span> Some Implications of the Exogeneity Assumption</h3>
+</section><section id="some-implications-of-the-exogeneity-assumption-ass-2" class="level3" data-number="5.1.1"><h3 data-number="5.1.1" class="anchored" data-anchor-id="some-implications-of-the-exogeneity-assumption-ass-2">
+<span class="header-section-number">5.1.1</span> Some Implications of the Exogeneity Assumption (Ass 2)</h3>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -659,9 +683,11 @@ E(X_{ik}\varepsilon_i)=E(X_{ik}E(\varepsilon_i|X_{ik}))=E(X_{ik}0)=0
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><span class="math display">\[\begin{eqnarray*}
-  Cov(\varepsilon_i,X_{ik})&amp;=&amp;E(X_{ik}\varepsilon_i)-E(X_{ik})\,E(\varepsilon_i)\quad{\small\text{(Def. of Cov)}}\\
-  &amp;=&amp;E(X_{ik}\varepsilon_i)\quad{\small\text{(By point (a): $E(\varepsilon_i)=0$)}}\\
-  &amp;=&amp;0\quad{\small\text{(By orthogonality result in point (b))}}\quad\square
+  Cov(\varepsilon_i,X_{ik})&amp;=&amp;E(X_{ik}\varepsilon_i)-E(X_{ik})\,E(\varepsilon_i)\quad{\small\text{(Def. of Cov)}}\\[2ex]
+  &amp;&amp;\text{By the mean zero result, $E(\varepsilon_i)=0,$ shown above:}\\[2ex]
+  &amp;=&amp;E(X_{ik}\varepsilon_i)\\[2ex]
+  &amp;&amp;\text{By the orthogonality result shown above:}\\[2ex]
+  &amp;=&amp;0\quad\square
 \end{eqnarray*}\]</span></p>
 </div>
 <!-- ## The Algebra of Least Squares -->
@@ -713,28 +739,28 @@ The independent and dependent variables are correlated but the causal link is on
 </section></section><section id="deriving-the-expression-of-the-ols-estimator" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="deriving-the-expression-of-the-ols-estimator">
 <span class="header-section-number">5.2</span> Deriving the Expression of the OLS Estimator</h2>
 <p>We derive the expression for the OLS estimator <span class="math display">\[
-\hat\beta=(\hat\beta_1,\dots,\hat\beta_K)'\in\mathbb{R}^K
+\hat\beta=\begin{pmatrix}\hat\beta_1\\\vdots\\\hat\beta_K\end{pmatrix}\in\mathbb{R}^K
 \]</span> as the vector-valued minimizing argument of the sum of squared residuals, <span class="math display">\[
 S_n(b)=\sum_{i=1}^n\big(\underbrace{Y_i-X_i'b}_{\text{$i$th residual}}\big)^2
-\]</span> with <span class="math inline">\(b\in\mathbb{R}^K\)</span>, for a given sample <span class="math display">\[
-((Y_1,X_1),\dots,(Y_n,X_n)).
-\]</span></p>
-<p>Using matrix/vector notation we can write <span class="math inline">\(S(b)\)</span> as <span class="math display">\[\begin{align*}
+\]</span> with <span class="math inline">\(b\in\mathbb{R}^K.\)</span></p>
+<p>Using matrix/vector notation we can write <span class="math inline">\(S(b)\)</span> as <span class="math display">\[
+\begin{align*}
 S_n(b)
 &amp;=\sum_{i=1}^n(Y_i-X_i'b)^2\\[2ex]
 &amp;=(Y-X b)^{\prime}(Y-X b)\\[2ex]
 &amp;=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
-\end{align*}\]</span> To find the minimizing argument <span class="math display">\[
+\end{align*}
+\]</span> To find the minimizing argument <span class="math display">\[
 \hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)
 \]</span> we compute the vector containing all partial derivatives <span class="math display">\[
 \begin{aligned}
 \underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &amp;=-2\left(X^{\prime}Y -X^{\prime} Xb\right).
 \end{aligned}
-\]</span> Setting each partial derivative to zero leads to <span class="math inline">\(K\)</span> linear equations (“normal equations”) in <span class="math inline">\(K\)</span> unknowns. This linear system of equations defines the OLS estimates, <span class="math inline">\(\hat{\beta}\)</span>, for a given dataset: <span class="math display">\[
+\]</span> Setting each partial derivative to zero leads to <span class="math inline">\(K\)</span> linear equations (“normal equations”) in <span class="math inline">\(K\)</span> unknowns. This system of linear equations defines the OLS estimator, <span class="math inline">\(\hat{\beta}.\)</span> <span class="math display">\[
 \begin{align*}
 -2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)
 &amp;=\underset{(K\times 1)}{0}\\[2ex]
-X^{\prime} X\hat{\beta}
+\Leftrightarrow\qquad X^{\prime} X\hat{\beta}
 &amp;=\underset{(K\times 1)}{X^{\prime}Y}.
 \end{align*}
 \]</span> From our rank assumption (Assumption 3) it follows that <span class="math inline">\(X^{\prime}X\)</span> is an invertible <span class="math inline">\((K\times K)\)</span>-dimensional matrix which allows us to solve the equation system by <span class="math display">\[
@@ -833,13 +859,19 @@ P_XP_X=P_X\quad\text{ and }\quad M_X M_X=M_X
 </ul>
 </li>
 </ol>
-<p>The properties (a)-(c) follow directly from the definitions of <span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> (check it out). Using these properties one can show that the residual vector <span class="math inline">\(\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'\)</span> is orthogonal to each of the column vectors in <span class="math inline">\(X\)</span>, i.e <span class="math display">\[
+<p>The properties (a)-(c) follow directly from the definitions of <span class="math inline">\(P_X\)</span> and <span class="math inline">\(M_X\)</span> (check it out).</p>
+<p>Using properties (a)-(c), one can show that the residual vector <span class="math inline">\(\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'\)</span> is orthogonal to each of the column vectors in <span class="math inline">\(X\)</span>, i.e <span id="eq-ResidRestrictions"><span class="math display">\[
 \begin{eqnarray}
-X'\hat\varepsilon&amp;=&amp;X'M_XY\quad\text{\small(By Def. of $M_X$)}\\
-\Leftrightarrow X'\hat\varepsilon&amp;=&amp;\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad\text{\small(since $X'M_X=0$)}\\
-\Leftrightarrow X'\hat\varepsilon&amp;=&amp;\underset{(K\times 1)}{0}.
+X'\hat\varepsilon&amp;=&amp;X'M_XY\quad{\small\text{(By Def. of $M_X$)}}\\[2ex]
+\Leftrightarrow\;\; X'\hat\varepsilon&amp;=&amp;\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad{\small\text{(since $X'M_X=0$)}}\\[2ex]
+\Leftrightarrow\;\; X'\hat\varepsilon&amp;=&amp;\underset{(K\times 1)}{0}.
 \end{eqnarray}
-\]</span> Note that, in the case with intercept, the result <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies that <span class="math inline">\(\sum_{i=1}^n\hat\varepsilon_i=0\)</span>.</p>
+\qquad(5.3)\]</span></span> Note that, in the case with intercept, <a href="#eq-ResidRestrictions" class="quarto-xref">Equation&nbsp;<span>5.3</span></a> implies that <span class="math display">\[
+\begin{align*}
+\sum_{i=1}^n 1\cdot \hat\varepsilon_i&amp; = 0\\[2ex]
+\Leftrightarrow\;\;\underbrace{\frac{1}{n}\sum_{i=1}^n \hat\varepsilon_i}_{=\bar{\hat\varepsilon}} &amp; = 0\\[2ex]
+\end{align*}
+\]</span></p>
 <p>Moreover, the equation <span class="math inline">\(X'\hat\varepsilon=0\)</span> implies also that the residual vector <span class="math inline">\(\hat{\varepsilon}\)</span> is orthogonal to the predicted values vector, since <span class="math display">\[
 \begin{align*}
 X'\hat\varepsilon&amp;=0\\
@@ -847,7 +879,7 @@ X'\hat\varepsilon&amp;=0\\
 \Leftrightarrow\;\hat Y'\hat\varepsilon&amp;=0.
 \end{align*}
 \]</span></p>
-<p>Another insight from equation <span class="math inline">\(X'\hat{\varepsilon}=0\)</span> is that the vector <span class="math inline">\(\hat\varepsilon\)</span> has to satisfy <span class="math inline">\(K\)</span> linear restrictions which means we loose <span class="math inline">\(K\)</span> degrees of freedom in the data. Consequently, the vector of residuals <span class="math inline">\(\hat\varepsilon\)</span> has only <span class="math inline">\(n-K\)</span> so-called <em>degrees of freedom</em>. This loss of <span class="math inline">\(K\)</span> degrees of freedom also appears in the definition of the <em>unbiased</em> variance estimator <span class="math display">\[
+<p>Another insight from <a href="#eq-ResidRestrictions" class="quarto-xref">Equation&nbsp;<span>5.3</span></a> is that the vector <span class="math inline">\(\hat\varepsilon\)</span> has to satisfy <span class="math inline">\(K\)</span> linear restrictions which means we loose <span class="math inline">\(K\)</span> degrees of freedom in the data. Consequently, the vector of residuals <span class="math inline">\(\hat\varepsilon\)</span> has only <span class="math inline">\(n-K\)</span> so-called <em>degrees of freedom</em>. This loss of <span class="math inline">\(K\)</span> degrees of freedom also appears in the definition of the <em>unbiased</em> variance estimator <span class="math display">\[
 s_{UB}^2=\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon_i^2.
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1060,7 +1092,7 @@ Var(\hat\beta|X)
 </div>
 <div class="callout-body-container">
 <div id="def-CondVarMult" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 5.1 (Conditional Variance of a Multivariate Random Variable)</strong></span> The conditional variance of a multivariate random variable <span class="math inline">\(Z\in\mathbb{R}^K,\)</span> given <span class="math inline">\(X,\)</span> is defined as <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>Definition 5.3 (Conditional Variance of a Multivariate Random Variable)</strong></span> The conditional variance of a multivariate random variable <span class="math inline">\(Z\in\mathbb{R}^K,\)</span> given <span class="math inline">\(X,\)</span> is defined as <span class="math display">\[\begin{align*}
 Var(Z|X)
 &amp;=\underbrace{E\Big[\overbrace{(Z-E(Z|X))}^{(K\times 1)}\overbrace{(Z-E(Z|X))'}^{(1\times K)}|X\Big]}_{K\times K}\\[2ex]
 &amp;=\underbrace{E\big[ZZ'|X\big]}_{K\times K} - \underbrace{E\big[Z|X\big]E\big[Z'|X\big]}_{K\times K}
@@ -1069,7 +1101,7 @@ Var(Z|X)
 </div>
 </div>
 </div>
-<p>Using the definition of the conditional variance (<a href="#def-CondVarMult" class="quarto-xref">Definition&nbsp;<span>5.1</span></a>) for multivariate random variables <span class="math inline">\((Z=(X'X)^{-1}X'\varepsilon)\)</span> we have that <span class="math display">\[
+<p>Using the definition of the conditional variance (<a href="#def-CondVarMult" class="quarto-xref">Definition&nbsp;<span>5.3</span></a>) for multivariate random variables <span class="math inline">\((Z=(X'X)^{-1}X'\varepsilon)\)</span> we have that <span class="math display">\[
 \begin{align*}
 &amp;Var(\hat\beta|X)=\\[2ex]
 %&amp;=Var(\hat\beta - \beta|X)\\[2ex]
@@ -1186,14 +1218,14 @@ a'Da\geq 0
 \end{align*}
 \]</span> Thus <span id="eq-c3e16"><span class="math display">\[
 \tilde{\beta}=DX{\beta}+D{\varepsilon} + \hat{\beta}.
-\qquad(5.3)\]</span></span> Moreover, <span class="math display">\[
+\qquad(5.4)\]</span></span> Moreover, <span class="math display">\[
 E(\tilde{\beta}|X)=\underbrace{E(DX{\beta}|X)}_{=DX\beta}+\underbrace{E(D\varepsilon|X)}_{=DE(\varepsilon|X)=0}+\underbrace{E(\hat{\beta}|X)}_{=\beta}
 \]</span> and thus <span id="eq-c3e17"><span class="math display">\[
 E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}.
-\qquad(5.4)\]</span></span></p>
-<p>Since <span class="math inline">\(\tilde{\beta}\)</span> is (by assumption) unbiased, we have that <span class="math inline">\(E(\tilde{\beta}|X)={\beta}\)</span>. Therefore, <a href="#eq-c3e17" class="quarto-xref">Equation&nbsp;<span>5.4</span></a> implies that <span class="math inline">\(DX=0_{(K\times K)}\)</span> since we must have that <span class="math display">\[
+\qquad(5.5)\]</span></span></p>
+<p>Since <span class="math inline">\(\tilde{\beta}\)</span> is (by assumption) unbiased, we have that <span class="math inline">\(E(\tilde{\beta}|X)={\beta}\)</span>. Therefore, <a href="#eq-c3e17" class="quarto-xref">Equation&nbsp;<span>5.5</span></a> implies that <span class="math inline">\(DX=0_{(K\times K)}\)</span> since we must have that <span class="math display">\[
 E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}=\beta.
-\]</span> Plugging <span class="math inline">\(DX=0\)</span> into <a href="#eq-c3e16" class="quarto-xref">Equation&nbsp;<span>5.3</span></a> yields, <span class="math display">\[
+\]</span> Plugging <span class="math inline">\(DX=0\)</span> into <a href="#eq-c3e16" class="quarto-xref">Equation&nbsp;<span>5.4</span></a> yields, <span class="math display">\[
 \begin{align*}
 \tilde{\beta}&amp;=D{\varepsilon} + \hat{\beta}\\
 \tilde{\beta}-{\beta}&amp;=D{\varepsilon} + (\hat{\beta}-{\beta})\\
@@ -1201,14 +1233,14 @@ E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}=\beta.
 \end{align*}
 \]</span> such that <span id="eq-c3e18"><span class="math display">\[
 \tilde{\beta}-{\beta}=\left(D + \left(X'X\right)^{-1}X'\right){\varepsilon},
-\qquad(5.5)\]</span></span> where we used that <span class="math display">\[
+\qquad(5.6)\]</span></span> where we used that <span class="math display">\[
 \begin{align*}
 \hat\beta-\beta&amp;=(X'X)^{-1}X'Y-\beta\\
 &amp;=(X'X)^{-1}X'(X\beta+\varepsilon)-\beta\\
 &amp;=(X'X)^{-1}X'\varepsilon.
 \end{align*}
 \]</span></p>
-<p>Using that <span class="math inline">\(Var(\tilde{\beta}|X)= Var(\tilde{\beta}-{\beta}|X)\)</span> since <span class="math inline">\(\beta\)</span> is not random and using <a href="#eq-c3e18" class="quarto-xref">Equation&nbsp;<span>5.5</span></a> yields <span class="math display">\[
+<p>Using that <span class="math inline">\(Var(\tilde{\beta}|X)= Var(\tilde{\beta}-{\beta}|X)\)</span> since <span class="math inline">\(\beta\)</span> is not random and using <a href="#eq-c3e18" class="quarto-xref">Equation&nbsp;<span>5.6</span></a> yields <span class="math display">\[
 \begin{align*}
 Var(\tilde{\beta}|X)
 &amp;= Var((D + (X'X)^{-1}X'){\varepsilon}|X)\\

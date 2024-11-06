@@ -22,8 +22,9 @@ $$
 $${#eq-LinMod}
 Usually, a constant (intercept) is included, in this case $X_{i1}=1$ for all $i=1,\dots,n.$ In the following we will always assume that $X_{i1}=1$ for all $i$, unless otherwise stated.
 
-* $Y_i$ is called "dependent variable" or "outcome variable" or "regressand"
-* $X_{ik}$ is called the $k$th "predictor variable" or "regressor" or "explanatory variable" or "control variable." 
+* $Y_i$ is called "dependent variable" or "outcome variable" or "regressand".
+* $X_{ik}$ is called the $k$th "independent variable" or "predictor variable" or "regressor" or "explanatory variable" or "control variable." 
+* $\varepsilon_i$ denotes the statistical error term.
 
 It is convenient to write @eq-LinMod using matrix notation
 $$
@@ -256,10 +257,10 @@ for all $i=1,\dots,n$ and for any distribution $f_{\varepsilon|X}$ with two (or 
 - **Independence between error and predictors:** $\varepsilon_i\sim f_\varepsilon$ for all $i=1,\dots,n$ such that $f_\varepsilon=f_{\varepsilon|X}$ and such that $f_\varepsilon$ has two (or more) finite moments.  
      - **Example: Independence between Gaussian error and predictors** 
       $$
-      f_\varepsilon=\mathcal{N}(0,\sigma^2),
+      \varepsilon_i\sim \mathcal{N}(0,\sigma^2),
       $$
       where $\sigma^2$ is independent of $X.$ 
-- **Spherical errors ("Gauss-Markov assumptions"):** The conditional distributions of  $\varepsilon_i|X_i$ may generally depend on $X_i$ for all $i=1,\dots,n,$ but only such that
+- **Spherical errors ("Gauss-Markov assumptions"):** The conditional distributions of  $\varepsilon_i|X_i$ may generally depend on $X_i,$ but only such that
 $$
 E(\varepsilon|X)=\underset{(n\times 1)}{0}
 $$
@@ -282,10 +283,18 @@ Cov(\varepsilon_n,\varepsilon_1|X)&Cov(\varepsilon_n,\varepsilon_2|X)&\dots&Var(
 = \sigma^2 I_n,
 \end{align*}
 $$
-where $I_n$ denotes the $(n\times n)$ identity matrix with ones on the diagonal and zeros else.</br> 
-Thus, under the spherical errors assumption, one has, for all possible realizations of $X$, that: 
-   * **uncorrelated:** $Cov(\varepsilon_i,\varepsilon_j|X)=0$ for all $i=1,\dots,n$ and all $j=1,\dots,n$ such that $i\neq j$ 
-   * **homoskedastic:** $Var(\varepsilon_i|X)=\sigma^2$ for all $i=1,\dots,n$
+where $I_n$ denotes the $(n\times n)$ identity matrix.</br> 
+Under the spherical errors assumption, one has, for all possible realizations of $X$, that: 
+   * **uncorrelated:** 
+    $$
+    Cov(\varepsilon_i,\varepsilon_j|X)=0
+    $$ 
+    for all $i=1,\dots,n$ and all $j=1,\dots,n$ such that $i\neq j$ 
+   * **homoskedastic:** 
+    $$
+    Var(\varepsilon_i|X)=\sigma^2
+    $$ 
+    for all $i=1,\dots,n$
 
 
 
@@ -309,7 +318,19 @@ $Var(\varepsilon_i|X_i)=\frac{1}{12}X_i^2$. -->
 
 The exogeneity assumption (Assumption 2: Exogeneity) requires that the conditional mean of $\varepsilon_i$ is independent of $X_i$. Besides this, dependencies between $\varepsilon_i$ and $X_{i1},\dots,X_{iK}$ are allowed. For instance, the variance of $\varepsilon_i$ can be a function of $X_{i1},\dots,X_{iK}.$ If this is the case, $\varepsilon_i$ is said to be **"heteroskedastic."** 
 
-- **Heteroskedastic error terms:** The conditional variances $Var(\varepsilon_i|X_i=x_i)=\sigma^2(x_i)$ are equal to a non-constant variance-function $\sigma^2(x_i)>0.$ 
+
+::: {.callout icon=false}
+#
+::: {#def-heteroskedastic}
+## Heteroskedastic Error Terms
+
+The error terms $\varepsilon_i$ are called heteroskedastic if the conditional variance 
+$$
+Var(\varepsilon_i|X_i=x_i)=\sigma^2(x_i)
+$$ 
+equals a **non-constant** variance function $\sigma^2(x_i)>0$ for every possible realization $X_i=x_i.$ 
+:::
+:::
 
 **Example:** 
 $$
@@ -327,18 +348,22 @@ depends on $X_{i2}.$
 
 
 
-Sometimes, we need to be more restrictive by assuming that also the variances of the error terms $\varepsilon_i$ are independent from $X_i$. For instance, to do small sample inference (see @sec-ssinf), we will assume that the error terms are homoskedastik. (Higher moments may still depend on $X_i$.) This assumption leads to **"homoskedastic"** error terms. 
+Sometimes, we need to be more restrictive by assuming that also the variances of the error terms $\varepsilon_i$ are independent of $X_i;$ for instance, to do small sample inference (see @sec-ssinf). 
 
 
-- **Homoskedastic error terms:** The conditional variances $Var(\varepsilon_i|X_i=x_i)=\sigma^2$ are equal to some constant $\sigma^2>0$ for every possible realization $X_i=x_i.$ 
+::: {.callout icon=false}
+#
+::: {#def-heteroskedastic}
+## Homoskedastic Error Terms
 
-<!-- Sometimes, we need to be even more restrictive by assuming that the error terms $\varepsilon_i$  -->
-<!-- are themselves **i.i.d.** across $i=1,\dots,n$. This is more restrictive than the assumption that the  -->
-<!-- multivariate random variables $(\varepsilon_i,X_{i1},\dots,X_{iK})$ are i.i.d. across $i=1,\dots,n$  -->
-<!-- since it implies that the whole distribution (not only the first two moments) of $\varepsilon_i$  -->
-<!-- does not depend on $X_i$. This assumption also implies  **homoskedastic** error terms since when  -->
-<!-- the whole distribution of $\varepsilon_i$ does not depend on $X_i\in\mathbb{R}^K$ also its variance  -->
-<!-- doesn't depend on $X_i$.  -->
+The error terms $\varepsilon_i$ are called heteroskedastic if the conditional variance 
+$$
+Var(\varepsilon_i|X_i=x_i)=\sigma^2
+$$ 
+equals some **constant** $\sigma^2>0$ for every possible realization $X_i=x_i.$
+:::
+::: 
+
 
 **Example:** 
 $$
@@ -351,7 +376,7 @@ $$
 are equal to the constant $\sigma^2>0$ for all $i=1,\dots,n$ and for every possible realization of $X_i.$ 
 
 
-### Some Implications of the Exogeneity Assumption 
+### Some Implications of the Exogeneity Assumption (Ass 2)
 
 
 ::: {.callout icon=false}
@@ -443,9 +468,11 @@ If $E(\varepsilon_i|X_{i})=0$ for all $i=1,\dots,n,$ then
 
 ::: {.proof}
 \begin{eqnarray*}
-  Cov(\varepsilon_i,X_{ik})&=&E(X_{ik}\varepsilon_i)-E(X_{ik})\,E(\varepsilon_i)\quad{\small\text{(Def. of Cov)}}\\
-  &=&E(X_{ik}\varepsilon_i)\quad{\small\text{(By point (a): $E(\varepsilon_i)=0$)}}\\
-  &=&0\quad{\small\text{(By orthogonality result in point (b))}}\quad\square
+  Cov(\varepsilon_i,X_{ik})&=&E(X_{ik}\varepsilon_i)-E(X_{ik})\,E(\varepsilon_i)\quad{\small\text{(Def. of Cov)}}\\[2ex]
+  &&\text{By the mean zero result, $E(\varepsilon_i)=0,$ shown above:}\\[2ex]
+  &=&E(X_{ik}\varepsilon_i)\\[2ex]
+  &&\text{By the orthogonality result shown above:}\\[2ex]
+  &=&0\quad\square
 \end{eqnarray*}
 :::
 
@@ -511,24 +538,23 @@ The independent and dependent variables are correlated but the causal link is on
 
 We derive the expression for the OLS estimator 
 $$
-\hat\beta=(\hat\beta_1,\dots,\hat\beta_K)'\in\mathbb{R}^K
+\hat\beta=\begin{pmatrix}\hat\beta_1\\\vdots\\\hat\beta_K\end{pmatrix}\in\mathbb{R}^K
 $$ 
 as the vector-valued minimizing argument of the sum of squared residuals, 
 $$
 S_n(b)=\sum_{i=1}^n\big(\underbrace{Y_i-X_i'b}_{\text{$i$th residual}}\big)^2
 $$ 
-with $b\in\mathbb{R}^K$, for a given sample 
-$$
-((Y_1,X_1),\dots,(Y_n,X_n)).
-$$  
+with $b\in\mathbb{R}^K.$
 
 Using matrix/vector notation we can write $S(b)$ as 
+$$
 \begin{align*}
 S_n(b)
 &=\sum_{i=1}^n(Y_i-X_i'b)^2\\[2ex]
 &=(Y-X b)^{\prime}(Y-X b)\\[2ex]
 &=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
 \end{align*}
+$$
 To find the minimizing argument 
 $$
 \hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)
@@ -539,12 +565,12 @@ $$
 \underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &=-2\left(X^{\prime}Y -X^{\prime} Xb\right).
 \end{aligned}
 $$
-Setting each partial derivative to zero leads to $K$ linear equations ("normal equations") in $K$ unknowns. This linear system of equations defines the OLS estimates, $\hat{\beta}$, for a given dataset:
+Setting each partial derivative to zero leads to $K$ linear equations ("normal equations") in $K$ unknowns. This system of linear equations defines the OLS estimator, $\hat{\beta}.$
 $$
 \begin{align*}
 -2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)
 &=\underset{(K\times 1)}{0}\\[2ex]
-X^{\prime} X\hat{\beta}
+\Leftrightarrow\qquad X^{\prime} X\hat{\beta}
 &=\underset{(K\times 1)}{X^{\prime}Y}.
 \end{align*}
 $$
@@ -646,15 +672,23 @@ $$
      * $X'M_X=0$ and $M_XX=0$ 
      * $P_XM_X=0$ and $M_XP_X=0$ 
 
-The properties (a)-(c) follow directly from the definitions of $P_X$ and $M_X$ (check it out).  Using these properties one can show that the residual vector $\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'$ is orthogonal to each of the column vectors in $X$, i.e 
+The properties (a)-(c) follow directly from the definitions of $P_X$ and $M_X$ (check it out).  
+
+Using properties (a)-(c), one can show that the residual vector $\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'$ is orthogonal to each of the column vectors in $X$, i.e 
 $$
 \begin{eqnarray}
-X'\hat\varepsilon&=&X'M_XY\quad\text{\small(By Def. of $M_X$)}\\
-\Leftrightarrow X'\hat\varepsilon&=&\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad\text{\small(since $X'M_X=0$)}\\
-\Leftrightarrow X'\hat\varepsilon&=&\underset{(K\times 1)}{0}.
+X'\hat\varepsilon&=&X'M_XY\quad{\small\text{(By Def. of $M_X$)}}\\[2ex]
+\Leftrightarrow\;\; X'\hat\varepsilon&=&\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad{\small\text{(since $X'M_X=0$)}}\\[2ex]
+\Leftrightarrow\;\; X'\hat\varepsilon&=&\underset{(K\times 1)}{0}.
 \end{eqnarray}
+$${#eq-ResidRestrictions}
+Note that, in the case with intercept, @eq-ResidRestrictions implies that 
 $$
-Note that, in the case with intercept, the result $X'\hat\varepsilon=0$ implies that $\sum_{i=1}^n\hat\varepsilon_i=0$. 
+\begin{align*}
+\sum_{i=1}^n 1\cdot \hat\varepsilon_i& = 0\\[2ex]
+\Leftrightarrow\;\;\underbrace{\frac{1}{n}\sum_{i=1}^n \hat\varepsilon_i}_{=\bar{\hat\varepsilon}} & = 0\\[2ex]
+\end{align*}
+$$
 
 
 Moreover, the equation $X'\hat\varepsilon=0$ implies also that the residual vector $\hat{\varepsilon}$ is orthogonal to the predicted values vector, since
@@ -666,7 +700,7 @@ X'\hat\varepsilon&=0\\
 \end{align*}
 $$
 
-Another insight from equation $X'\hat{\varepsilon}=0$ is that the vector $\hat\varepsilon$ has to satisfy $K$ linear restrictions which means we loose $K$ degrees of freedom in the data. Consequently, the vector of residuals $\hat\varepsilon$ has only $n-K$ so-called *degrees of freedom*.  This loss of $K$ degrees of freedom also appears in the definition of the *unbiased* variance estimator
+Another insight from @eq-ResidRestrictions is that the vector $\hat\varepsilon$ has to satisfy $K$ linear restrictions which means we loose $K$ degrees of freedom in the data. Consequently, the vector of residuals $\hat\varepsilon$ has only $n-K$ so-called *degrees of freedom*.  This loss of $K$ degrees of freedom also appears in the definition of the *unbiased* variance estimator
 $$
 s_{UB}^2=\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon_i^2.
 $$
