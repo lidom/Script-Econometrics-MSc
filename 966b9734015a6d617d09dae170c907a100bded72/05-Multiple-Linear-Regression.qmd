@@ -636,11 +636,12 @@ $$
 allows us to ***identify* the unknown (true) parameter vector** $\beta\in\mathbb{R}^K$ in terms of population moments:
 $$
 \begin{align*}
-E(X_i(\overbrace{Y_i - X_i'\beta}^{=\varepsilon_i})) &= 0\\
+E(X_i\varepsilon_i) & = 0 \\[2ex]
+E(X_i(\overbrace{Y_i - X_i'\beta}^{=\varepsilon_i})) &= 0\\[2ex]
 %\Leftrightarrow \hspace{1.5cm}
-E(X_iY_i) - E(X_iX_i')\beta & = 0\\
-E(X_iX_i')\beta & =  E(X_iY_i)  \\
-\beta & = \left(E(X_iX_i')\right)^{-1} E(X_iY_i)  \\
+E(X_iY_i) - E(X_iX_i')\beta & = 0\\[2ex]
+E(X_iX_i')\beta & =  E(X_iY_i)  \\[2ex]
+\beta & = \left(E(X_iX_i')\right)^{-1} E(X_iY_i) 
 \end{align*}
 $$
 The fundamental idea behind **method of moments estimation** is to define an estimator by **substituting population moments by sample moment analogues** (sample means):

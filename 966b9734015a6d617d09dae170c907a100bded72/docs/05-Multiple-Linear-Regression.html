@@ -820,11 +820,12 @@ E(X_{ik}\varepsilon_i)=0\quad\text{for all}\quad k=1,\dots,K.
 \underset{(K\times 1)}{E(X_i\varepsilon_i)}=\underset{(K\times 1)}{0}
 \]</span> allows us to <strong><em>identify</em> the unknown (true) parameter vector</strong> <span class="math inline">\(\beta\in\mathbb{R}^K\)</span> in terms of population moments: <span class="math display">\[
 \begin{align*}
-E(X_i(\overbrace{Y_i - X_i'\beta}^{=\varepsilon_i})) &amp;= 0\\
+E(X_i\varepsilon_i) &amp; = 0 \\[2ex]
+E(X_i(\overbrace{Y_i - X_i'\beta}^{=\varepsilon_i})) &amp;= 0\\[2ex]
 %\Leftrightarrow \hspace{1.5cm}
-E(X_iY_i) - E(X_iX_i')\beta &amp; = 0\\
-E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\
-\beta &amp; = \left(E(X_iX_i')\right)^{-1} E(X_iY_i)  \\
+E(X_iY_i) - E(X_iX_i')\beta &amp; = 0\\[2ex]
+E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\[2ex]
+\beta &amp; = \left(E(X_iX_i')\right)^{-1} E(X_iY_i)
 \end{align*}
 \]</span> The fundamental idea behind <strong>method of moments estimation</strong> is to define an estimator by <strong>substituting population moments by sample moment analogues</strong> (sample means): <span id="eq-MMEstimator"><span class="math display">\[
 \begin{align*}
