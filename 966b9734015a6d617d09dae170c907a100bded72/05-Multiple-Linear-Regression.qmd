@@ -536,6 +536,8 @@ The independent and dependent variables are correlated but the causal link is on
 
 ## Deriving the Expression of the OLS Estimator
 
+### Least Squares Approach 
+
 We derive the expression for the OLS estimator 
 $$
 \hat\beta=\begin{pmatrix}\hat\beta_1\\\vdots\\\hat\beta_K\end{pmatrix}\in\mathbb{R}^K
@@ -573,8 +575,8 @@ $$
 \Leftrightarrow\qquad X^{\prime} X\hat{\beta}
 &=\underset{(K\times 1)}{X^{\prime}Y}.
 \end{align*}
-$$
-From our rank assumption (Assumption 3) it follows that $X^{\prime}X$ is an invertible $(K\times K)$-dimensional matrix which allows us to solve the equation system by 
+$${#eq-NormalEquations}
+From our rank assumption (Assumption 3) it follows that $X^{\prime}X$ is an invertible $(K\times K)$-dimensional matrix which allows us to solve the equation system in @eq-NormalEquations by 
 $$
 \begin{aligned}
 \underset{(K\times 1)}{\hat{\beta}} &=\left(X^{\prime} X\right)^{-1} X^{\prime} Y.
@@ -603,6 +605,70 @@ plot3d  <- scatterplot3d(x = X_2, y = X_3, z = Y,
 plot3d$plane3d(lmobj, lty.box = "solid", col=gray(.5), draw_polygon=TRUE)
 ```
 
+
+
+### Method of Moments Estimator Approach {#sec-MMEstimator}
+
+Remember that the exogeneity assumption (Assumption 2), 
+$$
+E(\varepsilon_i|X_i)=0,
+$$ 
+implies that 
+$$
+E(X_{ik}\varepsilon_i)=0\quad\text{for all}\quad k=1,\dots,K.
+$$ 
+Thus, the exogeneity assumption (Assumption 2) gives us a system of $K$ linear equations:
+$$
+\left.
+  \begin{array}{c}
+  E(\varepsilon_i)=0\\
+  E(X_{i2}\varepsilon_i)=0\\
+  \vdots\\
+  E(X_{iK}\varepsilon_i)=0
+  \end{array}
+\right\}\Leftrightarrow \underset{(K\times 1)}{E(X_i\varepsilon_i)}=\underset{(K\times 1)}{0}
+$$
+
+This linear equation system in terms of population moments (means)
+$$
+\underset{(K\times 1)}{E(X_i\varepsilon_i)}=\underset{(K\times 1)}{0}
+$$ 
+allows us to ***identify* the unknown (true) parameter vector** $\beta\in\mathbb{R}^K$ in terms of population moments:
+$$
+\begin{align*}
+E(X_i(\overbrace{Y_i - X_i'\beta}^{=\varepsilon_i})) &= 0\\
+%\Leftrightarrow \hspace{1.5cm}
+E(X_iY_i) - E(X_iX_i')\beta & = 0\\
+E(X_iX_i')\beta & =  E(X_iY_i)  \\
+\beta & = \left(E(X_iX_i')\right)^{-1} E(X_iY_i)  \\
+\end{align*}
+$$
+The fundamental idea behind **method of moments estimation** is to define an estimator by **substituting population moments by sample moment analogues** (sample means):
+$$
+\begin{align*}
+\hat\beta_{mm} 
+& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i,
+\end{align*}
+$${#eq-MMEstimator}
+where 
+$$
+E(X_iX_i') \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iX_i'
+$$
+and 
+$$
+E(X_iY_i') \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iY_i'.
+$$
+
+Note that @eq-MMEstimator can be further simplified as following:
+$$
+\begin{align*}
+\hat\beta_{mm} 
+& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i  \\
+& = \left(\sum_{i=1}^n X_iX_i'\right)^{-1} \sum_{i=1}^n X_iY_i\\ 
+& = \left(X'X\right)^{-1} X'Y.\\ 
+\end{align*}
+$$
+Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS estimator $\hat\beta$ as derived above.
 
 
 
@@ -803,52 +869,6 @@ Because of this, the $R^2$ cannot be used as a criterion for model selection. Po
 The adjustment is in terms of the degrees of freedom $n-K$.
 
 
-## Method of Moments Estimator {#sec-MMEstimator}
-
-Remember that the exogeneity assumption (Assumption 2), $E(\varepsilon_i|X_i)=0,$ implies that $E(X_{ik}\varepsilon_i)=0$ for all $k=1,\dots,K$. Thus, the exogeneity assumption gives us a system of $K$ linear equations:
-$$
-\left.
-  \begin{array}{c}
-  E(\varepsilon_i)=0\\
-  E(X_{i2}\varepsilon_i)=0\\
-  \vdots\\
-  E(X_{iK}\varepsilon_i)=0
-  \end{array}
-\right\}\Leftrightarrow \underset{(K\times 1)}{E(X_i\varepsilon_i)}=\underset{(K\times 1)}{0}
-$$
-
-The linear equation system
-$$
-\underset{(K\times 1)}{E(X_i\varepsilon_i)}=\underset{(K\times 1)}{0}
-$$ 
-allows us to **identify the unknown parameter vector** $\beta\in\mathbb{R}^K$ in terms of population moments:
-$$
-\begin{align*}
-E(X_i(\overbrace{Y_i - X_i'\beta}^{=\varepsilon_i})) &= 0\\
-%\Leftrightarrow \hspace{1.5cm}
-E(X_iY_i) - E(X_iX_i')\beta & = 0\\
-E(X_iX_i')\beta & =  E(X_iY_i)  \\
-\beta & = \left(E(X_iX_i')\right)^{-1} E(X_iY_i)  \\
-\end{align*}
-$$
-The fundamental idea behind **method of moments estimation** is to define an estimator by **substituting population moments by sample moment analogues** (sample means):
-$$
-\begin{align*}
-\hat\beta_{mm} 
-& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i,
-\end{align*}
-$$
-where $\hat\beta_{mm}$ can be simplified as following:
-$$
-\begin{align*}
-\hat\beta_{mm} 
-& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i  \\
-& = \left(\sum_{i=1}^n X_iX_i'\right)^{-1} \sum_{i=1}^n X_iY_i\\ 
-& = \left(X'X\right)^{-1} X'Y.\\ 
-\end{align*}
-$$
-
-Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS estimator.
 
 
 ## The Gauss-Markov Theorem {#sec-GMTheorem}
