@@ -340,7 +340,7 @@ with
 $$
 X_{i2}\sim U[-4,4]
 $$ 
-for all $i=1,\dots,n.$ This error term is mean independent of $X_i$ since $E(\varepsilon_i|X_i)=0$, but it has a heteroskedastic conditional variance since 
+for all $i=1,\dots,n.$ This error term is mean independent of $X_i$ since $E(\varepsilon_i|X_i)=0,$ but it has a heteroskedastic conditional variance since 
 $$
 Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2
 $$ 
@@ -534,7 +534,7 @@ The independent and dependent variables are correlated but the causal link is on
 
 
 
-## Deriving the Expression of the OLS Estimator
+## Deriving the Estimator $\hat\beta$
 
 ### Least Squares Approach 
 
@@ -653,11 +653,10 @@ $$
 $${#eq-MMEstimator}
 where 
 $$
-E(X_iX_i') \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iX_i'
-$$
-and 
-$$
-E(X_iY_i') \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iY_i'.
+\begin{align*}
+E(X_iX_i') & \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iX_i'\\[2ex]
+E(X_iY_i') & \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iY_i'.
+\end{align*}
 $$
 
 Note that @eq-MMEstimator can be further simplified as following:
@@ -670,6 +669,57 @@ $$
 \end{align*}
 $$
 Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS estimator $\hat\beta$ as derived above.
+
+
+### Method of Moments versus Least Squares Estimation
+
+<!-- Deriving the OLS estimator does not explicitly require a identification step; i.e. it does not require a statement that the parameter of interest, $\beta,$ can be written in terms of population moments of observables
+$$
+\beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i),
+$$
+where the latter statement only hold under Assumption 2 (exogeneity). -->
+
+The method of moments estimation approach, firstly, checks whether the parameter of interest, $\beta,$ is identified; i.e., whether $\beta$ can be written in terms of population moments of observables
+$$
+\beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i),
+$${#eq-IdentificationBeta}
+where the identification result of @eq-IdentificationBeta only holds under Assumption 2 (exogeneity). The identified parameter $\beta$ is then estimated using the simple method of moments idea of substituting population moments by sample moments. 
+
+
+
+Note: If Assumption 2 (exogeneity) is violated, then we generally have that
+$$
+\beta \neq \tilde \beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i).
+$$
+
+
+
+The derivation of the OLS estimator 
+$$
+\begin{align*}
+\hat\beta 
+& = \left(X'X\right)^{-1} X'Y\\[2ex]
+& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i  \\
+& = \underbrace{\left(\sum_{i=1}^n X_iX_i'\right)^{-1}}_{\approx (E(X_iX_i'))^{-1}} \; \underbrace{\sum_{i=1}^n X_iY_i}_{\approx E(X_iY_i)} 
+\end{align*}
+$$
+does not require a check whether $\beta$ is actually identified. By the law of large numbers (sample means converge in probability to population means; see @sec-lsinf), the OLS estimator is a consistent estimator of $\tilde\beta,$ 
+$$
+\begin{align*}
+\hat\beta \to_p  \tilde\beta = (E(X_iX_i'))^{-1} E(X_iY_i) \quad \text{as}\quad n\to\infty. 
+\end{align*}
+$$
+
+That is, the OLS estimator will estimate the parameter of interest $\beta$ only if  
+$$
+\beta = \tilde \beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i);
+$$
+i.e. only if $\beta$ is identified. 
+
+Without identification, the OLS estimator estimates $\tilde\beta,$ but generally not our parameter of interest $\beta.$
+
+
+**Summary:** So, at the end, both estimation approaches require that the parameter of interest, $\beta,$ is identified. The method of moments estimation approach starts with checking the identification requirement and thus frames the identification requirement more prominently as what it is: a pre-request for consistent estimation of $\beta.$ 
 
 
 

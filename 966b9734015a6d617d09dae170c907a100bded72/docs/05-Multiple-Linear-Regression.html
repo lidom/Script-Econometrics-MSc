@@ -242,10 +242,11 @@ window.Quarto = {
   </ul>
 </li>
   <li>
-<a href="#deriving-the-expression-of-the-ols-estimator" id="toc-deriving-the-expression-of-the-ols-estimator" class="nav-link" data-scroll-target="#deriving-the-expression-of-the-ols-estimator"><span class="header-section-number">5.2</span> Deriving the Expression of the OLS Estimator</a>
+<a href="#deriving-the-estimator-hatbeta" id="toc-deriving-the-estimator-hatbeta" class="nav-link" data-scroll-target="#deriving-the-estimator-hatbeta"><span class="header-section-number">5.2</span> Deriving the Estimator <span class="math inline">\(\hat\beta\)</span></a>
   <ul class="collapse">
 <li><a href="#least-squares-approach" id="toc-least-squares-approach" class="nav-link" data-scroll-target="#least-squares-approach"><span class="header-section-number">5.2.1</span> Least Squares Approach</a></li>
   <li><a href="#sec-MMEstimator" id="toc-sec-MMEstimator" class="nav-link" data-scroll-target="#sec-MMEstimator"><span class="header-section-number">5.2.2</span> Method of Moments Estimator Approach</a></li>
+  <li><a href="#method-of-moments-versus-least-squares-estimation" id="toc-method-of-moments-versus-least-squares-estimation" class="nav-link" data-scroll-target="#method-of-moments-versus-least-squares-estimation"><span class="header-section-number">5.2.3</span> Method of Moments versus Least Squares Estimation</a></li>
   </ul>
 </li>
   <li><a href="#some-quantities-of-interest" id="toc-some-quantities-of-interest" class="nav-link" data-scroll-target="#some-quantities-of-interest"><span class="header-section-number">5.3</span> Some Quantities of Interest</a></li>
@@ -594,7 +595,7 @@ Var(\varepsilon_i|X_i=x_i)=\sigma^2(x_i)
 \varepsilon_i|X_i\sim U[-0.5|X_{i2}|, 0.5|X_{i2}|],
 \]</span> with <span class="math display">\[
 X_{i2}\sim U[-4,4]
-\]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> This error term is mean independent of <span class="math inline">\(X_i\)</span> since <span class="math inline">\(E(\varepsilon_i|X_i)=0\)</span>, but it has a heteroskedastic conditional variance since <span class="math display">\[
+\]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span> This error term is mean independent of <span class="math inline">\(X_i\)</span> since <span class="math inline">\(E(\varepsilon_i|X_i)=0,\)</span> but it has a heteroskedastic conditional variance since <span class="math display">\[
 Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2
 \]</span> depends on <span class="math inline">\(X_{i2}.\)</span></p>
 <p>Sometimes, we need to be more restrictive by assuming that also the variances of the error terms <span class="math inline">\(\varepsilon_i\)</span> are independent of <span class="math inline">\(X_i;\)</span> for instance, to do small sample inference (see <a href="06-Small-Sample-Inference.html" class="quarto-xref"><span>Chapter 6</span></a>).</p>
@@ -741,8 +742,9 @@ The latter point would mean that large values of $Y_i$
 
 
 The independent and dependent variables are correlated but the causal link is only in one direction – the independent variable affects the dependent variable not vice-versa. -->
-</section></section><section id="deriving-the-expression-of-the-ols-estimator" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="deriving-the-expression-of-the-ols-estimator">
-<span class="header-section-number">5.2</span> Deriving the Expression of the OLS Estimator</h2>
+</section></section><section id="deriving-the-estimator-hatbeta" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="deriving-the-estimator-hatbeta">
+<span class="header-section-number">5.2</span> Deriving the Estimator <span class="math inline">\(\hat\beta\)</span>
+</h2>
 <section id="least-squares-approach" class="level3" data-number="5.2.1"><h3 data-number="5.2.1" class="anchored" data-anchor-id="least-squares-approach">
 <span class="header-section-number">5.2.1</span> Least Squares Approach</h3>
 <p>We derive the expression for the OLS estimator <span class="math display">\[
@@ -833,9 +835,10 @@ E(X_iX_i')\beta &amp; =  E(X_iY_i)  \\[2ex]
 &amp; = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i,
 \end{align*}
 \qquad(5.4)\]</span></span> where <span class="math display">\[
-E(X_iX_i') \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iX_i'
-\]</span> and <span class="math display">\[
-E(X_iY_i') \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iY_i'.
+\begin{align*}
+E(X_iX_i') &amp; \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iX_i'\\[2ex]
+E(X_iY_i') &amp; \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iY_i'.
+\end{align*}
 \]</span></p>
 <p>Note that <a href="#eq-MMEstimator" class="quarto-xref">Equation&nbsp;<span>5.4</span></a> can be further simplified as following: <span class="math display">\[
 \begin{align*}
@@ -845,6 +848,36 @@ E(X_iY_i') \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iY_i'.
 &amp; = \left(X'X\right)^{-1} X'Y.\\
 \end{align*}
 \]</span> Thus the method of moments estimator, <span class="math inline">\(\hat\beta_{mm},\)</span> coincides with the OLS estimator <span class="math inline">\(\hat\beta\)</span> as derived above.</p>
+</section><section id="method-of-moments-versus-least-squares-estimation" class="level3" data-number="5.2.3"><h3 data-number="5.2.3" class="anchored" data-anchor-id="method-of-moments-versus-least-squares-estimation">
+<span class="header-section-number">5.2.3</span> Method of Moments versus Least Squares Estimation</h3>
+<!-- Deriving the OLS estimator does not explicitly require a identification step; i.e. it does not require a statement that the parameter of interest, $\beta,$ can be written in terms of population moments of observables
+$$
+\beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i),
+$$
+where the latter statement only hold under Assumption 2 (exogeneity). -->
+<p>The method of moments estimation approach, firstly, checks whether the parameter of interest, <span class="math inline">\(\beta,\)</span> is identified; i.e., whether <span class="math inline">\(\beta\)</span> can be written in terms of population moments of observables <span id="eq-IdentificationBeta"><span class="math display">\[
+\beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i),
+\qquad(5.5)\]</span></span> where the identification result of <a href="#eq-IdentificationBeta" class="quarto-xref">Equation&nbsp;<span>5.5</span></a> only holds under Assumption 2 (exogeneity). The identified parameter <span class="math inline">\(\beta\)</span> is then estimated using the simple method of moments idea of substituting population moments by sample moments.</p>
+<p>Note: If Assumption 2 (exogeneity) is violated, then we generally have that <span class="math display">\[
+\beta \neq \tilde \beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i).
+\]</span></p>
+<p>The derivation of the OLS estimator <span class="math display">\[
+\begin{align*}
+\hat\beta
+&amp; = \left(X'X\right)^{-1} X'Y\\[2ex]
+&amp; = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i  \\
+&amp; = \underbrace{\left(\sum_{i=1}^n X_iX_i'\right)^{-1}}_{\approx (E(X_iX_i'))^{-1}} \; \underbrace{\sum_{i=1}^n X_iY_i}_{\approx E(X_iY_i)}
+\end{align*}
+\]</span> does not require a check whether <span class="math inline">\(\beta\)</span> is actually identified. By the law of large numbers (sample means converge in probability to population means; see <a href="07-Asymptotics.html" class="quarto-xref"><span>Chapter 7</span></a>), the OLS estimator is a consistent estimator of <span class="math inline">\(\tilde\beta,\)</span> <span class="math display">\[
+\begin{align*}
+\hat\beta \to_p  \tilde\beta = (E(X_iX_i'))^{-1} E(X_iY_i) \quad \text{as}\quad n\to\infty.
+\end{align*}
+\]</span></p>
+<p>That is, the OLS estimator will estimate the parameter of interest <span class="math inline">\(\beta\)</span> only if<br><span class="math display">\[
+\beta = \tilde \beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i);
+\]</span> i.e.&nbsp;only if <span class="math inline">\(\beta\)</span> is identified.</p>
+<p>Without identification, the OLS estimator estimates <span class="math inline">\(\tilde\beta,\)</span> but generally not our parameter of interest <span class="math inline">\(\beta.\)</span></p>
+<p><strong>Summary:</strong> So, at the end, both estimation approaches require that the parameter of interest, <span class="math inline">\(\beta,\)</span> is identified. The method of moments estimation approach starts with checking the identification requirement and thus frames the identification requirement more prominently as what it is: a pre-request for consistent estimation of <span class="math inline">\(\beta.\)</span></p>
 </section></section><section id="some-quantities-of-interest" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="some-quantities-of-interest">
 <span class="header-section-number">5.3</span> Some Quantities of Interest</h2>
 <p><strong>Predicted values and residuals.</strong></p>
@@ -918,7 +951,7 @@ X'\hat\varepsilon&amp;=&amp;X'M_XY\quad{\small\text{(By Def. of $M_X$)}}\\[2ex]
 \Leftrightarrow\;\; X'\hat\varepsilon&amp;=&amp;\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad{\small\text{(since $X'M_X=0$)}}\\[2ex]
 \Leftrightarrow\;\; X'\hat\varepsilon&amp;=&amp;\underset{(K\times 1)}{0}.
 \end{eqnarray}
-\qquad(5.5)\]</span></span> Note that, in the case with intercept, <a href="#eq-ResidRestrictions" class="quarto-xref">Equation&nbsp;<span>5.5</span></a> implies that <span class="math display">\[
+\qquad(5.6)\]</span></span> Note that, in the case with intercept, <a href="#eq-ResidRestrictions" class="quarto-xref">Equation&nbsp;<span>5.6</span></a> implies that <span class="math display">\[
 \begin{align*}
 \sum_{i=1}^n 1\cdot \hat\varepsilon_i&amp; = 0\\[2ex]
 \Leftrightarrow\;\;\underbrace{\frac{1}{n}\sum_{i=1}^n \hat\varepsilon_i}_{=\bar{\hat\varepsilon}} &amp; = 0\\[2ex]
@@ -931,7 +964,7 @@ X'\hat\varepsilon&amp;=0\\
 \Leftrightarrow\;\hat Y'\hat\varepsilon&amp;=0.
 \end{align*}
 \]</span></p>
-<p>Another insight from <a href="#eq-ResidRestrictions" class="quarto-xref">Equation&nbsp;<span>5.5</span></a> is that the vector <span class="math inline">\(\hat\varepsilon\)</span> has to satisfy <span class="math inline">\(K\)</span> linear restrictions which means we loose <span class="math inline">\(K\)</span> degrees of freedom in the data. Consequently, the vector of residuals <span class="math inline">\(\hat\varepsilon\)</span> has only <span class="math inline">\(n-K\)</span> so-called <em>degrees of freedom</em>. This loss of <span class="math inline">\(K\)</span> degrees of freedom also appears in the definition of the <em>unbiased</em> variance estimator <span class="math display">\[
+<p>Another insight from <a href="#eq-ResidRestrictions" class="quarto-xref">Equation&nbsp;<span>5.6</span></a> is that the vector <span class="math inline">\(\hat\varepsilon\)</span> has to satisfy <span class="math inline">\(K\)</span> linear restrictions which means we loose <span class="math inline">\(K\)</span> degrees of freedom in the data. Consequently, the vector of residuals <span class="math inline">\(\hat\varepsilon\)</span> has only <span class="math inline">\(n-K\)</span> so-called <em>degrees of freedom</em>. This loss of <span class="math inline">\(K\)</span> degrees of freedom also appears in the definition of the <em>unbiased</em> variance estimator <span class="math display">\[
 s_{UB}^2=\frac{1}{n-K}\sum_{i=1}^n\hat\varepsilon_i^2.
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1234,14 +1267,14 @@ a'Da\geq 0
 \end{align*}
 \]</span> Thus <span id="eq-c3e16"><span class="math display">\[
 \tilde{\beta}=DX{\beta}+D{\varepsilon} + \hat{\beta}.
-\qquad(5.6)\]</span></span> Moreover, <span class="math display">\[
+\qquad(5.7)\]</span></span> Moreover, <span class="math display">\[
 E(\tilde{\beta}|X)=\underbrace{E(DX{\beta}|X)}_{=DX\beta}+\underbrace{E(D\varepsilon|X)}_{=DE(\varepsilon|X)=0}+\underbrace{E(\hat{\beta}|X)}_{=\beta}
 \]</span> and thus <span id="eq-c3e17"><span class="math display">\[
 E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}.
-\qquad(5.7)\]</span></span></p>
-<p>Since <span class="math inline">\(\tilde{\beta}\)</span> is (by assumption) unbiased, we have that <span class="math inline">\(E(\tilde{\beta}|X)={\beta}\)</span>. Therefore, <a href="#eq-c3e17" class="quarto-xref">Equation&nbsp;<span>5.7</span></a> implies that <span class="math inline">\(DX=0_{(K\times K)}\)</span> since we must have that <span class="math display">\[
+\qquad(5.8)\]</span></span></p>
+<p>Since <span class="math inline">\(\tilde{\beta}\)</span> is (by assumption) unbiased, we have that <span class="math inline">\(E(\tilde{\beta}|X)={\beta}\)</span>. Therefore, <a href="#eq-c3e17" class="quarto-xref">Equation&nbsp;<span>5.8</span></a> implies that <span class="math inline">\(DX=0_{(K\times K)}\)</span> since we must have that <span class="math display">\[
 E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}=\beta.
-\]</span> Plugging <span class="math inline">\(DX=0\)</span> into <a href="#eq-c3e16" class="quarto-xref">Equation&nbsp;<span>5.6</span></a> yields, <span class="math display">\[
+\]</span> Plugging <span class="math inline">\(DX=0\)</span> into <a href="#eq-c3e16" class="quarto-xref">Equation&nbsp;<span>5.7</span></a> yields, <span class="math display">\[
 \begin{align*}
 \tilde{\beta}&amp;=D{\varepsilon} + \hat{\beta}\\
 \tilde{\beta}-{\beta}&amp;=D{\varepsilon} + (\hat{\beta}-{\beta})\\
@@ -1249,14 +1282,14 @@ E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}=\beta.
 \end{align*}
 \]</span> such that <span id="eq-c3e18"><span class="math display">\[
 \tilde{\beta}-{\beta}=\left(D + \left(X'X\right)^{-1}X'\right){\varepsilon},
-\qquad(5.8)\]</span></span> where we used that <span class="math display">\[
+\qquad(5.9)\]</span></span> where we used that <span class="math display">\[
 \begin{align*}
 \hat\beta-\beta&amp;=(X'X)^{-1}X'Y-\beta\\
 &amp;=(X'X)^{-1}X'(X\beta+\varepsilon)-\beta\\
 &amp;=(X'X)^{-1}X'\varepsilon.
 \end{align*}
 \]</span></p>
-<p>Using that <span class="math inline">\(Var(\tilde{\beta}|X)= Var(\tilde{\beta}-{\beta}|X)\)</span> since <span class="math inline">\(\beta\)</span> is not random and using <a href="#eq-c3e18" class="quarto-xref">Equation&nbsp;<span>5.8</span></a> yields <span class="math display">\[
+<p>Using that <span class="math inline">\(Var(\tilde{\beta}|X)= Var(\tilde{\beta}-{\beta}|X)\)</span> since <span class="math inline">\(\beta\)</span> is not random and using <a href="#eq-c3e18" class="quarto-xref">Equation&nbsp;<span>5.9</span></a> yields <span class="math display">\[
 \begin{align*}
 Var(\tilde{\beta}|X)
 &amp;= Var((D + (X'X)^{-1}X'){\varepsilon}|X)\\
