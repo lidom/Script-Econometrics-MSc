@@ -590,7 +590,7 @@ Table&nbsp;4.1: Monte Carlo approximations for the true bias, true variance, and
 \operatorname{MSE}(\bar{X}_n) &amp;= \texttt{Constant} \cdot n^{-1}\\[2ex]
 \Leftrightarrow\log\left(\operatorname{MSE}(\bar{X}_n)\right) &amp;= \log\left(\texttt{Constant}\right) -1 \cdot \log\left(n\right),
 \end{align*}
-\]</span> where <span class="math inline">\(\texttt{Constant}\)</span> depends only on the data generating process and the estimator.</p></li>
+\]</span> where <span class="math inline">\(\texttt{Constant}\)</span> depends on the data generating process and the estimator, but not on the sample size <span class="math inline">\(n\)</span>.</p></li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>y    <span class="op">=</span> <span class="va">MC_MSE_n_seq</span>,  </span>

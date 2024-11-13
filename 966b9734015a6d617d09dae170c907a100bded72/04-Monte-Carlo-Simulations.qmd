@@ -378,7 +378,7 @@ $$
 \Leftrightarrow\log\left(\operatorname{MSE}(\bar{X}_n)\right) &= \log\left(\texttt{Constant}\right) -1 \cdot \log\left(n\right),
 \end{align*}
 $$
-where $\texttt{Constant}$ depends only on the data generating process and the estimator. 
+where $\texttt{Constant}$ depends on the data generating process and the estimator, but not on the sample size $n$. 
 
 ```{r}
 #| label: fig-loglog
