@@ -281,7 +281,18 @@ window.Quarto = {
   
 
 
-</header><p>In the following we focus on the case of random designs <span class="math inline">\(X\)</span> (i.e.&nbsp;<span class="math inline">\(X\)</span> being a random variable), since</p>
+</header><div class="hidden">
+<p><span class="math display">\[
+\require{color}
+%% Colorbox within equation-environments:
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  }%
+\]</span></p>
+</div>
+<p>In the following we focus on the case of random designs <span class="math inline">\(X\)</span> (i.e.&nbsp;<span class="math inline">\(X\)</span> being a random variable), since</p>
 <ol type="1">
 <li>this is the more relevant case in econometrics and</li>
 <li>it includes the case of fixed designs (i.e.&nbsp;<span class="math inline">\(X\)</span> being deterministic) as a special case (“degenerated random variable”).</li>
@@ -1072,16 +1083,12 @@ Caution
 \end{eqnarray*}\]</span> The adjustment is in terms of the degrees of freedom <span class="math inline">\(n-K\)</span>.</p>
 </section></section><section id="sec-GMTheorem" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="sec-GMTheorem">
 <span class="header-section-number">5.4</span> The Gauss-Markov Theorem</h2>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-none no-icon" title="">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <p>The OLS estimator <span class="math inline">\(\hat\beta\)</span> is</p>
 <ul>
 <li>a <strong>linear</strong> (in <span class="math inline">\(Y\)</span>) and</li>
@@ -1090,18 +1097,27 @@ Note
 <p>of <span class="math inline">\(\beta\)</span>.</p>
 </div>
 </div>
-<p><strong>Showing linearity:</strong> A function <span class="math inline">\(f(Y)\)</span> is called linear in <span class="math inline">\(Y\in\mathbb{R}^n\)</span> if for any two vectors <span class="math inline">\(Y_1\in\mathbb{R}^n\)</span> and <span class="math inline">\(Y_2\in\mathbb{R}^n\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any scalar <span class="math inline">\(a\in\mathbb{R}\)</span> <span class="math display">\[\begin{align*}
+</div>
+<p><strong>Showing linearity of <span class="math inline">\(\hat{\beta}\)</span>:</strong></p>
+<p>A function <span class="math inline">\(f(Y)\)</span> is called linear in <span class="math inline">\(Y\in\mathbb{R}^n\)</span> if for any two vectors <span class="math inline">\(Y_1\in\mathbb{R}^n\)</span> and <span class="math inline">\(Y_2\in\mathbb{R}^n\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any scalar <span class="math inline">\(a\in\mathbb{R}\)</span> <span class="math display">\[
+\begin{align*}
 f(Y_1+Y_2)&amp;=f(Y_1)+f(Y_2)\\[2ex]
 f(aY)&amp;=af(Y).
-\end{align*}\]</span> This property applies to the OLS estimator <span class="math display">\[
+\end{align*}
+\]</span> This property applies to the OLS estimator <span class="math display">\[
 \hat\beta=f(Y)=(X'X)^{-1}X'Y
-\]</span> since <span class="math display">\[\begin{align*}
+\]</span> since <span class="math display">\[
+\begin{align*}
 (X'X)^{-1}X'(Y_1+Y_2)
 &amp; = (X'X)^{-1}X'Y_1 + (X'X)^{-1}X'Y_2
-\end{align*}\]</span> and <span class="math display">\[\begin{align*}
+\end{align*}
+\]</span> and <span class="math display">\[
+\begin{align*}
 (X'X)^{-1}X'aY &amp; = a (X'X)^{-1}X'Y
-\end{align*}\]</span> for any <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any <span class="math inline">\(a\in\mathbb{R}.\)</span></p>
-<p><strong>Showing unbiasedness:</strong> The OLS estimator is unbiased if <span class="math display">\[
+\end{align*}
+\]</span> for any <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any <span class="math inline">\(a\in\mathbb{R}.\)</span></p>
+<p><strong>Showing unbiasedness of <span class="math inline">\(\hat{\beta}\)</span>:</strong></p>
+<p>The OLS estimator is unbiased if <span class="math display">\[
 \operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0
 \]</span> This can be shown as following: Observe that <span class="math display">\[
 \hat\beta=(X'X)^{-1}X'Y
@@ -1121,17 +1137,17 @@ f(aY)&amp;=af(Y).
 <p>For the Gauss-Markov Theorem, we also need the <strong>conditional variance of</strong> <span class="math inline">\(\hat\beta\)</span> <strong>given</strong> <span class="math inline">\(X,\)</span> which can be derived as following: <span class="math display">\[
 \begin{align*}
 Var(\hat\beta|X)
-&amp;=Var(\hat\beta - \beta|X)\\
+&amp;=Var(\;\highlight{\hat\beta - \beta}\;|X)\\[2ex]
 &amp;=Var((X'X)^{-1}X'\varepsilon|X),
 \end{align*}
 \]</span> where we used that <span class="math display">\[
 \begin{align*}
 \hat\beta
 &amp;=(X'X)^{-1}X'Y\\
-&amp;=(X'X)^{-1}X'(X\beta+\varepsilon)\\
-&amp;=\beta+(X'X)^{-1}X'\varepsilon\\
-\Leftrightarrow \hat\beta - \beta
-&amp; = (X'X)^{-1}X'\varepsilon.
+&amp;=(X'X)^{-1}X'(X\beta+\varepsilon)\\[2ex]
+&amp;=\beta+(X'X)^{-1}X'\varepsilon\\[2ex]
+\Leftrightarrow \highlight{\hat\beta - \beta}
+&amp; = \highlight{(X'X)^{-1}X'\varepsilon}.
 \end{align*}
 \]</span></p>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -1141,11 +1157,13 @@ Var(\hat\beta|X)
 </div>
 <div class="callout-body-container">
 <div id="def-CondVarMult" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 5.3 (Conditional Variance of a Multivariate Random Variable)</strong></span> The conditional variance of a multivariate random variable <span class="math inline">\(Z\in\mathbb{R}^K,\)</span> given <span class="math inline">\(X,\)</span> is defined as <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>Definition 5.3 (Conditional Variance of a Multivariate Random Variable)</strong></span> The conditional variance of a multivariate random variable <span class="math inline">\(Z\in\mathbb{R}^K,\)</span> given <span class="math inline">\(X,\)</span> is defined as <span class="math display">\[
+\begin{align*}
 Var(Z|X)
 &amp;=\underbrace{E\Big[\overbrace{(Z-E(Z|X))}^{(K\times 1)}\overbrace{(Z-E(Z|X))'}^{(1\times K)}|X\Big]}_{K\times K}\\[2ex]
 &amp;=\underbrace{E\big[ZZ'|X\big]}_{K\times K} - \underbrace{E\big[Z|X\big]E\big[Z'|X\big]}_{K\times K}
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 </div>
 </div>
 </div>
@@ -1162,7 +1180,8 @@ Var(Z|X)
 &amp;=\;\;\;(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1}
 \end{align*}
 \]</span></p>
-<p>Under the assumption of <strong>spherical errors</strong> (see Assumption 4), we have that <span class="math display">\[\begin{align*}
+<p>Under the assumption of <strong>spherical errors</strong> (see Assumption 4), we have that <span class="math display">\[
+\begin{align*}
 Var\left(\varepsilon|X\right)
 &amp; = \left(\begin{matrix}
 Var(\varepsilon_1|X)&amp;Cov(\varepsilon_1,\varepsilon_2|X)&amp;\dots&amp;Cov(\varepsilon_1,\varepsilon_n|X)\\
@@ -1179,7 +1198,8 @@ Cov(\varepsilon_n,\varepsilon_1|X)&amp;Cov(\varepsilon_n,\varepsilon_2|X)&amp;\d
 = \sigma^2 I_n,
 %&amp; = E\left(\varepsilon\varepsilon'|X\right) - E\left(\varepsilon|X\right) E\left(\varepsilon'|X\right)\\[2ex]
 %&amp; = E\left(\varepsilon\varepsilon'|X\right) - \underset{(K\times K)}{0}\\[2ex]
-\end{align*}\]</span> where <span class="math inline">\(I_n\)</span> is the <span class="math inline">\((n\times n)\)</span> dimensional identity matrix with ones on the diagonal and zeros everywhere else.</p>
+\end{align*}
+\]</span> where <span class="math inline">\(I_n\)</span> is the <span class="math inline">\((n\times n)\)</span> dimensional identity matrix with ones on the diagonal and zeros everywhere else.</p>
 <p>Thus <strong>under the assumption of spherical errors</strong>, we have that <span class="math display">\[
 \begin{align*}
 Var(\hat\beta|X)
@@ -1227,10 +1247,10 @@ Var(\hat\beta|X)=\sigma^2(X'X)^{-1}.
 </ol>
 <p>then the OLS estimator <span class="math display">\[
 \underset{(K\times 1)}{\hat\beta}=(X'X)^{-1}X'Y
-\]</span> has the smallest conditional variance (given <span class="math inline">\(X\)</span>) among all linear and unbiased estimators. That is, for any alternative linear and unbiased estimator <span class="math inline">\(\tilde{\beta}\)</span> we have that <span class="math display">\[
+\]</span> has the smallest conditional variance (given <span class="math inline">\(X\)</span>) among all <strong>linear</strong> (in <span class="math inline">\(Y\)</span>) and <strong>unbiased</strong> estimators. That is, for any alternative linear and unbiased estimator <span class="math inline">\(\tilde{\beta}\)</span> we have that <span class="math display">\[
 \begin{align*}
-&amp;Var(\tilde\beta|X)\geq Var(\hat\beta|X)\quad\text{(in the matrix sense)}\\
-\Leftrightarrow&amp;Var(\tilde\beta|X)-Var(\hat\beta|X)=\underset{(K\times K)}{D},
+&amp;Var(\tilde\beta|X)\geq Var(\hat\beta|X)\quad\text{(in the matrix sense)}\\[2ex]
+\Leftrightarrow\quad&amp;Var(\tilde\beta|X)-Var(\hat\beta|X)=\underset{(K\times K)}{D},
 \end{align*}
 \]</span> where <span class="math inline">\(D\)</span> is a <em>positive semidefinite</em> <span class="math inline">\((K\times K)\)</span> matrix which implies that <span class="math display">\[
 Var(\tilde{\beta}_k|X) \geq Var(\hat\beta_k | X)
@@ -1241,7 +1261,7 @@ Var(\tilde{\beta}_k|X) \geq Var(\hat\beta_k | X)
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Remember
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1258,7 +1278,7 @@ a'Da\geq 0
 <p><span class="proof-title"><em>Proof</em>. </span>Since <span class="math inline">\(\tilde{\beta}\)</span> is assumed to be linear in <span class="math inline">\(Y\)</span>, we can write <span class="math display">\[
 \tilde{\beta}=CY,
 \]</span> where <span class="math inline">\(C\)</span> is some <span class="math inline">\((K\times n)\)</span> matrix, which is a function of <span class="math inline">\(X\)</span> and/or nonrandom components. Adding a <span class="math inline">\((K\times n)\)</span> zero matrix <span class="math inline">\(0\)</span> yields <span class="math display">\[
-\tilde{\beta}=\Big(C\overbrace{-\left(X'X\right)^{-1}X'+\left(X'X\right)^{-1}X'}^{=0}\Big)Y.
+\tilde{\beta}=\Big(C\;\;\overbrace{-\left(X'X\right)^{-1}X'+\left(X'X\right)^{-1}X'\;}^{=0}\;\Big)Y.
 \]</span> Let now <span class="math inline">\(D=C-\left(X'X\right)^{-1}X'\)</span>, then <span class="math display">\[
 \begin{align*}
 \tilde{\beta}&amp;=\left(D+\left(X'X\right)^{-1}X'\right)Y\\
@@ -1276,34 +1296,34 @@ E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}.
 E(\tilde{\beta}|X)=DX{\beta}+0+{\beta}=\beta.
 \]</span> Plugging <span class="math inline">\(DX=0\)</span> into <a href="#eq-c3e16" class="quarto-xref">Equation&nbsp;<span>5.7</span></a> yields, <span class="math display">\[
 \begin{align*}
-\tilde{\beta}&amp;=D{\varepsilon} + \hat{\beta}\\
-\tilde{\beta}-{\beta}&amp;=D{\varepsilon} + (\hat{\beta}-{\beta})\\
-\tilde{\beta}-{\beta}&amp;=D{\varepsilon} + \left(X'X\right)^{-1}X'{\varepsilon}
+\tilde{\beta}&amp;=D{\varepsilon} + \hat{\beta}\\[2ex]
+\tilde{\beta}-{\beta}&amp;=D{\varepsilon} + \highlight{(\hat{\beta}-{\beta})}\\[2ex]
+\tilde{\beta}-{\beta}&amp;=D{\varepsilon} + \highlight{\left(X'X\right)^{-1}X'{\varepsilon}}
 \end{align*}
 \]</span> such that <span id="eq-c3e18"><span class="math display">\[
 \tilde{\beta}-{\beta}=\left(D + \left(X'X\right)^{-1}X'\right){\varepsilon},
 \qquad(5.9)\]</span></span> where we used that <span class="math display">\[
 \begin{align*}
-\hat\beta-\beta&amp;=(X'X)^{-1}X'Y-\beta\\
-&amp;=(X'X)^{-1}X'(X\beta+\varepsilon)-\beta\\
-&amp;=(X'X)^{-1}X'\varepsilon.
+\highlight{\hat\beta-\beta}&amp;=(X'X)^{-1}X'Y-\beta\\[2ex]
+&amp;=(X'X)^{-1}X'(X\beta+\varepsilon)-\beta\\[2ex]
+&amp;=\highlight{(X'X)^{-1}X'\varepsilon}.
 \end{align*}
 \]</span></p>
 <p>Using that <span class="math inline">\(Var(\tilde{\beta}|X)= Var(\tilde{\beta}-{\beta}|X)\)</span> since <span class="math inline">\(\beta\)</span> is not random and using <a href="#eq-c3e18" class="quarto-xref">Equation&nbsp;<span>5.9</span></a> yields <span class="math display">\[
 \begin{align*}
 Var(\tilde{\beta}|X)
-&amp;= Var((D + (X'X)^{-1}X'){\varepsilon}|X)\\
-&amp;= (D + (X'X)^{-1}X')Var({\varepsilon}|X)(D' + X(X'X)^{-1})\\
-&amp;= \sigma^2(D + (X'X)^{-1}X')I_n(D' + X(X'X)^{-1})\\
-&amp;= \sigma^2\left(DD'+(X'X)^{-1}\right)\quad \text{(using that $DX=0$)} \\
-&amp;\geq\sigma^2(X'X)^{-1} \quad \text{(using that $DD'\geq 0$)}\\
+&amp;= Var((D + (X'X)^{-1}X'){\varepsilon}|X)\\[2ex]
+&amp;= (D + (X'X)^{-1}X')Var({\varepsilon}|X)(D' + X(X'X)^{-1})\\[2ex]
+&amp;= \sigma^2(D + (X'X)^{-1}X')I_n(D' + X(X'X)^{-1})\\[2ex]
+&amp;= \sigma^2\left(DD'+(X'X)^{-1}\right)\quad \text{(using that $DX=0$)} \\[2ex]
+&amp;\geq\sigma^2(X'X)^{-1} \quad \text{(using that $DD'\geq 0$)}\\[2ex]
 &amp;= Var(\hat{\beta}|X).
 \end{align*}
 \]</span> Finally, we need to show that <span class="math inline">\(DD'\)</span> is really positive semidefinite (i.e.&nbsp;<span class="math inline">\(DD'\geq 0\)</span> in matrix sense): <span class="math display">\[
 \begin{align*}
-a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}\geq 0,
+a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}=\sum_{k=1}^K \tilde{a}^2_k \geq 0,
 \end{align*}
-\]</span> where <span class="math inline">\(\tilde{a}\)</span> is a <span class="math inline">\(K\)</span> dimensional column-vector.</p>
+\]</span> where <span class="math inline">\(\tilde{a}\in\mathbb{R}^K\)</span> is any <span class="math inline">\(K\)</span>-dimensional vector.</p>
 <!-- Remember: -->
 <!-- \begin{itemize} -->
 <!-- \item $(A+\hat{\beta})'=A'+\hat{\beta}'$ -->
@@ -1458,7 +1478,7 @@ X_{i2}=
 <ul>
 <li>The average wage of male workers in 2008 was <span class="math inline">\(\hat{\beta}_1=\)</span> 24.98 (USD/Hour).</li>
 <li>The average wage of female workers in 2008 was <span class="math inline">\(\hat{\beta}_1 + \hat{\beta}_2=\)</span> 20.87 (USD/Hour).</li>
-<li>The difference in the earnings between male and female works in 2008 is <span class="math inline">\(\hat{\beta}_2=\)</span> -4.1 (USD/Hour).</li>
+<li>The difference in the earnings between male and female workers in 2008 is <span class="math inline">\(\hat{\beta}_2=\)</span> -4.1 (USD/Hour).</li>
 </ul></section><section id="dummy-variable-trap" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="dummy-variable-trap">Dummy-Variable Trap</h3>
 <p>Above, we used <code>R</code>’s automatic recoding of categorical factor variables into numeric dummy variable which is very convenient.</p>
 <p>Of course, we can also construct a dummy variable for each of the levels of a factor yourself. But be careful, and do not step into the <strong>dummy variable trap</strong>!</p>

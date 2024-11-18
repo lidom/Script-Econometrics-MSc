@@ -52,10 +52,5 @@ Further textbooks I can recommend:
 * Please, do **not** use a pencil.
 * Exam dates and times are published by the [examinations office](https://www.econ.uni-bonn.de/examinations/en/dates/dates?set_language=en)
 
-<!-- ### Communication {-}
-
-* You can use the Zulip-Chat [Metrics 2223 (M.Sc.)](https://ifs-bonn.zulipchat.com/join/qd5sgbusv24xsjfgbnyk5u44/) to post questions, share codes, etc. I will moderate the chat and try to answer your questions to the benefit for all. Happy sharing and discussing!  -->
-
-
 
 

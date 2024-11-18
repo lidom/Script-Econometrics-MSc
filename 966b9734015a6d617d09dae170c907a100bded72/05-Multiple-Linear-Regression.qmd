@@ -1,5 +1,19 @@
 # Multiple Linear Regression {#sec-MLR}
 
+
+::: {.hidden}
+$$
+\require{color}
+%% Colorbox within equation-environments:
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  }%
+$$
+:::
+
+
 In the following we focus on the case of random designs $X$ (i.e. $X$ being a random variable), since 
 
 1. this is the more relevant case in econometrics and 
@@ -924,8 +938,7 @@ The adjustment is in terms of the degrees of freedom $n-K$.
 
 ## The Gauss-Markov Theorem {#sec-GMTheorem}
 
-::: {.callout-note  icon=false}
-# 
+::: {.callout icon=false title=""}
 The OLS estimator $\hat\beta$ is 
 
 * a **linear** (in $Y$) and 
@@ -934,27 +947,37 @@ The OLS estimator $\hat\beta$ is
 of $\beta$.
 :::
 
-**Showing linearity:** A function $f(Y)$ is called linear in $Y\in\mathbb{R}^n$ if for any two vectors $Y_1\in\mathbb{R}^n$ and $Y_2\in\mathbb{R}^n$ such that $Y=Y_1+Y_2$ and for any scalar $a\in\mathbb{R}$ 
+**Showing linearity of $\hat{\beta}$:** 
+
+A function $f(Y)$ is called linear in $Y\in\mathbb{R}^n$ if for any two vectors $Y_1\in\mathbb{R}^n$ and $Y_2\in\mathbb{R}^n$ such that $Y=Y_1+Y_2$ and for any scalar $a\in\mathbb{R}$ 
+$$
 \begin{align*}
 f(Y_1+Y_2)&=f(Y_1)+f(Y_2)\\[2ex]
 f(aY)&=af(Y).
 \end{align*}
+$$
 This property applies to the OLS estimator 
 $$
 \hat\beta=f(Y)=(X'X)^{-1}X'Y
 $$ 
 since
+$$
 \begin{align*}
 (X'X)^{-1}X'(Y_1+Y_2)
 & = (X'X)^{-1}X'Y_1 + (X'X)^{-1}X'Y_2
 \end{align*}
+$$
 and 
+$$
 \begin{align*}
 (X'X)^{-1}X'aY & = a (X'X)^{-1}X'Y
 \end{align*}
+$$
 for any $Y_1$ and $Y_2$ such that $Y=Y_1+Y_2$ and for any $a\in\mathbb{R}.$
 
-**Showing unbiasedness:** The OLS estimator is unbiased if
+**Showing unbiasedness of $\hat{\beta}$:** 
+
+The OLS estimator is unbiased if
 $$
 \operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0
 $$
@@ -983,7 +1006,7 @@ For the Gauss-Markov Theorem, we also need the **conditional variance of** $\hat
 $$
 \begin{align*}
 Var(\hat\beta|X)
-&=Var(\hat\beta - \beta|X)\\
+&=Var(\;\highlight{\hat\beta - \beta}\;|X)\\[2ex]
 &=Var((X'X)^{-1}X'\varepsilon|X),
 \end{align*}
 $$
@@ -992,10 +1015,10 @@ $$
 \begin{align*}
 \hat\beta
 &=(X'X)^{-1}X'Y\\
-&=(X'X)^{-1}X'(X\beta+\varepsilon)\\
-&=\beta+(X'X)^{-1}X'\varepsilon\\
-\Leftrightarrow \hat\beta - \beta 
-& = (X'X)^{-1}X'\varepsilon.
+&=(X'X)^{-1}X'(X\beta+\varepsilon)\\[2ex]
+&=\beta+(X'X)^{-1}X'\varepsilon\\[2ex]
+\Leftrightarrow \highlight{\hat\beta - \beta} 
+& = \highlight{(X'X)^{-1}X'\varepsilon}.
 \end{align*}
 $$
 
@@ -1006,11 +1029,13 @@ $$
 ## Conditional Variance of a Multivariate Random Variable
 
 The conditional variance of a multivariate random variable $Z\in\mathbb{R}^K,$ given $X,$ is defined as 
+$$
 \begin{align*}
 Var(Z|X)
 &=\underbrace{E\Big[\overbrace{(Z-E(Z|X))}^{(K\times 1)}\overbrace{(Z-E(Z|X))'}^{(1\times K)}|X\Big]}_{K\times K}\\[2ex]
 &=\underbrace{E\big[ZZ'|X\big]}_{K\times K} - \underbrace{E\big[Z|X\big]E\big[Z'|X\big]}_{K\times K}
 \end{align*}
+$$
 :::
 :::
 
@@ -1029,6 +1054,7 @@ $$
 $$
 
 Under the assumption of **spherical errors** (see Assumption 4), we have that 
+$$
 \begin{align*}
 Var\left(\varepsilon|X\right) 
 & = \left(\begin{matrix}
@@ -1047,6 +1073,7 @@ Cov(\varepsilon_n,\varepsilon_1|X)&Cov(\varepsilon_n,\varepsilon_2|X)&\dots&Var(
 %& = E\left(\varepsilon\varepsilon'|X\right) - E\left(\varepsilon|X\right) E\left(\varepsilon'|X\right)\\[2ex]
 %& = E\left(\varepsilon\varepsilon'|X\right) - \underset{(K\times K)}{0}\\[2ex]
 \end{align*}
+$$
 where $I_n$ is the $(n\times n)$ dimensional identity matrix with ones on the diagonal and zeros everywhere else. 
 
 Thus **under the assumption of spherical errors**, we have that
@@ -1089,11 +1116,11 @@ then the OLS estimator
 $$
 \underset{(K\times 1)}{\hat\beta}=(X'X)^{-1}X'Y
 $$
-has the smallest conditional variance (given $X$) among all linear and unbiased estimators. That is, for any alternative linear and unbiased estimator $\tilde{\beta}$ we have that 
+has the smallest conditional variance (given $X$) among all **linear** (in $Y$) and **unbiased** estimators. That is, for any alternative linear and unbiased estimator $\tilde{\beta}$ we have that 
 $$
 \begin{align*}
-&Var(\tilde\beta|X)\geq Var(\hat\beta|X)\quad\text{(in the matrix sense)}\\
-\Leftrightarrow&Var(\tilde\beta|X)-Var(\hat\beta|X)=\underset{(K\times K)}{D},
+&Var(\tilde\beta|X)\geq Var(\hat\beta|X)\quad\text{(in the matrix sense)}\\[2ex]
+\Leftrightarrow\quad&Var(\tilde\beta|X)-Var(\hat\beta|X)=\underset{(K\times K)}{D},
 \end{align*}
 $$
 where $D$ is a *positive semidefinite* $(K\times K)$ matrix which implies that 
@@ -1103,6 +1130,7 @@ $$
 for all $k=1,\dots,K$. 
 
 ::: {.callout-tip}
+# Remember
 A $(K\times K)$ matrix $D$ is called "positive semidefinite" if 
 $$
 a'Da\geq 0
@@ -1121,7 +1149,7 @@ $$
 $$
 where $C$ is some $(K\times n)$ matrix, which is a function of $X$ and/or nonrandom components. Adding a $(K\times n)$ zero matrix $0$ yields 
 $$
-\tilde{\beta}=\Big(C\overbrace{-\left(X'X\right)^{-1}X'+\left(X'X\right)^{-1}X'}^{=0}\Big)Y.
+\tilde{\beta}=\Big(C\;\;\overbrace{-\left(X'X\right)^{-1}X'+\left(X'X\right)^{-1}X'\;}^{=0}\;\Big)Y.
 $$
 Let now $D=C-\left(X'X\right)^{-1}X'$, then
 $$
@@ -1152,9 +1180,9 @@ $$
 Plugging $DX=0$ into @eq-c3e16 yields, 
 $$
 \begin{align*}
-\tilde{\beta}&=D{\varepsilon} + \hat{\beta}\\
-\tilde{\beta}-{\beta}&=D{\varepsilon} + (\hat{\beta}-{\beta})\\
-\tilde{\beta}-{\beta}&=D{\varepsilon} + \left(X'X\right)^{-1}X'{\varepsilon}
+\tilde{\beta}&=D{\varepsilon} + \hat{\beta}\\[2ex]
+\tilde{\beta}-{\beta}&=D{\varepsilon} + \highlight{(\hat{\beta}-{\beta})}\\[2ex]
+\tilde{\beta}-{\beta}&=D{\varepsilon} + \highlight{\left(X'X\right)^{-1}X'{\varepsilon}}
 \end{align*}
 $$
 such that 
@@ -1164,9 +1192,9 @@ $${#eq-c3e18}
 where we used that 
 $$
 \begin{align*}
-\hat\beta-\beta&=(X'X)^{-1}X'Y-\beta\\
-&=(X'X)^{-1}X'(X\beta+\varepsilon)-\beta\\
-&=(X'X)^{-1}X'\varepsilon.
+\highlight{\hat\beta-\beta}&=(X'X)^{-1}X'Y-\beta\\[2ex]
+&=(X'X)^{-1}X'(X\beta+\varepsilon)-\beta\\[2ex]
+&=\highlight{(X'X)^{-1}X'\varepsilon}.
 \end{align*}
 $$
 
@@ -1174,21 +1202,21 @@ Using that $Var(\tilde{\beta}|X)= Var(\tilde{\beta}-{\beta}|X)$ since $\beta$ is
 $$
 \begin{align*}
 Var(\tilde{\beta}|X) 
-&= Var((D + (X'X)^{-1}X'){\varepsilon}|X)\\
-&= (D + (X'X)^{-1}X')Var({\varepsilon}|X)(D' + X(X'X)^{-1})\\
-&= \sigma^2(D + (X'X)^{-1}X')I_n(D' + X(X'X)^{-1})\\
-&= \sigma^2\left(DD'+(X'X)^{-1}\right)\quad \text{(using that $DX=0$)} \\
-&\geq\sigma^2(X'X)^{-1} \quad \text{(using that $DD'\geq 0$)}\\
+&= Var((D + (X'X)^{-1}X'){\varepsilon}|X)\\[2ex]
+&= (D + (X'X)^{-1}X')Var({\varepsilon}|X)(D' + X(X'X)^{-1})\\[2ex]
+&= \sigma^2(D + (X'X)^{-1}X')I_n(D' + X(X'X)^{-1})\\[2ex]
+&= \sigma^2\left(DD'+(X'X)^{-1}\right)\quad \text{(using that $DX=0$)} \\[2ex]
+&\geq\sigma^2(X'X)^{-1} \quad \text{(using that $DD'\geq 0$)}\\[2ex]
 &= Var(\hat{\beta}|X).
 \end{align*}
 $$
 Finally, we need to show that $DD'$ is really positive semidefinite (i.e. $DD'\geq 0$ in matrix sense):
 $$
 \begin{align*}
-a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}\geq 0,
+a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}=\sum_{k=1}^K \tilde{a}^2_k \geq 0,
 \end{align*}
 $$
-where $\tilde{a}$ is a $K$ dimensional column-vector. 
+where $\tilde{a}\in\mathbb{R}^K$ is any $K$-dimensional vector. 
 
 <!-- Remember: -->
 <!-- \begin{itemize} -->
@@ -1317,7 +1345,7 @@ Interpretation:
 
 * The average wage of male workers in 2008 was $\hat{\beta}_1=$ `r round(coef(lm_obj)[1], 2)` (USD/Hour).
 * The average wage of female workers in 2008 was $\hat{\beta}_1 + \hat{\beta}_2=$ `r round(sum(coef(lm_obj)), 2)` (USD/Hour).
-* The difference in the earnings between male and female works in 2008 is $\hat{\beta}_2=$ `r round(coef(lm_obj)[2], 2)` (USD/Hour).
+* The difference in the earnings between male and female workers in 2008 is $\hat{\beta}_2=$ `r round(coef(lm_obj)[2], 2)` (USD/Hour).
 
 
 ### Dummy-Variable Trap {-}
