@@ -1216,7 +1216,7 @@ $$
 a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}=\sum_{k=1}^K \tilde{a}^2_k \geq 0,
 \end{align*}
 $$
-where $\tilde{a}\in\mathbb{R}^K$ is any $K$-dimensional vector. 
+where $a\in\mathbb{R}^K$ is any $K$-dimensional vector. 
 
 <!-- Remember: -->
 <!-- \begin{itemize} -->
@@ -1769,9 +1769,12 @@ In the following chapters, we use theoretical arguments to investigate under whi
 
 ## Exercises 
 
-<!-- * [Exercises for Chapter 4](https://www.dropbox.com/scl/fi/305i40sw8s70hq5ekda9x/Ch4_Exercises1.pdf?rlkey=grtj6p813w8vib1m9e55od50f&dl=0)
+* [Exercises for Chapter 5](https://www.dropbox.com/scl/fi/t6l36vku6aiii3o518voi/Ch5_Exercises1.pdf?rlkey=jgg4e5l5uld4cfakkyy5cztk1&dl=0)
 
-* [Exercises of Chapter 4 with Solutions](https://www.dropbox.com/scl/fi/4097sc7gy9y8meakn1yoq/Ch4_Exercises_with_Solutions1.pdf?rlkey=4iadb0nk7hqbgag2ge87ifef9&dl=0) -->
+
+<!-- 
+* [Exercises of Chapter 5 with Solutions](https://www.dropbox.com/scl/fi/2arzabv6ydiap8tyh0c4p/Ch5_Exercises_with_Solutions1.pdf?rlkey=dqz2lewoqjxwkqxhvq7jxxf5l&dl=0)
+-->
 
 
 ## References {-}
