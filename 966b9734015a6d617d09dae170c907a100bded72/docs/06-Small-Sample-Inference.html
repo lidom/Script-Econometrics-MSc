@@ -332,9 +332,11 @@ H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  = \underset{(q\time
 </ul>
 <p><strong>are chosen by the statistician</strong> to specify the null hypothesis about the unknown true parameter vector <span class="math inline">\(\beta\)</span>.</p>
 <p>To make sure that there are no redundant equations, it is required that <span class="math inline">\(\operatorname{rank}(R)=q\)</span>.</p>
-<p>We must also specify the alternative against which we are testing the null hypothesis, for instance <span class="math display">\[\begin{equation*}
+<p>We must also specify the alternative against which we are testing the null hypothesis, for instance <span class="math display">\[
+\begin{equation*}
 H_1: R\beta  \neq r^{(0)}
-\end{equation*}\]</span></p>
+\end{equation*}
+\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -351,29 +353,37 @@ Note
 <span class="math inline">\(R=(0,1,0\dots,0)\)</span> and</li>
 <li><span class="math inline">\(r^{(0)}=0\)</span></li>
 </ul>
-<p>we get the classic single parameter <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span> that allows us to test the hypothesis that “<span class="math inline">\(X_{i2}\)</span> has no effect”<br><span class="math display">\[\begin{equation*}
+<p>we get the classic single parameter <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span> that allows us to test the hypothesis that “<span class="math inline">\(X_{i2}\)</span> has no effect”<br><span class="math display">\[
+\begin{equation*}
 \begin{array}{ll}
 &amp;H_0:  \beta_{2}=0 \\
 \text{versus}\quad &amp;H_1:  \beta_{2} \ne 0 \\
 \end{array}
-\end{equation*}\]</span> We come back to this in <a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.2</span></a>.</p>
+\end{equation*}
+\]</span> We come back to this in <a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.2</span></a>.</p>
 </div>
 </div>
 <p>Under our assumptions (Assumptions 1 to 4<span class="math inline">\(^\ast\)</span>), we have that <span class="math display">\[
 \begin{align*}
-(R\hat\beta_n-r^{(0)})|X&amp;\sim\mathcal{N}\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right)\\
-(R\hat\beta_n-r^{(0)})|X&amp;\overset{{\color{red}H_0}}{\sim}\mathcal{N}\left(\phantom{RV}{\color{red}0}\phantom{R},RVar(\hat\beta_n|X)R'\right)
+(R\hat\beta_n-r^{(0)})|X&amp;\sim\mathcal{N}\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right).
 \end{align*}
 \]</span></p>
+<p>Thus, under the scenario that the null-hypothesis is true, we have that <span class="math display">\[
+\begin{align*}
+(R\hat\beta_n-r^{(0)})|X&amp;\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}\left(\phantom{RV}{\color{red}0}\phantom{RR},RVar(\hat\beta_n|X)R'\right).
+\end{align*}
+\]</span></p>
+<p>That is:</p>
 <ul>
 <li>The realizations of <span class="math display">\[
 (R\hat\beta_n -r^{(0)})|X
 \]</span> will scatter around the <em>unknown</em> mean <span class="math inline">\((R\beta -r^{(0)})\)</span> in a Gaussian fashion.</li>
 <li>If <span class="math inline">\(H_0\)</span> is correct (i.e., if <span class="math inline">\(R\beta-r^{(0)}=0\)</span>), the realizations of <span class="math display">\[
 (R\hat\beta_n-r^{(0)})|X
-\]</span> will scatter around the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0\)</span>.</li>
+\]</span> will scatter around the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0.\)</span>
+</li>
 </ul>
-<p>We use a test statistic to detect a systematic location shift away from the zero vector.</p>
+<p>We use a test statistic to detect a systematic location shift away from the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0.\)</span></p>
 <!-- * if the alternative hypothesis is correct (i.e., $(R\beta-r)=a\neq 0$), there will be a systematic location-shift in $(R\hat\beta_n-r)|X$ which we try to detect using statistical hypothesis testing.  -->
 <!-- the realizations of $R\hat\beta_n-r|X$ scatter around the $q$-vector $a\neq 0$.  So, under the alternative hypothesis,  -->
 <section id="the-test-statistic-and-its-null-distribution" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="the-test-statistic-and-its-null-distribution">

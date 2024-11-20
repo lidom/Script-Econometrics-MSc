@@ -76,9 +76,11 @@ where
 To make sure that there are no redundant equations, it is required that $\operatorname{rank}(R)=q$.
 
 We must also specify the alternative against which we are testing the null hypothesis, for instance
+$$
 \begin{equation*}
 H_1: R\beta  \neq r^{(0)}
 \end{equation*}
+$$
 
 ::: {.callout-note}
 The above multiple parameter hypotheses cover also the special case of single parameter hypothesis; for instance, by setting 
@@ -87,23 +89,32 @@ The above multiple parameter hypotheses cover also the special case of single pa
 * $r^{(0)}=0$ 
 
 we get the classic single parameter $H_0$ and $H_1$ that allows us to test the hypothesis that "$X_{i2}$ has no effect"  
+$$
 \begin{equation*}
 \begin{array}{ll}
 &H_0:  \beta_{2}=0 \\
 \text{versus}\quad &H_1:  \beta_{2} \ne 0 \\
 \end{array}
 \end{equation*}
+$$
 We come back to this in @sec-testingsinglep. 
 :::
 
 Under our assumptions (Assumptions 1 to 4$^\ast$), we have that 
 $$
 \begin{align*}
-(R\hat\beta_n-r^{(0)})|X&\sim\mathcal{N}\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right)\\
-(R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}H_0}}{\sim}\mathcal{N}\left(\phantom{RV}{\color{red}0}\phantom{R},RVar(\hat\beta_n|X)R'\right)
+(R\hat\beta_n-r^{(0)})|X&\sim\mathcal{N}\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right).
 \end{align*}
 $$ 
 
+Thus, under the scenario that the null-hypothesis is true, we have that
+$$
+\begin{align*}
+(R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}\left(\phantom{RV}{\color{red}0}\phantom{RR},RVar(\hat\beta_n|X)R'\right).
+\end{align*}
+$$ 
+
+That is: 
 
 * The realizations of 
 $$
@@ -114,9 +125,9 @@ will scatter around the *unknown* mean $(R\beta -r^{(0)})$ in a Gaussian fashion
 $$
 (R\hat\beta_n-r^{(0)})|X
 $$ 
-will scatter around the $(q\times 1)$ vector $0$.  
+will scatter around the $(q\times 1)$ vector $0.$  
 
-We use a test statistic to detect a systematic location shift away from the zero vector. 
+We use a test statistic to detect a systematic location shift away from the $(q\times 1)$ vector $0.$  
 
 <!-- * if the alternative hypothesis is correct (i.e., $(R\beta-r)=a\neq 0$), there will be a systematic location-shift in $(R\hat\beta_n-r)|X$ which we try to detect using statistical hypothesis testing.  -->
 
