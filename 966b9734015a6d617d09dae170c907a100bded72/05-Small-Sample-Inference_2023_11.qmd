@@ -2,16 +2,14 @@
 
 The content of this chapter is very much inspired by Chapter 1 of @Hayashi2000. 
 
-In this chapter, we focus on inference with small sample sizes. It's is very hard to say when a sample size $n$ is small. Often people say something like: 
+In this chapter, we focus on inference with small sample sizes. It's is very hard to say when a sample size $n$ is small. A very rough rule of thumb could be, for instance, the following one: 
 
-* $n<30$ means small samples and $n\geq 30$ large samples, or
-* $n/K<10$ means small samples and $n/K\geq 10$ large samples,
+* $n/K<20$ means small samples and $n/K\geq 20$ large samples
 
-but these are only a very rough rules of thumb and may not apply in practice.  
 
 The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem. Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do **exact** inference. 
 
-**Exact inference:**  By "exact inference" we mean correct inference for each sample size $n$. That is, no asymptotic $(n\to\infty)$ arguments will be used.  
+**Exact inference:**  By "exact inference" we mean correct inference for each sample size $n$. That is, no approximate results based on asymptotic $(n\to\infty)$ arguments will be used.  
 
 **Assumptions:** In @sec-MLR, we did not impose a complete distributional assumption on $\varepsilon$ (see Assumption 4). For instance, the i.i.d. normal case in Assumption 4 was only one possible *option*.  However, to do inference in small samples, the normality Assumption on the error terms is not a mere option, but a *necessity*. 
 
@@ -48,23 +46,27 @@ where $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$.
 
 ::: {.proof}
 This result follows from noting that 
+$$
 \begin{align*}
 \hat\beta_n
 &=(X'X)^{-1}X'Y\\[2ex]
 &=\beta+(X'X)^{-1}X'\varepsilon
 \end{align*} 
+$$
 and because $(X'X)^{-1}X'\varepsilon$ is just a linear combination of the normally distributed error terms $\varepsilon$ which, therefore, is again normally distributed, conditionally on $X$. Note that the specific normal distribution depends on the observed realization of $X$. 
 :::
 
-**Remark:** The subscript $n$ in $\hat\beta_n$ is here only to emphasize that the distribution of $\hat\beta_n$ depends on $n$; we will, however, often simply write $\hat\beta$.
+**Remark:** The subscript $n$ in $\hat\beta_n$ is here only to emphasize that the distribution of $\hat\beta_n$ depends on $n;$ we will, however, often simply write $\hat\beta.$
 
 
 ## Hypothesis Tests about Multiple Parameters (F-Tests) {#sec-testmultp}
 
 Let us consider the following system of $q$-many null hypotheses:
+$$
 \begin{align*}
 H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  = \underset{(q\times 1)}{r^{(0)}},
 \end{align*}
+$$
 where 
 
 * the $(q \times K)$ matrix $R,$ which describes the considered linear combinations of the unknown $\beta=(\beta_1,\dots,\beta_K)'$ values, and 

@@ -283,16 +283,13 @@ window.Quarto = {
 </header><blockquote class="blockquote">
 <p>The original version of this chapter was inspired by Chapter 1 of <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>. The current version, however, deviates in many aspects from <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>.</p>
 </blockquote>
-<p>In this chapter, we focus on inference with small sample sizes. It’s is very hard to say when a sample size <span class="math inline">\(n\)</span> is small. Often people say something like:</p>
+<p>In this chapter, we focus on inference with small sample sizes. It’s is very hard to say when a sample size <span class="math inline">\(n\)</span> is small. A very rough rule of thumb could be, for instance, the following one:</p>
 <ul>
 <li>
-<span class="math inline">\(n&lt;30\)</span> means small samples and <span class="math inline">\(n\geq 30\)</span> large samples, or</li>
-<li>
-<span class="math inline">\(n/K&lt;10\)</span> means small samples and <span class="math inline">\(n/K\geq 10\)</span> large samples,</li>
+<span class="math inline">\(n/K&lt;20\)</span> means small samples and <span class="math inline">\(n/K\geq 20\)</span> large samples</li>
 </ul>
-<p>but these are only a very rough rules of thumb and may not apply in practice.</p>
-<p>The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem. Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do <strong>exact</strong> inference.</p>
-<p><strong>Exact inference:</strong> By “exact inference” we mean correct inference for each sample size <span class="math inline">\(n\)</span>. That is, no asymptotic <span class="math inline">\((n\to\infty)\)</span> arguments will be used.</p>
+<p>The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem—both requiring <span class="math inline">\(n\to\infty.\)</span> Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do <strong>exact</strong> inference.</p>
+<p><strong>Exact inference:</strong> By “exact inference” we mean correct inference for each sample size <span class="math inline">\(n\)</span>. That is, no approximate results based on asymptotic <span class="math inline">\((n\to\infty)\)</span> arguments will be used.</p>
 <p><strong>Assumptions:</strong> In <a href="05-Multiple-Linear-Regression.html" class="quarto-xref"><span>Chapter 5</span></a>, we did not impose a complete distributional assumption on <span class="math inline">\(\varepsilon\)</span> (see Assumption 4). For instance, the i.i.d. normal case in Assumption 4 was only one possible <em>option</em>. However, to do inference in small samples, the normality Assumption on the error terms is not a mere option, but a <em>necessity</em>.</p>
 <p>Therefore, in this chapter we assume that Assumptions 1-3 from <a href="05-Multiple-Linear-Regression.html" class="quarto-xref"><span>Chapter 5</span></a> hold and that additionally the following assumption holds:</p>
 <p><strong>Assumption 4<span class="math inline">\(^\boldsymbol{\ast}\)</span>: Conditional Gaussian error distribution:</strong> The error terms are Gaussian and homoskedastik, i.e., <span class="math display">\[
@@ -300,7 +297,8 @@ window.Quarto = {
 \]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span></p>
 <p>Assumption 4<span class="math inline">\(^\boldsymbol{\ast}\)</span> together with the random sample assumption of Assumption 1, part (b), leads to Gaussian spherical errors conditionally on <span class="math inline">\(X\)</span>, <span class="math display">\[
 \varepsilon|X\sim\mathcal{N}\left(0,\sigma^2I_n\right),
-\]</span> where <span class="math inline">\(\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'\)</span>.</p>
+\]</span> where <span class="math inline">\(\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'.\)</span></p>
+<!-- I.e. the distribution of $\varepsilon$ is here independent of $X.$ -->
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">

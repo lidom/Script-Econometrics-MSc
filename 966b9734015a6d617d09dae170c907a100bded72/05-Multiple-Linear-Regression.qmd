@@ -1103,13 +1103,13 @@ The famous **Gauss-Markov Theorem** states that the OLS estimator is the **"best
 ##
 ::: {#thm-GMTheorem}
 
-##  Gauss-Markov Theorem
+## Gauss-Markov Theorem
 
 If it holds true that 
 
 1. $Y = X\beta + \varepsilon$
-2. $\operatorname{rank}(X)=K$ a.s.
-3. $E(\varepsilon|X) = \underset{(n\times 1)}{0}$
+2. $E(\varepsilon|X) = \underset{(n\times 1)}{0}$
+3. $\operatorname{rank}(X)=K$ a.s.
 4. $Var(\varepsilon|X) = \sigma^2I_n$
 
 then the OLS estimator 
@@ -1345,7 +1345,7 @@ Interpretation:
 
 * The average wage of male workers in 2008 was $\hat{\beta}_1=$ `r round(coef(lm_obj)[1], 2)` (USD/Hour).
 * The average wage of female workers in 2008 was $\hat{\beta}_1 + \hat{\beta}_2=$ `r round(sum(coef(lm_obj)), 2)` (USD/Hour).
-* The difference in the earnings between male and female workers in 2008 is $\hat{\beta}_2=$ `r round(coef(lm_obj)[2], 2)` (USD/Hour).
+* The average difference in the earnings between male and female workers in 2008 is $\hat{\beta}_2=$ `r round(coef(lm_obj)[2], 2)` (USD/Hour).
 
 
 ### Dummy-Variable Trap {-}
@@ -1353,7 +1353,6 @@ Interpretation:
 Above, we used `R`'s automatic recoding of categorical factor variables into numeric dummy variable which is very convenient. 
 
 Of course, we can also construct a dummy variable for each of the levels of a factor yourself. But be careful, and do not step into the **dummy variable trap**!
-
 
 Let's construct the $Y$ variable and the *numeric* $X$ variable "by hand": 
 ```{r}

@@ -2,16 +2,15 @@
 
 > The original version of this chapter was inspired by Chapter 1 of @Hayashi2000. The current version, however, deviates in many aspects from @Hayashi2000. 
 
-In this chapter, we focus on inference with small sample sizes. It's is very hard to say when a sample size $n$ is small. Often people say something like: 
 
-* $n<30$ means small samples and $n\geq 30$ large samples, or
-* $n/K<10$ means small samples and $n/K\geq 10$ large samples,
+In this chapter, we focus on inference with small sample sizes. It's is very hard to say when a sample size $n$ is small. A very rough rule of thumb could be, for instance, the following one: 
 
-but these are only a very rough rules of thumb and may not apply in practice.  
+* $n/K<20$ means small samples and $n/K\geq 20$ large samples
 
-The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem. Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do **exact** inference. 
+The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem---both requiring $n\to\infty.$ Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do **exact** inference. 
 
-**Exact inference:**  By "exact inference" we mean correct inference for each sample size $n$. That is, no asymptotic $(n\to\infty)$ arguments will be used.  
+**Exact inference:**  By "exact inference" we mean correct inference for each sample size $n$. That is, no approximate results based on asymptotic $(n\to\infty)$ arguments will be used.  
+
 
 **Assumptions:** In @sec-MLR, we did not impose a complete distributional assumption on $\varepsilon$ (see Assumption 4). For instance, the i.i.d. normal case in Assumption 4 was only one possible *option*.  However, to do inference in small samples, the normality Assumption on the error terms is not a mere option, but a *necessity*. 
 
@@ -29,7 +28,9 @@ Assumption 4$^\boldsymbol{\ast}$ together with the random sample assumption of A
 $$
 \varepsilon|X\sim\mathcal{N}\left(0,\sigma^2I_n\right),
 $$
-where $\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'$.
+where $\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'.$ 
+
+<!-- I.e. the distribution of $\varepsilon$ is here independent of $X.$ -->
 
 \bigskip
 
