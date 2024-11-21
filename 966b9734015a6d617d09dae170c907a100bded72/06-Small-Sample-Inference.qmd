@@ -26,9 +26,9 @@ for all $i=1,\dots,n.$
 
 Assumption 4$^\boldsymbol{\ast}$ together with the random sample assumption of Assumption 1, part (b), leads to Gaussian spherical errors,
 $$
-\varepsilon|X\sim\mathcal{N}\left(0,\sigma^2I_n\right),
+\varepsilon|X\sim\mathcal{N}_n\left(0,\sigma^2I_n\right),
 $$
-where $\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'.$ 
+where $\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)',$ and where $\mathcal{N}_n\left(0,\sigma^2I_n\right)$ denotes the $n$-dimensional normal distribution with $(n\times 1)$-dimensional mean zero vector $0$ and $(n\times n)$-dimensional covariance matrix $\sigma^2I_n.$ 
 
 <!-- I.e. the distribution of $\varepsilon$ is here independent of $X.$ -->
 

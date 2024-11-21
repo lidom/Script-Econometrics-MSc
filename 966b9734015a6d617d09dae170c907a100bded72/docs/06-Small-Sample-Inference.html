@@ -296,8 +296,8 @@ window.Quarto = {
 \varepsilon_i|X_i\sim\mathcal{N}(0,\sigma^2)
 \]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span></p>
 <p>Assumption 4<span class="math inline">\(^\boldsymbol{\ast}\)</span> together with the random sample assumption of Assumption 1, part (b), leads to Gaussian spherical errors, <span class="math display">\[
-\varepsilon|X\sim\mathcal{N}\left(0,\sigma^2I_n\right),
-\]</span> where <span class="math inline">\(\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'.\)</span></p>
+\varepsilon|X\sim\mathcal{N}_n\left(0,\sigma^2I_n\right),
+\]</span> where <span class="math inline">\(\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)',\)</span> and where <span class="math inline">\(\mathcal{N}_n\left(0,\sigma^2I_n\right)\)</span> denotes the <span class="math inline">\(n\)</span>-dimensional normal distribution with <span class="math inline">\((n\times 1)\)</span>-dimensional mean zero vector <span class="math inline">\(0\)</span> and <span class="math inline">\((n\times n)\)</span>-dimensional covariance matrix <span class="math inline">\(\sigma^2I_n.\)</span></p>
 <!-- I.e. the distribution of $\varepsilon$ is here independent of $X.$ -->
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
@@ -601,7 +601,7 @@ Example: One-Sided Test with <span class="math inline">\(\theta\in\mathbb{R}\)</
 \]</span> and a <strong>composite</strong> alternative hypothesis <span class="math display">\[
 \Theta_1=\;]-\infty,\theta^{(0)}[.
 \]</span></p>
-<p>Likewise for the other direction of the one-sided test.</p>
+<p>(Likewise for the other direction of the one-sided test.)</p>
 </div>
 </div>
 <section id="decisions-errors-size-and-power" class="level3" data-number="6.3.1"><h3 data-number="6.3.1" class="anchored" data-anchor-id="decisions-errors-size-and-power">
