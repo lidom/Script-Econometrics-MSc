@@ -41,7 +41,7 @@ where $\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)',$ and where $\mathcal{N}
 
 Under Assumptions 1-4$^\ast$ we have that 
 $$
-\hat\beta_n|X \sim \mathcal{N}\left(\beta,Var(\hat\beta_n|X)\right),
+\hat\beta_n|X \sim \mathcal{N}_K\left(\beta,Var(\hat\beta_n|X)\right),
 $${#eq-ssnorm}
 where 
 $$
@@ -108,14 +108,16 @@ We come back to this in @sec-testingsinglep.
 Under our assumptions (Assumptions 1 to 4$^\ast$), we have that 
 $$
 \begin{align*}
-(R\hat\beta_n-r^{(0)})|X&\sim\mathcal{N}\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right).
+(R\hat\beta_n-r^{(0)})|X&\sim\mathcal{N}_q\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right)\\[2ex]
+\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&\sim\mathcal{N}_q\left(R\beta -r^{(0)},I_q\right)
 \end{align*}
 $$ 
 
 Thus, under the scenario that the null-hypothesis is true, we have that
 $$
 \begin{align*}
-(R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}\left(\phantom{RV}{\color{red}0}\phantom{RR},RVar(\hat\beta_n|X)R'\right).
+(R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,RVar(\hat\beta_n|X)R'\right)\\[2ex]
+\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)
 \end{align*}
 $$ 
 
