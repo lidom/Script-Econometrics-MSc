@@ -24,7 +24,7 @@ $$
 for all $i=1,\dots,n.$ 
 
 
-Assumption 4$^\boldsymbol{\ast}$ together with the random sample assumption of Assumption 1, part (b), leads to Gaussian spherical errors conditionally on $X$,
+Assumption 4$^\boldsymbol{\ast}$ together with the random sample assumption of Assumption 1, part (b), leads to Gaussian spherical errors,
 $$
 \varepsilon|X\sim\mathcal{N}\left(0,\sigma^2I_n\right),
 $$
@@ -43,17 +43,22 @@ Under Assumptions 1-4$^\ast$ we have that
 $$
 \hat\beta_n|X \sim \mathcal{N}\left(\beta,Var(\hat\beta_n|X)\right),
 $${#eq-ssnorm}
-where $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$.
+where 
+$$
+Var(\hat\beta_n|X)=\underset{(K\times K)}{\sigma^2(X'X)^{-1}}.
+$$
 :::
 ::: 
 
 ::: {.proof}
 This result follows from noting that 
+$$
 \begin{align*}
 \hat\beta_n
 &=(X'X)^{-1}X'Y\\[2ex]
 &=\beta+(X'X)^{-1}X'\varepsilon
 \end{align*} 
+$$
 and because $(X'X)^{-1}X'\varepsilon$ is just a linear combination of the normally distributed error terms $\varepsilon$ which, therefore, is again normally distributed, conditionally on $X$. Note that the specific normal distribution depends on the observed realization of $X$. 
 :::
 
@@ -146,7 +151,7 @@ W=\underbrace{(R\hat\beta_n -r^{(0)})'}_{(1\times q)}\underbrace{[RVar(\hat\beta
 $$
 
 ::: {.callout-note}
-Note that the test statistic $W$ is simply measuring the distance (it's a weighted L2-distance) between the $(q\times 1)$ vectors $R\hat\beta_n$ and $r^{(0)}.$ 
+Note that the test statistic $W$ is simply measuring the distance (it's a weighted Euclidean distance) between the $(q\times 1)$ vectors $R\hat\beta_n$ and $r^{(0)}.$ 
 :::
 
 Under the null hypothesis (i.e., if $H_0$ is true), $W|X$ is a sum of $q$-many independent squared standard normal random variables. Therefore, under the null hypothesis, $W|X$ is chi-square distributed with $q$ degrees of freedom (see @sec-chisqdist), 
@@ -181,9 +186,9 @@ where $F_{(q,n-K)}$ denotes the $F$-distribution with $q$ numerator and $n-K$ de
 
 As in the case of $W$, the distribution of $F$ conditional on $X$ does not depend on $X$; i.e. $F|X\overset{H_0}{\sim}F_{(q,n-K)},$ but $F_{(q,n-K)}$ does not depend on $X,$ thus we can write $F\overset{H_0}{\sim}F_{(q,n-K)}.$
 
-The distributional statements in @eq-distsquared and @eq-Ftest are a little cumbersome to derive and we do not go into details here, but in case you're interested you can find some more details, for instance, in Chapter 1 of @Hayashi2000. 
+> The distributional statements in @eq-distsquared and @eq-Ftest are a little cumbersome to derive and we do not go into details here, but in case you're interested you can find some more details, for instance, in Chapter 1 of @Hayashi2000. 
 
-By contrast to $W,$ $F$ is now a practically useful test statistic, and we can use the observed value $F_{\text{obs}}$ to measure the distance of our observed estimate $R\hat\beta_n$ from its hypothetical value $r.$  
+By contrast to $W,$ $F$ is now a practically useful test statistic, and we can use the observed value $F_{\text{obs}}$ to measure the distance of our observed estimate $R\hat\beta_n$ from its null-hypothetical value $r^{(0)}.$  
 
 Observed values, $F_{\text{obs}}$, that are "unusually large" under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution $F_{(q,n-K)}$ of $F$ is used to judge what's "unusually large" under the null hypothesis. 
 
@@ -231,12 +236,14 @@ legend(x = "topright", legend = c("F(1,30)", "F(3,30)", "F(15,30)"),
 ## Tests about One Parameter (t-Tests) {#sec-testingsinglep}
 
 A hypothesis about only **one parameter**
+$$
 \begin{equation*}
 \begin{array}{ll}
 & H_0: \beta_k=\beta_k^{(0)}\\
 \text{versus}\quad & H_1: \beta_k\ne \beta_k^{(0)}\\
 \end{array}
 \end{equation*}
+$$
 is simply a special case of the general null hypothesis $H_0:R\beta =r^{(0)},$ where 
 
 * $R$ is a $(1\times K)$ row-vector of zeros, but with a one as the $k$th element, and where 
@@ -250,7 +257,7 @@ where
 $$
 \widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{(k,k)},
 $$ 
-where $[(X'X)^{-1}]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $(X'X)^{-1}.$
+and where $[(X'X)^{-1}]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $(K\times K)$ matrix $(X'X)^{-1}.$
 
 Taking square roots yields the $t$ test statistic 
 $$
@@ -318,9 +325,29 @@ T\equiv T((X_1,Y_1),\dots,(X_n,Y_n))
 $$
 and is thus a random variable. 
 
-**Caution:** In this section, $T$ denotes *any* real test statistic. Specific examples for $T$ are, for instance, the $F$-test statistic (@sec-testmultp) or the $t$-test statistic (@sec-testingsinglep).
+**Caution:** In this section, $T$ denotes *any* test statistic. Specific examples for $T$ are, for instance, 
 
-Generally, we can only derive the distribution of $T$ under $H_0;$ i.e. under the scenario that $H_0$ is true. The distribution of a test statistic $T$ under $H_1$ is typically unknown. 
+* the $F$-test statistic (@sec-testmultp) and 
+* the $t$-test statistic (@sec-testingsinglep).
+
+Generally, we can only derive the distribution of $T$ under $H_0;$ i.e. under the scenario that $H_0$ is true, 
+$$
+\begin{equation*}
+\begin{array}{ll}
+T & \overset{{H_0}}\sim f_T\quad ✅
+\end{array}
+\end{equation*}
+$$
+For instance, in case of the $F$-test, $f_T$ is the $F$-distribution and in case of the $t$-test, $f_T$ is the $t$-distribution. 
+
+However, the distribution of $T$ under $H_1$ is typically unknown. 
+$$
+\begin{equation*}
+\begin{array}{ll}
+T & \overset{{H_1}}\sim ❓ 
+\end{array}
+\end{equation*}
+$$
 
 <!-- * in @sec-testmultp we discussed that $F\overset{H_0}{\sim} F_{(q,n-K)}.$
 
@@ -332,19 +359,27 @@ We use the observed realization
 $$
 T_{\text{obs}}\equiv T((X_{1,\text{obs}},Y_{1,\text{obs}}),\dots,(X_{n,\text{obs}},Y_{n,\text{obs}}))
 $$
-$T_{\text{obs}},$ of the random test statistic $T$ to decide whether we cannot reject a null hypothesis $H_0$ about some parameter $\theta$ or wether we can reject $H_0$ in favor of the alternative hypothesis $H_1$
-\begin{equation*}
-\begin{array}{ll}
-& H_0: \theta\in\Theta_0\\
-\text{versus}\quad 
-& H_1: \theta\in\Theta_1,\\
-\end{array}
-\end{equation*}
-where 
+of the random test statistic $T$ to decide: 
 
-* $\Theta_0$ is the set of parameter values $\theta$ under $H_0$.
-* $\Theta_1$ is the set of parameter values $\theta$ under $H_1$.
-* $\Theta_0 \cap \Theta_1 = \emptyset$
+* whether we cannot reject a null hypothesis $H_0$ about some parameter $\theta$ 
+$$
+H_0: \theta\in\Theta_0
+$$ 
+* or wether we can reject $H_0$ in favor of the alternative hypothesis $H_1$
+$$
+H_1: \theta\in\Theta_1
+$$ 
+
+Notation:
+
+* $\Theta_0$ denotes the set of parameter values $\theta$ under $H_0$.
+* $\Theta_1$ denotes the set of parameter values $\theta$ under $H_1$.
+
+It is required that
+$$
+\Theta_0 \cap \Theta_1 = \emptyset.
+$$
+
 
 **Simple** versus **composite** hypotheses:   
 
@@ -357,6 +392,7 @@ it is called a **simple hypothesis**.
 
 ::: {.callout-tip icon="false"}
 # Example: Two-Sided Test with $\theta\in\mathbb{R}$
+$$
 \begin{equation*}
 \begin{array}{ll}
 & H_0: \theta = \theta^{(0)}\\
@@ -364,19 +400,21 @@ it is called a **simple hypothesis**.
 & H_1: \theta\neq \theta^{(0)}\\
 \end{array}
 \end{equation*}
+$$
 
-* **Simple null hypothesis:** 
+Here we have a **simple** null hypothesis 
 $$
 \Theta_0=\theta^{(0)}
 $$ 
-* **Composite alternative hypothesis:** 
+and a **composite** alternative hypothesis 
 $$
-\Theta_1=\mathbb{R}\setminus\theta^{(0)}
+\Theta_1=\mathbb{R}\setminus\theta^{(0)}.
 $$
 :::
 
 ::: {.callout-tip icon="false"}
 # Example: One-Sided Test with $\theta\in\mathbb{R}$
+$$
 \begin{equation*}
 \begin{array}{ll}
 & H_0: \theta \geq  \theta^{(0)}\\
@@ -384,17 +422,18 @@ $$
 & H_1: \theta  < \theta^{(0)}\\
 \end{array}
 \end{equation*}
+$$
 
-* **Composite null hypothesis:**
+Here we have a **composite** null hypothesis
 $$
 \Theta_0=\;[\theta^{(0)},\infty[
 $$ 
-* **Composite alternative hypothesis:**
+and a **composite** alternative hypothesis
 $$
-\Theta_1=\;]-\infty,\theta^{(0)}[
+\Theta_1=\;]-\infty,\theta^{(0)}[.
 $$
 
-Likewise for the other direction of the one-sided test. 
+(Likewise for the other direction of the one-sided test.) 
 ::: 
 
 ### Decisions Errors, Size and Power  
@@ -510,12 +549,14 @@ The **rejection region** for a statistical test statistic $T$ is defined using *
 #### Rejection Regions of the $F$-Test 
 
 The $F$-test allows us to test
+$$
 \begin{align*}
 &H_0: R\beta = r^{(0)}\\[2ex]
 \text{versus}\quad 
 &H_1: R\beta\neq r^{(0)},
 \end{align*}
-where $\beta$ denotes the true (unknown) parameter vector and $r$ the null-hypothetical value specified by the statistician (e.g. $r=0$). 
+$$
+where $\beta$ denotes the true (unknown) parameter vector and $r^{(0)}$ the null-hypothetical value specified by the statistician (often, e.g. $r^{(0)}$). 
 
 Under Assumptions 1-4$^\ast$ (see @sec-testmultp), we have that 
 $$
@@ -1214,12 +1255,14 @@ Indeed, for all reasonable test statistics we have that:
 #### $F$-Test {-}
 
 The $F$-test allows us to test
+$$
 \begin{align*}
 &H_0: R\beta = r\\[2ex]
 \text{versus}\quad 
 &H_1: R\beta\neq r,
 \end{align*}
-where $\beta$ denotes the true (unknown) parameter vector and $r$ the null-hypothetical value specified by the statistician (e.g. $r=0$). 
+$$
+where $\beta$ denotes the true (unknown) parameter vector and $r^{(0)}$ the null-hypothetical value specified by the statistician (often, e.g. $r^{(0)}=0$). 
 
 We know that
 $$
@@ -1821,13 +1864,12 @@ Lukily, the data set `DoctorVisits` actually has a **large sample size** of $n=$
 
 ## Exercises
 
-<!-- * [Exercises for Chapter 5](https://www.dropbox.com/scl/fi/g6hiwoprjewwsbr09t217/Ch5_Exercises1.pdf?rlkey=s6642zm8ufj173mhmbtoj0wvf&dl=0)
+<!-- * [Exercises for Chapter 6](https://www.dropbox.com/scl/fi/g6hiwoprjewwsbr09t217/Ch5_Exercises1.pdf?rlkey=s6642zm8ufj173mhmbtoj0wvf&dl=0)
 
 
-* [Exercises of Chapter 5 with Solutions](https://www.dropbox.com/scl/fi/codmlxtkr9p4wugd7knm0/Ch5_Exercises_with_Solutions1.pdf?rlkey=4s4g3nu4k2ycvlg4cm2n5xcat&dl=0)
+* [Exercises of Chapter 6 with Solutions](https://www.dropbox.com/scl/fi/codmlxtkr9p4wugd7knm0/Ch5_Exercises_with_Solutions1.pdf?rlkey=4s4g3nu4k2ycvlg4cm2n5xcat&dl=0)
 
-
-* [Exercises of Chapter 5 with Solutions (annotated version)](https://www.dropbox.com/scl/fi/ddbrhec01cptrrtlrca5z/Ch5_Exercises_with_Solutions1_annotated.pdf?rlkey=jkcf4ywcichtm31vi6u1aal7p&dl=0) -->
+-->
 
 ## References {-}
 

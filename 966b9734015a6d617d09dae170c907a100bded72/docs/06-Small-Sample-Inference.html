@@ -295,7 +295,7 @@ window.Quarto = {
 <p><strong>Assumption 4<span class="math inline">\(^\boldsymbol{\ast}\)</span>: Conditional Gaussian error distribution:</strong> The error terms are Gaussian and homoskedastik, i.e., <span class="math display">\[
 \varepsilon_i|X_i\sim\mathcal{N}(0,\sigma^2)
 \]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span></p>
-<p>Assumption 4<span class="math inline">\(^\boldsymbol{\ast}\)</span> together with the random sample assumption of Assumption 1, part (b), leads to Gaussian spherical errors conditionally on <span class="math inline">\(X\)</span>, <span class="math display">\[
+<p>Assumption 4<span class="math inline">\(^\boldsymbol{\ast}\)</span> together with the random sample assumption of Assumption 1, part (b), leads to Gaussian spherical errors, <span class="math display">\[
 \varepsilon|X\sim\mathcal{N}\left(0,\sigma^2I_n\right),
 \]</span> where <span class="math inline">\(\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)'.\)</span></p>
 <!-- I.e. the distribution of $\varepsilon$ is here independent of $X.$ -->
@@ -308,17 +308,21 @@ window.Quarto = {
 <div id="thm-normalbeta" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 6.1 (Normality of <span class="math inline">\(\hat\beta\)</span>)</strong></span> Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> we have that <span id="eq-ssnorm"><span class="math display">\[
 \hat\beta_n|X \sim \mathcal{N}\left(\beta,Var(\hat\beta_n|X)\right),
-\qquad(6.1)\]</span></span> where <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}\)</span>.</p>
+\qquad(6.1)\]</span></span> where <span class="math display">\[
+Var(\hat\beta_n|X)=\underset{(K\times K)}{\sigma^2(X'X)^{-1}}.
+\]</span></p>
 </div>
 </div>
 </div>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>This result follows from noting that <span class="math display">\[\begin{align*}
+<p><span class="proof-title"><em>Proof</em>. </span>This result follows from noting that <span class="math display">\[
+\begin{align*}
 \hat\beta_n
 &amp;=(X'X)^{-1}X'Y\\[2ex]
 &amp;=\beta+(X'X)^{-1}X'\varepsilon
-\end{align*}\]</span> and because <span class="math inline">\((X'X)^{-1}X'\varepsilon\)</span> is just a linear combination of the normally distributed error terms <span class="math inline">\(\varepsilon\)</span> which, therefore, is again normally distributed, conditionally on <span class="math inline">\(X\)</span>. Note that the specific normal distribution depends on the observed realization of <span class="math inline">\(X\)</span>.</p>
+\end{align*}
+\]</span> and because <span class="math inline">\((X'X)^{-1}X'\varepsilon\)</span> is just a linear combination of the normally distributed error terms <span class="math inline">\(\varepsilon\)</span> which, therefore, is again normally distributed, conditionally on <span class="math inline">\(X\)</span>. Note that the specific normal distribution depends on the observed realization of <span class="math inline">\(X\)</span>.</p>
 </div>
 <p><strong>Remark:</strong> The subscript <span class="math inline">\(n\)</span> in <span class="math inline">\(\hat\beta_n\)</span> is here only to emphasize that the distribution of <span class="math inline">\(\hat\beta_n\)</span> depends on <span class="math inline">\(n\)</span>; we will, however, often simply write <span class="math inline">\(\hat\beta\)</span>.</p>
 <section id="sec-testmultp" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="sec-testmultp">
@@ -403,7 +407,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note that the test statistic <span class="math inline">\(W\)</span> is simply measuring the distance (it’s a weighted L2-distance) between the <span class="math inline">\((q\times 1)\)</span> vectors <span class="math inline">\(R\hat\beta_n\)</span> and <span class="math inline">\(r^{(0)}.\)</span></p>
+<p>Note that the test statistic <span class="math inline">\(W\)</span> is simply measuring the distance (it’s a weighted Euclidean distance) between the <span class="math inline">\((q\times 1)\)</span> vectors <span class="math inline">\(R\hat\beta_n\)</span> and <span class="math inline">\(r^{(0)}.\)</span></p>
 </div>
 </div>
 <p>Under the null hypothesis (i.e., if <span class="math inline">\(H_0\)</span> is true), <span class="math inline">\(W|X\)</span> is a sum of <span class="math inline">\(q\)</span>-many independent squared standard normal random variables. Therefore, under the null hypothesis, <span class="math inline">\(W|X\)</span> is chi-square distributed with <span class="math inline">\(q\)</span> degrees of freedom (see <a href="02-Probability.html#sec-chisqdist" class="quarto-xref"><span>Section 2.2.10.3</span></a>), <span class="math display">\[
@@ -424,8 +428,10 @@ F=(R\hat\beta_n -r^{(0)})'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r^{(0)})/
 F\overset{H_0}{\sim} F_{(q,n-K)},
 \qquad(6.3)\]</span></span> where <span class="math inline">\(F_{(q,n-K)}\)</span> denotes the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\(q\)</span> numerator and <span class="math inline">\(n-K\)</span> denominator degrees of freedom.</p>
 <p>As in the case of <span class="math inline">\(W\)</span>, the distribution of <span class="math inline">\(F\)</span> conditional on <span class="math inline">\(X\)</span> does not depend on <span class="math inline">\(X\)</span>; i.e.&nbsp;<span class="math inline">\(F|X\overset{H_0}{\sim}F_{(q,n-K)},\)</span> but <span class="math inline">\(F_{(q,n-K)}\)</span> does not depend on <span class="math inline">\(X,\)</span> thus we can write <span class="math inline">\(F\overset{H_0}{\sim}F_{(q,n-K)}.\)</span></p>
+<blockquote class="blockquote">
 <p>The distributional statements in <a href="#eq-distsquared" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> and <a href="#eq-Ftest" class="quarto-xref">Equation&nbsp;<span>6.3</span></a> are a little cumbersome to derive and we do not go into details here, but in case you’re interested you can find some more details, for instance, in Chapter 1 of <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>.</p>
-<p>By contrast to <span class="math inline">\(W,\)</span> <span class="math inline">\(F\)</span> is now a practically useful test statistic, and we can use the observed value <span class="math inline">\(F_{\text{obs}}\)</span> to measure the distance of our observed estimate <span class="math inline">\(R\hat\beta_n\)</span> from its hypothetical value <span class="math inline">\(r.\)</span></p>
+</blockquote>
+<p>By contrast to <span class="math inline">\(W,\)</span> <span class="math inline">\(F\)</span> is now a practically useful test statistic, and we can use the observed value <span class="math inline">\(F_{\text{obs}}\)</span> to measure the distance of our observed estimate <span class="math inline">\(R\hat\beta_n\)</span> from its null-hypothetical value <span class="math inline">\(r^{(0)}.\)</span></p>
 <p>Observed values, <span class="math inline">\(F_{\text{obs}}\)</span>, that are “unusually large” under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution <span class="math inline">\(F_{(q,n-K)}\)</span> of <span class="math inline">\(F\)</span> is used to judge what’s “unusually large” under the null hypothesis.</p>
 <p><strong>The F distribution.</strong> The F distribution is a ratio of two <span class="math inline">\(\chi^2\)</span> distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See <a href="02-Probability.html#sec-Fdist" class="quarto-xref"><span>Section 2.2.10.6</span></a> for more information on the <span class="math inline">\(F\)</span> distribution.</p>
 <div class="cell" data-layout-align="center">
@@ -438,12 +444,14 @@ F\overset{H_0}{\sim} F_{(q,n-K)},
 </div>
 </section></section><section id="sec-testingsinglep" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="sec-testingsinglep">
 <span class="header-section-number">6.2</span> Tests about One Parameter (t-Tests)</h2>
-<p>A hypothesis about only <strong>one parameter</strong> <span class="math display">\[\begin{equation*}
+<p>A hypothesis about only <strong>one parameter</strong> <span class="math display">\[
+\begin{equation*}
 \begin{array}{ll}
 &amp; H_0: \beta_k=\beta_k^{(0)}\\
 \text{versus}\quad &amp; H_1: \beta_k\ne \beta_k^{(0)}\\
 \end{array}
-\end{equation*}\]</span> is simply a special case of the general null hypothesis <span class="math inline">\(H_0:R\beta =r^{(0)},\)</span> where</p>
+\end{equation*}
+\]</span> is simply a special case of the general null hypothesis <span class="math inline">\(H_0:R\beta =r^{(0)},\)</span> where</p>
 <ul>
 <li>
 <span class="math inline">\(R\)</span> is a <span class="math inline">\((1\times K)\)</span> row-vector of zeros, but with a one as the <span class="math inline">\(k\)</span>th element, and where</li>
@@ -454,7 +462,7 @@ F\overset{H_0}{\sim} F_{(q,n-K)},
 F=\frac{\left(\hat{\beta}_k-\beta_k^{(0)}\right)^2}{\widehat{Var}(\hat{\beta}_k|X)}\overset{H_0}{\sim}F_{(1,n-K)},
 \]</span> where <span class="math display">\[
 \widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{(k,k)},
-\]</span> where <span class="math inline">\([(X'X)^{-1}]_{(k,k)}\)</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\((X'X)^{-1}.\)</span></p>
+\]</span> and where <span class="math inline">\([(X'X)^{-1}]_{(k,k)}\)</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\((X'X)^{-1}.\)</span></p>
 <p>Taking square roots yields the <span class="math inline">\(t\)</span> test statistic <span class="math display">\[
 T=\frac{\hat{\beta}_k-\beta_k^{(0)}}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)}\overset{H_0}{\sim}t_{(n-K)},
 \]</span> where <span class="math display">\[
@@ -491,27 +499,51 @@ H_0:\beta_k=0
 <p>Every statistical test statistic is a function of the random sample, i.e. <span class="math display">\[
 T\equiv T((X_1,Y_1),\dots,(X_n,Y_n))
 \]</span> and is thus a random variable.</p>
-<p><strong>Caution:</strong> In this section, <span class="math inline">\(T\)</span> denotes <em>any</em> real test statistic. Specific examples for <span class="math inline">\(T\)</span> are, for instance, the <span class="math inline">\(F\)</span>-test statistic (<a href="#sec-testmultp" class="quarto-xref"><span>Section 6.1</span></a>) or the <span class="math inline">\(t\)</span>-test statistic (<a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.2</span></a>).</p>
-<p>Generally, we can only derive the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0;\)</span> i.e.&nbsp;under the scenario that <span class="math inline">\(H_0\)</span> is true. The distribution of a test statistic <span class="math inline">\(T\)</span> under <span class="math inline">\(H_1\)</span> is typically unknown.</p>
+<p><strong>Caution:</strong> In this section, <span class="math inline">\(T\)</span> denotes <em>any</em> test statistic. Specific examples for <span class="math inline">\(T\)</span> are, for instance,</p>
+<ul>
+<li>the <span class="math inline">\(F\)</span>-test statistic (<a href="#sec-testmultp" class="quarto-xref"><span>Section 6.1</span></a>) and</li>
+<li>the <span class="math inline">\(t\)</span>-test statistic (<a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.2</span></a>).</li>
+</ul>
+<p>Generally, we can only derive the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0;\)</span> i.e.&nbsp;under the scenario that <span class="math inline">\(H_0\)</span> is true, <span class="math display">\[
+\begin{equation*}
+\begin{array}{ll}
+T &amp; \overset{{H_0}}\sim f_T\quad ✅
+\end{array}
+\end{equation*}
+\]</span> For instance, in case of the <span class="math inline">\(F\)</span>-test, <span class="math inline">\(f_T\)</span> is the <span class="math inline">\(F\)</span>-distribution and in case of the <span class="math inline">\(t\)</span>-test, <span class="math inline">\(f_T\)</span> is the <span class="math inline">\(t\)</span>-distribution.</p>
+<p>However, the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_1\)</span> is typically unknown. <span class="math display">\[
+\begin{equation*}
+\begin{array}{ll}
+T &amp; \overset{{H_1}}\sim ❓
+\end{array}
+\end{equation*}
+\]</span></p>
 <!-- * in @sec-testmultp we discussed that $F\overset{H_0}{\sim} F_{(q,n-K)}.$
 
 * in @sec-testingsinglep we discussed (for simple null hypothesis) that $T\overset{H_0}{\sim} t_{(n-K)}$ -->
 <p>We use the observed realization <span class="math display">\[
 T_{\text{obs}}\equiv T((X_{1,\text{obs}},Y_{1,\text{obs}}),\dots,(X_{n,\text{obs}},Y_{n,\text{obs}}))
-\]</span> <span class="math inline">\(T_{\text{obs}},\)</span> of the random test statistic <span class="math inline">\(T\)</span> to decide whether we cannot reject a null hypothesis <span class="math inline">\(H_0\)</span> about some parameter <span class="math inline">\(\theta\)</span> or wether we can reject <span class="math inline">\(H_0\)</span> in favor of the alternative hypothesis <span class="math inline">\(H_1\)</span> <span class="math display">\[\begin{equation*}
-\begin{array}{ll}
-&amp; H_0: \theta\in\Theta_0\\
-\text{versus}\quad
-&amp; H_1: \theta\in\Theta_1,\\
-\end{array}
-\end{equation*}\]</span> where</p>
+\]</span> of the random test statistic <span class="math inline">\(T\)</span> to decide:</p>
+<ul>
+<li>whether we cannot reject a null hypothesis <span class="math inline">\(H_0\)</span> about some parameter <span class="math inline">\(\theta\)</span> <span class="math display">\[
+H_0: \theta\in\Theta_0
+\]</span>
+</li>
+<li>or wether we can reject <span class="math inline">\(H_0\)</span> in favor of the alternative hypothesis <span class="math inline">\(H_1\)</span> <span class="math display">\[
+H_1: \theta\in\Theta_1
+\]</span>
+</li>
+</ul>
+<p>Notation:</p>
 <ul>
 <li>
-<span class="math inline">\(\Theta_0\)</span> is the set of parameter values <span class="math inline">\(\theta\)</span> under <span class="math inline">\(H_0\)</span>.</li>
+<span class="math inline">\(\Theta_0\)</span> denotes the set of parameter values <span class="math inline">\(\theta\)</span> under <span class="math inline">\(H_0\)</span>.</li>
 <li>
-<span class="math inline">\(\Theta_1\)</span> is the set of parameter values <span class="math inline">\(\theta\)</span> under <span class="math inline">\(H_1\)</span>.</li>
-<li><span class="math inline">\(\Theta_0 \cap \Theta_1 = \emptyset\)</span></li>
+<span class="math inline">\(\Theta_1\)</span> denotes the set of parameter values <span class="math inline">\(\theta\)</span> under <span class="math inline">\(H_1\)</span>.</li>
 </ul>
+<p>It is required that <span class="math display">\[
+\Theta_0 \cap \Theta_1 = \emptyset.
+\]</span></p>
 <p><strong>Simple</strong> versus <strong>composite</strong> hypotheses:</p>
 <ul>
 <li>If <span class="math inline">\(\Theta_j,\)</span> <span class="math inline">\(j=1,2,\)</span> contains only <strong>one value</strong> <span class="math display">\[
@@ -529,25 +561,20 @@ Example: Two-Sided Test with <span class="math inline">\(\theta\in\mathbb{R}\)</
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span class="math display">\[\begin{equation*}
+<p><span class="math display">\[
+\begin{equation*}
 \begin{array}{ll}
 &amp; H_0: \theta = \theta^{(0)}\\
 \text{versus}\quad
 &amp; H_1: \theta\neq \theta^{(0)}\\
 \end{array}
-\end{equation*}\]</span></p>
-<ul>
-<li>
-<strong>Simple null hypothesis:</strong> <span class="math display">\[
+\end{equation*}
+\]</span></p>
+<p>Here we have a <strong>simple</strong> null hypothesis <span class="math display">\[
 \Theta_0=\theta^{(0)}
-\]</span>
-</li>
-<li>
-<strong>Composite alternative hypothesis:</strong> <span class="math display">\[
-\Theta_1=\mathbb{R}\setminus\theta^{(0)}
-\]</span>
-</li>
-</ul>
+\]</span> and a <strong>composite</strong> alternative hypothesis <span class="math display">\[
+\Theta_1=\mathbb{R}\setminus\theta^{(0)}.
+\]</span></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
@@ -560,25 +587,20 @@ Example: One-Sided Test with <span class="math inline">\(\theta\in\mathbb{R}\)</
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span class="math display">\[\begin{equation*}
+<p><span class="math display">\[
+\begin{equation*}
 \begin{array}{ll}
 &amp; H_0: \theta \geq  \theta^{(0)}\\
 \text{versus}\quad
 &amp; H_1: \theta  &lt; \theta^{(0)}\\
 \end{array}
-\end{equation*}\]</span></p>
-<ul>
-<li>
-<strong>Composite null hypothesis:</strong> <span class="math display">\[
+\end{equation*}
+\]</span></p>
+<p>Here we have a <strong>composite</strong> null hypothesis <span class="math display">\[
 \Theta_0=\;[\theta^{(0)},\infty[
-\]</span>
-</li>
-<li>
-<strong>Composite alternative hypothesis:</strong> <span class="math display">\[
-\Theta_1=\;]-\infty,\theta^{(0)}[
-\]</span>
-</li>
-</ul>
+\]</span> and a <strong>composite</strong> alternative hypothesis <span class="math display">\[
+\Theta_1=\;]-\infty,\theta^{(0)}[.
+\]</span></p>
 <p>Likewise for the other direction of the one-sided test.</p>
 </div>
 </div>
@@ -703,11 +725,13 @@ Tip
 <p>The <strong>rejection region</strong> for a statistical test statistic <span class="math inline">\(T\)</span> is defined using <strong>critical values</strong> which are certain quantiles of the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0.\)</span></p>
 <section id="rejection-regions-of-the-f-test" class="level4" data-number="6.3.3.1"><h4 data-number="6.3.3.1" class="anchored" data-anchor-id="rejection-regions-of-the-f-test">
 <span class="header-section-number">6.3.3.1</span> Rejection Regions of the <span class="math inline">\(F\)</span>-Test</h4>
-<p>The <span class="math inline">\(F\)</span>-test allows us to test <span class="math display">\[\begin{align*}
+<p>The <span class="math inline">\(F\)</span>-test allows us to test <span class="math display">\[
+\begin{align*}
 &amp;H_0: R\beta = r^{(0)}\\[2ex]
 \text{versus}\quad
 &amp;H_1: R\beta\neq r^{(0)},
-\end{align*}\]</span> where <span class="math inline">\(\beta\)</span> denotes the true (unknown) parameter vector and <span class="math inline">\(r\)</span> the null-hypothetical value specified by the statistician (e.g.&nbsp;<span class="math inline">\(r=0\)</span>).</p>
+\end{align*}
+\]</span> where <span class="math inline">\(\beta\)</span> denotes the true (unknown) parameter vector and <span class="math inline">\(r^{(0)}\)</span> the null-hypothetical value specified by the statistician (often, e.g.&nbsp;<span class="math inline">\(r^{(0)}\)</span>).</p>
 <p>Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> (see <a href="#sec-testmultp" class="quarto-xref"><span>Section 6.1</span></a>), we have that <span id="eq-FNullDistr"><span class="math display">\[
 F\overset{H_0}{\sim}F_{q,n-K}.
 \qquad(6.4)\]</span></span></p>
@@ -1233,11 +1257,13 @@ Power is a function of <span class="math inline">\(\alpha,\)</span> <span class=
 <span class="header-section-number">6.3.5</span> <span class="math inline">\(p\)</span>-Value</h3>
 <section id="f-test" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="f-test">
 <span class="math inline">\(F\)</span>-Test</h4>
-<p>The <span class="math inline">\(F\)</span>-test allows us to test <span class="math display">\[\begin{align*}
+<p>The <span class="math inline">\(F\)</span>-test allows us to test <span class="math display">\[
+\begin{align*}
 &amp;H_0: R\beta = r\\[2ex]
 \text{versus}\quad
 &amp;H_1: R\beta\neq r,
-\end{align*}\]</span> where <span class="math inline">\(\beta\)</span> denotes the true (unknown) parameter vector and <span class="math inline">\(r\)</span> the null-hypothetical value specified by the statistician (e.g.&nbsp;<span class="math inline">\(r=0\)</span>).</p>
+\end{align*}
+\]</span> where <span class="math inline">\(\beta\)</span> denotes the true (unknown) parameter vector and <span class="math inline">\(r^{(0)}\)</span> the null-hypothetical value specified by the statistician (often, e.g.&nbsp;<span class="math inline">\(r^{(0)}=0\)</span>).</p>
 <p>We know that <span class="math display">\[
 F\overset{H_0}{\sim}F_{q,n-K}.
 \]</span></p>
@@ -1989,13 +2015,12 @@ Consequently, the error term <span class="math inline">\(\varepsilon_i\)</span> 
 <p>Lukily, the data set <code>DoctorVisits</code> actually has a <strong>large sample size</strong> of <span class="math inline">\(n=\)</span> 5190 and thus there is a way out of this problem: The large sample inference framework introduced in the next chapter.</p>
 </section></section><section id="exercises" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">6.7</span> Exercises</h2>
-<!-- * [Exercises for Chapter 5](https://www.dropbox.com/scl/fi/g6hiwoprjewwsbr09t217/Ch5_Exercises1.pdf?rlkey=s6642zm8ufj173mhmbtoj0wvf&dl=0)
+<!-- * [Exercises for Chapter 6](https://www.dropbox.com/scl/fi/g6hiwoprjewwsbr09t217/Ch5_Exercises1.pdf?rlkey=s6642zm8ufj173mhmbtoj0wvf&dl=0)
 
 
-* [Exercises of Chapter 5 with Solutions](https://www.dropbox.com/scl/fi/codmlxtkr9p4wugd7knm0/Ch5_Exercises_with_Solutions1.pdf?rlkey=4s4g3nu4k2ycvlg4cm2n5xcat&dl=0)
+* [Exercises of Chapter 6 with Solutions](https://www.dropbox.com/scl/fi/codmlxtkr9p4wugd7knm0/Ch5_Exercises_with_Solutions1.pdf?rlkey=4s4g3nu4k2ycvlg4cm2n5xcat&dl=0)
 
-
-* [Exercises of Chapter 5 with Solutions (annotated version)](https://www.dropbox.com/scl/fi/ddbrhec01cptrrtlrca5z/Ch5_Exercises_with_Solutions1_annotated.pdf?rlkey=jkcf4ywcichtm31vi6u1aal7p&dl=0) -->
+-->
 </section><section id="references" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
 
 
