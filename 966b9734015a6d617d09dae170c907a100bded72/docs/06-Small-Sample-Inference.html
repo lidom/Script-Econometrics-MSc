@@ -234,33 +234,45 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li>
-<a href="#sec-testmultp" id="toc-sec-testmultp" class="nav-link active" data-scroll-target="#sec-testmultp"><span class="header-section-number">6.1</span> Hypothesis Tests about Multiple Parameters (F-Tests)</a>
-  <ul class="collapse">
-<li><a href="#the-test-statistic-and-its-null-distribution" id="toc-the-test-statistic-and-its-null-distribution" class="nav-link" data-scroll-target="#the-test-statistic-and-its-null-distribution"><span class="header-section-number">6.1.1</span> The Test Statistic and its Null Distribution</a></li>
-  </ul>
-</li>
-  <li><a href="#sec-testingsinglep" id="toc-sec-testingsinglep" class="nav-link" data-scroll-target="#sec-testingsinglep"><span class="header-section-number">6.2</span> Tests about One Parameter (t-Tests)</a></li>
+<li><a href="#normality-of-the-ols-estimator" id="toc-normality-of-the-ols-estimator" class="nav-link active" data-scroll-target="#normality-of-the-ols-estimator"><span class="header-section-number">6.1</span> Normality of the OLS-Estimator</a></li>
   <li>
-<a href="#testtheory" id="toc-testtheory" class="nav-link" data-scroll-target="#testtheory"><span class="header-section-number">6.3</span> Testtheory</a>
+<a href="#sec-testmultp" id="toc-sec-testmultp" class="nav-link" data-scroll-target="#sec-testmultp"><span class="header-section-number">6.2</span> <span class="math inline">\(F\)</span>-Tests: Hypothesis Tests about Multiple Parameters</a>
   <ul class="collapse">
-<li><a href="#decisions-errors-size-and-power" id="toc-decisions-errors-size-and-power" class="nav-link" data-scroll-target="#decisions-errors-size-and-power"><span class="header-section-number">6.3.1</span> Decisions Errors, Size and Power</a></li>
-  <li><a href="#significance-level-or-nominal-size" id="toc-significance-level-or-nominal-size" class="nav-link" data-scroll-target="#significance-level-or-nominal-size"><span class="header-section-number">6.3.2</span> Significance Level or Nominal Size</a></li>
-  <li><a href="#rejection-regions-of-the-f-and-t-test" id="toc-rejection-regions-of-the-f-and-t-test" class="nav-link" data-scroll-target="#rejection-regions-of-the-f-and-t-test"><span class="header-section-number">6.3.3</span> Rejection Regions of the <span class="math inline">\(F\)</span> and <span class="math inline">\(t\)</span>-Test</a></li>
-  <li><a href="#power-1" id="toc-power-1" class="nav-link" data-scroll-target="#power-1"><span class="header-section-number">6.3.4</span> Power</a></li>
-  <li><a href="#sec-pValue" id="toc-sec-pValue" class="nav-link" data-scroll-target="#sec-pValue"><span class="header-section-number">6.3.5</span> <span class="math inline">\(p\)</span>-Value</a></li>
+<li><a href="#the-test-statistic-and-its-null-distribution" id="toc-the-test-statistic-and-its-null-distribution" class="nav-link" data-scroll-target="#the-test-statistic-and-its-null-distribution"><span class="header-section-number">6.2.1</span> The Test Statistic and its Null Distribution</a></li>
+  <li><a href="#test-decision-using-the-rejection-region" id="toc-test-decision-using-the-rejection-region" class="nav-link" data-scroll-target="#test-decision-using-the-rejection-region"><span class="header-section-number">6.2.2</span> Test Decision using the Rejection Region</a></li>
+  <li><a href="#test-decision-using-the-p-value" id="toc-test-decision-using-the-p-value" class="nav-link" data-scroll-target="#test-decision-using-the-p-value"><span class="header-section-number">6.2.3</span> Test Decision using the <span class="math inline">\(p\)</span>-Value</a></li>
   </ul>
 </li>
-  <li><a href="#sec-CIsmallsample" id="toc-sec-CIsmallsample" class="nav-link" data-scroll-target="#sec-CIsmallsample"><span class="header-section-number">6.4</span> Confidence Intervals</a></li>
   <li>
-<a href="#sec-PSSI" id="toc-sec-PSSI" class="nav-link" data-scroll-target="#sec-PSSI"><span class="header-section-number">6.5</span> Monte Carlo Simulations</a>
+<a href="#sec-testingsinglep" id="toc-sec-testingsinglep" class="nav-link" data-scroll-target="#sec-testingsinglep"><span class="header-section-number">6.3</span> <span class="math inline">\(t\)</span>-Tests: Hypothesis Tests about One Parameter</a>
   <ul class="collapse">
-<li><a href="#check-testing-multiple-parameters" id="toc-check-testing-multiple-parameters" class="nav-link" data-scroll-target="#check-testing-multiple-parameters"><span class="header-section-number">6.5.1</span> Check: Testing Multiple Parameters</a></li>
-  <li><a href="#check-dualty-of-confidence-intervals-and-hypothesis-tests" id="toc-check-dualty-of-confidence-intervals-and-hypothesis-tests" class="nav-link" data-scroll-target="#check-dualty-of-confidence-intervals-and-hypothesis-tests"><span class="header-section-number">6.5.2</span> Check: Dualty of Confidence Intervals and Hypothesis Tests</a></li>
+<li><a href="#the-test-statistic-and-its-null-distribution-1" id="toc-the-test-statistic-and-its-null-distribution-1" class="nav-link" data-scroll-target="#the-test-statistic-and-its-null-distribution-1"><span class="header-section-number">6.3.1</span> The Test Statistic and its Null Distribution</a></li>
+  <li><a href="#test-decision-using-the-rejection-region-one-sided-12" id="toc-test-decision-using-the-rejection-region-one-sided-12" class="nav-link" data-scroll-target="#test-decision-using-the-rejection-region-one-sided-12"><span class="header-section-number">6.3.2</span> Test Decision using the Rejection Region (One-Sided 1/2)</a></li>
+  <li><a href="#test-decision-using-the-rejection-region-one-sided-22" id="toc-test-decision-using-the-rejection-region-one-sided-22" class="nav-link" data-scroll-target="#test-decision-using-the-rejection-region-one-sided-22"><span class="header-section-number">6.3.3</span> Test Decision using the Rejection Region (One-Sided 2/2)</a></li>
+  <li><a href="#test-decision-using-the-rejection-region-two-sided" id="toc-test-decision-using-the-rejection-region-two-sided" class="nav-link" data-scroll-target="#test-decision-using-the-rejection-region-two-sided"><span class="header-section-number">6.3.4</span> Test Decision using the Rejection Region (Two-Sided)</a></li>
+  <li><a href="#sec-TDecRS" id="toc-sec-TDecRS" class="nav-link" data-scroll-target="#sec-TDecRS"><span class="header-section-number">6.3.5</span> Test Decision using the <span class="math inline">\(p\)</span>-Value (One-Sided 1/2)</a></li>
+  <li><a href="#test-decision-using-the-p-value-one-sided-22" id="toc-test-decision-using-the-p-value-one-sided-22" class="nav-link" data-scroll-target="#test-decision-using-the-p-value-one-sided-22"><span class="header-section-number">6.3.6</span> Test Decision using the <span class="math inline">\(p\)</span>-Value (One-Sided 2/2)</a></li>
+  <li><a href="#test-decision-using-the-p-value-two-sided" id="toc-test-decision-using-the-p-value-two-sided" class="nav-link" data-scroll-target="#test-decision-using-the-p-value-two-sided"><span class="header-section-number">6.3.7</span> Test Decision using the <span class="math inline">\(p\)</span>-Value (Two-Sided)</a></li>
   </ul>
 </li>
-  <li><a href="#sec-RDSSInf" id="toc-sec-RDSSInf" class="nav-link" data-scroll-target="#sec-RDSSInf"><span class="header-section-number">6.6</span> Real Data Example</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.7</span> Exercises</a></li>
+  <li>
+<a href="#testtheory" id="toc-testtheory" class="nav-link" data-scroll-target="#testtheory"><span class="header-section-number">6.4</span> Testtheory</a>
+  <ul class="collapse">
+<li><a href="#decisions-errors-size-and-power" id="toc-decisions-errors-size-and-power" class="nav-link" data-scroll-target="#decisions-errors-size-and-power"><span class="header-section-number">6.4.1</span> Decisions Errors, Size and Power</a></li>
+  <li><a href="#example-power-of-the-one-sided-t-test" id="toc-example-power-of-the-one-sided-t-test" class="nav-link" data-scroll-target="#example-power-of-the-one-sided-t-test"><span class="header-section-number">6.4.2</span> Example: Power of the One-Sided <span class="math inline">\(t\)</span>-Test</a></li>
+  <li><a href="#sec-pValue" id="toc-sec-pValue" class="nav-link" data-scroll-target="#sec-pValue"><span class="header-section-number">6.4.3</span> Interpreting the <span class="math inline">\(p\)</span>-Value</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-CIsmallsample" id="toc-sec-CIsmallsample" class="nav-link" data-scroll-target="#sec-CIsmallsample"><span class="header-section-number">6.5</span> Confidence Intervals</a></li>
+  <li>
+<a href="#sec-PSSI" id="toc-sec-PSSI" class="nav-link" data-scroll-target="#sec-PSSI"><span class="header-section-number">6.6</span> Monte Carlo Simulations</a>
+  <ul class="collapse">
+<li><a href="#check-testing-multiple-parameters" id="toc-check-testing-multiple-parameters" class="nav-link" data-scroll-target="#check-testing-multiple-parameters"><span class="header-section-number">6.6.1</span> Check: Testing Multiple Parameters</a></li>
+  <li><a href="#check-dualty-of-confidence-intervals-and-hypothesis-tests" id="toc-check-dualty-of-confidence-intervals-and-hypothesis-tests" class="nav-link" data-scroll-target="#check-dualty-of-confidence-intervals-and-hypothesis-tests"><span class="header-section-number">6.6.2</span> Check: Dualty of Confidence Intervals and Hypothesis Tests</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-RDSSInf" id="toc-sec-RDSSInf" class="nav-link" data-scroll-target="#sec-RDSSInf"><span class="header-section-number">6.7</span> Real Data Example</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.8</span> Exercises</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></nav>
     </div>
@@ -290,6 +302,8 @@ window.Quarto = {
 </ul>
 <p>The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem—both requiring <span class="math inline">\(n\to\infty.\)</span> Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do <strong>exact</strong> inference.</p>
 <p><strong>Exact inference:</strong> By “exact inference” we mean correct inference for each sample size <span class="math inline">\(n\)</span>. That is, no approximate results based on asymptotic <span class="math inline">\((n\to\infty)\)</span> arguments will be used.</p>
+<section id="normality-of-the-ols-estimator" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="normality-of-the-ols-estimator">
+<span class="header-section-number">6.1</span> Normality of the OLS-Estimator</h2>
 <p><strong>Assumptions:</strong> In <a href="05-Multiple-Linear-Regression.html" class="quarto-xref"><span>Chapter 5</span></a>, we did not impose a complete distributional assumption on <span class="math inline">\(\varepsilon\)</span> (see Assumption 4). For instance, the i.i.d. normal case in Assumption 4 was only one possible <em>option</em>. However, to do inference in small samples, the normality Assumption on the error terms is not a mere option, but a <em>necessity</em>.</p>
 <p>Therefore, in this chapter we assume that Assumptions 1-3 from <a href="05-Multiple-Linear-Regression.html" class="quarto-xref"><span>Chapter 5</span></a> hold and that additionally the following assumption holds:</p>
 <p><strong>Assumption 4<span class="math inline">\(^\boldsymbol{\ast}\)</span>: Conditional Gaussian error distribution:</strong> The error terms are Gaussian and homoskedastik, i.e., <span class="math display">\[
@@ -325,11 +339,13 @@ Var(\hat\beta_n|X)=\underset{(K\times K)}{\sigma^2(X'X)^{-1}}.
 \]</span> and because <span class="math inline">\((X'X)^{-1}X'\varepsilon\)</span> is just a linear combination of the normally distributed error terms <span class="math inline">\(\varepsilon\)</span> which, therefore, is again normally distributed, conditionally on <span class="math inline">\(X\)</span>. Note that the specific normal distribution depends on the observed realization of <span class="math inline">\(X\)</span>.</p>
 </div>
 <p><strong>Remark:</strong> The subscript <span class="math inline">\(n\)</span> in <span class="math inline">\(\hat\beta_n\)</span> is here only to emphasize that the distribution of <span class="math inline">\(\hat\beta_n\)</span> depends on <span class="math inline">\(n\)</span>; we will, however, often simply write <span class="math inline">\(\hat\beta\)</span>.</p>
-<section id="sec-testmultp" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="sec-testmultp">
-<span class="header-section-number">6.1</span> Hypothesis Tests about Multiple Parameters (F-Tests)</h2>
-<p>Let us consider the following system of <span class="math inline">\(q\)</span>-many null hypotheses: <span class="math display">\[\begin{align*}
+</section><section id="sec-testmultp" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="sec-testmultp">
+<span class="header-section-number">6.2</span> <span class="math inline">\(F\)</span>-Tests: Hypothesis Tests about Multiple Parameters</h2>
+<p>Let us consider the following system of <span class="math inline">\(q\)</span>-many null hypotheses: <span class="math display">\[
+\begin{align*}
 H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  = \underset{(q\times 1)}{r^{(0)}},
-\end{align*}\]</span> where</p>
+\end{align*}
+\]</span> where</p>
 <ul>
 <li>the <span class="math inline">\((q \times K)\)</span> matrix <span class="math inline">\(R,\)</span> which describes the considered linear combinations of the unknown <span class="math inline">\(\beta=(\beta_1,\dots,\beta_K)'\)</span> values, and</li>
 <li>the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(r^{(0)}=(r^{(0)}_{1},\dots,r^{(0)}_{q})'\)</span> of null hypothetical values</li>
@@ -364,7 +380,7 @@ Note
 \text{versus}\quad &amp;H_1:  \beta_{2} \ne 0 \\
 \end{array}
 \end{equation*}
-\]</span> We come back to this in <a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.2</span></a>.</p>
+\]</span> We come back to this in <a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.3</span></a>.</p>
 </div>
 </div>
 <p>Under our assumptions (Assumptions 1 to 4<span class="math inline">\(^\ast\)</span>), we have that <span class="math display">\[
@@ -392,8 +408,8 @@ Note
 <p>We use a test statistic to detect a systematic location shift away from the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0.\)</span></p>
 <!-- * if the alternative hypothesis is correct (i.e., $(R\beta-r)=a\neq 0$), there will be a systematic location-shift in $(R\hat\beta_n-r)|X$ which we try to detect using statistical hypothesis testing.  -->
 <!-- the realizations of $R\hat\beta_n-r|X$ scatter around the $q$-vector $a\neq 0$.  So, under the alternative hypothesis,  -->
-<section id="the-test-statistic-and-its-null-distribution" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="the-test-statistic-and-its-null-distribution">
-<span class="header-section-number">6.1.1</span> The Test Statistic and its Null Distribution</h3>
+<section id="the-test-statistic-and-its-null-distribution" class="level3" data-number="6.2.1"><h3 data-number="6.2.1" class="anchored" data-anchor-id="the-test-statistic-and-its-null-distribution">
+<span class="header-section-number">6.2.1</span> The Test Statistic and its Null Distribution</h3>
 <p>The fact that <span class="math display">\[
 (R\hat\beta_n-r^{(0)})\in\mathbb{R}^q
 \]</span> is a <span class="math inline">\(q\)</span>-dimensional random variable makes it a little bothersome to use as a test-statistic. Fortunately, we can turn <span class="math inline">\((R\hat\beta_n-r^{(0)})\)</span> into a scalar-valued test statistic using the following quadratic form: <span class="math display">\[
@@ -444,8 +460,73 @@ F\overset{H_0}{\sim} F_{(q,n-K)},
 </div>
 </div>
 </div>
-</section></section><section id="sec-testingsinglep" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="sec-testingsinglep">
-<span class="header-section-number">6.2</span> Tests about One Parameter (t-Tests)</h2>
+</section><section id="test-decision-using-the-rejection-region" class="level3" data-number="6.2.2"><h3 data-number="6.2.2" class="anchored" data-anchor-id="test-decision-using-the-rejection-region">
+<span class="header-section-number">6.2.2</span> Test Decision using the Rejection Region</h3>
+<p>Let <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denote the significance level and let <span class="math inline">\(c_{1-\alpha}\)</span> denote the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\((q,n-K)\)</span> degrees of freedom.</p>
+<p>This quantile <span class="math inline">\(c_{1-\alpha}\)</span> is the <strong>critical value</strong> that defines the <strong>rejection region</strong>: <span class="math display">\[
+\mathcal{R}=\; ]c_{1-\alpha},\infty[
+\]</span> <!-- , and 
+- non-rejection region, $]0,c_{1-\alpha}]$  --></p>
+<ul>
+<li>We can rejection <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+F_{obs}\in \mathcal{R}=\; ]c_{1-\alpha},\infty[
+\]</span>
+</li>
+<li>We cannot rejection <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+F_{obs}\not \in \mathcal{R}=\; ]c_{1-\alpha},\infty[
+\]</span>
+</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="06-Small-Sample-Inference_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>The rejection region:</strong> The rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we rarely see if the null hypothesis is true (only in at most <span class="math inline">\(\alpha \cdot 100\%\)</span> cases). If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span>, falls in this region, we will reject the null hypothesis and acknowledge a type-I-error rate of at most <span class="math inline">\(\alpha\)</span>.</p>
+<p><strong>The non-rejection region:</strong> The non-rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we expect to see (in <span class="math inline">\((1-\alpha) \cdot 100\%\)</span> cases) if the null hypothesis is true. If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span> falls in this region, we cannot reject the null hypothesis.</p>
+<p>To find the critical value <span class="math inline">\(c_{1-\alpha}\)</span> we can use <code>R</code> as following:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen significance level</span></span>
+<span><span class="va">df1</span>   <span class="op">&lt;-</span> <span class="fl">9</span>    <span class="co"># numerator df</span></span>
+<span><span class="va">df2</span>   <span class="op">&lt;-</span> <span class="fl">120</span>  <span class="co"># denominator df</span></span>
+<span></span>
+<span><span class="co">## Critical value:</span></span>
+<span><span class="va">crit_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">1</span><span class="op">-</span><span class="va">alpha</span>, df1 <span class="op">=</span> <span class="va">df1</span>, df2 <span class="op">=</span> <span class="va">df2</span><span class="op">)</span></span>
+<span><span class="va">crit_value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.958763</code></pre>
+</div>
+</div>
+<p>Changing the significance level from <span class="math inline">\(\alpha=0.05\)</span> to <span class="math inline">\(\alpha=0.01\)</span> makes the critical value <span class="math inline">\(c_{1-\alpha}\)</span> larger and, therefore, the rejection region smaller (smaller probability of type-I-errors).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.01</span> <span class="co"># chosen significance level</span></span>
+<span><span class="co">## Critical value:</span></span>
+<span><span class="va">crit_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">1</span><span class="op">-</span><span class="va">alpha</span>, df1 <span class="op">=</span> <span class="va">df1</span>, df2 <span class="op">=</span> <span class="va">df2</span><span class="op">)</span></span>
+<span><span class="va">crit_value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.558574</code></pre>
+</div>
+</div>
+</section><section id="test-decision-using-the-p-value" class="level3" data-number="6.2.3"><h3 data-number="6.2.3" class="anchored" data-anchor-id="test-decision-using-the-p-value">
+<span class="header-section-number">6.2.3</span> Test Decision using the <span class="math inline">\(p\)</span>-Value</h3>
+<p>Remember that (under Assumption 4<span class="math inline">\(^\boldsymbol{\ast}\)</span>) <span class="math display">\[
+F\overset{H_0}{\sim}F_{q,n-K}.
+\]</span></p>
+<p>The <span class="math inline">\(p\)</span>-value of the <span class="math inline">\(F\)</span>-test is the probability of seeing realizations of <span class="math inline">\(F\)</span> that are equal to or larger than the observed value <span class="math inline">\(F_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[
+p_{\text{obs}}=P(F\geq F_{\text{obs}}\;|\;H_0 \text{ is true})
+\]</span></p>
+<ul>
+<li><p>We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} &lt; \alpha
+\]</span></p></li>
+<li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} \geq \alpha
+\]</span></p></li>
+</ul></section></section><section id="sec-testingsinglep" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="sec-testingsinglep">
+<span class="header-section-number">6.3</span> <span class="math inline">\(t\)</span>-Tests: Hypothesis Tests about One Parameter</h2>
 <p>A hypothesis about only <strong>one parameter</strong> <span class="math display">\[
 \begin{equation*}
 \begin{array}{ll}
@@ -465,6 +546,8 @@ F=\frac{\left(\hat{\beta}_k-\beta_k^{(0)}\right)^2}{\widehat{Var}(\hat{\beta}_k|
 \]</span> where <span class="math display">\[
 \widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{(k,k)},
 \]</span> and where <span class="math inline">\([(X'X)^{-1}]_{(k,k)}\)</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\((X'X)^{-1}.\)</span></p>
+<section id="the-test-statistic-and-its-null-distribution-1" class="level3" data-number="6.3.1"><h3 data-number="6.3.1" class="anchored" data-anchor-id="the-test-statistic-and-its-null-distribution-1">
+<span class="header-section-number">6.3.1</span> The Test Statistic and its Null Distribution</h3>
 <p>Taking square roots yields the <span class="math inline">\(t\)</span> test statistic <span class="math display">\[
 T=\frac{\hat{\beta}_k-\beta_k^{(0)}}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X)}\overset{H_0}{\sim}t_{(n-K)},
 \]</span> where <span class="math display">\[
@@ -491,20 +574,254 @@ H_0:\beta_k=0
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="06-Small-Sample-Inference_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure class="figure"><p><img src="06-Small-Sample-Inference_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="testtheory" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="testtheory">
-<span class="header-section-number">6.3</span> Testtheory</h2>
+</section><section id="test-decision-using-the-rejection-region-one-sided-12" class="level3" data-number="6.3.2"><h3 data-number="6.3.2" class="anchored" data-anchor-id="test-decision-using-the-rejection-region-one-sided-12">
+<span class="header-section-number">6.3.2</span> Test Decision using the Rejection Region (One-Sided 1/2)</h3>
+<p>For the right-sided, one-sided hypothesis <span class="math display">\[
+\begin{align*}
+&amp;H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad
+&amp; H_1: \beta_k &gt; \beta_k^{(0)}
+\end{align*}
+\]</span> the rejection region is <span class="math display">\[
+\mathcal{R}=\;]c_{1-\alpha}, \infty[
+\]</span></p>
+<ul>
+<li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+\begin{align*}
+T_{obs}
+&amp; \in \mathcal{R} = \;]c_{1-\alpha}, \infty[
+\end{align*}
+\]</span>
+</li>
+<li>We cannot reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+\begin{align*}
+T_{obs}
+&amp;\not \in \mathcal{R} = \;]c_{1-\alpha}, \infty[
+\end{align*}
+\]</span>
+</li>
+</ul>
+<p><a href="#fig-oneSidedRight" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> shows an example of the rejection region for the case of a significance level <span class="math inline">\(\alpha=0.05\)</span> and <span class="math inline">\(n-K=12\)</span> degrees of freedom.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-oneSidedRight" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-oneSidedRight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-Small-Sample-Inference_files/figure-html/fig-oneSidedRight-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oneSidedRight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K=12\)</span> degrees of freedom and critical value <span class="math inline">\(c_{1-\alpha}=1.78\)</span> for the significance level <span class="math inline">\(\alpha=0.05\)</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>To find the <span class="math inline">\(c_{1-\alpha}\)</span> critical value we can use <code>R</code> as following:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen significance level </span></span>
+<span><span class="va">df</span>    <span class="op">&lt;-</span> <span class="fl">12</span>   <span class="co"># degrees of freedom </span></span>
+<span></span>
+<span><span class="co">## One-sided critical value (1-alpha) quantile:</span></span>
+<span><span class="va">c_oneSided</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">1</span><span class="op">-</span><span class="va">alpha</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="va">c_oneSided</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.782288</code></pre>
+</div>
+</div>
+</section><section id="test-decision-using-the-rejection-region-one-sided-22" class="level3" data-number="6.3.3"><h3 data-number="6.3.3" class="anchored" data-anchor-id="test-decision-using-the-rejection-region-one-sided-22">
+<span class="header-section-number">6.3.3</span> Test Decision using the Rejection Region (One-Sided 2/2)</h3>
+<p>For the left-sided, one-sided hypothesis <span class="math display">\[
+\begin{align*}
+&amp;H_0:  \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad
+&amp;H_1:  \beta_k &lt;  \beta_k^{(0)}\\
+\end{align*}
+\]</span> the rejection region is <span class="math display">\[
+\mathcal{R}=\;]-\infty,c_{\alpha}[
+\]</span></p>
+<ul>
+<li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+\begin{align*}
+T_{obs}
+&amp; \in \mathcal{R} = \;]-\infty,c_{\alpha}[
+\end{align*}
+\]</span>
+</li>
+<li>We cannot reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+\begin{align*}
+T_{obs}
+&amp;\not \in \mathcal{R} = \;]-\infty,c_{\alpha}[
+\end{align*}
+\]</span>
+</li>
+</ul>
+<p><a href="#fig-oneSidedLeft" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> shows an example of the rejection region for the case of a significance level <span class="math inline">\(\alpha=0.05\)</span> and <span class="math inline">\(n-K=12\)</span> degrees of freedom.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-oneSidedLeft" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-oneSidedLeft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-Small-Sample-Inference_files/figure-html/fig-oneSidedLeft-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oneSidedLeft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K=12\)</span> degrees of freedom and critical value <span class="math inline">\(c_{\alpha}=-1.78\)</span> for the significance level <span class="math inline">\(\alpha=0.05\)</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>To find the <span class="math inline">\(c_{\alpha}\)</span> critical value we can use <code>R</code> as following:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen significance level </span></span>
+<span><span class="va">df</span>    <span class="op">&lt;-</span> <span class="fl">12</span>   <span class="co"># degrees of freedom </span></span>
+<span></span>
+<span><span class="co">## One-sided critical value (alpha) quantile:</span></span>
+<span><span class="va">c_oneSided</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">alpha</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="va">c_oneSided</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.782288</code></pre>
+</div>
+</div>
+</section><section id="test-decision-using-the-rejection-region-two-sided" class="level3" data-number="6.3.4"><h3 data-number="6.3.4" class="anchored" data-anchor-id="test-decision-using-the-rejection-region-two-sided">
+<span class="header-section-number">6.3.4</span> Test Decision using the Rejection Region (Two-Sided)</h3>
+<p>The two-sided <span class="math inline">\(t\)</span>-test allows us to test <span class="math display">\[
+\begin{align*}
+&amp; H_0: \beta_k=\beta_k^{(0)}\\
+\text{versus}\quad
+&amp; H_1: \beta_k\ne \beta_k^{(0)}
+\end{align*}
+\]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statistician (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
+<p>Let <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denote the significance level and let <span class="math inline">\(c_{\alpha/2}\)</span> and <span class="math inline">\(c_{1-\alpha/2}\)</span> denote the <span class="math inline">\(\alpha/2\)</span> and the <span class="math inline">\((1-\alpha/2)\)</span> quantiles of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
+<p>These quantiles are the <strong>critical values</strong> that define the <strong>rejection region</strong> of the two-sided <span class="math inline">\(t\)</span>-test: <span class="math display">\[
+\mathcal{R}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+\]</span></p>
+<ul>
+<li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+\begin{align*}
+T_{obs}
+&amp; \in \mathcal{R}%\\[2ex]
+%&amp; \in \;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+\end{align*}
+\]</span>
+</li>
+<li>We cannot reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+\begin{align*}
+T_{obs}
+&amp;\not \in \mathcal{R}%\\[2ex]
+%&amp;\not \in \;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+\end{align*}
+\]</span>
+</li>
+</ul>
+<p><a href="#fig-twoSided" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> shows an example of the rejection region for the case of a significance level <span class="math inline">\(\alpha=0.05\)</span> and <span class="math inline">\(n-K=12\)</span> degrees of freedom.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-twoSided" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-twoSided-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-Small-Sample-Inference_files/figure-html/fig-twoSided-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twoSided-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3: <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K=12\)</span> degrees of freedom and critical values <span class="math inline">\(c_{\alpha/2}=-2.18\)</span> and <span class="math inline">\(c_{1-\alpha/2}=2.18\)</span> for the significance level <span class="math inline">\(\alpha=0.05\)</span>.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>To find the <span class="math inline">\(c_{\alpha/2}\)</span> and <span class="math inline">\(c_{1-\alpha/2}\)</span> critical values we can use <code>R</code> as following:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen signficance level </span></span>
+<span><span class="va">df</span>    <span class="op">&lt;-</span> <span class="fl">12</span>   <span class="co"># degrees of freedom </span></span>
+<span></span>
+<span><span class="co">## Two-sided critical value (= (1-alpha/2) quantile):</span></span>
+<span><span class="va">c_twoSided</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## lower critical value</span></span>
+<span><span class="op">-</span><span class="va">c_twoSided</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.178813</code></pre>
+</div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## upper critical value</span></span>
+<span><span class="va">c_twoSided</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.178813</code></pre>
+</div>
+</div>
+</section><section id="sec-TDecRS" class="level3" data-number="6.3.5"><h3 data-number="6.3.5" class="anchored" data-anchor-id="sec-TDecRS">
+<span class="header-section-number">6.3.5</span> Test Decision using the <span class="math inline">\(p\)</span>-Value (One-Sided 1/2)</h3>
+<p>Right-sided version of the one-sided hypothesis: <span class="math display">\[
+\begin{align*}
+&amp;H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad &amp; H_1:\beta_k &gt;    \beta_k^{(0)}\\
+\end{align*}
+\]</span></p>
+<!-- In case of a one-sided $t$-test, we will reject the null if $T_{\text{obs}}$ is sufficiently "far away" from zero in the relevant direction of $H_1$.  -->
+<p>We know that <span class="math display">\[
+T\overset{H_0}{\sim}t_{n-K}.
+\]</span></p>
+<p>The <span class="math inline">\(p\)</span>-value is the probability of seeing realizations of <span class="math inline">\(T\)</span> that are equal to or larger than the observed value <span class="math inline">\(T_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[
+p_{\text{obs}}=P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true}).
+\]</span> * We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} &lt; \alpha
+\]</span></p>
+<ul>
+<li>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} \geq \alpha
+\]</span>
+</li>
+</ul></section><section id="test-decision-using-the-p-value-one-sided-22" class="level3" data-number="6.3.6"><h3 data-number="6.3.6" class="anchored" data-anchor-id="test-decision-using-the-p-value-one-sided-22">
+<span class="header-section-number">6.3.6</span> Test Decision using the <span class="math inline">\(p\)</span>-Value (One-Sided 2/2)</h3>
+<p>Left-sided version of the one-sided hypothesis: <span class="math display">\[
+\begin{align*}
+&amp;H_0: \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad &amp; H_1: \beta_k &lt;  \beta_k^{(0)}\\
+\end{align*}
+\]</span></p>
+<p>The <span class="math inline">\(p\)</span>-value is the probability of seeing realizations of <span class="math inline">\(T\)</span> that are equal to or smaller than the observed value <span class="math inline">\(T_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[
+p_{\text{obs}}=P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}).
+\]</span></p>
+<ul>
+<li><p>We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} &lt; \alpha
+\]</span></p></li>
+<li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} \geq \alpha
+\]</span></p></li>
+</ul></section><section id="test-decision-using-the-p-value-two-sided" class="level3" data-number="6.3.7"><h3 data-number="6.3.7" class="anchored" data-anchor-id="test-decision-using-the-p-value-two-sided">
+<span class="header-section-number">6.3.7</span> Test Decision using the <span class="math inline">\(p\)</span>-Value (Two-Sided)</h3>
+<p>The two-sided <span class="math inline">\(t\)</span>-test allows us to test <span class="math display">\[
+\begin{align*}
+&amp; H_0: \beta_k=\beta_k^{(0)}\\
+\text{versus}\quad
+&amp; H_1: \beta_k\ne \beta_k^{(0)}
+\end{align*}
+\]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statisticaian (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
+<p>We know that <span class="math display">\[
+T\overset{H_0}{\sim}t_{n-K}.
+\]</span></p>
+<p>The <span class="math inline">\(p\)</span>-value of the two-sided <span class="math inline">\(t\)</span>-test is the probability of seeing realizations of <span class="math inline">\(T\)</span> that are equal to or more extreme than the observed value <span class="math inline">\(T_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[
+\begin{align*}
+p_{\text{obs}}
+&amp;=P(|T|\geq |T_{\text{obs}}|\;|\;H_0 \text{ is true})\\[2ex]
+&amp;=2\cdot\min\{P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}),
+            P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true})\}
+\end{align*}
+\]</span></p>
+<ul>
+<li><p>We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} &lt; \alpha
+\]</span></p></li>
+<li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} \geq \alpha
+\]</span></p></li>
+</ul></section></section><section id="testtheory" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="testtheory">
+<span class="header-section-number">6.4</span> Testtheory</h2>
 <p>Every statistical test statistic is a function of the random sample, i.e. <span class="math display">\[
 T\equiv T((X_1,Y_1),\dots,(X_n,Y_n))
 \]</span> and is thus a random variable.</p>
 <p><strong>Caution:</strong> In this section, <span class="math inline">\(T\)</span> denotes <em>any</em> test statistic. Specific examples for <span class="math inline">\(T\)</span> are, for instance,</p>
 <ul>
-<li>the <span class="math inline">\(F\)</span>-test statistic (<a href="#sec-testmultp" class="quarto-xref"><span>Section 6.1</span></a>) and</li>
-<li>the <span class="math inline">\(t\)</span>-test statistic (<a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.2</span></a>).</li>
+<li>the <span class="math inline">\(F\)</span>-test statistic (<a href="#sec-testmultp" class="quarto-xref"><span>Section 6.2</span></a>) and</li>
+<li>the <span class="math inline">\(t\)</span>-test statistic (<a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.3</span></a>).</li>
 </ul>
 <p>Generally, we can only derive the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0;\)</span> i.e.&nbsp;under the scenario that <span class="math inline">\(H_0\)</span> is true, <span class="math display">\[
 \begin{equation*}
@@ -606,8 +923,8 @@ Example: One-Sided Test with <span class="math inline">\(\theta\in\mathbb{R}\)</
 <p>(Likewise for the other direction of the one-sided test.)</p>
 </div>
 </div>
-<section id="decisions-errors-size-and-power" class="level3" data-number="6.3.1"><h3 data-number="6.3.1" class="anchored" data-anchor-id="decisions-errors-size-and-power">
-<span class="header-section-number">6.3.1</span> Decisions Errors, Size and Power</h3>
+<section id="decisions-errors-size-and-power" class="level3" data-number="6.4.1"><h3 data-number="6.4.1" class="anchored" data-anchor-id="decisions-errors-size-and-power">
+<span class="header-section-number">6.4.1</span> Decisions Errors, Size and Power</h3>
 <p>Hypothesis testing is like a legal trial. We assume someone is innocent unless the evidence strongly suggests that he is guilty. Similarly, we retain <span class="math inline">\(H_0\)</span> unless there is strong evidence to reject <span class="math inline">\(H_0.\)</span></p>
 <ul>
 <li><p>We <strong>reject</strong> <span class="math inline">\(H_0\)</span> if <span class="math display">\[
@@ -635,10 +952,12 @@ Size
 </div>
 <div class="callout-body-container callout-body">
 <p>The probability of a type-I-error event is also called <strong>size</strong> of <span class="math inline">\(T.\)</span></p>
-<p>The size of <span class="math inline">\(T\)</span> is defined as the larges probability of rejecting <span class="math inline">\(H_0\)</span> over all possible parameter values <span class="math inline">\(\theta\in\Theta_0\)</span> under <span class="math inline">\(H_0,\)</span> <span class="math display">\[\begin{align*}
+<p>The size of <span class="math inline">\(T\)</span> is defined as the larges probability of rejecting <span class="math inline">\(H_0\)</span> over all possible parameter values <span class="math inline">\(\theta\in\Theta_0\)</span> under <span class="math inline">\(H_0,\)</span> <span class="math display">\[
+\begin{align*}
 \text{Size}
 =&amp; \sup_{\theta\in\Theta_0} P(T \in \mathcal{R}).
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <p>Since we want to be sure that we correctly reject <span class="math inline">\(H_0,\)</span> we want test statistics for which we can control the their size from above by some chosen level; e.g.&nbsp;</p>
 <ul>
 <li>
@@ -658,14 +977,47 @@ Power
 </div>
 <div class="callout-body-container callout-body">
 <p>One minus the probability of a type-II-error is called <strong>power</strong> of <span class="math inline">\(T.\)</span></p>
-<p>The power of <span class="math inline">\(T\)</span> is defined as <span class="math display">\[\begin{align*}
+<p>The power of <span class="math inline">\(T\)</span> is defined as <span class="math display">\[
+\begin{align*}
 \text{Power}=&amp;1-P(\text{type-II-error})\\[2ex]
 =&amp;P(T\in \mathcal{R} | \theta\in \Theta_1)
-\end{align*}\]</span> Since we want to detect violations of <span class="math inline">\(H_0,\)</span> we want test statistics with a large power.</p>
+\end{align*}
+\]</span> Since we want to detect violations of <span class="math inline">\(H_0,\)</span> we want test statistics with a large power.</p>
 </div>
 </div>
-</section><section id="significance-level-or-nominal-size" class="level3" data-number="6.3.2"><h3 data-number="6.3.2" class="anchored" data-anchor-id="significance-level-or-nominal-size">
-<span class="header-section-number">6.3.2</span> Significance Level or Nominal Size</h3>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Not being able to reject <span class="math inline">\(H_0,\)</span> does not mean a confirmation of <span class="math inline">\(H_0.\)</span></p>
+<p>A possible violation of the null hypothesis may only be too small to stand out from the estimation errors; i.e.&nbsp;we may do a type-II-error. However, we do not control the probability of type-II-errors—we only control the probability of type-I-errors.</p>
+<p>Therefore, if you were not able to reject <span class="math inline">\(H_0,\)</span> <strong>never ever</strong> state something like: “I conclude <span class="math inline">\(H_0\)</span> is true.”</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+For the special case of a “no-effect” null hypothesis <span class="math display">\[
+H_0:\beta_k=0,
+\]</span> there’s a famous sentence which goes back to <span class="citation" data-cites="Altman_Bland_1995">Altman and Bland (<a href="#ref-Altman_Bland_1995" role="doc-biblioref">1995</a>)</span> :
+<center>
+“Absence of evidence is not evidence of absence.”
+</center>
+</div>
+</div>
+</div>
+</div>
 <p>Let <span class="math inline">\(\alpha\)</span> with <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denote the <strong>significance level</strong> chosen by the statistician/econometrician.</p>
 <p>A statistical hypothesis test, <span class="math inline">\(T,\)</span> is a <strong>valid test</strong> if its size (probability of a type-I-error) can be bounded from above by the chosen <strong>significance level (nominal size)</strong> <span class="math inline">\(\alpha\)</span>, i.e.&nbsp;if<br><span class="math display">\[\begin{align*}
 \text{Size}=P(\text{reject } H_0| H_0\text{ is true})\; \leq\; \alpha = \text{Nominal Size}
@@ -712,210 +1064,55 @@ Tip
 </div>
 </div>
 <!-- and a given alternative hypothesis, we can divide the range of all possible values of the test statistic (i.e., $\mathbb{R}$ since both $t\in\mathbb{R}$ and $F\in\mathbb{R}$) into a **rejection region** and a **non-rejection region** by using **critical values** derived from the distribution of the test statistic under the null hypothesis.  We can do this because the test statistics $t$ and $F$ have known distributions under the null hypothesis ($t\overset{H_0}{\sim}t_{n-K}$ and $F\overset{H_0}{\sim}F_{(q,n-K)}$).  -->
-</section><section id="rejection-regions-of-the-f-and-t-test" class="level3" data-number="6.3.3"><h3 data-number="6.3.3" class="anchored" data-anchor-id="rejection-regions-of-the-f-and-t-test">
-<span class="header-section-number">6.3.3</span> Rejection Regions of the <span class="math inline">\(F\)</span> and <span class="math inline">\(t\)</span>-Test</h3>
-<p>To decide whether we can reject <span class="math inline">\(H_0\)</span>, we need to compare the observed value <span class="math inline">\(T_{\text{obs}}\)</span> with the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0.\)</span> This can be done using</p>
-<ul>
-<li><strong>rejection regions/critical values,</strong></li>
-<li>
-<strong><span class="math inline">\(p\)</span>-values</strong> (<a href="#sec-pValue" class="quarto-xref"><span>Section 6.3.5</span></a>) or<br>
-</li>
-<li>
-<strong>confidence intervals</strong> (<a href="#sec-CIsmallsample" class="quarto-xref"><span>Section 6.4</span></a>)</li>
-</ul>
-<p>All of these options lead to equivalent test decisions.</p>
-<p>The <strong>rejection region</strong> for a statistical test statistic <span class="math inline">\(T\)</span> is defined using <strong>critical values</strong> which are certain quantiles of the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0.\)</span></p>
-<section id="rejection-regions-of-the-f-test" class="level4" data-number="6.3.3.1"><h4 data-number="6.3.3.1" class="anchored" data-anchor-id="rejection-regions-of-the-f-test">
-<span class="header-section-number">6.3.3.1</span> Rejection Regions of the <span class="math inline">\(F\)</span>-Test</h4>
-<p>The <span class="math inline">\(F\)</span>-test allows us to test <span class="math display">\[
-\begin{align*}
-&amp;H_0: R\beta = r^{(0)}\\[2ex]
-\text{versus}\quad
-&amp;H_1: R\beta\neq r^{(0)},
-\end{align*}
-\]</span> where <span class="math inline">\(\beta\)</span> denotes the true (unknown) parameter vector and <span class="math inline">\(r^{(0)}\)</span> the null-hypothetical value specified by the statistician (often, e.g.&nbsp;<span class="math inline">\(r^{(0)}\)</span>).</p>
-<p>Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> (see <a href="#sec-testmultp" class="quarto-xref"><span>Section 6.1</span></a>), we have that <span id="eq-FNullDistr"><span class="math display">\[
+<p><strong>Showing Exactness of the <span class="math inline">\(F\)</span>-Test:</strong></p>
+<p>Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> (see <a href="#sec-testmultp" class="quarto-xref"><span>Section 6.2</span></a>), we have that <span id="eq-FNullDistr"><span class="math display">\[
 F\overset{H_0}{\sim}F_{q,n-K}.
 \qquad(6.4)\]</span></span></p>
-<p>Let <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denote the significance level and let <span class="math inline">\(c_{1-\alpha}\)</span> denote the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\((q,n-K)\)</span> degrees of freedom.</p>
-<p>This quantile <span class="math inline">\(c_{1-\alpha}\)</span> is the <strong>critical value</strong> that defines the <strong>rejection region</strong>: <span class="math display">\[
-\mathcal{R}=\; ]c_{1-\alpha},\infty[
-\]</span> <!-- , and 
-- non-rejection region, $]0,c_{1-\alpha}]$  --></p>
-<ul>
-<li>We can rejection <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-F_{obs}\in \mathcal{R}=\; ]c_{1-\alpha},\infty[
-\]</span>
-</li>
-<li>We cannot rejection <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-F_{obs}\not \in \mathcal{R}=\; ]c_{1-\alpha},\infty[
-\]</span>
-</li>
-</ul>
-<p><a href="#eq-FNullDistr" class="quarto-xref">Equation&nbsp;<span>6.4</span></a> allows us to show that the <span class="math inline">\(F\)</span>-test is an exact test. Since the null hypothesis is a <strong>simple</strong> hypothesis, we have that <span class="math display">\[\begin{align*}
+<p><a href="#eq-FNullDistr" class="quarto-xref">Equation&nbsp;<span>6.4</span></a> allows us to show that the <span class="math inline">\(F\)</span>-test is an exact test. Since the null hypothesis is a <strong>simple</strong> hypothesis, we have that <span class="math display">\[
+\begin{align*}
 \text{Size}
 =&amp;\sup_{\theta\in\Theta_0}P(T \in \mathcal{R})\\[2ex]
 =&amp;P(F \in \mathcal{R} \;|\; R\beta = r^{(0)}).
-\end{align*}\]</span> Thus, <span class="math display">\[\begin{align*}
+\end{align*}
+\]</span> Thus, <span class="math display">\[
+\begin{align*}
 \text{Size}
 =&amp;P(F\in\mathcal{R}\;|\;R\beta = r^{(0)})\\[2ex]
 =&amp;P\Big(F &gt; c_{1-\alpha}\;|\;R\beta = r^{(0)}\Big)\\[2ex]
 =&amp;1 - P\Big(F \leq c_{1-\alpha}\;|\;R\beta = r^{(0)}\Big)=\alpha,
-\end{align*}\]</span></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="06-Small-Sample-Inference_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>The rejection region:</strong> The rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we rarely see if the null hypothesis is true (only in at most <span class="math inline">\(\alpha \cdot 100\%\)</span> cases). If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span>, falls in this region, we will reject the null hypothesis and acknowledge a type-I-error rate of at most <span class="math inline">\(\alpha\)</span>.</p>
-<p><strong>The non-rejection region:</strong> The non-rejection region describes a range of values of the test statistic <span class="math inline">\(F\)</span> which we expect to see (in <span class="math inline">\((1-\alpha) \cdot 100\%\)</span> cases) if the null hypothesis is true. If the observed value of the test statistic, <span class="math inline">\(F_{\text{obs}}\)</span> falls in this region, we cannot reject the null hypothesis.</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If we cannot reject <span class="math inline">\(H_0,\)</span> does not mean that we confirm <span class="math inline">\(H_0.\)</span></p>
-<p>A possible violation of the null hypothesis may only be too small to stand out from the estimation errors; i.e.&nbsp;we may do a type-II-error. However, we do not control the probability of type-II-errors—we only control the probability of type-I-errors.</p>
-<p>Therefore, if you were not able to reject <span class="math inline">\(H_0,\)</span> <strong>never ever</strong> state something like: “I conclude <span class="math inline">\(H_0\)</span> is true.”</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-For the special case of a “no-effect” null hypothesis <span class="math display">\[
-H_0:\beta_k=0,
-\]</span> there’s a famous sentence which goes back to <span class="citation" data-cites="Altman_Bland_1995">Altman and Bland (<a href="#ref-Altman_Bland_1995" role="doc-biblioref">1995</a>)</span> :
-<center>
-“Absence of evidence is not evidence of absence.”
-</center>
-</div>
-</div>
-</div>
-</div>
-<p>To find the critical value <span class="math inline">\(c_{1-\alpha}\)</span> we can use <code>R</code> as following:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen significance level</span></span>
-<span><span class="va">df1</span>   <span class="op">&lt;-</span> <span class="fl">9</span>    <span class="co"># numerator df</span></span>
-<span><span class="va">df2</span>   <span class="op">&lt;-</span> <span class="fl">120</span>  <span class="co"># denominator df</span></span>
-<span></span>
-<span><span class="co">## Critical value:</span></span>
-<span><span class="va">crit_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">1</span><span class="op">-</span><span class="va">alpha</span>, df1 <span class="op">=</span> <span class="va">df1</span>, df2 <span class="op">=</span> <span class="va">df2</span><span class="op">)</span></span>
-<span><span class="va">crit_value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.958763</code></pre>
-</div>
-</div>
-<p>Changing the significance level from <span class="math inline">\(\alpha=0.05\)</span> to <span class="math inline">\(\alpha=0.01\)</span> makes the critical value <span class="math inline">\(c_{1-\alpha}\)</span> larger and, therefore, the rejection region smaller (smaller probability of type-I-errors).</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.01</span> <span class="co"># chosen significance level</span></span>
-<span><span class="co">## Critical value:</span></span>
-<span><span class="va">crit_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">1</span><span class="op">-</span><span class="va">alpha</span>, df1 <span class="op">=</span> <span class="va">df1</span>, df2 <span class="op">=</span> <span class="va">df2</span><span class="op">)</span></span>
-<span><span class="va">crit_value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.558574</code></pre>
-</div>
-</div>
-</section><section id="rejection-regions-of-the-two-sided-t-test" class="level4" data-number="6.3.3.2"><h4 data-number="6.3.3.2" class="anchored" data-anchor-id="rejection-regions-of-the-two-sided-t-test">
-<span class="header-section-number">6.3.3.2</span> Rejection Regions of the Two-Sided <span class="math inline">\(t\)</span>-Test</h4>
-<p>The two-sided <span class="math inline">\(t\)</span>-test allows us to test <span class="math display">\[\begin{align*}
-&amp; H_0: \beta_k=\beta_k^{(0)}\\
-\text{versus}\quad
-&amp; H_1: \beta_k\ne \beta_k^{(0)}
-\end{align*}\]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statistician (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
-<p>Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> (see <a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.2</span></a>), we have that <span id="eq-T2SNullDistr"><span class="math display">\[
+\end{align*}
+\]</span></p>
+<section id="showing-exactness-of-the-two-sided-t-test" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="showing-exactness-of-the-two-sided-t-test"><strong>Showing Exactness of the Two-Sided <span class="math inline">\(t\)</span>-Test:</strong></h4>
+<p>Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> (see <a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.3</span></a>), we have that <span id="eq-T2SNullDistr"><span class="math display">\[
 T\overset{H_0}{\sim}t_{n-K}.
 \qquad(6.5)\]</span></span></p>
-<p>Let <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denote the significance level and let <span class="math inline">\(c_{\alpha/2}\)</span> and <span class="math inline">\(c_{1-\alpha/2}\)</span> denote the <span class="math inline">\(\alpha/2\)</span> and the <span class="math inline">\((1-\alpha/2)\)</span> quantiles of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
-<p>These quantiles are the <strong>critical values</strong> that define the <strong>rejection region</strong> of the two-sided <span class="math inline">\(t\)</span>-test: <span class="math display">\[
-\mathcal{R}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
-\]</span></p>
-<ul>
-<li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[\begin{align*}
-T_{obs}
-&amp; \in \mathcal{R}%\\[2ex]
-%&amp; \in \;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
-\end{align*}\]</span>
-</li>
-<li>We cannot reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[\begin{align*}
-T_{obs}
-&amp;\not \in \mathcal{R}%\\[2ex]
-%&amp;\not \in \;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
-\end{align*}\]</span>
-</li>
-</ul>
-<p><a href="#eq-T2SNullDistr" class="quarto-xref">Equation&nbsp;<span>6.5</span></a> allows us to show that the <span class="math inline">\(t\)</span>-test is an exact test. Since the two-sided null hypothesis is a <strong>simple hypothesis</strong>, we have that <span class="math display">\[\begin{align*}
+<p><a href="#eq-T2SNullDistr" class="quarto-xref">Equation&nbsp;<span>6.5</span></a> allows us to show that the <span class="math inline">\(t\)</span>-test is an exact test. Since the two-sided null hypothesis is a <strong>simple hypothesis</strong>, we have that <span class="math display">\[
+\begin{align*}
 \text{Size}
 =&amp;\sup_{\theta\in\Theta_0}P(T \in \mathcal{R})\\[2ex]
 =&amp;P(T \in \mathcal{R} \;|\; \beta_k = \beta_k^{(0)}).
-\end{align*}\]</span> Thus, <span class="math display">\[\begin{align*}
+\end{align*}
+\]</span> Thus, <span class="math display">\[
+\begin{align*}
 \text{Size}
 =&amp;P(T \in \mathcal{R} \;|\; \beta_k = \beta_k^{(0)})\\[2ex]
 =&amp;P\Big(T &lt; c_{\alpha/2}\quad\text{or}\quad T&gt;c_{1-\alpha/2} \;\Big|\; \beta_k = \beta_k^{(0)}\Big)\\[2ex]
 =&amp;P\Big(T &lt; c_{\alpha/2} \;\Big|\; \beta_k = \beta_k^{(0)}\Big) +
   P\Big(T&gt;c_{1-\alpha/2} \;\Big|\; \beta_k = \beta_k^{(0)}\Big)\\[2ex]
 &amp;=\frac{\alpha}{2}+\frac{\alpha}{2}=\alpha.
-\end{align*}\]</span></p>
-<p><a href="#fig-twoSided" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> shows an example of the rejection region for the case of a significance level <span class="math inline">\(\alpha=0.05\)</span> and <span class="math inline">\(n-K=12\)</span> degrees of freedom.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-twoSided" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-twoSided-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="06-Small-Sample-Inference_files/figure-html/fig-twoSided-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twoSided-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.1: <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K=12\)</span> degrees of freedom and critical values <span class="math inline">\(c_{\alpha/2}=-2.18\)</span> and <span class="math inline">\(c_{1-\alpha/2}=2.18\)</span> for the significance level <span class="math inline">\(\alpha=0.05\)</span>.
-</figcaption></figure>
-</div>
-</div>
-</div>
-<p>To find the <span class="math inline">\(c_{\alpha/2}\)</span> and <span class="math inline">\(c_{1-\alpha/2}\)</span> critical values we can use <code>R</code> as following:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen signficance level </span></span>
-<span><span class="va">df</span>    <span class="op">&lt;-</span> <span class="fl">12</span>   <span class="co"># degrees of freedom </span></span>
-<span></span>
-<span><span class="co">## Two-sided critical value (= (1-alpha/2) quantile):</span></span>
-<span><span class="va">c_twoSided</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">/</span><span class="fl">2</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## lower critical value</span></span>
-<span><span class="op">-</span><span class="va">c_twoSided</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -2.178813</code></pre>
-</div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## upper critical value</span></span>
-<span><span class="va">c_twoSided</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.178813</code></pre>
-</div>
-</div>
-</section><section id="rejection-regions-of-the-one-sided-t-test" class="level4" data-number="6.3.3.3"><h4 data-number="6.3.3.3" class="anchored" data-anchor-id="rejection-regions-of-the-one-sided-t-test">
-<span class="header-section-number">6.3.3.3</span> Rejection Regions of the One-Sided <span class="math inline">\(t\)</span>-Test</h4>
-<p>Possible one-sided hypothesis: <span class="math display">\[\begin{align*}
+\end{align*}
+\]</span></p>
+</section><section id="showing-exactness-of-the-one-sided-t-test" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="showing-exactness-of-the-one-sided-t-test"><strong>Showing Exactness of the One-Sided <span class="math inline">\(t\)</span>-Test:</strong></h4>
+<p>Consider, without loss of generality, the following right-sided, one-sided hypothesis: <span class="math display">\[
+\begin{align*}
 &amp;H_0: \beta_k \leq \beta_k^{(0)}\\
 \text{versus}\quad
 &amp; H_1: \beta_k &gt; \beta_k^{(0)}
-\end{align*}\]</span></p>
-<p>This is now slightly more involved since the null hypothesis is a <strong>compound hypothesis</strong>: <span class="math display">\[
-H_0: \beta_k \in \;\big]-\infty,\beta_k^{(0)}\big]
+\end{align*}
+\]</span> (This without loss of generality, since effectively the same arguments apply to the case of the left-sided version.)</p>
+<p>The case of a one-sided hypothesis is slightly more involved since the null hypothesis is a <strong>compound hypothesis</strong>: <span class="math display">\[
+H_0: \beta_k \in \;\big]-\infty,\beta_k^{(0)}\big].
 \]</span></p>
-<!-- To handle this issue, it is useful to state the **compound null hypothesis** as a family of *infinitely many* specific null hypotheses:
-\begin{align*}
-&H_0: \beta_k =\tilde\beta_k^{(0)}\quad\text{with}\quad \tilde\beta_k^{(0)}\in ]-\infty,\beta_k^{(0)}]\\
-\text{versus}\quad 
-& H_1: \beta_k > \beta_k^{(0)}
-\end{align*} -->
 <p>Of course, under the scenario that <span class="math inline">\(H_0\)</span> is true, <strong>only one</strong> of the infinitely many null hypotheses <strong>is actually true</strong> and all other null hypotheses are wrong.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -930,12 +1127,14 @@ Tip
 <p>The idea of a <strong>compound null hypothesis</strong> <span class="math inline">\(H_0:\theta\in\Theta_0\)</span> is to collect all hypotheses which we do not care to detect by the statistical test. This way, the set of alternative hypotheses <span class="math inline">\(H_1:\theta\in\Theta_1\)</span> becomes smaller which leads to more powerful tests.</p>
 </div>
 </div>
-<p>To conduct the <span class="math inline">\(t\)</span>-test we need to take one null hypothetical value <span class="math display">\[
+<p>To conduct the <span class="math inline">\(t\)</span>-test we need to take <strong>one</strong> null hypothetical value <span class="math display">\[
 \tilde\beta_k^{(0)}\in ]-\infty,\beta_k^{(0)}]
-\]</span> which leads to a <span class="math inline">\(\tilde\beta_k^{(0)}\)</span> specific <span class="math inline">\(t\)</span>-test <span class="math display">\[\begin{align*}
+\]</span> which leads to a <span class="math inline">\(\tilde\beta_k^{(0)}\)</span> specific <span class="math inline">\(t\)</span>-test <span class="math display">\[
+\begin{align*}
 T(\tilde\beta_k^{(0)}) :=
 \frac{\hat\beta_k - \tilde\beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <p>Under Assumptions 1-4<span class="math inline">\(^\ast,\)</span> we have that <span id="eq-NullDistrOneSided"><span class="math display">\[
 \begin{align*}
 T(\tilde\beta_k^{(0)})
@@ -956,16 +1155,16 @@ T(\tilde\beta_k^{(0)})
 \beta_k \leq \beta_k^{(0)}.
 \]</span> Thus, when setting <span class="math display">\[
 \tilde\beta_k^{(0)} = \beta_k^{(0)},
-\]</span> for conducting the <span class="math inline">\(t\)</span>-test, we know, under <span class="math inline">\(H_0,\)</span> that <span id="eq-NullDistrOneSidedIneq"><span class="math display">\[
+\]</span> for conducting the <span class="math inline">\(t\)</span>-test (as presented in <a href="#sec-TDecRS" class="quarto-xref"><span>Section 6.3.5</span></a>), we know that, under <span class="math inline">\(H_0,\)</span><br><span id="eq-NullDistrOneSidedIneq"><span class="math display">\[
 \begin{align*}
 T(\beta_k^{(0)})
 &amp;=
 \frac{\hat\beta_k - \beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}\\[2ex]
 &amp;=
 \underbrace{\frac{\hat\beta_k - \beta_k}{\widehat{SE}(\hat\beta_{k}|X)}}_{\sim t_{(n-K)}} +
-\underbrace{\frac{\beta_k - \beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}}_{{\color{darkgreen}\leq 0}}\\[2ex]
+\underbrace{\frac{\beta_k - \beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}}_{{\color{red}{\leq 0}}}\\[2ex]
 &amp;\leq
-\frac{\hat\beta_k - \beta_k}{\widehat{SE}(\hat\beta_{k}|X)} \sim t_{(n-K)},
+\frac{\hat\beta_k - \beta_k}{\widehat{SE}(\hat\beta_{k}|X)} \overset{H_0}{\sim} t_{(n-K)},
 \end{align*}
 \qquad(6.7)\]</span></span> where the inequality holds with probability one (i.e.&nbsp;for any possible realization).</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
@@ -987,10 +1186,12 @@ $$
 <p>Let <span class="math inline">\(F_{T(\beta_k^{(0)})}\)</span> and <span class="math inline">\(F_{t_{(n-K)}}\)</span> denote cumulative distribution functions of <span class="math inline">\(T(\beta_k^{(0)})\)</span> and of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
 <p>The inequality in <a href="#eq-NullDistrOneSidedIneq" class="quarto-xref">Equation&nbsp;<span>6.7</span></a> implies that:</p>
 <ol type="1">
-<li>If <span class="math inline">\(\beta_k = \beta_k^{(0)},\)</span> the distribution of <span class="math inline">\(T(\beta_k^{(0)})\)</span> equals the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, i.e. <span class="math display">\[\begin{align*}
+<li>If <span class="math inline">\(\beta_k = \beta_k^{(0)},\)</span> the distribution of <span class="math inline">\(T(\beta_k^{(0)})\)</span> equals the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, i.e. <span class="math display">\[
+\begin{align*}
 T(\beta_k^{(0)}) &amp;\sim t_{(n-K)}\\[2ex]
 \Leftrightarrow \; F_{T(\beta_k^{(0)})} (x) &amp;= F_{t_{(n-K)}}(x) \quad\text{for all}\quad x\in\mathbb{R}
-\end{align*}\]</span>
+\end{align*}
+\]</span>
 </li>
 <li>If <span class="math inline">\(\beta_k &lt; \beta_k^{(0)},\)</span> the distribution of <span class="math inline">\(T(\beta_k^{(0)})\)</span> is <strong>strictly dominated</strong> by the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, i.e. <span class="math display">\[
 F_{T(\beta_k^{(0)})} (x) &gt; F_{t_{(n-K)}}(x) \quad\text{for all}\quad x\in\mathbb{R}.
@@ -1025,97 +1226,67 @@ P(T(\beta_k^{(0)}) \in\mathcal{R}) &lt; \alpha
 \]</span></p>
 </div>
 </div>
-<p>Thus, for testing <span class="math display">\[\begin{align*}
-&amp;H_0: \beta_k \leq \beta_k^{(0)}\\
-\text{versus}\quad
-&amp; H_1: \beta_k &gt;    \beta_k^{(0)}\\
-\end{align*}\]</span> the rejection region is <span class="math display">\[
-\mathcal{R}=\;]c_{1-\alpha}, \infty[
-\]</span></p>
-<ul>
-<li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[\begin{align*}
-T_{obs}
-&amp; \in \mathcal{R} = \;]c_{1-\alpha}, \infty[
-\end{align*}\]</span>
-</li>
-<li>We cannot reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[\begin{align*}
-T_{obs}
-&amp;\not \in \mathcal{R} = \;]c_{1-\alpha}, \infty[
-\end{align*}\]</span>
-</li>
-</ul>
-<p><a href="#fig-oneSidedRight" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> shows an example of the rejection region for the case of a significance level <span class="math inline">\(\alpha=0.05\)</span> and <span class="math inline">\(n-K=12\)</span> degrees of freedom.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-oneSidedRight" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-oneSidedRight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="06-Small-Sample-Inference_files/figure-html/fig-oneSidedRight-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oneSidedRight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.2: <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K=12\)</span> degrees of freedom and critical value <span class="math inline">\(c_{1-\alpha}=1.78\)</span> for the significance level <span class="math inline">\(\alpha=0.05\)</span>.
-</figcaption></figure>
-</div>
-</div>
-</div>
-<p>To find the <span class="math inline">\(c_{1-\alpha}\)</span> critical value we can use <code>R</code> as following:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen significance level </span></span>
-<span><span class="va">df</span>    <span class="op">&lt;-</span> <span class="fl">12</span>   <span class="co"># degrees of freedom </span></span>
-<span></span>
-<span><span class="co">## One-sided critical value (1-alpha) quantile:</span></span>
-<span><span class="va">c_oneSided</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">1</span><span class="op">-</span><span class="va">alpha</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
-<span><span class="va">c_oneSided</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.782288</code></pre>
-</div>
-</div>
-<p>By equivalent arguments, we can also do a one-sided <span class="math inline">\(t\)</span>-test for the “other side.”</p>
-<p>For testing <span class="math display">\[\begin{align*}
-&amp;H_0:  \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad
-&amp;H_1:  \beta_k &lt;  \beta_k^{(0)}\\
-\end{align*}\]</span> the rejection region is <span class="math display">\[
-\mathcal{R}=\;]-\infty,c_{\alpha}[
-\]</span></p>
-<ul>
-<li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[\begin{align*}
-T_{obs}
-&amp; \in \mathcal{R} = \;]-\infty,c_{\alpha}[
-\end{align*}\]</span>
-</li>
-<li>We cannot reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[\begin{align*}
-T_{obs}
-&amp;\not \in \mathcal{R} = \;]-\infty,c_{\alpha}[
-\end{align*}\]</span>
-</li>
-</ul>
-<p><a href="#fig-oneSidedLeft" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> shows an example of the rejection region for the case of a significance level <span class="math inline">\(\alpha=0.05\)</span> and <span class="math inline">\(n-K=12\)</span> degrees of freedom.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-oneSidedLeft" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-oneSidedLeft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="06-Small-Sample-Inference_files/figure-html/fig-oneSidedLeft-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oneSidedLeft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.3: <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K=12\)</span> degrees of freedom and critical value <span class="math inline">\(c_{\alpha}=-1.78\)</span> for the significance level <span class="math inline">\(\alpha=0.05\)</span>.
-</figcaption></figure>
-</div>
-</div>
-</div>
-<p>To find the <span class="math inline">\(c_{\alpha}\)</span> critical value we can use <code>R</code> as following:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.05</span> <span class="co"># chosen significance level </span></span>
-<span><span class="va">df</span>    <span class="op">&lt;-</span> <span class="fl">12</span>   <span class="co"># degrees of freedom </span></span>
-<span></span>
-<span><span class="co">## One-sided critical value (alpha) quantile:</span></span>
-<span><span class="va">c_oneSided</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">alpha</span>, df <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
-<span><span class="va">c_oneSided</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.782288</code></pre>
-</div>
-</div>
-</section></section><section id="power-1" class="level3" data-number="6.3.4"><h3 data-number="6.3.4" class="anchored" data-anchor-id="power-1">
-<span class="header-section-number">6.3.4</span> Power</h3>
+<p>Equivalent arguments, can be applied for to the one-sided <span class="math inline">\(t\)</span>-test for the left-sided version of the <span class="math inline">\(t\)</span>-test.</p>
+<!-- 
+### Rejection Regions of the $F$- and $t$-Test
+
+To decide whether we can reject $H_0$, we need to compare the observed value $T_{\text{obs}}$ with the distribution of $T$ under $H_0.$ This can be done using 
+
+* **rejection regions/critical values,** 
+* **$p$-values** (@sec-pValue) or  
+* **confidence intervals** (@sec-CIsmallsample)
+
+All of these options lead to equivalent test decisions. 
+
+The **rejection region** for a statistical test statistic $T$ is defined using **critical values** which are certain quantiles of the distribution of $T$ under $H_0.$  
+
+#### Rejection Regions of the $F$-Test 
+
+The $F$-test allows us to test
+$$
+\begin{align*}
+&H_0: R\beta = r^{(0)}\\[2ex]
+\text{versus}\quad 
+&H_1: R\beta\neq r^{(0)},
+\end{align*}
+$$
+where $\beta$ denotes the true (unknown) parameter vector and $r^{(0)}$ the null-hypothetical value specified by the statistician (often, e.g. $r^{(0)}$).  
+-->
+<!-- 
+Let $0<\alpha<1$ denote the significance level and let $c_{1-\alpha}$ denote the $(1-\alpha)$ quantile of the $F$-distribution with $(q,n-K)$ degrees of freedom. 
+
+This quantile $c_{1-\alpha}$ is the **critical value** that defines the **rejection region**: 
+$$
+\mathcal{R}=\; ]c_{1-\alpha},\infty[
+$$
+<!-- , and 
+- non-rejection region, $]0,c_{1-\alpha}]$  
+-->
+<!-- * We can rejection $H_0$ if
+$$
+F_{obs}\in \mathcal{R}=\; ]c_{1-\alpha},\infty[
+$$
+* We cannot rejection $H_0$ if
+$$
+F_{obs}\not \in \mathcal{R}=\; ]c_{1-\alpha},\infty[
+$$ -->
+<!-- To handle this issue, it is useful to state the **compound null hypothesis** as a family of *infinitely many* specific null hypotheses:
+\begin{align*}
+&H_0: \beta_k =\tilde\beta_k^{(0)}\quad\text{with}\quad \tilde\beta_k^{(0)}\in ]-\infty,\beta_k^{(0)}]\\
+\text{versus}\quad 
+& H_1: \beta_k > \beta_k^{(0)}
+\end{align*} -->
+<!-- 
+Thus, for testing 
+$$
+\begin{align*}
+&H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad 
+& H_1: \beta_k >    \beta_k^{(0)}\\
+\end{align*}
+$$ -->
+</section></section><section id="example-power-of-the-one-sided-t-test" class="level3" data-number="6.4.2"><h3 data-number="6.4.2" class="anchored" data-anchor-id="example-power-of-the-one-sided-t-test">
+<span class="header-section-number">6.4.2</span> Example: Power of the One-Sided <span class="math inline">\(t\)</span>-Test</h3>
 <!-- A type-II-error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a type-II-error equals one minus the probability of correctly rejecting the null hypothesis ("Power").  -->
 <!-- For instance, in the case of using the $t$-test to test the null hypothesis $H_0: \beta_k=0$ versus the one-sided alternative hypothesis $H_1:\beta_k>0$) we have that 
 \begin{align*}
@@ -1130,19 +1301,23 @@ There is a trade off between the probability of making a type-I-error and the pr
 Ideally, we would have some sense of the costs of making each of these errors, and would choose our significance level to minimize these total costs. However, the costs are often difficult to know.  
 :::  
 -->
-<p>Since we want to detect violations of the null-hypothesis, we want that our test has a large power <span class="math display">\[\begin{align*}
+<p>Since we want to detect violations of the null-hypothesis, we want that our test has a large power <span class="math display">\[
+\begin{align*}
 \text{Power}
 &amp; = 1 - P(\text{type-II-error})\\[2ex]
 &amp; = 1 - P(\text{Not reject $H_0$ given $H_1$ is true})\\[2ex]
 &amp; = P(\text{Reject $H_0$ given $H_1$ is true})\\[2ex]
 &amp; = P(\text{Detect a true violation of the null})
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <p>Unfortunately, computing the power of a statistical test is usually impossible, since this requires knowing the distribution of the test statistic under the alternative hypothesis <span class="math inline">\(H_1.\)</span> The distribution of a test statistic under <span class="math inline">\(H_1\)</span> can only be derived under quite restrictive setups.</p>
 <p>In the following, we consider such a restrictive setup for the <span class="math inline">\(t\)</span>-test statistic.</p>
-<p>Let’s consider the one-sided hypothesis <span class="math display">\[\begin{align*}
+<p>Let’s consider the one-sided hypothesis <span class="math display">\[
+\begin{align*}
 &amp;H_0: \beta_k\leq \beta_{k}^{(0)}\\
 &amp;H_1: \beta_k &gt; \beta_{k}^{(0)}
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <ul>
 <li>let <span class="math inline">\(X\)</span> be deterministic such that <span class="math inline">\(T|X \overset{d}{=}T\)</span> and</li>
 <li>let the true standard error of <span class="math inline">\(\hat\beta_k\)</span> be<br><span class="math display">\[
@@ -1166,27 +1341,34 @@ Standard error of <span class="math inline">\(\hat\beta_k\)</span> is proportion
 </div>
 </div>
 <p>Under this setup and under Assumptions 1-4^<span class="math inline">\(\ast,\)</span> the <span class="math inline">\(t\)</span>-test statistic is <strong>normally distributed</strong>.</p>
-<p>If <span class="math inline">\(H_0\)</span> is true with <span class="math inline">\(\beta_k=\beta_k^{(0)},\)</span> then <span class="math display">\[\begin{align*}
+<p>If <span class="math inline">\(H_0\)</span> is true with <span class="math inline">\(\beta_k=\beta_k^{(0)},\)</span> then <span class="math display">\[
+\begin{align*}
 T
 &amp;=\frac{\hat\beta_k-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
 &amp;=\frac{\sqrt{n}(\hat\beta_k-\beta_k)}{4.5} \sim \mathcal{N}(0,1).
-\end{align*}\]</span></p>
+\end{align*}
+\]</span></p>
 <p><strong>Note:</strong> It suffices to look at this specific null hypothesis <span class="math inline">\(\beta_k=\beta_k^{(0)},\)</span> since the distribution of <span class="math inline">\(T\)</span> is dominated by <span class="math inline">\(\mathcal{N}(0,1)\)</span> for all other null hypotheses <span class="math inline">\(\beta_k&lt;\beta_k^{(0)};\)</span> see our discussions above.</p>
-<p>If <span class="math inline">\(H_1: \beta_k-\beta_k^{(0)}&gt;0\)</span> is true, then <span class="math display">\[\begin{align*}
+<p>If <span class="math inline">\(H_1: \beta_k-\beta_k^{(0)}&gt;0\)</span> is true, then <span class="math display">\[
+\begin{align*}
 T&amp;=\frac{\hat\beta_k-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}
 =\frac{\hat\beta_k\overbrace{-\beta_k+\beta_k}^{=0}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
 &amp;=\underbrace{\frac{\sqrt{n}(\hat\beta_k-\beta_k)}{4.5}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}_{=\text{mean-shift}}\\[2ex]
 &amp;\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right)
-\end{align*}\]</span></p>
-<p>Power: <span class="math display">\[\begin{align*}
+\end{align*}
+\]</span></p>
+<p>Power: <span class="math display">\[
+\begin{align*}
 \text{Power}
 &amp; = P(\text{Reject $H_0$ given $H_1$ is true})\\[2ex]
 %&amp; = P(T \in \left]z_{1-\alpha},\infty\right[ \;\;|\; H_1\text{ is true})\\[2ex]
 &amp; = P(T &gt; z_{1-\alpha}\;|\; H_1\text{ is true}),
-\end{align*}\]</span> where <span class="math inline">\(z_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span> quantile of the standard normal distribution <span class="math inline">\(\mathcal{N}(0,1),\)</span> and where <span class="math display">\[
+\end{align*}
+\]</span> where <span class="math inline">\(z_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span> quantile of the standard normal distribution <span class="math inline">\(\mathcal{N}(0,1),\)</span> and where <span class="math display">\[
 T\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).
 \]</span></p>
-<p>This allows us to compute the power as following: <span class="math display">\[\begin{align*}
+<p>This allows us to compute the power as following: <span class="math display">\[
+\begin{align*}
 \text{Power}
 &amp; = P(T &gt; z_{1-\alpha}\;|\; H_1\text{ is true}),
 \\[2ex]
@@ -1194,19 +1376,22 @@ T\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).
 &amp; = P\left(Z &gt; z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right)\\[2ex]%,\quad\text{where}\quad Z\sim\mathcal{N}(0,1)\\[2ex]
 &amp;=1-P\left(Z \leq z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right)\\[2ex]
 &amp;=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right),
-\end{align*}\]</span> where <span class="math inline">\(\Phi\)</span> denotes the cumulative distribution function of the standard normal distribution <span class="math inline">\(\mathcal{N}(0,1).\)</span></p>
+\end{align*}
+\]</span> where <span class="math inline">\(\Phi\)</span> denotes the cumulative distribution function of the standard normal distribution <span class="math inline">\(\mathcal{N}(0,1).\)</span></p>
 <p><a href="#fig-Power" class="quarto-xref">Figure&nbsp;<span>6.4</span></a> illustrates the probability of a type-II-error and the power for the case where</p>
 <ul>
 <li><span class="math inline">\(\alpha = 0.05\)</span></li>
 <li><span class="math inline">\(n=9\)</span></li>
 <li><span class="math inline">\(\beta_k - \beta_k^{(0)}=3\)</span></li>
 </ul>
-<p>such that <span class="math display">\[\begin{align*}
+<p>such that <span class="math display">\[
+\begin{align*}
 \text{Power}
 &amp;=1-\Phi\Bigg(z_{1-\alpha} - \overbrace{\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}^{=\frac{3\cdot 3}{4.5} = 2}\Bigg)\\[2ex]
 &amp;=1-\Phi\left(1.64  - 2 \right)\\[2ex]
 &amp;=1-0.359=0.641
-\end{align*}\]</span> That is, we expect to detect the violation of the null hypothesis <span class="math inline">\((\beta_k - \beta_k^{(0)}=3)\)</span> in <span class="math inline">\(64\%\)</span> of resamplings from the random sample (data generating process).</p>
+\end{align*}
+\]</span> That is, we expect to detect the violation of the null hypothesis <span class="math inline">\((\beta_k - \beta_k^{(0)}=3)\)</span> in <span class="math inline">\(64\%\)</span> of resamplings from the random sample (data generating process).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-Power" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -1255,96 +1440,12 @@ Power is a function of <span class="math inline">\(\alpha,\)</span> <span class=
 \end{align*}\]</span> <!-- when keeping each of the other arguments fixed.  --></p>
 </div>
 </div>
-</section><section id="sec-pValue" class="level3" data-number="6.3.5"><h3 data-number="6.3.5" class="anchored" data-anchor-id="sec-pValue">
-<span class="header-section-number">6.3.5</span> <span class="math inline">\(p\)</span>-Value</h3>
-<section id="f-test" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="f-test">
-<span class="math inline">\(F\)</span>-Test</h4>
-<p>The <span class="math inline">\(F\)</span>-test allows us to test <span class="math display">\[
-\begin{align*}
-&amp;H_0: R\beta = r\\[2ex]
-\text{versus}\quad
-&amp;H_1: R\beta\neq r,
-\end{align*}
-\]</span> where <span class="math inline">\(\beta\)</span> denotes the true (unknown) parameter vector and <span class="math inline">\(r^{(0)}\)</span> the null-hypothetical value specified by the statistician (often, e.g.&nbsp;<span class="math inline">\(r^{(0)}=0\)</span>).</p>
-<p>We know that <span class="math display">\[
-F\overset{H_0}{\sim}F_{q,n-K}.
+</section><section id="sec-pValue" class="level3" data-number="6.4.3"><h3 data-number="6.4.3" class="anchored" data-anchor-id="sec-pValue">
+<span class="header-section-number">6.4.3</span> Interpreting the <span class="math inline">\(p\)</span>-Value</h3>
+<p>The <span class="math inline">\(p\)</span>-value of a test-statistic <span class="math inline">\(T\)</span> is defined as the probability of observing realizations of <span class="math inline">\(T\)</span> that are equal to or larger than the observed value <span class="math inline">\(T_{\text{obs}}\)</span> <strong>given that the null hypothesis is true</strong> <span class="math display">\[
+p_{\text{obs}}=P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true})
 \]</span></p>
-<p>The <span class="math inline">\(p\)</span>-value of the <span class="math inline">\(F\)</span>-test is the probability of seeing realizations of <span class="math inline">\(F\)</span> that are equal to or larger than the observed value <span class="math inline">\(F_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[
-p_{\text{obs}}=P(F\geq F_{\text{obs}}\;|\;H_0 \text{ is true})
-\]</span></p>
-<ul>
-<li><p>We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} &lt; \alpha
-\]</span></p></li>
-<li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} \geq \alpha
-\]</span></p></li>
-</ul></section><section id="the-one-sided-t-test" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="the-one-sided-t-test">The One-Sided <span class="math inline">\(t\)</span>-Test</h4>
-<p>Possible one-sided hypotheses:</p>
-<p><span class="math display">\[\begin{align*}
-&amp;H_0: \beta_k \leq \beta_k^{(0)}\\
-\text{versus}\quad &amp; H_1:\beta_k &gt;    \beta_k^{(0)}\\
-\end{align*}\]</span></p>
-<p>or</p>
-<p><span class="math display">\[\begin{align*}
-&amp;H_0: \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad &amp; H_1: \beta_k &lt;  \beta_k^{(0)}\\
-\end{align*}\]</span></p>
-<!-- In case of a one-sided $t$-test, we will reject the null if $T_{\text{obs}}$ is sufficiently "far away" from zero in the relevant direction of $H_1$.  -->
-<p>We know that <span class="math display">\[
-T\overset{H_0}{\sim}t_{n-K}.
-\]</span></p>
-<p>The <span class="math inline">\(p\)</span>-value of the one-sided <span class="math inline">\(t\)</span>-test for testing <span class="math display">\[\begin{align*}
-&amp;H_0: \beta_k \leq \beta_k^{(0)}\\
-\text{versus}\quad &amp; H_1: \beta_k &gt;    \beta_k^{(0)}\\
-\end{align*}\]</span> is the probability of seeing realizations of <span class="math inline">\(T\)</span> that are equal to or larger than the observed value <span class="math inline">\(T_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[
-p_{\text{obs}}=P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true}).
-\]</span> * We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} &lt; \alpha
-\]</span></p>
-<ul>
-<li>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} \geq \alpha
-\]</span>
-</li>
-</ul>
-<p>The <span class="math inline">\(p\)</span>-value of the one-sided <span class="math inline">\(t\)</span>-test for testing <span class="math display">\[\begin{align*}
-&amp;H_0: \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad &amp; H_1: \beta_k &lt;    \beta_k^{(0)}\\
-\end{align*}\]</span> is the probability of seeing realizations of <span class="math inline">\(T\)</span> that are equal to or smaller than the observed value <span class="math inline">\(T_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[
-p_{\text{obs}}=P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}).
-\]</span></p>
-<ul>
-<li><p>We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} &lt; \alpha
-\]</span></p></li>
-<li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} \geq \alpha
-\]</span></p></li>
-</ul></section><section id="the-two-sided-t-test" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="the-two-sided-t-test">The Two-Sided <span class="math inline">\(t\)</span>-Test</h4>
-<p>The two-sided <span class="math inline">\(t\)</span>-test allows us to test <span class="math display">\[\begin{align*}
-&amp; H_0: \beta_k=\beta_k^{(0)}\\
-\text{versus}\quad
-&amp; H_1: \beta_k\ne \beta_k^{(0)}
-\end{align*}\]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statisticaian (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
-<p>We know that <span class="math display">\[
-T\overset{H_0}{\sim}t_{n-K}.
-\]</span></p>
-<p>The <span class="math inline">\(p\)</span>-value of the two-sided <span class="math inline">\(t\)</span>-test is the probability of seeing realizations of <span class="math inline">\(T\)</span> that are equal to or more extreme than the observed value <span class="math inline">\(T_{\text{obs}}\)</span> given that the null hypothesis is true <span class="math display">\[\begin{align*}
-p_{\text{obs}}
-&amp;=P(|T|\geq |T_{\text{obs}}|\;|\;H_0 \text{ is true})\\[2ex]
-&amp;=2\cdot\min\{P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}),
-            P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true})\}
-\end{align*}\]</span></p>
-<ul>
-<li><p>We reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} &lt; \alpha
-\]</span></p></li>
-<li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} \geq \alpha
-\]</span></p></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1372,20 +1473,30 @@ Marginal Significance Value
 
 
 If the $p$-value is strictly smaller than the chosen significance level $\alpha$, we reject the null hypothesis.  -->
-</section></section></section><section id="sec-CIsmallsample" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="sec-CIsmallsample">
-<span class="header-section-number">6.4</span> Confidence Intervals</h2>
+<p>Since the <span class="math inline">\(p\)</span>-value is defined under the hypothetical scenario that the null-hypothesis is true, …</p>
+<center>
+❗… the <span class="math inline">\(p\)</span>-value <strong>cannot</strong> be the probability that the null-hypothesis is true. (A common misinterpretation of the <span class="math inline">\(p\)</span>-value.)❗
+</center>
+<p></p>
+<p><img src="images/terminator.jpeg" class="img-fluid"></p>
+</section></section><section id="sec-CIsmallsample" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="sec-CIsmallsample">
+<span class="header-section-number">6.5</span> Confidence Intervals</h2>
 <p>We define a two-sided <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> percent confidence interval for the <em>deterministic</em> (unknown) true <span class="math inline">\(\beta_k\)</span> as the <strong>random interval</strong> <span class="math inline">\(\operatorname{CI}_{k,1-\alpha}\)</span> for which <span class="math display">\[
 P\Big(\beta_k\in\operatorname{CI}_{k,1-\alpha}\Big)\geq 1-\alpha.
 \]</span> Derivation of the random interval <span class="math inline">\(\operatorname{CI}_{k,1-\alpha}\)</span>:</p>
 <p>Observe that (under Ass 1-4<span class="math inline">\(^\ast\)</span>) <span id="eq-CIDistr"><span class="math display">\[
 \frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\sim t_{(n-K)}
-\qquad(6.8)\]</span></span> Therefore, <span class="math display">\[\begin{align*}
+\qquad(6.8)\]</span></span> Therefore, <span class="math display">\[
+\begin{align*}
 P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq c_{1-\alpha/2}\right)=1-\alpha,
-\end{align*}\]</span> where <span class="math inline">\(c_{1-\alpha/2}\)</span> denotes the <span class="math inline">\((1-\alpha/2)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom. Next, we can do the following equivalent transformations <span class="math display">\[\begin{align*}
+\end{align*}
+\]</span> where <span class="math inline">\(c_{1-\alpha/2}\)</span> denotes the <span class="math inline">\((1-\alpha/2)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom. Next, we can do the following equivalent transformations <span class="math display">\[
+\begin{align*}
 P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq c_{1-\alpha/2}\right)&amp;=1-\alpha\\
 \Leftrightarrow P\left(\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\leq \beta_k\leq\hat\beta_k +c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right)&amp;=1-\alpha\\
 \Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]}_{=:\operatorname{CI}_{k,1-\alpha}}\right)&amp;=1-\alpha
-\end{align*}\]</span> That is, the random interval <span class="math display">\[
+\end{align*}
+\]</span> That is, the random interval <span class="math display">\[
 \operatorname{CI}_{k,1-\alpha}=\left[\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k + c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
 \]</span> is our <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> confidence interval for <span class="math inline">\(\beta_k\)</span>.</p>
 <p>Since the confidence interval is based on the exact distribution (under Assumptions 1-4<span class="math inline">\(^\ast\)</span>) in <a href="#eq-CIDistr" class="quarto-xref">Equation&nbsp;<span>6.8</span></a>, the confidence interval has an <strong>exact</strong> coverage probability <span class="math display">\[\begin{align*}
@@ -1412,8 +1523,8 @@ Interpretation of Confidence Intervals
 </center>
 </div>
 </div>
-</section><section id="sec-PSSI" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="sec-PSSI">
-<span class="header-section-number">6.5</span> Monte Carlo Simulations</h2>
+</section><section id="sec-PSSI" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="sec-PSSI">
+<span class="header-section-number">6.6</span> Monte Carlo Simulations</h2>
 <p>Let’s check the above exact inference results using Monte Carlo simulations. The check, of course, applies only to the considered special case and generally does not generalize to other data generating processes.</p>
 <p>First, we program a function <code>myDataGenerator()</code> which allows us to generate data from the following model, i.e., from the following fully specified data generating process: <span class="math display">\[\begin{align*}
 Y_i &amp;=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
@@ -1470,8 +1581,8 @@ X_{i3}&amp;\sim U[12,22]\\
 3 70.92   1 4.70 14.95</code></pre>
 </div>
 </div>
-<section id="check-testing-multiple-parameters" class="level3" data-number="6.5.1"><h3 data-number="6.5.1" class="anchored" data-anchor-id="check-testing-multiple-parameters">
-<span class="header-section-number">6.5.1</span> Check: Testing Multiple Parameters</h3>
+<section id="check-testing-multiple-parameters" class="level3" data-number="6.6.1"><h3 data-number="6.6.1" class="anchored" data-anchor-id="check-testing-multiple-parameters">
+<span class="header-section-number">6.6.1</span> Check: Testing Multiple Parameters</h3>
 <p>In the following, we do inference about multiple parameters. We test <span class="math display">\[\begin{align*}
 H_0:\;&amp;\beta_2=3\quad\text{and}\quad\beta_3=4\\
 \text{versus}\quad H_1:\;&amp;\beta_2\neq 3\quad\text{and/or}\quad\beta_3\neq 4.
@@ -1611,8 +1722,8 @@ H_1:\;&amp;\beta_2\neq 4\quad\text{and/or}\quad\beta_3\neq 4
 <p>We can now correctly reject the false null hypothesis in approximately 20.4 % of all Monte Carlo replications.</p>
 <p><strong>Caution:</strong> This means that we are not able to detect the violation of the null hypothesis in 79.6 % of cases. Therefore, we can never use an insignificant test result (<span class="math inline">\(p\)</span>-value <span class="math inline">\(\geq\alpha\)</span>) as a confirmation of the null hypothesis. Obviously, there are type-II-error events (not rejecting a false <span class="math inline">\(H_0\)</span>), but since we typically do not know the distribution of the test statistic under the alternative hypothesis, we cannot control the type-II-error rate. We can only control the type-I-error rate by using a small significance level <span class="math inline">\(\alpha\)</span>.</p>
 <p>Moreover, note that the <span class="math inline">\(F\)</span> test is not informative about which part of the null hypothesis (<span class="math inline">\(\beta_2=4\)</span> and/or <span class="math inline">\(\beta_3=4\)</span>) is violated. We only get the information that at least one of the multiple parameter hypotheses is violated. Test statistics with this property are called <strong>omnibus tests</strong>.</p>
-</section><section id="check-dualty-of-confidence-intervals-and-hypothesis-tests" class="level3" data-number="6.5.2"><h3 data-number="6.5.2" class="anchored" data-anchor-id="check-dualty-of-confidence-intervals-and-hypothesis-tests">
-<span class="header-section-number">6.5.2</span> Check: Dualty of Confidence Intervals and Hypothesis Tests</h3>
+</section><section id="check-dualty-of-confidence-intervals-and-hypothesis-tests" class="level3" data-number="6.6.2"><h3 data-number="6.6.2" class="anchored" data-anchor-id="check-dualty-of-confidence-intervals-and-hypothesis-tests">
+<span class="header-section-number">6.6.2</span> Check: Dualty of Confidence Intervals and Hypothesis Tests</h3>
 <p>Confidence intervals can be computed using <code>R</code> as following:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Significance level</span></span>
@@ -1711,8 +1822,8 @@ H_0:&amp;\;\beta_2=3\\
 </div>
 </div>
 <p>As expected, only about <span class="math inline">\(\alpha\cdot 100\%=5\%\)</span> of all confidence intervals do not contain the true parameter value <span class="math inline">\(\beta_2=3\)</span>, but about <span class="math inline">\((1-\alpha)\cdot 100\%=95\%\)</span> of all confidence intervals contain the true parameter value <span class="math inline">\(\beta_2=3\)</span>.</p>
-</section></section><section id="sec-RDSSInf" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="sec-RDSSInf">
-<span class="header-section-number">6.6</span> Real Data Example</h2>
+</section></section><section id="sec-RDSSInf" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="sec-RDSSInf">
+<span class="header-section-number">6.7</span> Real Data Example</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## The AER package contains a lot of datasets </span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AER</span><span class="op">)</span><span class="op">)</span></span>
@@ -2015,8 +2126,8 @@ Consequently, the error term <span class="math inline">\(\varepsilon_i\)</span> 
 </div>
 </div>
 <p>Lukily, the data set <code>DoctorVisits</code> actually has a <strong>large sample size</strong> of <span class="math inline">\(n=\)</span> 5190 and thus there is a way out of this problem: The large sample inference framework introduced in the next chapter.</p>
-</section></section><section id="exercises" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">6.7</span> Exercises</h2>
+</section></section><section id="exercises" class="level2" data-number="6.8"><h2 data-number="6.8" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">6.8</span> Exercises</h2>
 <!-- * [Exercises for Chapter 6](https://www.dropbox.com/scl/fi/g6hiwoprjewwsbr09t217/Ch5_Exercises1.pdf?rlkey=s6642zm8ufj173mhmbtoj0wvf&dl=0)
 
 

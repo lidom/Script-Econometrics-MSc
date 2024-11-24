@@ -12,6 +12,9 @@ The core issue with small sample sizes is that we cannot do inference using the 
 **Exact inference:**  By "exact inference" we mean correct inference for each sample size $n$. That is, no approximate results based on asymptotic $(n\to\infty)$ arguments will be used.  
 
 
+## Normality of the OLS-Estimator
+
+
 **Assumptions:** In @sec-MLR, we did not impose a complete distributional assumption on $\varepsilon$ (see Assumption 4). For instance, the i.i.d. normal case in Assumption 4 was only one possible *option*.  However, to do inference in small samples, the normality Assumption on the error terms is not a mere option, but a *necessity*. 
 
 Therefore, in this chapter we assume that Assumptions 1-3 from @sec-MLR hold and that additionally the following assumption holds: 
@@ -65,12 +68,14 @@ and because $(X'X)^{-1}X'\varepsilon$ is just a linear combination of the normal
 **Remark:** The subscript $n$ in $\hat\beta_n$ is here only to emphasize that the distribution of $\hat\beta_n$ depends on $n$; we will, however, often simply write $\hat\beta$.
 
 
-## Hypothesis Tests about Multiple Parameters (F-Tests) {#sec-testmultp}
+## $F$-Tests: Hypothesis Tests about Multiple Parameters {#sec-testmultp}
 
 Let us consider the following system of $q$-many null hypotheses:
+$$
 \begin{align*}
 H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  = \underset{(q\times 1)}{r^{(0)}},
 \end{align*}
+$$
 where 
 
 * the $(q \times K)$ matrix $R,$ which describes the considered linear combinations of the unknown $\beta=(\beta_1,\dots,\beta_K)'$ values, and 
@@ -235,7 +240,110 @@ legend(x = "topright", legend = c("F(1,30)", "F(3,30)", "F(15,30)"),
 ```
 
 
-## Tests about One Parameter (t-Tests) {#sec-testingsinglep}
+### Test Decision using the Rejection Region 
+
+Let $0<\alpha<1$ denote the significance level and let $c_{1-\alpha}$ denote the $(1-\alpha)$ quantile of the $F$-distribution with $(q,n-K)$ degrees of freedom. 
+
+This quantile $c_{1-\alpha}$ is the **critical value** that defines the **rejection region**: 
+$$
+\mathcal{R}=\; ]c_{1-\alpha},\infty[
+$$
+<!-- , and 
+- non-rejection region, $]0,c_{1-\alpha}]$  -->
+
+* We can rejection $H_0$ if
+$$
+F_{obs}\in \mathcal{R}=\; ]c_{1-\alpha},\infty[
+$$
+* We cannot rejection $H_0$ if
+$$
+F_{obs}\not \in \mathcal{R}=\; ]c_{1-\alpha},\infty[
+$$
+
+
+```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
+library("scales")
+curve(expr = df(x = x, df1 = 9, df2 = 120),
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(0, 4),
+      ylim = c(0, 1), xaxs="i",yaxs="i")
+
+alpha <- 0.05
+q     <- qf(p = 1-alpha, df1 = 9, df2 = 120)
+xx    <- seq(0,q,len=25)
+yy    <- df(x = xx, df1 = 9, df2 = 120)
+
+polygon(x = c(xx,rev(xx)), y=c(yy, rep(0,length(yy))), border = NA, col = alpha("green", 0.25))
+q     <- qf(p = 1-alpha, df1 = 9, df2 = 120)
+xx    <- seq(q,4,len=25)
+yy    <- df(x = xx, df1 = 9, df2 = 120)
+
+polygon(x = c(xx,rev(xx)), y=c(yy, rep(0,length(yy))), border = NA, col = alpha("red", 0.25))
+
+lines(x=c(0,q-0.02),y=c(0,0), col="darkgreen", lwd=10)
+lines(x=c(q+0.02,4),y=c(0,0), col="red", lwd=10)
+
+legend("topright", pch=c(22,NA, 22, NA), lty=c(NA,1,NA,1), lwd=c(NA,4,NA,4), cex=1, 
+       col = c(alpha("green", 0.25),"darkgreen",alpha("red", 0.25),"red"), 
+       legend=c(expression(1-alpha==~"95% of"~F['9,120']),"Non-Rejection Region",
+                expression(alpha==~"5% of"~F['9,120']),"Rejection Region"), 
+       bty="n", pt.bg = c(alpha("green", 0.25),alpha("green", 0.25),alpha("red", 0.25),alpha("red", 0.25)))
+curve(expr = df(x = x, df1 = 9, df2 = 120), lwd = 2, col = 1, add=TRUE, from = 0, to = 4)
+lines(x=c(q,q), y=c(0,.6),lwd=2,lty=2)
+text(x = q, y = .65, labels = expression(c[1-alpha]==1.9588))
+```
+
+**The rejection region:** The rejection region describes a range of values of the test statistic $F$ which we rarely see if the null hypothesis is true (only in at most $\alpha \cdot 100\%$ cases). If the observed value of the test statistic, $F_{\text{obs}}$, falls in this region, we will reject the null  hypothesis and acknowledge a type-I-error rate of at most $\alpha$. 
+
+**The non-rejection region:** The non-rejection region describes a range of values of the test statistic $F$ which we expect to see (in $(1-\alpha) \cdot 100\%$ cases) if the null hypothesis is true. If the observed value of the test statistic, $F_{\text{obs}}$ falls in this region, we cannot reject the null hypothesis. 
+
+
+To find the critical value $c_{1-\alpha}$ we can use `R` as following: 
+```{r}
+alpha <- 0.05 # chosen significance level
+df1   <- 9    # numerator df
+df2   <- 120  # denominator df
+
+## Critical value:
+crit_value <- qf(p = 1-alpha, df1 = df1, df2 = df2)
+crit_value
+```
+Changing the significance level from $\alpha=0.05$ to $\alpha=0.01$ makes the critical value $c_{1-\alpha}$ larger and, therefore, the  rejection region smaller (smaller probability of type-I-errors).
+```{r}
+alpha <- 0.01 # chosen significance level
+## Critical value:
+crit_value <- qf(p = 1-alpha, df1 = df1, df2 = df2)
+crit_value
+```
+
+
+### Test Decision using the $p$-Value
+
+Remember that (under Assumption 4$^\boldsymbol{\ast}$)
+$$
+F\overset{H_0}{\sim}F_{q,n-K}.
+$$
+
+The $p$-value of the $F$-test is the probability of seeing realizations of $F$ that are equal to or larger than the observed value $F_{\text{obs}}$ given that the null hypothesis is true
+$$
+p_{\text{obs}}=P(F\geq F_{\text{obs}}\;|\;H_0 \text{ is true})
+$$
+
+* We reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} < \alpha
+$$
+
+* We cannot reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} \geq \alpha
+$$
+
+
+
+
+
+## $t$-Tests: Hypothesis Tests about One Parameter {#sec-testingsinglep}
 
 A hypothesis about only **one parameter**
 $$
@@ -260,6 +368,9 @@ $$
 \widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{(k,k)},
 $$ 
 and where $[(X'X)^{-1}]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $(K\times K)$ matrix $(X'X)^{-1}.$
+
+
+### The Test Statistic and its Null Distribution
 
 Taking square roots yields the $t$ test statistic 
 $$
@@ -318,6 +429,360 @@ legend("topright", bty="n",
        col = 1:4, 
        lty = c(2, 1, 1, 1))
 ```
+
+
+
+### Test Decision using the Rejection Region  (One-Sided 1/2) 
+
+For the right-sided, one-sided hypothesis
+$$
+\begin{align*}
+&H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad 
+& H_1: \beta_k > \beta_k^{(0)}
+\end{align*}
+$$
+the rejection region is
+$$
+\mathcal{R}=\;]c_{1-\alpha}, \infty[
+$$
+
+
+* We can reject $H_0$ if
+$$
+\begin{align*}
+T_{obs} 
+& \in \mathcal{R} = \;]c_{1-\alpha}, \infty[
+\end{align*}
+$$
+* We cannot reject $H_0$ if
+$$
+\begin{align*}
+T_{obs} 
+&\not \in \mathcal{R} = \;]c_{1-\alpha}, \infty[
+\end{align*}
+$$
+
+@fig-oneSidedRight shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
+
+```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
+#| label: fig-oneSidedRight
+#| fig-cap: $t$-distribution with $n-K=12$ degrees of freedom and critical value $c_{1-\alpha}=1.78$ for the significance level $\alpha=0.05$.
+library("scales")
+alpha <- 0.05
+q      <- qt(p = 1-alpha, df=12)
+
+xx1    <- seq(-5,-q,len=25)
+yy1    <- dt(x = xx1, df = 12)
+xx2    <- seq(-q,5,len=25)
+yy2    <- dt(x = xx2, df = 12)
+##
+xx3    <- seq(q,5,len=25)
+yy3    <- dt(x = xx3, df = 12)
+xx4    <- seq(-5,q,len=25)
+yy4    <- dt(x = xx4, df = 12)
+
+par(mfrow=c(1,1))
+curve(expr = dt(x = x, df = 12),
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(-5, 5),
+      ylim = c(0, .6), xaxs="i",yaxs="i")
+polygon(x = c(xx3,rev(xx3)), y=c(yy3, rep(0,length(yy3))), border = NA, col = alpha("red", 0.25))
+polygon(x = c(xx4,rev(xx4)), y=c(yy4, rep(0,length(yy4))), border = NA, col = alpha("green", 0.25))
+lines(x=c(q,q), y=c(0,.35),lwd=2,lty=2)
+text(x =  q, y = .45, labels = expression(c[1-alpha]==1.78))
+legend("topright", pch=c(22,22), lty=c(NA,NA), lwd=c(NA,NA), cex=1, 
+       col = c(alpha("green", 0.25),alpha("red", 0.25)), 
+       legend=c(expression("95% of"~t['12']),
+                expression("5% of"~t['12'])), 
+       bty="n", pt.bg = c(alpha("green", 0.25),alpha("red", 0.25)))
+par(mfrow=c(1,1))
+```
+
+To find the $c_{1-\alpha}$ critical value we can use `R` as following:
+```{r}
+alpha <- 0.05 # chosen significance level 
+df    <- 12   # degrees of freedom 
+
+## One-sided critical value (1-alpha) quantile:
+c_oneSided <- qt(p = 1-alpha, df = df)
+c_oneSided
+```
+
+
+### Test Decision using the Rejection Region  (One-Sided 2/2)
+
+For the left-sided, one-sided hypothesis
+$$
+\begin{align*}
+&H_0:  \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad 
+&H_1:  \beta_k <  \beta_k^{(0)}\\
+\end{align*}
+$$
+the rejection region is 
+$$
+\mathcal{R}=\;]-\infty,c_{\alpha}[
+$$
+
+
+* We can reject $H_0$ if
+$$
+\begin{align*}
+T_{obs} 
+& \in \mathcal{R} = \;]-\infty,c_{\alpha}[
+\end{align*}
+$$
+* We cannot reject $H_0$ if
+$$
+\begin{align*}
+T_{obs} 
+&\not \in \mathcal{R} = \;]-\infty,c_{\alpha}[
+\end{align*}
+$$
+
+@fig-oneSidedLeft shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
+
+```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
+#| label: fig-oneSidedLeft
+#| fig-cap: $t$-distribution with $n-K=12$ degrees of freedom and critical value $c_{\alpha}=-1.78$ for the significance level $\alpha=0.05$.
+
+library("scales")
+alpha <- 0.05
+q      <- qt(p = 1-alpha, df=12)
+
+xx1    <- seq(-5,-q,len=25)
+yy1    <- dt(x = xx1, df = 12)
+xx2    <- seq(-q,5,len=25)
+yy2    <- dt(x = xx2, df = 12)
+##
+xx3    <- seq(q,5,len=25)
+yy3    <- dt(x = xx3, df = 12)
+xx4    <- seq(-5,q,len=25)
+yy4    <- dt(x = xx4, df = 12)
+
+par(mfrow=c(1,1))
+curve(expr = dt(x = x, df = 12),
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(-5, 5),
+      ylim = c(0, .6), xaxs="i",yaxs="i")
+polygon(x = c(xx1,rev(xx1)), y=c(yy1, rep(0,length(yy1))), border = NA, col = alpha("red", 0.25))
+polygon(x = c(xx2,rev(xx2)), y=c(yy2, rep(0,length(yy2))), border = NA, col = alpha("green", 0.25))
+lines(x=c(-q,-q), y=c(0,.35),lwd=2,lty=2)
+text(x = -q, y = .45, labels = expression(c[alpha]==-1.78))
+legend("topright", pch=c(22,22), lty=c(NA,NA), lwd=c(NA,NA), cex=1, 
+       col = c(alpha("green", 0.25),alpha("red", 0.25)), 
+       legend=c(expression("95% of"~t['12']),
+                expression("5% of"~t['12'])), 
+       bty="n", pt.bg = c(alpha("green", 0.25),alpha("red", 0.25)))
+par(mfrow=c(1,1))
+```
+
+
+To find the $c_{\alpha}$ critical value we can use `R` as following:
+```{r}
+alpha <- 0.05 # chosen significance level 
+df    <- 12   # degrees of freedom 
+
+## One-sided critical value (alpha) quantile:
+c_oneSided <- qt(p = alpha, df = df)
+c_oneSided
+```
+
+
+
+### Test Decision using the Rejection Region (Two-Sided)
+
+The two-sided $t$-test allows us to test
+$$
+\begin{align*}
+& H_0: \beta_k=\beta_k^{(0)}\\
+\text{versus}\quad 
+& H_1: \beta_k\ne \beta_k^{(0)}
+\end{align*}
+$$
+where $\beta_k$ denotes the true (unknown) parameter value and $\beta_k^{(0)}$ the null hypothetical value specified by the statistician (e.g. $\beta_k^{(0)}=0$). 
+
+
+Let $0<\alpha<1$ denote the significance level and let $c_{\alpha/2}$ and $c_{1-\alpha/2}$ denote the $\alpha/2$ and the $(1-\alpha/2)$ quantiles of the $t$-distribution with $(n-K)$ degrees of freedom. 
+
+These quantiles are the **critical values** that define the **rejection region** of the two-sided $t$-test: 
+$$
+\mathcal{R}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+$$
+
+* We can reject $H_0$ if
+$$
+\begin{align*}
+T_{obs} 
+& \in \mathcal{R}%\\[2ex]
+%& \in \;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+\end{align*}
+$$
+* We cannot reject $H_0$ if
+$$
+\begin{align*}
+T_{obs} 
+&\not \in \mathcal{R}%\\[2ex]
+%&\not \in \;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
+\end{align*}
+$$
+
+@fig-twoSided shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
+
+```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
+#| label: fig-twoSided
+#| fig-cap: $t$-distribution with $n-K=12$ degrees of freedom and critical values $c_{\alpha/2}=-2.18$ and $c_{1-\alpha/2}=2.18$ for the significance level $\alpha=0.05$.
+library("scales")#| 
+curve(expr = dt(x = x, df = 12),
+      xlab = "", ylab = "", main = "",
+      lwd = 2, col = 1, xlim = c(-5, 5),
+      ylim = c(0, .6), xaxs="i",yaxs="i")
+
+alpha <- 0.05/2
+q      <- qt(p = 1-alpha, df=12)
+xx1    <- seq(-5,-q,len=25)
+yy1    <- dt(x = xx1, df = 12)
+xx2    <- seq(q,5,len=25)
+yy2    <- dt(x = xx2, df = 12)
+xx3    <- seq(-q,q,len=25)
+yy3    <- dt(x = xx3, df = 12)
+
+polygon(x = c(xx1,rev(xx1)), y=c(yy1, rep(0,length(yy1))), border = NA, col = alpha("red", 0.25))
+
+polygon(x = c(xx2,rev(xx2)), y=c(yy2, rep(0,length(yy2))), border = NA, col = alpha("red", 0.25))
+
+polygon(x = c(xx3,rev(xx3)), y=c(yy3, rep(0,length(yy3))), border = NA, col = alpha("green", 0.25))
+
+legend("topright", pch=c(22,22), lty=c(NA,NA), lwd=c(NA,NA), cex=1, 
+       col = c(alpha("green", 0.25),alpha("red", 0.25)), 
+       legend=c(expression("95% of"~t['12']),
+                expression("5% of"~t['12'])), 
+       bty="n", pt.bg = c(alpha("green", 0.25),alpha("red", 0.25)))
+curve(expr = dt(x = x, df= 12), lwd = 2, col = 1, add=TRUE)
+lines(x=c(q,q), y=c(0,.35),lwd=2,lty=2)
+lines(x=c(-q,-q), y=c(0,.35),lwd=2,lty=2)
+text(x =  q, y = .45, labels = expression(c[1-alpha/2]==2.18))
+text(x = -q, y = .45, labels = expression(c[alpha/2]==-2.18))
+```
+
+
+To find the $c_{\alpha/2}$ and $c_{1-\alpha/2}$ critical values we can use `R` as following:
+```{r}
+alpha <- 0.05 # chosen signficance level 
+df    <- 12   # degrees of freedom 
+
+## Two-sided critical value (= (1-alpha/2) quantile):
+c_twoSided <- qt(p = 1-alpha/2, df = df)
+
+## lower critical value
+-c_twoSided
+## upper critical value
+c_twoSided
+```
+
+
+
+### Test Decision using the $p$-Value (One-Sided 1/2) {#sec-TDecRS}
+
+Right-sided version of the one-sided hypothesis:
+$$
+\begin{align*}
+&H_0: \beta_k \leq \beta_k^{(0)}\\
+\text{versus}\quad & H_1:\beta_k >    \beta_k^{(0)}\\
+\end{align*}
+$$
+
+<!-- In case of a one-sided $t$-test, we will reject the null if $T_{\text{obs}}$ is sufficiently "far away" from zero in the relevant direction of $H_1$.  -->
+
+We know that
+$$
+T\overset{H_0}{\sim}t_{n-K}.
+$$
+
+
+The $p$-value is the probability of seeing realizations of $T$ that are equal to or larger than the observed value $T_{\text{obs}}$ given that the null hypothesis is true
+$$
+p_{\text{obs}}=P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true}).
+$$
+* We reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} < \alpha
+$$
+
+* We cannot reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} \geq \alpha
+$$
+
+
+### Test Decision using the $p$-Value (One-Sided 2/2) 
+
+Left-sided version of the one-sided hypothesis:
+$$
+\begin{align*}
+&H_0: \beta_k \geq \beta_k^{(0)}\\
+\text{versus}\quad & H_1: \beta_k <  \beta_k^{(0)}\\
+\end{align*}
+$$
+
+The $p$-value is the probability of seeing realizations of $T$ that are equal to or smaller than the observed value $T_{\text{obs}}$ given that the null hypothesis is true
+$$
+p_{\text{obs}}=P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}).
+$$
+
+
+* We reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} < \alpha
+$$
+
+* We cannot reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} \geq \alpha
+$$
+
+
+
+### Test Decision using the $p$-Value (Two-Sided)
+
+The two-sided $t$-test allows us to test
+$$
+\begin{align*}
+& H_0: \beta_k=\beta_k^{(0)}\\
+\text{versus}\quad 
+& H_1: \beta_k\ne \beta_k^{(0)}
+\end{align*}
+$$
+where $\beta_k$ denotes the true (unknown) parameter value and $\beta_k^{(0)}$ the null hypothetical value specified by the statisticaian (e.g. $\beta_k^{(0)}=0$). 
+
+We know that
+$$
+T\overset{H_0}{\sim}t_{n-K}.
+$$
+
+
+The $p$-value of the two-sided $t$-test is the probability of seeing realizations of $T$ that are equal to or more extreme than the observed value $T_{\text{obs}}$ given that the null hypothesis is true
+$$
+\begin{align*}
+p_{\text{obs}}
+&=P(|T|\geq |T_{\text{obs}}|\;|\;H_0 \text{ is true})\\[2ex]
+&=2\cdot\min\{P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}), 
+            P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true})\}
+\end{align*}
+$$
+
+* We reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} < \alpha
+$$
+
+* We cannot reject the null hypothesis $H_0$ if
+$$
+p_{\text{obs}} \geq \alpha
+$$
+
+
 
 ## Testtheory
 
@@ -470,10 +935,12 @@ If we do not reject $H_0$ even though $H_1$ is true.
 The probability of a type-I-error event is also called **size** of $T.$ 
 
 The size of $T$ is defined as the larges probability of rejecting $H_0$ over all possible parameter values $\theta\in\Theta_0$ under $H_0,$
+$$
 \begin{align*}
 \text{Size}
 =& \sup_{\theta\in\Theta_0} P(T \in \mathcal{R}).
 \end{align*}
+$$
 
 Since we want to be sure that we correctly reject $H_0,$ we want test statistics for which we can control the their size from above by some chosen level; e.g. 
 
@@ -486,14 +953,36 @@ Since we want to be sure that we correctly reject $H_0,$ we want test statistics
 One minus the probability of a type-II-error is called **power** of $T.$ 
 
 The power of $T$ is defined as 
+$$
 \begin{align*}
 \text{Power}=&1-P(\text{type-II-error})\\[2ex]
 =&P(T\in \mathcal{R} | \theta\in \Theta_1)
 \end{align*}
+$$
 Since we want to detect violations of $H_0,$ we want test statistics with a large power.
 :::
 
-### Significance Level or Nominal Size
+
+
+::: {.callout-caution}
+Not being able to reject $H_0,$ does not mean a confirmation of $H_0.$ 
+
+A possible violation of the null hypothesis may only be too small to stand out from the estimation errors; i.e. we may do a type-II-error. However, we do not control the probability of type-II-errors---we only control the probability of type-I-errors.
+
+Therefore, if you were not able to reject $H_0,$ **never ever** state something like: "I conclude $H_0$ is true."
+
+::: {.callout-tip icon="false" title=""}
+For the special case of a "no-effect" null hypothesis 
+$$
+H_0:\beta_k=0,
+$$ 
+there's a famous sentence which goes back to @Altman_Bland_1995 :</br> 
+<center>
+"Absence of evidence is not evidence of absence." 
+</center>
+:::
+::: 
+
 
 Let $\alpha$ with $0<\alpha<1$ denote the **significance level** chosen by the statistician/econometrician. 
 
@@ -534,187 +1023,52 @@ Under Assumptions 1-4$^\ast,$ the $F$-test and the $t$-test are **exact** test s
 <!-- and a given alternative hypothesis, we can divide the range of all possible values of the test statistic (i.e., $\mathbb{R}$ since both $t\in\mathbb{R}$ and $F\in\mathbb{R}$) into a **rejection region** and a **non-rejection region** by using **critical values** derived from the distribution of the test statistic under the null hypothesis.  We can do this because the test statistics $t$ and $F$ have known distributions under the null hypothesis ($t\overset{H_0}{\sim}t_{n-K}$ and $F\overset{H_0}{\sim}F_{(q,n-K)}$).  -->
 
 
-
-
-### Rejection Regions of the $F$ and $t$-Test
-
-To decide whether we can reject $H_0$, we need to compare the observed value $T_{\text{obs}}$ with the distribution of $T$ under $H_0.$ This can be done using 
-
-* **rejection regions/critical values,** 
-* **$p$-values** (@sec-pValue) or  
-* **confidence intervals** (@sec-CIsmallsample)
-
-All of these options lead to equivalent test decisions. 
-
-The **rejection region** for a statistical test statistic $T$ is defined using **critical values** which are certain quantiles of the distribution of $T$ under $H_0.$  
-
-#### Rejection Regions of the $F$-Test 
-
-The $F$-test allows us to test
-$$
-\begin{align*}
-&H_0: R\beta = r^{(0)}\\[2ex]
-\text{versus}\quad 
-&H_1: R\beta\neq r^{(0)},
-\end{align*}
-$$
-where $\beta$ denotes the true (unknown) parameter vector and $r^{(0)}$ the null-hypothetical value specified by the statistician (often, e.g. $r^{(0)}$). 
+**Showing Exactness of the $F$-Test:**
 
 Under Assumptions 1-4$^\ast$ (see @sec-testmultp), we have that 
 $$
 F\overset{H_0}{\sim}F_{q,n-K}.
 $${#eq-FNullDistr}
 
-Let $0<\alpha<1$ denote the significance level and let $c_{1-\alpha}$ denote the $(1-\alpha)$ quantile of the $F$-distribution with $(q,n-K)$ degrees of freedom. 
-
-This quantile $c_{1-\alpha}$ is the **critical value** that defines the **rejection region**: 
-$$
-\mathcal{R}=\; ]c_{1-\alpha},\infty[
-$$
-<!-- , and 
-- non-rejection region, $]0,c_{1-\alpha}]$  -->
-
-* We can rejection $H_0$ if
-$$
-F_{obs}\in \mathcal{R}=\; ]c_{1-\alpha},\infty[
-$$
-* We cannot rejection $H_0$ if
-$$
-F_{obs}\not \in \mathcal{R}=\; ]c_{1-\alpha},\infty[
-$$
-
-
 @eq-FNullDistr allows us to show that the $F$-test is an exact test. 
 Since the null hypothesis is a **simple** hypothesis, we have that 
+$$
 \begin{align*}
 \text{Size}
 =&\sup_{\theta\in\Theta_0}P(T \in \mathcal{R})\\[2ex]
 =&P(F \in \mathcal{R} \;|\; R\beta = r^{(0)}).
 \end{align*}
+$$
 Thus,
+$$
 \begin{align*}
 \text{Size}
 =&P(F\in\mathcal{R}\;|\;R\beta = r^{(0)})\\[2ex]
 =&P\Big(F > c_{1-\alpha}\;|\;R\beta = r^{(0)}\Big)\\[2ex]
 =&1 - P\Big(F \leq c_{1-\alpha}\;|\;R\beta = r^{(0)}\Big)=\alpha,
 \end{align*}
-```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
-library("scales")
-curve(expr = df(x = x, df1 = 9, df2 = 120),
-      xlab = "", ylab = "", main = "",
-      lwd = 2, col = 1, xlim = c(0, 4),
-      ylim = c(0, 1), xaxs="i",yaxs="i")
-
-alpha <- 0.05
-q     <- qf(p = 1-alpha, df1 = 9, df2 = 120)
-xx    <- seq(0,q,len=25)
-yy    <- df(x = xx, df1 = 9, df2 = 120)
-
-polygon(x = c(xx,rev(xx)), y=c(yy, rep(0,length(yy))), border = NA, col = alpha("green", 0.25))
-q     <- qf(p = 1-alpha, df1 = 9, df2 = 120)
-xx    <- seq(q,4,len=25)
-yy    <- df(x = xx, df1 = 9, df2 = 120)
-
-polygon(x = c(xx,rev(xx)), y=c(yy, rep(0,length(yy))), border = NA, col = alpha("red", 0.25))
-
-lines(x=c(0,q-0.02),y=c(0,0), col="darkgreen", lwd=10)
-lines(x=c(q+0.02,4),y=c(0,0), col="red", lwd=10)
-
-legend("topright", pch=c(22,NA, 22, NA), lty=c(NA,1,NA,1), lwd=c(NA,4,NA,4), cex=1, 
-       col = c(alpha("green", 0.25),"darkgreen",alpha("red", 0.25),"red"), 
-       legend=c(expression(1-alpha==~"95% of"~F['9,120']),"Non-Rejection Region",
-                expression(alpha==~"5% of"~F['9,120']),"Rejection Region"), 
-       bty="n", pt.bg = c(alpha("green", 0.25),alpha("green", 0.25),alpha("red", 0.25),alpha("red", 0.25)))
-curve(expr = df(x = x, df1 = 9, df2 = 120), lwd = 2, col = 1, add=TRUE, from = 0, to = 4)
-lines(x=c(q,q), y=c(0,.6),lwd=2,lty=2)
-text(x = q, y = .65, labels = expression(c[1-alpha]==1.9588))
-```
-
-**The rejection region:** The rejection region describes a range of values of the test statistic $F$ which we rarely see if the null hypothesis is true (only in at most $\alpha \cdot 100\%$ cases). If the observed value of the test statistic, $F_{\text{obs}}$, falls in this region, we will reject the null  hypothesis and acknowledge a type-I-error rate of at most $\alpha$. 
-
-**The non-rejection region:** The non-rejection region describes a range of values of the test statistic $F$ which we expect to see (in $(1-\alpha) \cdot 100\%$ cases) if the null hypothesis is true. If the observed value of the test statistic, $F_{\text{obs}}$ falls in this region, we cannot reject the null hypothesis. 
-
-::: {.callout-caution}
-If we cannot reject $H_0,$ does not mean that we confirm $H_0.$ 
-
-A possible violation of the null hypothesis may only be too small to stand out from the estimation errors; i.e. we may do a type-II-error. However, we do not control the probability of type-II-errors---we only control the probability of type-I-errors.
-
-Therefore, if you were not able to reject $H_0,$ **never ever** state something like: "I conclude $H_0$ is true."
-
-::: {.callout-tip icon="false"}
-For the special case of a "no-effect" null hypothesis 
 $$
-H_0:\beta_k=0,
-$$ 
-there's a famous sentence which goes back to @Altman_Bland_1995 :</br> 
-<center>
-"Absence of evidence is not evidence of absence." 
-</center>
-:::
-::: 
-
-To find the critical value $c_{1-\alpha}$ we can use `R` as following: 
-```{r}
-alpha <- 0.05 # chosen significance level
-df1   <- 9    # numerator df
-df2   <- 120  # denominator df
-
-## Critical value:
-crit_value <- qf(p = 1-alpha, df1 = df1, df2 = df2)
-crit_value
-```
-Changing the significance level from $\alpha=0.05$ to $\alpha=0.01$ makes the critical value $c_{1-\alpha}$ larger and, therefore, the  rejection region smaller (smaller probability of type-I-errors).
-```{r}
-alpha <- 0.01 # chosen significance level
-## Critical value:
-crit_value <- qf(p = 1-alpha, df1 = df1, df2 = df2)
-crit_value
-```
 
 
-#### Rejection Regions of the Two-Sided $t$-Test
-
-The two-sided $t$-test allows us to test
-\begin{align*}
-& H_0: \beta_k=\beta_k^{(0)}\\
-\text{versus}\quad 
-& H_1: \beta_k\ne \beta_k^{(0)}
-\end{align*}
-where $\beta_k$ denotes the true (unknown) parameter value and $\beta_k^{(0)}$ the null hypothetical value specified by the statistician (e.g. $\beta_k^{(0)}=0$). 
+#### **Showing Exactness of the Two-Sided $t$-Test:** {-}
 
 Under Assumptions 1-4$^\ast$ (see @sec-testingsinglep), we have that 
 $$
 T\overset{H_0}{\sim}t_{n-K}.
 $${#eq-T2SNullDistr}
 
-Let $0<\alpha<1$ denote the significance level and let $c_{\alpha/2}$ and $c_{1-\alpha/2}$ denote the $\alpha/2$ and the $(1-\alpha/2)$ quantiles of the $t$-distribution with $(n-K)$ degrees of freedom. 
-
-These quantiles are the **critical values** that define the **rejection region** of the two-sided $t$-test: 
-$$
-\mathcal{R}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
-$$
-
-* We can reject $H_0$ if
-\begin{align*}
-T_{obs} 
-& \in \mathcal{R}%\\[2ex]
-%& \in \;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
-\end{align*}
-* We cannot reject $H_0$ if
-\begin{align*}
-T_{obs} 
-&\not \in \mathcal{R}%\\[2ex]
-%&\not \in \;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
-\end{align*}
 
 @eq-T2SNullDistr allows us to show that the $t$-test is an exact test. 
 Since the two-sided null hypothesis is a **simple hypothesis**, we have that 
+$$
 \begin{align*}
 \text{Size}
 =&\sup_{\theta\in\Theta_0}P(T \in \mathcal{R})\\[2ex]
 =&P(T \in \mathcal{R} \;|\; \beta_k = \beta_k^{(0)}).
 \end{align*}
+$$
 Thus, 
+$$
 \begin{align*}
 \text{Size}
 =&P(T \in \mathcal{R} \;|\; \beta_k = \beta_k^{(0)})\\[2ex]
@@ -723,81 +1077,26 @@ Thus,
   P\Big(T>c_{1-\alpha/2} \;\Big|\; \beta_k = \beta_k^{(0)}\Big)\\[2ex]
 &=\frac{\alpha}{2}+\frac{\alpha}{2}=\alpha.
 \end{align*}
+$$
 
 
-@fig-twoSided shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
 
-```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
-#| label: fig-twoSided
-#| fig-cap: $t$-distribution with $n-K=12$ degrees of freedom and critical values $c_{\alpha/2}=-2.18$ and $c_{1-\alpha/2}=2.18$ for the significance level $\alpha=0.05$.
-library("scales")#| 
-curve(expr = dt(x = x, df = 12),
-      xlab = "", ylab = "", main = "",
-      lwd = 2, col = 1, xlim = c(-5, 5),
-      ylim = c(0, .6), xaxs="i",yaxs="i")
+#### **Showing Exactness of the One-Sided $t$-Test:** {-}
 
-alpha <- 0.05/2
-q      <- qt(p = 1-alpha, df=12)
-xx1    <- seq(-5,-q,len=25)
-yy1    <- dt(x = xx1, df = 12)
-xx2    <- seq(q,5,len=25)
-yy2    <- dt(x = xx2, df = 12)
-xx3    <- seq(-q,q,len=25)
-yy3    <- dt(x = xx3, df = 12)
-
-polygon(x = c(xx1,rev(xx1)), y=c(yy1, rep(0,length(yy1))), border = NA, col = alpha("red", 0.25))
-
-polygon(x = c(xx2,rev(xx2)), y=c(yy2, rep(0,length(yy2))), border = NA, col = alpha("red", 0.25))
-
-polygon(x = c(xx3,rev(xx3)), y=c(yy3, rep(0,length(yy3))), border = NA, col = alpha("green", 0.25))
-
-legend("topright", pch=c(22,22), lty=c(NA,NA), lwd=c(NA,NA), cex=1, 
-       col = c(alpha("green", 0.25),alpha("red", 0.25)), 
-       legend=c(expression("95% of"~t['12']),
-                expression("5% of"~t['12'])), 
-       bty="n", pt.bg = c(alpha("green", 0.25),alpha("red", 0.25)))
-curve(expr = dt(x = x, df= 12), lwd = 2, col = 1, add=TRUE)
-lines(x=c(q,q), y=c(0,.35),lwd=2,lty=2)
-lines(x=c(-q,-q), y=c(0,.35),lwd=2,lty=2)
-text(x =  q, y = .45, labels = expression(c[1-alpha/2]==2.18))
-text(x = -q, y = .45, labels = expression(c[alpha/2]==-2.18))
-```
-
-
-To find the $c_{\alpha/2}$ and $c_{1-\alpha/2}$ critical values we can use `R` as following:
-```{r}
-alpha <- 0.05 # chosen signficance level 
-df    <- 12   # degrees of freedom 
-
-## Two-sided critical value (= (1-alpha/2) quantile):
-c_twoSided <- qt(p = 1-alpha/2, df = df)
-
-## lower critical value
--c_twoSided
-## upper critical value
-c_twoSided
-```
-
-#### Rejection Regions of the One-Sided $t$-Test 
-
-Possible one-sided hypothesis:
+Consider, without loss of generality, the following right-sided, one-sided hypothesis:
+$$
 \begin{align*}
 &H_0: \beta_k \leq \beta_k^{(0)}\\
 \text{versus}\quad 
 & H_1: \beta_k > \beta_k^{(0)}
 \end{align*}
-
-This is now slightly more involved since the null hypothesis is a **compound hypothesis**: 
 $$
-H_0: \beta_k \in \;\big]-\infty,\beta_k^{(0)}\big]
-$$
+(This without loss of generality, since effectively the same arguments apply to the case of the left-sided version.)
 
-<!-- To handle this issue, it is useful to state the **compound null hypothesis** as a family of *infinitely many* specific null hypotheses:
-\begin{align*}
-&H_0: \beta_k =\tilde\beta_k^{(0)}\quad\text{with}\quad \tilde\beta_k^{(0)}\in ]-\infty,\beta_k^{(0)}]\\
-\text{versus}\quad 
-& H_1: \beta_k > \beta_k^{(0)}
-\end{align*} -->
+The case of a one-sided hypothesis is slightly more involved since the null hypothesis is a **compound hypothesis**: 
+$$
+H_0: \beta_k \in \;\big]-\infty,\beta_k^{(0)}\big].
+$$
 
 Of course, under the scenario that $H_0$ is true, **only one** of the infinitely many null hypotheses **is actually true** and all other null hypotheses are wrong. 
 
@@ -805,15 +1104,18 @@ Of course, under the scenario that $H_0$ is true, **only one** of the infinitely
 The idea of a **compound null hypothesis** $H_0:\theta\in\Theta_0$ is to collect all hypotheses which we do not care to detect by the statistical test. This way, the set of alternative hypotheses $H_1:\theta\in\Theta_1$ becomes smaller which leads to more powerful tests.  
 ::: 
 
-To conduct the $t$-test we need to take one null hypothetical value 
+To conduct the $t$-test we need to take **one** null hypothetical value 
 $$
 \tilde\beta_k^{(0)}\in ]-\infty,\beta_k^{(0)}]
 $$ 
 which leads to a $\tilde\beta_k^{(0)}$ specific $t$-test
+$$
 \begin{align*}
 T(\tilde\beta_k^{(0)}) := 
 \frac{\hat\beta_k - \tilde\beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)} 
 \end{align*}
+$$
+
 
 Under Assumptions 1-4$^\ast,$ we have that 
 $$
@@ -841,7 +1143,7 @@ Thus, when setting
 $$
 \tilde\beta_k^{(0)} = \beta_k^{(0)},
 $$ 
-for conducting the $t$-test, we know, under $H_0,$ that 
+for conducting the $t$-test (as presented in @sec-TDecRS), we know that, under $H_0,$  
 $$
 \begin{align*}
 T(\beta_k^{(0)})
@@ -849,9 +1151,9 @@ T(\beta_k^{(0)})
 \frac{\hat\beta_k - \beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}\\[2ex]
 &=
 \underbrace{\frac{\hat\beta_k - \beta_k}{\widehat{SE}(\hat\beta_{k}|X)}}_{\sim t_{(n-K)}} + 
-\underbrace{\frac{\beta_k - \beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}}_{{\color{darkgreen}\leq 0}}\\[2ex]
+\underbrace{\frac{\beta_k - \beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}}_{{\color{red}{\leq 0}}}\\[2ex]
 &\leq 
-\frac{\hat\beta_k - \beta_k}{\widehat{SE}(\hat\beta_{k}|X)} \sim t_{(n-K)},
+\frac{\hat\beta_k - \beta_k}{\widehat{SE}(\hat\beta_{k}|X)} \overset{H_0}{\sim} t_{(n-K)},
 \end{align*}
 $${#eq-NullDistrOneSidedIneq}
 where the inequality holds with probability one (i.e. for any possible realization). 
@@ -869,10 +1171,12 @@ Let $F_{T(\beta_k^{(0)})}$ and $F_{t_{(n-K)}}$ denote cumulative distribution fu
 The inequality in @eq-NullDistrOneSidedIneq implies that:
 
 1. If $\beta_k = \beta_k^{(0)},$ the distribution of $T(\beta_k^{(0)})$ equals the $t$-distribution with $(n-K)$ degrees of freedom, i.e.
+$$
 \begin{align*}
 T(\beta_k^{(0)}) &\sim t_{(n-K)}\\[2ex] 
 \Leftrightarrow \; F_{T(\beta_k^{(0)})} (x) &= F_{t_{(n-K)}}(x) \quad\text{for all}\quad x\in\mathbb{R} 
 \end{align*}
+$$
 2. If $\beta_k < \beta_k^{(0)},$ the distribution of $T(\beta_k^{(0)})$ is **strictly dominated** by the $t$-distribution with $(n-K)$ degrees of freedom, i.e.
 $$
 F_{T(\beta_k^{(0)})} (x) > F_{t_{(n-K)}}(x) \quad\text{for all}\quad x\in\mathbb{R}. 
@@ -905,151 +1209,88 @@ $$
 :::
 
 
+Equivalent arguments, can be applied for to the one-sided $t$-test for the left-sided version of the $t$-test.
+
+
+
+<!-- 
+### Rejection Regions of the $F$- and $t$-Test
+
+To decide whether we can reject $H_0$, we need to compare the observed value $T_{\text{obs}}$ with the distribution of $T$ under $H_0.$ This can be done using 
+
+* **rejection regions/critical values,** 
+* **$p$-values** (@sec-pValue) or  
+* **confidence intervals** (@sec-CIsmallsample)
+
+All of these options lead to equivalent test decisions. 
+
+The **rejection region** for a statistical test statistic $T$ is defined using **critical values** which are certain quantiles of the distribution of $T$ under $H_0.$  
+
+#### Rejection Regions of the $F$-Test 
+
+The $F$-test allows us to test
+$$
+\begin{align*}
+&H_0: R\beta = r^{(0)}\\[2ex]
+\text{versus}\quad 
+&H_1: R\beta\neq r^{(0)},
+\end{align*}
+$$
+where $\beta$ denotes the true (unknown) parameter vector and $r^{(0)}$ the null-hypothetical value specified by the statistician (often, e.g. $r^{(0)}$).  
+-->
+
+<!-- 
+Let $0<\alpha<1$ denote the significance level and let $c_{1-\alpha}$ denote the $(1-\alpha)$ quantile of the $F$-distribution with $(q,n-K)$ degrees of freedom. 
+
+This quantile $c_{1-\alpha}$ is the **critical value** that defines the **rejection region**: 
+$$
+\mathcal{R}=\; ]c_{1-\alpha},\infty[
+$$
+<!-- , and 
+- non-rejection region, $]0,c_{1-\alpha}]$  
+-->
+
+<!-- * We can rejection $H_0$ if
+$$
+F_{obs}\in \mathcal{R}=\; ]c_{1-\alpha},\infty[
+$$
+* We cannot rejection $H_0$ if
+$$
+F_{obs}\not \in \mathcal{R}=\; ]c_{1-\alpha},\infty[
+$$ --> 
+
+
+
+
+
+
+
+<!-- To handle this issue, it is useful to state the **compound null hypothesis** as a family of *infinitely many* specific null hypotheses:
+\begin{align*}
+&H_0: \beta_k =\tilde\beta_k^{(0)}\quad\text{with}\quad \tilde\beta_k^{(0)}\in ]-\infty,\beta_k^{(0)}]\\
+\text{versus}\quad 
+& H_1: \beta_k > \beta_k^{(0)}
+\end{align*} -->
+
+
+
+
+
+<!-- 
 Thus, for testing 
+$$
 \begin{align*}
 &H_0: \beta_k \leq \beta_k^{(0)}\\
 \text{versus}\quad 
 & H_1: \beta_k >    \beta_k^{(0)}\\
 \end{align*}
-the rejection region is
-$$
-\mathcal{R}=\;]c_{1-\alpha}, \infty[
-$$
+$$ -->
 
 
-* We can reject $H_0$ if
-\begin{align*}
-T_{obs} 
-& \in \mathcal{R} = \;]c_{1-\alpha}, \infty[
-\end{align*}
-* We cannot reject $H_0$ if
-\begin{align*}
-T_{obs} 
-&\not \in \mathcal{R} = \;]c_{1-\alpha}, \infty[
-\end{align*}
-
-@fig-oneSidedRight shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
-
-```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
-#| label: fig-oneSidedRight
-#| fig-cap: $t$-distribution with $n-K=12$ degrees of freedom and critical value $c_{1-\alpha}=1.78$ for the significance level $\alpha=0.05$.
-library("scales")
-alpha <- 0.05
-q      <- qt(p = 1-alpha, df=12)
-
-xx1    <- seq(-5,-q,len=25)
-yy1    <- dt(x = xx1, df = 12)
-xx2    <- seq(-q,5,len=25)
-yy2    <- dt(x = xx2, df = 12)
-##
-xx3    <- seq(q,5,len=25)
-yy3    <- dt(x = xx3, df = 12)
-xx4    <- seq(-5,q,len=25)
-yy4    <- dt(x = xx4, df = 12)
-
-par(mfrow=c(1,1))
-curve(expr = dt(x = x, df = 12),
-      xlab = "", ylab = "", main = "",
-      lwd = 2, col = 1, xlim = c(-5, 5),
-      ylim = c(0, .6), xaxs="i",yaxs="i")
-polygon(x = c(xx3,rev(xx3)), y=c(yy3, rep(0,length(yy3))), border = NA, col = alpha("red", 0.25))
-polygon(x = c(xx4,rev(xx4)), y=c(yy4, rep(0,length(yy4))), border = NA, col = alpha("green", 0.25))
-lines(x=c(q,q), y=c(0,.35),lwd=2,lty=2)
-text(x =  q, y = .45, labels = expression(c[1-alpha]==1.78))
-legend("topright", pch=c(22,22), lty=c(NA,NA), lwd=c(NA,NA), cex=1, 
-       col = c(alpha("green", 0.25),alpha("red", 0.25)), 
-       legend=c(expression("95% of"~t['12']),
-                expression("5% of"~t['12'])), 
-       bty="n", pt.bg = c(alpha("green", 0.25),alpha("red", 0.25)))
-par(mfrow=c(1,1))
-```
-
-To find the $c_{1-\alpha}$ critical value we can use `R` as following:
-```{r}
-alpha <- 0.05 # chosen significance level 
-df    <- 12   # degrees of freedom 
-
-## One-sided critical value (1-alpha) quantile:
-c_oneSided <- qt(p = 1-alpha, df = df)
-c_oneSided
-```
 
 
-By equivalent arguments, we can also do a one-sided $t$-test for the "other side." 
 
-For testing 
-\begin{align*}
-&H_0:  \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad 
-&H_1:  \beta_k <  \beta_k^{(0)}\\
-\end{align*}
-the rejection region is 
-$$
-\mathcal{R}=\;]-\infty,c_{\alpha}[
-$$
-
-
-* We can reject $H_0$ if
-\begin{align*}
-T_{obs} 
-& \in \mathcal{R} = \;]-\infty,c_{\alpha}[
-\end{align*}
-* We cannot reject $H_0$ if
-\begin{align*}
-T_{obs} 
-&\not \in \mathcal{R} = \;]-\infty,c_{\alpha}[
-\end{align*}
-
-
-@fig-oneSidedLeft shows an example of the rejection region for the case of a significance level $\alpha=0.05$ and $n-K=12$ degrees of freedom. 
-
-```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
-#| label: fig-oneSidedLeft
-#| fig-cap: $t$-distribution with $n-K=12$ degrees of freedom and critical value $c_{\alpha}=-1.78$ for the significance level $\alpha=0.05$.
-
-library("scales")
-alpha <- 0.05
-q      <- qt(p = 1-alpha, df=12)
-
-xx1    <- seq(-5,-q,len=25)
-yy1    <- dt(x = xx1, df = 12)
-xx2    <- seq(-q,5,len=25)
-yy2    <- dt(x = xx2, df = 12)
-##
-xx3    <- seq(q,5,len=25)
-yy3    <- dt(x = xx3, df = 12)
-xx4    <- seq(-5,q,len=25)
-yy4    <- dt(x = xx4, df = 12)
-
-par(mfrow=c(1,1))
-curve(expr = dt(x = x, df = 12),
-      xlab = "", ylab = "", main = "",
-      lwd = 2, col = 1, xlim = c(-5, 5),
-      ylim = c(0, .6), xaxs="i",yaxs="i")
-polygon(x = c(xx1,rev(xx1)), y=c(yy1, rep(0,length(yy1))), border = NA, col = alpha("red", 0.25))
-polygon(x = c(xx2,rev(xx2)), y=c(yy2, rep(0,length(yy2))), border = NA, col = alpha("green", 0.25))
-lines(x=c(-q,-q), y=c(0,.35),lwd=2,lty=2)
-text(x = -q, y = .45, labels = expression(c[alpha]==-1.78))
-legend("topright", pch=c(22,22), lty=c(NA,NA), lwd=c(NA,NA), cex=1, 
-       col = c(alpha("green", 0.25),alpha("red", 0.25)), 
-       legend=c(expression("95% of"~t['12']),
-                expression("5% of"~t['12'])), 
-       bty="n", pt.bg = c(alpha("green", 0.25),alpha("red", 0.25)))
-par(mfrow=c(1,1))
-```
-
-
-To find the $c_{\alpha}$ critical value we can use `R` as following:
-```{r}
-alpha <- 0.05 # chosen significance level 
-df    <- 12   # degrees of freedom 
-
-## One-sided critical value (alpha) quantile:
-c_oneSided <- qt(p = alpha, df = df)
-c_oneSided
-```
-
-### Power 
+### Example: Power of the One-Sided $t$-Test
 
 <!-- A type-II-error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a type-II-error equals one minus the probability of correctly rejecting the null hypothesis ("Power").  -->
 
@@ -1069,6 +1310,7 @@ Ideally, we would have some sense of the costs of making each of these errors, a
 -->
 
 Since we want to detect violations of the null-hypothesis, we want that our test has a large power
+$$
 \begin{align*}
 \text{Power} 
 & = 1 - P(\text{type-II-error})\\[2ex]
@@ -1076,17 +1318,19 @@ Since we want to detect violations of the null-hypothesis, we want that our test
 & = P(\text{Reject $H_0$ given $H_1$ is true})\\[2ex]
 & = P(\text{Detect a true violation of the null})
 \end{align*}
-
+$$
 
 Unfortunately, computing the power of a statistical test is usually impossible, since this requires knowing the distribution of the test statistic under the alternative hypothesis $H_1.$ The distribution of a test statistic under $H_1$ can only be derived under quite restrictive setups. 
 
 In the following, we consider such a restrictive setup for the $t$-test statistic. 
 
 Let's consider the one-sided hypothesis
+$$
 \begin{align*}
 &H_0: \beta_k\leq \beta_{k}^{(0)}\\
 &H_1: \beta_k > \beta_{k}^{(0)}
 \end{align*}
+$$
 
 * let $X$ be deterministic such that $T|X \overset{d}{=}T$ and 
 * let the true standard error of $\hat\beta_k$ be  
@@ -1108,35 +1352,42 @@ where the $\texttt{constant}$ may depend on $X,$ but not on $n.$
 Under this setup and under Assumptions 1-4^$\ast,$ the $t$-test statistic is **normally distributed**. 
 
 If $H_0$ is true with $\beta_k=\beta_k^{(0)},$ then
+$$
 \begin{align*}
 T
 &=\frac{\hat\beta_k-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
 &=\frac{\sqrt{n}(\hat\beta_k-\beta_k)}{4.5} \sim \mathcal{N}(0,1).
 \end{align*}
+$$
 
 **Note:** It suffices to look at this specific null hypothesis $\beta_k=\beta_k^{(0)},$ since the distribution of $T$ is dominated by $\mathcal{N}(0,1)$ for all other null hypotheses $\beta_k<\beta_k^{(0)};$ see our discussions above.
 
 If $H_1: \beta_k-\beta_k^{(0)}>0$ is true, then 
+$$
 \begin{align*}
 T&=\frac{\hat\beta_k-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}
 =\frac{\hat\beta_k\overbrace{-\beta_k+\beta_k}^{=0}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
 &=\underbrace{\frac{\sqrt{n}(\hat\beta_k-\beta_k)}{4.5}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}_{=\text{mean-shift}}\\[2ex] 
 &\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right)
 \end{align*}
+$$
 
-Power: 
+Power:
+$$ 
 \begin{align*}
 \text{Power} 
 & = P(\text{Reject $H_0$ given $H_1$ is true})\\[2ex]
 %& = P(T \in \left]z_{1-\alpha},\infty\right[ \;\;|\; H_1\text{ is true})\\[2ex]
 & = P(T > z_{1-\alpha}\;|\; H_1\text{ is true}),
 \end{align*}
+$$
 where $z_{1-\alpha}$ denotes the $(1-\alpha)$ quantile of the standard normal distribution $\mathcal{N}(0,1),$ and where 
 $$
 T\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).
 $$
 
 This allows us to compute the power as following:
+$$
 \begin{align*}
 \text{Power} 
 & = P(T > z_{1-\alpha}\;|\; H_1\text{ is true}),
@@ -1146,6 +1397,7 @@ This allows us to compute the power as following:
 &=1-P\left(Z \leq z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right)\\[2ex]
 &=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right),
 \end{align*}
+$$
 where $\Phi$ denotes the cumulative distribution function of the standard normal distribution $\mathcal{N}(0,1).$
  
 
@@ -1156,12 +1408,14 @@ where $\Phi$ denotes the cumulative distribution function of the standard normal
 * $\beta_k - \beta_k^{(0)}=3$
 
 such that 
+$$
 \begin{align*}
 \text{Power} 
 &=1-\Phi\Bigg(z_{1-\alpha} - \overbrace{\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}^{=\frac{3\cdot 3}{4.5} = 2}\Bigg)\\[2ex]
 &=1-\Phi\left(1.64  - 2 \right)\\[2ex]
 &=1-0.359=0.641
 \end{align*}
+$$
 That is, we expect to detect the  violation of the null hypothesis $(\beta_k - \beta_k^{(0)}=3)$ in $64\%$ of resamplings from the random sample (data generating process). 
 
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
@@ -1252,141 +1506,15 @@ Indeed, for all reasonable test statistics we have that:
 
 
 
-### $p$-Value {#sec-pValue}
-
-#### $F$-Test {-}
-
-The $F$-test allows us to test
-$$
-\begin{align*}
-&H_0: R\beta = r\\[2ex]
-\text{versus}\quad 
-&H_1: R\beta\neq r,
-\end{align*}
-$$
-where $\beta$ denotes the true (unknown) parameter vector and $r^{(0)}$ the null-hypothetical value specified by the statistician (often, e.g. $r^{(0)}=0$). 
-
-We know that
-$$
-F\overset{H_0}{\sim}F_{q,n-K}.
-$$
-
-The $p$-value of the $F$-test is the probability of seeing realizations of $F$ that are equal to or larger than the observed value $F_{\text{obs}}$ given that the null hypothesis is true
-$$
-p_{\text{obs}}=P(F\geq F_{\text{obs}}\;|\;H_0 \text{ is true})
-$$
-
-* We reject the null hypothesis $H_0$ if
-$$
-p_{\text{obs}} < \alpha
-$$
-
-* We cannot reject the null hypothesis $H_0$ if
-$$
-p_{\text{obs}} \geq \alpha
-$$
+### Interpreting the $p$-Value {#sec-pValue}
 
 
-#### The One-Sided $t$-Test {-}
-
-Possible one-sided hypotheses:
-
-\begin{align*}
-&H_0: \beta_k \leq \beta_k^{(0)}\\
-\text{versus}\quad & H_1:\beta_k >    \beta_k^{(0)}\\
-\end{align*}
-
-or
-
-\begin{align*}
-&H_0: \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad & H_1: \beta_k <  \beta_k^{(0)}\\
-\end{align*}
-
-<!-- In case of a one-sided $t$-test, we will reject the null if $T_{\text{obs}}$ is sufficiently "far away" from zero in the relevant direction of $H_1$.  -->
-
-We know that
+The $p$-value of a test-statistic $T$ is defined as the probability of observing realizations of $T$ that are equal to or larger than the observed value $T_{\text{obs}}$ **given that the null hypothesis is true**
 $$
-T\overset{H_0}{\sim}t_{n-K}.
+p_{\text{obs}}=P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true})
 $$
 
-
-The $p$-value of the one-sided $t$-test for testing 
-\begin{align*}
-&H_0: \beta_k \leq \beta_k^{(0)}\\
-\text{versus}\quad & H_1: \beta_k >    \beta_k^{(0)}\\
-\end{align*}
-is the probability of seeing realizations of $T$ that are equal to or larger than the observed value $T_{\text{obs}}$ given that the null hypothesis is true
-$$
-p_{\text{obs}}=P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true}).
-$$
-* We reject the null hypothesis $H_0$ if
-$$
-p_{\text{obs}} < \alpha
-$$
-
-* We cannot reject the null hypothesis $H_0$ if
-$$
-p_{\text{obs}} \geq \alpha
-$$
-
-The $p$-value of the one-sided $t$-test for testing 
-\begin{align*}
-&H_0: \beta_k \geq \beta_k^{(0)}\\
-\text{versus}\quad & H_1: \beta_k <    \beta_k^{(0)}\\
-\end{align*}
-is the probability of seeing realizations of $T$ that are equal to or smaller than the observed value $T_{\text{obs}}$ given that the null hypothesis is true
-$$
-p_{\text{obs}}=P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}).
-$$
-
-
-* We reject the null hypothesis $H_0$ if
-$$
-p_{\text{obs}} < \alpha
-$$
-
-* We cannot reject the null hypothesis $H_0$ if
-$$
-p_{\text{obs}} \geq \alpha
-$$
-
-#### The Two-Sided $t$-Test {-}
-
-The two-sided $t$-test allows us to test
-\begin{align*}
-& H_0: \beta_k=\beta_k^{(0)}\\
-\text{versus}\quad 
-& H_1: \beta_k\ne \beta_k^{(0)}
-\end{align*}
-where $\beta_k$ denotes the true (unknown) parameter value and $\beta_k^{(0)}$ the null hypothetical value specified by the statisticaian (e.g. $\beta_k^{(0)}=0$). 
-
-We know that
-$$
-T\overset{H_0}{\sim}t_{n-K}.
-$$
-
-
-The $p$-value of the two-sided $t$-test is the probability of seeing realizations of $T$ that are equal to or more extreme than the observed value $T_{\text{obs}}$ given that the null hypothesis is true
-\begin{align*}
-p_{\text{obs}}
-&=P(|T|\geq |T_{\text{obs}}|\;|\;H_0 \text{ is true})\\[2ex]
-&=2\cdot\min\{P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}), 
-            P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true})\}
-\end{align*}
-
-* We reject the null hypothesis $H_0$ if
-$$
-p_{\text{obs}} < \alpha
-$$
-
-* We cannot reject the null hypothesis $H_0$ if
-$$
-p_{\text{obs}} \geq \alpha
-$$
-
-
-::: {.callout-note}
+::: {.callout-tip}
 # Marginal Significance Value
 The $p$-value equals the significance level $\alpha$ for which we just fail to reject the null. Therefore, the $p$-value is sometimes also called "marginal significance value". 
 :::
@@ -1408,6 +1536,18 @@ The $p$-value equals the significance level $\alpha$ for which we just fail to r
 
 If the $p$-value is strictly smaller than the chosen significance level $\alpha$, we reject the null hypothesis.  -->
 
+Since the $p$-value is defined under the hypothetical scenario that the null-hypothesis is true, ... 
+
+<center>
+❗... the $p$-value **cannot** be the probability that the null-hypothesis is true. (A common misinterpretation of the $p$-value.)❗
+</center>
+
+</br>
+
+![](images/terminator.jpeg)
+
+
+
 ## Confidence Intervals {#sec-CIsmallsample}
 
 We define a two-sided $(1-\alpha)\cdot 100\%$ percent confidence interval for the *deterministic* (unknown) true $\beta_k$ as the **random interval** $\operatorname{CI}_{k,1-\alpha}$ for which 
@@ -1421,15 +1561,19 @@ $$
 \frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\sim t_{(n-K)}
 $${#eq-CIDistr}
 Therefore,
+$$
 \begin{align*}
 P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq c_{1-\alpha/2}\right)=1-\alpha,
 \end{align*}
+$$
 where $c_{1-\alpha/2}$ denotes the $(1-\alpha/2)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom. Next, we can do the following equivalent transformations
+$$
 \begin{align*}
 P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq c_{1-\alpha/2}\right)&=1-\alpha\\
 \Leftrightarrow P\left(\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\leq \beta_k\leq\hat\beta_k +c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right)&=1-\alpha\\
 \Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]}_{=:\operatorname{CI}_{k,1-\alpha}}\right)&=1-\alpha
 \end{align*}
+$$
 That is, the random interval 
 $$
 \operatorname{CI}_{k,1-\alpha}=\left[\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k + c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
