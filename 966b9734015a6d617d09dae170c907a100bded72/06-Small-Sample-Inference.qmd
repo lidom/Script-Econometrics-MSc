@@ -1,5 +1,17 @@
 # Small Sample Inference {#sec-ssinf}
 
+::: {.hidden}
+$$
+\require{color}
+%% Colorbox within equation-environments:
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  }%
+$$
+:::
+
 > The original version of this chapter was inspired by Chapter 1 of @Hayashi2000. The current version, however, deviates in many aspects from @Hayashi2000. 
 
 
@@ -7,9 +19,9 @@ In this chapter, we focus on inference with small sample sizes. It's is very har
 
 * $n/K<20$ means small samples and $n/K\geq 20$ large samples
 
-The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem---both requiring $n\to\infty.$ Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do **exact** inference. 
+The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem---both requiring $n\to\infty.$ Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do **exact inference**. 
 
-**Exact inference:**  By "exact inference" we mean correct inference for each sample size $n$. That is, no approximate results based on asymptotic $(n\to\infty)$ arguments will be used.  
+**Exact inference:**  By *exact inference* we mean correct inference for each sample size $n$. That is, no approximate results based on asymptotic $(n\to\infty)$ arguments will be used.  
 
 
 ## Normality of the OLS-Estimator
@@ -114,30 +126,34 @@ Under our assumptions (Assumptions 1 to 4$^\ast$), we have that
 $$
 \begin{align*}
 (R\hat\beta_n-r^{(0)})|X&\sim\mathcal{N}_q\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right)\\[2ex]
-\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&\sim\mathcal{N}_q\left(R\beta -r^{(0)},I_q\right)
+\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&\sim\underbrace{\mathcal{N}_q\left(R\beta -r^{(0)},I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
+\highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)}) &\sim\mathcal{N}_q\left(R\beta -r^{(0)},I_q\right),
 \end{align*}
 $$ 
+where the last implication follows, since the standardized normal distribution does not depend on $X.$
 
 Thus, under the scenario that the null-hypothesis is true, we have that
 $$
 \begin{align*}
 (R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,RVar(\hat\beta_n|X)R'\right)\\[2ex]
-\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)
+\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}{H_0}}}{\sim}\underbrace{\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
+\highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right),
 \end{align*}
 $$ 
+where the last implication follows, since the standardized normal distribution does not depend on $X.$
 
 That is: 
 
 * The realizations of 
 $$
-(R\hat\beta_n -r^{(0)})|X
+\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n -r^{(0)})
 $$ 
 will scatter around the *unknown* mean $(R\beta -r^{(0)})$ in a Gaussian fashion. 
 * If $H_0$ is correct (i.e., if $R\beta-r^{(0)}=0$), the realizations of 
 $$
-(R\hat\beta_n-r^{(0)})|X
+\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})
 $$ 
-will scatter around the $(q\times 1)$ vector $0.$  
+will scatter around the $(q\times 1)$ vector $0$ in a Gaussian fashion.  
 
 We use a test statistic to detect a systematic location shift away from the $(q\times 1)$ vector $0.$  
 
@@ -154,24 +170,30 @@ $$
 $$ 
 is a $q$-dimensional random variable makes it a little bothersome to use as a test-statistic.  Fortunately, we can turn $(R\hat\beta_n-r^{(0)})$ into a scalar-valued test statistic using the following quadratic form:
 $$
-W=\underbrace{(R\hat\beta_n -r^{(0)})'}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R']^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r^{(0)})}_{(q\times 1)}
-$$
+\begin{align*}
+W 
+& = \overbrace{\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)'\;\;}^{(1\times q)}\\
+&\;\;\;\;\;\;\underbrace{\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)}_{(q \times 1)}\\[2ex]
+& =\underbrace{(R\hat\beta_n -r^{(0)})'}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R']^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r^{(0)})}_{(q\times 1)}
+\end{align*}
+$${#eq-TestStatW}
 
 ::: {.callout-note}
 Note that the test statistic $W$ is simply measuring the distance (it's a weighted Euclidean distance) between the $(q\times 1)$ vectors $R\hat\beta_n$ and $r^{(0)}.$ 
 :::
 
-Under the null hypothesis (i.e., if $H_0$ is true), $W|X$ is a sum of $q$-many independent squared standard normal random variables. Therefore, under the null hypothesis, $W|X$ is chi-square distributed with $q$ degrees of freedom (see @sec-chisqdist), 
+Under the null hypothesis (i.e., if $H_0$ is true), $W$ is a sum of $q$-many independent, squared standard normal $\mathcal{N}(0,1)$ random variables. Therefore, under the null hypothesis, $W$ is chi-square distributed with $q$ degrees of freedom (see definition of the chi-square distribution in @sec-chisqdist), 
 $$
 \begin{align*}
-W|X&\overset{H_0}{\sim} \chi^2_{(q)}\\ 
-\Rightarrow \quad\quad W&\overset{H_0}{\sim} \chi^2_{(q)}
+W&\overset{H_0}{\sim} \chi^2_{(q)}
 \end{align*}
 $$
-Note that the distribution of $W|X$ does not depend on $X.$ I.e. $W|X$ follows a $\chi^2_{(q)}$-distribution no matter the realization of $X.$ Thus our test decisions do not depend on the values of $X.$ (Good news!)
+Note that the distribution of $W$ does not depend on $X.$ I.e. $W$ follows a $\chi^2_{(q)}$-distribution no matter the realization of $X.$ 
 
 
-Usually, we do not know $Var(\hat\beta_n|X),$ and thus we need to estimate this quantity from the data. Unfortunately, in the small sample case, we can only deal with homoskedastic error terms. For truly exact finite sample inference, we need a variance estimator for which we can derive the exact small sample distribution. Therefore, we require Assumption 4$^*$ of spherical errors (i.e., $Var(\varepsilon|X)=I_n\sigma^2$) which yields that $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$, and where $\sigma^2$ can be estimated by the unbiased ($UB$) variance estimator  
+Usually, however, we do not know $Var(\hat\beta_n|X)=\sigma^2 (X'X)^{-1},$ since we usually do not know the value of $\sigma^2.$ Thus, we need to substitute $\sigma^2$ by an estimator. 
+
+For exact finite sample inference, we need a variance estimator of $\sigma^2$ for which we can derive its exact small sample distribution. Therefore, we require Assumption 4$^*$ of spherical errors, i.e. $Var(\varepsilon|X)=\sigma^2I_n,$ which implies that $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$, and where $\sigma^2$ can be estimated by the unbiased ($UB$) variance estimator  
 $$
 s_{UB}^2=(n-K)^{-1}\sum_{i=1}^n\hat\varepsilon_i^2.
 $$  
@@ -180,20 +202,30 @@ $$
 \frac{(n-K)}{\sigma^{2}}s_{UB}^2\sim\chi^2_{(n-K)}.
 $${#eq-distsquared} 
 
-The $F$ test statistic uses then $s_{UB}^2$ as an estimator of $\sigma^2$
+Substituting the unknown 
+$$
+Var(\hat\beta_n|X)=\sigma^2 (X'X)^{-1}
+$$ 
+in @eq-TestStatW by its estimator 
+$$
+\widehat{Var}(\hat\beta_n|X)s_{UB}^2 (X'X)^{-1}
+$$ 
+leads to the $F$-test statistic
 $$
 F=(R\hat\beta_n -r^{(0)})'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r^{(0)})/q
 $$
-and takes into account the additional randomness (estimation errors) due to $s_{UB}^2$, which leads to the following exact null distribution of the $F$ test
+and takes into account the additional randomness (estimation errors) due to estimating $\sigma^2$ by $s_{UB}^2.$ 
+
+Under the null-hypothesis, one can show that
 $$
 F\overset{H_0}{\sim} F_{(q,n-K)},
 $${#eq-Ftest}
 where $F_{(q,n-K)}$ denotes the $F$-distribution with $q$ numerator and $n-K$ denominator degrees of freedom. 
 
 
-As in the case of $W$, the distribution of $F$ conditional on $X$ does not depend on $X$; i.e. $F|X\overset{H_0}{\sim}F_{(q,n-K)},$ but $F_{(q,n-K)}$ does not depend on $X,$ thus we can write $F\overset{H_0}{\sim}F_{(q,n-K)}.$
+As in the case of $W$, the distribution of $F$ does not depend on $X.$
 
-> The distributional statements in @eq-distsquared and @eq-Ftest are a little cumbersome to derive and we do not go into details here, but in case you're interested you can find some more details, for instance, in Chapter 1 of @Hayashi2000. 
+> Note: The distributional statements in @eq-distsquared and @eq-Ftest are a little cumbersome to derive and we do not go into details here, but in case you're interested you can find some more details, for instance, in Chapter 1 of @Hayashi2000. 
 
 By contrast to $W,$ $F$ is now a practically useful test statistic, and we can use the observed value $F_{\text{obs}}$ to measure the distance of our observed estimate $R\hat\beta_n$ from its null-hypothetical value $r^{(0)}.$  
 
@@ -336,9 +368,12 @@ $$
 
 * We cannot reject the null hypothesis $H_0$ if
 $$
-p_{\text{obs}} \geq \alpha
+p_{\text{obs}} \geq \alpha,
 $$
+where $0<\alpha<1$ denotes the chosen significance level. Typical choices are
 
+* $\alpha = 0.05$
+* $\alpha = 0.01$
 
 
 
@@ -434,19 +469,21 @@ legend("topright", bty="n",
 
 ### Test Decision using the Rejection Region  (One-Sided 1/2) 
 
-For the right-sided, one-sided hypothesis
+The right-sided version of the one-sided hypothesis is given by
 $$
 \begin{align*}
 &H_0: \beta_k \leq \beta_k^{(0)}\\
 \text{versus}\quad 
-& H_1: \beta_k > \beta_k^{(0)}
+& H_1: \beta_k > \beta_k^{(0)},
 \end{align*}
 $$
-the rejection region is
-$$
-\mathcal{R}=\;]c_{1-\alpha}, \infty[
-$$
+where $\beta_k$ denotes the true (unknown) parameter value and $\beta_k^{(0)}$ the null hypothetical value specified by the statistician (e.g. $\beta_k^{(0)}=0$). 
 
+The rejection region is
+$$
+\mathcal{R}=\;]c_{1-\alpha}, \infty[,
+$$
+where $0<\alpha<1$ denotes the significance level and $c_{1-\alpha}$ denotes the $(1-\alpha)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom. 
 
 * We can reject $H_0$ if
 $$
@@ -512,18 +549,21 @@ c_oneSided
 
 ### Test Decision using the Rejection Region  (One-Sided 2/2)
 
-For the left-sided, one-sided hypothesis
+The left-sided version of the one-sided hypothesis is given by
 $$
 \begin{align*}
 &H_0:  \beta_k \geq \beta_k^{(0)}\\
 \text{versus}\quad 
-&H_1:  \beta_k <  \beta_k^{(0)}\\
+&H_1:  \beta_k <  \beta_k^{(0)},
 \end{align*}
 $$
-the rejection region is 
+where $\beta_k$ denotes the true (unknown) parameter value and $\beta_k^{(0)}$ the null hypothetical value specified by the statistician (e.g. $\beta_k^{(0)}=0$). 
+
+The rejection region is 
 $$
-\mathcal{R}=\;]-\infty,c_{\alpha}[
+\mathcal{R}=\;]-\infty,c_{\alpha}[,
 $$
+where $0<\alpha<1$ denotes the significance level and $c_{1-\alpha}$ denotes the $(1-\alpha)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom. 
 
 
 * We can reject $H_0$ if
@@ -598,18 +638,18 @@ $$
 \begin{align*}
 & H_0: \beta_k=\beta_k^{(0)}\\
 \text{versus}\quad 
-& H_1: \beta_k\ne \beta_k^{(0)}
+& H_1: \beta_k\ne \beta_k^{(0)},
 \end{align*}
 $$
 where $\beta_k$ denotes the true (unknown) parameter value and $\beta_k^{(0)}$ the null hypothetical value specified by the statistician (e.g. $\beta_k^{(0)}=0$). 
 
 
-Let $0<\alpha<1$ denote the significance level and let $c_{\alpha/2}$ and $c_{1-\alpha/2}$ denote the $\alpha/2$ and the $(1-\alpha/2)$ quantiles of the $t$-distribution with $(n-K)$ degrees of freedom. 
+The rejection region is 
+$$
+\mathcal{R}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[,
+$$
+where $0<\alpha<1$ denotes the significance level and $c_{\alpha/2}$ and $c_{1-\alpha/2}$ denote the $\alpha/2$ and the $(1-\alpha/2)$ quantiles of the $t$-distribution with $(n-K)$ degrees of freedom. 
 
-These quantiles are the **critical values** that define the **rejection region** of the two-sided $t$-test: 
-$$
-\mathcal{R}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
-$$
 
 * We can reject $H_0$ if
 $$
@@ -712,8 +752,12 @@ $$
 
 * We cannot reject the null hypothesis $H_0$ if
 $$
-p_{\text{obs}} \geq \alpha
+p_{\text{obs}} \geq \alpha,
 $$
+where $0<\alpha<1$ denotes the chosen significance level. Typical choices are
+
+* $\alpha = 0.05$
+* $\alpha = 0.01$
 
 
 ### Test Decision using the $p$-Value (One-Sided 2/2) 
@@ -739,8 +783,12 @@ $$
 
 * We cannot reject the null hypothesis $H_0$ if
 $$
-p_{\text{obs}} \geq \alpha
+p_{\text{obs}} \geq \alpha,
 $$
+where $0<\alpha<1$ denotes the chosen significance level. Typical choices are
+
+* $\alpha = 0.05$
+* $\alpha = 0.01$
 
 
 
@@ -779,8 +827,12 @@ $$
 
 * We cannot reject the null hypothesis $H_0$ if
 $$
-p_{\text{obs}} \geq \alpha
+p_{\text{obs}} \geq \alpha,
 $$
+where $0<\alpha<1$ denotes the chosen significance level. Typical choices are
+
+* $\alpha = 0.05$
+* $\alpha = 0.01$
 
 
 

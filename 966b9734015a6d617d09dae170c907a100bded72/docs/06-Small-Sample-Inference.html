@@ -292,7 +292,18 @@ window.Quarto = {
   
 
 
-</header><blockquote class="blockquote">
+</header><div class="hidden">
+<p><span class="math display">\[
+\require{color}
+%% Colorbox within equation-environments:
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  }%
+\]</span></p>
+</div>
+<blockquote class="blockquote">
 <p>The original version of this chapter was inspired by Chapter 1 of <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>. The current version, however, deviates in many aspects from <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>.</p>
 </blockquote>
 <p>In this chapter, we focus on inference with small sample sizes. It’s is very hard to say when a sample size <span class="math inline">\(n\)</span> is small. A very rough rule of thumb could be, for instance, the following one:</p>
@@ -300,8 +311,8 @@ window.Quarto = {
 <li>
 <span class="math inline">\(n/K&lt;20\)</span> means small samples and <span class="math inline">\(n/K\geq 20\)</span> large samples</li>
 </ul>
-<p>The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem—both requiring <span class="math inline">\(n\to\infty.\)</span> Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do <strong>exact</strong> inference.</p>
-<p><strong>Exact inference:</strong> By “exact inference” we mean correct inference for each sample size <span class="math inline">\(n\)</span>. That is, no approximate results based on asymptotic <span class="math inline">\((n\to\infty)\)</span> arguments will be used.</p>
+<p>The core issue with small sample sizes is that we cannot do inference using the law of large numbers and the central limit theorem—both requiring <span class="math inline">\(n\to\infty.\)</span> Thus we need rather strict assumptions on the distribution of the error term, in order to do inference in finite samples. If these assumption are fulfilled, however, then we do <strong>exact inference</strong>.</p>
+<p><strong>Exact inference:</strong> By <em>exact inference</em> we mean correct inference for each sample size <span class="math inline">\(n\)</span>. That is, no approximate results based on asymptotic <span class="math inline">\((n\to\infty)\)</span> arguments will be used.</p>
 <section id="normality-of-the-ols-estimator" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="normality-of-the-ols-estimator">
 <span class="header-section-number">6.1</span> Normality of the OLS-Estimator</h2>
 <p><strong>Assumptions:</strong> In <a href="05-Multiple-Linear-Regression.html" class="quarto-xref"><span>Chapter 5</span></a>, we did not impose a complete distributional assumption on <span class="math inline">\(\varepsilon\)</span> (see Assumption 4). For instance, the i.i.d. normal case in Assumption 4 was only one possible <em>option</em>. However, to do inference in small samples, the normality Assumption on the error terms is not a mere option, but a <em>necessity</em>.</p>
@@ -386,24 +397,25 @@ Note
 <p>Under our assumptions (Assumptions 1 to 4<span class="math inline">\(^\ast\)</span>), we have that <span class="math display">\[
 \begin{align*}
 (R\hat\beta_n-r^{(0)})|X&amp;\sim\mathcal{N}_q\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right)\\[2ex]
-\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&amp;\sim\mathcal{N}_q\left(R\beta -r^{(0)},I_q\right)
+\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&amp;\sim\underbrace{\mathcal{N}_q\left(R\beta -r^{(0)},I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
+\highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)}) &amp;\sim\mathcal{N}_q\left(R\beta -r^{(0)},I_q\right),
 \end{align*}
-\]</span></p>
+\]</span> where the last implication follows, since the standardized normal distribution does not depend on <span class="math inline">\(X.\)</span></p>
 <p>Thus, under the scenario that the null-hypothesis is true, we have that <span class="math display">\[
 \begin{align*}
 (R\hat\beta_n-r^{(0)})|X&amp;\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,RVar(\hat\beta_n|X)R'\right)\\[2ex]
-\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&amp;\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)
+\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&amp;\overset{{\color{red}{H_0}}}{\sim}\underbrace{\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
+\highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})&amp;\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right),
 \end{align*}
-\]</span></p>
+\]</span> where the last implication follows, since the standardized normal distribution does not depend on <span class="math inline">\(X.\)</span></p>
 <p>That is:</p>
 <ul>
 <li>The realizations of <span class="math display">\[
-(R\hat\beta_n -r^{(0)})|X
+\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n -r^{(0)})
 \]</span> will scatter around the <em>unknown</em> mean <span class="math inline">\((R\beta -r^{(0)})\)</span> in a Gaussian fashion.</li>
 <li>If <span class="math inline">\(H_0\)</span> is correct (i.e., if <span class="math inline">\(R\beta-r^{(0)}=0\)</span>), the realizations of <span class="math display">\[
-(R\hat\beta_n-r^{(0)})|X
-\]</span> will scatter around the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0.\)</span>
-</li>
+\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})
+\]</span> will scatter around the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0\)</span> in a Gaussian fashion.</li>
 </ul>
 <p>We use a test statistic to detect a systematic location shift away from the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0.\)</span></p>
 <!-- * if the alternative hypothesis is correct (i.e., $(R\beta-r)=a\neq 0$), there will be a systematic location-shift in $(R\hat\beta_n-r)|X$ which we try to detect using statistical hypothesis testing.  -->
@@ -412,9 +424,14 @@ Note
 <span class="header-section-number">6.2.1</span> The Test Statistic and its Null Distribution</h3>
 <p>The fact that <span class="math display">\[
 (R\hat\beta_n-r^{(0)})\in\mathbb{R}^q
-\]</span> is a <span class="math inline">\(q\)</span>-dimensional random variable makes it a little bothersome to use as a test-statistic. Fortunately, we can turn <span class="math inline">\((R\hat\beta_n-r^{(0)})\)</span> into a scalar-valued test statistic using the following quadratic form: <span class="math display">\[
-W=\underbrace{(R\hat\beta_n -r^{(0)})'}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R']^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r^{(0)})}_{(q\times 1)}
-\]</span></p>
+\]</span> is a <span class="math inline">\(q\)</span>-dimensional random variable makes it a little bothersome to use as a test-statistic. Fortunately, we can turn <span class="math inline">\((R\hat\beta_n-r^{(0)})\)</span> into a scalar-valued test statistic using the following quadratic form: <span id="eq-TestStatW"><span class="math display">\[
+\begin{align*}
+W
+&amp; = \overbrace{\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)'\;\;}^{(1\times q)}\\
+&amp;\;\;\;\;\;\;\underbrace{\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)}_{(q \times 1)}\\[2ex]
+&amp; =\underbrace{(R\hat\beta_n -r^{(0)})'}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R']^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r^{(0)})}_{(q\times 1)}
+\end{align*}
+\qquad(6.2)\]</span></span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -428,26 +445,31 @@ Note
 <p>Note that the test statistic <span class="math inline">\(W\)</span> is simply measuring the distance (it’s a weighted Euclidean distance) between the <span class="math inline">\((q\times 1)\)</span> vectors <span class="math inline">\(R\hat\beta_n\)</span> and <span class="math inline">\(r^{(0)}.\)</span></p>
 </div>
 </div>
-<p>Under the null hypothesis (i.e., if <span class="math inline">\(H_0\)</span> is true), <span class="math inline">\(W|X\)</span> is a sum of <span class="math inline">\(q\)</span>-many independent squared standard normal random variables. Therefore, under the null hypothesis, <span class="math inline">\(W|X\)</span> is chi-square distributed with <span class="math inline">\(q\)</span> degrees of freedom (see <a href="02-Probability.html#sec-chisqdist" class="quarto-xref"><span>Section 2.2.10.3</span></a>), <span class="math display">\[
+<p>Under the null hypothesis (i.e., if <span class="math inline">\(H_0\)</span> is true), <span class="math inline">\(W\)</span> is a sum of <span class="math inline">\(q\)</span>-many independent, squared standard normal <span class="math inline">\(\mathcal{N}(0,1)\)</span> random variables. Therefore, under the null hypothesis, <span class="math inline">\(W\)</span> is chi-square distributed with <span class="math inline">\(q\)</span> degrees of freedom (see definition of the chi-square distribution in <a href="02-Probability.html#sec-chisqdist" class="quarto-xref"><span>Section 2.2.10.3</span></a>), <span class="math display">\[
 \begin{align*}
-W|X&amp;\overset{H_0}{\sim} \chi^2_{(q)}\\
-\Rightarrow \quad\quad W&amp;\overset{H_0}{\sim} \chi^2_{(q)}
+W&amp;\overset{H_0}{\sim} \chi^2_{(q)}
 \end{align*}
-\]</span> Note that the distribution of <span class="math inline">\(W|X\)</span> does not depend on <span class="math inline">\(X.\)</span> I.e. <span class="math inline">\(W|X\)</span> follows a <span class="math inline">\(\chi^2_{(q)}\)</span>-distribution no matter the realization of <span class="math inline">\(X.\)</span> Thus our test decisions do not depend on the values of <span class="math inline">\(X.\)</span> (Good news!)</p>
-<p>Usually, we do not know <span class="math inline">\(Var(\hat\beta_n|X),\)</span> and thus we need to estimate this quantity from the data. Unfortunately, in the small sample case, we can only deal with homoskedastic error terms. For truly exact finite sample inference, we need a variance estimator for which we can derive the exact small sample distribution. Therefore, we require Assumption 4<span class="math inline">\(^*\)</span> of spherical errors (i.e., <span class="math inline">\(Var(\varepsilon|X)=I_n\sigma^2\)</span>) which yields that <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}\)</span>, and where <span class="math inline">\(\sigma^2\)</span> can be estimated by the unbiased (<span class="math inline">\(UB\)</span>) variance estimator<br><span class="math display">\[
+\]</span> Note that the distribution of <span class="math inline">\(W\)</span> does not depend on <span class="math inline">\(X.\)</span> I.e. <span class="math inline">\(W\)</span> follows a <span class="math inline">\(\chi^2_{(q)}\)</span>-distribution no matter the realization of <span class="math inline">\(X.\)</span></p>
+<p>Usually, however, we do not know <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2 (X'X)^{-1},\)</span> since we usually do not know the value of <span class="math inline">\(\sigma^2.\)</span> Thus, we need to substitute <span class="math inline">\(\sigma^2\)</span> by an estimator.</p>
+<p>For exact finite sample inference, we need a variance estimator of <span class="math inline">\(\sigma^2\)</span> for which we can derive its exact small sample distribution. Therefore, we require Assumption 4<span class="math inline">\(^*\)</span> of spherical errors, i.e.&nbsp;<span class="math inline">\(Var(\varepsilon|X)=\sigma^2I_n,\)</span> which implies that <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}\)</span>, and where <span class="math inline">\(\sigma^2\)</span> can be estimated by the unbiased (<span class="math inline">\(UB\)</span>) variance estimator<br><span class="math display">\[
 s_{UB}^2=(n-K)^{-1}\sum_{i=1}^n\hat\varepsilon_i^2.
 \]</span><br>
 From the normality assumption in Assumption 4<span class="math inline">\(^*\)</span>, it follows then that <span id="eq-distsquared"><span class="math display">\[
 \frac{(n-K)}{\sigma^{2}}s_{UB}^2\sim\chi^2_{(n-K)}.
-\qquad(6.2)\]</span></span></p>
-<p>The <span class="math inline">\(F\)</span> test statistic uses then <span class="math inline">\(s_{UB}^2\)</span> as an estimator of <span class="math inline">\(\sigma^2\)</span> <span class="math display">\[
+\qquad(6.3)\]</span></span></p>
+<p>Substituting the unknown <span class="math display">\[
+Var(\hat\beta_n|X)=\sigma^2 (X'X)^{-1}
+\]</span> in <a href="#eq-TestStatW" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> by its estimator <span class="math display">\[
+\widehat{Var}(\hat\beta_n|X)s_{UB}^2 (X'X)^{-1}
+\]</span> leads to the <span class="math inline">\(F\)</span>-test statistic <span class="math display">\[
 F=(R\hat\beta_n -r^{(0)})'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r^{(0)})/q
-\]</span> and takes into account the additional randomness (estimation errors) due to <span class="math inline">\(s_{UB}^2\)</span>, which leads to the following exact null distribution of the <span class="math inline">\(F\)</span> test <span id="eq-Ftest"><span class="math display">\[
+\]</span> and takes into account the additional randomness (estimation errors) due to estimating <span class="math inline">\(\sigma^2\)</span> by <span class="math inline">\(s_{UB}^2.\)</span></p>
+<p>Under the null-hypothesis, one can show that <span id="eq-Ftest"><span class="math display">\[
 F\overset{H_0}{\sim} F_{(q,n-K)},
-\qquad(6.3)\]</span></span> where <span class="math inline">\(F_{(q,n-K)}\)</span> denotes the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\(q\)</span> numerator and <span class="math inline">\(n-K\)</span> denominator degrees of freedom.</p>
-<p>As in the case of <span class="math inline">\(W\)</span>, the distribution of <span class="math inline">\(F\)</span> conditional on <span class="math inline">\(X\)</span> does not depend on <span class="math inline">\(X\)</span>; i.e.&nbsp;<span class="math inline">\(F|X\overset{H_0}{\sim}F_{(q,n-K)},\)</span> but <span class="math inline">\(F_{(q,n-K)}\)</span> does not depend on <span class="math inline">\(X,\)</span> thus we can write <span class="math inline">\(F\overset{H_0}{\sim}F_{(q,n-K)}.\)</span></p>
+\qquad(6.4)\]</span></span> where <span class="math inline">\(F_{(q,n-K)}\)</span> denotes the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\(q\)</span> numerator and <span class="math inline">\(n-K\)</span> denominator degrees of freedom.</p>
+<p>As in the case of <span class="math inline">\(W\)</span>, the distribution of <span class="math inline">\(F\)</span> does not depend on <span class="math inline">\(X.\)</span></p>
 <blockquote class="blockquote">
-<p>The distributional statements in <a href="#eq-distsquared" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> and <a href="#eq-Ftest" class="quarto-xref">Equation&nbsp;<span>6.3</span></a> are a little cumbersome to derive and we do not go into details here, but in case you’re interested you can find some more details, for instance, in Chapter 1 of <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>.</p>
+<p>Note: The distributional statements in <a href="#eq-distsquared" class="quarto-xref">Equation&nbsp;<span>6.3</span></a> and <a href="#eq-Ftest" class="quarto-xref">Equation&nbsp;<span>6.4</span></a> are a little cumbersome to derive and we do not go into details here, but in case you’re interested you can find some more details, for instance, in Chapter 1 of <span class="citation" data-cites="Hayashi2000">Hayashi (<a href="#ref-Hayashi2000" role="doc-biblioref">2000</a>)</span>.</p>
 </blockquote>
 <p>By contrast to <span class="math inline">\(W,\)</span> <span class="math inline">\(F\)</span> is now a practically useful test statistic, and we can use the observed value <span class="math inline">\(F_{\text{obs}}\)</span> to measure the distance of our observed estimate <span class="math inline">\(R\hat\beta_n\)</span> from its null-hypothetical value <span class="math inline">\(r^{(0)}.\)</span></p>
 <p>Observed values, <span class="math inline">\(F_{\text{obs}}\)</span>, that are “unusually large” under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution <span class="math inline">\(F_{(q,n-K)}\)</span> of <span class="math inline">\(F\)</span> is used to judge what’s “unusually large” under the null hypothesis.</p>
@@ -523,8 +545,10 @@ p_{\text{obs}}=P(F\geq F_{\text{obs}}\;|\;H_0 \text{ is true})
 p_{\text{obs}} &lt; \alpha
 \]</span></p></li>
 <li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} \geq \alpha
-\]</span></p></li>
+p_{\text{obs}} \geq \alpha,
+\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the chosen significance level. Typical choices are</p></li>
+<li><p><span class="math inline">\(\alpha = 0.05\)</span></p></li>
+<li><p><span class="math inline">\(\alpha = 0.01\)</span></p></li>
 </ul></section></section><section id="sec-testingsinglep" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="sec-testingsinglep">
 <span class="header-section-number">6.3</span> <span class="math inline">\(t\)</span>-Tests: Hypothesis Tests about One Parameter</h2>
 <p>A hypothesis about only <strong>one parameter</strong> <span class="math display">\[
@@ -581,15 +605,16 @@ H_0:\beta_k=0
 </div>
 </section><section id="test-decision-using-the-rejection-region-one-sided-12" class="level3" data-number="6.3.2"><h3 data-number="6.3.2" class="anchored" data-anchor-id="test-decision-using-the-rejection-region-one-sided-12">
 <span class="header-section-number">6.3.2</span> Test Decision using the Rejection Region (One-Sided 1/2)</h3>
-<p>For the right-sided, one-sided hypothesis <span class="math display">\[
+<p>The right-sided version of the one-sided hypothesis is given by <span class="math display">\[
 \begin{align*}
 &amp;H_0: \beta_k \leq \beta_k^{(0)}\\
 \text{versus}\quad
-&amp; H_1: \beta_k &gt; \beta_k^{(0)}
+&amp; H_1: \beta_k &gt; \beta_k^{(0)},
 \end{align*}
-\]</span> the rejection region is <span class="math display">\[
-\mathcal{R}=\;]c_{1-\alpha}, \infty[
-\]</span></p>
+\]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statistician (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
+<p>The rejection region is <span class="math display">\[
+\mathcal{R}=\;]c_{1-\alpha}, \infty[,
+\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the significance level and <span class="math inline">\(c_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
 <ul>
 <li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
 \begin{align*}
@@ -633,15 +658,16 @@ Figure&nbsp;6.1: <span class="math inline">\(t\)</span>-distribution with <span 
 </div>
 </section><section id="test-decision-using-the-rejection-region-one-sided-22" class="level3" data-number="6.3.3"><h3 data-number="6.3.3" class="anchored" data-anchor-id="test-decision-using-the-rejection-region-one-sided-22">
 <span class="header-section-number">6.3.3</span> Test Decision using the Rejection Region (One-Sided 2/2)</h3>
-<p>For the left-sided, one-sided hypothesis <span class="math display">\[
+<p>The left-sided version of the one-sided hypothesis is given by <span class="math display">\[
 \begin{align*}
 &amp;H_0:  \beta_k \geq \beta_k^{(0)}\\
 \text{versus}\quad
-&amp;H_1:  \beta_k &lt;  \beta_k^{(0)}\\
+&amp;H_1:  \beta_k &lt;  \beta_k^{(0)},
 \end{align*}
-\]</span> the rejection region is <span class="math display">\[
-\mathcal{R}=\;]-\infty,c_{\alpha}[
-\]</span></p>
+\]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statistician (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
+<p>The rejection region is <span class="math display">\[
+\mathcal{R}=\;]-\infty,c_{\alpha}[,
+\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the significance level and <span class="math inline">\(c_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
 <ul>
 <li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
 \begin{align*}
@@ -689,13 +715,12 @@ Figure&nbsp;6.2: <span class="math inline">\(t\)</span>-distribution with <span 
 \begin{align*}
 &amp; H_0: \beta_k=\beta_k^{(0)}\\
 \text{versus}\quad
-&amp; H_1: \beta_k\ne \beta_k^{(0)}
+&amp; H_1: \beta_k\ne \beta_k^{(0)},
 \end{align*}
 \]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statistician (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
-<p>Let <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denote the significance level and let <span class="math inline">\(c_{\alpha/2}\)</span> and <span class="math inline">\(c_{1-\alpha/2}\)</span> denote the <span class="math inline">\(\alpha/2\)</span> and the <span class="math inline">\((1-\alpha/2)\)</span> quantiles of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
-<p>These quantiles are the <strong>critical values</strong> that define the <strong>rejection region</strong> of the two-sided <span class="math inline">\(t\)</span>-test: <span class="math display">\[
-\mathcal{R}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[
-\]</span></p>
+<p>The rejection region is <span class="math display">\[
+\mathcal{R}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[,
+\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the significance level and <span class="math inline">\(c_{\alpha/2}\)</span> and <span class="math inline">\(c_{1-\alpha/2}\)</span> denote the <span class="math inline">\(\alpha/2\)</span> and the <span class="math inline">\((1-\alpha/2)\)</span> quantiles of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
 <ul>
 <li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
 \begin{align*}
@@ -764,10 +789,11 @@ p_{\text{obs}}=P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true}).
 p_{\text{obs}} &lt; \alpha
 \]</span></p>
 <ul>
-<li>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} \geq \alpha
-\]</span>
-</li>
+<li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
+p_{\text{obs}} \geq \alpha,
+\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the chosen significance level. Typical choices are</p></li>
+<li><p><span class="math inline">\(\alpha = 0.05\)</span></p></li>
+<li><p><span class="math inline">\(\alpha = 0.01\)</span></p></li>
 </ul></section><section id="test-decision-using-the-p-value-one-sided-22" class="level3" data-number="6.3.6"><h3 data-number="6.3.6" class="anchored" data-anchor-id="test-decision-using-the-p-value-one-sided-22">
 <span class="header-section-number">6.3.6</span> Test Decision using the <span class="math inline">\(p\)</span>-Value (One-Sided 2/2)</h3>
 <p>Left-sided version of the one-sided hypothesis: <span class="math display">\[
@@ -784,8 +810,10 @@ p_{\text{obs}}=P(T\leq T_{\text{obs}}\;|\;H_0 \text{ is true}).
 p_{\text{obs}} &lt; \alpha
 \]</span></p></li>
 <li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} \geq \alpha
-\]</span></p></li>
+p_{\text{obs}} \geq \alpha,
+\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the chosen significance level. Typical choices are</p></li>
+<li><p><span class="math inline">\(\alpha = 0.05\)</span></p></li>
+<li><p><span class="math inline">\(\alpha = 0.01\)</span></p></li>
 </ul></section><section id="test-decision-using-the-p-value-two-sided" class="level3" data-number="6.3.7"><h3 data-number="6.3.7" class="anchored" data-anchor-id="test-decision-using-the-p-value-two-sided">
 <span class="header-section-number">6.3.7</span> Test Decision using the <span class="math inline">\(p\)</span>-Value (Two-Sided)</h3>
 <p>The two-sided <span class="math inline">\(t\)</span>-test allows us to test <span class="math display">\[
@@ -811,8 +839,10 @@ p_{\text{obs}}
 p_{\text{obs}} &lt; \alpha
 \]</span></p></li>
 <li><p>We cannot reject the null hypothesis <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-p_{\text{obs}} \geq \alpha
-\]</span></p></li>
+p_{\text{obs}} \geq \alpha,
+\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the chosen significance level. Typical choices are</p></li>
+<li><p><span class="math inline">\(\alpha = 0.05\)</span></p></li>
+<li><p><span class="math inline">\(\alpha = 0.01\)</span></p></li>
 </ul></section></section><section id="testtheory" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="testtheory">
 <span class="header-section-number">6.4</span> Testtheory</h2>
 <p>Every statistical test statistic is a function of the random sample, i.e. <span class="math display">\[
@@ -1067,8 +1097,8 @@ Tip
 <p><strong>Showing Exactness of the <span class="math inline">\(F\)</span>-Test:</strong></p>
 <p>Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> (see <a href="#sec-testmultp" class="quarto-xref"><span>Section 6.2</span></a>), we have that <span id="eq-FNullDistr"><span class="math display">\[
 F\overset{H_0}{\sim}F_{q,n-K}.
-\qquad(6.4)\]</span></span></p>
-<p><a href="#eq-FNullDistr" class="quarto-xref">Equation&nbsp;<span>6.4</span></a> allows us to show that the <span class="math inline">\(F\)</span>-test is an exact test. Since the null hypothesis is a <strong>simple</strong> hypothesis, we have that <span class="math display">\[
+\qquad(6.5)\]</span></span></p>
+<p><a href="#eq-FNullDistr" class="quarto-xref">Equation&nbsp;<span>6.5</span></a> allows us to show that the <span class="math inline">\(F\)</span>-test is an exact test. Since the null hypothesis is a <strong>simple</strong> hypothesis, we have that <span class="math display">\[
 \begin{align*}
 \text{Size}
 =&amp;\sup_{\theta\in\Theta_0}P(T \in \mathcal{R})\\[2ex]
@@ -1085,8 +1115,8 @@ F\overset{H_0}{\sim}F_{q,n-K}.
 <section id="showing-exactness-of-the-two-sided-t-test" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="showing-exactness-of-the-two-sided-t-test"><strong>Showing Exactness of the Two-Sided <span class="math inline">\(t\)</span>-Test:</strong></h4>
 <p>Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> (see <a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.3</span></a>), we have that <span id="eq-T2SNullDistr"><span class="math display">\[
 T\overset{H_0}{\sim}t_{n-K}.
-\qquad(6.5)\]</span></span></p>
-<p><a href="#eq-T2SNullDistr" class="quarto-xref">Equation&nbsp;<span>6.5</span></a> allows us to show that the <span class="math inline">\(t\)</span>-test is an exact test. Since the two-sided null hypothesis is a <strong>simple hypothesis</strong>, we have that <span class="math display">\[
+\qquad(6.6)\]</span></span></p>
+<p><a href="#eq-T2SNullDistr" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> allows us to show that the <span class="math inline">\(t\)</span>-test is an exact test. Since the two-sided null hypothesis is a <strong>simple hypothesis</strong>, we have that <span class="math display">\[
 \begin{align*}
 \text{Size}
 =&amp;\sup_{\theta\in\Theta_0}P(T \in \mathcal{R})\\[2ex]
@@ -1144,8 +1174,8 @@ T(\tilde\beta_k^{(0)})
 \underbrace{\frac{\hat\beta_k - \beta_k}{\widehat{SE}(\hat\beta_{k}|X)}}_{\sim t_{(n-K)}} +
 \underbrace{\frac{\beta_k - \tilde\beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}}_{❓},
 \end{align*}
-\qquad(6.6)\]</span></span> where under <span class="math inline">\(H_0:\beta_k \in ]-\infty,\beta_k^{(0)}].\)</span></p>
-<p>The second term in <a href="#eq-NullDistrOneSided" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> is challenging:</p>
+\qquad(6.7)\]</span></span> where under <span class="math inline">\(H_0:\beta_k \in ]-\infty,\beta_k^{(0)}].\)</span></p>
+<p>The second term in <a href="#eq-NullDistrOneSided" class="quarto-xref">Equation&nbsp;<span>6.7</span></a> is challenging:</p>
 <ul>
 <li>Generally, this term is non-zero since the selected null hypothetical value <span class="math inline">\(\tilde{\beta}_k^{(0)}\)</span> generally does not equal the true (unknown) <span class="math inline">\(\beta_k.\)</span>
 </li>
@@ -1166,7 +1196,7 @@ T(\beta_k^{(0)})
 &amp;\leq
 \frac{\hat\beta_k - \beta_k}{\widehat{SE}(\hat\beta_{k}|X)} \overset{H_0}{\sim} t_{(n-K)},
 \end{align*}
-\qquad(6.7)\]</span></span> where the inequality holds with probability one (i.e.&nbsp;for any possible realization).</p>
+\qquad(6.8)\]</span></span> where the inequality holds with probability one (i.e.&nbsp;for any possible realization).</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1184,7 +1214,7 @@ T(\beta_k^{(0)}) \sim t_{(n-K)}
 $$
 2. For $\beta_k < \beta_k^{(0)},$ the distribution of $T(\beta_k^{(0)})$ is **strictly dominated** by the $t$-distribution with $(n-K)$ degrees of freedom.  -->
 <p>Let <span class="math inline">\(F_{T(\beta_k^{(0)})}\)</span> and <span class="math inline">\(F_{t_{(n-K)}}\)</span> denote cumulative distribution functions of <span class="math inline">\(T(\beta_k^{(0)})\)</span> and of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
-<p>The inequality in <a href="#eq-NullDistrOneSidedIneq" class="quarto-xref">Equation&nbsp;<span>6.7</span></a> implies that:</p>
+<p>The inequality in <a href="#eq-NullDistrOneSidedIneq" class="quarto-xref">Equation&nbsp;<span>6.8</span></a> implies that:</p>
 <ol type="1">
 <li>If <span class="math inline">\(\beta_k = \beta_k^{(0)},\)</span> the distribution of <span class="math inline">\(T(\beta_k^{(0)})\)</span> equals the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom, i.e. <span class="math display">\[
 \begin{align*}
@@ -1215,7 +1245,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The inequality in <a href="#eq-NullDistrOneSidedIneq" class="quarto-xref">Equation&nbsp;<span>6.7</span></a> implies that <span class="math display">\[
+<p>The inequality in <a href="#eq-NullDistrOneSidedIneq" class="quarto-xref">Equation&nbsp;<span>6.8</span></a> implies that <span class="math display">\[
 P(T(\beta_k^{(0)}) \in\mathcal{R}) = \alpha
 \quad\text{if}\quad
 \beta_k = \beta_k^{(0)}
@@ -1486,7 +1516,7 @@ P\Big(\beta_k\in\operatorname{CI}_{k,1-\alpha}\Big)\geq 1-\alpha.
 \]</span> Derivation of the random interval <span class="math inline">\(\operatorname{CI}_{k,1-\alpha}\)</span>:</p>
 <p>Observe that (under Ass 1-4<span class="math inline">\(^\ast\)</span>) <span id="eq-CIDistr"><span class="math display">\[
 \frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\sim t_{(n-K)}
-\qquad(6.8)\]</span></span> Therefore, <span class="math display">\[
+\qquad(6.9)\]</span></span> Therefore, <span class="math display">\[
 \begin{align*}
 P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq c_{1-\alpha/2}\right)=1-\alpha,
 \end{align*}
@@ -1499,7 +1529,7 @@ P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}
 \]</span> That is, the random interval <span class="math display">\[
 \operatorname{CI}_{k,1-\alpha}=\left[\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k + c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
 \]</span> is our <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> confidence interval for <span class="math inline">\(\beta_k\)</span>.</p>
-<p>Since the confidence interval is based on the exact distribution (under Assumptions 1-4<span class="math inline">\(^\ast\)</span>) in <a href="#eq-CIDistr" class="quarto-xref">Equation&nbsp;<span>6.8</span></a>, the confidence interval has an <strong>exact</strong> coverage probability <span class="math display">\[\begin{align*}
+<p>Since the confidence interval is based on the exact distribution (under Assumptions 1-4<span class="math inline">\(^\ast\)</span>) in <a href="#eq-CIDistr" class="quarto-xref">Equation&nbsp;<span>6.9</span></a>, the confidence interval has an <strong>exact</strong> coverage probability <span class="math display">\[\begin{align*}
 P\left(\beta_k\in\operatorname{CI}_{k,1-\alpha}\right)&amp;=1-\alpha
 \end{align*}\]</span> provided the Assumptions 1-4<span class="math inline">\(^\ast\)</span> are true.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1689,7 +1719,7 @@ H_0:\;\beta_2=3\quad\text{and}\quad \beta_3=4.
 <li>We correctly control for the type-I-error rate since the empirical type-I-error rate is not larger than the chosen significance level <span class="math inline">\(\alpha.\)</span>
 </li>
 <li>The <span class="math inline">\(F\)</span> test is not conservative since the empirical type-I-error rates essentially matches the chosen significance levels <span class="math inline">\(\alpha.\)</span>  In fact, if we would increase the number of Monte Carlo repetitions, the empirical type-I-error rate would converge to the nominal type-I-error rate <span class="math inline">\(\alpha\)</span> due to the law of large numbers.</li>
-<li>Last but not least: All this works <strong>unconditionally</strong> on <span class="math inline">\(X\)</span> since the distribution of the <span class="math inline">\(F\)</span> statistic (<a href="#eq-Ftest" class="quarto-xref">Equation&nbsp;<span>6.3</span></a>) does not depend on <span class="math inline">\(X\)</span>.</li>
+<li>Last but not least: All this works <strong>unconditionally</strong> on <span class="math inline">\(X\)</span> since the distribution of the <span class="math inline">\(F\)</span> statistic (<a href="#eq-Ftest" class="quarto-xref">Equation&nbsp;<span>6.4</span></a>) does not depend on <span class="math inline">\(X\)</span>.</li>
 </ol>
 <p>Next, we check how well the <span class="math inline">\(F\)</span> test detects certain <strong>violations of the null hypothesis</strong>. We do this by using the same data generating process, but by testing the following <span style="color:#FF0000">incorrect</span> null hypothesis: <span class="math display">\[\begin{align*}
 H_0:\;&amp;{\color{red}\beta_2=4}\quad\text{and}\quad\beta_3=4\\
