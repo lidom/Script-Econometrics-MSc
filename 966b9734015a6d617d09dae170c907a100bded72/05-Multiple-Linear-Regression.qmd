@@ -370,7 +370,7 @@ Sometimes, we need to be more restrictive by assuming that also the variances of
 ::: {#def-heteroskedastic}
 ## Homoskedastic Error Terms
 
-The error terms $\varepsilon_i$ are called heteroskedastic if the conditional variance 
+The error terms $\varepsilon_i$ are called homoskedastic if the conditional variance 
 $$
 Var(\varepsilon_i|X_i=x_i)=\sigma^2
 $$ 

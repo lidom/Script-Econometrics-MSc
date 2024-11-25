@@ -125,31 +125,24 @@ We come back to this in @sec-testingsinglep.
 Under our assumptions (Assumptions 1 to 4$^\ast$), we have that 
 $$
 \begin{align*}
-(R\hat\beta_n-r^{(0)})|X&\sim\mathcal{N}_q\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right)\\[2ex]
-\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&\sim\underbrace{\mathcal{N}_q\left(R\beta -r^{(0)},I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
-\highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)}) &\sim\mathcal{N}_q\left(R\beta -r^{(0)},I_q\right),
+(R\hat\beta_n-r^{(0)})|X&\sim\mathcal{N}_q\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right)%\\[2ex]
+%\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&\sim\\[2ex]
+%\hspace{2cm}\sim\mathcal{N}_q\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\beta -r^{(0)}),I_q\right)
 \end{align*}
 $$ 
-where the last implication follows, since the standardized normal distribution does not depend on $X.$
+
 
 Thus, under the scenario that the null-hypothesis is true, we have that
 $$
 \begin{align*}
 (R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,RVar(\hat\beta_n|X)R'\right)\\[2ex]
-\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}{H_0}}}{\sim}\underbrace{\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
+\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\highlight{|X}&\overset{{\color{red}{H_0}}}{\sim}\underbrace{\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
 \highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right),
 \end{align*}
 $$ 
 where the last implication follows, since the standardized normal distribution does not depend on $X.$
 
-That is: 
-
-* The realizations of 
-$$
-\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n -r^{(0)})
-$$ 
-will scatter around the *unknown* mean $(R\beta -r^{(0)})$ in a Gaussian fashion. 
-* If $H_0$ is correct (i.e., if $R\beta-r^{(0)}=0$), the realizations of 
+That is, if $H_0$ is correct (i.e., if $R\beta-r^{(0)}=0$), the realizations of 
 $$
 \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})
 $$ 
@@ -179,7 +172,7 @@ W
 $${#eq-TestStatW}
 
 ::: {.callout-note}
-Note that the test statistic $W$ is simply measuring the distance (it's a weighted Euclidean distance) between the $(q\times 1)$ vectors $R\hat\beta_n$ and $r^{(0)}.$ 
+Note that the test statistic $W$ is simply measuring the distance (it's a weighted, squared Euclidean distance) between the $(q\times 1)$ vectors $R\hat\beta_n$ and $r^{(0)}.$ 
 :::
 
 Under the null hypothesis (i.e., if $H_0$ is true), $W$ is a sum of $q$-many independent, squared standard normal $\mathcal{N}(0,1)$ random variables. Therefore, under the null hypothesis, $W$ is chi-square distributed with $q$ degrees of freedom (see definition of the chi-square distribution in @sec-chisqdist), 
@@ -208,7 +201,7 @@ Var(\hat\beta_n|X)=\sigma^2 (X'X)^{-1}
 $$ 
 in @eq-TestStatW by its estimator 
 $$
-\widehat{Var}(\hat\beta_n|X)s_{UB}^2 (X'X)^{-1}
+\widehat{Var}(\hat\beta_n|X)=s_{UB}^2 (X'X)^{-1}
 $$ 
 leads to the $F$-test statistic
 $$

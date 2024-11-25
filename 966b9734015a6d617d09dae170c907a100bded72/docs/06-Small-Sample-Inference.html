@@ -396,27 +396,21 @@ Note
 </div>
 <p>Under our assumptions (Assumptions 1 to 4<span class="math inline">\(^\ast\)</span>), we have that <span class="math display">\[
 \begin{align*}
-(R\hat\beta_n-r^{(0)})|X&amp;\sim\mathcal{N}_q\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right)\\[2ex]
-\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&amp;\sim\underbrace{\mathcal{N}_q\left(R\beta -r^{(0)},I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
-\highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)}) &amp;\sim\mathcal{N}_q\left(R\beta -r^{(0)},I_q\right),
+(R\hat\beta_n-r^{(0)})|X&amp;\sim\mathcal{N}_q\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right)%\\[2ex]
+%\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&amp;\sim\\[2ex]
+%\hspace{2cm}\sim\mathcal{N}_q\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\beta -r^{(0)}),I_q\right)
 \end{align*}
-\]</span> where the last implication follows, since the standardized normal distribution does not depend on <span class="math inline">\(X.\)</span></p>
+\]</span></p>
 <p>Thus, under the scenario that the null-hypothesis is true, we have that <span class="math display">\[
 \begin{align*}
 (R\hat\beta_n-r^{(0)})|X&amp;\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,RVar(\hat\beta_n|X)R'\right)\\[2ex]
-\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&amp;\overset{{\color{red}{H_0}}}{\sim}\underbrace{\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
+\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\highlight{|X}&amp;\overset{{\color{red}{H_0}}}{\sim}\underbrace{\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
 \highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})&amp;\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right),
 \end{align*}
 \]</span> where the last implication follows, since the standardized normal distribution does not depend on <span class="math inline">\(X.\)</span></p>
-<p>That is:</p>
-<ul>
-<li>The realizations of <span class="math display">\[
-\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n -r^{(0)})
-\]</span> will scatter around the <em>unknown</em> mean <span class="math inline">\((R\beta -r^{(0)})\)</span> in a Gaussian fashion.</li>
-<li>If <span class="math inline">\(H_0\)</span> is correct (i.e., if <span class="math inline">\(R\beta-r^{(0)}=0\)</span>), the realizations of <span class="math display">\[
+<p>That is, if <span class="math inline">\(H_0\)</span> is correct (i.e., if <span class="math inline">\(R\beta-r^{(0)}=0\)</span>), the realizations of <span class="math display">\[
 \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})
-\]</span> will scatter around the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0\)</span> in a Gaussian fashion.</li>
-</ul>
+\]</span> will scatter around the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0\)</span> in a Gaussian fashion.</p>
 <p>We use a test statistic to detect a systematic location shift away from the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0.\)</span></p>
 <!-- * if the alternative hypothesis is correct (i.e., $(R\beta-r)=a\neq 0$), there will be a systematic location-shift in $(R\hat\beta_n-r)|X$ which we try to detect using statistical hypothesis testing.  -->
 <!-- the realizations of $R\hat\beta_n-r|X$ scatter around the $q$-vector $a\neq 0$.  So, under the alternative hypothesis,  -->
@@ -442,7 +436,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note that the test statistic <span class="math inline">\(W\)</span> is simply measuring the distance (it’s a weighted Euclidean distance) between the <span class="math inline">\((q\times 1)\)</span> vectors <span class="math inline">\(R\hat\beta_n\)</span> and <span class="math inline">\(r^{(0)}.\)</span></p>
+<p>Note that the test statistic <span class="math inline">\(W\)</span> is simply measuring the distance (it’s a weighted, squared Euclidean distance) between the <span class="math inline">\((q\times 1)\)</span> vectors <span class="math inline">\(R\hat\beta_n\)</span> and <span class="math inline">\(r^{(0)}.\)</span></p>
 </div>
 </div>
 <p>Under the null hypothesis (i.e., if <span class="math inline">\(H_0\)</span> is true), <span class="math inline">\(W\)</span> is a sum of <span class="math inline">\(q\)</span>-many independent, squared standard normal <span class="math inline">\(\mathcal{N}(0,1)\)</span> random variables. Therefore, under the null hypothesis, <span class="math inline">\(W\)</span> is chi-square distributed with <span class="math inline">\(q\)</span> degrees of freedom (see definition of the chi-square distribution in <a href="02-Probability.html#sec-chisqdist" class="quarto-xref"><span>Section 2.2.10.3</span></a>), <span class="math display">\[
@@ -460,7 +454,7 @@ From the normality assumption in Assumption 4<span class="math inline">\(^*\)</s
 <p>Substituting the unknown <span class="math display">\[
 Var(\hat\beta_n|X)=\sigma^2 (X'X)^{-1}
 \]</span> in <a href="#eq-TestStatW" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> by its estimator <span class="math display">\[
-\widehat{Var}(\hat\beta_n|X)s_{UB}^2 (X'X)^{-1}
+\widehat{Var}(\hat\beta_n|X)=s_{UB}^2 (X'X)^{-1}
 \]</span> leads to the <span class="math inline">\(F\)</span>-test statistic <span class="math display">\[
 F=(R\hat\beta_n -r^{(0)})'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r^{(0)})/q
 \]</span> and takes into account the additional randomness (estimation errors) due to estimating <span class="math inline">\(\sigma^2\)</span> by <span class="math inline">\(s_{UB}^2.\)</span></p>
