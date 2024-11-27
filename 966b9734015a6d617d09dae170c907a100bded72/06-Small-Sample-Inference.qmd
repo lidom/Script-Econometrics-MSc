@@ -848,7 +848,7 @@ $$
 
 Observe that (under Ass 1-4$^\ast$)
 $$
-\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\sim t_{(n-K)}
+\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)}\sim t_{(n-K)}
 $${#eq-CIDistr}
 Therefore,
 $$
@@ -862,8 +862,8 @@ Next, we can do the following equivalent transformations
 $$
 \begin{align*}
 P\left(-c_{n,1-\alpha/2}\leq\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)}\leq c_{n,1-\alpha/2}\right)&=1-\alpha\\[2ex]
-\Leftrightarrow P\left(\hat\beta_{n,k}-c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\leq \beta_k\leq\hat\beta_k +c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right)&=1-\alpha\\[2ex]
-\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_{n,k}-c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X),\;\hat\beta_k +c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right]}_{=:\operatorname{CI}_{k,n,1-\alpha}}\right)&=1-\alpha
+\Leftrightarrow P\left(\hat\beta_{n,k}-c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\leq \beta_k\leq\hat\beta_{n,k} +c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right)&=1-\alpha\\[2ex]
+\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_{n,k}-c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X),\;\hat\beta_{n,k} +c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right]}_{=:\operatorname{CI}_{k,n,1-\alpha}}\right)&=1-\alpha
 \end{align*}
 $$
 That is, the random interval 
@@ -897,12 +897,25 @@ It's best to take a look at dynamic visualizations like this one:
 </center>
 
 
-Unfortunately, this "frequentist" interpretation is not a statement about a single given $\operatorname{CI}_{k,n,1-\alpha}$ realization computed for a given data set. A given, realized $\operatorname{CI}_{k,n,1-\alpha}$ will either contain the true parameter $\beta_k$ or not, and usually we do not know the answer. So, confidence intervals are quite hard to interpret. However, they are very well suited as a tool to visualize estimation uncertainties in different parameter estimators, for instance, across $\hat\beta_k$, $k=1,\dots,K$.   
+Unfortunately, this "frequentist" interpretation is not a statement about a single given $\operatorname{CI}_{k,n,1-\alpha,\text{obs}}$ realization computed for an observed realization of the random sample. A given, realized $\operatorname{CI}_{k,n,1-\alpha,\text{obs}}$ will either contain the true parameter $\beta_k$ or not, and usually we do not know the answer. So, confidence intervals are quite hard to interpret. However, they are very well suited as a tool to visualize estimation uncertainties in $\hat\beta_{n,k}$, $k=1,\dots,K$.   
 
 <center>
 ![](images/Meme_CI_2.jpg)
 </center>
 :::
+
+
+#### **Point Estimator versus Interval Estimator** {-}
+
+Often, $\hat\beta_{n,k}$ is called a **point estimator** of $\beta_k$ and the confidence interval
+$$
+\begin{align*}
+\operatorname{CI}_{k,n,1-\alpha}
+&=\left[\hat\beta_{n,k}\pm c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right]
+\end{align*}
+$$
+is called an **interval estimator** of $\beta_k,$ where the width of $\operatorname{CI}_{k,n,1-\alpha}$ quantifies the estimation uncertainties.  
+
 
 
 ### Confidence Intervals for Statistical Hypothesis Testing 
@@ -1594,7 +1607,7 @@ $$
 
 ::: {.callout-tip}
 
-# Standard error of $\hat\beta_k$ is proportional to $1/\sqrt{n}$ 
+# Standard error of $\hat\beta_{nk}$ is proportional to $1/\sqrt{n}$ 
 
 Of course, usually we do not know the standard error of the estimator, but have to estimate it. However, it is true that the standard error of the OLS estimator $\hat{\beta}_{n,k}$ is **proportional to** $1/\sqrt{n},$
 $$

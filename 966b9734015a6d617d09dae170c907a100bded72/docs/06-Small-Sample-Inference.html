@@ -882,7 +882,7 @@ P\Big(\beta_k\in\operatorname{CI}_{k,n,1-\alpha}\Big)\geq 1-\alpha.
 \]</span></p>
 <section id="derivation-of-the-random-interval-operatornameci_kn1-alpha" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="derivation-of-the-random-interval-operatornameci_kn1-alpha"><strong>Derivation of the random interval <span class="math inline">\(\operatorname{CI}_{k,n,1-\alpha}\)</span></strong></h4>
 <p>Observe that (under Ass 1-4<span class="math inline">\(^\ast\)</span>) <span id="eq-CIDistr"><span class="math display">\[
-\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\sim t_{(n-K)}
+\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)}\sim t_{(n-K)}
 \qquad(6.5)\]</span></span> Therefore, <span class="math display">\[
 \begin{align*}
 P\left(-c_{n,1-\alpha/2}\leq\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)}\leq c_{n,1-\alpha/2}\right)=1-\alpha,
@@ -891,8 +891,8 @@ P\left(-c_{n,1-\alpha/2}\leq\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatornam
 <p>Next, we can do the following equivalent transformations <span class="math display">\[
 \begin{align*}
 P\left(-c_{n,1-\alpha/2}\leq\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)}\leq c_{n,1-\alpha/2}\right)&amp;=1-\alpha\\[2ex]
-\Leftrightarrow P\left(\hat\beta_{n,k}-c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\leq \beta_k\leq\hat\beta_k +c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right)&amp;=1-\alpha\\[2ex]
-\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_{n,k}-c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X),\;\hat\beta_k +c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right]}_{=:\operatorname{CI}_{k,n,1-\alpha}}\right)&amp;=1-\alpha
+\Leftrightarrow P\left(\hat\beta_{n,k}-c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\leq \beta_k\leq\hat\beta_{n,k} +c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right)&amp;=1-\alpha\\[2ex]
+\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_{n,k}-c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X),\;\hat\beta_{n,k} +c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right]}_{=:\operatorname{CI}_{k,n,1-\alpha}}\right)&amp;=1-\alpha
 \end{align*}
 \]</span> That is, the random interval <span class="math display">\[
 \begin{align*}
@@ -921,12 +921,19 @@ Interpretation of Confidence Intervals
 <center>
 <a href="https://rpsychologist.com/d3/ci/">https://rpsychologist.com/d3/ci/</a>
 </center>
-<p>Unfortunately, this “frequentist” interpretation is not a statement about a single given <span class="math inline">\(\operatorname{CI}_{k,n,1-\alpha}\)</span> realization computed for a given data set. A given, realized <span class="math inline">\(\operatorname{CI}_{k,n,1-\alpha}\)</span> will either contain the true parameter <span class="math inline">\(\beta_k\)</span> or not, and usually we do not know the answer. So, confidence intervals are quite hard to interpret. However, they are very well suited as a tool to visualize estimation uncertainties in different parameter estimators, for instance, across <span class="math inline">\(\hat\beta_k\)</span>, <span class="math inline">\(k=1,\dots,K\)</span>.</p>
+<p>Unfortunately, this “frequentist” interpretation is not a statement about a single given <span class="math inline">\(\operatorname{CI}_{k,n,1-\alpha,\text{obs}}\)</span> realization computed for an observed realization of the random sample. A given, realized <span class="math inline">\(\operatorname{CI}_{k,n,1-\alpha,\text{obs}}\)</span> will either contain the true parameter <span class="math inline">\(\beta_k\)</span> or not, and usually we do not know the answer. So, confidence intervals are quite hard to interpret. However, they are very well suited as a tool to visualize estimation uncertainties in <span class="math inline">\(\hat\beta_{n,k}\)</span>, <span class="math inline">\(k=1,\dots,K\)</span>.</p>
 <center>
 <img src="images/Meme_CI_2.jpg" class="img-fluid">
 </center>
 </div>
 </div>
+</section><section id="point-estimator-versus-interval-estimator" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="point-estimator-versus-interval-estimator"><strong>Point Estimator versus Interval Estimator</strong></h4>
+<p>Often, <span class="math inline">\(\hat\beta_{n,k}\)</span> is called a <strong>point estimator</strong> of <span class="math inline">\(\beta_k\)</span> and the confidence interval <span class="math display">\[
+\begin{align*}
+\operatorname{CI}_{k,n,1-\alpha}
+&amp;=\left[\hat\beta_{n,k}\pm c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right]
+\end{align*}
+\]</span> is called an <strong>interval estimator</strong> of <span class="math inline">\(\beta_k,\)</span> where the width of <span class="math inline">\(\operatorname{CI}_{k,n,1-\alpha}\)</span> quantifies the estimation uncertainties.</p>
 </section><section id="confidence-intervals-for-statistical-hypothesis-testing" class="level3" data-number="6.4.1"><h3 data-number="6.4.1" class="anchored" data-anchor-id="confidence-intervals-for-statistical-hypothesis-testing">
 <span class="header-section-number">6.4.1</span> Confidence Intervals for Statistical Hypothesis Testing</h3>
 <p>We can use the <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> confidence interval <span class="math inline">\(\operatorname{CI}_{k,n,1-\alpha}\)</span> to do statistical hypothesis testing at the significance level <span class="math inline">\(0&lt;\alpha&lt;1.\)</span> Typical significance levels:</p>
@@ -1509,7 +1516,7 @@ Ideally, we would have some sense of the costs of making each of these errors, a
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Standard error of <span class="math inline">\(\hat\beta_k\)</span> is proportional to <span class="math inline">\(1/\sqrt{n}\)</span>
+Standard error of <span class="math inline">\(\hat\beta_{nk}\)</span> is proportional to <span class="math inline">\(1/\sqrt{n}\)</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
