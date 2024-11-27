@@ -372,7 +372,7 @@ Here, $P_{X}$ is not the same probability function as $P$, because $P$ maps from
 
 ### Univariate Distribution and Probability Functions  
 
-#### Cumulative Distribution Function 
+#### Cumulative Distribution Function {#sec-Defcdf}
 
 The **cumulative distribution function (cdf)**
 $$F_{X}: \mathbb{R} \rightarrow [0,1]$$ 

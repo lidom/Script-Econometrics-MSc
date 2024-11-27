@@ -225,8 +225,11 @@ By contrast to $W,$ $F$ is now a practically useful test statistic, and we can u
 Observed values, $F_{\text{obs}}$, that are "unusually large" under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution $F_{(q,n-K)}$ of $F$ is used to judge what's "unusually large" under the null hypothesis. 
 
 
-**The F distribution.** The F distribution is a ratio of two $\chi^2$ distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution. See @sec-Fdist for more information on the $F$ distribution. 
+**The F distribution.** The F distribution is a ratio of two $\chi^2$ distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution (@fig-FDistribution). See @sec-Fdist for more information on the $F$ distribution. 
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
+#| label: fig-FDistribution
+#| fig-cap: Graphs of the density function of the $F$-distribution for different numerator degrees of freedom and different denominator degrees of freedom.
+ 
 # When fixing rate (lambda) and changing shape (r) for Gamma Distribution,
 # When the shape (r) increases, based on the formula, 
 # the mean increases (shift to the right),
@@ -287,6 +290,9 @@ $$
 
 
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"}
+#| label: fig-FDistributionRejection
+#| fig-cap: Graph of the density function of the $F$-distribution with $9$ numerator degrees of freedom and $120$ denominator degrees of freedom. The rejection region $\mathcal{R}$ is shown in red.  
+# plot the standard normal density
 library("scales")
 curve(expr = df(x = x, df1 = 9, df2 = 120),
       xlab = "", ylab = "", main = "",
@@ -364,9 +370,8 @@ $$
 p_{\text{obs}} \geq \alpha,
 $$
 where $0<\alpha<1$ denotes the chosen significance level. Typical choices are
-
-* $\alpha = 0.05$
-* $\alpha = 0.01$
+  * $\alpha = 0.05$
+  * $\alpha = 0.01$
 
 
 
@@ -398,7 +403,7 @@ $$
 and where $[(X'X)^{-1}]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $(K\times K)$ matrix $(X'X)^{-1}.$
 
 
-### The Test Statistic and its Null Distribution
+### The Test Statistic and its Null Distribution {#sec-tTestTestStat}
 
 Taking square roots yields the $t$ test statistic 
 $$
@@ -406,25 +411,31 @@ T=\frac{\hat{\beta}_k-\beta_k^{(0)}}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X
 $$
 where 
 $$
+\begin{align*}
 \widehat{\operatorname{SE}}(\hat{\beta}_k|X)
-=\sqrt{\widehat{Var}(\hat{\beta}_k|X)}=s_{UB}[(X'X)^{-1/2}]_{(k,k)},
+&=\sqrt{\widehat{Var}(\hat{\beta}_k|X)}\\[2ex]
+&=s_{UB}[(X'X)^{-1/2}]_{(k,k)},
+\end{align*}
 $$ 
 and where $t_{(n-K)}$ denotes the $t$-distribution with $n-K$ degrees of freedom. 
 
-Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate distribution to judge whether or not an observed value $T_{\text{obs}}$ of the test statistic is "unusually large" under the null hypothesis. 
+Thus the $t$-distribution with $n-K$ degrees of freedom is the appropriate distribution to judge whether an observed value $T_{\text{obs}}$ of the test statistic is "unusually large" under the null hypothesis. 
 
 ::: {.callout-tip}
-All commonly used statistical software packages report $t$-tests testing the null hypothesis 
+All commonly used statistical software packages report in their regression output tables $t$-tests testing the "no (linear) effect" null hypothesis 
 $$
 H_0:\beta_k=0
 $$
 for each $k=1,\dots,K.$
-This means to test the null hypothesis that $X_k$ has "no (linear) effect" on the conditional mean of $Y$ given $X.$ 
+
+This means to test the null hypothesis that $X_k$ has on average no (linear) effect on the outcome variable $Y.$ 
 :::
 
-**The $t$ distribution.** The following plot illustrates that as the degrees of freedom increase, the shape of the $t$ distribution comes closer to that of a standard normal bell curve. Already for $25$ degrees of freedom we find little difference to the standard normal density. In case of small degrees of freedom values, we find the distribution to have heavier tails than a standard normal. See @sec-tdist for more information about the $t$-distribution.
+**The $t$ distribution.** @fig-tDistribution illustrates that as the degrees of freedom increase, the shape of the $t$ distribution comes closer to that of a standard normal bell curve. Already for $25$ degrees of freedom we find little difference to the standard normal density. In case of small degrees of freedom values, we find the distribution to have heavier tails than a standard normal. See @sec-tdist for more information about the $t$-distribution.
 
 ```{r, fig.align="center", echo=FALSE, fig.width = 8, fig.height = 5, out.width = "1\\textwidth"} 
+#| label: fig-tDistribution
+#| fig-cap: Graphs of the density function of the $t$-distribution with $2,\,4,$ and $25$ degrees of freedom and of the density of the standard normal distribution.
 # plot the standard normal density
 curve(dnorm(x), 
       xlim = c(-4, 4), 
@@ -748,9 +759,8 @@ $$
 p_{\text{obs}} \geq \alpha,
 $$
 where $0<\alpha<1$ denotes the chosen significance level. Typical choices are
-
-* $\alpha = 0.05$
-* $\alpha = 0.01$
+   * $\alpha = 0.05$
+   * $\alpha = 0.01$
 
 
 ### Test Decision using the $p$-Value (One-Sided 2/2) 
@@ -779,9 +789,8 @@ $$
 p_{\text{obs}} \geq \alpha,
 $$
 where $0<\alpha<1$ denotes the chosen significance level. Typical choices are
-
-* $\alpha = 0.05$
-* $\alpha = 0.01$
+   * $\alpha = 0.05$
+   * $\alpha = 0.01$
 
 
 
@@ -823,9 +832,120 @@ $$
 p_{\text{obs}} \geq \alpha,
 $$
 where $0<\alpha<1$ denotes the chosen significance level. Typical choices are
+   * $\alpha = 0.05$
+   * $\alpha = 0.01$
 
-* $\alpha = 0.05$
-* $\alpha = 0.01$
+
+
+## Confidence Intervals {#sec-CIsmallsample}
+
+We define a two-sided $(1-\alpha)\cdot 100\%$ percent confidence interval for the *deterministic* (unknown) true $\beta_k$ as the **random interval** $\operatorname{CI}_{k,n,1-\alpha}$ for which 
+$$
+P\Big(\beta_k\in\operatorname{CI}_{k,n,1-\alpha}\Big)\geq 1-\alpha.
+$$
+
+#### **Derivation of the random interval $\operatorname{CI}_{k,n,1-\alpha}$** {-} 
+
+Observe that (under Ass 1-4$^\ast$)
+$$
+\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\sim t_{(n-K)}
+$${#eq-CIDistr}
+Therefore,
+$$
+\begin{align*}
+P\left(-c_{n,1-\alpha/2}\leq\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)}\leq c_{n,1-\alpha/2}\right)=1-\alpha,
+\end{align*}
+$$
+where $c_{n,1-\alpha/2}$ denotes the $(1-\alpha/2)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom. 
+
+Next, we can do the following equivalent transformations
+$$
+\begin{align*}
+P\left(-c_{n,1-\alpha/2}\leq\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)}\leq c_{n,1-\alpha/2}\right)&=1-\alpha\\[2ex]
+\Leftrightarrow P\left(\hat\beta_{n,k}-c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\leq \beta_k\leq\hat\beta_k +c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right)&=1-\alpha\\[2ex]
+\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_{n,k}-c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X),\;\hat\beta_k +c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right]}_{=:\operatorname{CI}_{k,n,1-\alpha}}\right)&=1-\alpha
+\end{align*}
+$$
+That is, the random interval 
+$$
+\begin{align*}
+\operatorname{CI}_{k,n,1-\alpha}
+&=\left[\hat\beta_{n,k}-c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X),\;\hat\beta_{n,k} + c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right]\\[2ex]
+&=\left[\hat\beta_{n,k}\pm c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)\right]
+\end{align*}
+$$
+is our $(1-\alpha)\cdot 100\%$ confidence interval for $\beta_k$. 
+
+
+Since the confidence interval is based on the exact distribution (under Assumptions 1-4$^\ast$) in @eq-CIDistr, the confidence interval has an **exact** coverage probability
+$$
+\begin{align*}
+P\left(\beta_k\in\operatorname{CI}_{k,n,1-\alpha}\right)&=1-\alpha
+\end{align*}
+$$
+provided the Assumptions 1-4$^\ast$ are true. 
+
+::: {.callout-tip}
+# Interpretation of Confidence Intervals 
+
+The random interval  $\operatorname{CI}_{k,n,1-\alpha}$ for $\beta_k$ contains the true parameter value $\beta_k$ with probability $1-\alpha;$ i.e. we expect that $\operatorname{CI}_{k,n,1-\alpha}$ covers $\beta_k$ in $(1-\alpha)\cdot 100\%$ of resamplings from the random sample. 
+
+It's best to take a look at dynamic visualizations like this one: 
+
+<center>
+[https://rpsychologist.com/d3/ci/](https://rpsychologist.com/d3/ci/)
+</center>
+
+
+Unfortunately, this "frequentist" interpretation is not a statement about a single given $\operatorname{CI}_{k,n,1-\alpha}$ realization computed for a given data set. A given, realized $\operatorname{CI}_{k,n,1-\alpha}$ will either contain the true parameter $\beta_k$ or not, and usually we do not know the answer. So, confidence intervals are quite hard to interpret. However, they are very well suited as a tool to visualize estimation uncertainties in different parameter estimators, for instance, across $\hat\beta_k$, $k=1,\dots,K$.   
+
+<center>
+![](images/Meme_CI_2.jpg)
+</center>
+:::
+
+
+### Confidence Intervals for Statistical Hypothesis Testing 
+
+We can use the $(1-\alpha)\cdot 100\%$ confidence interval $\operatorname{CI}_{k,n,1-\alpha}$ to do statistical hypothesis testing at the significance level $0<\alpha<1.$ Typical significance levels: 
+
+
+Let us consider the following two-sided statistical hypotheses
+$$
+\begin{align*}
+H_0:&\;\beta_k=\beta^{(0)}_{k}\\ 
+H_1:&\;\beta_k\neq \beta^{(0)}_{k}
+\end{align*}
+$$
+
+
+
+**Testing-Procedure:**
+
+* If the observed (obs) realization of the confidence interval, $\operatorname{CI}_{k,n,1-\alpha,\text{obs}},$ **contains** the null-hypothetical value $\beta^{(0)}_{k},$ i.e.
+$$
+\begin{align*}
+\beta^{(0)}_{k}&\in\operatorname{CI}_{k,n,1-\alpha,\text{obs}}\\[2ex]
+\Leftrightarrow\beta^{(0)}_{k}&\in
+\left[\hat\beta_{n,k,\text{obs}}\pm c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)_{\text{obs}}\right],
+\end{align*}
+$$
+then we **cannot reject the null hypothesis.**
+
+* If, however, the observed (obs) realization of the confidence interval, $\operatorname{CI}_{k,n,1-\alpha,\text{obs}},$ **does *not* contain** the null-hypothetical value $\beta^{(0)}_{k},$ i.e.
+$$
+\begin{align*}
+\beta^{(0)}_{k}&\not\in\operatorname{CI}_{k,n,1-\alpha,\text{obs}}\\[2ex]
+\Leftrightarrow\beta^{(0)}_{k}&\not\in
+\left[\hat\beta_{n,k,\text{obs}}\pm c_{n,1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)_{\text{obs}}\right],
+\end{align*}
+$$
+then we **reject the null hypothesis.** 
+
+
+The test decisions are then perfectly equivalent to those based on the two-sided $t$-test. 
+
+
 
 
 
@@ -833,11 +953,11 @@ where $0<\alpha<1$ denotes the chosen significance level. Typical choices are
 
 Every statistical test statistic is a function of the random sample, i.e.
 $$
-T\equiv T((X_1,Y_1),\dots,(X_n,Y_n))
+T_n\equiv T((X_1,Y_1),\dots,(X_n,Y_n))
 $$
 and is thus a random variable. 
 
-**Caution:** In this section, $T$ denotes *any* test statistic. Specific examples for $T$ are, for instance, 
+**Caution:** In this section, $T_n$ denotes *any* test statistic. Specific examples for $T_n$ are, for instance, 
 
 * the $F$-test statistic (@sec-testmultp) and 
 * the $t$-test statistic (@sec-testingsinglep).
@@ -846,17 +966,17 @@ Generally, we can only derive the distribution of $T$ under $H_0;$ i.e. under th
 $$
 \begin{equation*}
 \begin{array}{ll}
-T & \overset{{H_0}}\sim f_T\quad ✅
+T_n & \overset{{H_0}}\sim f_{T_n}\quad ✅
 \end{array}
 \end{equation*}
 $$
-For instance, in case of the $F$-test, $f_T$ is the $F$-distribution and in case of the $t$-test, $f_T$ is the $t$-distribution. 
+For instance, in case of the $F$-test, $f_{T_n}$ is the $F$-distribution and in case of the $t$-test, $f_{T_n}$ is the $t$-distribution. 
 
-However, the distribution of $T$ under $H_1$ is typically unknown. 
+However, the distribution of $T_n$ under $H_1$ is generally unknown. 
 $$
 \begin{equation*}
 \begin{array}{ll}
-T & \overset{{H_1}}\sim ❓ 
+T_n & \overset{{H_1}}\sim ❌ 
 \end{array}
 \end{equation*}
 $$
@@ -865,13 +985,13 @@ $$
 
 * in @sec-testingsinglep we discussed (for simple null hypothesis) that $T\overset{H_0}{\sim} t_{(n-K)}$ -->
 
-
+### Simple versus Composite Hypotheses
 
 We use the observed realization
 $$
-T_{\text{obs}}\equiv T((X_{1,\text{obs}},Y_{1,\text{obs}}),\dots,(X_{n,\text{obs}},Y_{n,\text{obs}}))
+T_{n,\text{obs}}\equiv T((X_{1,\text{obs}},Y_{1,\text{obs}}),\dots,(X_{n,\text{obs}},Y_{n,\text{obs}}))
 $$
-of the random test statistic $T$ to decide: 
+of the random test statistic $T_n$ to decide: 
 
 * whether we cannot reject a null hypothesis $H_0$ about some parameter $\theta$ 
 $$
@@ -882,6 +1002,20 @@ $$
 H_1: \theta\in\Theta_1
 $$ 
 
+
+* We **reject** $H_0$ if 
+$$
+T_{n,\text{obs}}\in \mathcal{R}_{n,\alpha} 
+$$ 
+where $\mathcal{R}_{n,\alpha} $ denotes the **rejection region**; i.e. a range of $T$ values that we see only very rarely under $H_0.$ Note that the rejection region depends on the sample size $n$ and the chosen significance level $\alpha.$ 
+
+* We **cannot reject** $H_0$ 
+$$
+T_{n,\text{obs}}\not \in \mathcal{R}_{n,\alpha}
+$$ 
+
+(Equivalent descisions are made based on the $p$-value.)
+
 Notation:
 
 * $\Theta_0$ denotes the set of parameter values $\theta$ under $H_0$.
@@ -891,9 +1025,7 @@ It is required that
 $$
 \Theta_0 \cap \Theta_1 = \emptyset.
 $$
-
-
-**Simple** versus **composite** hypotheses:   
+ 
 
 * If $\Theta_j,$ $j=1,2,$ contains only **one value** 
 $$
@@ -901,6 +1033,11 @@ $$
 $$ 
 it is called a **simple hypothesis**. 
 * If $\Theta_j,$ $j=1,2,$ contains **multiple values**, it is called a **composite hypothesis**.
+
+
+
+The idea of a **composite null hypothesis** $H_0:\theta\in\Theta_0$ is to collect all hypotheses which we do not care to detect by the statistical test. This way, the set of alternative hypotheses $H_1:\theta\in\Theta_1$ becomes smaller which leads to more powerful tests.  
+
 
 ::: {.callout-tip icon="false"}
 # Example: Two-Sided Test with $\theta\in\mathbb{R}$
@@ -948,64 +1085,19 @@ $$
 (Likewise for the other direction of the one-sided test.) 
 ::: 
 
-### Decisions Errors, Size and Power  
+### Decisions Errors
 
 Hypothesis testing is like a legal trial. We assume someone is innocent
 unless the evidence strongly suggests that he is guilty. Similarly, we retain $H_0$ unless there is strong evidence to reject $H_0.$ 
 
 
-* We **reject** $H_0$ if 
-$$
-T_{\text{obs}}\in \mathcal{R},
-$$ 
-where $\mathcal{R}$ denotes the **rejection region**; i.e. a range of $T$ values that we see only very rarely under $H_0.$ 
-<!-- </br>(Extreme: in direction of $H_1;$ i.e. very large or very small in comparision to the null distribution of $T.$)  -->
+We differentiate two decision errors events: 
 
-* We **cannot reject** $H_0$ 
-$$
-T_{\text{obs}}\not \in \mathcal{R}
-$$ 
-
-
-We differentiate two decision errors: 
-
-* **type-I-error:**</br> 
-If we reject $H_0$ even though $H_0$ is true. 
+* **type-I-error (or false positive):**</br> 
+Rejecting $H_0$ even though $H_0$ is true. 
 * **type-II-error:**</br>
-If we do not reject $H_0$ even though $H_1$ is true. 
+Not rejecting $H_0$ even though $H_1$ is true. 
 
-
-::: {.callout-tip}
-# Size 
-The probability of a type-I-error event is also called **size** of $T.$ 
-
-The size of $T$ is defined as the larges probability of rejecting $H_0$ over all possible parameter values $\theta\in\Theta_0$ under $H_0,$
-$$
-\begin{align*}
-\text{Size}
-=& \sup_{\theta\in\Theta_0} P(T \in \mathcal{R}).
-\end{align*}
-$$
-
-Since we want to be sure that we correctly reject $H_0,$ we want test statistics for which we can control the their size from above by some chosen level; e.g. 
-
-* $\text{Size}\,\leq 0.05$ or
-* $\text{Size}\,\leq 0.01.$ 
-:::
-
-::: {.callout-tip}
-# Power
-One minus the probability of a type-II-error is called **power** of $T.$ 
-
-The power of $T$ is defined as 
-$$
-\begin{align*}
-\text{Power}=&1-P(\text{type-II-error})\\[2ex]
-=&P(T\in \mathcal{R} | \theta\in \Theta_1)
-\end{align*}
-$$
-Since we want to detect violations of $H_0,$ we want test statistics with a large power.
-:::
 
 
 
@@ -1029,135 +1121,172 @@ there's a famous sentence which goes back to @Altman_Bland_1995 :</br>
 ::: 
 
 
-Let $\alpha$ with $0<\alpha<1$ denote the **significance level** chosen by the statistician/econometrician. 
+### Size 
 
-A statistical hypothesis test, $T,$ is a **valid test** if its size (probability of a type-I-error) can be bounded from above by the chosen **significance level (nominal size)** $\alpha$, i.e. if  
+The probability of a type-I-error event is called **size** of $T_n.$ 
+
+::: {.callout icon=false}
+#
+::: {#def-size}
+# Size 
+
+The size of a test statistic $T_n$ is the largest probability of rejecting $H_0$ over all possible null-hypothetical parameter values $\theta\in\Theta_0$
+$$
 \begin{align*}
-\text{Size}=P(\text{reject } H_0| H_0\text{ is true})\; \leq\; \alpha = \text{Nominal Size}
+\text{Size}_{n,\alpha}
+=& \sup_{\theta\in\Theta_0} P(T_n \in \mathcal{R}_{n,\alpha} | \theta\in \Theta_0 ).
 \end{align*}
+$$
+:::
+:::
+
+A statistical hypothesis test procedure is called **valid test** if its size can be bounded from above by the chosen **significance level (nominal size)** $\alpha$, i.e. if  
+$$
+\begin{align*}
+\text{Size}_{n,\alpha}\; \leq\; \alpha = \text{Nominal Size}
+\end{align*}
+$$
 
 Since we want to keep the probability of falsely rejecting $H_0$ small, we choose small singificance levels such as 
 
-* $\alpha=0.05$ or
-* $\alpha=0.01$ or 
-* $\alpha=0.001,$
+* $\alpha=0.05$, 
+* $\alpha=0.01$, or 
+* $\alpha=0.001.$
 
-but of course, these values are only conventions and you can also choose, for instance, $\alpha=0.026.$
+
 
 ::: {.callout-note}
 # Exact vs conservative vs invalid
 
-A test statistic $T$ is called **exact (or non-conservative)** if 
+A test statistic $T_n$ is called 
+
+* **exact** if 
 $$
-\text{Size}=\sup_{\theta\in\Theta_0} P(T \in \mathcal{R}) =\alpha.
+\text{Size}_{n,\alpha}=\sup_{\theta\in\Theta_0} P(T_n \in \mathcal{R}_{n,\alpha}| \theta\in \Theta_0 ) =\alpha,
 $$
-A test statistic $T$ is called **conservative** if
+* **conservative** if
 $$
-\text{Size}= \sup_{\theta\in\Theta_0} P(T \in \mathcal{R}) <\alpha.
+\text{Size}_{n,\alpha}= \sup_{\theta\in\Theta_0} P(T_n \in \mathcal{R}_{n,\alpha}| \theta\in \Theta_0 ) <\alpha,
 $$
-A test statistic $T$ is called **invalid** if
+* **invalid** if
 $$
-\text{Size}=\sup_{\theta\in\Theta_0} P(T \in \mathcal{R}) > \alpha.
+\text{Size}_{n,\alpha}=\sup_{\theta\in\Theta_0} P(T_n \in \mathcal{R}_{n,\alpha}| \theta\in \Theta_0 ) > \alpha.
 $$
+:::
 
 ::: {.callout-tip}
 Under Assumptions 1-4$^\ast,$ the $F$-test and the $t$-test are **exact** test statistics. 
 :::
-:::
-
-<!-- and a given alternative hypothesis, we can divide the range of all possible values of the test statistic (i.e., $\mathbb{R}$ since both $t\in\mathbb{R}$ and $F\in\mathbb{R}$) into a **rejection region** and a **non-rejection region** by using **critical values** derived from the distribution of the test statistic under the null hypothesis.  We can do this because the test statistics $t$ and $F$ have known distributions under the null hypothesis ($t\overset{H_0}{\sim}t_{n-K}$ and $F\overset{H_0}{\sim}F_{(q,n-K)}$).  -->
 
 
-**Showing Exactness of the $F$-Test:**
+#### **Showing Exactness of the $F$-Test** {-}
+
+$$
+\begin{equation*}
+\begin{array}{lll}
+& H_0: R\beta = r^{(0)}   & (\text{simple hypothesis})\\
+\text{versus}\quad 
+& H_1: R\beta \neq r^{(0)}& (\text{composite hypothesis})\\
+\end{array}
+\end{equation*}
+$$
 
 Under Assumptions 1-4$^\ast$ (see @sec-testmultp), we have that 
 $$
-F\overset{H_0}{\sim}F_{q,n-K}.
+F_n\overset{H_0}{\sim}F_{q,n-K}.
 $${#eq-FNullDistr}
 
-@eq-FNullDistr allows us to show that the $F$-test is an exact test. 
-Since the null hypothesis is a **simple** hypothesis, we have that 
+@eq-FNullDistr allows us to show that the $F_n$-test is an exact test. 
+Since the null hypothesis is a **simple** hypothesis we do not need to consider the supremum $(\sup_{\theta\in\Theta_0}),$ but simply have
 $$
 \begin{align*}
-\text{Size}
-=&\sup_{\theta\in\Theta_0}P(T \in \mathcal{R})\\[2ex]
-=&P(F \in \mathcal{R} \;|\; R\beta = r^{(0)}).
+\text{Size}_{n,\alpha}
+= & P(F_n \in \mathcal{R}_{n,\alpha} \;|\; R\beta = r^{(0)}).
 \end{align*}
 $$
 Thus,
 $$
 \begin{align*}
-\text{Size}
-=&P(F\in\mathcal{R}\;|\;R\beta = r^{(0)})\\[2ex]
-=&P\Big(F > c_{1-\alpha}\;|\;R\beta = r^{(0)}\Big)\\[2ex]
-=&1 - P\Big(F \leq c_{1-\alpha}\;|\;R\beta = r^{(0)}\Big)=\alpha,
+\text{Size}_{n,\alpha}
+= & P(F_n \in \mathcal{R}_{n,\alpha} \;|\; R\beta = r^{(0)})\\[2ex]
+= & P\Big(F_n > c_{n,1-\alpha}\;|\;R\beta = r^{(0)}\Big)\\[2ex]
+= & 1 - P\Big(F \leq c_{n,1-\alpha}\;|\;R\beta = r^{(0)}\Big)=\alpha,
 \end{align*}
 $$
+for all sample sizes $n>K.$
 
 
 #### **Showing Exactness of the Two-Sided $t$-Test:** {-}
 
+$$
+\begin{equation*}
+\begin{array}{lll}
+& H_0: \beta_k =  \beta_k^{(0)}   & (\text{simple hypothesis})\\
+\text{versus}\quad 
+& H_1: \beta_k \neq \beta_k^{(0)}& (\text{composite hypothesis})\\
+\end{array}
+\end{equation*}
+$$
+
 Under Assumptions 1-4$^\ast$ (see @sec-testingsinglep), we have that 
 $$
-T\overset{H_0}{\sim}t_{n-K}.
+T_n\overset{H_0}{\sim}t_{n-K}.
 $${#eq-T2SNullDistr}
 
 
-@eq-T2SNullDistr allows us to show that the $t$-test is an exact test. 
-Since the two-sided null hypothesis is a **simple hypothesis**, we have that 
+@eq-T2SNullDistr allows us to show that the $t$-test is an exact test. Since the null hypothesis is a **simple** hypothesis we do not need to consider the supremum $(\sup_{\theta\in\Theta_0}),$ but simply have
 $$
 \begin{align*}
-\text{Size}
-=&\sup_{\theta\in\Theta_0}P(T \in \mathcal{R})\\[2ex]
-=&P(T \in \mathcal{R} \;|\; \beta_k = \beta_k^{(0)}).
+\text{Size}_{n,\alpha}
+=&P(T_n \in \mathcal{R}_{n,\alpha} \;|\; \beta_k = \beta_k^{(0)}).
 \end{align*}
 $$
 Thus, 
 $$
 \begin{align*}
-\text{Size}
-=&P(T \in \mathcal{R} \;|\; \beta_k = \beta_k^{(0)})\\[2ex]
-=&P\Big(T < c_{\alpha/2}\quad\text{or}\quad T>c_{1-\alpha/2} \;\Big|\; \beta_k = \beta_k^{(0)}\Big)\\[2ex]
-=&P\Big(T < c_{\alpha/2} \;\Big|\; \beta_k = \beta_k^{(0)}\Big) + 
-  P\Big(T>c_{1-\alpha/2} \;\Big|\; \beta_k = \beta_k^{(0)}\Big)\\[2ex]
+\text{Size}_{n,\alpha}
+=&P(T_n \in \mathcal{R}_{n,\alpha} \;|\; \beta_k = \beta_k^{(0)})\\[2ex]
+=&P\Big(T_n < c_{n,\alpha/2}\quad\text{or}\quad T_n>c_{n,1-\alpha/2} \;\Big|\; \beta_k = \beta_k^{(0)}\Big)\\[2ex]
+=&P\Big(T_n < c_{n,\alpha/2} \;\Big|\; \beta_k = \beta_k^{(0)}\Big) + 
+  P\Big(T_n > c_{n,1-\alpha/2} \;\Big|\; \beta_k = \beta_k^{(0)}\Big)\\[2ex]
 &=\frac{\alpha}{2}+\frac{\alpha}{2}=\alpha.
 \end{align*}
 $$
+for all sample sizes $n>K.$
 
 
 
 #### **Showing Exactness of the One-Sided $t$-Test:** {-}
 
-Consider, without loss of generality, the following right-sided, one-sided hypothesis:
-$$
-\begin{align*}
-&H_0: \beta_k \leq \beta_k^{(0)}\\
-\text{versus}\quad 
-& H_1: \beta_k > \beta_k^{(0)}
-\end{align*}
-$$
-(This without loss of generality, since effectively the same arguments apply to the case of the left-sided version.)
+Consider, without loss of generality, the following right-side version of the one-sided hypothesis:
 
-The case of a one-sided hypothesis is slightly more involved since the null hypothesis is a **compound hypothesis**: 
+$$
+\begin{equation*}
+\begin{array}{lll}
+& H_0: \beta_k \leq \beta_k^{(0)}  & (\text{composite hypothesis})\\
+\text{versus}\quad 
+& H_1: \beta_k > \beta_k^{(0)}     & (\text{composite hypothesis})\\
+\end{array}
+\end{equation*}
+$$
+
+> Considering the right-side version is without loss of generality, since effectively the same arguments apply to the case of the left-side version.
+
+
+The case of a one-sided hypothesis is slightly more involved since the null hypothesis is a **composite hypothesis**; here: 
 $$
 H_0: \beta_k \in \;\big]-\infty,\beta_k^{(0)}\big].
 $$
-
-Of course, under the scenario that $H_0$ is true, **only one** of the infinitely many null hypotheses **is actually true** and all other null hypotheses are wrong. 
-
-::: {.callout-tip}
-The idea of a **compound null hypothesis** $H_0:\theta\in\Theta_0$ is to collect all hypotheses which we do not care to detect by the statistical test. This way, the set of alternative hypotheses $H_1:\theta\in\Theta_1$ becomes smaller which leads to more powerful tests.  
-::: 
 
 To conduct the $t$-test we need to take **one** null hypothetical value 
 $$
 \tilde\beta_k^{(0)}\in ]-\infty,\beta_k^{(0)}]
 $$ 
-which leads to a $\tilde\beta_k^{(0)}$ specific $t$-test
+which then leads to a $\tilde\beta_k^{(0)}$ specific $t$-test
 $$
 \begin{align*}
-T(\tilde\beta_k^{(0)}) := 
-\frac{\hat\beta_k - \tilde\beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)} 
+T_n(\tilde\beta_k^{(0)}) := 
+\frac{\hat\beta_{n,k} - \tilde\beta_k^{(0)}}{\widehat{SE}(\hat\beta_{n,k}|X)} 
 \end{align*}
 $$
 
@@ -1165,52 +1294,69 @@ $$
 Under Assumptions 1-4$^\ast,$ we have that 
 $$
 \begin{align*}
-T(\tilde\beta_k^{(0)})
+T_n(\tilde\beta_{n,k}^{(0)})
 &=
-\frac{\hat\beta_k \overbrace{- \beta_k + \beta_k}^{=0} - \tilde\beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}\\[2ex]
+\frac{\hat\beta_{n,k} \overbrace{- \beta_k + \beta_k}^{=0} - \tilde\beta_k^{(0)}}{\widehat{SE}(\hat\beta_{n,k}|X)}\\[2ex]
 &=
-\underbrace{\frac{\hat\beta_k - \beta_k}{\widehat{SE}(\hat\beta_{k}|X)}}_{\sim t_{(n-K)}} + 
-\underbrace{\frac{\beta_k - \tilde\beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}}_{❓},
+\underbrace{\frac{\hat\beta_{n,k} - \beta_k}{\widehat{SE}(\hat\beta_{n,k}|X)}}_{\sim t_{(n-K)}} + 
+\underbrace{\frac{\beta_k - \tilde\beta_k^{(0)}}{\widehat{SE}(\hat\beta_{n,k}|X)}}_{❓},
 \end{align*}
 $${#eq-NullDistrOneSided}
 where under $H_0:\beta_k \in ]-\infty,\beta_k^{(0)}].$
 
-The second term in @eq-NullDistrOneSided is challenging: 
+The second term in @eq-NullDistrOneSided is challenging, since generally, we do not know its value and thus also not its sign. 
 
-* Generally, this term is non-zero since the selected null hypothetical value $\tilde{\beta}_k^{(0)}$ generally does not equal the true (unknown) $\beta_k.$ 
-* If it is non-zero, we do not know its distribution. 
+**Solution:** 
 
-**Solution:** Under $H_0,$ we know that 
+The solution of this problem is to set (as done in @sec-tTestTestStat)
 $$
-\beta_k \leq \beta_k^{(0)}.
-$$
-Thus, when setting 
-$$
-\tilde\beta_k^{(0)} = \beta_k^{(0)},
+\tilde\beta_k^{(0)} = \beta_k^{(0)}
 $$ 
-for conducting the $t$-test (as presented in @sec-TDecRS), we know that, under $H_0,$  
+and to use the $t$-test statistic
+$$
+T_n(\beta_k^{(0)})\equiv T_n
+=\frac{\hat\beta_{n,k} - \beta_k^{(0)}}{\widehat{SE}(\hat\beta_{n,k}|X)}.
+$$
+Under $H_0,$  
+$$
+\beta_k \leq \beta_k^{(0)} \Leftrightarrow \beta_k - \beta_k^{(0)}\highlight{\leq 0}, 
+$$
+which implies that 
 $$
 \begin{align*}
-T(\beta_k^{(0)})
+T_n
 &=
-\frac{\hat\beta_k - \beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}\\[2ex]
+\frac{\hat\beta_{n,k} - \beta_k^{(0)}}{\widehat{SE}(\hat\beta_{n,k}|X)}\\[2ex]
 &=
-\underbrace{\frac{\hat\beta_k - \beta_k}{\widehat{SE}(\hat\beta_{k}|X)}}_{\sim t_{(n-K)}} + 
-\underbrace{\frac{\beta_k - \beta_k^{(0)}}{\widehat{SE}(\hat\beta_{k}|X)}}_{{\color{red}{\leq 0}}}\\[2ex]
-&\leq 
-\frac{\hat\beta_k - \beta_k}{\widehat{SE}(\hat\beta_{k}|X)} \overset{H_0}{\sim} t_{(n-K)},
+\underbrace{\frac{\hat\beta_{n,k} - \beta_k}{\widehat{SE}(\hat\beta_{n,k}|X)}}_{\sim t_{(n-K)}} + 
+\underbrace{\frac{\beta_k - \beta_k^{(0)}}{\widehat{SE}(\hat\beta_{n,k}|X)}}_{\highlight{\leq 0}}\\[2ex]
+&\highlight{\leq} 
+\frac{\hat\beta_{n,k} - \beta_k}{\widehat{SE}(\hat\beta_{n,k}|X)} \overset{H_0}{\sim} t_{(n-K)},
 \end{align*}
 $${#eq-NullDistrOneSidedIneq}
 where the inequality holds with probability one (i.e. for any possible realization). 
 
+
+
+The inequality in @eq-NullDistrOneSidedIneq implies that 
+$$
+\begin{align*}
+P(T_n\in\mathcal{R}_{n,\alpha}|\beta_k < \beta_k^{(0)}) \highlight{\leq}  P(T_n\in\mathcal{R}_{n,\alpha} \;|\;\beta_k = \beta_k^{(0)}) & = \alpha\\[2ex]
+\Leftrightarrow\quad  
+\text{Size}_{n,\alpha} = \sup_{\beta_k \in ]-\infty,\beta_k^{(0)}]} P(T_n\in\mathcal{R}_{n,\alpha}\;|\;\beta_k \in ]-\infty,\beta_k^{(0)}]) & = \alpha,
+\end{align*}
+$$
+for all sample sizes $n>K,$
+where 
+$$
+\mathcal{R}_{n,\alpha} = ]c_{n,1-\alpha},\infty[,
+$$
+with $c_{n,1-\alpha}$ denoting the $(1-\alpha)$-quantile of the $t$-distribution with $(n-K)$ degrees of freedom.
+
+
+<!-- 
 ::: {.callout-tip icon="false"}
 #
-<!-- Under $H_0:\beta_k \leq \beta_k^{(0)}$ we can consider two cases: 
-1. For $\beta_k = \beta_k^{(0)},$
-$$
-T(\beta_k^{(0)}) \sim t_{(n-K)} 
-$$
-2. For $\beta_k < \beta_k^{(0)},$ the distribution of $T(\beta_k^{(0)})$ is **strictly dominated** by the $t$-distribution with $(n-K)$ degrees of freedom.  -->
 Let $F_{T(\beta_k^{(0)})}$ and $F_{t_{(n-K)}}$ denote cumulative distribution functions of $T(\beta_k^{(0)})$ and of the $t$-distribution with $(n-K)$ degrees of freedom. 
 
 The inequality in @eq-NullDistrOneSidedIneq implies that:
@@ -1226,18 +1372,11 @@ $$
 $$
 F_{T(\beta_k^{(0)})} (x) > F_{t_{(n-K)}}(x) \quad\text{for all}\quad x\in\mathbb{R}. 
 $$
-:::
+::: -->
 
-Therefore, we can use the $(1-\alpha)$-quantile of the $t$-distribution with $(n-K)$ degrees of freedom, $c_{1-\alpha},$ to define the rejection region
-$$
-\mathcal{R} = ]c_{1-\alpha},\infty[,
-$$
-since this allows us to control the size simultaneously for all (infinitely many) null hypotheses $H_0:\beta_k \leq \beta_k^{(0)},$ 
-$$
-\text{Size}=\sup_{\beta_k \in ]-\infty,\beta_k^{(0)}]}P(T(\beta_k^{(0)}) \in\mathcal{R}) = \alpha.
-$$
 
-::: {.callout-tip icon="false"}
+
+<!-- ::: {.callout-tip icon="false"}
 #
 The inequality in @eq-NullDistrOneSidedIneq implies that
 $$
@@ -1251,10 +1390,8 @@ P(T(\beta_k^{(0)}) \in\mathcal{R}) < \alpha
 \quad\text{if}\quad
 \beta_k < \beta_k^{(0)}.
 $$
-:::
-
-
-Equivalent arguments, can be applied for to the one-sided $t$-test for the left-sided version of the $t$-test.
+::: 
+-->
 
 
 
@@ -1310,7 +1447,7 @@ $$ -->
 
 
 
-<!-- To handle this issue, it is useful to state the **compound null hypothesis** as a family of *infinitely many* specific null hypotheses:
+<!-- To handle this issue, it is useful to state the **composite null hypothesis** as a family of *infinitely many* specific null hypotheses:
 \begin{align*}
 &H_0: \beta_k =\tilde\beta_k^{(0)}\quad\text{with}\quad \tilde\beta_k^{(0)}\in ]-\infty,\beta_k^{(0)}]\\
 \text{versus}\quad 
@@ -1335,7 +1472,89 @@ $$ -->
 
 
 
-### Example: Power of the One-Sided $t$-Test
+
+
+
+
+
+### Power  
+
+
+
+::: {.callout icon=false}
+#
+::: {#def-power}
+# Power
+The power of a test statistic $T_n$ is the probability of correctly rejecting $H_0$ for a given $\theta\in \Theta_1$
+$$
+\begin{align*}
+\text{Power}_{n,\theta,\alpha} 
+& = P(T_n \in \mathcal{R}_{n,\alpha} | \theta\in \Theta_1)\\[2ex]
+& = 1-P(\text{type-II-error}| \theta\in \Theta_1)
+\end{align*}
+$$
+:::
+:::
+
+Since we want to detect a given violations of $H_0,$ we want test statistics with a large power.
+
+
+
+::: {.callout-note} 
+
+# Power is a function of $\alpha,$ $\theta,$ and $n$
+
+* Large violations of $H_0$:
+$$
+\begin{align*}
+&\text{Power}_{n,\theta,\alpha}
+\to 1 \quad \text{as}\quad |\theta - \theta^{(0)}|\to\infty,
+\end{align*}
+$$
+while keeping $0<\alpha<1$ and $n$ fix. 
+
+* Large sample sizes $n$:
+$$
+\begin{align*}
+&\text{Power}_{n,\theta,\alpha}
+\to 1 \quad \text{as}\quad n\to\infty,
+\end{align*}
+$$
+while keeping $0<\alpha<1$ and $|\theta - \theta^{(0)}|>0$ fix. 
+
+* Small significance levels $\alpha$:
+$$
+\begin{align*}
+&\text{Power}_{n,\theta,\alpha}
+\to 0 \quad \text{as}\quad \alpha\to 0,
+\end{align*}
+$$
+while keeping $n$ and $|\theta - \theta^{(0)}|>0$ fix. 
+:::
+
+
+**Caution:** This implies that even small, practically irrelevant violations of $H_0$ will be detected with a large probability when $n\to\infty.$
+
+
+
+::: {.callout icon=false}
+#
+::: {#def-power}
+# Consistency of a Statistical Test
+A statistical test is called **consistent** if its power increases as the sample size gets large
+$$
+\begin{align*}
+&\text{Power}_{n,\theta,\alpha}
+\to 1 \quad \text{as}\quad n\to\infty\\[2ex]
+\end{align*}
+$$
+for any fixed $0<\alpha<1$ and any fixed $|\theta - \theta^{(0)}|>0.$ 
+:::
+:::
+
+
+
+#### **Power of the One-Sided $t$-Test** {-}
 
 <!-- A type-II-error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a type-II-error equals one minus the probability of correctly rejecting the null hypothesis ("Power").  -->
 
@@ -1354,22 +1573,12 @@ Ideally, we would have some sense of the costs of making each of these errors, a
 :::  
 -->
 
-Since we want to detect violations of the null-hypothesis, we want that our test has a large power
-$$
-\begin{align*}
-\text{Power} 
-& = 1 - P(\text{type-II-error})\\[2ex]
-& = 1 - P(\text{Not reject $H_0$ given $H_1$ is true})\\[2ex]
-& = P(\text{Reject $H_0$ given $H_1$ is true})\\[2ex]
-& = P(\text{Detect a true violation of the null})
-\end{align*}
-$$
 
 Unfortunately, computing the power of a statistical test is usually impossible, since this requires knowing the distribution of the test statistic under the alternative hypothesis $H_1.$ The distribution of a test statistic under $H_1$ can only be derived under quite restrictive setups. 
 
 In the following, we consider such a restrictive setup for the $t$-test statistic. 
 
-Let's consider the one-sided hypothesis
+Let's consider the right-sided version of the one-sided hypothesis
 $$
 \begin{align*}
 &H_0: \beta_k\leq \beta_{k}^{(0)}\\
@@ -1377,70 +1586,68 @@ $$
 \end{align*}
 $$
 
-* let $X$ be deterministic such that $T|X \overset{d}{=}T$ and 
-* let the true standard error of $\hat\beta_k$ be  
+* Let $X$ be deterministic such that $T_n|X \overset{d}{=}T_n$ and 
+* Let the true standard error of $\hat\beta_{n,k}$ be  
 $$
-\operatorname{SE}(\hat\beta_k|X)=\frac{1}{\sqrt{n}}4.5.
+\operatorname{SE}(\hat\beta_{n,k}|X)=\frac{1}{\sqrt{n}}4.5.
 $$
 
 ::: {.callout-tip}
 
 # Standard error of $\hat\beta_k$ is proportional to $1/\sqrt{n}$ 
 
-Of course, usually we do not know the standard error of the estimator, but have to estimate it. But it is true that the standard error of the OLS estimator $\hat{\beta}_k$ is **proportional to** $1/\sqrt{n},$
+Of course, usually we do not know the standard error of the estimator, but have to estimate it. However, it is true that the standard error of the OLS estimator $\hat{\beta}_{n,k}$ is **proportional to** $1/\sqrt{n},$
 $$
-\operatorname{SE}(\hat\beta_k|X) = \frac{1}{\sqrt{n}}\cdot \texttt{constant},
+\operatorname{SE}(\hat\beta_{n,k}|X) = \frac{1}{\sqrt{n}}\cdot\texttt{constant},
 $$
-where the $\texttt{constant}$ may depend on $X,$ but not on $n.$
+where the $\texttt{constant}$ does not depend on $n.$
 :::
 
-Under this setup and under Assumptions 1-4^$\ast,$ the $t$-test statistic is **normally distributed**. 
+Under this simplified setup and under Assumptions 1-4^$\ast,$ the $t$-test statistic is **normally distributed**. 
 
-If $H_0$ is true with $\beta_k=\beta_k^{(0)},$ then
+That is, if $H_0$ is true with $\beta_k=\beta_k^{(0)},$ then
 $$
 \begin{align*}
-T
-&=\frac{\hat\beta_k-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
-&=\frac{\sqrt{n}(\hat\beta_k-\beta_k)}{4.5} \sim \mathcal{N}(0,1).
+T_n
+&=\frac{\hat\beta_{n,k}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
+&=\frac{\sqrt{n}(\hat\beta_{n,k}-\beta_k)}{4.5} \overset{H_0}{\sim} \mathcal{N}(0,1).
 \end{align*}
 $$
 
-**Note:** It suffices to look at this specific null hypothesis $\beta_k=\beta_k^{(0)},$ since the distribution of $T$ is dominated by $\mathcal{N}(0,1)$ for all other null hypotheses $\beta_k<\beta_k^{(0)};$ see our discussions above.
+> **Note:** It suffices to look at this specific null hypothesis $\beta_k=\beta_k^{(0)},$ since the distribution of $T$ is dominated by $\mathcal{N}(0,1)$ for all other null hypotheses $\beta_k<\beta_k^{(0)};$ see our discussions around @eq-NullDistrOneSidedIneq.
 
 If $H_1: \beta_k-\beta_k^{(0)}>0$ is true, then 
 $$
 \begin{align*}
-T&=\frac{\hat\beta_k-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}
-=\frac{\hat\beta_k\overbrace{-\beta_k+\beta_k}^{=0}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
-&=\underbrace{\frac{\sqrt{n}(\hat\beta_k-\beta_k)}{4.5}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}_{=\text{mean-shift}}\\[2ex] 
-&\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right)
+T_n&=\frac{\hat\beta_{n,k}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}
+=\frac{\hat\beta_{n,k}\overbrace{-\beta_k+\beta_k}^{=0}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
+&=\underbrace{\frac{\sqrt{n}(\hat\beta_{n,k}-\beta_k)}{4.5}}_{\sim \mathcal{N}(0,1)}+\underbrace{\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}_{=\text{ mean shift }>0}\\[2ex] 
+&\overset{H_1}{\sim} \mathcal{N}\Bigg(\;\underbrace{\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}_{=\text{ mean shift }>0}\;,\;1\Bigg)
 \end{align*}
 $$
 
-Power:
+Thus
 $$ 
 \begin{align*}
-\text{Power} 
-& = P(\text{Reject $H_0$ given $H_1$ is true})\\[2ex]
-%& = P(T \in \left]z_{1-\alpha},\infty\right[ \;\;|\; H_1\text{ is true})\\[2ex]
-& = P(T > z_{1-\alpha}\;|\; H_1\text{ is true}),
+\text{Power}_{n,\theta,\alpha} 
+& = P\Big(\;\underbrace{T_n > z_{1-\alpha}}_{T_n\in\mathcal{R}_{n,\alpha}}\;|\; \underbrace{\beta_k > \beta_k^{(0)}}_{H_1\text{ is true}}\;\Big),
 \end{align*}
 $$
 where $z_{1-\alpha}$ denotes the $(1-\alpha)$ quantile of the standard normal distribution $\mathcal{N}(0,1),$ and where 
 $$
-T\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).
+T_n\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).
 $$
 
 This allows us to compute the power as following:
 $$
 \begin{align*}
-\text{Power} 
-& = P(T > z_{1-\alpha}\;|\; H_1\text{ is true}),
+& \text{Power}_{n,\theta,\alpha}=\\[2ex]  
+& = P(T_n > z_{1-\alpha}\;|\; \beta_k > \beta_k^{(0)}),
 \\[2ex]
-& = P\Bigg(\overbrace{T - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}^{=Z\sim\mathcal{N}(0,1)} > z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\Bigg)\\[2ex]
-& = P\left(Z > z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right)\\[2ex]%,\quad\text{where}\quad Z\sim\mathcal{N}(0,1)\\[2ex]
-&=1-P\left(Z \leq z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right)\\[2ex]
-&=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right),
+& = P\Bigg(\;\overbrace{T_n - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}}^{=Z\sim\mathcal{N}(0,1)} > z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\;\Bigg|\;\beta_k > \beta_k^{(0)}\Bigg)\\[2ex]
+& = P\left(Z > z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\Bigg|\;\beta_k > \beta_k^{(0)}\right)\\[2ex]
+&=1-P\left(Z \leq z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\Bigg|\;\beta_k > \beta_k^{(0)}\right)\\[2ex]
+&=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right)\quad\text{with}\quad \beta_k > \beta_k^{(0)},
 \end{align*}
 $$
 where $\Phi$ denotes the cumulative distribution function of the standard normal distribution $\mathcal{N}(0,1).$
@@ -1515,49 +1722,35 @@ legend(x=-4.5,y=.65, title=NULL, bty="n",
 
 
 
-::: {.callout-note} 
 
-# Power is a function of $\alpha,$ $(\beta_k-\beta_k^{(0)}),$ and $n$
 
-<!-- Thus, the power of the $t$-test statistic is a function of 
 
-* the significance level $\alpha$
-* the violation of $H_0$, $(\beta_k-\beta_k^{(0)})>0$
-* the sample size $n$ -->
+### $p$-Value {#sec-pValue}
 
-<!-- \begin{align*}
-\text{Power}(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n})
-&=1-\Phi\left(z_{1-\alpha} - \frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5}\right),
-\end{align*} -->
 
-Indeed, for all reasonable test statistics we have that: 
+The $p$-value of a test-statistic $T_n$ is defined as the probability of observing realizations of $T_n$ that are equal to or more extreme (in direction of the alternative) than the observed value $T_{n,\text{obs}}$ **given that the null hypothesis is true.**
+
+
+$p$-value for a left-sided version of a one-sided hypothesis test:
+$$
+p_{\text{left},\,\text{obs}} = P(T_n\leq T_{n,\text{obs}}\;|\;H_0 \text{ is true})
+$$
+
+$p$-value for a right-sided version of a one-sided hypothesis test:
+$$
+p_{\text{right},\,\text{obs}} = P(T_n\geq T_{n,\text{obs}}\;|\;H_0 \text{ is true})
+$$
+
+$p$-value for a two-sided hypothesis test:
+$$
 \begin{align*}
-%&\text{One-Sided $H_1:\beta_k>\beta_k^{(0)}$:}\\
-%&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-%\to 1 \quad \text{as}\quad (\beta_k-\beta_k^{(0)})\to\infty\\[2ex]
-%&\text{One-Sided $H_1:\beta_k<\beta_k^{(0)}$:}\\
-%&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-%\to 1 \quad \text{as}\quad (\beta_k-\beta_k^{(0)})\to-\infty\\[2ex]
-&\text{Two-Sided $H_1:\beta_k\neq\beta_k^{(0)}$:}\\
-&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-\to 1 \quad \text{as}\quad |\beta_k-\beta_k^{(0)}|\to\infty\\[2ex]
-&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-\to 1 \quad \text{as}\quad n\to\infty\\[2ex]
-&\text{Power}\left(\alpha, (\beta_k-\beta_k^{(0)}), \sqrt{n}\right)
-\to 0 \quad \text{as}\quad \alpha\to 0
+p_{\text{obs}}
+&=P(|T_n|\geq |T_{n,\text{obs}}|\;|\;H_0 \text{ is true})\\[2ex]
+&=2\cdot\min\{p_{\text{left},\,\text{obs}}, 
+              p_{\text{right},\,\text{obs}}\}
 \end{align*}
-<!-- when keeping each of the other arguments fixed.  -->
-:::
-
-
-
-### Interpreting the $p$-Value {#sec-pValue}
-
-
-The $p$-value of a test-statistic $T$ is defined as the probability of observing realizations of $T$ that are equal to or larger than the observed value $T_{\text{obs}}$ **given that the null hypothesis is true**
 $$
-p_{\text{obs}}=P(T\geq T_{\text{obs}}\;|\;H_0 \text{ is true})
-$$
+
 
 ::: {.callout-tip}
 # Marginal Significance Value
@@ -1565,23 +1758,8 @@ The $p$-value equals the significance level $\alpha$ for which we just fail to r
 :::
 
 
-<!-- The $p$-value of a test statistic is the significance level we would obtain if we took the sample value of the observed test statistic, $F_{\text{obs}}$ or $t_{\text{obs}},$ as the border between the rejection and non-rejection regions. 
 
-* **$F$-test:** 
-* **$t$-test:** 
-   * Two sided, i.e.,  $H_0:\beta_k = r$ vs. $H_1:\beta_k\neq r$: <br> 
-    $p=2\cdot\min\{P_{H_0}(t\leq t_{\text{obs}}),P_{H_0}(t\geq t_{\text{obs}})\}=P_{H_0}(|t|\geq|t_{\text{obs}}|)$ <br>
-    The latter equality holds since the $t$ distrbution is symmetric. 
-   * One sided, i.e., $H_0:\beta_k \leq r$ vs. $H_1:\beta_k> r$: <br> 
-     $p=P_{H_0}(t\geq t_{\text{obs}})$
-   * One sided, i.e., $H_0:\beta_k \geq r$ vs. $H_1:\beta_k< r$: <br> 
-     $p=P_{H_0}(t\leq t_{\text{obs}})$
-
-
-
-If the $p$-value is strictly smaller than the chosen significance level $\alpha$, we reject the null hypothesis.  -->
-
-Since the $p$-value is defined under the hypothetical scenario that the null-hypothesis is true, ... 
+Since the $p$-value is defined under the hypothetical **scenario that the null-hypothesis is true**, ... 
 
 <center>
 ❗... the $p$-value **cannot** be the probability that the null-hypothesis is true. (A common misinterpretation of the $p$-value.)❗
@@ -1593,69 +1771,67 @@ Since the $p$-value is defined under the hypothetical scenario that the null-hyp
 
 
 
-## Confidence Intervals {#sec-CIsmallsample}
+#### **The $p$-value is a Random Variable** {-} 
 
-We define a two-sided $(1-\alpha)\cdot 100\%$ percent confidence interval for the *deterministic* (unknown) true $\beta_k$ as the **random interval** $\operatorname{CI}_{k,1-\alpha}$ for which 
-$$
-P\Big(\beta_k\in\operatorname{CI}_{k,1-\alpha}\Big)\geq 1-\alpha.
-$$
-Derivation of the random interval $\operatorname{CI}_{k,1-\alpha}$: 
 
-Observe that (under Ass 1-4$^\ast$)
-$$
-\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\sim t_{(n-K)}
-$${#eq-CIDistr}
-Therefore,
+Let's consider, without loss of generality, the $p$-value for a left-sided version of a one-sided hypothesis test:
 $$
 \begin{align*}
-P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq c_{1-\alpha/2}\right)=1-\alpha,
+p_{\text{left},\,\text{obs}} 
+&= P(T_n\leq T_{n,\text{obs}}\;|\;H_0 \text{ is true})\\
+&= F_{T_n}(T_{n,\text{obs}}),
 \end{align*}
 $$
-where $c_{1-\alpha/2}$ denotes the $(1-\alpha/2)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom. Next, we can do the following equivalent transformations
+where $F_{T_n}$ denotes the cumulative distribution function (see @sec-Defcdf) of $T_n.$ 
+
+> **In the case of the $t$-test:** Under $H_0,$ $F_{T_n}$ denotes the distribution function of the $t$-distribution with $n-K$ degrees of freedom. 
+
+The $p$-value is a random variable, since it depends on the data; i.e., for a given realization of the random sample, we observe the corresponding realization $p_{\text{left},\,\text{obs}}.$ 
+
+
+Under $H_0,$ the $p$-value is a **uniformly distributed random variable** 
+$$
+p_{\text{left}} = F_{T_n}(T_{n}) \overset{H_0}{\sim}\mathcal{U}[0,1].
+$$
+
+**Proof:**
+
+Observe that $p_{\text{left}}$ is defined as a transformed random variable; namely by transforming the random variable $T_n$ using the cumulative distribution function $F_{T_n},$ where, under $H_0,$
+$$
+T_{n}\overset{H_0}{\sim}F_{T_n}.
+$$
+
+Let $F_{p_{\text{left}}}$ denote the cumulative distribution function of $p_{\text{left}}$. 
+
+If the claim is correct, then the random variable $p_{\text{left}}$ has, under $H_0,$ the cumulative distribution function of $\mathcal{U}[0,1];$ i.e.
+$$
+F_{p_{\text{left}}}(x) = x\quad\text{for}\quad x\in[0,1].
+$$
+
+This is indeed true since, under $H_0$: 
 $$
 \begin{align*}
-P\left(-c_{1-\alpha/2}\leq\frac{\hat\beta_k-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_k|X)}\leq c_{1-\alpha/2}\right)&=1-\alpha\\
-\Leftrightarrow P\left(\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\leq \beta_k\leq\hat\beta_k +c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right)&=1-\alpha\\
-\Leftrightarrow P\left(\beta_k\in\underbrace{\left[\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k +c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]}_{=:\operatorname{CI}_{k,1-\alpha}}\right)&=1-\alpha
+F_{p_{\text{left}}}(x) 
+&= P(p_{\text{left}} < x) \\[2ex]
+&= P(F_{T_n}(T_n) < x) \\[2ex]
+&= P(T_n < F_{T_n}^{-1}(x)) \\[2ex]
+&= F_{T_n}(F_{T_n}^{-1}(x)) \\[2ex]
+&= x
 \end{align*}
 $$
-That is, the random interval 
-$$
-\operatorname{CI}_{k,1-\alpha}=\left[\hat\beta_k-c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X),\;\hat\beta_k + c_{1-\alpha/2}\widehat{\operatorname{SE}}(\hat\beta_k|X)\right]
-$$
-is our $(1-\alpha)\cdot 100\%$ confidence interval for $\beta_k$. 
 
 
-Since the confidence interval is based on the exact distribution (under Assumptions 1-4$^\ast$) in @eq-CIDistr, the confidence interval has an **exact** coverage probability
-\begin{align*}
-P\left(\beta_k\in\operatorname{CI}_{k,1-\alpha}\right)&=1-\alpha
-\end{align*}
-provided the Assumptions 1-4$^\ast$ are true. 
-
-::: {.callout-tip}
-# Interpretation of Confidence Intervals 
-
-The random interval  $\operatorname{CI}_{k,1-\alpha}$ for $\beta_k$ contains the true parameter value $\beta_k$ with probability $1-\alpha;$ i.e. we expect that $\operatorname{CI}_{k,1-\alpha}$ covers $\beta_k$ in $(1-\alpha)\cdot 100\%$ of resamplings from the random sample. 
-
-It's best to take a look at dynamic visualizations like this one: 
-
-<center>
-[https://rpsychologist.com/d3/ci/](https://rpsychologist.com/d3/ci/)
-</center>
 
 
-Unfortunately, this "frequentist" interpretation is not a statement about a single given $\operatorname{CI}_{k,1-\alpha}$ realization computed for a given data set. A given, realized $\operatorname{CI}_{k,1-\alpha}$ will either contain the true parameter $\beta_k$ or not, and usually we do not know the answer. So, confidence intervals are quite hard to interpret. However, they are very well suited as a tool to visualize estimation uncertainties in different parameter estimators, for instance, across $\hat\beta_k$, $k=1,\dots,K$.   
 
-<center>
-![](images/Meme_CI_2.jpg)
-</center>
-:::
+
 
 ## Monte Carlo Simulations {#sec-PSSI}
 
 Let's check the above exact inference results using Monte Carlo simulations. The check, of course, applies only to the considered special case and generally does not generalize to other data generating processes.  
 
 First, we program a function `myDataGenerator()` which allows us to generate data from the following model, i.e., from the following fully specified data generating process:
+$$
 \begin{align*}
 Y_i &=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
 \beta &=(\beta_1,\beta_2,\beta_3)'=(2,3,4)'\\
@@ -1663,6 +1839,7 @@ X_{i2}&\sim U[2,10]\\
 X_{i3}&\sim U[12,22]\\
 \varepsilon_i|X&\sim\mathcal{N}(0,3^2),
 \end{align*}
+$$
 where $(Y_i,X_i)$ is i.i.d. across $i=1,\dots,n$. 
 
 Let us consider a small sample size of $n=7$. 
