@@ -1772,9 +1772,9 @@ In the following chapters, we use theoretical arguments to investigate under whi
 * [Exercises for Chapter 5](https://www.dropbox.com/scl/fi/t6l36vku6aiii3o518voi/Ch5_Exercises1.pdf?rlkey=jgg4e5l5uld4cfakkyy5cztk1&dl=0)
 
 
-<!-- 
 * [Exercises of Chapter 5 with Solutions](https://www.dropbox.com/scl/fi/2arzabv6ydiap8tyh0c4p/Ch5_Exercises_with_Solutions1.pdf?rlkey=dqz2lewoqjxwkqxhvq7jxxf5l&dl=0)
--->
+
+
 
 
 ## References {-}

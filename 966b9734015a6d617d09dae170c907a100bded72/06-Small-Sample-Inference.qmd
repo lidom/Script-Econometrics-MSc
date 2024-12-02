@@ -975,7 +975,7 @@ and is thus a random variable.
 * the $F$-test statistic (@sec-testmultp) and 
 * the $t$-test statistic (@sec-testingsinglep).
 
-Generally, we can only derive the distribution of $T$ under $H_0;$ i.e. under the scenario that $H_0$ is true, 
+Generally, we can only derive the distribution of $T_n$ under $H_0;$ i.e. under the scenario that $H_0$ is true, 
 $$
 \begin{equation*}
 \begin{array}{ll}
@@ -983,7 +983,7 @@ T_n & \overset{{H_0}}\sim f_{T_n}\quad ✅
 \end{array}
 \end{equation*}
 $$
-For instance, in case of the $F$-test, $f_{T_n}$ is the $F$-distribution and in case of the $t$-test, $f_{T_n}$ is the $t$-distribution. 
+For instance, in case of the $F$-test, $f_{T_n}$ denotes the $F$-distribution with $q$ and $n-K$ degrees of freedom and in case of the $t$-test, $f_{T_n}$ denotes the $t$-distribution with $n-K$ degrees of freedom. 
 
 However, the distribution of $T_n$ under $H_1$ is generally unknown. 
 $$
@@ -1008,26 +1008,13 @@ of the random test statistic $T_n$ to decide:
 
 * whether we cannot reject a null hypothesis $H_0$ about some parameter $\theta$ 
 $$
-H_0: \theta\in\Theta_0
+H_0: \theta\in\Theta_0,
 $$ 
 * or wether we can reject $H_0$ in favor of the alternative hypothesis $H_1$
 $$
-H_1: \theta\in\Theta_1
+H_1: \theta\in\Theta_1.
 $$ 
-
-
-* We **reject** $H_0$ if 
-$$
-T_{n,\text{obs}}\in \mathcal{R}_{n,\alpha} 
-$$ 
-where $\mathcal{R}_{n,\alpha} $ denotes the **rejection region**; i.e. a range of $T$ values that we see only very rarely under $H_0.$ Note that the rejection region depends on the sample size $n$ and the chosen significance level $\alpha.$ 
-
-* We **cannot reject** $H_0$ 
-$$
-T_{n,\text{obs}}\not \in \mathcal{R}_{n,\alpha}
-$$ 
-
-(Equivalent descisions are made based on the $p$-value.)
+The test decision is made using the **rejection region**, the **$p$-value**, or a confidence interval. 
 
 Notation:
 
@@ -1049,7 +1036,11 @@ it is called a **simple hypothesis**.
 
 
 
-The idea of a **composite null hypothesis** $H_0:\theta\in\Theta_0$ is to collect all hypotheses which we do not care to detect by the statistical test. This way, the set of alternative hypotheses $H_1:\theta\in\Theta_1$ becomes smaller which leads to more powerful tests.  
+The idea of a **composite null hypothesis** 
+$$
+H_0:\theta\in\Theta_0
+$$ 
+is to collect all hypotheses which we do not care to detect by the statistical test. This way, the set of alternative hypotheses $H_1:\theta\in\Theta_1$ becomes smaller which leads to more powerful tests.  
 
 
 ::: {.callout-tip icon="false"}
@@ -1115,9 +1106,9 @@ Not rejecting $H_0$ even though $H_1$ is true.
 
 
 ::: {.callout-caution}
-Not being able to reject $H_0,$ does not mean a confirmation of $H_0.$ 
+Not being able to reject $H_0,$ does not mean a validation/confirmation of $H_0,$ but only reflects that we do not have sufficient evidence against a (possibly false) $H_0.$
 
-A possible violation of the null hypothesis may only be too small to stand out from the estimation errors; i.e. we may do a type-II-error. However, we do not control the probability of type-II-errors---we only control the probability of type-I-errors.
+Indeed, a a violation of $H_0 $ may only be too small to stand out from the estimation errors; i.e. we may do a type-II-error. However, we do not control the probability of type-II-errors---we only control the probability of type-I-errors.
 
 Therefore, if you were not able to reject $H_0,$ **never ever** state something like: "I conclude $H_0$ is true."
 
@@ -1132,6 +1123,9 @@ there's a famous sentence which goes back to @Altman_Bland_1995 :</br>
 </center>
 :::
 ::: 
+
+
+
 
 
 ### Size 

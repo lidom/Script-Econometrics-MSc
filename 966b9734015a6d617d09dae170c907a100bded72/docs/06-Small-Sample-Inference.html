@@ -971,13 +971,13 @@ T_n\equiv T((X_1,Y_1),\dots,(X_n,Y_n))
 <li>the <span class="math inline">\(F\)</span>-test statistic (<a href="#sec-testmultp" class="quarto-xref"><span>Section 6.2</span></a>) and</li>
 <li>the <span class="math inline">\(t\)</span>-test statistic (<a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.3</span></a>).</li>
 </ul>
-<p>Generally, we can only derive the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0;\)</span> i.e.&nbsp;under the scenario that <span class="math inline">\(H_0\)</span> is true, <span class="math display">\[
+<p>Generally, we can only derive the distribution of <span class="math inline">\(T_n\)</span> under <span class="math inline">\(H_0;\)</span> i.e.&nbsp;under the scenario that <span class="math inline">\(H_0\)</span> is true, <span class="math display">\[
 \begin{equation*}
 \begin{array}{ll}
 T_n &amp; \overset{{H_0}}\sim f_{T_n}\quad ✅
 \end{array}
 \end{equation*}
-\]</span> For instance, in case of the <span class="math inline">\(F\)</span>-test, <span class="math inline">\(f_{T_n}\)</span> is the <span class="math inline">\(F\)</span>-distribution and in case of the <span class="math inline">\(t\)</span>-test, <span class="math inline">\(f_{T_n}\)</span> is the <span class="math inline">\(t\)</span>-distribution.</p>
+\]</span> For instance, in case of the <span class="math inline">\(F\)</span>-test, <span class="math inline">\(f_{T_n}\)</span> denotes the <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\(q\)</span> and <span class="math inline">\(n-K\)</span> degrees of freedom and in case of the <span class="math inline">\(t\)</span>-test, <span class="math inline">\(f_{T_n}\)</span> denotes the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom.</p>
 <p>However, the distribution of <span class="math inline">\(T_n\)</span> under <span class="math inline">\(H_1\)</span> is generally unknown. <span class="math display">\[
 \begin{equation*}
 \begin{array}{ll}
@@ -994,20 +994,14 @@ T_n &amp; \overset{{H_1}}\sim ❌
 T_{n,\text{obs}}\equiv T((X_{1,\text{obs}},Y_{1,\text{obs}}),\dots,(X_{n,\text{obs}},Y_{n,\text{obs}}))
 \]</span> of the random test statistic <span class="math inline">\(T_n\)</span> to decide:</p>
 <ul>
-<li><p>whether we cannot reject a null hypothesis <span class="math inline">\(H_0\)</span> about some parameter <span class="math inline">\(\theta\)</span> <span class="math display">\[
-H_0: \theta\in\Theta_0
-\]</span></p></li>
-<li><p>or wether we can reject <span class="math inline">\(H_0\)</span> in favor of the alternative hypothesis <span class="math inline">\(H_1\)</span> <span class="math display">\[
-H_1: \theta\in\Theta_1
-\]</span></p></li>
-<li><p>We <strong>reject</strong> <span class="math inline">\(H_0\)</span> if <span class="math display">\[
-T_{n,\text{obs}}\in \mathcal{R}_{n,\alpha}
-\]</span> where $_{n,} $ denotes the <strong>rejection region</strong>; i.e.&nbsp;a range of <span class="math inline">\(T\)</span> values that we see only very rarely under <span class="math inline">\(H_0.\)</span> Note that the rejection region depends on the sample size <span class="math inline">\(n\)</span> and the chosen significance level <span class="math inline">\(\alpha.\)</span></p></li>
-<li><p>We <strong>cannot reject</strong> <span class="math inline">\(H_0\)</span> <span class="math display">\[
-T_{n,\text{obs}}\not \in \mathcal{R}_{n,\alpha}
-\]</span></p></li>
+<li>whether we cannot reject a null hypothesis <span class="math inline">\(H_0\)</span> about some parameter <span class="math inline">\(\theta\)</span> <span class="math display">\[
+H_0: \theta\in\Theta_0,
+\]</span>
+</li>
+<li>or wether we can reject <span class="math inline">\(H_0\)</span> in favor of the alternative hypothesis <span class="math inline">\(H_1\)</span> <span class="math display">\[
+H_1: \theta\in\Theta_1.
+\]</span> The test decision is made using the <strong>rejection region</strong>, the <strong><span class="math inline">\(p\)</span>-value</strong>, or a confidence interval.</li>
 </ul>
-<p>(Equivalent descisions are made based on the <span class="math inline">\(p\)</span>-value.)</p>
 <p>Notation:</p>
 <ul>
 <li>
@@ -1024,7 +1018,9 @@ T_{n,\text{obs}}\not \in \mathcal{R}_{n,\alpha}
 \]</span> it is called a <strong>simple hypothesis</strong>.</li>
 <li>If <span class="math inline">\(\Theta_j,\)</span> <span class="math inline">\(j=1,2,\)</span> contains <strong>multiple values</strong>, it is called a <strong>composite hypothesis</strong>.</li>
 </ul>
-<p>The idea of a <strong>composite null hypothesis</strong> <span class="math inline">\(H_0:\theta\in\Theta_0\)</span> is to collect all hypotheses which we do not care to detect by the statistical test. This way, the set of alternative hypotheses <span class="math inline">\(H_1:\theta\in\Theta_1\)</span> becomes smaller which leads to more powerful tests.</p>
+<p>The idea of a <strong>composite null hypothesis</strong> <span class="math display">\[
+H_0:\theta\in\Theta_0
+\]</span> is to collect all hypotheses which we do not care to detect by the statistical test. This way, the set of alternative hypotheses <span class="math inline">\(H_1:\theta\in\Theta_1\)</span> becomes smaller which leads to more powerful tests.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1098,8 +1094,8 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Not being able to reject <span class="math inline">\(H_0,\)</span> does not mean a confirmation of <span class="math inline">\(H_0.\)</span></p>
-<p>A possible violation of the null hypothesis may only be too small to stand out from the estimation errors; i.e.&nbsp;we may do a type-II-error. However, we do not control the probability of type-II-errors—we only control the probability of type-I-errors.</p>
+<p>Not being able to reject <span class="math inline">\(H_0,\)</span> does not mean a validation/confirmation of <span class="math inline">\(H_0,\)</span> but only reflects that we do not have sufficient evidence against a (possibly false) <span class="math inline">\(H_0.\)</span></p>
+<p>Indeed, a a violation of $H_0 $ may only be too small to stand out from the estimation errors; i.e.&nbsp;we may do a type-II-error. However, we do not control the probability of type-II-errors—we only control the probability of type-I-errors.</p>
 <p>Therefore, if you were not able to reject <span class="math inline">\(H_0,\)</span> <strong>never ever</strong> state something like: “I conclude <span class="math inline">\(H_0\)</span> is true.”</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled" title="">
 <div class="callout-header d-flex align-content-center">
