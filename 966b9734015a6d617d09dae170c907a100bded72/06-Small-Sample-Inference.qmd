@@ -1346,7 +1346,7 @@ where the inequality holds with probability one (i.e. for any possible realizati
 The inequality in @eq-NullDistrOneSidedIneq implies that 
 $$
 \begin{align*}
-P(T_n\in\mathcal{R}_{n,\alpha}|\beta_k < \beta_k^{(0)}) \highlight{\leq}  P(T_n\in\mathcal{R}_{n,\alpha} \;|\;\beta_k = \beta_k^{(0)}) & = \alpha\\[2ex]
+P(T_n\in\mathcal{R}_{n,\alpha}|\beta_k \leq \beta_k^{(0)}) \highlight{\leq}  P(T_n\in\mathcal{R}_{n,\alpha} \;|\;\beta_k = \beta_k^{(0)}) & = \alpha\\[2ex]
 \Leftrightarrow\quad  
 \text{Size}_{n,\alpha} = \sup_{\beta_k \in ]-\infty,\beta_k^{(0)}]} P(T_n\in\mathcal{R}_{n,\alpha}\;|\;\beta_k \in ]-\infty,\beta_k^{(0)}]) & = \alpha,
 \end{align*}
