@@ -1458,7 +1458,6 @@ Power is a function of <span class="math inline">\(\alpha,\)</span> <span class=
 </ul>
 </div>
 </div>
-<p><strong>Caution:</strong> This implies that even small, practically irrelevant violations of <span class="math inline">\(H_0\)</span> will be detected with a large probability when <span class="math inline">\(n\to\infty.\)</span></p>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1476,6 +1475,7 @@ Power is a function of <span class="math inline">\(\alpha,\)</span> <span class=
 </div>
 </div>
 </div>
+<p><strong>Caution:</strong> Consistency of a statistical test is an important proporty, however, this property implies that even small, practically irrelevant violations of <span class="math inline">\(H_0\)</span> will be detected if the sample size is sufficiently large.</p>
 <section id="power-of-the-one-sided-t-test" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="power-of-the-one-sided-t-test"><strong>Power of the One-Sided <span class="math inline">\(t\)</span>-Test</strong></h4>
 <!-- A type-II-error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a type-II-error equals one minus the probability of correctly rejecting the null hypothesis ("Power").  -->
 <!-- For instance, in the case of using the $t$-test to test the null hypothesis $H_0: \beta_k=0$ versus the one-sided alternative hypothesis $H_1:\beta_k>0$) we have that 
@@ -1492,19 +1492,18 @@ Ideally, we would have some sense of the costs of making each of these errors, a
 :::  
 -->
 <p>Unfortunately, computing the power of a statistical test is usually impossible, since this requires knowing the distribution of the test statistic under the alternative hypothesis <span class="math inline">\(H_1.\)</span> The distribution of a test statistic under <span class="math inline">\(H_1\)</span> can only be derived under quite restrictive setups.</p>
-<p>In the following, we consider such a restrictive setup for the <span class="math inline">\(t\)</span>-test statistic.</p>
-<p>Let’s consider the right-sided version of the one-sided hypothesis <span class="math display">\[
+<p>In the following, we consider such a restrictive setup for the <span class="math inline">\(t\)</span>-test statistic:</p>
+<ul>
+<li><p>Let’s consider the right-sided version of the one-sided hypothesis <span class="math display">\[
 \begin{align*}
 &amp;H_0: \beta_k\leq \beta_{k}^{(0)}\\
 &amp;H_1: \beta_k &gt; \beta_{k}^{(0)}
 \end{align*}
-\]</span></p>
-<ul>
-<li>Let <span class="math inline">\(X\)</span> be deterministic such that <span class="math inline">\(T_n|X \overset{d}{=}T_n\)</span> and</li>
-<li>Let the true standard error of <span class="math inline">\(\hat\beta_{n,k}\)</span> be<br><span class="math display">\[
+\]</span></p></li>
+<li><p>Let <span class="math inline">\(X\)</span> be deterministic.</p></li>
+<li><p>Let the true standard error of <span class="math inline">\(\hat\beta_{n,k}\)</span> be<br><span class="math display">\[
 \operatorname{SE}(\hat\beta_{n,k}|X)=\frac{1}{\sqrt{n}}4.5.
-\]</span>
-</li>
+\]</span></p></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1516,22 +1515,22 @@ Standard error of <span class="math inline">\(\hat\beta_{nk}\)</span> is proport
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Of course, usually we do not know the standard error of the estimator, but have to estimate it. However, it is true that the standard error of the OLS estimator <span class="math inline">\(\hat{\beta}_{n,k}\)</span> is <strong>proportional to</strong> <span class="math inline">\(1/\sqrt{n},\)</span> <span class="math display">\[
-\operatorname{SE}(\hat\beta_{n,k}|X) = \frac{1}{\sqrt{n}}\cdot\texttt{constant},
-\]</span> where the <span class="math inline">\(\texttt{constant}\)</span> does not depend on <span class="math inline">\(n.\)</span></p>
+<p>Of course, usually we do not know the standard error of the estimator, but have to estimate it. However, it is true that the standard error of the OLS estimator <span class="math inline">\(\hat{\beta}_{n,k}\)</span> is <strong>proportional to</strong> <span class="math inline">\(\boldsymbol{1/\sqrt{n}},\)</span> <span class="math display">\[
+\operatorname{SE}(\hat\beta_{n,k}|X) = C \cdot \frac{1}{\sqrt{n}},
+\]</span> where <span class="math inline">\(C&gt;0\)</span> denotes a constant that does not depend on <span class="math inline">\(n.\)</span></p>
 </div>
 </div>
-<p>Under this simplified setup and under Assumptions 1-4^<span class="math inline">\(\ast,\)</span> the <span class="math inline">\(t\)</span>-test statistic is <strong>normally distributed</strong>.</p>
-<p>That is, if <span class="math inline">\(H_0\)</span> is true with <span class="math inline">\(\beta_k=\beta_k^{(0)},\)</span> then <span class="math display">\[
+<p>Under this simplified setup and under Assumptions 1-4<span class="math inline">\(^\ast,\)</span> the <span class="math inline">\(t\)</span>-test statistic is <strong>normally distributed</strong>.</p>
+<p>If <span class="math inline">\(H_0\)</span> is true with <span class="math inline">\(\beta_k=\beta_k^{(0)},\)</span> then <span class="math display">\[
 \begin{align*}
 T_n
 &amp;=\frac{\hat\beta_{n,k}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
-&amp;=\frac{\sqrt{n}(\hat\beta_{n,k}-\beta_k)}{4.5} \overset{H_0}{\sim} \mathcal{N}(0,1).
+&amp;\overset{H_0}{=}\frac{\sqrt{n}(\hat\beta_{n,k}-\beta_k)}{4.5} \overset{H_0}{\sim} \mathcal{N}(0,1).
 \end{align*}
 \]</span></p>
-<blockquote class="blockquote">
-<p><strong>Note:</strong> It suffices to look at this specific null hypothesis <span class="math inline">\(\beta_k=\beta_k^{(0)},\)</span> since the distribution of <span class="math inline">\(T\)</span> is dominated by <span class="math inline">\(\mathcal{N}(0,1)\)</span> for all other null hypotheses <span class="math inline">\(\beta_k&lt;\beta_k^{(0)};\)</span> see our discussions around <a href="#eq-NullDistrOneSidedIneq" class="quarto-xref">Equation&nbsp;<span>6.9</span></a>.</p>
-</blockquote>
+<!-- 
+> **Note:** It suffices to look at this specific null hypothesis $\beta_k=\beta_k^{(0)},$ since the distribution of $T$ is dominated by $\mathcal{N}(0,1)$ for all other null hypotheses $\beta_k<\beta_k^{(0)};$ see our discussions around @eq-NullDistrOneSidedIneq. 
+-->
 <p>If <span class="math inline">\(H_1: \beta_k-\beta_k^{(0)}&gt;0\)</span> is true, then <span class="math display">\[
 \begin{align*}
 T_n&amp;=\frac{\hat\beta_{n,k}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}

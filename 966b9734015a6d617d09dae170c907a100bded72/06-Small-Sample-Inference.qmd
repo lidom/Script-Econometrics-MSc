@@ -1538,7 +1538,7 @@ while keeping $n$ and $|\theta - \theta^{(0)}|>0$ fix.
 :::
 
 
-**Caution:** This implies that even small, practically irrelevant violations of $H_0$ will be detected with a large probability when $n\to\infty.$
+
 
 
 
@@ -1557,6 +1557,8 @@ for any fixed $0<\alpha<1$ and any fixed $|\theta - \theta^{(0)}|>0.$
 :::
 :::
 
+
+**Caution:** Consistency of a statistical test is an important proporty, however, this property implies that even small, practically irrelevant violations of $H_0$ will be detected if the sample size is sufficiently large. 
 
 
 #### **Power of the One-Sided $t$-Test** {-}
@@ -1581,9 +1583,9 @@ Ideally, we would have some sense of the costs of making each of these errors, a
 
 Unfortunately, computing the power of a statistical test is usually impossible, since this requires knowing the distribution of the test statistic under the alternative hypothesis $H_1.$ The distribution of a test statistic under $H_1$ can only be derived under quite restrictive setups. 
 
-In the following, we consider such a restrictive setup for the $t$-test statistic. 
+In the following, we consider such a restrictive setup for the $t$-test statistic: 
 
-Let's consider the right-sided version of the one-sided hypothesis
+* Let's consider the right-sided version of the one-sided hypothesis
 $$
 \begin{align*}
 &H_0: \beta_k\leq \beta_{k}^{(0)}\\
@@ -1591,7 +1593,7 @@ $$
 \end{align*}
 $$
 
-* Let $X$ be deterministic such that $T_n|X \overset{d}{=}T_n$ and 
+* Let $X$ be deterministic. 
 * Let the true standard error of $\hat\beta_{n,k}$ be  
 $$
 \operatorname{SE}(\hat\beta_{n,k}|X)=\frac{1}{\sqrt{n}}4.5.
@@ -1601,25 +1603,27 @@ $$
 
 # Standard error of $\hat\beta_{nk}$ is proportional to $1/\sqrt{n}$ 
 
-Of course, usually we do not know the standard error of the estimator, but have to estimate it. However, it is true that the standard error of the OLS estimator $\hat{\beta}_{n,k}$ is **proportional to** $1/\sqrt{n},$
+Of course, usually we do not know the standard error of the estimator, but have to estimate it. However, it is true that the standard error of the OLS estimator $\hat{\beta}_{n,k}$ is **proportional to** $\boldsymbol{1/\sqrt{n}},$
 $$
-\operatorname{SE}(\hat\beta_{n,k}|X) = \frac{1}{\sqrt{n}}\cdot\texttt{constant},
+\operatorname{SE}(\hat\beta_{n,k}|X) = C \cdot \frac{1}{\sqrt{n}},
 $$
-where the $\texttt{constant}$ does not depend on $n.$
+where $C>0$ denotes a constant that does not depend on $n.$
 :::
 
-Under this simplified setup and under Assumptions 1-4^$\ast,$ the $t$-test statistic is **normally distributed**. 
+Under this simplified setup and under Assumptions 1-4$^\ast,$ the $t$-test statistic is **normally distributed**. 
 
-That is, if $H_0$ is true with $\beta_k=\beta_k^{(0)},$ then
+If $H_0$ is true with $\beta_k=\beta_k^{(0)},$ then
 $$
 \begin{align*}
 T_n
 &=\frac{\hat\beta_{n,k}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}\\[2ex]
-&=\frac{\sqrt{n}(\hat\beta_{n,k}-\beta_k)}{4.5} \overset{H_0}{\sim} \mathcal{N}(0,1).
+&\overset{H_0}{=}\frac{\sqrt{n}(\hat\beta_{n,k}-\beta_k)}{4.5} \overset{H_0}{\sim} \mathcal{N}(0,1).
 \end{align*}
 $$
 
-> **Note:** It suffices to look at this specific null hypothesis $\beta_k=\beta_k^{(0)},$ since the distribution of $T$ is dominated by $\mathcal{N}(0,1)$ for all other null hypotheses $\beta_k<\beta_k^{(0)};$ see our discussions around @eq-NullDistrOneSidedIneq.
+<!-- 
+> **Note:** It suffices to look at this specific null hypothesis $\beta_k=\beta_k^{(0)},$ since the distribution of $T$ is dominated by $\mathcal{N}(0,1)$ for all other null hypotheses $\beta_k<\beta_k^{(0)};$ see our discussions around @eq-NullDistrOneSidedIneq. 
+-->
 
 If $H_1: \beta_k-\beta_k^{(0)}>0$ is true, then 
 $$
