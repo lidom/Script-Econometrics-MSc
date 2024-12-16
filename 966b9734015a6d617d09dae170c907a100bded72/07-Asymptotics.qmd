@@ -45,10 +45,13 @@ In order to show that some stochastic sequence converges in probability to its l
 ::: {#def-conv_prop}
 ## Convergence in Probability 
 
-A sequence of real valued random scalars $\{Z_n\}$ **converges in probability** to a constant (non-random) $\alpha\in\mathbb{R}$ if, for any (arbitrarily small) $\varepsilon>0$,
-\begin{eqnarray*}
-  \lim_{n\to\infty} P\left(|Z_n-\alpha|>\epsilon\right)=0.
-\end{eqnarray*}
+A sequence of univariate real valued random variables $\{Z_n\}$ **converges in probability** to a deterministic $\alpha\in\mathbb{R}$ if for any (arbitrarily small) $\varepsilon>0$
+$$
+\begin{align*}
+  \lim_{n\to\infty} P\left(|Z_n-\alpha|<\epsilon\right)&=1\\
+  \lim_{n\to\infty} P\left(|Z_n-\alpha|>\epsilon\right)&=0.
+\end{align*}
+$$
 We write: 
 $$
 \operatorname{plim}_{n\to\infty}Z_n=\alpha
@@ -58,7 +61,10 @@ $$
 Z_n\to_{p}\alpha,\quad\text{as}\quad n\to\infty.
 $$
 
-**Note:** Convergence in probability of a sequence of random vectors or matrices $\{Z_n\}$ to a constant vector or matrix $\alpha$ requires **element-wise** convergence in probability.
+**Note:** 
+
+1. Convergence in probability of a sequence of random vectors or matrices $\{Z_n\}$ to a deterministic vector or matrix $\alpha$ requires **element-wise** convergence in probability.
+2. The above definition can also be stated for random limits; i.e., for $\alpha$ being a random variable. 
 :::
 :::
 
@@ -70,7 +76,8 @@ Every sequence that converges almost surely, also converges in probability.
 #
 ::: {#def-conv_as}
 ## Almost Sure Convergence 
-A sequence of real valued random scalars $\{Z_n\}$ **converges almost surely** to a constant (non-random) $\alpha\in\mathbb{R}$ if
+
+A sequence of univariate real valued random variables $\{Z_n\}$ **converges almost surely** to a deterministic $\alpha\in\mathbb{R}$ if
 \begin{eqnarray*}
 P\left(\lim_{n\to\infty}Z_n=\alpha\right)=1.
 \end{eqnarray*}
@@ -79,7 +86,10 @@ $$
 Z_n\to_{as}\alpha,\quad\text{as}\quad n\to\infty.
 $$
 
-**Note:** Almost sure convergence of a sequence of random vectors (or matrices) $\{Z_n\}$ to a constant vector (or matrix) $\alpha$ requires **element-wise** almost sure convergence. 
+**Note:** 
+
+1. Almost sure convergence of a sequence of random vectors (or matrices) $\{Z_n\}$ to a deterministic vector (or matrix) $\alpha$ requires **element-wise** almost sure convergence. 
+2. The above definition can also be stated for random limits; i.e., for $\alpha$ being a random variable.
 :::
 :::
 
@@ -91,7 +101,8 @@ Every sequence that converges in mean square, also converges in probability.
 #
 ::: {#def-conv_ms}
 ## Convergence in Mean Square 
-A sequence of real valued random scalars $\{z_n\}$ **converges in mean square** (or **in quadratic mean**) to a constant (non-random) $\alpha\in\mathbb{R}$ if
+
+A sequence of univariate real valued random variables $\{z_n\}$ **converges in mean square** (or **in quadratic mean**) to a deterministic $\alpha\in\mathbb{R}$ if
 $$
 \begin{align*}
   \lim_{n\to\infty}E\left((Z_n-\alpha)^2\right)&=0.
@@ -102,7 +113,10 @@ $$
 Z_n\to_{ms}\alpha,\quad\text{as}\quad n\to\infty.
 $$
 
-**Note:** Mean square convergence of a sequence of random vectors (or matrices) $\{Z_n\}$ to a deterministic vector (or matrix) $\alpha$ requires *element-wise* mean square convergence. 
+**Note:** 
+
+1. Mean square convergence of a sequence of random vectors (or matrices) $\{Z_n\}$ to a deterministic vector (or matrix) $\alpha$ requires *element-wise* mean square convergence. 
+2. The above definition can also be stated for random limits; i.e., for $\alpha$ being a random variable.
 :::
 :::
 
@@ -119,12 +133,15 @@ $$
 ::: {#def-conv_distr}
 ## Convergence in Distribution 
 
-Let $F_n$ be the cumulative distribution function (cdf) of the real valued random scalar $Z_n\in\mathbb{R}$ and $F$ the cdf of the real valued random scalar $Z\in\mathbb{R}.$ 
+* Let $F_n$ denote the cumulative distribution function (cdf) of the univariate real valued random variable $Z_n\in\mathbb{R},$ and 
+* let $F$ denote the cdf of the univariate real valued random variable $Z\in\mathbb{R}.$ 
 
-A sequence of real valued random scalars $\{Z_n\}$ **converges in distribution** to a real valued random scalar $Z$ if 
-\begin{eqnarray*}
+A sequence of univariate real valued random variables $\{Z_n\}$ **converges in distribution** to a the univariate real valued random variable $Z$ if 
+$$
+\begin{align*}
   \lim_{n\to\infty}F_n(x)=F(x)
-\end{eqnarray*}
+\end{align*}
+$$
 for all $x\in\mathbb{R}$ at which $F(x)$ is continuous. 
 
 We write: 
@@ -147,10 +164,10 @@ Z_n\overset{a}{\sim}N(0,1),
 $$ 
 which should be read as 
 $$
-\lim_{n\to\infty}F_n(x) = \Phi(x)
+\lim_{n\to\infty}F_n(x) = \Phi(x)\quad\text{for all}\quad x\in\mathbb{R},
 $$ 
-for all $x\in\mathbb{R},$ where $\Phi$ denotes the  distribution function of the standard normal distribution. 
-2. A stochastic sequence $\{Z_n\}$ can also convergence in distribution to a **constant** $\alpha$. In this case $\alpha$ is treated as a degenerated random variable with cdf 
+where $\Phi$ denotes the  distribution function of the standard normal distribution. 
+2. A stochastic sequence $\{Z_n\}$ can also convergence in distribution to a **constant** $\alpha$. In this case $\alpha$ is treated as a **degenerated random variable** with cdf 
 $$
 F_\alpha(x)=\left\{
   \begin{matrix}
@@ -160,9 +177,9 @@ F_\alpha(x)=\left\{
 $$
 
 
-By contrast to all other modes of convergence, @def-conv_distr only addresses the scalar (uni-variate) case. The reason for this is that @def-conv_distr cannot simply applied element-wise since this would ignore the possible dependencies between the different uni-variate random variables elements of a random vector. 
+By contrast to all other modes of convergence, @def-conv_distr only addresses the univariate case $(Z_n\in\mathbb{R}).$ The reason for this is that @def-conv_distr cannot simply applied element-wise since this would ignore the possible dependencies between the different uni-variate random variables elements of a random vector. 
 
-To handle **multivariate convergence in distribution**, we need the following theorem known as the Cramér-Wold device. 
+To handle **multivariate convergence in distribution**, we need the following theorem known as the **Cramér-Wold device**. 
 
 ::: {.callout icon=false}
 #
@@ -178,7 +195,7 @@ for any $\lambda\in\mathbb{R}^K$.
 
 A proof of @thm-CramerWold can be found, e.g., in @Billingsley2008 (p. 383). 
 
-The Cramér-Wold theorem (@thm-CramerWold) is needed since element-wise convergence in distribution does generally not imply convergence of the *joint* distribution of $Z_n$ to the *joint* distribution of $Z$; except, if all elements in the random vectors $Z_n$ and $Z$ are independent from each other.
+The Cramér-Wold theorem (@thm-CramerWold) is needed since element-wise convergence in distribution generally does not imply convergence of the *joint* distribution of $Z_n$ to the *joint* distribution of $Z$; except, if all elements in the random vectors $Z_n$ and $Z$ are independent from each other.
 
 
 <!-- **Remark:**Note that convergence in distribution, as the name suggests, only involves the distributions of the random variables. Thus, the random variables need not even be defined on the same probability space (that is, they need not be defined for the same random experiment), and indeed we don't even need the random variables at all. (But all this is just thought provoking \dots typically, we'll only consider cases with a common probability space.) -->
@@ -188,7 +205,7 @@ The Cramér-Wold theorem (@thm-CramerWold) is needed since element-wise converge
 ::: {.callout icon=false}
 #
 ::: {#lem-Relations}
-## Relationship among the four modes of convergence
+## Relations among Modes of Convergence
 
 The following relationships hold:
 
@@ -218,19 +235,20 @@ Proofs of the result in @lem-Relations can be found, e.g., here: [https://www.st
 ## Preservation of convergence for continuous transformations (or "continuous mapping theorem (CMT)")
 
 Suppose $\{Z_n\}$ is a stochastic sequence of random scalars, vectors, or matrices and that $f$ is a *continuous* function that does not depended on $n$. Then
+$$
 \begin{align*}
-Z_n\to_{p}  \alpha \quad & \Rightarrow\quad f(Z_n)\to_{p} f(\alpha)\\[2ex]
-Z_n\to_{as} \alpha \quad & \Rightarrow\quad f(Z_n)\to_{as} f(\alpha)\\[2ex]
-Z_n\to_{d}  \alpha \quad & \Rightarrow\quad f(Z_n)\to_{d} f(\alpha)
+Z_n\to_{p}  \alpha \quad & \Rightarrow\quad f(Z_n)\to_{p} f(\alpha),\\[2ex]
+Z_n\to_{as} \alpha \quad & \Rightarrow\quad f(Z_n)\to_{as} f(\alpha),\quad\text{and}\\[2ex]
+Z_n\to_{d}  \alpha \quad & \Rightarrow\quad f(Z_n)\to_{d} f(\alpha),
 \end{align*}
+$$
+where $\alpha\in\mathbb{R}$ is deterministic.
 :::
 :::
 
 Proofs of @thm-Preserv can be found, e.g., in @Vaart2000 (see Theorem 2.3)  or here: [https://www.statlect.com/asymptotic-theory/continuous-mapping-theorem](https://www.statlect.com/asymptotic-theory/continuous-mapping-theorem)
 
-**Note:** The CMT does *not* hold for m.s.-convergence except for the case where $f(.)$ is a linear function.  
-<!-- %This is easily seen using the expression %$\E[(z_n-\alpha)^2]=Var(z_n)+(\E(z_n)-\alpha)^2$ and the  -->
-<!-- %application of Jensen's inequality (see below). -->
+**Note:** The CMT does *not* hold for m.s.-convergence except for the case where $f$ is a linear function.  
 
 **Examples:** As a consequence of the CMT (@thm-Preserv) we have that the usual arithmetic operations preserve convergence in probability (and equivalently for almost sure convergence and convergence in distribution): 
 
@@ -244,7 +262,8 @@ $$
 X_n\cdot Y_n\to_{p} \beta\cdot\gamma
 $$
 
-- If $X_n\to_{p} \beta$ and $Y_n\to_{p} \gamma,$ then $$
+- If $X_n\to_{p} \beta$ and $Y_n\to_{p} \gamma,$ then 
+$$
 X_n/Y_n\to_{p} \beta/\gamma,
 $$ 
 provided that $\gamma\neq 0$
@@ -255,12 +274,19 @@ $$
 $$ 
 provided $\Sigma_{X'X}$ is a nonsingular/invertible matrix.
 
-<!-- The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n, y_n\right)'$, $\boldsymbol\alpha=\left(\beta, \gamma\right)'$, and $\mathbf{a}(\boldsymbol\alpha)=(1,1)\boldsymbol\alpha$, similarly for all others.  -->
+<!-- 
+The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n, y_n\right)'$, $\boldsymbol\alpha=\left(\beta, \gamma\right)'$, and $\mathbf{a}(\boldsymbol\alpha)=(1,1)\boldsymbol\alpha$, similarly for all others.  
+-->
 
 
 ### Slutsky's Theorem
 
-The following results are concerned with combinations of convergence in probability and convergence in distribution. These are particularly important for the derivation of the asymptotic distribution of estimators.  
+**Slutsky's Theorem** is a collection of results concerned with combinations of 
+
+* convergence in probability and 
+* convergence in distribution. 
+
+These results are particularly important for the derivation of the asymptotic distribution of estimators.  
 
 ::: {.callout icon=false}
 #

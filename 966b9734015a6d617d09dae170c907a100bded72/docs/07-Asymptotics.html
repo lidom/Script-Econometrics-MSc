@@ -314,14 +314,21 @@ Z_i,\quad i=1,\dots,n,
 </div>
 <div class="callout-body-container">
 <div id="def-conv_prop" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.1 (Convergence in Probability)</strong></span> A sequence of real valued random scalars <span class="math inline">\(\{Z_n\}\)</span> <strong>converges in probability</strong> to a constant (non-random) <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if, for any (arbitrarily small) <span class="math inline">\(\varepsilon&gt;0\)</span>, <span class="math display">\[\begin{eqnarray*}
-  \lim_{n\to\infty} P\left(|Z_n-\alpha|&gt;\epsilon\right)=0.
-\end{eqnarray*}\]</span> We write: <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 7.1 (Convergence in Probability)</strong></span> A sequence of univariate real valued random variables <span class="math inline">\(\{Z_n\}\)</span> <strong>converges in probability</strong> to a deterministic <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if for any (arbitrarily small) <span class="math inline">\(\varepsilon&gt;0\)</span> <span class="math display">\[
+\begin{align*}
+  \lim_{n\to\infty} P\left(|Z_n-\alpha|&lt;\epsilon\right)&amp;=1\\
+  \lim_{n\to\infty} P\left(|Z_n-\alpha|&gt;\epsilon\right)&amp;=0.
+\end{align*}
+\]</span> We write: <span class="math display">\[
 \operatorname{plim}_{n\to\infty}Z_n=\alpha
 \]</span> or more shortly <span class="math display">\[
 Z_n\to_{p}\alpha,\quad\text{as}\quad n\to\infty.
 \]</span></p>
-<p><strong>Note:</strong> Convergence in probability of a sequence of random vectors or matrices <span class="math inline">\(\{Z_n\}\)</span> to a constant vector or matrix <span class="math inline">\(\alpha\)</span> requires <strong>element-wise</strong> convergence in probability.</p>
+<p><strong>Note:</strong></p>
+<ol type="1">
+<li>Convergence in probability of a sequence of random vectors or matrices <span class="math inline">\(\{Z_n\}\)</span> to a deterministic vector or matrix <span class="math inline">\(\alpha\)</span> requires <strong>element-wise</strong> convergence in probability.</li>
+<li>The above definition can also be stated for random limits; i.e., for <span class="math inline">\(\alpha\)</span> being a random variable.</li>
+</ol>
 </div>
 </div>
 </div>
@@ -335,12 +342,16 @@ Z_n\to_{p}\alpha,\quad\text{as}\quad n\to\infty.
 </div>
 <div class="callout-body-container">
 <div id="def-conv_as" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.2 (Almost Sure Convergence)</strong></span> A sequence of real valued random scalars <span class="math inline">\(\{Z_n\}\)</span> <strong>converges almost surely</strong> to a constant (non-random) <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if <span class="math display">\[\begin{eqnarray*}
+<p><span class="theorem-title"><strong>Definition 7.2 (Almost Sure Convergence)</strong></span> A sequence of univariate real valued random variables <span class="math inline">\(\{Z_n\}\)</span> <strong>converges almost surely</strong> to a deterministic <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if <span class="math display">\[\begin{eqnarray*}
 P\left(\lim_{n\to\infty}Z_n=\alpha\right)=1.
 \end{eqnarray*}\]</span> We write: <span class="math display">\[
 Z_n\to_{as}\alpha,\quad\text{as}\quad n\to\infty.
 \]</span></p>
-<p><strong>Note:</strong> Almost sure convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{Z_n\}\)</span> to a constant vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <strong>element-wise</strong> almost sure convergence.</p>
+<p><strong>Note:</strong></p>
+<ol type="1">
+<li>Almost sure convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{Z_n\}\)</span> to a deterministic vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <strong>element-wise</strong> almost sure convergence.</li>
+<li>The above definition can also be stated for random limits; i.e., for <span class="math inline">\(\alpha\)</span> being a random variable.</li>
+</ol>
 </div>
 </div>
 </div>
@@ -354,14 +365,18 @@ Z_n\to_{as}\alpha,\quad\text{as}\quad n\to\infty.
 </div>
 <div class="callout-body-container">
 <div id="def-conv_ms" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.3 (Convergence in Mean Square)</strong></span> A sequence of real valued random scalars <span class="math inline">\(\{z_n\}\)</span> <strong>converges in mean square</strong> (or <strong>in quadratic mean</strong>) to a constant (non-random) <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 7.3 (Convergence in Mean Square)</strong></span> A sequence of univariate real valued random variables <span class="math inline">\(\{z_n\}\)</span> <strong>converges in mean square</strong> (or <strong>in quadratic mean</strong>) to a deterministic <span class="math inline">\(\alpha\in\mathbb{R}\)</span> if <span class="math display">\[
 \begin{align*}
   \lim_{n\to\infty}E\left((Z_n-\alpha)^2\right)&amp;=0.
 \end{align*}
 \]</span> We write: <span class="math display">\[
 Z_n\to_{ms}\alpha,\quad\text{as}\quad n\to\infty.
 \]</span></p>
-<p><strong>Note:</strong> Mean square convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{Z_n\}\)</span> to a deterministic vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> mean square convergence.</p>
+<p><strong>Note:</strong></p>
+<ol type="1">
+<li>Mean square convergence of a sequence of random vectors (or matrices) <span class="math inline">\(\{Z_n\}\)</span> to a deterministic vector (or matrix) <span class="math inline">\(\alpha\)</span> requires <em>element-wise</em> mean square convergence.</li>
+<li>The above definition can also be stated for random limits; i.e., for <span class="math inline">\(\alpha\)</span> being a random variable.</li>
+</ol>
 </div>
 </div>
 </div>
@@ -375,10 +390,17 @@ Z_n\to_{ms}\alpha,\quad\text{as}\quad n\to\infty.
 </div>
 <div class="callout-body-container">
 <div id="def-conv_distr" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.4 (Convergence in Distribution)</strong></span> Let <span class="math inline">\(F_n\)</span> be the cumulative distribution function (cdf) of the real valued random scalar <span class="math inline">\(Z_n\in\mathbb{R}\)</span> and <span class="math inline">\(F\)</span> the cdf of the real valued random scalar <span class="math inline">\(Z\in\mathbb{R}.\)</span></p>
-<p>A sequence of real valued random scalars <span class="math inline">\(\{Z_n\}\)</span> <strong>converges in distribution</strong> to a real valued random scalar <span class="math inline">\(Z\)</span> if <span class="math display">\[\begin{eqnarray*}
+<p><span class="theorem-title"><strong>Definition 7.4 (Convergence in Distribution)</strong></span> &nbsp;</p>
+<ul>
+<li>Let <span class="math inline">\(F_n\)</span> denote the cumulative distribution function (cdf) of the univariate real valued random variable <span class="math inline">\(Z_n\in\mathbb{R},\)</span> and</li>
+<li>let <span class="math inline">\(F\)</span> denote the cdf of the univariate real valued random variable <span class="math inline">\(Z\in\mathbb{R}.\)</span>
+</li>
+</ul>
+<p>A sequence of univariate real valued random variables <span class="math inline">\(\{Z_n\}\)</span> <strong>converges in distribution</strong> to a the univariate real valued random variable <span class="math inline">\(Z\)</span> if <span class="math display">\[
+\begin{align*}
   \lim_{n\to\infty}F_n(x)=F(x)
-\end{eqnarray*}\]</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span> at which <span class="math inline">\(F(x)\)</span> is continuous.</p>
+\end{align*}
+\]</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span> at which <span class="math inline">\(F(x)\)</span> is continuous.</p>
 <p>We write: <span class="math display">\[
 Z_n\to_{d}Z,\quad\text{as}\quad n\to\infty
 \]</span> We call <span class="math inline">\(F\)</span> the <strong>asymptotic (or limit) distribution</strong> of <span class="math inline">\(Z_n\)</span>.</p>
@@ -393,9 +415,9 @@ Z_n\to_{d} N(0,1)
 \]</span> or <span class="math display">\[
 Z_n\overset{a}{\sim}N(0,1),
 \]</span> which should be read as <span class="math display">\[
-\lim_{n\to\infty}F_n(x) = \Phi(x)
-\]</span> for all <span class="math inline">\(x\in\mathbb{R},\)</span> where <span class="math inline">\(\Phi\)</span> denotes the distribution function of the standard normal distribution.</li>
-<li>A stochastic sequence <span class="math inline">\(\{Z_n\}\)</span> can also convergence in distribution to a <strong>constant</strong> <span class="math inline">\(\alpha\)</span>. In this case <span class="math inline">\(\alpha\)</span> is treated as a degenerated random variable with cdf <span class="math display">\[
+\lim_{n\to\infty}F_n(x) = \Phi(x)\quad\text{for all}\quad x\in\mathbb{R},
+\]</span> where <span class="math inline">\(\Phi\)</span> denotes the distribution function of the standard normal distribution.</li>
+<li>A stochastic sequence <span class="math inline">\(\{Z_n\}\)</span> can also convergence in distribution to a <strong>constant</strong> <span class="math inline">\(\alpha\)</span>. In this case <span class="math inline">\(\alpha\)</span> is treated as a <strong>degenerated random variable</strong> with cdf <span class="math display">\[
 F_\alpha(x)=\left\{
   \begin{matrix}
   0&amp;\text{if}\;\;x   &lt;\alpha\\
@@ -404,8 +426,8 @@ F_\alpha(x)=\left\{
 \]</span>
 </li>
 </ol>
-<p>By contrast to all other modes of convergence, <a href="#def-conv_distr" class="quarto-xref">Definition&nbsp;<span>7.4</span></a> only addresses the scalar (uni-variate) case. The reason for this is that <a href="#def-conv_distr" class="quarto-xref">Definition&nbsp;<span>7.4</span></a> cannot simply applied element-wise since this would ignore the possible dependencies between the different uni-variate random variables elements of a random vector.</p>
-<p>To handle <strong>multivariate convergence in distribution</strong>, we need the following theorem known as the Cramér-Wold device.</p>
+<p>By contrast to all other modes of convergence, <a href="#def-conv_distr" class="quarto-xref">Definition&nbsp;<span>7.4</span></a> only addresses the univariate case <span class="math inline">\((Z_n\in\mathbb{R}).\)</span> The reason for this is that <a href="#def-conv_distr" class="quarto-xref">Definition&nbsp;<span>7.4</span></a> cannot simply applied element-wise since this would ignore the possible dependencies between the different uni-variate random variables elements of a random vector.</p>
+<p>To handle <strong>multivariate convergence in distribution</strong>, we need the following theorem known as the <strong>Cramér-Wold device</strong>.</p>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -421,7 +443,7 @@ Z_n\to_{d} Z\quad\text{if and only if}\quad\lambda'Z_n\to_{d}\lambda'Z
 </div>
 </div>
 <p>A proof of <a href="#thm-CramerWold" class="quarto-xref">Theorem&nbsp;<span>7.1</span></a> can be found, e.g., in <span class="citation" data-cites="Billingsley2008">Billingsley (<a href="#ref-Billingsley2008" role="doc-biblioref">2008</a>)</span> (p.&nbsp;383).</p>
-<p>The Cramér-Wold theorem (<a href="#thm-CramerWold" class="quarto-xref">Theorem&nbsp;<span>7.1</span></a>) is needed since element-wise convergence in distribution does generally not imply convergence of the <em>joint</em> distribution of <span class="math inline">\(Z_n\)</span> to the <em>joint</em> distribution of <span class="math inline">\(Z\)</span>; except, if all elements in the random vectors <span class="math inline">\(Z_n\)</span> and <span class="math inline">\(Z\)</span> are independent from each other.</p>
+<p>The Cramér-Wold theorem (<a href="#thm-CramerWold" class="quarto-xref">Theorem&nbsp;<span>7.1</span></a>) is needed since element-wise convergence in distribution generally does not imply convergence of the <em>joint</em> distribution of <span class="math inline">\(Z_n\)</span> to the <em>joint</em> distribution of <span class="math inline">\(Z\)</span>; except, if all elements in the random vectors <span class="math inline">\(Z_n\)</span> and <span class="math inline">\(Z\)</span> are independent from each other.</p>
 <!-- **Remark:**Note that convergence in distribution, as the name suggests, only involves the distributions of the random variables. Thus, the random variables need not even be defined on the same probability space (that is, they need not be defined for the same random experiment), and indeed we don't even need the random variables at all. (But all this is just thought provoking \dots typically, we'll only consider cases with a common probability space.) -->
 </section><section id="relations-among-modes-of-convergence" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="relations-among-modes-of-convergence">Relations among Modes of Convergence</h3>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -431,7 +453,7 @@ Z_n\to_{d} Z\quad\text{if and only if}\quad\lambda'Z_n\to_{d}\lambda'Z
 </div>
 <div class="callout-body-container">
 <div id="lem-Relations" class="theorem lemma">
-<p><span class="theorem-title"><strong>Lemma 7.1 (Relationship among the four modes of convergence)</strong></span> The following relationships hold:</p>
+<p><span class="theorem-title"><strong>Lemma 7.1 (Relations among Modes of Convergence)</strong></span> The following relationships hold:</p>
 <ol type="i">
 <li>Mean square convergence implies convergence in probability: <span class="math display">\[
 Z_n\to_{ms}\alpha\quad \Rightarrow\quad Z_n\to_{p}\alpha
@@ -460,17 +482,19 @@ Z_n\to_{d}\alpha\quad \Leftrightarrow\quad Z_n\to_{p}\alpha
 </div>
 <div class="callout-body-container">
 <div id="thm-Preserv" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.2 (Preservation of convergence for continuous transformations (or “continuous mapping theorem (CMT)”))</strong></span> Suppose <span class="math inline">\(\{Z_n\}\)</span> is a stochastic sequence of random scalars, vectors, or matrices and that <span class="math inline">\(f\)</span> is a <em>continuous</em> function that does not depended on <span class="math inline">\(n\)</span>. Then <span class="math display">\[\begin{align*}
-Z_n\to_{p}  \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{p} f(\alpha)\\[2ex]
-Z_n\to_{as} \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{as} f(\alpha)\\[2ex]
-Z_n\to_{d}  \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{d} f(\alpha)
-\end{align*}\]</span></p>
+<p><span class="theorem-title"><strong>Theorem 7.2 (Preservation of convergence for continuous transformations (or “continuous mapping theorem (CMT)”))</strong></span> Suppose <span class="math inline">\(\{Z_n\}\)</span> is a stochastic sequence of random scalars, vectors, or matrices and that <span class="math inline">\(f\)</span> is a <em>continuous</em> function that does not depended on <span class="math inline">\(n\)</span>. Then <span class="math display">\[
+\begin{align*}
+Z_n\to_{p}  \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{p} f(\alpha),\\[2ex]
+Z_n\to_{as} \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{as} f(\alpha),\quad\text{and}\\[2ex]
+Z_n\to_{d}  \alpha \quad &amp; \Rightarrow\quad f(Z_n)\to_{d} f(\alpha),
+\end{align*}
+\]</span> where <span class="math inline">\(\alpha\in\mathbb{R}\)</span> is deterministic.</p>
 </div>
 </div>
 </div>
 </div>
 <p>Proofs of <a href="#thm-Preserv" class="quarto-xref">Theorem&nbsp;<span>7.2</span></a> can be found, e.g., in <span class="citation" data-cites="Vaart2000">Van der Vaart (<a href="#ref-Vaart2000" role="doc-biblioref">2000</a>)</span> (see Theorem 2.3) or here: <a href="https://www.statlect.com/asymptotic-theory/continuous-mapping-theorem">https://www.statlect.com/asymptotic-theory/continuous-mapping-theorem</a></p>
-<p><strong>Note:</strong> The CMT does <em>not</em> hold for m.s.-convergence except for the case where <span class="math inline">\(f(.)\)</span> is a linear function.<br><!-- %This is easily seen using the expression %$\E[(z_n-\alpha)^2]=Var(z_n)+(\E(z_n)-\alpha)^2$ and the  --><!-- %application of Jensen's inequality (see below). --></p>
+<p><strong>Note:</strong> The CMT does <em>not</em> hold for m.s.-convergence except for the case where <span class="math inline">\(f\)</span> is a linear function.</p>
 <p><strong>Examples:</strong> As a consequence of the CMT (<a href="#thm-Preserv" class="quarto-xref">Theorem&nbsp;<span>7.2</span></a>) we have that the usual arithmetic operations preserve convergence in probability (and equivalently for almost sure convergence and convergence in distribution):</p>
 <ul>
 <li><p>If <span class="math inline">\(X_n\to_{p} \beta\)</span> and <span class="math inline">\(Y_n\to_{p} \gamma,\)</span> then <span class="math display">\[
@@ -486,9 +510,16 @@ X_n/Y_n\to_{p} \beta/\gamma,
 \left(\frac{1}{n}X_n'X_n\right)^{-1}\to_{p} \Sigma_{X'X}^{-1},
 \]</span> provided <span class="math inline">\(\Sigma_{X'X}\)</span> is a nonsingular/invertible matrix.</p></li>
 </ul>
-<!-- The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n, y_n\right)'$, $\boldsymbol\alpha=\left(\beta, \gamma\right)'$, and $\mathbf{a}(\boldsymbol\alpha)=(1,1)\boldsymbol\alpha$, similarly for all others.  --></section><section id="slutskys-theorem" class="level3" data-number="7.1.3"><h3 data-number="7.1.3" class="anchored" data-anchor-id="slutskys-theorem">
+<!-- 
+The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n, y_n\right)'$, $\boldsymbol\alpha=\left(\beta, \gamma\right)'$, and $\mathbf{a}(\boldsymbol\alpha)=(1,1)\boldsymbol\alpha$, similarly for all others.  
+--></section><section id="slutskys-theorem" class="level3" data-number="7.1.3"><h3 data-number="7.1.3" class="anchored" data-anchor-id="slutskys-theorem">
 <span class="header-section-number">7.1.3</span> Slutsky’s Theorem</h3>
-<p>The following results are concerned with combinations of convergence in probability and convergence in distribution. These are particularly important for the derivation of the asymptotic distribution of estimators.</p>
+<p><strong>Slutsky’s Theorem</strong> is a collection of results concerned with combinations of</p>
+<ul>
+<li>convergence in probability and</li>
+<li>convergence in distribution.</li>
+</ul>
+<p>These results are particularly important for the derivation of the asymptotic distribution of estimators.</p>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -955,7 +986,7 @@ Tip
 H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  = \underset{(q\times 1)}{r^{(0)}}\\
 H_1: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  \neq \underset{(q\times 1)}{r^{(0)}}\\
 \end{align*}\]</span> where the <span class="math inline">\((q \times K)\)</span> matrix <span class="math inline">\(R\)</span> and the <span class="math inline">\(q\)</span>-vector <span class="math inline">\(r=(r_{1},\dots,r_{q})'\)</span> are chosen by the statistician to specify her/his null hypothesis about the unknown true parameter vector <span class="math inline">\(\beta\)</span>. To make sure that there are no redundant equations, it is required that <span class="math inline">\(\operatorname{rank}(R)=q\)</span>.</p>
-<p>By contrast to the multiple parameter tests for small samples (see <a href="06-Small-Sample-Inference.html#sec-testmultp" class="quarto-xref"><span>Section 6.1</span></a>), we can work here with a <strong>heteroskedasticity robust</strong> test statistic which is applicable for heteroskedastic error terms: <span id="eq-Ftestasymp"><span class="math display">\[
+<p>By contrast to the multiple parameter tests for small samples (see <a href="06-Small-Sample-Inference.html#sec-testmultp" class="quarto-xref"><span>Section 6.2</span></a>), we can work here with a <strong>heteroskedasticity robust</strong> test statistic which is applicable for heteroskedastic error terms: <span id="eq-Ftestasymp"><span class="math display">\[
 \begin{align*}
 W&amp;=n(R\hat\beta_n -r)'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r)\\[2ex]
 W&amp;\overset{H_0}{\to}_d\chi^2(q), \quad\text{as}\quad n\to\infty.
@@ -1021,14 +1052,14 @@ Finite-sample correction
 \]</span> Here, the coverage probability is an asymptotic coverage probability with <span class="math inline">\(P(\beta_k\in\operatorname{CI}_{1-\alpha})\to \gamma\)</span> as <span class="math inline">\(n\to\infty\)</span>, where <span class="math inline">\(\gamma\geq 1-\alpha.\)</span></p>
 </section></section></section><section id="sec-MCLS" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="sec-MCLS">
 <span class="header-section-number">7.3</span> Monte Carlo Simulations</h2>
-<p>Let’s apply the above asymptotic inference methods using <code>R</code>. As in Chapter <a href="06-Small-Sample-Inference.html#sec-PSSI" class="quarto-xref"><span>Section 6.5</span></a> we, first, program a function <code>myDataGenerator()</code> which allows us to generate data from the following model, i.e., from the following fully specified data generating process: <span class="math display">\[\begin{align*}
+<p>Let’s apply the above asymptotic inference methods using <code>R</code>. As in Chapter <a href="06-Small-Sample-Inference.html#sec-PSSI" class="quarto-xref"><span>Section 6.6</span></a> we, first, program a function <code>myDataGenerator()</code> which allows us to generate data from the following model, i.e., from the following fully specified data generating process: <span class="math display">\[\begin{align*}
 Y_i &amp;=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
 \beta &amp;=(\beta_1,\beta_2,\beta_3)'=(2,3,4)'\\
 X_{i2}&amp;\sim U[-4,4]\\
 X_{i3}&amp;\sim U[-5,5]\\
 \varepsilon_i|X_i&amp;\sim U[-0.5 |X_{i2}|, 0.5 |X_{i2}|],
 \end{align*}\]</span> where <span class="math inline">\((Y_i,X_i)\)</span> is assumed i.i.d. across <span class="math inline">\(i=1,\dots,n\)</span> with <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> being independent of each other.</p>
-<p>By contrast to our simulations in Chapter <a href="06-Small-Sample-Inference.html#sec-PSSI" class="quarto-xref"><span>Section 6.5</span></a>, we consider here a <strong>non-Gaussian</strong> and <strong>heteroskedastic</strong> error term <span class="math display">\[
+<p>By contrast to our simulations in Chapter <a href="06-Small-Sample-Inference.html#sec-PSSI" class="quarto-xref"><span>Section 6.6</span></a>, we consider here a <strong>non-Gaussian</strong> and <strong>heteroskedastic</strong> error term <span class="math display">\[
 Var(\varepsilon_i|X_i)=\frac{1}{12}X_{i2}^2.
 \]</span></p>
 <blockquote class="blockquote">
@@ -1345,7 +1376,7 @@ Note: Coefficient covariance matrix supplied.
 <pre><code>[1] 0.0562</code></pre>
 </div>
 </div>
-<p>This is more or less ok, but you see that the upper bound is not so strict here as it was in the small sample inference case in <a href="06-Small-Sample-Inference.html#sec-PSSI" class="quarto-xref"><span>Section 6.5</span></a>. A larger sample size <span class="math inline">\(n\geq 100\)</span> would improve this simulation result.</p>
+<p>This is more or less ok, but you see that the upper bound is not so strict here as it was in the small sample inference case in <a href="06-Small-Sample-Inference.html#sec-PSSI" class="quarto-xref"><span>Section 6.6</span></a>. A larger sample size <span class="math inline">\(n\geq 100\)</span> would improve this simulation result.</p>
 </section><section id="check-testing-single-parameters" class="level3" data-number="7.3.3"><h3 data-number="7.3.3" class="anchored" data-anchor-id="check-testing-single-parameters">
 <span class="header-section-number">7.3.3</span> Check: Testing Single Parameters</h3>
 <p>Next, we do inference about a single parameter. We test <span class="math display">\[\begin{align*}
@@ -1412,7 +1443,7 @@ H_0:&amp;\beta_3=5\\
 <p>Good! The empirical type I error rate is bounded from above by the nominal type I error rate <span class="math inline">\(\alpha\)</span>.</p>
 </section></section><section id="sec-RDLSInf" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="sec-RDLSInf">
 <span class="header-section-number">7.4</span> Real Data Example</h2>
-<p>In the following, we revisit the read data study from <a href="06-Small-Sample-Inference.html#sec-RDSSInf" class="quarto-xref"><span>Section 6.6</span></a>. Now, we have the tools to allow for heteroskedastic and non-Gaussian errors.</p>
+<p>In the following, we revisit the read data study from <a href="06-Small-Sample-Inference.html#sec-RDSSInf" class="quarto-xref"><span>Section 6.7</span></a>. Now, we have the tools to allow for heteroskedastic and non-Gaussian errors.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## The AER package contains a lot of datasets </span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">AER</span><span class="op">)</span><span class="op">)</span></span>
