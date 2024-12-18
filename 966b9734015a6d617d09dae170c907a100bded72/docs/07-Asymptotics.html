@@ -1144,20 +1144,28 @@ Var(\varepsilon_i)
 </h3>
 <p>The above data generating process fulfills our regulatory assumptions of this chapter. So, by theory, the estimators <span class="math inline">\(\hat\beta_k\)</span> should be normal distributed for sufficiently large sample sizes <span class="math inline">\(n\)</span>. <span class="math display">\[
 \sqrt{n}\left(\hat\beta_{n,k}-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right)
-\]</span> or (slight abuse of notation): <span class="math display">\[
-\hat\beta_{n,k}\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right)
-\]</span> as <span class="math inline">\(n\to\infty.\)</span></p>
-<p>Mathematically, the latter is a bit sloppy since the right hand side of <span class="math inline">\(\to_d\)</span> depends on <span class="math inline">\(n\)</span>, i.e., is not the stable limit object for <span class="math inline">\(n\to\infty\)</span>. However, this sloppiness is nevertheless instructive since it gives us the approximative distribution for given largish sample sizes like <span class="math inline">\(n=100\)</span>.</p>
+\]</span> <span class="math display">\[
+\Rightarrow\qquad\hat\beta_{n,k}\overset{a}{\sim}\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right).
+\]</span></p>
 <p>For our above specified data generating process, we can derive all (usually unknown) population quantities.</p>
 <ul>
-<li><p>From the assumed distributions of <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> we have that: <span class="math display">\[\begin{align*}
+<li><p>From the assumed distributions of <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> we have that: <span class="math display">\[
+\begin{align*}
 \Sigma_{X'X}
 &amp;=E(S_{X'X})\\[2ex]
 &amp;=E(X_iX_i')\\[2ex]
 &amp;=\left(\begin{matrix}1&amp;0&amp;0\\0&amp;E(X_{i2}^2)&amp;0\\0&amp;0&amp;E(X_{i3}^2)\end{matrix}\right)\\[2ex]
 &amp;=\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)
-\end{align*}\]</span> The above result follows from observing that <span class="math inline">\(E(X^2)=Var(X)\)</span> if <span class="math inline">\(X\)</span> has mean zero, and that the variance of uniform <span class="math inline">\(U[a,b]\)</span> distributed random variables is given by <span class="math inline">\(\frac{1}{12}(b-a)^2\)</span>.</p></li>
-<li><p>Moreover, <span class="math inline">\(E(\varepsilon^2_iX_iX_i')=E(X_iX_i'E(\varepsilon^2_i|X_i))=E\left(X_iX_i'\left(\frac{1}{12}X_{i2}^2\right)\right)\)</span> such that <span class="math display">\[\begin{align*}
+\end{align*}
+\]</span> The above result follows from observing that <span class="math inline">\(E(X^2)=Var(X)\)</span> if <span class="math inline">\(X\)</span> has mean zero, and that the variance of uniform <span class="math inline">\(U[a,b]\)</span> distributed random variables is given by <span class="math inline">\(\frac{1}{12}(b-a)^2\)</span>.</p></li>
+<li><p>Moreover, <span class="math display">\[
+\begin{align*}
+E(\varepsilon^2_iX_iX_i')
+&amp; =E(X_iX_i'E(\varepsilon^2_i|X_i))\\[2ex]
+&amp; =E\left(X_iX_i'\left(\frac{1}{12}X_{i2}^2\right)\right)
+\end{align*}
+\]</span> such that <span class="math display">\[
+\begin{align*}
 E(\varepsilon^2_iX_iX_i')
 &amp;=\left(\begin{matrix}E\left(\frac{1}{12}X_{i2}^2\right)&amp;0&amp;0\\[2ex]
                  0&amp;E\left(X_{i2}^2\cdot\frac{1}{12}X_{i2}^2\right)&amp;0\\0&amp;0&amp;E\left(X_{i3}^2\cdot\frac{1}{12}X_{i2}^2\right)
@@ -1169,19 +1177,20 @@ E(\varepsilon^2_iX_iX_i')
                     0&amp;\frac{1}{12}\frac{256}{5}&amp;0\\
                     0&amp;0&amp;\frac{1}{12}\frac{16}{3}\frac{25}{3}\end{matrix}\right)\\[2ex]
 &amp;=\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)
-\end{align*}\]</span> The above result follow from observing that for <span class="math inline">\(X\sim U[a,b]\)</span> one has <span class="math inline">\(E(X^k)=\frac{b^{k+1}-a^{k+1}}{(k+1)(b-a)}\)</span>, <span class="math inline">\(k=1,2,\dots\)</span>; see, for instance, <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">Wikipedia</a>.</p></li>
+\end{align*}
+\]</span> The above result follow from observing that for <span class="math inline">\(X\sim U[a,b]\)</span> one has <span class="math inline">\(E(X^k)=\frac{b^{k+1}-a^{k+1}}{(k+1)(b-a)}\)</span>, <span class="math inline">\(k=1,2,\dots\)</span>; see, for instance, <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">Wikipedia</a>.</p></li>
 </ul>
 <p>So, for instance, for <span class="math inline">\(\hat{\beta}_2\)</span> we have the following theoretical large sample distribution: <span class="math display">\[
 \begin{align}
-\hat\beta_{n,2}\to_d&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)\\[2ex]
-\hat\beta_{n,2}\to_d&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[
+\hat\beta_{n,2}\overset{a}{\sim}&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&amp;0&amp;0\\0&amp;\frac{64}{15}&amp;0\\0&amp;0&amp;\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)\\[2ex]
+\hat\beta_{n,2}\overset{a}{\sim}&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[
   \left(
   \begin{matrix}
   0.444 &amp; 0 &amp;0\\
   0 &amp; 0.15 &amp;0\\
   0&amp;0&amp;0.053
   \end{matrix}\right)\right]_{22}\right)\\[2ex]
-\hat\beta_{n,2}\to_d&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;0.15\right)
+\hat\beta_{n,2}\overset{a}{\sim}&amp;\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;0.15\right)
 \end{align}
 \]</span> Let’s use a Monte Carlo simulation to check how well the theoretical large sample (<span class="math inline">\(n\to\infty\)</span>) distribution of <span class="math inline">\(\hat\beta_2\)</span> works as an approximative distribution for a practical largish sample size of <span class="math inline">\(n=100\)</span>.</p>
 <div class="cell" data-layout-align="center">

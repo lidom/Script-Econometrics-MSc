@@ -1010,13 +1010,11 @@ The above data generating process fulfills our regulatory assumptions of this ch
 $$
 \sqrt{n}\left(\hat\beta_{n,k}-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right)
 $$
-or (slight abuse of notation):
 $$
-\hat\beta_{n,k}\to_d\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right)
+\Rightarrow\qquad\hat\beta_{n,k}\overset{a}{\sim}\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right).
 $$
-as $n\to\infty.$ 
 
-Mathematically, the latter is a bit sloppy since the right hand side of $\to_d$ depends on $n$, i.e., is not the stable limit object for $n\to\infty$. However, this sloppiness is nevertheless instructive since it gives us the approximative distribution for given largish sample sizes like $n=100$.
+
 ```{r, eval=FALSE, echo=FALSE}
 library("fractional")
 moment_fun <- function(m=3, a, b){fractional((b^(m+1)-a^(m+1))/((m+1)*(b-a)))}
@@ -1027,6 +1025,7 @@ fractional((1/12)*(256/5))
 For our above specified data generating process, we can derive all (usually unknown) population quantities. 
 
 - From the assumed distributions of $X_{i2}$ and $X_{i3}$ we have that:
+$$
 \begin{align*}
 \Sigma_{X'X}
 &=E(S_{X'X})\\[2ex]
@@ -1034,9 +1033,19 @@ For our above specified data generating process, we can derive all (usually unkn
 &=\left(\begin{matrix}1&0&0\\0&E(X_{i2}^2)&0\\0&0&E(X_{i3}^2)\end{matrix}\right)\\[2ex]
 &=\left(\begin{matrix}1&0&0\\0&\frac{16}{3}&0\\0&0&\frac{25}{3}\end{matrix}\right)
 \end{align*}
+$$
 The above result follows from observing that $E(X^2)=Var(X)$ if $X$ has mean zero, and that the variance of uniform $U[a,b]$ distributed random variables is given by $\frac{1}{12}(b-a)^2$.
 
-- Moreover, $E(\varepsilon^2_iX_iX_i')=E(X_iX_i'E(\varepsilon^2_i|X_i))=E\left(X_iX_i'\left(\frac{1}{12}X_{i2}^2\right)\right)$ such that
+- Moreover, 
+$$
+\begin{align*}
+E(\varepsilon^2_iX_iX_i') 
+& =E(X_iX_i'E(\varepsilon^2_i|X_i))\\[2ex]
+& =E\left(X_iX_i'\left(\frac{1}{12}X_{i2}^2\right)\right)
+\end{align*}
+$$ 
+such that
+$$
 \begin{align*}
 E(\varepsilon^2_iX_iX_i')
 &=\left(\begin{matrix}E\left(\frac{1}{12}X_{i2}^2\right)&0&0\\[2ex]
@@ -1050,20 +1059,21 @@ E(\varepsilon^2_iX_iX_i')
                       0&0&\frac{1}{12}\frac{16}{3}\frac{25}{3}\end{matrix}\right)\\[2ex]
 &=\left(\begin{matrix}\frac{4}{9}&0&0\\0&\frac{64}{15}&0\\0&0&\frac{100}{27}\end{matrix}\right)
 \end{align*}
+$$
 The above result follow from observing that for $X\sim U[a,b]$ one has $E(X^k)=\frac{b^{k+1}-a^{k+1}}{(k+1)(b-a)}$, $k=1,2,\dots$; see, for instance, [Wikipedia](https://en.wikipedia.org/wiki/Continuous_uniform_distribution).
 
 So, for instance, for $\hat{\beta}_2$ we have the following theoretical large sample distribution:
 $$
 \begin{align}
-\hat\beta_{n,2}\to_d&\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[\left(\begin{matrix}1&0&0\\0&\frac{16}{3}&0\\0&0&\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&0&0\\0&\frac{64}{15}&0\\0&0&\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&0&0\\0&\frac{16}{3}&0\\0&0&\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)\\[2ex]
-\hat\beta_{n,2}\to_d&\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[
+\hat\beta_{n,2}\overset{a}{\sim}&\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[\left(\begin{matrix}1&0&0\\0&\frac{16}{3}&0\\0&0&\frac{25}{3}\end{matrix}\right)^{-1}\left(\begin{matrix}\frac{4}{9}&0&0\\0&\frac{64}{15}&0\\0&0&\frac{100}{27}\end{matrix}\right)\left(\begin{matrix}1&0&0\\0&\frac{16}{3}&0\\0&0&\frac{25}{3}\end{matrix}\right)^{-1}\right]_{22}\right)\\[2ex]
+\hat\beta_{n,2}\overset{a}{\sim}&\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;\left[
   \left(
   \begin{matrix}
   0.444 & 0 &0\\
   0 & 0.15 &0\\
   0&0&0.053
   \end{matrix}\right)\right]_{22}\right)\\[2ex]
-\hat\beta_{n,2}\to_d&\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;0.15\right)
+\hat\beta_{n,2}\overset{a}{\sim}&\mathcal{N}\left(\beta_2, \;\frac{1}{n}\;0.15\right)
 \end{align}
 $$
 Let's use a Monte Carlo simulation to check how well the theoretical large sample ($n\to\infty$) distribution of $\hat\beta_2$ works as an approximative distribution for a practical largish sample size of $n=100$.
