@@ -24,9 +24,9 @@ where
 $$
 Z_i,\quad i=1,\dots,n,
 $$
-is a scalar (uni-variate) or multivariate random variable. 
+is a uni-variate or multivariate random variable. 
 
-Non-random scalars (or vectors or matrices) will be denoted by Greek letters such as $\alpha$. 
+Non-random quantities (scalars, vectors or matrices) will be denoted by Greek letters such as $\alpha$. 
 
 
 <!-- Sequences of random vectors (or matrices) will be denoted by $\{\mathbf{z}_n\}$.  -->
@@ -45,11 +45,13 @@ In order to show that some stochastic sequence converges in probability to its l
 ::: {#def-conv_prop}
 ## Convergence in Probability 
 
+</br>
+
 A sequence of univariate real valued random variables $\{Z_n\}$ **converges in probability** to a deterministic $\alpha\in\mathbb{R}$ if for any (arbitrarily small) $\varepsilon>0$
 $$
 \begin{align*}
   \lim_{n\to\infty} P\left(|Z_n-\alpha|<\epsilon\right)&=1\\
-  \lim_{n\to\infty} P\left(|Z_n-\alpha|>\epsilon\right)&=0.
+  \Leftrightarrow\quad \lim_{n\to\infty} P\left(|Z_n-\alpha|>\epsilon\right)&=0.
 \end{align*}
 $$
 We write: 
@@ -77,6 +79,8 @@ Every sequence that converges almost surely, also converges in probability.
 ::: {#def-conv_as}
 ## Almost Sure Convergence 
 
+</br>
+
 A sequence of univariate real valued random variables $\{Z_n\}$ **converges almost surely** to a deterministic $\alpha\in\mathbb{R}$ if
 \begin{eqnarray*}
 P\left(\lim_{n\to\infty}Z_n=\alpha\right)=1.
@@ -93,14 +97,20 @@ $$
 :::
 :::
 
-**Convergence in mean square** is typically the most intuitive mode of convergence. If a stochastic sequence converges to a certain limit, then the mean of the stochastic sequence $E(Z_n)$ must converge to this limit and the variance of the stochastic sequence must converge to zero. Convergence in mean square is typically easy to show. 
+**Convergence in mean square** is typically the most intuitive mode of convergence. If a stochastic sequence $\{Z_n\}$ converges to a certain limit $\alpha,$ then 
 
-Every sequence that converges in mean square, also converges in probability. 
+1. the **mean** of the stochastic sequence $E(Z_n)$ must converge to the limit $\alpha,$ and 
+2. the **variance** of the stochastic sequence $E(Z_n)$ must converge to zero. 
+
+Convergence in mean square is typically easy to show. 
+
 
 ::: {.callout icon=false}
 #
 ::: {#def-conv_ms}
 ## Convergence in Mean Square 
+
+</br>
 
 A sequence of univariate real valued random variables $\{z_n\}$ **converges in mean square** (or **in quadratic mean**) to a deterministic $\alpha\in\mathbb{R}$ if
 $$
@@ -156,11 +166,11 @@ Remarks on @def-conv_distr:
 
 1. Often you will see statements like 
 $$
-Z_n\to_{d} N(0,1)
+Z_n\to_{d} \mathcal{N}(0,1)
 $$ 
 or 
 $$
-Z_n\overset{a}{\sim}N(0,1),
+Z_n\overset{a}{\sim}\mathcal{N}(0,1),
 $$ 
 which should be read as 
 $$
@@ -184,7 +194,10 @@ To handle **multivariate convergence in distribution**, we need the following th
 ::: {.callout icon=false}
 #
 ::: {#thm-CramerWold}
-## Cramér-Wold
+## Cramér-Wold 
+
+</br>
+
 Let $Z_n\in\mathbb{R}^K$ and $Z\in\mathbb{R}^K$ be $(K\times 1)$-dimensional random vectors, then
 $$
 Z_n\to_{d} Z\quad\text{if and only if}\quad\lambda'Z_n\to_{d}\lambda'Z
@@ -206,6 +219,8 @@ The Cramér-Wold theorem (@thm-CramerWold) is needed since element-wise converge
 #
 ::: {#lem-Relations}
 ## Relations among Modes of Convergence
+
+</br>
 
 The following relationships hold:
 
@@ -232,17 +247,18 @@ Proofs of the result in @lem-Relations can be found, e.g., here: [https://www.st
 ::: {.callout icon=false}
 #
 ::: {#thm-Preserv}
-## Preservation of convergence for continuous transformations (or "continuous mapping theorem (CMT)")
+## Preservation of Convergence for Continuous Transformations (or "Continuous Mapping Theorem (CMT)")
 
-Suppose $\{Z_n\}$ is a stochastic sequence of random scalars, vectors, or matrices and that $f$ is a *continuous* function that does not depended on $n$. Then
+</br>
+
+Let $\{Z_n\}$ denote a stochastic sequence of univariate (or multivariate) random variables and let $f$ denote a *continuous* function that does not depended on $n$. Then
 $$
 \begin{align*}
-Z_n\to_{p}  \alpha \quad & \Rightarrow\quad f(Z_n)\to_{p} f(\alpha),\\[2ex]
-Z_n\to_{as} \alpha \quad & \Rightarrow\quad f(Z_n)\to_{as} f(\alpha),\quad\text{and}\\[2ex]
-Z_n\to_{d}  \alpha \quad & \Rightarrow\quad f(Z_n)\to_{d} f(\alpha),
+Z_n\to_{p}  \alpha \quad & \Rightarrow\quad f(Z_n)\to_{p} f(\alpha)\\[2ex]
+Z_n\to_{as} \alpha \quad & \Rightarrow\quad f(Z_n)\to_{as} f(\alpha)\\[2ex]
+Z_n\to_{d}  \alpha \quad & \Rightarrow\quad f(Z_n)\to_{d} f(\alpha)
 \end{align*}
 $$
-where $\alpha\in\mathbb{R}$ is deterministic.
 :::
 :::
 
@@ -268,7 +284,7 @@ X_n/Y_n\to_{p} \beta/\gamma,
 $$ 
 provided that $\gamma\neq 0$
 
-- If $\frac{1}{n}X_n'X_n\to_{p} \Sigma_{X'X},$ then 
+- If $\frac{1}{n}\sum_{i=1}^nX_iX_i'=\frac{1}{n}X_n'X_n\to_{p} \Sigma_{X'X},$ then 
 $$
 \left(\frac{1}{n}X_n'X_n\right)^{-1}\to_{p} \Sigma_{X'X}^{-1},
 $$ 
@@ -292,6 +308,8 @@ These results are particularly important for the derivation of the asymptotic di
 #
 ::: {#thm-Slutsky}
 ## Slutsky's Theorem
+
+</br>
 
 Let $X_n$ and $Y_n$ denote sequences of random scalars or vectors and let $A_n$ denote a sequences of random matrices. Moreover, $\alpha$ and $A$ are deterministic limits of appropriate dimensions and $X$ is a *random* limit of appropriate dimension. 
 
@@ -347,7 +365,7 @@ $$
 $$ 
 where $Z_i$, $i=1,\dots,n$, are (scalar, vector, or matrix-valued) *random variables*. 
 
-**Remember:** The sample mean $\bar{Z}_n$ is an estimator of the deterministic population mean $\mu=E(Z_i)$. 
+**Remember:** The sample mean $\bar{Z}_n$ is an estimator of the deterministic population mean $\mu.$ 
 
 Weak Law of Large Numbers (WLLNs), Strong LLNs (SLLNs), and Central Limit Theorems (CLTs) tell us conditions under which arithmetic means 
 $$
@@ -359,7 +377,7 @@ converge in probability, almost surely, and in distribution, respectively:
 
 * Strong LLN: $\bar{Z}_n\to_{as}\mu$
 
-* CLT: $\sqrt{n}(\bar{Z}_n-\mu)\to_{d}N(0,\sigma^2)$
+* CLT: $\sqrt{n}(\bar{Z}_n-\mu)\to_{d}\mathcal{N}(0,\sigma^2)$
 
 In the following we introduce the most well-known versions of a WLLN, SLLN, and a CLT.
 
@@ -367,7 +385,10 @@ In the following we introduce the most well-known versions of a WLLN, SLLN, and 
 #
 ::: {#thm-WLLN1}
 ## Weak LLN (by Chebychev)
-</br>If 
+
+</br>
+
+If 
 
 * $\lim_{n\to\infty} E(\bar{Z}_n)=\mu$ and 
 * $\lim_{n\to\infty}Var(\bar{Z}_n)=0,$ 
@@ -385,7 +406,10 @@ A proof of @thm-WLLN1 can be found, for instance, here: [https://www.statlect.co
 #
 ::: {#thm-SLLN1}
 ## Strong LLN (by Kolmogorov)
-</br>If $\{Z_i\}$ is an 
+
+</br>
+
+If $\{Z_i\}$ is an 
 
 * iid sequence with 
 * $E(Z_i)=\mu,$ 
@@ -409,7 +433,10 @@ A proof of @thm-SLLN1 can be found, e.g., in *Linear Statistical Inference and I
 #
 ::: {#thm-CLT1}
 ## CLT (Lindeberg-Levy)
-</br>If $\{Z_i\}$ is 
+
+</br>
+
+If $\{Z_i\}$ is 
 
 * an iid sequence with  
 * $E(Z_i)=\mu$ for all $i=1,\dots,n$ and 
@@ -417,7 +444,7 @@ A proof of @thm-SLLN1 can be found, e.g., in *Linear Statistical Inference and I
 
 then
 $$
-\sqrt{n}(\bar{Z}_n-\mu)\to_{d} N(0,\sigma^2),\quad\text{as}\quad n\to\infty
+\sqrt{n}(\bar{Z}_n-\mu)\to_{d} \mathcal{N}(0,\sigma^2),\quad\text{as}\quad n\to\infty
 $$
 :::
 :::
@@ -475,6 +502,8 @@ If an estimator $\hat\theta_n$ converges in probability to its limit $\theta$, w
 ::: {#def-WConsist}
 ## (Weak) Consistency 
 
+</br>
+
 We say that an estimator $\hat\theta_n$ is *(weakly) consistent for $\theta$* if 
 $$
 \hat\theta_n\to_{p}\theta,\quad\text{as}\quad n\to\infty.
@@ -486,6 +515,8 @@ $$
 #
 ::: {#def-SConsist}
 ## Strong Consistency 
+
+</br>
 
 We say that an estimator $\hat\theta_n$ is *strongly consistent for $\theta$* if 
 $$
@@ -501,6 +532,8 @@ A necessary requirement for weak and strong consistency is that the estimator is
 ::: {#def-ABias}
 ## Asymptotic Bias
 
+</br>
+
 The asymptotic bias of an estimator $\hat\theta_n$ of some  parameter $\theta$ is defined as
 $$
 \begin{align*}
@@ -509,7 +542,11 @@ $$
 &=\lim_{n\to\infty}E(\hat\theta_n)-\theta.
 \end{align*}
 $$
-If $\text{ABias}(\hat\theta_n,\theta)=0$, then $\hat\theta_n$ is called an **asymptotically unbiased**.
+If 
+$$
+\operatorname{ABias}(\hat\theta_n,\theta)=0,
+$$ 
+then $\hat\theta_n$ is called an **asymptotically unbiased**.
 :::
 :::
 
@@ -523,12 +560,13 @@ If $\text{ABias}(\hat\theta_n,\theta)=0$, then $\hat\theta_n$ is called an **asy
 
 An estimator $\hat\theta_n$ is called **asymptotically normal** if
 $$
-\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\sigma^2),\quad\text{as}\quad n\to\infty,
+\sqrt{n}(\hat\theta_n-\theta)\to_{d} \mathcal{N}(0,\operatorname{AVar}(\hat\theta_n)),\quad\text{as}\quad n\to\infty,
 $$
 where 
 $$
 \begin{align}
-\sigma^2 
+\operatorname{AVar}(\hat\theta_n)
+%\sigma^2 
 & = \lim_{n\to\infty}Var(\sqrt{n}(\hat\theta_n-\theta))\\
 & = \lim_{n\to\infty}n Var(\hat\theta_n-\theta)\\
 & = \lim_{n\to\infty}n Var(\hat\theta_n)\\
