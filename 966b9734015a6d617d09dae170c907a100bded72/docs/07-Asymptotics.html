@@ -907,14 +907,31 @@ S_{X'X}^{-1} = \left(\frac{1}{n}X'X\right)^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1
 <p><span class="theorem-title"><strong>Theorem 7.9 (Asymptotic Normality of <span class="math inline">\(\hat{\beta}\)</span> (Homoskedastic Case))</strong></span> Under Assumption 1, 2, 3<span class="math inline">\(^\ast\)</span>, and 4, and under the assumption that <span class="math inline">\(X_i\)</span> and <span class="math inline">\(\varepsilon_i\)</span> have finite second moments, and under the simplifying assumption of spherical errors <span class="math display">\[
 Var(\varepsilon|X)=\sigma^2I_n,
 \]</span> we have that <span class="math display">\[
-\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right),\quad\text{as}\quad n\to\infty.
-\]</span></p>
+\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right),\quad\text{as}\quad n\to\infty,
+\]</span> where <span class="math display">\[
+\begin{align*}
+\sigma^2 \Sigma^{-1}_{X'X}
+&amp; = \lim_{n\to\infty} Var\left(\sqrt{n}(\hat\beta_n-\beta)\right)\\[2ex]
+&amp; = \lim_{n\to\infty} n Var\left(\hat\beta_n\right)
+\end{align*}
+\]</span> is the asymptotic variance of <span class="math inline">\(\hat\beta_n.\)</span></p>
 </div>
 </div>
 </div>
 </div>
 <p>The proof of <a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a> is done in the lecture.</p>
-<p>In principle, we can derive the usual test statistics from the latter result. Though, as long as we do not know (we usually don’t) <span class="math inline">\(\sigma^2\)</span> and <span class="math inline">\(\Sigma_{X'X}\)</span> we need to plug-in the (consistent!) estimators <span class="math inline">\(S_{X'X}^{-1}\)</span> and <span class="math inline">\(s_{ub}^2\)</span>, where the consistency of the former estimator is provided by <a href="#thm-Sxx1" class="quarto-xref">Theorem&nbsp;<span>7.7</span></a> and the consistency of <span class="math inline">\(s_{ub}^2\)</span> is provided by the following result.</p>
+<p><a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a> implies that for spherical errors and for largish sample sizes <span class="math inline">\(n,\)</span> the OLS estimator <span class="math inline">\(\beta_n\)</span> is <strong>approximately</strong> normal distributed, i.e. <span class="math display">\[
+\begin{align*}
+\sqrt{n}(\hat\beta_n-\beta)&amp;\overset{a}{\sim}\mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right)\\[2ex]
+\Rightarrow\qquad\hat\beta_n &amp;\overset{a}{\sim}\mathcal{N}_K\left(\beta, n^{-1}\sigma^2 \Sigma^{-1}_{X'X}\right).
+\end{align*}
+\]</span></p>
+<p>Usually, we do not know the asymptotic variance <span class="math inline">\(\sigma^2\Sigma_{X'X}^{-1},\)</span> but have to plug-in the (consistent) estimator<br><span class="math display">\[
+s_{ub}^2 S_{X'X}^{-1}.
+\]</span></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Consistency of <span class="math inline">\(S_{X'X}^{-1}\)</span> is provided by <a href="#thm-Sxx1" class="quarto-xref">Theorem&nbsp;<span>7.7</span></a> and consistency of <span class="math inline">\(s_{ub}^2\)</span> is provided by <a href="#thm-Consistency_s1" class="quarto-xref">Theorem&nbsp;<span>7.10</span></a>.</p>
+</blockquote>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -932,9 +949,12 @@ s_{ub}^2\to_{p}\sigma^2,\quad\text{as}\quad n\to\infty.
 <p>The proof of <a href="#thm-Consistency_s1" class="quarto-xref">Theorem&nbsp;<span>7.10</span></a> is skipped, but a detailed proof can be found here: <a href="https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties">https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties</a></p>
 <section id="sec-CaseHetero" class="level3" data-number="7.2.1"><h3 data-number="7.2.1" class="anchored" data-anchor-id="sec-CaseHetero">
 <span class="header-section-number">7.2.1</span> The Case of Heteroskedasticity</h3>
-<p><a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a> can also be stated (and proofed) for conditionally heteroskedastic error terms. In this case one gets <span id="eq-OLSnormality1Rob"><span class="math display">\[
-\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}_K\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)
-\qquad(7.1)\]</span></span> as <span class="math inline">\(n\to\infty.\)</span></p>
+<p><a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a> can also be stated (and proofed) for conditionally heteroskedastic error terms. In this case one gets for large sample sizes (<span class="math inline">\(n\to\infty\)</span>), <span id="eq-OLSnormality1Rob"><span class="math display">\[
+\begin{align*}
+\sqrt{n}(\hat\beta_n-\beta)\overset{a}{\sim}\mathcal{N}_K\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)\\[2ex]
+\Rightarrow\qquad\hat\beta_n\overset{a}{\sim}\mathcal{N}_K\left(\beta,n^{-1}\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right).
+\end{align*}
+\qquad(7.1)\]</span></span></p>
 <p>The asymptotic variance <span class="math display">\[
 \lim_{n\to\infty}Var(\sqrt{n}(\hat\beta_n-\beta))=\underbrace{\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}}_{(K\times K)}
 \]</span> is, of course, usually unknown and needs to be estimated from the data by some consistent estimator such that <span class="math display">\[
@@ -1033,18 +1053,25 @@ Finite-sample correction
 </div>
 </section><section id="robust-hypothesis-testing-single-parameters" class="level4" data-number="7.2.2.2"><h4 data-number="7.2.2.2" class="anchored" data-anchor-id="robust-hypothesis-testing-single-parameters">
 <span class="header-section-number">7.2.2.2</span> Robust Hypothesis Testing: Single Parameters</h4>
-<p>Let us reconsider the case of hypotheses about only one parameter <span class="math inline">\(\beta_k,\)</span> with <span class="math inline">\(k=1,\dots,K\)</span> <span class="math display">\[\begin{equation*}
+<p>Let us reconsider the case of hypotheses about only one parameter <span class="math inline">\(\beta_k,\)</span> with <span class="math inline">\(k=1,\dots,K\)</span> <span class="math display">\[
+\begin{equation*}
 \begin{array}{ll}
 H_0: &amp; \beta_k=\beta_k^{(0)}\\
 H_1: &amp; \beta_k\ne \beta_k^{(0)}\\
 \end{array}
-\end{equation*}\]</span> Selecting the <span class="math inline">\(k\)</span>th diagonal element of the test-statistic in <a href="#eq-Ftestasymp" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> and taking the square root yields <span class="math display">\[
+\end{equation*}
+\]</span> Selecting the <span class="math inline">\(k\)</span>th diagonal element of the test-statistic in <a href="#eq-Ftestasymp" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> and taking the square root yields <span class="math display">\[
 \begin{align*}
-T&amp;=\frac{\sqrt{n}\left(\hat{\beta}_k-\beta_k^{(0)}\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}}}\\[1.5ex]
-\text{where}\qquad T&amp;\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty,
+T&amp;=\frac{\sqrt{n}\left(\hat{\beta}_k-\beta_k^{(0)}\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}}}
 \end{align*}
-and where $\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}.$
-\]</span> This <span class="math inline">\(t\)</span>-test statistic allows for <strong>heteroskedastic</strong> error terms.</p>
+\]</span> where <span class="math display">\[
+\begin{align*}
+T&amp;\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty,
+\end{align*}
+\]</span> and where <span class="math display">\[
+\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}
+\]</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\(S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}.\)</span></p>
+<p>This <span class="math inline">\(t\)</span>-test statistic allows for <strong>heteroskedastic</strong> error terms.</p>
 <p>In case of homoskedastic error terms, one can substitute <span class="math display">\[
 [S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}
 \]</span> by <span class="math display">\[

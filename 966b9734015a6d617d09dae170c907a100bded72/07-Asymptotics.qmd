@@ -755,14 +755,39 @@ Var(\varepsilon|X)=\sigma^2I_n,
 $$ 
 we have that
 $$
-\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right),\quad\text{as}\quad n\to\infty.
+\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right),\quad\text{as}\quad n\to\infty,
 $$
+where 
+$$
+\begin{align*}
+\sigma^2 \Sigma^{-1}_{X'X} 
+& = \lim_{n\to\infty} Var\left(\sqrt{n}(\hat\beta_n-\beta)\right)\\[2ex]
+& = \lim_{n\to\infty} n Var\left(\hat\beta_n\right)
+\end{align*}
+$$
+is the asymptotic variance of $\hat\beta_n.$ 
 :::
 ::: 
 
 The proof of @thm-OLSnormality1 is done in the lecture. 
 
-In principle, we can derive the usual test statistics from the latter result. Though, as long as we do not know (we usually don't) $\sigma^2$ and $\Sigma_{X'X}$ we need to plug-in the (consistent!) estimators $S_{X'X}^{-1}$ and $s_{ub}^2$, where the consistency of the former estimator is provided by @thm-Sxx1 and the consistency of $s_{ub}^2$ is provided by the following result.
+
+@thm-OLSnormality1 implies that for spherical errors and for largish sample sizes $n,$ the OLS estimator $\beta_n$ is **approximately** normal distributed, i.e.
+$$
+\begin{align*}
+\sqrt{n}(\hat\beta_n-\beta)&\overset{a}{\sim}\mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right)\\[2ex]
+\Rightarrow\qquad\hat\beta_n &\overset{a}{\sim}\mathcal{N}_K\left(\beta, n^{-1}\sigma^2 \Sigma^{-1}_{X'X}\right).
+\end{align*}
+$$
+
+
+Usually, we do not know the asymptotic variance $\sigma^2\Sigma_{X'X}^{-1},$ but have to plug-in the (consistent) estimator  
+$$
+s_{ub}^2 S_{X'X}^{-1}.
+$$
+
+>  **Note:** Consistency of $S_{X'X}^{-1}$ is provided by @thm-Sxx1 and consistency of $s_{ub}^2$ is provided by @thm-Consistency_s1.
+
 
 
 ::: {.callout icon=false}
@@ -782,11 +807,13 @@ The proof of @thm-Consistency_s1 is skipped, but a detailed proof can be found h
 
 ### The Case of Heteroskedasticity {#sec-CaseHetero}
 
-@thm-OLSnormality1 can also be stated (and proofed) for conditionally heteroskedastic error terms. In this case one gets
+@thm-OLSnormality1 can also be stated (and proofed) for conditionally heteroskedastic error terms. In this case one gets for large sample sizes ($n\to\infty$),
 $$
-\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}_K\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)
+\begin{align*}
+\sqrt{n}(\hat\beta_n-\beta)\overset{a}{\sim}\mathcal{N}_K\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)\\[2ex]
+\Rightarrow\qquad\hat\beta_n\overset{a}{\sim}\mathcal{N}_K\left(\beta,n^{-1}\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right).
+\end{align*}
 $${#eq-OLSnormality1Rob}
-as $n\to\infty.$ 
 
 The asymptotic variance 
 $$
@@ -869,20 +896,32 @@ Asymptotically ($n\to\infty$), $F_{q,n-K}$ is equivalent to $\chi^2(q)$. However
 #### Robust Hypothesis Testing: Single Parameters
 
 Let us reconsider the case of hypotheses about only one parameter $\beta_k,$ with $k=1,\dots,K$
+$$
 \begin{equation*}
 \begin{array}{ll}
 H_0: & \beta_k=\beta_k^{(0)}\\
 H_1: & \beta_k\ne \beta_k^{(0)}\\
 \end{array}
 \end{equation*}
+$$
 Selecting the $k$th diagonal element of the test-statistic in @eq-Ftestasymp and taking the square root yields 
 $$
 \begin{align*}
-T&=\frac{\sqrt{n}\left(\hat{\beta}_k-\beta_k^{(0)}\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}}}\\[1.5ex] 
-\text{where}\qquad T&\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty,
+T&=\frac{\sqrt{n}\left(\hat{\beta}_k-\beta_k^{(0)}\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}}}
 \end{align*}
-and where $\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}.$
 $$
+where
+$$
+\begin{align*}
+T&\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty,
+\end{align*}
+$$
+and where 
+$$
+\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}
+$$ 
+denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}.$
+
 This $t$-test statistic allows for **heteroskedastic** error terms. 
 
 In case of homoskedastic error terms, one can substitute 
