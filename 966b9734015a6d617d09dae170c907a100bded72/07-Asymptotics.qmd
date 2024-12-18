@@ -776,9 +776,10 @@ The proof of @thm-OLSnormality1 is done in the lecture.
 $$
 \begin{align*}
 \sqrt{n}(\hat\beta_n-\beta)&\overset{a}{\sim}\mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right)\\[2ex]
-\Rightarrow\qquad\hat\beta_n &\overset{a}{\sim}\mathcal{N}_K\left(\beta, n^{-1}\sigma^2 \Sigma^{-1}_{X'X}\right).
+\Rightarrow\qquad\hat\beta_n &\overset{a}{\sim}\mathcal{N}_K\left(\beta, n^{-1}\sigma^2 \Sigma^{-1}_{X'X}\right),
 \end{align*}
 $$
+where the approximation error becomes arbitrarily small as $n\to\infty.$
 
 
 Usually, we do not know the asymptotic variance $\sigma^2\Sigma_{X'X}^{-1},$ but have to plug-in the (consistent) estimator  
@@ -807,13 +808,17 @@ The proof of @thm-Consistency_s1 is skipped, but a detailed proof can be found h
 
 ### The Case of Heteroskedasticity {#sec-CaseHetero}
 
-@thm-OLSnormality1 can also be stated (and proofed) for conditionally heteroskedastic error terms. In this case one gets for large sample sizes ($n\to\infty$),
+@thm-OLSnormality1 can also be stated (and proofed) for conditionally heteroskedastic error terms. In this case, $\beta_n$ is for large sample sizes $n$ **approximately** normal distributed, 
 $$
 \begin{align*}
 \sqrt{n}(\hat\beta_n-\beta)\overset{a}{\sim}\mathcal{N}_K\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)\\[2ex]
-\Rightarrow\qquad\hat\beta_n\overset{a}{\sim}\mathcal{N}_K\left(\beta,n^{-1}\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right).
+\Rightarrow\qquad\hat\beta_n\overset{a}{\sim}\mathcal{N}_K\left(\beta,n^{-1}\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right),
 \end{align*}
 $${#eq-OLSnormality1Rob}
+where the approximation error becomes arbitrarily small as $n\to\infty.$
+
+
+
 
 The asymptotic variance 
 $$
@@ -825,7 +830,11 @@ S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\to_{p} \Sigma_{X'X}^
 $$
 as $n\to\infty.$ 
 
-The $\widehat{E}(\varepsilon^2_iX_iX_i')$ is here a placeholder for one of the existing **Heteroskedasticity Consistent (HC)** estimators of $E(\varepsilon^2X_iX_i')$:
+The estimator 
+$$
+\widehat{E}(\varepsilon^2_iX_iX_i')
+$$ 
+is here a placeholder for one of the existing **Heteroskedasticity Consistent (HC)** estimators of $E(\varepsilon^2X_iX_i')$:
 
 HC-Type  | Formular
 ------|------------
@@ -853,6 +862,8 @@ General idea of the HC2-HC4 estimators is to increase the estimated variance in 
 
 The estimator HC0 was suggested in the econometrics literature by @White1980 and is justified by asymptotic ($n\to\infty$) arguments. The estimators HC1, HC2 and HC3 were suggested by @MacKinnon_White_1985 to improve the finite sample performance of HC0. Using an extensive Monte Carlo simulation study comparing HC0-HC3, @Long_Ervin_2000 concludes that HC3 provides the best overall performance in finite samples. @Cribari_2004 suggested the estimator HC4 to further improve the performance in finite sample behavior, especially in the presence of influential observations (large $h_i$ values).
 
+
+>  **Note:** Besides **Heteroskedasticity Consistent (HC)** estimators, there are also **Heteroskedasticity and Autocorrelation Consistent (HAC)** estimators. 
 
 
 ### Robust Inference 

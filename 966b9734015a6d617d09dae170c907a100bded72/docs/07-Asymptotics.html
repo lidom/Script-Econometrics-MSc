@@ -923,9 +923,9 @@ Var(\varepsilon|X)=\sigma^2I_n,
 <p><a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a> implies that for spherical errors and for largish sample sizes <span class="math inline">\(n,\)</span> the OLS estimator <span class="math inline">\(\beta_n\)</span> is <strong>approximately</strong> normal distributed, i.e. <span class="math display">\[
 \begin{align*}
 \sqrt{n}(\hat\beta_n-\beta)&amp;\overset{a}{\sim}\mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right)\\[2ex]
-\Rightarrow\qquad\hat\beta_n &amp;\overset{a}{\sim}\mathcal{N}_K\left(\beta, n^{-1}\sigma^2 \Sigma^{-1}_{X'X}\right).
+\Rightarrow\qquad\hat\beta_n &amp;\overset{a}{\sim}\mathcal{N}_K\left(\beta, n^{-1}\sigma^2 \Sigma^{-1}_{X'X}\right),
 \end{align*}
-\]</span></p>
+\]</span> where the approximation error becomes arbitrarily small as <span class="math inline">\(n\to\infty.\)</span></p>
 <p>Usually, we do not know the asymptotic variance <span class="math inline">\(\sigma^2\Sigma_{X'X}^{-1},\)</span> but have to plug-in the (consistent) estimator<br><span class="math display">\[
 s_{ub}^2 S_{X'X}^{-1}.
 \]</span></p>
@@ -949,18 +949,20 @@ s_{ub}^2\to_{p}\sigma^2,\quad\text{as}\quad n\to\infty.
 <p>The proof of <a href="#thm-Consistency_s1" class="quarto-xref">Theorem&nbsp;<span>7.10</span></a> is skipped, but a detailed proof can be found here: <a href="https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties">https://www.statlect.com/fundamentals-of-statistics/OLS-estimator-properties</a></p>
 <section id="sec-CaseHetero" class="level3" data-number="7.2.1"><h3 data-number="7.2.1" class="anchored" data-anchor-id="sec-CaseHetero">
 <span class="header-section-number">7.2.1</span> The Case of Heteroskedasticity</h3>
-<p><a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a> can also be stated (and proofed) for conditionally heteroskedastic error terms. In this case one gets for large sample sizes (<span class="math inline">\(n\to\infty\)</span>), <span id="eq-OLSnormality1Rob"><span class="math display">\[
+<p><a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a> can also be stated (and proofed) for conditionally heteroskedastic error terms. In this case, <span class="math inline">\(\beta_n\)</span> is for large sample sizes <span class="math inline">\(n\)</span> <strong>approximately</strong> normal distributed, <span id="eq-OLSnormality1Rob"><span class="math display">\[
 \begin{align*}
 \sqrt{n}(\hat\beta_n-\beta)\overset{a}{\sim}\mathcal{N}_K\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)\\[2ex]
-\Rightarrow\qquad\hat\beta_n\overset{a}{\sim}\mathcal{N}_K\left(\beta,n^{-1}\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right).
+\Rightarrow\qquad\hat\beta_n\overset{a}{\sim}\mathcal{N}_K\left(\beta,n^{-1}\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right),
 \end{align*}
-\qquad(7.1)\]</span></span></p>
+\qquad(7.1)\]</span></span> where the approximation error becomes arbitrarily small as <span class="math inline">\(n\to\infty.\)</span></p>
 <p>The asymptotic variance <span class="math display">\[
 \lim_{n\to\infty}Var(\sqrt{n}(\hat\beta_n-\beta))=\underbrace{\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}}_{(K\times K)}
 \]</span> is, of course, usually unknown and needs to be estimated from the data by some consistent estimator such that <span class="math display">\[
 S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\to_{p} \Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}
 \]</span> as <span class="math inline">\(n\to\infty.\)</span></p>
-<p>The <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')\)</span> is here a placeholder for one of the existing <strong>Heteroskedasticity Consistent (HC)</strong> estimators of <span class="math inline">\(E(\varepsilon^2X_iX_i')\)</span>:</p>
+<p>The estimator <span class="math display">\[
+\widehat{E}(\varepsilon^2_iX_iX_i')
+\]</span> is here a placeholder for one of the existing <strong>Heteroskedasticity Consistent (HC)</strong> estimators of <span class="math inline">\(E(\varepsilon^2X_iX_i')\)</span>:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -1017,6 +1019,9 @@ Tip
 </div>
 </div>
 <p>The estimator HC0 was suggested in the econometrics literature by <span class="citation" data-cites="White1980">White (<a href="#ref-White1980" role="doc-biblioref">1980</a>)</span> and is justified by asymptotic (<span class="math inline">\(n\to\infty\)</span>) arguments. The estimators HC1, HC2 and HC3 were suggested by <span class="citation" data-cites="MacKinnon_White_1985">MacKinnon and White (<a href="#ref-MacKinnon_White_1985" role="doc-biblioref">1985</a>)</span> to improve the finite sample performance of HC0. Using an extensive Monte Carlo simulation study comparing HC0-HC3, <span class="citation" data-cites="Long_Ervin_2000">Long and Ervin (<a href="#ref-Long_Ervin_2000" role="doc-biblioref">2000</a>)</span> concludes that HC3 provides the best overall performance in finite samples. <span class="citation" data-cites="Cribari_2004">Cribari-Neto (<a href="#ref-Cribari_2004" role="doc-biblioref">2004</a>)</span> suggested the estimator HC4 to further improve the performance in finite sample behavior, especially in the presence of influential observations (large <span class="math inline">\(h_i\)</span> values).</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Besides <strong>Heteroskedasticity Consistent (HC)</strong> estimators, there are also <strong>Heteroskedasticity and Autocorrelation Consistent (HAC)</strong> estimators.</p>
+</blockquote>
 </section><section id="robust-inference" class="level3" data-number="7.2.2"><h3 data-number="7.2.2" class="anchored" data-anchor-id="robust-inference">
 <span class="header-section-number">7.2.2</span> Robust Inference</h3>
 <!-- From our asymptotic results under the classic regression model (Assumptions 1$^\ast$, 2, 3$^\ast$, and 4) we get the following results important for testing statistical hypothesis.  -->
