@@ -2241,12 +2241,10 @@ Lukily, the data set `DoctorVisits` actually has a **large sample size** of $n=$
 
 ## Exercises
 
-<!-- * [Exercises for Chapter 6](https://www.dropbox.com/scl/fi/g6hiwoprjewwsbr09t217/Ch5_Exercises1.pdf?rlkey=s6642zm8ufj173mhmbtoj0wvf&dl=0)
+* [Exercises for Chapter 6](https://www.dropbox.com/scl/fi/zga37r4btryd61uc1rb0b/Ch6_Exercises1.pdf?rlkey=ine2f41nivqteps58sj7ju6nj&dl=0)
 
+* [Exercises of Chapter 6 with Solutions](https://www.dropbox.com/scl/fi/o1k0b69ll10vyc8qbw850/Ch6_Exercises_with_Solutions1.pdf?rlkey=oue9pbl5jatyc9c9d1rmffni2&dl=0)
 
-* [Exercises of Chapter 6 with Solutions](https://www.dropbox.com/scl/fi/codmlxtkr9p4wugd7knm0/Ch5_Exercises_with_Solutions1.pdf?rlkey=4s4g3nu4k2ycvlg4cm2n5xcat&dl=0)
-
--->
 
 ## References {-}
 
