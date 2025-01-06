@@ -341,7 +341,7 @@ Proofs of @thm-Slutsky can be found, e.g., in @Vaart2000 (see Theorem 2.8) or he
 
 Important special case of @thm-Slutsky: 
 
-Let $\{X_n\}$ and $\{X_n\}$ be sequences of real valued $(K\times 1)$-dimensional random vectors. If 
+Let $\{X_n\}$ and $\{A_n\}$ be two sequences of real valued $(K\times 1)$-dimensional random vectors. If 
 $$
 X_n\to_{d}\mathcal{N}_K(0,\Sigma)\quad\text{and}\quad A_n\to_{p} A
 $$ 
