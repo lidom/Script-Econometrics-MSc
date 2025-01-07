@@ -298,7 +298,7 @@ a' b = 0.
 $$ 
 
 The vectors $a$ and $b$ are called **orthonormal** if, in
-addition to $a'b$, we have
+addition to $a'b=0,$ we have
 $$
 a' a = 1\quad\text{and}\quad b' b=1.
 $$

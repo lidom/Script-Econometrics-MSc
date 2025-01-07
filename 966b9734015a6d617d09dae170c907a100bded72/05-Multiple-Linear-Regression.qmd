@@ -250,7 +250,7 @@ $$
 
 * Thus $(X'X)$ is invertible; i.e. there exists a $(K\times K)$-dimensional matrix $(X'X)^{-1}$ such that 
 $$
-(X'X)(X'X)^{-1} = (X'X)^{-1}(X'X) = I_k.
+(X'X)(X'X)^{-1} = (X'X)^{-1}(X'X) = I_K.
 $$ 
 :::
 

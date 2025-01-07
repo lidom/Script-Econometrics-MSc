@@ -889,7 +889,14 @@ x
 0 & \text { otherwise. }
 \end{array}\right.
 $$
-A random variable with this mas function is called a **binomial random variable** and we write $X \sim \operatorname{Binomial}(n, p)$.  If $X_{1} \sim$ Binomial $\left(n_1, p1\right)$ and $X_{2} \sim$ Binomial$\left(n_2, p\right)$ and if $X_1$ and $X_2$ are independent, then $X_{1}+X_{2} \sim \operatorname{Binomial}\left(n_1+n_2, p\right)$
+A random variable with this probability mas function is called a **binomial random variable** and we write $X \sim \operatorname{Binomial}(n, p)$.  
+
+If 
+$X_{1} \sim$ Binomial $\left(n_1, p\right)$ and 
+$X_{2} \sim$ Binomial $\left(n_2, p\right)$ and if 
+$X_1$ and $X_2$ 
+are independent, then 
+$X_{1}+X_{2} \sim \operatorname{Binomial}\left(n_1 + n_2, p\right).$
 
 
 ```{r}
@@ -935,27 +942,27 @@ runif(n = n, min = a, max = b)
 
 #### The Normal (or Gaussian) Distribution {#sec-NormalDistr}
 
-$X$ has a Normal (or Gaussian) distribution with parameters $\mu$ and $\sigma,$ denoted by $X \sim N\left(\mu, \sigma^{2}\right),$ if
+$X$ has a Normal (or Gaussian) distribution with parameters $\mu$ and $\sigma,$ denoted by $X \sim \mathcal{N}\left(\mu, \sigma^{2}\right),$ if
 $$
 f(x)=\frac{1}{\sigma \sqrt{2 \pi}} \exp \left\{-\frac{1}{2 \sigma^{2}}(x-\mu)^{2}\right\}, \quad x \in \mathbb{R}
 $$
 where $\mu \in \mathbb{R}$ and $\sigma>0.$  Later we shall see that $\mu$ is the "center" (or mean of the distribution and $\sigma$ is the "spread" (or standard deviation) of the distribution. The Normal plays an important role in probability and statistics. Many phenomena in nature have approximately Normal distributions.  The **Central Limit Theorem** gives a special role to the Normal distribution by stating that the distribution of averages of random variables can be approximated by a Normal distribution.
 
 
-We say that $X$ has a standard Normal distribution if $\mu=0$ and $\sigma=1$. Tradition dictates that a standard Normal random variable is denoted by $Z$. The PDF and CDF of a standard Normal are denoted by $\phi(z)$ and $\Phi(z)$. There is no closed-form expression for $\Phi$. Here are some useful facts:
+We say that $X$ has a standard Normal distribution if $\mu=0$ and $\sigma=1$. Tradition dictates that a standard Normal random variable is denoted by $Z$. The pdf and cdf of a standard Normal are denoted by $\phi(z)$ and $\Phi(z)$. There is no closed-form expression for $\Phi$. Here are some useful facts:
 
-(i) If $X \sim N\left(\mu, \sigma^{2}\right)$ then $Z=(X-\mu) / \sigma \sim N(0,1)$
+(i) If $X \sim \mathcal{N}\left(\mu, \sigma^{2}\right)$ then $Z=(X-\mu) / \sigma \sim \mathcal{N}(0,1)$
 
-(ii) If $Z \sim N(0,1)$ then $X=\mu+\sigma Z \sim N\left(\mu, \sigma^{2}\right)$
+(ii) If $Z \sim \mathcal{N}(0,1)$ then $X=\mu+\sigma Z \sim \mathcal{N}\left(\mu, \sigma^{2}\right)$
 
-(iii) If $X_{i} \sim N\left(\mu_{i}, \sigma_{i}^{2}\right), i=1, \ldots, n$ are independent then
+(iii) If $X_{i} \sim \mathcal{N}\left(\mu_{i}, \sigma_{i}^{2}\right), i=1, \ldots, n$ are independent then
 $$
-\sum_{i=1}^{n} X_{i} \sim N\left(\sum_{i=1}^{n} \mu_{i}, \sum_{i=1}^{n} \sigma_{i}^{2}\right).
+\sum_{i=1}^{n} X_{i} \sim \mathcal{N}\left(\sum_{i=1}^{n} \mu_{i}, \sum_{i=1}^{n} \sigma_{i}^{2}\right).
 $$
 
 The following `R`-codes plots the standard Normal density function:
 ```{r, echo = T, eval = T, message = F, warning = F, fig.align='center'} 
-# draw a plot of the N(0,1) PDF
+# draw a plot of the N(0,1) pdf
 curve(dnorm(x),
       xlim = c(-3.5, 3.5),
       ylab = "Density", 
@@ -976,10 +983,12 @@ $$
 f_{X}\left(x_{1}, \ldots, x_{k}\right)=\frac{\exp \left(-\frac{1}{2}(x-\mu)' \Sigma^{-1}(x-\mu)\right)}{\sqrt{(2 \pi)^{k}|\Sigma|}},
 $$
 where $|\Sigma|$ denotes the determinant of $\Sigma$. For $k=2$ we have the bivariate pdf of two random normal variables, $X$ and $Y$ say
+$$
 \begin{align*}
 &g_{X,Y}(x,y) = \frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho_{XY}^2}} \\ 
 & \cdot \, \exp \left\{ \frac{1}{-2(1-\rho_{XY}^2)} \left[ \left( \frac{x-\mu_x}{\sigma_X} \right)^2 - 2\rho_{XY}\left( \frac{x-\mu_X}{\sigma_X} \right)\left( \frac{y-\mu_Y}{\sigma_Y} \right) + \left( \frac{y-\mu_Y}{\sigma_Y} \right)^2 \right]  \right\}.
 \end{align*}
+$$
 Lets consider the special case where $X$ and $Y$ are independent standard normal random variables with densities $f_X(x)$ and $f_Y(y)$. We then have the parameters $\sigma_X = \sigma_Y = 1$, $\mu_X=\mu_Y=0$ (due to marginal standard normality) and correlation $\rho_{XY}=0$ (due to independence). The joint density of $X$ and $Y$ then becomes
 $$
 g_{X,Y}(x,y) = f_X(x) f_Y(y) = \frac{1}{2\pi} \cdot \exp \left\{ -\frac{1}{2}\left[x^2 + y^2\right]\right\}.
@@ -990,28 +999,28 @@ $$
 
 The chi-squared distribution is another distribution relevant in econometrics. It is often needed when testing special types of hypotheses frequently encountered when dealing with regression models. 
 
-The sum of $M$ squared *independent standard normal* distributed random variables, $Z_1,\dots,Z_M$ follows a chi-squared distribution with $M$ degrees of freedom:
+The sum of $\nu=1,2,\dots$ squared *independent standard normal* distributed random variables, $Z_1,\dots,Z_\nu$ follows a chi-squared distribution with $\nu$ degrees of freedom (df):
 $$
 \begin{align*}
-Z_1^2 + \dots + Z_M^2 = \sum_{m=1}^M Z_m^2 \sim \chi^2_M. 
+Z_1^2 + \dots + Z_\nu^2 = \sum_{j=1}^\nu Z_j^2 =:W \sim \chi^2_{\nu}. 
 \end{align*}
 $$
-A $\chi^2$ distributed random variable with $M$ degrees of freedom has expectation $M$, mode at $M-2$ for $M \geq 2$ and variance $2 \cdot M$. 
+A $\chi^2$ distributed random variable $W$ with $\nu$ degrees of freedom has expectation $E(W)=\nu$, mode at $\nu-2$ for $\nu \geq 2$ and variance $2 \cdot \nu.$ 
 
 
 Using the code below, we can display the pdf and the distribution function or **cumulated density function (cdf)** of a $\chi^2_3$ random variable in a single plot. This is achieved by setting the argument `add = TRUE"` in the second call of `"curve()"`. Further we adjust limits of both axes using `"xlim"` and `"ylim"` and choose different colors to make both functions better distinguishable. The plot is completed by adding a legend with help of `"legend()"`.
 
 
 ```{r, echo = T, eval = T, message = F, warning = F, fig.align='center'} 
-# plot the PDF
+# plot the pdf
 curve(dchisq(x, df = 3), 
       xlim = c(0, 10), 
       ylim = c(0, 1), 
       col = "blue",
       ylab = "",
-      main = "pdf and cdf of Chi-Squared Distribution, M = 3")
+      main = "pdf and cdf of Chi-Squared Distribution (df = 3)")
 
-# add the CDF to the plot
+# add the cdf to the plot
 curve(pchisq(x, df = 3), 
       xlim = c(0, 10), 
       add = TRUE, 
@@ -1019,17 +1028,16 @@ curve(pchisq(x, df = 3),
 
 # add a legend to the plot
 legend("topleft", 
-       c("PDF", "CDF"), 
+       c("pdf", "cdf"), 
        col = c("blue", "red"), 
        lty = c(1, 1))
 ```
 
 
-Since the outcomes of a $\chi^2_M$ distributed random variable are always positive, the support of the related PDF and CDF is $\mathbb{R}_{\geq0}$.
+Since the outcomes of a $\chi^2_\nu$ distributed random variable are always positive, the support of the related pdf and cdf is $\mathbb{R}_{\geq 0}$.
 
-As expectation and variance depend (solely!) on the degrees of freedom, the distribution's shape changes drastically if we vary the number of squared standard normals that are summed up. This relation is often depicted by overlaying densities for different $M$, see the <a href="https://en.wikipedia.org/wiki/Chi-squared_distribution">Wikipedia Article</a>.  
+As expectation and variance depend (solely!) on the degrees of freedom, the distribution's shape changes drastically if we vary the degrees of freedoms. 
 
-We reproduce this here by plotting the density of the $\chi_1^2$ distribution on the interval $[0,15]$ with `"curve()"`. In the next step, we loop over degrees of freedom $M=2,...,7$ and add a density curve for each $M$ to the plot. We also adjust the line color for each iteration of the loop by setting `"col = M"`. At last, we add a legend that displays degrees of freedom and the associated colors.
 
 ```{r, echo = T, eval = T, message = F, warning = F, fig.align='center'} 
 # plot the density for M=1
@@ -1052,7 +1060,7 @@ legend("topright",
        as.character(1:7), 
        col = 1:7 , 
        lty = 1, 
-       title = "D.F.")
+       title = "df")
 ```
 
 
@@ -1060,7 +1068,7 @@ Increasing the degrees of freedom shifts the distribution to the right (the mode
 
 
 
-#### The Student t Distribution {#sec-tdist}
+#### The Student $t$ Distribution {#sec-tdist}
 
 Let $Z$ be a standard normal random variable, $W$ a $\chi^2_\nu$ random variable and further assume that $Z$ and $W$ are independent. Then it holds that
 $$
@@ -1073,8 +1081,8 @@ The shape of a $t_\nu$ distribution depends on $\nu$. $t$ distributions are symm
 A $t_\nu$ distributed random variable $X$ has an expectation if $\nu>1$ and it has a variance if $\nu>2$.
 $$
 \begin{align*}
-  E(X) =& 0, \ M>1 \\
-  \text{Var}(X) =& \frac{M}{M-2}, \ M>2
+  E(X) =& 0, \qquad \nu > 1 \\
+  \text{Var}(X) =& \frac{\nu}{\nu-2}, \qquad \nu > 2
 \end{align*}
 $$
 
@@ -1109,7 +1117,7 @@ curve(dt(x, df = 25),
 
 # add a legend
 legend("topright", 
-       c("N(0, 1)", "M=2", "M=4", "M=25"), 
+       c("N(0, 1)", "df=2", "df=4", "df=25"), 
        col = 1:4, 
        lty = c(2, 1, 1, 1))
 ```
@@ -1148,14 +1156,14 @@ What this means in practice is that if you take a sample $x_{1}, x_{2}, \ldots, 
 
 #### The F Distribution {#sec-Fdist}
 
-Another ratio of random variables important to econometricians is the ratio of two independent $\chi^2$ distributed random variables that are divided by their degrees of freedom $M$ and $n$. The quantity 
+Another ratio of random variables important to econometricians is the ratio of two independent $\chi^2$ distributed random variables that are divided by their degrees of freedom $m$ and $n$. The quantity 
 
 $$
-\frac{W/M}{V/n} \sim F_{M,n} \ \ \text{with} \ \ W \sim \chi^2_M \ \ , \ \ V \sim \chi^2_n 
+\frac{W/m}{V/n} \sim F_{m,n} \ \ \text{with} \ \ W \sim \chi^2_m \ \ , \ \ V \sim \chi^2_n 
 $$
-follows an $F$ distribution with numerator degrees of freedom $M$ and denominator degrees of freedom $n$, denoted $F_{M,n}$. The distribution was first derived by George Snedecor but was named in honor of [Sir Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher).
+follows an $F$ distribution with numerator degrees of freedom $m$ and denominator degrees of freedom $n$, denoted $F_{m,n}$. The distribution was first derived by George Snedecor but was named in honor of [Sir Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher).
 
-By definition, the support of both PDF and CDF of an $F_{M,n}$ distributed random variable is $\mathbb{R}_{\geq0}$.
+By definition, the support of both pdf and cdf of an $F_{m,n}$ distributed random variable is $\mathbb{R}_{\geq0}$.
 
 Say we have an $F$ distributed random variable $Y$ with numerator degrees of freedom $3$ and denominator degrees of freedom $14$ and are interested in $P(Y \geq 2)$. This can be computed with help of the function `"pf()"`. By setting the argument `"lower.tail"` to `"FALSE"` we ensure that `R` computes $1- P(Y \leq 2)$, i.e,the probability mass in the tail right of $2$. 
 
@@ -1181,9 +1189,9 @@ curve(df(x ,3 ,14),
 polygon(x, y, col = "orange")
 ```
 
-The $F$ distribution is related to many other distributions. An important special case encountered in econometrics arises if the denominator degrees of freedom are large such that the $F_{M,n}$ distribution can be approximated by the $F_{M,\infty}$ distribution which turns out to be simply the distribution of a $\chi^2_M$ random variable divided by its degrees of freedom $M$, i.e. 
+The $F$ distribution is related to many other distributions. An important special case encountered in econometrics arises if the denominator degrees of freedom are large such that the $F_{m,n}$ distribution can be approximated by the $F_{m,\infty}$ distribution which turns out to be simply the distribution of a $\chi^2_m$ random variable divided by its degrees of freedom $m,$ i.e. 
 $$ 
-W/M \sim F_{M,\infty} \quad\text{with}\quad W \sim \chi^2_M.
+\frac{W}{m} \sim F_{m,\infty} \quad\text{with}\quad W \sim \chi^2_m.
 $$
 
 
