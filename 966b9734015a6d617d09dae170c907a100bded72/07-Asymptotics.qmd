@@ -455,15 +455,20 @@ A proof of @thm-CLT1 can be found, e.g., in @Vaart2000 (see Theorem 2.17).
 > **Interactive visualization of the CLT:** [https://tuomonieminen.shinyapps.io/CLTdemo/](https://tuomonieminen.shinyapps.io/CLTdemo/)
  -->
 
-Using the Cramér-Wold device (@thm-CramerWold), the Lindeberg-Levy CLT (@thm-CLT1) can also be applied to $K$-dimensional random vectors. To show that 
+Using the Cramér-Wold device (@thm-CramerWold), the Lindeberg-Levy CLT (@thm-CLT1) can also be applied to $K$-dimensional estimators 
+$$
+\bar{Z}_n \in\mathbb{R}^K.
+$$
+
+To show that 
 $$
 \sqrt{n}(\bar{Z}_n-\mu)\to_d\mathcal{N}_K(0,\Sigma)
 $$ 
 converges to the **multivariate**, $K$-dimensional, normal distribution $\mathcal{N}_K(0,\Sigma)$ as $n\to\infty$, we need to check whether **for any**  $\lambda\in\mathbb{R}^K$: 
 
-* the **uni**variate stochastic sequence $\{\lambda'Z_i\}$ is i.i.d. 
-* with $E(\lambda'Z_i)=\lambda'\mu$ for all $i=1,\dots,n,$ where $E(Z_i)=\mu\in\mathbb{R}^K$, and 
-* with $Var(\lambda'Z_i)=\lambda'\Sigma\lambda$ for all $i=1,\dots,n,$ where $Var(Z_i)=\Sigma$ denotes the $(K\times K)$ dimensional variance-covariance matrix. 
+* the **uni**variate stochastic sequence $\{\lambda'Z_i\}$ is i.i.d. with
+* $E(\lambda'Z_i)=\lambda'\mu$ for all $i=1,\dots,n,$ where $E(Z_i)=\mu\in\mathbb{R}^K$ denotes the $K$ dimensional mean vector, and 
+* $Var(\lambda'Z_i)=\lambda'\Sigma\lambda$ for all $i=1,\dots,n,$ where $Var(Z_i)=\Sigma$ denotes the $(K\times K)$ dimensional variance-covariance matrix. 
  
 
 These points are fulfilled if the multivariate stochastic sequence $\{Z_i\}$ is an i.i.d. sequence with $E(Z_i)=\mu$ and $Var(Z_i)=\Sigma.$
@@ -525,7 +530,7 @@ $$
 :::
 :::
 
-A necessary requirement for weak and strong consistency is that the estimator is asymptotically unbiased. 
+A necessary requirement for weak and strong consistency is that the estimator is **asymptotically unbiased**. 
 
 ::: {.callout icon=false}
 #
@@ -637,7 +642,7 @@ $$
 
 ## Asymptotics under the Classic Regression Model
 
-Given the above introduced machinery, we can now proof that the OLS estimators 
+Given the above introduced machinery, we can now proof that the two OLS estimators 
 $$
 \hat\beta_n=(X'X)^{-1}X'Y
 $$
@@ -662,17 +667,24 @@ Using asymptotic statistics, allows us to drop the unrealistic normality and sph
 **Note 2:** The above adjustment of Assumption 1 is far less restrictive than assuming that the error-terms $\varepsilon_i$ are i.i.d. normally distributed and independent from $X_i$ (as it's necessary for small sample inference in @sec-ssinf).  -->
 
 For the following, it will be useful to introduce some notation that allows us to consider the different parts of the OLS estimator $\hat\beta_n$ separately.  
+$$
 \begin{align*}
 \hat\beta_n 
 &=\left(X'X\right)^{-1}X'Y\\[2ex]
 &=\left(\frac{1}{n}X'X\right)^{-1}\frac{1}{n} X'Y\\[2ex]
 &=\;\;\;\;S_{X'X}^{-1}\;\;\;\;\frac{1}{n} X'Y,
 \end{align*}
+$$
 where 
 $$
-\underset{(K\times K)}{S_{X'X}}=\frac{1}{n}X'X=\frac{1}{n}\sum_{i=1}^nX_iX_i',
+\begin{align*}
+\underset{(K\times K)}{S_{X'X}} 
+&=\frac{1}{n}X'X\\[2ex]
+&=\frac{1}{n}\sum_{i=1}^nX_iX_i',
+\end{align*}
 $$
 and where the mean of the $(K\times K)$ matrix $S_{X'X}$ will be denoted as
+$$
 \begin{align*}
 \Sigma_{X'X}
 &=E\left(S_{X'X}\right)\\[2ex]
@@ -681,6 +693,7 @@ and where the mean of the $(K\times K)$ matrix $S_{X'X}$ will be denoted as
 &=\frac{n}{n}E\left(X_iX_i'\right)\\[2ex]
 &=E\left(X_iX_i'\right).
 \end{align*}
+$$
 For the below results, we need to restate the full rank assumption (Assumption 3 of @sec-MLR) with respect to $\Sigma_{X'X}.$
 
 **Assumption 3$^\ast$: (Population) Rank Condition** </br>
@@ -762,7 +775,8 @@ $$
 \begin{align*}
 \sigma^2 \Sigma^{-1}_{X'X} 
 & = \lim_{n\to\infty} Var\left(\sqrt{n}(\hat\beta_n-\beta)\right)\\[2ex]
-& = \lim_{n\to\infty} n Var\left(\hat\beta_n\right)
+& = \lim_{n\to\infty} n Var\left(\hat\beta_n\right)\\[2ex]
+& = \operatorname{AVar}(\hat\beta_n)
 \end{align*}
 $$
 is the asymptotic variance of $\hat\beta_n.$ 
@@ -782,9 +796,13 @@ $$
 where the approximation error becomes arbitrarily small as $n\to\infty.$
 
 
-Usually, we do not know the asymptotic variance $\sigma^2\Sigma_{X'X}^{-1},$ but have to plug-in the (consistent) estimator  
+Usually, we do not know the asymptotic variance 
 $$
-s_{ub}^2 S_{X'X}^{-1}.
+\operatorname{AVar}(\hat\beta_n) = \sigma^2\Sigma_{X'X}^{-1},
+$$ 
+and thus have to plug-in the (consistent) estimator  
+$$
+\widehat{\operatorname{AVar}}(\hat\beta_n) = s_{ub}^2 S_{X'X}^{-1}.
 $$
 
 >  **Note:** Consistency of $S_{X'X}^{-1}$ is provided by @thm-Sxx1 and consistency of $s_{ub}^2$ is provided by @thm-Consistency_s1.
@@ -820,9 +838,13 @@ where the approximation error becomes arbitrarily small as $n\to\infty.$
 
 
 
-The asymptotic variance 
+The asymptotic variance (under heteroskedasticity)
 $$
-\lim_{n\to\infty}Var(\sqrt{n}(\hat\beta_n-\beta))=\underbrace{\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}}_{(K\times K)}
+\begin{align*}
+\operatorname{AVar}(\hat\beta_n) 
+& = \lim_{n\to\infty}Var(\sqrt{n}(\hat\beta_n-\beta))\\[2ex]
+& =\underbrace{\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}}_{(K\times K)}
+\end{align*}
 $$ 
 is, of course, usually unknown and needs to be estimated from the data by some consistent estimator such that 
 $$
@@ -863,7 +885,7 @@ General idea of the HC2-HC4 estimators is to increase the estimated variance in 
 The estimator HC0 was suggested in the econometrics literature by @White1980 and is justified by asymptotic ($n\to\infty$) arguments. The estimators HC1, HC2 and HC3 were suggested by @MacKinnon_White_1985 to improve the finite sample performance of HC0. Using an extensive Monte Carlo simulation study comparing HC0-HC3, @Long_Ervin_2000 concludes that HC3 provides the best overall performance in finite samples. @Cribari_2004 suggested the estimator HC4 to further improve the performance in finite sample behavior, especially in the presence of influential observations (large $h_i$ values).
 
 
->  **Note:** Besides **Heteroskedasticity Consistent (HC)** estimators, there are also **Heteroskedasticity and Autocorrelation Consistent (HAC)** estimators. 
+>  **Note:** Besides **Heteroskedasticity Consistent (HC)** estimators, there are also **Heteroskedasticity and Autocorrelation Consistent (HAC)** estimators, as well as estimators that consider clustered covariances. An `R` package that provides H(A)C estimators is `sandwich`. For clustered covariances, the `clubSandwich` package can be used.
 
 
 ### Robust Inference 
@@ -873,10 +895,12 @@ The estimator HC0 was suggested in the econometrics literature by @White1980 and
 #### Robust Hypothesis Testing: Multiple Parameters
 
 Let us reconsider the following system of $q$-many null hypotheses:
+$$
 \begin{align*}
 H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  = \underset{(q\times 1)}{r^{(0)}}\\
 H_1: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  \neq \underset{(q\times 1)}{r^{(0)}}\\
 \end{align*}
+$$
 where the $(q \times K)$ matrix $R$ and the $q$-vector $r=(r_{1},\dots,r_{q})'$ are chosen by the statistician to specify her/his null hypothesis about the unknown true parameter vector $\beta$. To make sure that there are no redundant equations, it is required that $\operatorname{rank}(R)=q$.
 
 By contrast to the multiple parameter tests for small samples (see @sec-testmultp), we can work here with a **heteroskedasticity robust** test statistic which is applicable for heteroskedastic error terms:
@@ -888,14 +912,14 @@ W&\overset{H_0}{\to}_d\chi^2(q), \quad\text{as}\quad n\to\infty.
 $${#eq-Ftestasymp}
 The price to pay is that the distribution of the test statistic under the null hypothesis is only valid asymptotically; i.e. for large $n$. That is, the critical values taken from the asymptotic distribution will be useful only for "largish" samples sizes. 
 
-In case of **homoskedastic error** terms, one can substitute 
-$$
-S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}
-$$ 
-by 
-$$
-s_{ub}^2S_{X'X}^{-1}.
-$$ 
+> In case of **homoskedastic error** terms, one can substitute 
+> $$
+> S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}
+> $$ 
+> by 
+> $$
+> s_{ub}^2S_{X'X}^{-1}.
+> $$ 
 
 ::: {.callout-tip}
 # Finite-sample correction 
@@ -935,14 +959,14 @@ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix 
 
 This $t$-test statistic allows for **heteroskedastic** error terms. 
 
-In case of homoskedastic error terms, one can substitute 
-$$
-[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}
-$$ 
-by 
-$$
-s_{ub}^2[S_{X'X}^{-1}]_{(k,k)}
-$$ 
+> In case of homoskedastic error terms, one can substitute 
+> $$
+> [S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}
+> $$ 
+> by 
+> $$
+> s_{ub}^2[S_{X'X}^{-1}]_{(k,k)}
+> $$ 
 where $[S_{X'X}^{-1}]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $S_{X'X}^{-1}.$
 
 ::: {.callout-tip}
@@ -967,6 +991,7 @@ Here, the coverage probability is an asymptotic coverage probability with $P(\be
 ## Monte Carlo Simulations {#sec-MCLS}
 
 Let's apply the above asymptotic inference methods using `R`. As in Chapter @sec-PSSI we, first, program a function `myDataGenerator()` which allows us to generate data from the following model, i.e., from the following fully specified data generating process:
+$$
 \begin{align*}
 Y_i &=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
 \beta &=(\beta_1,\beta_2,\beta_3)'=(2,3,4)'\\
@@ -974,6 +999,7 @@ X_{i2}&\sim U[-4,4]\\
 X_{i3}&\sim U[-5,5]\\
 \varepsilon_i|X_i&\sim U[-0.5 |X_{i2}|, 0.5 |X_{i2}|],
 \end{align*}
+$$
 where $(Y_i,X_i)$ is assumed i.i.d. across $i=1,\dots,n$ with $X_{i2}$ and $X_{i3}$ being independent of each other. 
 
 By contrast to our simulations in Chapter @sec-PSSI, we consider here a **non-Gaussian** and **heteroskedastic** error term
@@ -1033,7 +1059,7 @@ moment_fun(m=4, a=-4,b=4)
 fractional((1/12)*(256/5))
 ```
 
-For our above specified data generating process, we can derive all (usually unknown) population quantities. 
+For our above specified data generating process, we can derive all (usually unknown) population quantities: 
 
 - From the assumed distributions of $X_{i2}$ and $X_{i3}$ we have that:
 $$
