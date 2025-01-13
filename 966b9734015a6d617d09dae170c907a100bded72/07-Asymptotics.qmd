@@ -869,6 +869,7 @@ HC4    | $\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{
 HC3 is the most often used HC-estimator. 
 
 
+
 ::: {.callout-tip}
 The statistic $h_i:=[P_X]_{ii}$ is called the **leverage statistic** of $X_i,$ where 
 
