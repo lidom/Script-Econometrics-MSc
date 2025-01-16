@@ -907,7 +907,7 @@ where the $(q \times K)$ matrix $R$ and the $q$-vector $r=(r_{1},\dots,r_{q})'$ 
 By contrast to the multiple parameter tests for small samples (see @sec-testmultp), we can work here with a **heteroskedasticity robust** test statistic which is applicable for heteroskedastic error terms:
 $$
 \begin{align*}
-W&=n(R\hat\beta_n -r)'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r)\\[2ex] 
+W&=n(R\hat\beta_n - r^{(0)})'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r^{(0)})\\[2ex] 
 W&\overset{H_0}{\to}_d\chi^2(q), \quad\text{as}\quad n\to\infty. 
 \end{align*}
 $${#eq-Ftestasymp}
@@ -956,9 +956,7 @@ and where
 $$
 \left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}
 $$ 
-denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}.$
-
-This $t$-test statistic allows for **heteroskedastic** error terms. 
+denotes the element in the $k$th row and $k$th column of the $K\times K$ matrix $S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}.$ This $t$-test statistic allows for **heteroskedastic** error terms. 
 
 > In case of homoskedastic error terms, one can substitute 
 > $$

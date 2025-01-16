@@ -1055,7 +1055,7 @@ H_1: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  \neq \underset{(q\t
 \]</span> where the <span class="math inline">\((q \times K)\)</span> matrix <span class="math inline">\(R\)</span> and the <span class="math inline">\(q\)</span>-vector <span class="math inline">\(r=(r_{1},\dots,r_{q})'\)</span> are chosen by the statistician to specify her/his null hypothesis about the unknown true parameter vector <span class="math inline">\(\beta\)</span>. To make sure that there are no redundant equations, it is required that <span class="math inline">\(\operatorname{rank}(R)=q\)</span>.</p>
 <p>By contrast to the multiple parameter tests for small samples (see <a href="06-Small-Sample-Inference.html#sec-testmultp" class="quarto-xref"><span>Section 6.2</span></a>), we can work here with a <strong>heteroskedasticity robust</strong> test statistic which is applicable for heteroskedastic error terms: <span id="eq-Ftestasymp"><span class="math display">\[
 \begin{align*}
-W&amp;=n(R\hat\beta_n -r)'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r)\\[2ex]
+W&amp;=n(R\hat\beta_n - r^{(0)})'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r^{(0)})\\[2ex]
 W&amp;\overset{H_0}{\to}_d\chi^2(q), \quad\text{as}\quad n\to\infty.
 \end{align*}
 \qquad(7.2)\]</span></span> The price to pay is that the distribution of the test statistic under the null hypothesis is only valid asymptotically; i.e.&nbsp;for large <span class="math inline">\(n\)</span>. That is, the critical values taken from the asymptotic distribution will be useful only for “largish” samples sizes.</p>
@@ -1099,8 +1099,7 @@ T&amp;\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty,
 \end{align*}
 \]</span> and where <span class="math display">\[
 \left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}
-\]</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\(S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}.\)</span></p>
-<p>This <span class="math inline">\(t\)</span>-test statistic allows for <strong>heteroskedastic</strong> error terms.</p>
+\]</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\(S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}.\)</span> This <span class="math inline">\(t\)</span>-test statistic allows for <strong>heteroskedastic</strong> error terms.</p>
 <blockquote class="blockquote">
 <p>In case of homoskedastic error terms, one can substitute <span class="math display">\[
 [S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}
