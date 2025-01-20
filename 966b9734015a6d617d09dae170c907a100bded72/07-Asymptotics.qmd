@@ -1123,9 +1123,7 @@ beta_true   <- c(2,3,4) # true data vector
 # true mean
 beta_true_2     <- beta_true[2] 
 # true variance
-var_true_beta_2 <- (solve(diag(c(1, 16/3, 25/3)))    %*% 
-                          diag(c(4/9, 64/15, 100/27))%*% 
-                    solve(diag(c(1, 16/3, 25/3))))[2,2]/n
+var_true_beta_2 <- 0.15 / n
 
 ## Let's generate 5000 realizations from beta_hat_2, and check 
 ## whether their distribution is close to the true normal 
@@ -1160,26 +1158,28 @@ Great! The variance of the `5000` simulated realizations of $\hat\beta_2$ is bas
 ## True normal distribution of beta_hat_2 versus 
 ## empirical density of beta_hat_2 estimates
 library("scales")
-curve(expr = dnorm(x, mean = beta_true_2, 
-                   sd=sqrt(var_true_beta_2)), 
-      xlab="",ylab="", col=gray(.2), lwd=3, lty=1, 
-xlim=range(beta_hat_2),ylim=c(0,14.1),main=paste0("n=",n))
-lines(density(beta_hat_2, bw = bw.SJ(beta_hat_2)), 
-      col=alpha("blue",.5), lwd=3)
-legend("topleft", lty=c(1,1), lwd=c(3,3), 
-     col=c(gray(.2), alpha("blue",.5)), bty="n", legend= 
-c(expression(
-  "Theoretical (Asymptotic) Gaussian Density of"~hat(beta)[2]), 
-  expression(
-  "Empirical Density Estimation based on MC realizations from"~
-  hat(beta)[2])))
+curve(expr = dnorm(x, 
+                   mean = beta_true_2, 
+                   sd   = sqrt(var_true_beta_2)), 
+      xlab = "", 
+      ylab = "", 
+      col  = gray(.2), lwd=3, lty=1, 
+      xlim = range(beta_hat_2),
+      ylim = c(0,14.1),main=paste0("n=",n))
+
+lines(density(beta_hat_2, 
+              bw = bw.SJ(beta_hat_2)), 
+      col = alpha("blue",.5), lwd = 3)
+
+legend("topleft", lty=c(1,1), lwd = c(3,3), 
+     col=c(gray(.2), alpha("blue",.5)), bty="n", 
+     legend= 
+     c(expression(
+       "Theoretical (Asymptotic) Gaussian Density of"~hat(beta)[2]), 
+      expression(
+       "Empirical Density Estimation based on MC realizations from"~hat(beta)[2])))
 ```
 Great! The nonparametric density estimation (estimated via `density()`) computed from the `5000` simulated realizations of $\hat\beta_2$ is indicating that $\hat\beta_2$ is really normally distributed as described by our theoretical results. 
-
- <!-- in @thm-OLSnormality1 (homoskedastic case) and in Equation @eq-OLSnormality1Rob (heterosceda# car::linearHypothesis(model = lm_obj, 
-#                       hypothesis.matrix = c("X_2=3", "X_3=4"), 
-#                       vcov = vcovHC3_mat)
-stic case).  -->
 
 
 However, is the asymptotic distribution of $\hat\beta_2$ also usable for (very) small samples like $n=5$? Let's check that:
@@ -1193,9 +1193,7 @@ beta_true   <- c(2,3,4) # true data vector
 # true mean
 beta_true_2     <- beta_true[2] 
 # true variance
-var_true_beta_2 <- (solve(diag(c(1, 16/3, 25/3)))%*% 
-                          diag(c(4/9, 64/15, 100/27))%*% 
-                    solve(diag(c(1, 16/3, 25/3))))[2,2]/n
+var_true_beta_2 <- 0.15 / n
 
 ## Let's generate 5000 realizations from beta_hat_2, and check 
 ## whether their distribution is close to the true normal 
@@ -1236,10 +1234,16 @@ library("scales")
 curve(expr = dnorm(x, 
                    mean = beta_true_2, 
                    sd   = sqrt(var_true_beta_2)), 
-      xlab = "", ylab = "", col=gray(.2), lwd=3, lty=1, 
-xlim=c(2,4), ylim=c(0,3), main=paste0("n=",n))
-lines(density(beta_hat_2, bw = bw.SJ(beta_hat_2)), 
-      col=alpha("blue",.5), lwd=3)
+      xlab = "", 
+      ylab = "", 
+      col  = gray(.2), lwd = 3, lty = 1, 
+      xlim = c(2,4), 
+      ylim = c(0,3), main=paste0("n=",n))
+
+lines(density(beta_hat_2, 
+              bw = bw.SJ(beta_hat_2)), 
+      col = alpha("blue",.5), lwd = 3)
+
 ## Legend      
 legend("topleft", lty=c(1,1), lwd=c(3,3), 
        col=c(gray(.2), alpha("blue",.5)), bty="n", 
