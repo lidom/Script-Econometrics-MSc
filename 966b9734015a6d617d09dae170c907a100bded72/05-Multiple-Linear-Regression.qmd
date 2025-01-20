@@ -669,7 +669,7 @@ where
 $$
 \begin{align*}
 E(X_iX_i') & \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iX_i'\\[2ex]
-E(X_iY_i') & \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iY_i'.
+E(X_iY_i) & \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iY_i.
 \end{align*}
 $$
 
