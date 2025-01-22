@@ -942,7 +942,7 @@ The adjustment is in terms of the degrees of freedom $n-K$.
 The OLS estimator $\hat\beta$ is 
 
 * a **linear** (in $Y$) and 
-* an **unbiased** estimator
+* a **(conditionally) unbiased** estimator
 
 of $\beta$.
 :::
@@ -1116,7 +1116,7 @@ then the OLS estimator
 $$
 \underset{(K\times 1)}{\hat\beta}=(X'X)^{-1}X'Y
 $$
-has the smallest conditional variance (given $X$) among all **linear** (in $Y$) and **unbiased** estimators. That is, for any alternative linear and unbiased estimator $\tilde{\beta}$ we have that 
+has the smallest conditional variance (given $X$) among all **linear** (in $Y$) and **conditionally unbiased** estimators $\tilde{\beta}\in\mathbb{R}^K$ with $E(\tilde{\beta}|X)=\beta.$ That is, for any alternative linear and unbiased estimator $\tilde{\beta}$ we have that 
 $$
 \begin{align*}
 &Var(\tilde\beta|X)\geq Var(\hat\beta|X)\quad\text{(in the matrix sense)}\\[2ex]
@@ -1131,7 +1131,7 @@ for all $k=1,\dots,K$.
 
 ::: {.callout-tip}
 # Remember
-A $(K\times K)$ matrix $D$ is called "positive semidefinite" if 
+A $(K\times K)$ matrix $D$ is called positive semidefinite if 
 $$
 a'Da\geq 0
 $$ 

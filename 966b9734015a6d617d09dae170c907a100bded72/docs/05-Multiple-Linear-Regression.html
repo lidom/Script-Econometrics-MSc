@@ -1092,7 +1092,7 @@ Caution
 <p>The OLS estimator <span class="math inline">\(\hat\beta\)</span> is</p>
 <ul>
 <li>a <strong>linear</strong> (in <span class="math inline">\(Y\)</span>) and</li>
-<li>an <strong>unbiased</strong> estimator</li>
+<li>a <strong>(conditionally) unbiased</strong> estimator</li>
 </ul>
 <p>of <span class="math inline">\(\beta\)</span>.</p>
 </div>
@@ -1247,7 +1247,7 @@ Var(\hat\beta|X)=\sigma^2(X'X)^{-1}.
 </ol>
 <p>then the OLS estimator <span class="math display">\[
 \underset{(K\times 1)}{\hat\beta}=(X'X)^{-1}X'Y
-\]</span> has the smallest conditional variance (given <span class="math inline">\(X\)</span>) among all <strong>linear</strong> (in <span class="math inline">\(Y\)</span>) and <strong>unbiased</strong> estimators. That is, for any alternative linear and unbiased estimator <span class="math inline">\(\tilde{\beta}\)</span> we have that <span class="math display">\[
+\]</span> has the smallest conditional variance (given <span class="math inline">\(X\)</span>) among all <strong>linear</strong> (in <span class="math inline">\(Y\)</span>) and <strong>conditionally unbiased</strong> estimators <span class="math inline">\(\tilde{\beta}\in\mathbb{R}^K\)</span> with <span class="math inline">\(E(\tilde{\beta}|X)=\beta.\)</span> That is, for any alternative linear and unbiased estimator <span class="math inline">\(\tilde{\beta}\)</span> we have that <span class="math display">\[
 \begin{align*}
 &amp;Var(\tilde\beta|X)\geq Var(\hat\beta|X)\quad\text{(in the matrix sense)}\\[2ex]
 \Leftrightarrow\quad&amp;Var(\tilde\beta|X)-Var(\hat\beta|X)=\underset{(K\times K)}{D},
@@ -1265,7 +1265,7 @@ Remember
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\(D\)</span> is called “positive semidefinite” if <span class="math display">\[
+<p>A <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\(D\)</span> is called positive semidefinite if <span class="math display">\[
 a'Da\geq 0
 \]</span> for any <span class="math inline">\(K\)</span>-dimensional vector <span class="math inline">\(a\in\mathbb{R}^K\)</span>.</p>
 </div>
