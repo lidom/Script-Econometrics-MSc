@@ -1783,53 +1783,74 @@ Since the $p$-value is defined under the hypothetical **scenario that the null-h
 #### **The $p$-value is a Random Variable** {-} 
 
 
-Let's consider, without loss of generality, the $p$-value for a left-sided version of a one-sided hypothesis test:
+Let's consider the two-sided $t$-test for testing the hypotheses
+$$
+H_0: \beta_k   =  \beta_k^{(0)}\\
+H_1: \beta_k \neq \beta_k^{(0)}.
+$$
+Given an observed value of the test statistik $T_{n,\operatorname{obs}},$ the observed $p$-value is
 $$
 \begin{align*}
-p_{\text{left},\,\text{obs}} 
-&= P(T_n\leq T_{n,\text{obs}}\;|\;H_0 \text{ is true})\\
-&= F_{T_n}(T_{n,\text{obs}}),
+p_{\text{obs}} 
+&= P(|T_n|\geq |T_{n,\text{obs}}|\;|\;H_0 \text{ is true})\\[2ex]
+&= 1-P(|T_n|\leq |T_{n,\text{obs}}|\;|\;H_0 \text{ is true})\\[2ex]
+&= 1-F_{H_0,|T_n|}(|T_{n,\text{obs}}|),
 \end{align*}
 $$
-where $F_{T_n}$ denotes the cumulative distribution function (see @sec-Defcdf) of $T_n.$ 
+where $F_{H_0,|T_n|}$ denotes the cumulative distribution function of $|T_n|$ under $H_0.$ 
 
-> **In the case of the $t$-test:** Under $H_0,$ $F_{T_n}$ denotes the distribution function of the $t$-distribution with $n-K$ degrees of freedom. 
-
-The $p$-value is a random variable, since it depends on the data; i.e., for a given realization of the random sample, we observe the corresponding realization $p_{\text{left},\,\text{obs}}.$ 
-
-
-Under $H_0,$ the $p$-value is a **uniformly distributed random variable** 
-$$
-p_{\text{left}} = F_{T_n}(T_{n}) \overset{H_0}{\sim}\mathcal{U}[0,1].
-$$
-
-**Proof:**
-
-Observe that $p_{\text{left}}$ is defined as a transformed random variable; namely by transforming the random variable $T_n$ using the cumulative distribution function $F_{T_n},$ where, under $H_0,$
-$$
-T_{n}\overset{H_0}{\sim}F_{T_n}.
-$$
-
-Let $F_{p_{\text{left}}}$ denote the cumulative distribution function of $p_{\text{left}}$. 
-
-If the claim is correct, then the random variable $p_{\text{left}}$ has, under $H_0,$ the cumulative distribution function of $\mathcal{U}[0,1];$ i.e.
-$$
-F_{p_{\text{left}}}(x) = x\quad\text{for}\quad x\in[0,1].
-$$
-
-This is indeed true since, under $H_0$: 
+Generally, the $p$-value is a *random variable*, since it depends on the data. For the random $p$-value, we have that 
 $$
 \begin{align*}
-F_{p_{\text{left}}}(x) 
-&= P(p_{\text{left}} < x) \\[2ex]
-&= P(F_{T_n}(T_n) < x) \\[2ex]
-&= P(T_n < F_{T_n}^{-1}(x)) \\[2ex]
-&= F_{T_n}(F_{T_n}^{-1}(x)) \\[2ex]
-&= x
+p
+&= P(|T_n|\geq |T_{n}|\;|\;H_0 \text{ is true})\\[2ex]
+&= 1-P(|T_n|\leq |T_{n}|\;|\;H_0 \text{ is true})\\[2ex]
+&= 1-F_{H_0,|T_n|}(|T_{n}|).
 \end{align*}
 $$
 
+Under $H_0,$ the $p$-value of the two-sided $t$-test is a **uniformly distributed random variable** 
+$$
+p \overset{H_0}{\sim}\mathcal{U}[0,1].
+$${#eq-pValueUnif}
 
+**Derivation of the above result:**
+
+<!-- 
+The $p$-value, 
+$$
+p= 1 - F_{H_0,|T_n|}(|T_{n}|),
+$$ 
+is defined by transforming the random variable $|T_n|$ by $1 - F_{H_0,|T_n|}(|T_{n}|),$ where, under $H_0,$ the cdf $F_{H_0,|T_n|}$ is just the cdf of $|H_0|.$  
+-->
+
+
+Let 
+$$
+F_{H_0,p}(x) = P(p \leq x\;|\;H_0 \text{ is true})
+$$ 
+denote the cdf of the random $p$-value under $H_0.$ If the claim in @eq-pValueUnif is correct, then the random $p$-value has, under $H_0,$ the cumulative distribution function of $\mathcal{U}[0,1],$ that is
+$$
+F_{H_0,p}(x) = x\quad\text{for}\quad x\in[0,1].
+$$
+
+This is indeed true since, under $H_0,$
+$$
+\begin{align*}
+F_{H_0,p}(x) 
+&=   P(p                       \leq                      x \;|\;H_0 \text{ is true}) \\[2ex]
+&[\text{using that }\;p= 1-F_{H_0,|T_n|}(|T_{n}|)]\\[2ex]
+&=   P(1-F_{H_0,|T_n|}(|T_{n}|)\leq                      x \;|\;H_0 \text{ is true}) \\[2ex]
+&=   P(  F_{H_0,|T_n|}(|T_{n}|)\geq                    1-x \;|\;H_0 \text{ is true}) \\[2ex]
+&= 1-P(  F_{H_0,|T_n|}(|T_{n}|)\leq                    1-x \;|\;H_0 \text{ is true}) \\[2ex]
+&[\text{using that }\;F_{H_0,|T_n|}\;\text{ is invertible}]\\[2ex]
+&= 1-P(                |T_{n}| \leq F^{-1}_{H_0,|T_n|}(1-x)\;|\;H_0 \text{ is true}) \\[2ex]
+&= 1-F_{H_0,|T_n|}( F^{-1}_{H_0,|T_n|}(1-x) ) \\[2ex]
+&= 1-(1-x)\\[2ex]
+&= x,
+\end{align*}
+$$
+where $F_{H_0,|T_n|}$ is invertible, since $|T_n|$ is a continuously distribued random variable. 
 
 
 

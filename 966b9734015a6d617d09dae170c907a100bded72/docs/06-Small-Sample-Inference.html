@@ -1621,38 +1621,56 @@ Marginal Significance Value
 <p></p>
 <p><img src="images/terminator.jpeg" class="img-fluid"></p>
 <section id="the-p-value-is-a-random-variable" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="the-p-value-is-a-random-variable"><strong>The <span class="math inline">\(p\)</span>-value is a Random Variable</strong></h4>
-<p>Let’s consider, without loss of generality, the <span class="math inline">\(p\)</span>-value for a left-sided version of a one-sided hypothesis test: <span class="math display">\[
+<p>Let’s consider the two-sided <span class="math inline">\(t\)</span>-test for testing the hypotheses <span class="math display">\[
+H_0: \beta_k   =  \beta_k^{(0)}\\
+H_1: \beta_k \neq \beta_k^{(0)}.
+\]</span> Given an observed value of the test statistik <span class="math inline">\(T_{n,\operatorname{obs}},\)</span> the observed <span class="math inline">\(p\)</span>-value is <span class="math display">\[
 \begin{align*}
-p_{\text{left},\,\text{obs}}
-&amp;= P(T_n\leq T_{n,\text{obs}}\;|\;H_0 \text{ is true})\\
-&amp;= F_{T_n}(T_{n,\text{obs}}),
+p_{\text{obs}}
+&amp;= P(|T_n|\geq |T_{n,\text{obs}}|\;|\;H_0 \text{ is true})\\[2ex]
+&amp;= 1-P(|T_n|\leq |T_{n,\text{obs}}|\;|\;H_0 \text{ is true})\\[2ex]
+&amp;= 1-F_{H_0,|T_n|}(|T_{n,\text{obs}}|),
 \end{align*}
-\]</span> where <span class="math inline">\(F_{T_n}\)</span> denotes the cumulative distribution function (see <a href="02-Probability.html#sec-Defcdf" class="quarto-xref"><span>Section 2.2.1.1</span></a>) of <span class="math inline">\(T_n.\)</span></p>
-<blockquote class="blockquote">
-<p><strong>In the case of the <span class="math inline">\(t\)</span>-test:</strong> Under <span class="math inline">\(H_0,\)</span> <span class="math inline">\(F_{T_n}\)</span> denotes the distribution function of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom.</p>
-</blockquote>
-<p>The <span class="math inline">\(p\)</span>-value is a random variable, since it depends on the data; i.e., for a given realization of the random sample, we observe the corresponding realization <span class="math inline">\(p_{\text{left},\,\text{obs}}.\)</span></p>
-<p>Under <span class="math inline">\(H_0,\)</span> the <span class="math inline">\(p\)</span>-value is a <strong>uniformly distributed random variable</strong> <span class="math display">\[
-p_{\text{left}} = F_{T_n}(T_{n}) \overset{H_0}{\sim}\mathcal{U}[0,1].
-\]</span></p>
-<p><strong>Proof:</strong></p>
-<p>Observe that <span class="math inline">\(p_{\text{left}}\)</span> is defined as a transformed random variable; namely by transforming the random variable <span class="math inline">\(T_n\)</span> using the cumulative distribution function <span class="math inline">\(F_{T_n},\)</span> where, under <span class="math inline">\(H_0,\)</span> <span class="math display">\[
-T_{n}\overset{H_0}{\sim}F_{T_n}.
-\]</span></p>
-<p>Let <span class="math inline">\(F_{p_{\text{left}}}\)</span> denote the cumulative distribution function of <span class="math inline">\(p_{\text{left}}\)</span>.</p>
-<p>If the claim is correct, then the random variable <span class="math inline">\(p_{\text{left}}\)</span> has, under <span class="math inline">\(H_0,\)</span> the cumulative distribution function of <span class="math inline">\(\mathcal{U}[0,1];\)</span> i.e. <span class="math display">\[
-F_{p_{\text{left}}}(x) = x\quad\text{for}\quad x\in[0,1].
-\]</span></p>
-<p>This is indeed true since, under <span class="math inline">\(H_0\)</span>: <span class="math display">\[
+\]</span> where <span class="math inline">\(F_{H_0,|T_n|}\)</span> denotes the cumulative distribution function of <span class="math inline">\(|T_n|\)</span> under <span class="math inline">\(H_0.\)</span></p>
+<p>Generally, the <span class="math inline">\(p\)</span>-value is a <em>random variable</em>, since it depends on the data. For the random <span class="math inline">\(p\)</span>-value, we have that <span class="math display">\[
 \begin{align*}
-F_{p_{\text{left}}}(x)
-&amp;= P(p_{\text{left}} &lt; x) \\[2ex]
-&amp;= P(F_{T_n}(T_n) &lt; x) \\[2ex]
-&amp;= P(T_n &lt; F_{T_n}^{-1}(x)) \\[2ex]
-&amp;= F_{T_n}(F_{T_n}^{-1}(x)) \\[2ex]
-&amp;= x
+p
+&amp;= P(|T_n|\geq |T_{n}|\;|\;H_0 \text{ is true})\\[2ex]
+&amp;= 1-P(|T_n|\leq |T_{n}|\;|\;H_0 \text{ is true})\\[2ex]
+&amp;= 1-F_{H_0,|T_n|}(|T_{n}|).
 \end{align*}
 \]</span></p>
+<p>Under <span class="math inline">\(H_0,\)</span> the <span class="math inline">\(p\)</span>-value of the two-sided <span class="math inline">\(t\)</span>-test is a <strong>uniformly distributed random variable</strong> <span id="eq-pValueUnif"><span class="math display">\[
+p \overset{H_0}{\sim}\mathcal{U}[0,1].
+\qquad(6.10)\]</span></span></p>
+<p><strong>Derivation of the above result:</strong></p>
+<!-- 
+The $p$-value, 
+$$
+p= 1 - F_{H_0,|T_n|}(|T_{n}|),
+$$ 
+is defined by transforming the random variable $|T_n|$ by $1 - F_{H_0,|T_n|}(|T_{n}|),$ where, under $H_0,$ the cdf $F_{H_0,|T_n|}$ is just the cdf of $|H_0|.$  
+-->
+<p>Let <span class="math display">\[
+F_{H_0,p}(x) = P(p \leq x\;|\;H_0 \text{ is true})
+\]</span> denote the cdf of the random <span class="math inline">\(p\)</span>-value under <span class="math inline">\(H_0.\)</span> If the claim in <a href="#eq-pValueUnif" class="quarto-xref">Equation&nbsp;<span>6.10</span></a> is correct, then the random <span class="math inline">\(p\)</span>-value has, under <span class="math inline">\(H_0,\)</span> the cumulative distribution function of <span class="math inline">\(\mathcal{U}[0,1],\)</span> that is <span class="math display">\[
+F_{H_0,p}(x) = x\quad\text{for}\quad x\in[0,1].
+\]</span></p>
+<p>This is indeed true since, under <span class="math inline">\(H_0,\)</span> <span class="math display">\[
+\begin{align*}
+F_{H_0,p}(x)
+&amp;=   P(p                       \leq                      x \;|\;H_0 \text{ is true}) \\[2ex]
+&amp;[\text{using that }\;p= 1-F_{H_0,|T_n|}(|T_{n}|)]\\[2ex]
+&amp;=   P(1-F_{H_0,|T_n|}(|T_{n}|)\leq                      x \;|\;H_0 \text{ is true}) \\[2ex]
+&amp;=   P(  F_{H_0,|T_n|}(|T_{n}|)\geq                    1-x \;|\;H_0 \text{ is true}) \\[2ex]
+&amp;= 1-P(  F_{H_0,|T_n|}(|T_{n}|)\leq                    1-x \;|\;H_0 \text{ is true}) \\[2ex]
+&amp;[\text{using that }\;F_{H_0,|T_n|}\;\text{ is invertible}]\\[2ex]
+&amp;= 1-P(                |T_{n}| \leq F^{-1}_{H_0,|T_n|}(1-x)\;|\;H_0 \text{ is true}) \\[2ex]
+&amp;= 1-F_{H_0,|T_n|}( F^{-1}_{H_0,|T_n|}(1-x) ) \\[2ex]
+&amp;= 1-(1-x)\\[2ex]
+&amp;= x,
+\end{align*}
+\]</span> where <span class="math inline">\(F_{H_0,|T_n|}\)</span> is invertible, since <span class="math inline">\(|T_n|\)</span> is a continuously distribued random variable.</p>
 </section></section></section><section id="sec-PSSI" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="sec-PSSI">
 <span class="header-section-number">6.6</span> Monte Carlo Simulations</h2>
 <p>Let’s check the above exact inference results using Monte Carlo simulations. The check, of course, applies only to the considered special case and generally does not generalize to other data generating processes.</p>
