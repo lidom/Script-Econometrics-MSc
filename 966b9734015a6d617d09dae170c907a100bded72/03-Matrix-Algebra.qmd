@@ -1141,9 +1141,10 @@ iii) $\|A\| = 0$ implies $A = 0$
 
 ## Exercises
 
+<!-- 
 * [Exercises for Chapter 3](https://www.dropbox.com/scl/fi/sjw21fv8ezcc4jouval88/Ch3_Exercises1.pdf?rlkey=wym3kvepow3ugex0p82scjkkq&dl=0)
 
 
 * [Exercises for Chapter 3 with Solutions](https://www.dropbox.com/scl/fi/lp0zkaftdi14gzz5n69al/Ch3_Exercises_with_Solutions1.pdf?rlkey=h08gnhua651rm6oyknpmcs4yg&dl=0) 
-
+ -->
 

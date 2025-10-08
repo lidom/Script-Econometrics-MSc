@@ -1451,13 +1451,13 @@ stargazer(lm_obj, lm_obj,
           column.labels = c("", "Robust SE"),
           type = "html") # alternatively: type = "text" or type = "latex"
 ```
-
-
+<!-- 
 ## Exercises
 
 * [Exercises for Chapter 7](https://www.dropbox.com/scl/fi/q3j4dj3vptmdfc8zuea7p/Ch7_Exercises1.pdf?rlkey=wu9f1viv9d6xmqvkeiku91j6s&dl=0)
 
-* [Exercises of Chapter 7 with Solutions](https://www.dropbox.com/scl/fi/xm9eceev8397tekzq6xf0/Ch7_Exercises_with_Solutions1.pdf?rlkey=ridhqkloeyd2nhurpgipgeexy&dl=0)
+* [Exercises of Chapter 7 with Solutions](https://www.dropbox.com/scl/fi/xm9eceev8397tekzq6xf0/Ch7_Exercises_with_Solutions1.pdf?rlkey=ridhqkloeyd2nhurpgipgeexy&dl=0) 
+-->
 
 
 # References {-}

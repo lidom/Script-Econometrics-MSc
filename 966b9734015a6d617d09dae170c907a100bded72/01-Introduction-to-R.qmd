@@ -18,7 +18,8 @@ This tutorial aims to serve as an introduction to the software package R. Other 
 Why R? 
 
 *  R is **free** of charge from: [www.r-project.org](https://www.r-project.org/)
-*  The celebrated IDE **RStudio** for R is also **free** of charge: [www.rstudio.com](http://www.rstudio.com/)
+*  The editor (IDE) **RStudio** for R is also **free** of charge: [www.rstudio.com](http://www.rstudio.com/)
+*  The editor (IDE) **Positron** for R and Python is also **free** of charge: [https://positron.posit.co/](https://positron.posit.co/)
 *  R is equipped with one of the most flexible and powerful graphics routines available anywhere. \
    For instance, check out one of the following repositories: 
     * [Clean Graphs](http://shinyapps.org/apps/RGraphCompendium/index.php) 
