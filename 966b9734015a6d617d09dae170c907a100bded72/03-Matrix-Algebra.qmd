@@ -1,6 +1,6 @@
 # Matrix Algebra
 
-Relevance for the exam: 
+Relevant for the exam: 
 
 * Chapters 3.1 to 3.4 
 * For Chapter 3.5 there will be a exercise question, however, for the exam "only" a general/basic understanding is sufficient
@@ -1138,10 +1138,9 @@ iii) $\|A\| = 0$ implies $A = 0$
 
 
 
-
+<!-- 
 ## Exercises
 
-<!-- 
 * [Exercises for Chapter 3](https://www.dropbox.com/scl/fi/sjw21fv8ezcc4jouval88/Ch3_Exercises1.pdf?rlkey=wym3kvepow3ugex0p82scjkkq&dl=0)
 
 

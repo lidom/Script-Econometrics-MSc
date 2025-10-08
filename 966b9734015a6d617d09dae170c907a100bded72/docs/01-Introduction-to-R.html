@@ -283,7 +283,9 @@ window.Quarto = {
 <ul>
 <li>R is <strong>free</strong> of charge from: <a href="https://www.r-project.org/">www.r-project.org</a>
 </li>
-<li>The celebrated IDE <strong>RStudio</strong> for R is also <strong>free</strong> of charge: <a href="http://www.rstudio.com/">www.rstudio.com</a>
+<li>The editor (IDE) <strong>RStudio</strong> for R is also <strong>free</strong> of charge: <a href="http://www.rstudio.com/">www.rstudio.com</a>
+</li>
+<li>The editor (IDE) <strong>Positron</strong> for R and Python is also <strong>free</strong> of charge: <a href="https://positron.posit.co/">https://positron.posit.co/</a>
 </li>
 <li>R is equipped with one of the most flexible and powerful graphics routines available anywhere.<br>
 For instance, check out one of the following repositories:
@@ -764,8 +766,7 @@ Y_i=\beta_1  X_{i1} + \beta_2 X_{i2}+\beta_3 X_{i3}+\varepsilon_{i},\quad i=1,\d
 <span class="math inline">\(\beta_1 = 1,\;\)</span> <span class="math inline">\(\beta_2 = -5,\;\)</span> <span class="math inline">\(\beta_3 = 5,\;\)</span>
 </li>
 </ul></section><section id="generating-artificial-data-i.e.-generating-realizations-from-a-data-generating-process" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="generating-artificial-data-i.e.-generating-realizations-from-a-data-generating-process">Generating Artificial Data; I.e. Generating Realizations from a Data Generating Process</h4>
-<p>The above setup completely defines the (usually unknown) data generating process.</p>
-<p>Now we can use <code>R</code> to generate realizations from this data generating process. We begin with generating realizations of the regressors:</p>
+<p>The above setup completely defines the (usually unknown) data generating process. Now we can use <code>R</code> to generate realizations from this data generating process. We begin with generating realizations of the regressors:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">109</span><span class="op">)</span> <span class="co"># Sets the "seed" of the random number generators:</span></span>
 <span><span class="va">n</span>   <span class="op">&lt;-</span> <span class="fl">50</span>     <span class="co"># Number of observations</span></span>
