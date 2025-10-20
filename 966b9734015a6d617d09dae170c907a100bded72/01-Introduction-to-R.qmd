@@ -342,7 +342,7 @@ Y_i=\beta_1  X_{i1} + \beta_2 X_{i2}+\beta_3 X_{i3}+\varepsilon_{i},\quad i=1,\d
 $$
 where $\varepsilon_{i}$ is a heteroskedastic error term
 $$
-\varepsilon_{i}\sim \mathcal{N}(0,\sigma_i^2),\quad \sigma_i=|x_{3i}|,
+\varepsilon_{i}\sim \mathcal{N}(0,\sigma_i^2),\quad \sigma_i=|X_{i3}|,
 $$
 
 for all $i=1,\dots,n,$ and where
@@ -364,10 +364,10 @@ set.seed(109) # Sets the "seed" of the random number generators:
 n   <- 50     # Number of observations
 
 ## Generate two explanatory variables plus an intercept-variable:
-X.1 <- rep(1, n)                 # Intercept
-X.2 <- rnorm(n, mean=10, sd=1.5) # Draw realizations form a normal distr.
-X.3 <- rt(n, df=5, ncp=2)        # Draw realizations form a t-distr.
-X   <- cbind(X.1, X.2, X.3)      # Save as a Nx3-dimensional data matrix.
+X_1 <- rep(1, n)                 # Intercept
+X_2 <- rnorm(n, mean=10, sd=1.5) # Draw realizations form a normal distr.
+X_3 <- rt(n, df=5, ncp=2)        # Draw realizations form a t-distr.
+X   <- cbind(X_1, X_2, X_3)      # Save as a Nx3-dimensional data matrix.
 ```
 
 
@@ -387,19 +387,19 @@ beta.vec  <- c(1,-5,5)
 
 We still need to simulate realizations of the dependent variable $Y_i$ for all $i=1,\dots,n.$ Remember that 
 $$
-Y_i=\beta_1 X_{i1} +\beta_2 X_{i2}+\beta_3 x_{i3} + \varepsilon_{i}. 
+Y_i=\beta_1 X_{i1} +\beta_2 X_{i2}+\beta_3 X_{i3} + \varepsilon_{i}. 
 $$ 
-That is, we only need realizations from the error terms $\varepsilon_i$ in order to compute the realizations from $y_i$. This is how you can simulate realizations from the heteroskedastic error terms $\varepsilon_{i}\sim \mathcal{N}(0,\sigma_i^2)$ with $\sigma_i=|x_{3i}|$:
+That is, we only need realizations from the error terms $\varepsilon_i$ in order to compute the realizations from $y_i$. This is how you can simulate realizations from the heteroskedastic error terms $\varepsilon_{i}\sim \mathcal{N}(0,\sigma_i^2)$ with $\sigma_i=|X_{i3}|$:
 
 ```{r}
 ## Generate realizations from the heteroscadastic error term
-eps       <- abs(X.3) * rnorm(n, mean=0, sd=1)
+eps       <- abs(X_3) * rnorm(n, mean=0, sd=1)
 ```
 
 Take a look at the heteroskedasticity in the error term:
 
 ```{r, fig.margin = TRUE, fig.width=4.5, fig.height=3.5, cache=TRUE}
-plot(y=eps, x=X.3, 
+plot(y=eps, x=X_3, 
      main="Realizations of the \nHeteroscedastic Error Term")
 ```
 
@@ -407,14 +407,14 @@ plot(y=eps, x=X.3,
 With the (pseudo-random) realizations from $\varepsilon_i$, we can finally generate realizations from the dependent variable $y_i$:
 ```{r}
 ## Dependent variable:
-y   <- X %*% beta.vec + eps
+Y  <- X %*% beta.vec + eps
 ```
 
 
 Let's take a look at the artificial data:
 ```{r,fig.width=10, fig.height=5, out.width='\\textwidth', fig.align='center'}
-mydata    <- data.frame("Y"=y, "X.1"=X.1, "X.2"=X.2, "X.3"=X.3)
-pairs(mydata[,-2]) # The '-2' removes the intercept variable "X.1"
+mydata    <- data.frame("Y"=Y, "X_1"=X_1, "X_2"=X_2, "X_3"=X_3)
+pairs(mydata[,-2]) # The '-2' removes the intercept variable "X_1"
 ```
 
 ```{r}
@@ -426,12 +426,12 @@ head(mydata)
 
 Once we have data, we can compute the OLS estimate of the true $\beta$ vector. Remember the formula:
 $$
-\hat{\beta}=(X^\top X)^{-1}X^\top y
+\hat{\beta}=(X^\top X)^{-1}X^\top Y
 $$
 In R-Code this is: $(X^\top X)^{-1}=$`solve(t(X) %*% X)`, i.e.:
 ```{r}
 ## Computation of the beta-Vector:
-beta.hat <- solve(t(X) %*% X) %*% t(X) %*% y
+beta.hat <- solve(t(X) %*% X) %*% t(X) %*% Y
 beta.hat
 ```
 
@@ -439,26 +439,26 @@ beta.hat
 
 Well done. Using the above lines of code we can easily program our own `myOLSFun()` function!
 ```{r}
-myOLSFun <- function(y, x, add.intercept=FALSE){
+myOLSFun <- function(Y, X, add.intercept=FALSE){
   
   ## Number of Observations:
-  n         <- length(y)
+  n         <- length(Y)
   
   ## Add an intercept to x:
   if(add.intercept){
     Intercept <- rep(1, n)
-    x         <- cbind(Intercept, x)
+    x         <- cbind(Intercept, Y)
   }
   
   ## Estimation of the slope-parameters:
-  beta.hat.vec <- solve(t(x) %*% x) %*% t(x) %*% y
+  beta.hat.vec <- solve(t(X) %*% X) %*% t(X) %*% Y
   
   ## Return the result:
   return(beta.hat.vec)
 }
 
 ## Run the function:
-myOLSFun(y=y, x=X)
+myOLSFun(Y=Y, X=X)
 ```
 
 
