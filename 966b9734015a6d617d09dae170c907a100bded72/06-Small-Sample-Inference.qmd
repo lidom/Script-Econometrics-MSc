@@ -1,3 +1,4 @@
+<!-- LTeX: language=en-US -->
 # Small Sample Inference {#sec-ssinf}
 
 ::: {.hidden}

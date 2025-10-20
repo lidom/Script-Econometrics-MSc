@@ -1,3 +1,4 @@
+<!-- LTeX: language=en-US -->
 # Probability {#ReviewStats}
 
 The content of this chapter follows closely (often verbatim) the fantastic book by @Wasserman2004. 

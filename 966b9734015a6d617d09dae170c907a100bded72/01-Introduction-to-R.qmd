@@ -1,3 +1,4 @@
+<!-- LTeX: language=en-US -->
 # Introduction to R
 
 
@@ -327,7 +328,7 @@ abline(a=alpha,
 
 ## Programming in R
 
-### Simulating Data (Playing Data-God)
+### Simulating Data 
 
 #### Defining a Data Generating Process {-}
 
@@ -353,7 +354,7 @@ for all $i=1,\dots,n,$ and where
 * $\beta_1 = 1,\;$ $\beta_2 = -5,\;$ $\beta_3 = 5,\;$
 
 
-#### Generating Artificial Data; I.e. Generating Realizations from a Data Generating Process {-}
+#### Generating Artificial Data: Generating Realizations from a Data Generating Process {-}
 
 The above setup completely defines the (usually unknown) data generating process. Now we can use `R` to generate realizations from this data generating process. We begin with generating realizations of the regressors:
 
@@ -370,14 +371,21 @@ X   <- cbind(X.1, X.2, X.3)      # Save as a Nx3-dimensional data matrix.
 ```
 
 
-Now we define the elements of the $\beta$-vector. Be aware of the difference: In real data sets we do not know the true $\beta$-vector, but try to estimate it. However, when simulating data, we determine (as "Data-Gods") the true $\beta$-vector and can compare our estimates $\hat{\beta}_1,\hat{\beta}_2,$ and $\hat{\beta}_3$ with the true values $\beta_1=1,$ $\beta_2=-5,$ and $\beta_3=5.$
+Now we define the elements of the $\beta$-vector. Be aware of the difference: In real data sets we do **not know** the true $\beta$-vector, but try to estimate it. However, when simulating data, we can determine the true $\beta$-vector and compare our estimates 
+$$
+\hat{\beta}_1,\,\hat{\beta}_2,\,\quad \text{and}\quad \hat{\beta}_3
+$$ 
+with the true values 
+$$
+\beta_1=1,\,\beta_2=-5,\,\quad \text{and}\quad \beta_3=5.
+$$
 ```{r}
 ## Define the slope-coefficients
 beta.vec  <- c(1,-5,5)
 ```
 
 
-We still need to simulate realizations of the dependent variable $y_i$ for all $i=1,\dots,n.$ Remember that 
+We still need to simulate realizations of the dependent variable $Y_i$ for all $i=1,\dots,n.$ Remember that 
 $$
 Y_i=\beta_1 X_{i1} +\beta_2 X_{i2}+\beta_3 x_{i3} + \varepsilon_{i}. 
 $$ 
@@ -409,7 +417,9 @@ mydata    <- data.frame("Y"=y, "X.1"=X.1, "X.2"=X.2, "X.3"=X.3)
 pairs(mydata[,-2]) # The '-2' removes the intercept variable "X.1"
 ```
 
-
+```{r}
+head(mydata)
+```
 
 ### Writing an R Function 
 
