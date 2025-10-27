@@ -614,7 +614,7 @@ legend("topright", col=c("darkblue"), lty=1, legend = expression(f(x[1],x[2])), 
 
 
 
-#### Conditional Distributions {#sec-condDistr}
+#### Conditional Density Function {#sec-condDistr}
 
 Often, we are interested in the **conditional distribution** of $X_j$ given certain values of all other random variables 
 
@@ -696,7 +696,7 @@ legend = expression(f(x[1]~ "|" ~ X[2]==0.7)), bty="n",
 
 ### Means and Moments
 
-### Unconditional Means
+#### Unconditional Means
 
 The **unconditional mean** of $X_1$ is given by
 $$
@@ -707,20 +707,9 @@ $$
 E(X)=(E(X_1),\dots,E(X_d))'.
 $$
 
-### Conditional Means 
-
-Of central importance in **regression analysis** is the **conditional mean**.  The conditional mean of $X_1$ for given values  $X_2=x_2,\ldots,X_d=x_d$:
-$$
-\begin{align*}
-  m(x_2,\dots,x_d):&=E(X_1|X_2=x_2,\ldots,X_d=x_d)\\
-                   &= \int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1,
-\end{align*}                  
-$$
-where $m(x_2,\dots,x_d)$ denotes the **regression function**. 
 
 
-
-### Means of Transformed Random Variables and Moments
+#### Means of Transformed Random Variables and Moments
 
 
 The **mean of a transformed random variable** $r(X)$ is given by 
@@ -752,6 +741,23 @@ where $\mu=E(X)$.
 **Note:** Moments determine the tail of a distribution (but not much else); see @LB2000. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g. the uniform distribution $\mathcal{U}[a,b]$) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support; see @sec-NormalDistr. 
 
 
+
+
+
+
+#### Conditional Means 
+
+Of central importance in **regression analysis** is the **conditional mean**.  The conditional mean of $X_1$ for given values  $X_2=x_2,\ldots,X_d=x_d$:
+$$
+\begin{align*}
+  m(x_2,\dots,x_d):&=E(X_1|X_2=x_2,\ldots,X_d=x_d)\\
+                   &= \int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1,
+\end{align*}                  
+$$
+where $m(x_2,\dots,x_d)$ denotes the **regression function**. 
+
+
+
 #### Law of Total Expectation 
 
 As long as we do not fix the values of the conditioning variables, $X_2,\dots,X_d$, they are random variables.  Consequently, the conditional mean is generally itself a random variable 
@@ -761,7 +767,13 @@ $$
 due to the randomness in $X_2,\ldots,X_d$. 
 
 
-Note that $f(x_1\mid X_2,\ldots,X_d)$ is just a transformation of the random variables $X_2,\dots,X_d$. So we can easily compute the unconditional mean $E(X_1)$ by taking the mean of $E(X_1|X_2,\ldots,X_d)$ as following, 
+The **Law of Total Expectation** or **Law of Iterated Expectation** states that 
+$$
+E\big(E(X_1|X_2,\ldots,X_d)\big)=E(X_1).
+$$ 
+
+To show this result, we, first compute the conditional mean of $X_1$ given $X_2,\dots,X_d$, and then mean with respect to $X_2,\dots,X_d.$
+<!-- Note that $f(x_1\mid X_2,\ldots,X_d)$ is just a transformation of the random variables $X_2,\dots,X_d$. So we can easily compute the unconditional mean $E(X_1)$ by taking the mean of $E(X_1|X_2,\ldots,X_d)$ as following,  -->
 $$
 \begin{align*}
 &E\big({\color{RedViolet}E(X_1|X_2,\ldots,X_d)}\big)=\\
@@ -771,12 +783,6 @@ $$
 &=E(X_1).
 \end{align*}
 $$
-
-The result that 
-$$
-E\big(E(X_1|X_2,\ldots,X_d)\big)=E(X_1)
-$$ 
-is called **law of total expectation** or **law of iterated expectation**. 
 
 
 

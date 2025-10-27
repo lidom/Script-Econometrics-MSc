@@ -249,13 +249,10 @@ window.Quarto = {
 <li><a href="#univariate-distribution-and-probability-functions" id="toc-univariate-distribution-and-probability-functions" class="nav-link" data-scroll-target="#univariate-distribution-and-probability-functions"><span class="header-section-number">2.2.1</span> Univariate Distribution and Probability Functions</a></li>
   <li><a href="#multivariate-distribution-and-probability-functions" id="toc-multivariate-distribution-and-probability-functions" class="nav-link" data-scroll-target="#multivariate-distribution-and-probability-functions"><span class="header-section-number">2.2.2</span> Multivariate Distribution and Probability Functions</a></li>
   <li><a href="#means-and-moments" id="toc-means-and-moments" class="nav-link" data-scroll-target="#means-and-moments"><span class="header-section-number">2.2.3</span> Means and Moments</a></li>
-  <li><a href="#unconditional-means" id="toc-unconditional-means" class="nav-link" data-scroll-target="#unconditional-means"><span class="header-section-number">2.2.4</span> Unconditional Means</a></li>
-  <li><a href="#conditional-means" id="toc-conditional-means" class="nav-link" data-scroll-target="#conditional-means"><span class="header-section-number">2.2.5</span> Conditional Means</a></li>
-  <li><a href="#means-of-transformed-random-variables-and-moments" id="toc-means-of-transformed-random-variables-and-moments" class="nav-link" data-scroll-target="#means-of-transformed-random-variables-and-moments"><span class="header-section-number">2.2.6</span> Means of Transformed Random Variables and Moments</a></li>
-  <li><a href="#independent-random-variables" id="toc-independent-random-variables" class="nav-link" data-scroll-target="#independent-random-variables"><span class="header-section-number">2.2.7</span> Independent Random Variables</a></li>
-  <li><a href="#random-samples" id="toc-random-samples" class="nav-link" data-scroll-target="#random-samples"><span class="header-section-number">2.2.8</span> Random Samples</a></li>
-  <li><a href="#some-important-discrete-random-variables" id="toc-some-important-discrete-random-variables" class="nav-link" data-scroll-target="#some-important-discrete-random-variables"><span class="header-section-number">2.2.9</span> Some Important Discrete Random Variables</a></li>
-  <li><a href="#some-important-continuous-random-variables" id="toc-some-important-continuous-random-variables" class="nav-link" data-scroll-target="#some-important-continuous-random-variables"><span class="header-section-number">2.2.10</span> Some Important Continuous Random Variables</a></li>
+  <li><a href="#independent-random-variables" id="toc-independent-random-variables" class="nav-link" data-scroll-target="#independent-random-variables"><span class="header-section-number">2.2.4</span> Independent Random Variables</a></li>
+  <li><a href="#random-samples" id="toc-random-samples" class="nav-link" data-scroll-target="#random-samples"><span class="header-section-number">2.2.5</span> Random Samples</a></li>
+  <li><a href="#some-important-discrete-random-variables" id="toc-some-important-discrete-random-variables" class="nav-link" data-scroll-target="#some-important-discrete-random-variables"><span class="header-section-number">2.2.6</span> Some Important Discrete Random Variables</a></li>
+  <li><a href="#some-important-continuous-random-variables" id="toc-some-important-continuous-random-variables" class="nav-link" data-scroll-target="#some-important-continuous-random-variables"><span class="header-section-number">2.2.7</span> Some Important Continuous Random Variables</a></li>
   </ul>
 </li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -749,7 +746,7 @@ x_d)dx_2\dots  dx_d
 </div>
 </div>
 </section><section id="sec-condDistr" class="level4" data-number="2.2.2.5"><h4 data-number="2.2.2.5" class="anchored" data-anchor-id="sec-condDistr">
-<span class="header-section-number">2.2.2.5</span> Conditional Distributions</h4>
+<span class="header-section-number">2.2.2.5</span> Conditional Density Function</h4>
 <p>Often, we are interested in the <strong>conditional distribution</strong> of <span class="math inline">\(X_j\)</span> given certain values of all other random variables</p>
 <p><span class="math display">\[
 X_1=x_1,\ldots, X_{j-1}=x_{j-1}, X_{j+1}=x_{j+1},\ldots,X_d=x_d.
@@ -769,23 +766,15 @@ f(x_1\mid x_2,\ldots,x_d)=\frac{f(x_1,x_2,\ldots,x_d)}{f_{X_{2},\ldots,X_{d}}(x_
 </div>
 </section></section><section id="means-and-moments" class="level3" data-number="2.2.3"><h3 data-number="2.2.3" class="anchored" data-anchor-id="means-and-moments">
 <span class="header-section-number">2.2.3</span> Means and Moments</h3>
-</section><section id="unconditional-means" class="level3" data-number="2.2.4"><h3 data-number="2.2.4" class="anchored" data-anchor-id="unconditional-means">
-<span class="header-section-number">2.2.4</span> Unconditional Means</h3>
+<section id="unconditional-means" class="level4" data-number="2.2.3.1"><h4 data-number="2.2.3.1" class="anchored" data-anchor-id="unconditional-means">
+<span class="header-section-number">2.2.3.1</span> Unconditional Means</h4>
 <p>The <strong>unconditional mean</strong> of <span class="math inline">\(X_1\)</span> is given by <span class="math display">\[
 E(X_1)= \int x f_{X_1}(x)dx.
 \]</span> The unconditional mean of a random vector <span class="math inline">\(X=(X_1,\dots,X_d)'\)</span> is given by the vector of element-wise means <span class="math display">\[
 E(X)=(E(X_1),\dots,E(X_d))'.
 \]</span></p>
-</section><section id="conditional-means" class="level3" data-number="2.2.5"><h3 data-number="2.2.5" class="anchored" data-anchor-id="conditional-means">
-<span class="header-section-number">2.2.5</span> Conditional Means</h3>
-<p>Of central importance in <strong>regression analysis</strong> is the <strong>conditional mean</strong>. The conditional mean of <span class="math inline">\(X_1\)</span> for given values <span class="math inline">\(X_2=x_2,\ldots,X_d=x_d\)</span>: <span class="math display">\[
-\begin{align*}
-  m(x_2,\dots,x_d):&amp;=E(X_1|X_2=x_2,\ldots,X_d=x_d)\\
-                   &amp;= \int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1,
-\end{align*}                  
-\]</span> where <span class="math inline">\(m(x_2,\dots,x_d)\)</span> denotes the <strong>regression function</strong>.</p>
-</section><section id="means-of-transformed-random-variables-and-moments" class="level3" data-number="2.2.6"><h3 data-number="2.2.6" class="anchored" data-anchor-id="means-of-transformed-random-variables-and-moments">
-<span class="header-section-number">2.2.6</span> Means of Transformed Random Variables and Moments</h3>
+</section><section id="means-of-transformed-random-variables-and-moments" class="level4" data-number="2.2.3.2"><h4 data-number="2.2.3.2" class="anchored" data-anchor-id="means-of-transformed-random-variables-and-moments">
+<span class="header-section-number">2.2.3.2</span> Means of Transformed Random Variables and Moments</h4>
 <p>The <strong>mean of a transformed random variable</strong> <span class="math inline">\(r(X)\)</span> is given by <span class="math display">\[
 E(r(X))=\int r(x) f_{X}(x)dx.
 \]</span> Typical transformations are, for instance</p>
@@ -803,13 +792,24 @@ E(r(X))=\int r(x) f_{X}(x)dx.
 \mu^c_{k}=\mathrm{E}\left[(X-\mathrm{E}[X])^{k}\right]=\int_{-\infty}^{+\infty}(x-\mu)^{k} f_X(x)d x,
 \]</span> where <span class="math inline">\(\mu=E(X)\)</span>.</p></li>
 </ul>
-<p><strong>Note:</strong> Moments determine the tail of a distribution (but not much else); see <span class="citation" data-cites="LB2000">Lindsay and Basak (<a href="#ref-LB2000" role="doc-biblioref">2000</a>)</span>. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g.&nbsp;the uniform distribution <span class="math inline">\(\mathcal{U}[a,b]\)</span>) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support; see <a href="#sec-NormalDistr" class="quarto-xref"><span>Section 2.2.10.2</span></a>.</p>
-<section id="law-of-total-expectation" class="level4" data-number="2.2.6.1"><h4 data-number="2.2.6.1" class="anchored" data-anchor-id="law-of-total-expectation">
-<span class="header-section-number">2.2.6.1</span> Law of Total Expectation</h4>
+<p><strong>Note:</strong> Moments determine the tail of a distribution (but not much else); see <span class="citation" data-cites="LB2000">Lindsay and Basak (<a href="#ref-LB2000" role="doc-biblioref">2000</a>)</span>. Roughly: The more moments a distribution has the faster converge the tails to zero. Distributions with compact supports (e.g.&nbsp;the uniform distribution <span class="math inline">\(\mathcal{U}[a,b]\)</span>) have infinitely many moments. The Normal distribution has also infinitely many moments, even though this distribution has not a compact support; see <a href="#sec-NormalDistr" class="quarto-xref"><span>Section 2.2.7.2</span></a>.</p>
+</section><section id="conditional-means" class="level4" data-number="2.2.3.3"><h4 data-number="2.2.3.3" class="anchored" data-anchor-id="conditional-means">
+<span class="header-section-number">2.2.3.3</span> Conditional Means</h4>
+<p>Of central importance in <strong>regression analysis</strong> is the <strong>conditional mean</strong>. The conditional mean of <span class="math inline">\(X_1\)</span> for given values <span class="math inline">\(X_2=x_2,\ldots,X_d=x_d\)</span>: <span class="math display">\[
+\begin{align*}
+  m(x_2,\dots,x_d):&amp;=E(X_1|X_2=x_2,\ldots,X_d=x_d)\\
+                   &amp;= \int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1,
+\end{align*}                  
+\]</span> where <span class="math inline">\(m(x_2,\dots,x_d)\)</span> denotes the <strong>regression function</strong>.</p>
+</section><section id="law-of-total-expectation" class="level4" data-number="2.2.3.4"><h4 data-number="2.2.3.4" class="anchored" data-anchor-id="law-of-total-expectation">
+<span class="header-section-number">2.2.3.4</span> Law of Total Expectation</h4>
 <p>As long as we do not fix the values of the conditioning variables, <span class="math inline">\(X_2,\dots,X_d\)</span>, they are random variables. Consequently, the conditional mean is generally itself a random variable <span class="math display">\[
 E(X_1|X_2,\ldots,X_d)=\int x_1 f(x_1\mid X_2,\ldots,X_d)dx_1
 \]</span> due to the randomness in <span class="math inline">\(X_2,\ldots,X_d\)</span>.</p>
-<p>Note that <span class="math inline">\(f(x_1\mid X_2,\ldots,X_d)\)</span> is just a transformation of the random variables <span class="math inline">\(X_2,\dots,X_d\)</span>. So we can easily compute the unconditional mean <span class="math inline">\(E(X_1)\)</span> by taking the mean of <span class="math inline">\(E(X_1|X_2,\ldots,X_d)\)</span> as following, <span class="math display">\[
+<p>The <strong>Law of Total Expectation</strong> or <strong>Law of Iterated Expectation</strong> states that <span class="math display">\[
+E\big(E(X_1|X_2,\ldots,X_d)\big)=E(X_1).
+\]</span></p>
+<p>To show this result, we, first compute the conditional mean of <span class="math inline">\(X_1\)</span> given <span class="math inline">\(X_2,\dots,X_d\)</span>, and then mean with respect to <span class="math inline">\(X_2,\dots,X_d.\)</span> <!-- Note that $f(x_1\mid X_2,\ldots,X_d)$ is just a transformation of the random variables $X_2,\dots,X_d$. So we can easily compute the unconditional mean $E(X_1)$ by taking the mean of $E(X_1|X_2,\ldots,X_d)$ as following,  --> <span class="math display">\[
 \begin{align*}
 &amp;E\big({\color{RedViolet}E(X_1|X_2,\ldots,X_d)}\big)=\\
 &amp;=\int\dots\int\;{\color{RedViolet}\int x_1 f(x_1\mid x_2,\ldots,x_d)dx_1}\;f_{X_2,\dots,X_d}(x_2,\ldots,x_d)dx_2\dots dx_d\\
@@ -818,11 +818,8 @@ E(X_1|X_2,\ldots,X_d)=\int x_1 f(x_1\mid X_2,\ldots,X_d)dx_1
 &amp;=E(X_1).
 \end{align*}
 \]</span></p>
-<p>The result that <span class="math display">\[
-E\big(E(X_1|X_2,\ldots,X_d)\big)=E(X_1)
-\]</span> is called <strong>law of total expectation</strong> or <strong>law of iterated expectation</strong>.</p>
-</section></section><section id="independent-random-variables" class="level3" data-number="2.2.7"><h3 data-number="2.2.7" class="anchored" data-anchor-id="independent-random-variables">
-<span class="header-section-number">2.2.7</span> Independent Random Variables</h3>
+</section></section><section id="independent-random-variables" class="level3" data-number="2.2.4"><h3 data-number="2.2.4" class="anchored" data-anchor-id="independent-random-variables">
+<span class="header-section-number">2.2.4</span> Independent Random Variables</h3>
 <p>Random variables <span class="math inline">\(X_1,\dots,X_d\)</span> are mutually <strong>independent</strong> if for all <span class="math inline">\(x=(x_1,\dots,x_d)^\prime\)</span> it is true that <span class="math display">\[
 \begin{align*}
   F(x_1,\dots,x_d)&amp;=F_1(x_1)\cdot F_2(x_2)\cdot\ldots\cdot F_d(x_d)\\
@@ -842,8 +839,8 @@ E(Y\mid X=x)=E(Y)
 \]</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>.</li>
 </ul>
 <p><strong>Note:</strong> The properties that <span class="math inline">\(E(X\mid Y=y)=E(X)\)</span> for all <span class="math inline">\(y\in\mathbb{R}\)</span> or that <span class="math inline">\(E(Y\mid X=x)=E(Y)\)</span> for all <span class="math inline">\(x\in\mathbb{R}\)</span>, do <strong>not</strong> imply that <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are independent. It only means that <span class="math inline">\(Y\)</span> has no effect on the mean of <span class="math inline">\(X\)</span>, but it may have, for instance, an effect on the variance of <span class="math inline">\(X\)</span>.</p>
-</section><section id="random-samples" class="level3" data-number="2.2.8"><h3 data-number="2.2.8" class="anchored" data-anchor-id="random-samples">
-<span class="header-section-number">2.2.8</span> Random Samples</h3>
+</section><section id="random-samples" class="level3" data-number="2.2.5"><h3 data-number="2.2.5" class="anchored" data-anchor-id="random-samples">
+<span class="header-section-number">2.2.5</span> Random Samples</h3>
 <p>Tradition dictates that the sample size is denoted by the natural number <span class="math inline">\(n\in\{1,2,\dots\}\)</span>. A collection of random variables <span class="math inline">\((X_{1}, \ldots, X_{n})\)</span> is called a <strong>random sample</strong> if its random variables are <strong>i.i.d. (independent and identically distributed)</strong>, i.e., if</p>
 <ol type="1">
 <li>
@@ -852,8 +849,8 @@ E(Y\mid X=x)=E(Y)
 <span class="math inline">\(X_{1}, \ldots, X_{n}\)</span> have <strong>identical</strong> marginal distributions, i.e., <span class="math inline">\(X_i\sim F_X\)</span> for all <span class="math inline">\(i=1,\dots,n\)</span>.</li>
 </ol>
 <p>In micro-econometrics, random samples are the default sampling scheme. That is, we consider the collected data as a realization of an underlying random sample.</p>
-</section><section id="some-important-discrete-random-variables" class="level3" data-number="2.2.9"><h3 data-number="2.2.9" class="anchored" data-anchor-id="some-important-discrete-random-variables">
-<span class="header-section-number">2.2.9</span> Some Important Discrete Random Variables</h3>
+</section><section id="some-important-discrete-random-variables" class="level3" data-number="2.2.6"><h3 data-number="2.2.6" class="anchored" data-anchor-id="some-important-discrete-random-variables">
+<span class="header-section-number">2.2.6</span> Some Important Discrete Random Variables</h3>
 <!-- ### The point mass distribution {-}  -->
 <!-- $X$ has a point mass distribution at $a$, written $X \sim \delta_{a},$ if $P(X=a)=1$ in which case -->
 <!-- $$ -->
@@ -863,8 +860,8 @@ E(Y\mid X=x)=E(Y)
 <!-- \end{array}\right. -->
 <!-- $$ -->
 <!-- The probability function is $f(x)=1$ for $x=a$ and $0$ otherwise. -->
-<section id="the-discrete-uniform-distribution" class="level4" data-number="2.2.9.1"><h4 data-number="2.2.9.1" class="anchored" data-anchor-id="the-discrete-uniform-distribution">
-<span class="header-section-number">2.2.9.1</span> The Discrete Uniform Distribution</h4>
+<section id="the-discrete-uniform-distribution" class="level4" data-number="2.2.6.1"><h4 data-number="2.2.6.1" class="anchored" data-anchor-id="the-discrete-uniform-distribution">
+<span class="header-section-number">2.2.6.1</span> The Discrete Uniform Distribution</h4>
 <p>Let <span class="math inline">\(k&gt;1\)</span> be a given integer. Suppose that <span class="math inline">\(X\)</span> has probability mass function given by <span class="math display">\[
 f(x)=\left\{\begin{array}{ll}
 1 / k &amp; \text { for } x=1, \ldots, k \\
@@ -881,8 +878,8 @@ f(x)=\left\{\begin{array}{ll}
 <pre><code>[1] 7</code></pre>
 </div>
 </div>
-</section><section id="the-bernoulli-distribution" class="level4" data-number="2.2.9.2"><h4 data-number="2.2.9.2" class="anchored" data-anchor-id="the-bernoulli-distribution">
-<span class="header-section-number">2.2.9.2</span> The Bernoulli Distribution</h4>
+</section><section id="the-bernoulli-distribution" class="level4" data-number="2.2.6.2"><h4 data-number="2.2.6.2" class="anchored" data-anchor-id="the-bernoulli-distribution">
+<span class="header-section-number">2.2.6.2</span> The Bernoulli Distribution</h4>
 <p>Let <span class="math inline">\(X\)</span> represent a possibly unfair coin flip. Then <span class="math inline">\(P(X=1)=p\)</span> and <span class="math inline">\(P(X=0)=1-p\)</span> for some <span class="math inline">\(p \in[0,1]\)</span>. We say that <span class="math inline">\(X\)</span> has a Bernoulli distribution written <span class="math inline">\(X\sim\operatorname{Bernoulli }(p)\)</span>. The probability function is <span class="math inline">\(f(x)=p^{x}(1-p)^{1-x}\)</span> for <span class="math inline">\(x \in\{0,1\}\)</span></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">51</span><span class="op">)</span></span>
@@ -901,8 +898,8 @@ f(x)=\left\{\begin{array}{ll}
 <pre><code>[1] 1 1 0 1 0</code></pre>
 </div>
 </div>
-</section><section id="the-binomial-distribution" class="level4" data-number="2.2.9.3"><h4 data-number="2.2.9.3" class="anchored" data-anchor-id="the-binomial-distribution">
-<span class="header-section-number">2.2.9.3</span> The Binomial Distribution</h4>
+</section><section id="the-binomial-distribution" class="level4" data-number="2.2.6.3"><h4 data-number="2.2.6.3" class="anchored" data-anchor-id="the-binomial-distribution">
+<span class="header-section-number">2.2.6.3</span> The Binomial Distribution</h4>
 <p>Suppose we have a coin which falls heads with probability <span class="math inline">\(p\)</span> for some <span class="math inline">\(p\in[0,1]\)</span>. Flip the coin <span class="math inline">\(n\)</span> times and let <span class="math inline">\(X\)</span> be the number of heads (or successes). Assume that the tosses are independent. Let <span class="math inline">\(f(x)=P(X=x)\)</span> be the mass function. It can be shown that <span class="math display">\[
 f(x)=\left\{
 \begin{array}{ll}
@@ -927,10 +924,10 @@ x
 <pre><code>[1] 4 1 2 6 1</code></pre>
 </div>
 </div>
-</section></section><section id="some-important-continuous-random-variables" class="level3" data-number="2.2.10"><h3 data-number="2.2.10" class="anchored" data-anchor-id="some-important-continuous-random-variables">
-<span class="header-section-number">2.2.10</span> Some Important Continuous Random Variables</h3>
-<section id="the-uniform-distribution" class="level4" data-number="2.2.10.1"><h4 data-number="2.2.10.1" class="anchored" data-anchor-id="the-uniform-distribution">
-<span class="header-section-number">2.2.10.1</span> The Uniform Distribution</h4>
+</section></section><section id="some-important-continuous-random-variables" class="level3" data-number="2.2.7"><h3 data-number="2.2.7" class="anchored" data-anchor-id="some-important-continuous-random-variables">
+<span class="header-section-number">2.2.7</span> Some Important Continuous Random Variables</h3>
+<section id="the-uniform-distribution" class="level4" data-number="2.2.7.1"><h4 data-number="2.2.7.1" class="anchored" data-anchor-id="the-uniform-distribution">
+<span class="header-section-number">2.2.7.1</span> The Uniform Distribution</h4>
 <p><span class="math inline">\(X\)</span> has a <span class="math inline">\(\operatorname{Uniform}(a, b)\)</span> distribution, written <span class="math inline">\(X\sim \mathcal{U}(a, b),\)</span> if <span class="math display">\[
 f(x)=\left\{\begin{array}{ll}
 \frac{1}{b-a} &amp; \text { for } x \in[a, b] \\
@@ -954,8 +951,8 @@ F(x)=\left\{\begin{array}{ll}
  [7] 0.69714201 0.17104008 0.25448233 0.01813812</code></pre>
 </div>
 </div>
-</section><section id="sec-NormalDistr" class="level4" data-number="2.2.10.2"><h4 data-number="2.2.10.2" class="anchored" data-anchor-id="sec-NormalDistr">
-<span class="header-section-number">2.2.10.2</span> The Normal (or Gaussian) Distribution</h4>
+</section><section id="sec-NormalDistr" class="level4" data-number="2.2.7.2"><h4 data-number="2.2.7.2" class="anchored" data-anchor-id="sec-NormalDistr">
+<span class="header-section-number">2.2.7.2</span> The Normal (or Gaussian) Distribution</h4>
 <p><span class="math inline">\(X\)</span> has a Normal (or Gaussian) distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma,\)</span> denoted by <span class="math inline">\(X \sim \mathcal{N}\left(\mu, \sigma^{2}\right),\)</span> if <span class="math display">\[
 f(x)=\frac{1}{\sigma \sqrt{2 \pi}} \exp \left\{-\frac{1}{2 \sigma^{2}}(x-\mu)^{2}\right\}, \quad x \in \mathbb{R}
 \]</span> where <span class="math inline">\(\mu \in \mathbb{R}\)</span> and <span class="math inline">\(\sigma&gt;0.\)</span> Later we shall see that <span class="math inline">\(\mu\)</span> is the “center” (or mean of the distribution and <span class="math inline">\(\sigma\)</span> is the “spread” (or standard deviation) of the distribution. The Normal plays an important role in probability and statistics. Many phenomena in nature have approximately Normal distributions. The <strong>Central Limit Theorem</strong> gives a special role to the Normal distribution by stating that the distribution of averages of random variables can be approximated by a Normal distribution.</p>
@@ -1004,8 +1001,8 @@ f_{X}\left(x_{1}, \ldots, x_{k}\right)=\frac{\exp \left(-\frac{1}{2}(x-\mu)' \Si
 \]</span> Lets consider the special case where <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent standard normal random variables with densities <span class="math inline">\(f_X(x)\)</span> and <span class="math inline">\(f_Y(y)\)</span>. We then have the parameters <span class="math inline">\(\sigma_X = \sigma_Y = 1\)</span>, <span class="math inline">\(\mu_X=\mu_Y=0\)</span> (due to marginal standard normality) and correlation <span class="math inline">\(\rho_{XY}=0\)</span> (due to independence). The joint density of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> then becomes <span class="math display">\[
 g_{X,Y}(x,y) = f_X(x) f_Y(y) = \frac{1}{2\pi} \cdot \exp \left\{ -\frac{1}{2}\left[x^2 + y^2\right]\right\}.
 \]</span></p>
-</section><section id="sec-chisqdist" class="level4" data-number="2.2.10.3"><h4 data-number="2.2.10.3" class="anchored" data-anchor-id="sec-chisqdist">
-<span class="header-section-number">2.2.10.3</span> The Chi-Squared Distribution</h4>
+</section><section id="sec-chisqdist" class="level4" data-number="2.2.7.3"><h4 data-number="2.2.7.3" class="anchored" data-anchor-id="sec-chisqdist">
+<span class="header-section-number">2.2.7.3</span> The Chi-Squared Distribution</h4>
 <p>The chi-squared distribution is another distribution relevant in econometrics. It is often needed when testing special types of hypotheses frequently encountered when dealing with regression models.</p>
 <p>The sum of <span class="math inline">\(\nu=1,2,\dots\)</span> squared <em>independent standard normal</em> distributed random variables, <span class="math inline">\(Z_1,\dots,Z_\nu\)</span> follows a chi-squared distribution with <span class="math inline">\(\nu\)</span> degrees of freedom (df): <span class="math display">\[
 \begin{align*}
@@ -1072,8 +1069,8 @@ Z_1^2 + \dots + Z_\nu^2 = \sum_{j=1}^\nu Z_j^2 =:W \sim \chi^2_{\nu}.
 </div>
 </div>
 <p>Increasing the degrees of freedom shifts the distribution to the right (the mode becomes larger) and increases the dispersion (the distribution’s variance grows).</p>
-</section><section id="sec-tdist" class="level4" data-number="2.2.10.4"><h4 data-number="2.2.10.4" class="anchored" data-anchor-id="sec-tdist">
-<span class="header-section-number">2.2.10.4</span> The Student <span class="math inline">\(t\)</span> Distribution</h4>
+</section><section id="sec-tdist" class="level4" data-number="2.2.7.4"><h4 data-number="2.2.7.4" class="anchored" data-anchor-id="sec-tdist">
+<span class="header-section-number">2.2.7.4</span> The Student <span class="math inline">\(t\)</span> Distribution</h4>
 <p>Let <span class="math inline">\(Z\)</span> be a standard normal random variable, <span class="math inline">\(W\)</span> a <span class="math inline">\(\chi^2_\nu\)</span> random variable and further assume that <span class="math inline">\(Z\)</span> and <span class="math inline">\(W\)</span> are independent. Then it holds that <span class="math display">\[
 \frac{Z}{\sqrt{W/\nu}} =:X \sim t_\nu
 \]</span> and <span class="math inline">\(X\)</span> follows a <em>Student <span class="math inline">\(t\)</span> distribution</em> (or simply <span class="math inline">\(t\)</span> distribution) with <span class="math inline">\(\nu\)</span> degrees of freedom.</p>
@@ -1125,8 +1122,8 @@ Z_1^2 + \dots + Z_\nu^2 = \sum_{j=1}^\nu Z_j^2 =:W \sim \chi^2_{\nu}.
 </div>
 </div>
 <p>The plot illustrates that as the degrees of freedom increase, the shape of the <span class="math inline">\(t\)</span> distribution comes closer to that of a standard normal bell curve. Already for <span class="math inline">\(\nu=25\)</span> we find little difference to the standard normal density. If <span class="math inline">\(\nu\)</span> is small, we find the distribution to have heavier tails than a standard normal.</p>
-</section><section id="cauchy-distribution" class="level4" data-number="2.2.10.5"><h4 data-number="2.2.10.5" class="anchored" data-anchor-id="cauchy-distribution">
-<span class="header-section-number">2.2.10.5</span> Cauchy Distribution</h4>
+</section><section id="cauchy-distribution" class="level4" data-number="2.2.7.5"><h4 data-number="2.2.7.5" class="anchored" data-anchor-id="cauchy-distribution">
+<span class="header-section-number">2.2.7.5</span> Cauchy Distribution</h4>
 <p>The Cauchy distribution is a special case of the <span class="math inline">\(t\)</span> distribution corresponding to <span class="math inline">\(\nu=1\)</span>. The density is <span class="math display">\[
 f(x)=\frac{1}{\pi\left(1+x^{2}\right)}.
 \]</span> <!-- To see that this is indeed a density, let's do the integral: --> <!-- $$ --> <!-- \begin{aligned} --> <!-- \int_{-\infty}^{\infty} f(x) d x &=\frac{1}{\pi} \int_{-\infty}^{\infty} \frac{d x}{1+x^{2}}=\frac{1}{\pi} \int_{-\infty}^{\infty} \frac{d \tan ^{-1}}{d x} \\ --> <!-- &=\frac{1}{\pi}\left[\tan ^{-1}(\infty)-\tan ^{-1}(-\infty)\right]=\frac{1}{\pi}\left[\frac{\pi}{2}-\left(-\frac{\pi}{2}\right)\right]=1 --> <!-- \end{aligned} --> <!-- $$ --></p>
@@ -1136,8 +1133,8 @@ f(x)=\frac{1}{\pi\left(1+x^{2}\right)}.
 \int_{0}^{\infty} \frac{x d x}{\pi\left(1+x^{2}\right)}=\left.\frac{1}{2 \pi} \log \left(1+x^{2}\right)\right|_{0} ^{\infty}=\infty
 \]</span> Similarly, the other integral, <span class="math inline">\(\int_{-\infty}^{0},\)</span> is <span class="math inline">\(-\infty\)</span>. Since they’re not both finite, the integral <span class="math inline">\(\int_{-\infty}^{\infty}\)</span> doesn’t exist. In other words <span class="math inline">\(\infty-\infty\)</span> is not a number. Thus, the Cauchy distribution has no mean.</p>
 <p>What this means in practice is that if you take a sample <span class="math inline">\(x_{1}, x_{2}, \ldots, x_{n}\)</span> from the Cauchy distribution, then the average <span class="math inline">\(\bar{x}\)</span> does not tend to a particular number. Instead, every so often you will get such a huge number, either positive or negative, that the average is overwhelmed by it.</p>
-</section><section id="sec-Fdist" class="level4" data-number="2.2.10.6"><h4 data-number="2.2.10.6" class="anchored" data-anchor-id="sec-Fdist">
-<span class="header-section-number">2.2.10.6</span> The F Distribution</h4>
+</section><section id="sec-Fdist" class="level4" data-number="2.2.7.6"><h4 data-number="2.2.7.6" class="anchored" data-anchor-id="sec-Fdist">
+<span class="header-section-number">2.2.7.6</span> The F Distribution</h4>
 <p>Another ratio of random variables important to econometricians is the ratio of two independent <span class="math inline">\(\chi^2\)</span> distributed random variables that are divided by their degrees of freedom <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span>. The quantity</p>
 <p><span class="math display">\[
 \frac{W/m}{V/n} \sim F_{m,n} \ \ \text{with} \ \ W \sim \chi^2_m \ \ , \ \ V \sim \chi^2_n
