@@ -1,3 +1,4 @@
+<!-- LTeX: language=en-US -->
 # Multiple Linear Regression {#sec-MLR}
 
 
@@ -43,7 +44,7 @@ Usually, a constant (intercept) is included, in this case $X_{i1}=1$ for all $i=
 It is convenient to write @eq-LinMod using matrix notation
 $$
 \begin{eqnarray*}
-  Y_i&=&\underset{(1\times K)}{X_i'}\underset{(K\times 1)}{\beta} +\varepsilon_i, \quad i=1,\dots,n,
+  Y_i&=&\underset{(1\times K)}{X_i^{\top}}\underset{(K\times 1)}{\beta} +\varepsilon_i, \quad i=1,\dots,n,
 \end{eqnarray*}
 $$
 where 
@@ -65,7 +66,7 @@ Y=\left(\begin{matrix}Y_1\\ \vdots\\Y_n\end{matrix}\right),\quad X=\left(\begin{
 \end{equation*}
 $$
 
-::: {.callout-tip}
+::: {.callout-tip icon="false"}
 
 # Simple Linear Regression and Polynomial Regression Model 
 
@@ -121,7 +122,7 @@ are i.i.d. across $i=1,\dots,n$.
 :::
 
 ::: {.callout-caution}
-**Remark:** Usually, we do not use a different notation for observed realizations 
+Usually, we do not use a different notation for observed realizations 
 $(Y_{i,obs},X_{i1,obs},\dots,X_{iK,obs})\in\mathbb{R}^{K+1}$ 
 and for the corresponding random variable 
 $(Y_{i},X_{i1},\dots,X_{iK})\in\mathbb{R}^{K+1}$ 
@@ -180,7 +181,7 @@ $$
 This rank assumption is a bit dicey and its violation belongs to one of the classic problems in applied econometrics (keywords: dummy variable trap, multicollinearity, variance inflation).  The violation of this assumption harms any economic interpretation since we cannot disentangle the explanatory variables' individual effects on $Y$. Therefore, this assumption is also often called an **identification assumption**.
 
 <!-- 
-::: {.callout-tip}
+::: {.callout-tip icon="false"}
 # Crash Course on Ranks and Matrix Inverse:
 
 Let $A$ be a $(n\times m)$-dimensional matrix. 
@@ -203,7 +204,7 @@ $$
 $$
 * The column rank and the row rank are always equal, therefore 
 $$
-\operatorname{rank}(A)=\operatorname{rank}(A').$$ 
+\operatorname{rank}(A)=\operatorname{rank}(A^{\top}).$$ 
 So, it is sufficient to check either compute the column rank or the row rank.
 * A $(n\times m)$ matrix $A$ has full row-rank if $\operatorname{rank}(A)=n$
 * A $(n\times m)$ matrix $A$ has full column-rank if $\operatorname{rank}(A)=m$
@@ -239,18 +240,18 @@ The above crash course on linear algebra contains all concepts relevant for this
 -->
 
 
-::: {.callout-tip}
+::: {.callout-tip icon="false"}
 
 * Under Assumption 3, we have that $\operatorname{rank}(X)=K$ (a.s.)
 
-* This implies that the $(K\times K)$-dimensional matrix $X'X$ has full rank, i.e. that 
+* This implies that the $(K\times K)$-dimensional matrix $X^{\top}X$ has full rank, i.e. that 
 $$
-\operatorname{rank}(X'X)=K\quad\text{(a.s.)}
+\operatorname{rank}(X^{\top}X)=K\quad\text{(a.s.)}
 $$
 
-* Thus $(X'X)$ is invertible; i.e. there exists a $(K\times K)$-dimensional matrix $(X'X)^{-1}$ such that 
+* Thus $(X^{\top}X)$ is invertible; i.e. there exists a $(K\times K)$-dimensional matrix $(X^{\top}X)^{-1}$ such that 
 $$
-(X'X)(X'X)^{-1} = (X'X)^{-1}(X'X) = I_K.
+(X^{\top}X)(X^{\top}X)^{-1} = (X^{\top}X)^{-1}(X^{\top}X) = I_K.
 $$ 
 :::
 
@@ -400,9 +401,9 @@ are equal to the constant $\sigma^2>0$ for all $i=1,\dots,n$ and for every possi
 
 ## Unconditional Mean
 
-If $E(\varepsilon_i|X_i)=0$ for all $i=1,\dots,n,$ then the also the unconditional mean of the error term is zero, i.e.
+If $E(\varepsilon_i|X_i)=0,$ then also the unconditional mean of the error term is zero, i.e.
 $$
-E(\varepsilon_i)=0,\quad i=1,\dots,n.
+E(\varepsilon_i|X_i)=0 \quad\Rightarrow\quad E(\varepsilon_i)=0.
 $$
 :::
 ::: 
@@ -410,13 +411,13 @@ $$
 ::: {.proof}
 Using the *Law of Total Expectations* (i.e., $E[E(Z|X)]=E(Z)$) we can rewrite $E(\varepsilon_i)$ as
 $$
-E(\varepsilon_i)=E[E(\varepsilon_i|X_i)]
+E(\varepsilon_i)=E[E(\varepsilon_i|X_i)].
 $$
-for all $i=1,\dots,n.$ But the exogeneity assumption yields
+But the exogeneity assumption yields
 $$
 E[E(\varepsilon_i|X_i)]=E[0]=0
 $$
-for all $i=1,\dots,n,$ which completes the proof. $\square$
+which completes the proof. $\square$
 :::
 
 
@@ -432,11 +433,11 @@ The exogeneity assumption (Assumption 2) is sometimes also called "orthogonality
 
 ## Orthogonality
 
-If $E(\varepsilon_i|X_{i})=0$ for all $i=1,\dots,n,$ then the regressors and the error term are orthogonal to each other, i.e,
+If $E(\varepsilon_i|X_{i})=0,$ then the regressors and the error term are orthogonal to each other, i.e,
 $$
-E(X_{ik}\varepsilon_i)=0
+E(\varepsilon_i|X_i)=0 \quad\Rightarrow\quad E(X_{ik}\varepsilon_i)=0
 $$
-for all $i=1,\dots,n$ and all $k=1,\dots,K.$
+for all $k=1,\dots,K.$
 :::
 :::
 
@@ -464,7 +465,7 @@ which completes the proof. $\square$
 :::
 
 
-Because the mean of the error term is zero ($E(\varepsilon_i)=0$ for all $i$ (see @thm-a), it follows that the orthogonality property, $E(X_{ik}\varepsilon_i)=0,$ is equivalent to a zero correlation property. 
+Because the mean of the error term is zero ($E(\varepsilon_i)=0$; see @thm-a), it follows that the orthogonality property, $E(X_{ik}\varepsilon_i)=0,$ is equivalent to a zero correlation property. 
 
 ::: {.callout icon=false}
 ##
@@ -472,9 +473,8 @@ Because the mean of the error term is zero ($E(\varepsilon_i)=0$ for all $i$ (se
 
 ## No Correlation
 
-If $E(\varepsilon_i|X_{i})=0$ for all $i=1,\dots,n,$ then 
 \begin{eqnarray*}
-  Cov(\varepsilon_i,X_{ik})&=&0\quad\text{for all}\quad i=1,\dots,n\quad\text{and all}\quad k=1,\dots,K.
+E(\varepsilon_i|X_i)=0 \quad\Rightarrow\quad Cov(\varepsilon_i,X_{ik})&=&0\quad\text{for all}\quad k=1,\dots,K.
 \end{eqnarray*}
 :::
 ::: 
@@ -488,6 +488,29 @@ If $E(\varepsilon_i|X_{i})=0$ for all $i=1,\dots,n,$ then
   &&\text{By the orthogonality result shown above:}\\[2ex]
   &=&0\quad\square
 \end{eqnarray*}
+:::
+
+
+::: {.callout-tip icon="false"}
+By @thm-c, we have that
+
+$$
+\underbrace{E(\epsilon_i|X_i)=0}_{A} \Rightarrow \underbrace{\operatorname{Cov}(\epsilon_i,X_{ik})=0\quad \text{for all}\quad k=0,\dots,p}_{B}
+$$
+
+**Remember:** Any logical implication 
+$$
+A\Rightarrow B
+$$ 
+has a logically equivalent contrapositive: 
+$$
+\neg B\Rightarrow \neg A
+$$ 
+Therefore, we also have that
+$$
+\underbrace{\operatorname{Cov}(\epsilon_i,X_{ik})\neq 0\;\text{for at least one}\; k=0,\dots,p}_{\neg B} \Rightarrow \underbrace{E(\epsilon_i|X_i)\neq 0}_{\neg A}
+$$
+I.e., if any of the regressors $X_{ik}$, $k=0,\dots,p,$ has a non-zero covariance with the error term $\epsilon_i$, then the exogeneity assumption is violated. 
 :::
 
 <!-- ## The Algebra of Least Squares -->
@@ -558,7 +581,7 @@ $$
 $$ 
 as the vector-valued minimizing argument of the sum of squared residuals, 
 $$
-S_n(b)=\sum_{i=1}^n\big(\underbrace{Y_i-X_i'b}_{\text{$i$th residual}}\big)^2
+S_n(b)=\sum_{i=1}^n\big(\underbrace{Y_i-X_i^{\top}b}_{\text{$i$th residual}}\big)^2
 $$ 
 with $b\in\mathbb{R}^K.$
 
@@ -566,7 +589,7 @@ Using matrix/vector notation we can write $S(b)$ as
 $$
 \begin{align*}
 S_n(b)
-&=\sum_{i=1}^n(Y_i-X_i'b)^2\\[2ex]
+&=\sum_{i=1}^n(Y_i-X_i^{\top}b)^2\\[2ex]
 &=(Y-X b)^{\prime}(Y-X b)\\[2ex]
 &=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
 \end{align*}
@@ -651,24 +674,24 @@ allows us to ***identify* the unknown (true) parameter vector** $\beta\in\mathbb
 $$
 \begin{align*}
 E(X_i\varepsilon_i) & = 0 \\[2ex]
-E(X_i(\overbrace{Y_i - X_i'\beta}^{=\varepsilon_i})) &= 0\\[2ex]
+E(X_i(\overbrace{Y_i - X_i^{\top}\beta}^{=\varepsilon_i})) &= 0\\[2ex]
 %\Leftrightarrow \hspace{1.5cm}
-E(X_iY_i) - E(X_iX_i')\beta & = 0\\[2ex]
-E(X_iX_i')\beta & =  E(X_iY_i)  \\[2ex]
-\beta & = \left(E(X_iX_i')\right)^{-1} E(X_iY_i) 
+E(X_iY_i) - E(X_iX_i^{\top})\beta & = 0\\[2ex]
+E(X_iX_i^{\top})\beta & =  E(X_iY_i)  \\[2ex]
+\beta & = \left(E(X_iX_i^{\top})\right)^{-1} E(X_iY_i) 
 \end{align*}
 $$
 The fundamental idea behind **method of moments estimation** is to define an estimator by **substituting population moments by sample moment analogues** (sample means):
 $$
 \begin{align*}
 \hat\beta_{mm} 
-& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i,
+& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i^{\top}\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i,
 \end{align*}
 $${#eq-MMEstimator}
 where 
 $$
 \begin{align*}
-E(X_iX_i') & \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iX_i'\\[2ex]
+E(X_iX_i^{\top}) & \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iX_i^{\top}\\[2ex]
 E(X_iY_i) & \quad \text{is substituted by}\quad \frac{1}{n}\sum_{i=1}^n X_iY_i.
 \end{align*}
 $$
@@ -677,9 +700,9 @@ Note that @eq-MMEstimator can be further simplified as following:
 $$
 \begin{align*}
 \hat\beta_{mm} 
-& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i  \\
-& = \left(\sum_{i=1}^n X_iX_i'\right)^{-1} \sum_{i=1}^n X_iY_i\\ 
-& = \left(X'X\right)^{-1} X'Y.\\ 
+& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i^{\top}\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i  \\
+& = \left(\sum_{i=1}^n X_iX_i^{\top}\right)^{-1} \sum_{i=1}^n X_iY_i\\ 
+& = \left(X^{\top}X\right)^{-1} X^{\top}Y.\\ 
 \end{align*}
 $$
 Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS estimator $\hat\beta$ as derived above.
@@ -689,13 +712,13 @@ Thus the method of moments estimator, $\hat\beta_{mm},$ coincides with the OLS e
 
 <!-- Deriving the OLS estimator does not explicitly require a identification step; i.e. it does not require a statement that the parameter of interest, $\beta,$ can be written in terms of population moments of observables
 $$
-\beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i),
+\beta = \left(E(X_iX_i^{\top})\right)^{-1} E(X_iY_i),
 $$
 where the latter statement only hold under Assumption 2 (exogeneity). -->
 
 The method of moments estimation approach, firstly, checks whether the parameter of interest, $\beta,$ is identified; i.e., whether $\beta$ can be written in terms of population moments of observables
 $$
-\beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i),
+\beta = \left(E(X_iX_i^{\top})\right)^{-1} E(X_iY_i),
 $${#eq-IdentificationBeta}
 where the identification result of @eq-IdentificationBeta only holds under Assumption 2 (exogeneity). The identified parameter $\beta$ is then estimated using the simple method of moments idea of substituting population moments by sample moments. 
 
@@ -703,7 +726,7 @@ where the identification result of @eq-IdentificationBeta only holds under Assum
 
 Note: If Assumption 2 (exogeneity) is violated, then we generally have that
 $$
-\beta \neq \tilde \beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i).
+\beta \neq \tilde \beta = \left(E(X_iX_i^{\top})\right)^{-1} E(X_iY_i).
 $$
 
 
@@ -712,21 +735,21 @@ The derivation of the OLS estimator
 $$
 \begin{align*}
 \hat\beta 
-& = \left(X'X\right)^{-1} X'Y\\[2ex]
-& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i'\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i  \\
-& = \underbrace{\left(\sum_{i=1}^n X_iX_i'\right)^{-1}}_{\approx (E(X_iX_i'))^{-1}} \; \underbrace{\sum_{i=1}^n X_iY_i}_{\approx E(X_iY_i)} 
+& = \left(X^{\top}X\right)^{-1} X^{\top}Y\\[2ex]
+& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i^{\top}\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i  \\
+& = \underbrace{\left(\sum_{i=1}^n X_iX_i^{\top}\right)^{-1}}_{\approx (E(X_iX_i^{\top}))^{-1}} \; \underbrace{\sum_{i=1}^n X_iY_i}_{\approx E(X_iY_i)} 
 \end{align*}
 $$
 does not require a check whether $\beta$ is actually identified. By the law of large numbers (sample means converge in probability to population means; see @sec-lsinf), the OLS estimator is a consistent estimator of $\tilde\beta,$ 
 $$
 \begin{align*}
-\hat\beta \to_p  \tilde\beta = (E(X_iX_i'))^{-1} E(X_iY_i) \quad \text{as}\quad n\to\infty. 
+\hat\beta \to_p  \tilde\beta = (E(X_iX_i^{\top}))^{-1} E(X_iY_i) \quad \text{as}\quad n\to\infty. 
 \end{align*}
 $$
 
 That is, the OLS estimator will estimate the parameter of interest $\beta$ only if  
 $$
-\beta = \tilde \beta = \left(E(X_iX_i')\right)^{-1} E(X_iY_i);
+\beta = \tilde \beta = \left(E(X_iX_i^{\top})\right)^{-1} E(X_iY_i);
 $$
 i.e. only if $\beta$ is identified. 
 
@@ -743,14 +766,14 @@ Without identification, the OLS estimator estimates $\tilde\beta,$ but generally
 
 - The (OLS) **predicted values**: 
 $$
-\hat{Y}_i=X_i'\hat\beta, \quad i=1,\dots,n
+\hat{Y}_i=X_i^{\top}\hat\beta, \quad i=1,\dots,n
 $$ 
 The $(n\times 1)$ vector of predicted values
 $$
 \begin{align*}
 \hat{Y} = \left(\begin{matrix}\hat{Y}_1\\\hat{Y}_2\\ \vdots\\ \hat{Y}_n\end{matrix}\right)
 &=X\hat{\beta}\\[-2ex]
-&=\underbrace{X(X'X)^{-1}X'}_{=P_X}Y\\[2ex]
+&=\underbrace{X(X^{\top}X)^{-1}X^{\top}}_{=P_X}Y\\[2ex]
 &=P_X Y
 \end{align*}
 $$
@@ -768,7 +791,7 @@ $$
 \left(\begin{matrix}\hat{Y}_1\\\hat{Y}_2\\ \vdots\\ \hat{Y}_n\end{matrix}\right)\\[2ex]
 &=Y - \hat{Y}\\[2ex]
 %&=Y - X\hat{\beta}\\[-2ex]
-%&=Y - \underbrace{X(X'X)^{-1}X'}_{=P_X}Y\\[2ex]
+%&=Y - \underbrace{X(X^{\top}X)^{-1}X^{\top}}_{=P_X}Y\\[2ex]
 &=Y - P_X Y\\[2ex]
 &=\underbrace{(I_n - P_X)}_{=M_X} Y\\[2ex]
 &=M_XY
@@ -779,11 +802,11 @@ $$
 
 The matrix 
 $$
-P_X=X(X'X)^{-1}X'
+P_X=X(X^{\top}X)^{-1}X^{\top}
 $$ 
 is the $(n\times n)$ **projection matrix** that projects any vector from $\mathbb{R}^n$ into the column space spanned by the column vectors of $X$ and 
 $$
-M_X=I_n-X(X'X)^{-1}X'=I_n-P_X
+M_X=I_n-X(X^{\top}X)^{-1}X^{\top}=I_n-P_X
 $$ 
 is the associated $(n\times n)$ **orthogonal projection matrix** that projects any vector from $\mathbb{R}^n$ into the vector space that is orthogonal to that spanned by the column vectors of $X.$
 
@@ -792,25 +815,25 @@ The projection matrices $P_X$ and $M_X$ have some nice properties:
 
 (a) $P_X$ and $M_X$ are **symmetric**, i.e. 
 $$
-P_X=P_X'\quad\text{ and }\quad M_X=M_X'
+P_X=P_X^{\top}\quad\text{ and }\quad M_X=M_X^{\top}
 $$
 (b) $P_X$ and $M_X$ are **idempotent**, i.e. 
 $$
 P_XP_X=P_X\quad\text{ and }\quad M_X M_X=M_X
 $$
 (c) Moreover, we have that 
-     * $X'P_X=X'$ and $P_X X=X$
-     * $X'M_X=0$ and $M_XX=0$ 
+     * $X^{\top}P_X=X^{\top}$ and $P_X X=X$
+     * $X^{\top}M_X=0$ and $M_XX=0$ 
      * $P_XM_X=0$ and $M_XP_X=0$ 
 
 The properties (a)-(c) follow directly from the definitions of $P_X$ and $M_X$ (check it out).  
 
-Using properties (a)-(c), one can show that the residual vector $\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)'$ is orthogonal to each of the column vectors in $X$, i.e 
+Using properties (a)-(c), one can show that the residual vector $\hat\varepsilon=(\hat\varepsilon_1,\dots,\hat\varepsilon_n)^{\top}$ is orthogonal to each of the column vectors in $X$, i.e 
 $$
 \begin{eqnarray}
-X'\hat\varepsilon&=&X'M_XY\quad{\small\text{(By Def. of $M_X$)}}\\[2ex]
-\Leftrightarrow\;\; X'\hat\varepsilon&=&\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad{\small\text{(since $X'M_X=0$)}}\\[2ex]
-\Leftrightarrow\;\; X'\hat\varepsilon&=&\underset{(K\times 1)}{0}.
+X^{\top}\hat\varepsilon&=&X^{\top}M_XY\quad{\small\text{(By Def. of $M_X$)}}\\[2ex]
+\Leftrightarrow\;\; X^{\top}\hat\varepsilon&=&\underset{(K\times n)}{0}\underset{(n\times 1)}{Y}\quad{\small\text{(since $X^{\top}M_X=0$)}}\\[2ex]
+\Leftrightarrow\;\; X^{\top}\hat\varepsilon&=&\underset{(K\times 1)}{0}.
 \end{eqnarray}
 $${#eq-ResidRestrictions}
 Note that, in the case with intercept, @eq-ResidRestrictions implies that 
@@ -822,12 +845,12 @@ $$
 $$
 
 
-Moreover, the equation $X'\hat\varepsilon=0$ implies also that the residual vector $\hat{\varepsilon}$ is orthogonal to the predicted values vector, since
+Moreover, the equation $X^{\top}\hat\varepsilon=0$ implies also that the residual vector $\hat{\varepsilon}$ is orthogonal to the predicted values vector, since
 $$
 \begin{align*}
-X'\hat\varepsilon&=0\\
-\Rightarrow\;\hat\beta'X'\hat\varepsilon&=\hat\beta'0\\
-\Leftrightarrow\;\hat Y'\hat\varepsilon&=0.
+X^{\top}\hat\varepsilon&=0\\
+\Rightarrow\;\hat\beta^{\top}X^{\top}\hat\varepsilon&=\hat\beta^{\top}0\\
+\Leftrightarrow\;\hat Y^{\top}\hat\varepsilon&=0.
 \end{align*}
 $$
 
@@ -839,7 +862,7 @@ $$
 ::: {.callout-note}
 The $K$ linear restrictions follow from the fact that 
 $$
-X'\hat\varepsilon=\underset{(K\times 1)}{0}
+X^{\top}\hat\varepsilon=\underset{(K\times 1)}{0}
 $$ 
 is a linear system of $K$ equations. That is, for each $k=1,\dots,K$ the residuals $\hat\varepsilon_1,\dots,\hat\varepsilon_n$ need to fulfill the equation  
 $$
@@ -847,23 +870,24 @@ $$
 $$ 
 :::
 
-**Variance decomposition:** A further useful result that can be shown using the properties of $P_X$ and $M_X$ is that $Y'Y=\hat{Y}'\hat{Y}+\hat\varepsilon'\hat\varepsilon$, i.e.
+**Variance decomposition:** A further useful result that can be shown using the properties of $P_X$ and $M_X$ is that $Y^{\top}Y=\hat{Y}^{\top}\hat{Y}+\hat\varepsilon^{\top}\hat\varepsilon$, i.e.
 \begin{eqnarray*}
-Y'Y&=&(\hat Y+\hat\varepsilon)'(\hat Y+\hat\varepsilon)\notag\\
-  &=&(P_XY+M_XY)'(P_XY+M_XY)\notag\\
-  &=&(Y'P_X'+Y'M_X')(P_XY+M_XY)\notag\\
-  &=&Y'P_X'P_XY+Y'M_X'M_XY+0\notag\\
-  &=&\hat{Y}'\hat{Y}+\hat\varepsilon'\hat\varepsilon
+Y^{\top}Y&=&(\hat Y+\hat\varepsilon)^{\top}(\hat Y+\hat\varepsilon)\notag\\
+  &=&(P_XY+M_XY)^{\top}(P_XY+M_XY)\notag\\
+  &=&(Y^{\top}P_X^{\top}+Y^{\top}M_X^{\top})(P_XY+M_XY)\notag\\
+  &=&Y^{\top}P_X^{\top}P_XY+Y^{\top}M_X^{\top}M_XY+0\notag\\
+  &=&\hat{Y}^{\top}\hat{Y}+\hat\varepsilon^{\top}\hat\varepsilon
 \end{eqnarray*}
 The decomposition 
 $$
-\hat{Y}'\hat{Y}+\hat\varepsilon'\hat\varepsilon
+\hat{Y}^{\top}\hat{Y}+\hat\varepsilon^{\top}\hat\varepsilon
 $$
 is the basis for the well-known variance decomposition result for OLS regressions. 
 
 ::: {.callout icon=false}
 ##
 ::: {#thm-vardecomp}
+## Variance Decomposition
 For the linear regression model with intercept (@eq-LinMod), the total sample variance of the dependent variable $Y_1,\dots,Y_n$ can be decomposed as following:
 \begin{eqnarray}
 \underset{\text{total sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}&=&\underset{\text{explained sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}+\underset{\text{unexplained sample variance}}{\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2,}\label{VarDecomp}
@@ -873,17 +897,17 @@ where $\bar{Y}=\frac{1}{n}\sum_{i=1}^nY_i$ and $\bar{\hat{Y}}=\frac{1}{n}\sum_{i
 ::: 
 
 ::: {.proof}
-From equation $X'\hat\varepsilon=0$ we have for regressions with intercept that $\sum_{i=1}^n\hat\varepsilon_i=0$. Hence, from $Y_i=\hat{Y}_i+\hat\varepsilon_i$ it follows that
+From equation $X^{\top}\hat\varepsilon=0$ we have for regressions with intercept that $\sum_{i=1}^n\hat\varepsilon_i=0$. Hence, from $Y_i=\hat{Y}_i+\hat\varepsilon_i$ it follows that
 \begin{eqnarray*}
   \frac{1}{n}\sum_{i=1}^n Y_i&=&\frac{1}{n}\sum_{i=1}^n \hat{Y}_i+\frac{1}{n}\sum_{i=1}^n \hat\varepsilon_i\\
   \bar{Y}&=&\bar{\hat{Y}}+0
 \end{eqnarray*}
 
-Using the decomposition $Y'Y=\hat{Y}'\hat{Y}+\hat\varepsilon'\hat\varepsilon$, we can now derive the result:
+Using the decomposition $Y^{\top}Y=\hat{Y}^{\top}\hat{Y}+\hat\varepsilon^{\top}\hat\varepsilon$, we can now derive the result:
 \begin{eqnarray*}
-   Y'Y&=&\hat{Y}'\hat{Y}+\hat\varepsilon'\hat\varepsilon\\
-   Y'Y-n\bar{Y}^2&=&\hat{Y}'\hat{Y}-n\bar{Y}^2+\hat\varepsilon'\hat\varepsilon\\
-   Y'Y-n\bar{Y}^2&=&\hat{Y}'\hat{Y}-n\bar{\hat{Y}}^2+\hat\varepsilon'\hat\varepsilon\quad\text{(by $\bar{Y}=\bar{\hat{Y}}$)}\\
+   Y^{\top}Y&=&\hat{Y}^{\top}\hat{Y}+\hat\varepsilon^{\top}\hat\varepsilon\\
+   Y^{\top}Y-n\bar{Y}^2&=&\hat{Y}^{\top}\hat{Y}-n\bar{Y}^2+\hat\varepsilon^{\top}\hat\varepsilon\\
+   Y^{\top}Y-n\bar{Y}^2&=&\hat{Y}^{\top}\hat{Y}-n\bar{\hat{Y}}^2+\hat\varepsilon^{\top}\hat\varepsilon\quad\text{(by $\bar{Y}=\bar{\hat{Y}}$)}\\
    \sum_{i=1}^nY_i^2-n\bar{Y}^2&=&\sum_{i=1}^n\hat{Y}_i^2-n\bar{\hat{Y}}^2+\sum_{i=1}^n\hat\varepsilon_i^2\\
    \sum_{i=1}^n(Y_i-\bar{Y})^2&=&\sum_{i=1}^n(\hat{Y}_i-\bar{\hat{Y}})^2+\sum_{i=1}^n\hat\varepsilon_i^2\quad\square\\
 \end{eqnarray*}
@@ -958,19 +982,19 @@ f(aY)&=af(Y).
 $$
 This property applies to the OLS estimator 
 $$
-\hat\beta=f(Y)=(X'X)^{-1}X'Y
+\hat\beta=f(Y)=(X^{\top}X)^{-1}X^{\top}Y
 $$ 
 since
 $$
 \begin{align*}
-(X'X)^{-1}X'(Y_1+Y_2)
-& = (X'X)^{-1}X'Y_1 + (X'X)^{-1}X'Y_2
+(X^{\top}X)^{-1}X^{\top}(Y_1+Y_2)
+& = (X^{\top}X)^{-1}X^{\top}Y_1 + (X^{\top}X)^{-1}X^{\top}Y_2
 \end{align*}
 $$
 and 
 $$
 \begin{align*}
-(X'X)^{-1}X'aY & = a (X'X)^{-1}X'Y
+(X^{\top}X)^{-1}X^{\top}aY & = a (X^{\top}X)^{-1}X^{\top}Y
 \end{align*}
 $$
 for any $Y_1$ and $Y_2$ such that $Y=Y_1+Y_2$ and for any $a\in\mathbb{R}.$
@@ -983,18 +1007,18 @@ $$
 $$
 This can be shown as following: Observe that 
 $$
-\hat\beta=(X'X)^{-1}X'Y
+\hat\beta=(X^{\top}X)^{-1}X^{\top}Y
 $$ 
 consists of two multivariate random variables $X$ and $Y.$ Thus one needs to show first the conditional unbiasedness of $\hat\beta$ given $X$ which effectively allows us to focus on randomness due to $\varepsilon,$  
 $$
 \begin{align*}
 \operatorname{Bias}(\hat\beta|X) 
 &= E(\hat\beta|X)                                        - \beta \\[2ex]
-&= E((X'X)^{-1}X'\underbrace{Y}_{=X\beta+\varepsilon}|X) - \beta \\[2ex]
-&= E((X'X)^{-1}X'(X\beta+\varepsilon)|X)                 - \beta \\[2ex]
-&= E(\underbrace{(X'X)^{-1}X'X}_{=I_K}\beta|X) + E((X'X)^{-1}X'\varepsilon|X) - \beta \\[2ex]
-&= \underbrace{E(\beta|X)}_{=\beta} + \underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=(X'X)^{-1}X'E(\varepsilon|X)} - \beta \\[2ex]
-&=  (X'X)^{-1}X'\underbrace{E(\varepsilon|X)}_{=0} =\underset{(K\times 1)}{0}  
+&= E((X^{\top}X)^{-1}X^{\top}\underbrace{Y}_{=X\beta+\varepsilon}|X) - \beta \\[2ex]
+&= E((X^{\top}X)^{-1}X^{\top}(X\beta+\varepsilon)|X)                 - \beta \\[2ex]
+&= E(\underbrace{(X^{\top}X)^{-1}X^{\top}X}_{=I_K}\beta|X) + E((X^{\top}X)^{-1}X^{\top}\varepsilon|X) - \beta \\[2ex]
+&= \underbrace{E(\beta|X)}_{=\beta} + \underbrace{E((X^{\top}X)^{-1}X^{\top}\varepsilon|X)}_{=(X^{\top}X)^{-1}X^{\top}E(\varepsilon|X)} - \beta \\[2ex]
+&=  (X^{\top}X)^{-1}X^{\top}\underbrace{E(\varepsilon|X)}_{=0} =\underset{(K\times 1)}{0}  
 \end{align*}
 $$
 Thus $\hat\beta$ is unbiased conditionally on $X.$ From this if follows, by the iterated law of expectations, that the OLS estimator is also unconditionally unbiased, i.e.  
@@ -1007,18 +1031,18 @@ $$
 \begin{align*}
 Var(\hat\beta|X)
 &=Var(\;\highlight{\hat\beta - \beta}\;|X)\\[2ex]
-&=Var((X'X)^{-1}X'\varepsilon|X),
+&=Var((X^{\top}X)^{-1}X^{\top}\varepsilon|X),
 \end{align*}
 $$
 where we used that 
 $$
 \begin{align*}
 \hat\beta
-&=(X'X)^{-1}X'Y\\
-&=(X'X)^{-1}X'(X\beta+\varepsilon)\\[2ex]
-&=\beta+(X'X)^{-1}X'\varepsilon\\[2ex]
+&=(X^{\top}X)^{-1}X^{\top}Y\\
+&=(X^{\top}X)^{-1}X^{\top}(X\beta+\varepsilon)\\[2ex]
+&=\beta+(X^{\top}X)^{-1}X^{\top}\varepsilon\\[2ex]
 \Leftrightarrow \highlight{\hat\beta - \beta} 
-& = \highlight{(X'X)^{-1}X'\varepsilon}.
+& = \highlight{(X^{\top}X)^{-1}X^{\top}\varepsilon}.
 \end{align*}
 $$
 
@@ -1032,24 +1056,24 @@ The conditional variance of a multivariate random variable $Z\in\mathbb{R}^K,$ g
 $$
 \begin{align*}
 Var(Z|X)
-&=\underbrace{E\Big[\overbrace{(Z-E(Z|X))}^{(K\times 1)}\overbrace{(Z-E(Z|X))'}^{(1\times K)}|X\Big]}_{K\times K}\\[2ex]
-&=\underbrace{E\big[ZZ'|X\big]}_{K\times K} - \underbrace{E\big[Z|X\big]E\big[Z'|X\big]}_{K\times K}
+&=\underbrace{E\Big[\overbrace{(Z-E(Z|X))}^{(K\times 1)}\overbrace{(Z-E(Z|X))^{\top}}^{(1\times K)}|X\Big]}_{K\times K}\\[2ex]
+&=\underbrace{E\big[ZZ^{\top}|X\big]}_{K\times K} - \underbrace{E\big[Z|X\big]E\big[Z^{\top}|X\big]}_{K\times K}
 \end{align*}
 $$
 :::
 :::
 
-Using the definition of the conditional variance (@def-CondVarMult) for multivariate random variables $(Z=(X'X)^{-1}X'\varepsilon)$ we have that 
+Using the definition of the conditional variance (@def-CondVarMult) for multivariate random variables $(Z=(X^{\top}X)^{-1}X^{\top}\varepsilon)$ we have that 
 $$
 \begin{align*}
 &Var(\hat\beta|X)=\\[2ex]
 %&=Var(\hat\beta - \beta|X)\\[2ex]
-&=Var((X'X)^{-1}X'\varepsilon|X)\\[2ex]
-&=E\Big[\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)\times\\[2ex]
-&\phantom{=\Big(}\,\times\big((X'X)^{-1}X'\varepsilon-\underbrace{E((X'X)^{-1}X'\varepsilon|X)}_{=0}\big)'|X\Big]\\[2ex]
-&=E\left[((X'X)^{-1}X'\varepsilon)((X'X)^{-1}X'\varepsilon)'|X\right]\\[2ex]
-&=E\left[(X'X)^{-1}X'\varepsilon\varepsilon' X(X'X)^{-1}|X\right]\\[2ex]
-&=\;\;\;(X'X)^{-1}X'\underbrace{E\left(\varepsilon\varepsilon'|X\right)}_{=Var(\varepsilon|X)}X(X'X)^{-1}
+&=Var((X^{\top}X)^{-1}X^{\top}\varepsilon|X)\\[2ex]
+&=E\Big[\big((X^{\top}X)^{-1}X^{\top}\varepsilon-\underbrace{E((X^{\top}X)^{-1}X^{\top}\varepsilon|X)}_{=0}\big)\times\\[2ex]
+&\phantom{=\Big(}\,\times\big((X^{\top}X)^{-1}X^{\top}\varepsilon-\underbrace{E((X^{\top}X)^{-1}X^{\top}\varepsilon|X)}_{=0}\big)^{\top}|X\Big]\\[2ex]
+&=E\left[((X^{\top}X)^{-1}X^{\top}\varepsilon)((X^{\top}X)^{-1}X^{\top}\varepsilon)^{\top}|X\right]\\[2ex]
+&=E\left[(X^{\top}X)^{-1}X^{\top}\varepsilon\varepsilon^{\top} X(X^{\top}X)^{-1}|X\right]\\[2ex]
+&=\;\;\;(X^{\top}X)^{-1}X^{\top}\underbrace{E\left(\varepsilon\varepsilon^{\top}|X\right)}_{=Var(\varepsilon|X)}X(X^{\top}X)^{-1}
 \end{align*}
 $$
 
@@ -1070,8 +1094,8 @@ Cov(\varepsilon_n,\varepsilon_1|X)&Cov(\varepsilon_n,\varepsilon_2|X)&\dots&Var(
 0&0&\dots&\sigma^2
 \end{matrix}\right)
 = \sigma^2 I_n,
-%& = E\left(\varepsilon\varepsilon'|X\right) - E\left(\varepsilon|X\right) E\left(\varepsilon'|X\right)\\[2ex]
-%& = E\left(\varepsilon\varepsilon'|X\right) - \underset{(K\times K)}{0}\\[2ex]
+%& = E\left(\varepsilon\varepsilon^{\top}|X\right) - E\left(\varepsilon|X\right) E\left(\varepsilon^{\top}|X\right)\\[2ex]
+%& = E\left(\varepsilon\varepsilon^{\top}|X\right) - \underset{(K\times K)}{0}\\[2ex]
 \end{align*}
 $$
 where $I_n$ is the $(n\times n)$ dimensional identity matrix with ones on the diagonal and zeros everywhere else. 
@@ -1080,9 +1104,9 @@ Thus **under the assumption of spherical errors**, we have that
 $$
 \begin{align*}
 Var(\hat\beta|X)
-&=(X'X)^{-1}X' \left(\sigma^2I_n\right)X(X'X)^{-1}\\[2ex]
-&=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}\\[2ex] 
-&=\sigma^2(X'X)^{-1}.
+&=(X^{\top}X)^{-1}X^{\top} \left(\sigma^2I_n\right)X(X^{\top}X)^{-1}\\[2ex]
+&=\sigma^2(X^{\top}X)^{-1}X^{\top}X(X^{\top}X)^{-1}\\[2ex] 
+&=\sigma^2(X^{\top}X)^{-1}.
 \end{align*}
 $$
 
@@ -1093,7 +1117,7 @@ $$
 * The OLS estimator belongs to the large family of **linear** (in $Y$) and **unbiased** estimators of $\beta.$ 
 * Under the assumption of spherical errors, the **conditional variance** of $\hat\beta,$ given $X,$ is 
 $$
-Var(\hat\beta|X)=\sigma^2(X'X)^{-1}.
+Var(\hat\beta|X)=\sigma^2(X^{\top}X)^{-1}.
 $$
 :::
 
@@ -1114,7 +1138,7 @@ If it holds true that
 
 then the OLS estimator 
 $$
-\underset{(K\times 1)}{\hat\beta}=(X'X)^{-1}X'Y
+\underset{(K\times 1)}{\hat\beta}=(X^{\top}X)^{-1}X^{\top}Y
 $$
 has the smallest conditional variance (given $X$) among all **linear** (in $Y$) and **conditionally unbiased** estimators $\tilde{\beta}\in\mathbb{R}^K$ with $E(\tilde{\beta}|X)=\beta.$ That is, for any alternative linear and unbiased estimator $\tilde{\beta}$ we have that 
 $$
@@ -1129,11 +1153,11 @@ Var(\tilde{\beta}_k|X) \geq Var(\hat\beta_k | X)
 $$ 
 for all $k=1,\dots,K$. 
 
-::: {.callout-tip}
+::: {.callout-tip icon="false"}
 # Remember
 A $(K\times K)$ matrix $D$ is called positive semidefinite if 
 $$
-a'Da\geq 0
+a^{\top}Da\geq 0
 $$ 
 for any $K$-dimensional vector $a\in\mathbb{R}^K$.  
 :::
@@ -1149,14 +1173,14 @@ $$
 $$
 where $C$ is some $(K\times n)$ matrix, which is a function of $X$ and/or nonrandom components. Adding a $(K\times n)$ zero matrix $0$ yields 
 $$
-\tilde{\beta}=\Big(C\;\;\overbrace{-\left(X'X\right)^{-1}X'+\left(X'X\right)^{-1}X'\;}^{=0}\;\Big)Y.
+\tilde{\beta}=\Big(C\;\;\overbrace{-\left(X^{\top}X\right)^{-1}X^{\top}+\left(X^{\top}X\right)^{-1}X^{\top}\;}^{=0}\;\Big)Y.
 $$
-Let now $D=C-\left(X'X\right)^{-1}X'$, then
+Let now $D=C-\left(X^{\top}X\right)^{-1}X^{\top}$, then
 $$
 \begin{align*}
-\tilde{\beta}&=\left(D+\left(X'X\right)^{-1}X'\right)Y\\
-\tilde{\beta}&=DY + \left(X'X\right)^{-1}X'Y\\
-\tilde{\beta}&=D\left(X{\beta}+{\varepsilon}\right) + \left(X'X\right)^{-1}X'Y
+\tilde{\beta}&=\left(D+\left(X^{\top}X\right)^{-1}X^{\top}\right)Y\\
+\tilde{\beta}&=DY + \left(X^{\top}X\right)^{-1}X^{\top}Y\\
+\tilde{\beta}&=D\left(X{\beta}+{\varepsilon}\right) + \left(X^{\top}X\right)^{-1}X^{\top}Y
 \end{align*}
 $$
 Thus 
@@ -1182,19 +1206,19 @@ $$
 \begin{align*}
 \tilde{\beta}&=D{\varepsilon} + \hat{\beta}\\[2ex]
 \tilde{\beta}-{\beta}&=D{\varepsilon} + \highlight{(\hat{\beta}-{\beta})}\\[2ex]
-\tilde{\beta}-{\beta}&=D{\varepsilon} + \highlight{\left(X'X\right)^{-1}X'{\varepsilon}}
+\tilde{\beta}-{\beta}&=D{\varepsilon} + \highlight{\left(X^{\top}X\right)^{-1}X^{\top}{\varepsilon}}
 \end{align*}
 $$
 such that 
 $$
-\tilde{\beta}-{\beta}=\left(D + \left(X'X\right)^{-1}X'\right){\varepsilon},
+\tilde{\beta}-{\beta}=\left(D + \left(X^{\top}X\right)^{-1}X^{\top}\right){\varepsilon},
 $${#eq-c3e18}
 where we used that 
 $$
 \begin{align*}
-\highlight{\hat\beta-\beta}&=(X'X)^{-1}X'Y-\beta\\[2ex]
-&=(X'X)^{-1}X'(X\beta+\varepsilon)-\beta\\[2ex]
-&=\highlight{(X'X)^{-1}X'\varepsilon}.
+\highlight{\hat\beta-\beta}&=(X^{\top}X)^{-1}X^{\top}Y-\beta\\[2ex]
+&=(X^{\top}X)^{-1}X^{\top}(X\beta+\varepsilon)-\beta\\[2ex]
+&=\highlight{(X^{\top}X)^{-1}X^{\top}\varepsilon}.
 \end{align*}
 $$
 
@@ -1202,27 +1226,27 @@ Using that $Var(\tilde{\beta}|X)= Var(\tilde{\beta}-{\beta}|X)$ since $\beta$ is
 $$
 \begin{align*}
 Var(\tilde{\beta}|X) 
-&= Var((D + (X'X)^{-1}X'){\varepsilon}|X)\\[2ex]
-&= (D + (X'X)^{-1}X')Var({\varepsilon}|X)(D' + X(X'X)^{-1})\\[2ex]
-&= \sigma^2(D + (X'X)^{-1}X')I_n(D' + X(X'X)^{-1})\\[2ex]
-&= \sigma^2\left(DD'+(X'X)^{-1}\right)\quad \text{(using that $DX=0$)} \\[2ex]
-&\geq\sigma^2(X'X)^{-1} \quad \text{(using that $DD'\geq 0$)}\\[2ex]
+&= Var((D + (X^{\top}X)^{-1}X^{\top}){\varepsilon}|X)\\[2ex]
+&= (D + (X^{\top}X)^{-1}X^{\top})Var({\varepsilon}|X)(D^{\top} + X(X^{\top}X)^{-1})\\[2ex]
+&= \sigma^2(D + (X^{\top}X)^{-1}X^{\top})I_n(D^{\top} + X(X^{\top}X)^{-1})\\[2ex]
+&= \sigma^2\left(DD^{\top}+(X^{\top}X)^{-1}\right)\quad \text{(using that $DX=0$)} \\[2ex]
+&\geq\sigma^2(X^{\top}X)^{-1} \quad \text{(using that $DD^{\top}\geq 0$)}\\[2ex]
 &= Var(\hat{\beta}|X).
 \end{align*}
 $$
-Finally, we need to show that $DD'$ is really positive semidefinite (i.e. $DD'\geq 0$ in matrix sense):
+Finally, we need to show that $DD^{\top}$ is really positive semidefinite (i.e. $DD^{\top}\geq 0$ in matrix sense):
 $$
 \begin{align*}
-a'DD'a=(D'a)'(D'a)=\tilde{a}'\tilde{a}=\sum_{k=1}^K \tilde{a}^2_k \geq 0,
+a^{\top}DD^{\top}a=(D^{\top}a)^{\top}(D^{\top}a)=\tilde{a}^{\top}\tilde{a}=\sum_{k=1}^K \tilde{a}^2_k \geq 0,
 \end{align*}
 $$
 where $a\in\mathbb{R}^K$ is any $K$-dimensional vector. 
 
 <!-- Remember: -->
 <!-- \begin{itemize} -->
-<!-- \item $(A+\hat{\beta})'=A'+\hat{\beta}'$ -->
-<!-- \item $(AB)'=\hat{\beta}'A'$ -->
-<!-- \item $A' = A$ $\Leftrightarrow$ $A$ is a symmetric matrix -->
+<!-- \item $(A+\hat{\beta})^{\top}=A^{\top}+\hat{\beta}^{\top}$ -->
+<!-- \item $(AB)^{\top}=\hat{\beta}^{\top}A^{\top}$ -->
+<!-- \item $A^{\top} = A$ $\Leftrightarrow$ $A$ is a symmetric matrix -->
 <!-- \end{itemize} -->
 :::
 
@@ -1389,17 +1413,17 @@ Execution halted
 # <font color="#FF0000">An error message!</font>  🤬 
 We stepped into the **dummy variable trap**! 
 
-That is, we constructed a $(n\times K)$-dimensional matrix $X$ for which Assumption 3 $(\operatorname{rank}(X)=K)$ is violated. Therefore $(X'X)$ does not have full rank and is thus not invertible. 
+That is, we constructed a $(n\times K)$-dimensional matrix $X$ for which Assumption 3 $(\operatorname{rank}(X)=K)$ is violated. Therefore $(X^{\top}X)$ does not have full rank and is thus not invertible. 
 ::: 
 
-The estimation result is not computable since $(X'X)$ is not invertible due to the perfect multicollinearity between the intercept and the two dummy variables `X_female` and `X_male`, i.e. </br> 
+The estimation result is not computable since $(X^{\top}X)$ is not invertible due to the perfect multicollinearity between the intercept and the two dummy variables `X_female` and `X_male`, i.e. </br> 
 <center>
 `X_1` = `X_female` $+$ `X_male` 
 </center>
 </br>
 which violates Assumption 3 (no perfect multicollinearity). 
 
-::: {.callout-tip}
+::: {.callout-tip icon="false"}
 # Solution 
 Use one dummy-variable less than factor levels. I.e., in this example you can either drop `X_female` or `X_male`. 
 :::
@@ -1440,10 +1464,10 @@ plot(lm_object, which = 1)
 Interpretation: 
 
 * The plot shows the residuals $\hat{\varepsilon}_i$ plotted against the fitted values $\hat{Y}_i$.
-* The diagnostic plot indicates that the variance increases with $\hat{Y}_i=X_i'\hat{\beta}.$
+* The diagnostic plot indicates that the variance increases with $\hat{Y}_i=X_i^{\top}\hat{\beta}.$
 
-::: {.callout-tip}
-**Note:** Plotting against the fitted values is actually a quite smart idea since this also works for multiple predictors $X_{i1},\dots,X_{iK}$ with $K\geq 3$. 
+::: {.callout-note}
+Plotting against the fitted values is actually a quite smart idea since this also works for multiple predictors $X_{i1},\dots,X_{iK}$ with $K\geq 3$. 
 :::
 
 ### Checking (Non-)Linearity of the Regression Line
