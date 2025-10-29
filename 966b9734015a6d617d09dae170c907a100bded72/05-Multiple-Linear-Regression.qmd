@@ -892,7 +892,7 @@ For the linear regression model with intercept (@eq-LinMod), the total sample va
 \begin{eqnarray}
 \underset{\text{total sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(Y_i-\bar{Y}\right)^2}&=&\underset{\text{explained sample variance}}{\frac{1}{n}\sum_{i=1}^n\left(\hat{Y}_i-\bar{\hat{Y}}\right)^2}+\underset{\text{unexplained sample variance}}{\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2,}\label{VarDecomp}
 \end{eqnarray}
-where $\bar{Y}=\frac{1}{n}\sum_{i=1}^nY_i$ and $\bar{\hat{Y}}=\frac{1}{n}\sum_{i=1}^n\hat{Y}_i$. 
+where $\bar{Y}=\frac{1}{n}\sum_{i=1}^nY_i$ and $\bar{\hat{Y}}=\frac{1}{n}\sum_{i=1}^n\hat{Y}_i,$ and where $\bar{Y}=\bar{\hat{Y}}.$ 
 :::
 ::: 
 
