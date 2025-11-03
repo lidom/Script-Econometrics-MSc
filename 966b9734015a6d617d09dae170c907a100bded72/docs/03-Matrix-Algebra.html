@@ -708,23 +708,40 @@ Matrix Multiplication
 <span class="header-section-number">3.3</span> Rank and Inverse</h2>
 <section id="linear-combination" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="linear-combination">
 <span class="header-section-number">3.3.1</span> Linear Combination</h3>
-<p>Let <span class="math inline">\(x_1, \ldots, x_n\)</span> be vectors of the same dimension, and let <span class="math inline">\(\lambda_1, \ldots, \lambda_n\)</span> be scalars. The vector <span class="math display">\[
-\lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_n x_n
-\]</span> is called <strong>linear combination</strong> of <span class="math inline">\(x_1, \ldots, x_n\)</span>.</p>
-<p>A linear combination of vectors <span class="math inline">\(x_1, \ldots, x_n\)</span> can also be written as a matrix-vector product. Let <span class="math inline">\(X =\begin{pmatrix} x_1 &amp; \ldots &amp; x_n \end{pmatrix}\)</span> be the matrix with columns <span class="math inline">\(x_1, \ldots, x_n\)</span>, and let <span class="math inline">\(\lambda = (\lambda_1, \ldots, \lambda_n)^{\top}\)</span>. Then, <span class="math display">\[
-\lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_n x_n = X \lambda.
-\]</span> The vectors <span class="math inline">\(x_1, \ldots, x_n\)</span> are called <strong>linearly dependent</strong> if at least one can be written as a linear combination of the others. That is, there exists a nonzero vector <span class="math inline">\(\lambda\)</span> with <span class="math display">\[
-X \lambda = \lambda_1 x_1 + \ldots + \lambda_n x_n = 0.
-\]</span> The vectors <span class="math inline">\(x_1, \ldots, x_n\)</span> are called <strong>linearly independent</strong> if <span class="math display">\[
-X \lambda = \lambda_1 x_1 + \ldots + \lambda_n x_n \neq 0
+<p>Let <span class="math inline">\(x_1, \ldots, x_m\)</span> be column vectors of dimension <span class="math inline">\(k,\)</span> and let <span class="math inline">\(\lambda_1, \ldots, \lambda_m\)</span> be scalars. The vector <span class="math display">\[
+\lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_m x_m
+\]</span> is called <strong>linear combination</strong> of <span class="math inline">\(x_1, \ldots, x_m\)</span>.</p>
+<p>A linear combination of vectors <span class="math inline">\(x_1, \ldots, x_m\)</span> can also be written as a matrix-vector product. Let <span class="math inline">\(X =\begin{pmatrix} x_1 &amp; \ldots &amp; x_m \end{pmatrix}\)</span> be the <span class="math inline">\((k\times m)\)</span> matrix with columns <span class="math inline">\(x_1, \ldots, x_m\)</span>, and let <span class="math inline">\(\lambda = (\lambda_1, \ldots, \lambda_m)^{\top}\)</span>. Then, <span class="math display">\[
+\lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_n x_n = \underset{(k\times m)}{X}\;\underset{(m\times 1)}{\lambda}.
+\]</span></p>
+<section id="linearly-dependent" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="linearly-dependent"><strong>Linearly Dependent</strong></h4>
+<p>The vectors <span class="math inline">\(x_1, \ldots, x_m\)</span> are called <strong>linearly dependent</strong> if at least one of them can be written as a linear combination of the others. That is, if there exists a nonzero vector <span class="math inline">\(\lambda\neq 0\)</span> such that <span class="math display">\[
+X \lambda = \lambda_1 x_1 + \ldots + \lambda_m x_m = 0.
+\]</span></p>
+</section><section id="linearly-independent" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="linearly-independent"><strong>Linearly Independent</strong></h4>
+<p>The vectors <span class="math inline">\(x_1, \ldots, x_m\)</span> are called <strong>linearly independent</strong> if <span class="math display">\[
+X \lambda = \lambda_1 x_1 + \ldots + \lambda_m x_m \neq 0
 \]</span> for all nonzero vectors <span class="math inline">\(\lambda\)</span>.</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Checking for Linear (In-)Dependency
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>To check whether the vectors are linearly independent, we can solve the system of equations <span class="math display">\[
 X \lambda = 0
 \]</span> by <a href="https://math.libretexts.org/Bookshelves/Algebra/Algebra_and_Trigonometry_1e_(OpenStax)/11%3A_Systems_of_Equations_and_Inequalities/11.06%3A_Solving_Systems_with_Gaussian_Elimination">Gaussian elimination</a>.</p>
 <ul>
 <li>If <span class="math inline">\(\lambda = 0\)</span> is the only solution, then the columns of <span class="math inline">\(X\)</span> are linearly independent.</li>
 <li>If there is at least one solution <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(\lambda \neq 0\)</span>, then the columns of <span class="math inline">\(X\)</span> are linearly dependent.</li>
-</ul></section><section id="column-rank" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="column-rank">
+</ul>
+</div>
+</div>
+</section></section><section id="column-rank" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="column-rank">
 <span class="header-section-number">3.3.2</span> Column Rank</h3>
 <p>The <strong>rank</strong> of a <span class="math inline">\((k \times m)\)</span> matrix <span class="math inline">\(A = \begin{pmatrix} a_1 &amp; \ldots &amp; a_m \end{pmatrix}\)</span>, written as <span class="math display">\[
 \mathop{\mathrm{rank}}(A),
@@ -741,16 +758,18 @@ X = \begin{pmatrix} 2 &amp; 1 &amp; 4 \\ 0 &amp; 1 &amp; 2 \end{pmatrix},
 \begin{align*}
 &amp;\qquad\qquad\begin{pmatrix} 4 \\ 2 \end{pmatrix} = 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}\\[2ex]
 &amp;\Leftrightarrow\quad - 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} - 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} + \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\[2ex]
-&amp;\Leftrightarrow\quad\underbrace{\begin{pmatrix} 2&amp;1&amp;4 \\ 0&amp;1&amp;2 \end{pmatrix}}_{=X} \underbrace{\begin{pmatrix} -1 \\ -2\\1 \end{pmatrix}}_{=\lambda} = \begin{pmatrix} 0 \\ 0 \end{pmatrix};
+&amp;\Leftrightarrow\quad\underbrace{\begin{pmatrix} 2&amp;1&amp;4 \\ 0&amp;1&amp;2 \end{pmatrix}}_{=X} \underbrace{\begin{pmatrix} -1 \\ -2\\1 \end{pmatrix}}_{=\lambda} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 \end{align*}
-\]</span> i.e., there exists a non-zero <span class="math inline">\(\lambda\)</span> vector that solves the equation system <span class="math inline">\(X\lambda = 0.\)</span></p>
-<p>However, the first two columns are linearly independent since <span class="math inline">\(\lambda_1 = 0\)</span> and <span class="math inline">\(\lambda_2 = 0\)</span> are the only solutions to the equation <span class="math display">\[
+\]</span> I.e, there exists a non-zero <span class="math inline">\(\lambda\)</span> vector that solves the linear equation system <span class="math inline">\(X\lambda = 0.\)</span></p>
+<p>However, the first two columns are linearly independent since <span class="math display">\[
+\lambda=\begin{pmatrix} \lambda_1 \\ \lambda_2 \end{pmatrix}=\begin{pmatrix} 0 \\ 0 \end{pmatrix}
+\]</span> is the only solution to the linear equation system <span class="math display">\[
 \begin{align*}
 &amp;\qquad\qquad
 \lambda_1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + \lambda_2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\[2ex]
 &amp;\Leftrightarrow\quad \begin{pmatrix} 2&amp;1 \\ 0&amp;1 \end{pmatrix} \begin{pmatrix} \lambda_1 \\ \lambda_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\
 \end{align*}
-\]</span> Therefore, we have <span class="math inline">\(\mathop{\mathrm{rank}}(X) = 2\)</span>, i.e., <span class="math inline">\(X\)</span> does not have a full column rank.</p>
+\]</span> Therefore, we have <span class="math inline">\(\mathop{\mathrm{rank}}(X) = 2;\)</span> i.e., <span class="math inline">\(X\)</span> does not have a full column rank.</p>
 <div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1060,7 +1079,7 @@ c^{\top}Ac &lt; 0\quad\text{for all non-zero vectors}\quad c\in \mathbb{R}^k\qua
 </div>
 <p>The <span class="math inline">\((k \times k)\)</span> square matrix <span class="math inline">\(A\)</span> is called <strong>indefinite</strong> if there are vectors <span class="math inline">\(c,\tilde{c}\in\mathbb{R}^k\)</span> such that <span class="math display">\[
 c^{\top}Ac&lt; 0 &lt; \tilde{c}^{\top}{A\tilde{c}}.
-\]</span> In this case, the matrix <span class="math inline">\(A\)</span> is neither positive semi-definite nor negative semi-definite.</p>
+\]</span> In this case, the matrix <span class="math inline">\(A\)</span> is <strong>neither positive semi-definite nor negative semi-definite.</strong></p>
 </section></section><section id="matrix-calculus" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="matrix-calculus">
 <span class="header-section-number">3.5</span> Matrix Calculus</h2>
 <p>Let <span class="math inline">\(f(\beta_1, \ldots, \beta_k) = f({\beta})\)</span> be a twice-differential real-valued function that depends on some vector <span class="math inline">\(\beta = (\beta_1, \ldots, \beta_k)^{\top}\)</span>. Examples that frequently appear in econometrics are functions of the inner product form <span class="math inline">\(f(\beta) = a^{\top} \beta\)</span>, where <span class="math inline">\(a \in \mathbb R^k\)</span>, and functions of the sandwich form <span class="math inline">\(f(\beta) = \beta^{\top} A \beta\)</span>, where <span class="math inline">\(A \in \mathbb R^{k \times k}\)</span>.</p>

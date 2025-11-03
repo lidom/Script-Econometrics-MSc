@@ -454,33 +454,41 @@ $$
 
 ### Linear Combination
 
-Let $x_1, \ldots, x_n$ be vectors of the same
-dimension, and let $\lambda_1, \ldots, \lambda_n$ be scalars. The vector
+Let $x_1, \ldots, x_m$ be column vectors of dimension $k,$ and let $\lambda_1, \ldots, \lambda_m$ be scalars. The vector
 $$
-\lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_n x_n 
+\lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_m x_m 
 $$
 is called **linear combination** of
-$x_1, \ldots, x_n$. 
+$x_1, \ldots, x_m$. 
 
-A linear combination of vectors $x_1, \ldots, x_n$ can also be written as a matrix-vector product. Let $X =\begin{pmatrix} x_1 & \ldots & x_n \end{pmatrix}$
-be the matrix with columns $x_1, \ldots, x_n$,
-and let $\lambda = (\lambda_1, \ldots, \lambda_n)^{\top}$. Then,
+A linear combination of vectors $x_1, \ldots, x_m$ can also be written as a matrix-vector product. Let $X =\begin{pmatrix} x_1 & \ldots & x_m \end{pmatrix}$
+be the $(k\times m)$ matrix with columns $x_1, \ldots, x_m$,
+and let $\lambda = (\lambda_1, \ldots, \lambda_m)^{\top}$. Then,
 $$
-\lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_n x_n = X \lambda.
+\lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_n x_n = \underset{(k\times m)}{X}\;\underset{(m\times 1)}{\lambda}.
 $$
-The vectors $x_1, \ldots, x_n$ are called
-**linearly dependent** if at least one can be written as a linear
-combination of the others. That is, there exists a nonzero vector
-$\lambda$ with 
+
+
+#### **Linearly Dependent** {-}
+
+The vectors $x_1, \ldots, x_m$ are called
+**linearly dependent** if at least one of them can be written as a linear combination of the others. That is, if there exists a nonzero vector $\lambda\neq 0$ such that 
 $$
-X \lambda = \lambda_1 x_1 + \ldots + \lambda_n x_n = 0.
+X \lambda = \lambda_1 x_1 + \ldots + \lambda_m x_m = 0.
 $$ 
-The vectors $x_1, \ldots, x_n$ are called
+
+#### **Linearly Independent** {-}
+
+The vectors $x_1, \ldots, x_m$ are called
 **linearly independent** if 
 $$
-X \lambda = \lambda_1 x_1 + \ldots + \lambda_n x_n \neq 0
+X \lambda = \lambda_1 x_1 + \ldots + \lambda_m x_m \neq 0
 $$ 
 for all nonzero vectors $\lambda$.
+
+::: {.callout-tip appearance="minimal"}
+
+## Checking for Linear (In-)Dependency 
 
 To check whether the vectors are linearly independent, we can solve the system of equations 
 $$
@@ -491,7 +499,7 @@ by [Gaussian elimination](https://math.libretexts.org/Bookshelves/Algebra/Algebr
 * If $\lambda = 0$ is the only solution, then the columns of $X$ are linearly
 independent. 
 * If there is at least one solution $\lambda$ with $\lambda \neq 0$, then the columns of $X$ are linearly dependent.
-
+:::
 
 ### Column Rank
 
@@ -526,13 +534,16 @@ $$
 \begin{align*}
 &\qquad\qquad\begin{pmatrix} 4 \\ 2 \end{pmatrix} = 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}\\[2ex]
 &\Leftrightarrow\quad - 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} - 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} + \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\[2ex]
-&\Leftrightarrow\quad\underbrace{\begin{pmatrix} 2&1&4 \\ 0&1&2 \end{pmatrix}}_{=X} \underbrace{\begin{pmatrix} -1 \\ -2\\1 \end{pmatrix}}_{=\lambda} = \begin{pmatrix} 0 \\ 0 \end{pmatrix};
+&\Leftrightarrow\quad\underbrace{\begin{pmatrix} 2&1&4 \\ 0&1&2 \end{pmatrix}}_{=X} \underbrace{\begin{pmatrix} -1 \\ -2\\1 \end{pmatrix}}_{=\lambda} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 \end{align*}
 $$
-i.e., there exists a non-zero $\lambda$ vector that solves the equation system $X\lambda = 0.$
+I.e, there exists a non-zero $\lambda$ vector that solves the linear equation system $X\lambda = 0.$
 
-However, the first two columns are linearly independent since $\lambda_1 = 0$
-and $\lambda_2 = 0$ are the only solutions to the equation 
+However, the first two columns are linearly independent since 
+$$
+\lambda=\begin{pmatrix} \lambda_1 \\ \lambda_2 \end{pmatrix}=\begin{pmatrix} 0 \\ 0 \end{pmatrix}
+$$ 
+is the only solution to the linear equation system 
 $$
 \begin{align*}
 &\qquad\qquad
@@ -540,7 +551,7 @@ $$
 &\Leftrightarrow\quad \begin{pmatrix} 2&1 \\ 0&1 \end{pmatrix} \begin{pmatrix} \lambda_1 \\ \lambda_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\
 \end{align*}
 $$ 
-Therefore, we have $\mathop{\mathrm{rank}}(X) = 2$, i.e.,
+Therefore, we have $\mathop{\mathrm{rank}}(X) = 2;$ i.e.,
 $X$ does not have a full column rank.
 
 ::: {.callout-tip appearance="minimal"}
@@ -893,7 +904,7 @@ The $(k \times k)$ square matrix $A$ is called
 $$
 c^{\top}Ac< 0 < \tilde{c}^{\top}{A\tilde{c}}.
 $$
-In this case, the matrix $A$ is neither positive semi-definite nor negative semi-definite. 
+In this case, the matrix $A$ is **neither positive semi-definite nor negative semi-definite.** 
 
 
 
