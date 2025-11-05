@@ -465,7 +465,7 @@ A linear combination of vectors $x_1, \ldots, x_m$ can also be written as a matr
 be the $(k\times m)$ matrix with columns $x_1, \ldots, x_m$,
 and let $\lambda = (\lambda_1, \ldots, \lambda_m)^{\top}$. Then,
 $$
-\lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_m x_m = \underset{(k\times m)}{X}\;\underset{(m\times 1)}{\lambda}.
+\lambda_1 x_1 + \lambda_2 x_2 + \ldots + \lambda_n x_n = \underset{(k\times m)}{X}\;\underset{(m\times 1)}{\lambda}.
 $$
 
 
@@ -514,13 +514,13 @@ is the number of linearly independent columns $a_i$.
 
 We say that a $(k \times m)$ matrix $A$ has **full column rank** if
 $$
-\mathop{\mathrm{rank}}(A) = m.
+\mathop{\mathrm{rank}}(X) = m.
 $$
 
 
 The identity matrix $I_k,$ for instance, has full column rank; i.e.,
 $$
-\mathop{\mathrm{rank}}(I_k) = k.
+\mathop{\mathrm{rank}}(I_n) = k.
 $$ 
 
 
@@ -534,13 +534,16 @@ $$
 \begin{align*}
 &\qquad\qquad\begin{pmatrix} 4 \\ 2 \end{pmatrix} = 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}\\[2ex]
 &\Leftrightarrow\quad - 1 \begin{pmatrix} 2 \\ 0 \end{pmatrix} - 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix} + \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\[2ex]
-&\Leftrightarrow\quad\underbrace{\begin{pmatrix} 2&1&4 \\ 0&1&2 \end{pmatrix}}_{=X} \underbrace{\begin{pmatrix} -1 \\ -2\\1 \end{pmatrix}}_{=\lambda} = \begin{pmatrix} 0 \\ 0 \end{pmatrix};
+&\Leftrightarrow\quad\underbrace{\begin{pmatrix} 2&1&4 \\ 0&1&2 \end{pmatrix}}_{=X} \underbrace{\begin{pmatrix} -1 \\ -2\\1 \end{pmatrix}}_{=\lambda} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
 \end{align*}
 $$
-i.e., there exists a non-zero $\lambda$ vector that solves the equation system $X\lambda = 0.$
+I.e, there exists a non-zero $\lambda$ vector that solves the linear equation system $X\lambda = 0.$
 
-However, the first two columns are linearly independent since $\lambda_1 = 0$
-and $\lambda_2 = 0$ are the only solutions to the equation 
+However, the first two columns are linearly independent since 
+$$
+\lambda=\begin{pmatrix} \lambda_1 \\ \lambda_2 \end{pmatrix}=\begin{pmatrix} 0 \\ 0 \end{pmatrix}
+$$ 
+is the only solution to the linear equation system 
 $$
 \begin{align*}
 &\qquad\qquad
@@ -548,7 +551,7 @@ $$
 &\Leftrightarrow\quad \begin{pmatrix} 2&1 \\ 0&1 \end{pmatrix} \begin{pmatrix} \lambda_1 \\ \lambda_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\\
 \end{align*}
 $$ 
-Therefore, we have $\mathop{\mathrm{rank}}(X) = 2$, i.e.,
+Therefore, we have $\mathop{\mathrm{rank}}(X) = 2;$ i.e.,
 $X$ does not have a full column rank.
 
 ::: {.callout-tip appearance="minimal"}
@@ -901,7 +904,7 @@ The $(k \times k)$ square matrix $A$ is called
 $$
 c^{\top}Ac< 0 < \tilde{c}^{\top}{A\tilde{c}}.
 $$
-In this case, the matrix $A$ is neither positive semi-definite nor negative semi-definite. 
+In this case, the matrix $A$ is **neither positive semi-definite nor negative semi-definite.** 
 
 
 
@@ -974,7 +977,7 @@ $\beta^{\top}$:
     &= \Bigg[ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_1} \ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_2} \ \ldots \ \frac{\partial(\partial f(\beta)/\partial \beta)}{\partial \beta_n} \Bigg]
 \end{align*}
 ```
-The Hessian of a sandwich form function $f(\beta) = \beta^{\top} A\beta$ is 
+The Hessian of a sandwich form function is 
 $$
   \frac{\partial^2 ( \beta^{\top} A \beta)}{\partial \beta \partial \beta^{\top}}  = A + A^{\top}.
 $$
@@ -982,18 +985,18 @@ $$
 ### Optimization
 
 Recall the *first-order* (necessary) and *second-order* (sufficient)
-conditions for an optimum (maximum or minimum) in the univariate case:
+conditions for optimum (maximum or minimum) in the univariate case:
 
 -   **First-order condition**: the first derivative evaluated at the
     optimum is zero.
 -   **Second-order condition**: the second derivative at the optimum is
     negative for a maximum and positive for a minimum.
 
-Similarly, we formulate first and second-order conditions for a multivariate function
-$f(\beta).$ The **first-order condition** for an optimum
+Similarly, we formulate first and second-order conditions for a function
+$f(\beta)$. The **first-order condition** for an optimum
 (maximum or minimum) at $b$ is 
 $$
-\frac{\partial f}{\partial{\beta}}(b) = \begin{pmatrix}\frac{\partial f}{\partial \beta_1}(b) \\ \vdots \\ \frac{\partial f}{\partial \beta_k}(b) \end{pmatrix} = 0.
+\frac{\partial f}{\partial{\beta}}(b)  = 0.
 $$ 
 The **second-order condition** is 
 $$
@@ -1003,9 +1006,7 @@ $$
 \end{align*} 
 $$
 Recall that, in the context of matrices, the notation
-
-* "$> 0$" means positive definite, and 
-* "$< 0$" means negative definite.
+"$> 0$" means positive definite, and "$< 0$" means negative definite.
 
 
 
@@ -1206,11 +1207,14 @@ iii) $\|A\| = 0$ implies $A = 0$
      (definiteness)
 
 
+
+
+
 ## Exercises
-
-* [Exercises for Chapter 3](https://www.dropbox.com/scl/fi/2h6d4ipykierblts2aj86/Ch3_Exercises1.pdf?rlkey=w8g3v3c5hpo1tep4o0gzi5jwn&st=1n0vokwd&dl=0)
-
 <!-- 
-* [Exercises for Chapter 3 with Solutions](https://www.dropbox.com/scl/fi/u5kdosakfewp32u81lc8s/Ch3_Exercises_with_Solutions1.pdf?rlkey=f9fqjtgf02v8qe14po4gagj2t&st=ejle81wl&dl=0) 
+* [Exercises for Chapter 3](https://www.dropbox.com/scl/fi/ek72zs19dgw2d3pvmm5hj/Ch3_Exercises1.pdf?rlkey=340htq6s4z5vd0p1cz93tnrq1&dl=0)
+
+
+* [Exercises for Chapter 3 with Solutions](https://www.dropbox.com/scl/fi/ectho31ocqag19izefvi8/Ch3_Exercises_with_Solutions1.pdf?rlkey=9q9g90bx3jle1f4y61vhoormc&dl=0) 
  -->
 
