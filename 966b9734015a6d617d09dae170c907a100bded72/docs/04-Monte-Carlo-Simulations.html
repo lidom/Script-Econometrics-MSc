@@ -239,7 +239,7 @@ window.Quarto = {
   
 
 
-</header><p>Learning outcomes of this chapter:</p>
+</header><!-- LTeX: language=en-US --><p>Learning outcomes of this chapter:</p>
 <ul>
 <li>You know the basic concepts of estimation theory and you can apply them to specific estimators.</li>
 <li>You know how to use a Monte Carlo simulation to check the accuracy (bias, variance, and standard error) of a given estimator</li>
@@ -314,7 +314,7 @@ To check (via MC-Simulations) the quality of an estimator, one can look at the t
 </div>
 <div class="callout-body-container">
 <div id="def-bias" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 4.1 (Bias of <span class="math inline">\(\theta\)</span>)</strong></span> The <strong>bias</strong> of an estimator <span class="math inline">\(\hat\theta_n\)</span> is defined as</p>
+<p><span class="theorem-title"><strong>Definition 4.1 (Bias of <span class="math inline">\(\hat\theta_n\)</span>)</strong></span> The <strong>bias</strong> of an estimator <span class="math inline">\(\hat\theta_n\)</span> is defined as</p>
 <p><span class="math display">\[
 \operatorname{Bias}\left(\hat\theta_n\right) = E\left(\hat\theta_n\right) - \theta.
 \]</span></p>
@@ -338,7 +338,7 @@ To check (via MC-Simulations) the quality of an estimator, one can look at the t
 </div>
 <div class="callout-body-container">
 <div id="def-var" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 4.2 (Variance and Standard Error of <span class="math inline">\(\theta\)</span>)</strong></span> The <strong>variance</strong> of an estimator <span class="math inline">\(\hat\theta_n\)</span> is defined equivalently to the variance of any other random variable</p>
+<p><span class="theorem-title"><strong>Definition 4.2 (Variance and Standard Error of <span class="math inline">\(\hat\theta_n\)</span>)</strong></span> The <strong>variance</strong> of an estimator <span class="math inline">\(\hat\theta_n\)</span> is defined equivalently to the variance of any other random variable</p>
 <p><span class="math display">\[
 Var\left(\hat\theta_n\right) = E\left[\left(\hat\theta_n - E(\hat\theta_n)\right)^2\right].
 \]</span> The square root of the variance (i.e.&nbsp;the standard deviation) of an estimator <span class="math inline">\(\hat\theta_n\)</span> is called <strong>standard error</strong> of <span class="math inline">\(\hat\theta_n\)</span>, <span class="math display">\[
@@ -360,7 +360,7 @@ Var\left(\hat\theta_n\right) = E\left[\left(\hat\theta_n - E(\hat\theta_n)\right
 </div>
 <div class="callout-body-container">
 <div id="def-mse" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 4.3 (Mean Squared Error of <span class="math inline">\(\theta\)</span>)</strong></span> The <strong>mean squared error</strong> of an estimator <span class="math inline">\(\hat\theta_n\)</span> is defined as</p>
+<p><span class="theorem-title"><strong>Definition 4.3 (Mean Squared Error of <span class="math inline">\(\hat\theta_n\)</span>)</strong></span> The <strong>mean squared error</strong> of an estimator <span class="math inline">\(\hat\theta_n\)</span> is defined as</p>
 <p><span class="math display">\[
 \operatorname{MSE}\left(\hat\theta_n\right) =  E\left[\left(\hat\theta_n - \theta\right)^2\right].
 \]</span></p>
@@ -495,7 +495,7 @@ Var(\hat\theta_n),\text{ and }
 </section><section id="example-sample-mean" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="example-sample-mean">
 <span class="header-section-number">4.4</span> Example: Sample Mean</h2>
 <p>The following <code>R</code> code contains a Monte Carlo simulation with <span class="math inline">\(B = 10000\)</span> replications to approximate the bias, the variance, and the mean squared error for the sample mean <span class="math display">\[
-(\hat\theta_n=)\bar{X}_n=\sum_{i=1}^nX_i
+(\hat\theta_n=)\bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i
 \]</span> Setup:</p>
 <ul>
 <li>

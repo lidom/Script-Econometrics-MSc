@@ -1,3 +1,4 @@
+<!-- LTeX: language=en-US -->
 # Estimation Theory and Monte Carlo Simulations
 
 
@@ -91,7 +92,7 @@ Statisticians/econometricians use different metrics to assess the quality of an 
 ::: {.callout icon=false}
 ##
 ::: {#def-bias}
-## Bias of $\theta$
+## Bias of $\hat\theta_n$
 
 The **bias** of an estimator $\hat\theta_n$ is defined as
 
@@ -126,7 +127,7 @@ However, also unbiased estimators $\hat{\theta}_n$ may still vary a lot around t
 ##
 ::: {#def-var}
 
-## Variance and Standard Error of $\theta$
+## Variance and Standard Error of $\hat\theta_n$
 
 The **variance** of an estimator $\hat\theta_n$ is defined equivalently to the variance of any other random variable
 
@@ -155,7 +156,7 @@ To **combine bias and variance** into one metric, one typically uses the **Mean 
 ##
 ::: {#def-mse}
 
-## Mean Squared Error of $\theta$
+## Mean Squared Error of $\hat\theta_n$
 
 The **mean squared error** of an estimator $\hat\theta_n$ is defined as
 
@@ -303,7 +304,7 @@ $$
 
 The following `R` code contains a Monte Carlo simulation with $B = 10000$ replications to approximate the bias, the variance, and the mean squared error for the sample mean 
 $$
-(\hat\theta_n=)\bar{X}_n=\sum_{i=1}^nX_i
+(\hat\theta_n=)\bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i
 $$ 
 Setup: 
 
