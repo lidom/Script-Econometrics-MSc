@@ -1208,9 +1208,7 @@ iii) $\|A\| = 0$ implies $A = 0$
 
 ## Exercises
 
-* [Exercises for Chapter 3](https://www.dropbox.com/scl/fi/2h6d4ipykierblts2aj86/Ch3_Exercises1.pdf?rlkey=w8g3v3c5hpo1tep4o0gzi5jwn&st=1n0vokwd&dl=0)
+* [Exercises for Chapter 3](https://www.dropbox.com/scl/fi/zbqj9whsmd20mhbveipjh/Ch3_Exercises1.pdf?rlkey=xy9745yjiku05aex0i01tgt6j&st=s47gftwg&dl=0)
 
-<!-- 
-* [Exercises for Chapter 3 with Solutions](https://www.dropbox.com/scl/fi/u5kdosakfewp32u81lc8s/Ch3_Exercises_with_Solutions1.pdf?rlkey=f9fqjtgf02v8qe14po4gagj2t&st=ejle81wl&dl=0) 
- -->
+* [Exercises for Chapter 3 with Solutions](https://www.dropbox.com/scl/fi/ep50rtkfruye004mhlev8/Ch3_Exercises_with_Solutions1.pdf?rlkey=9u23jyj6o76zhjgctt9q755xj&st=6z4iq2zu&dl=0) 
 
