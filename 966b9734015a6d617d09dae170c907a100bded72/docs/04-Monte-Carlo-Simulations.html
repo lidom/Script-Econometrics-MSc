@@ -784,6 +784,7 @@ These realizations are then used to approximate the true distribution of $\bar{X
 
 
 
+
 ::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
@@ -841,9 +842,11 @@ estimates_mat <- cbind(
 
 
 
+
 Based on the $B=10,000$ realizations of the estimator $\bar{X}_n$, we can compute the empirical density functions $\hat{F}_{X_n,B}$ (see @fig-ecdf) and histograms (see @fig-histdensplots) to get an idea about the true distribution of $\bar{X}_n.$ 
 
 In this simple case, we also know the theoretical distribution function $F_{X_n}$ and density function which allows us to check the simulation results (see @fig-ecdf and @fig-histdensplots). 
+
 
 
 
@@ -896,6 +899,7 @@ legend("topleft", legend = c("Histogram","True Density"),
 
 
 
+
 Observations in @fig-ecdf and @fig-histdensplots: The empirical distribution functions and the histograms based on the simulated realizations 
 $$
 \bar{X}_{n,1,obs},\dots,\bar{X}_{n,B,obs}
@@ -919,11 +923,10 @@ Thus here the quality of the estimator $\bar{X}_n$ gets better as $n$ gets large
 </section><section id="exercises" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="exercises">
 <span class="header-section-number">4.5</span> Exercises</h2>
 <ul>
-<li><a href="https://www.dropbox.com/scl/fi/w1nj9wnpj15r53opudhns/Ch4_Exercises1.pdf?rlkey=4bk9h4rpg4mkizi46s2r11okv&amp;st=0dawfy6m&amp;dl=0">Exercises for Chapter 4</a></li>
+<li><p><a href="https://www.dropbox.com/scl/fi/w1nj9wnpj15r53opudhns/Ch4_Exercises1.pdf?rlkey=4bk9h4rpg4mkizi46s2r11okv&amp;st=0dawfy6m&amp;dl=0">Exercises for Chapter 4</a></p></li>
+<li><p><a href="https://www.dropbox.com/scl/fi/jssefvtifo6wczxaxr250/Ch4_Exercises_with_Solutions1.pdf?rlkey=wcineb1vy4vpqxy8989qplexr&amp;st=fp5sf04v&amp;dl=0">Exercises for Chapter 4 with Solutions</a></p></li>
 </ul>
-<!-- 
-* [Exercises for Chapter 4 with Solutions](https://www.dropbox.com/scl/fi/jssefvtifo6wczxaxr250/Ch4_Exercises_with_Solutions1.pdf?rlkey=wcineb1vy4vpqxy8989qplexr&st=fp5sf04v&dl=0)
- --><!-- ```{r, fig.align="center"} --><!-- par(mfrow=c(1,3)) --><!-- plot(x = n_seq, y = Bias_n_seq, type = "b", ylim = c(-0.2, 0.2),  --><!--      main="Bias", xlab = "n", ylab = "") --><!-- abline(h = 0) --><!-- plot(x = n_seq, y = Var_n_seq, type = "b", ylim = c(0, 1.5), --><!--      main="Variance", xlab = "n", ylab = "") --><!-- abline(h = 0) --><!-- plot(x = n_seq, y = MSE_n_seq, type = "b", ylim = c(0, 1.5), --><!--      main="MSE", xlab = "n", ylab = "") --><!-- abline(h = 0) --><!-- ``` --><!-- like, for instance, the arithmetic mean   --><!-- $$ --><!-- \bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i --><!-- $$ --><!-- as an estimator of the population mean value $\mu$.  -->
+<!-- ```{r, fig.align="center"} --><!-- par(mfrow=c(1,3)) --><!-- plot(x = n_seq, y = Bias_n_seq, type = "b", ylim = c(-0.2, 0.2),  --><!--      main="Bias", xlab = "n", ylab = "") --><!-- abline(h = 0) --><!-- plot(x = n_seq, y = Var_n_seq, type = "b", ylim = c(0, 1.5), --><!--      main="Variance", xlab = "n", ylab = "") --><!-- abline(h = 0) --><!-- plot(x = n_seq, y = MSE_n_seq, type = "b", ylim = c(0, 1.5), --><!--      main="MSE", xlab = "n", ylab = "") --><!-- abline(h = 0) --><!-- ``` --><!-- like, for instance, the arithmetic mean   --><!-- $$ --><!-- \bar{X}_n=\frac{1}{n}\sum_{i=1}^nX_i --><!-- $$ --><!-- as an estimator of the population mean value $\mu$.  -->
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
