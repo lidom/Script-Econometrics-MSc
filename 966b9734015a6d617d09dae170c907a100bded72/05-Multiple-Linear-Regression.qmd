@@ -492,6 +492,8 @@ E(\varepsilon_i|X_i)=0 \quad\Rightarrow\quad Cov(\varepsilon_i,X_{ik})&=&0\quad\
 
 
 ::: {.callout-tip icon="false"}
+## Correlations between the error term $\epsilon_i$ and regressors $X_{ik}$
+
 By @thm-c, we have that
 
 $$
@@ -502,7 +504,7 @@ $$
 $$
 A\Rightarrow B
 $$ 
-has a logically equivalent contrapositive: 
+has a logically equivalent **contrapositive**: 
 $$
 \neg B\Rightarrow \neg A
 $$ 
