@@ -592,8 +592,8 @@ $$
 \begin{align*}
 S_n(b)
 &=\sum_{i=1}^n(Y_i-X_i^{\top}b)^2\\[2ex]
-&=(Y-X b)^{\prime}(Y-X b)\\[2ex]
-&=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
+&=(Y-X b)^{\top}(Y-X b)\\[2ex]
+&=Y^{\top}Y-2 Y^{\top} X b+b^{\top} X^{\top} X b.
 \end{align*}
 $$
 To find the minimizing argument 
@@ -603,22 +603,22 @@ $$
 we compute the vector containing all partial derivatives
 $$
 \begin{aligned}
-\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &=-2\left(X^{\prime}Y -X^{\prime} Xb\right).
+\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &=-2\left(X^{\top}Y -X^{\top} Xb\right).
 \end{aligned}
 $$
 Setting each partial derivative to zero leads to $K$ linear equations ("normal equations") in $K$ unknowns. This system of linear equations defines the OLS estimator, $\hat{\beta}.$
 $$
 \begin{align*}
--2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)
+-2\left(X^{\top}Y -X^{\top} X\hat{\beta}\right)
 &=\underset{(K\times 1)}{0}\\[2ex]
-\Leftrightarrow\qquad X^{\prime} X\hat{\beta}
-&=\underset{(K\times 1)}{X^{\prime}Y}.
+\Leftrightarrow\qquad X^{\top} X\hat{\beta}
+&=\underset{(K\times 1)}{X^{\top}Y}.
 \end{align*}
 $${#eq-NormalEquations}
-From our rank assumption (Assumption 3) it follows that $X^{\prime}X$ is an invertible $(K\times K)$-dimensional matrix which allows us to solve the equation system in @eq-NormalEquations by 
+From our rank assumption (Assumption 3) it follows that $X^{\top}X$ is an invertible $(K\times K)$-dimensional matrix which allows us to solve the equation system in @eq-NormalEquations by 
 $$
 \begin{aligned}
-\underset{(K\times 1)}{\hat{\beta}} &=\left(X^{\prime} X\right)^{-1} X^{\prime} Y.
+\underset{(K\times 1)}{\hat{\beta}} &=\left(X^{\top} X\right)^{-1} X^{\top} Y.
 \end{aligned}
 $$
 

@@ -790,25 +790,25 @@ S_n(b)=\sum_{i=1}^n\big(\underbrace{Y_i-X_i^{\top}b}_{\text{$i$th residual}}\big
 \begin{align*}
 S_n(b)
 &amp;=\sum_{i=1}^n(Y_i-X_i^{\top}b)^2\\[2ex]
-&amp;=(Y-X b)^{\prime}(Y-X b)\\[2ex]
-&amp;=Y^{\prime}Y-2 Y^{\prime} X b+b^{\prime} X^{\prime} X b.
+&amp;=(Y-X b)^{\top}(Y-X b)\\[2ex]
+&amp;=Y^{\top}Y-2 Y^{\top} X b+b^{\top} X^{\top} X b.
 \end{align*}
 \]</span> To find the minimizing argument <span class="math display">\[
 \hat\beta=\arg\min_{b\in\mathbb{R}^K}S_n(b)
 \]</span> we compute the vector containing all partial derivatives <span class="math display">\[
 \begin{aligned}
-\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &amp;=-2\left(X^{\prime}Y -X^{\prime} Xb\right).
+\underset{(K\times 1)}{\frac{\partial S(b)}{\partial b}} &amp;=-2\left(X^{\top}Y -X^{\top} Xb\right).
 \end{aligned}
 \]</span> Setting each partial derivative to zero leads to <span class="math inline">\(K\)</span> linear equations (“normal equations”) in <span class="math inline">\(K\)</span> unknowns. This system of linear equations defines the OLS estimator, <span class="math inline">\(\hat{\beta}.\)</span> <span id="eq-NormalEquations"><span class="math display">\[
 \begin{align*}
--2\left(X^{\prime}Y -X^{\prime} X\hat{\beta}\right)
+-2\left(X^{\top}Y -X^{\top} X\hat{\beta}\right)
 &amp;=\underset{(K\times 1)}{0}\\[2ex]
-\Leftrightarrow\qquad X^{\prime} X\hat{\beta}
-&amp;=\underset{(K\times 1)}{X^{\prime}Y}.
+\Leftrightarrow\qquad X^{\top} X\hat{\beta}
+&amp;=\underset{(K\times 1)}{X^{\top}Y}.
 \end{align*}
-\qquad(5.3)\]</span></span> From our rank assumption (Assumption 3) it follows that <span class="math inline">\(X^{\prime}X\)</span> is an invertible <span class="math inline">\((K\times K)\)</span>-dimensional matrix which allows us to solve the equation system in <a href="#eq-NormalEquations" class="quarto-xref">Equation&nbsp;<span>5.3</span></a> by <span class="math display">\[
+\qquad(5.3)\]</span></span> From our rank assumption (Assumption 3) it follows that <span class="math inline">\(X^{\top}X\)</span> is an invertible <span class="math inline">\((K\times K)\)</span>-dimensional matrix which allows us to solve the equation system in <a href="#eq-NormalEquations" class="quarto-xref">Equation&nbsp;<span>5.3</span></a> by <span class="math display">\[
 \begin{aligned}
-\underset{(K\times 1)}{\hat{\beta}} &amp;=\left(X^{\prime} X\right)^{-1} X^{\prime} Y.
+\underset{(K\times 1)}{\hat{\beta}} &amp;=\left(X^{\top} X\right)^{-1} X^{\top} Y.
 \end{aligned}
 \]</span></p>
 <p>The following codes computes the estimate <span class="math inline">\(\hat{\beta}\)</span> for a given dataset with <span class="math inline">\(X_i\in\mathbb{R}^K\)</span>, <span class="math inline">\(K=3\)</span>.</p>
