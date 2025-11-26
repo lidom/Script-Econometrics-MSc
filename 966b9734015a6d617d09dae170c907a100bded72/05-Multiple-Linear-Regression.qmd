@@ -733,16 +733,15 @@ $$
 
 
 
-The derivation of the OLS estimator 
+The OLS derivation of the OLS estimator does not require a check whether $\beta$ is actually identified. By the law of large numbers (sample means converge in probability to population means; see @sec-lsinf), the OLS estimator 
 $$
 \begin{align*}
 \hat\beta 
 & = \left(X^{\top}X\right)^{-1} X^{\top}Y\\[2ex]
-& = \left(\frac{1}{n}\sum_{i=1}^n X_iX_i^{\top}\right)^{-1} \frac{1}{n}\sum_{i=1}^n X_iY_i  \\
-& = \underbrace{\left(\sum_{i=1}^n X_iX_i^{\top}\right)^{-1}}_{\approx (E(X_iX_i^{\top}))^{-1}} \; \underbrace{\sum_{i=1}^n X_iY_i}_{\approx E(X_iY_i)} 
+& = \underbrace{\left(\frac{1}{n}\sum_{i=1}^n X_iX_i^{\top}\right)^{-1}}_{\approx (E(X_iX_i^{\top}))^{-1}} \; \underbrace{\frac{1}{n}\sum_{i=1}^n X_iY_i}_{\approx E(X_iY_i)} 
 \end{align*}
 $$
-does not require a check whether $\beta$ is actually identified. By the law of large numbers (sample means converge in probability to population means; see @sec-lsinf), the OLS estimator is a consistent estimator of $\tilde\beta,$ 
+is a consistent estimator of $\tilde\beta,$ 
 $$
 \begin{align*}
 \hat\beta \to_p  \tilde\beta = (E(X_iX_i^{\top}))^{-1} E(X_iY_i) \quad \text{as}\quad n\to\infty. 
@@ -754,8 +753,6 @@ $$
 \beta = \tilde \beta = \left(E(X_iX_i^{\top})\right)^{-1} E(X_iY_i);
 $$
 i.e. only if $\beta$ is identified. 
-
-Without identification, the OLS estimator estimates $\tilde\beta,$ but generally not our parameter of interest $\beta.$
 
 
 **Summary:** So, at the end, both estimation approaches require that the parameter of interest, $\beta,$ is identified. The method of moments estimation approach starts with checking the identification requirement and thus frames the identification requirement more prominently as what it is: a pre-request for consistent estimation of $\beta.$ 
@@ -1792,13 +1789,13 @@ However, this was only a simulation for one specific data generating process. Su
 In the following chapters, we use theoretical arguments to investigate under which assumptions we can make *general* statements about the distributional properties of the estimator $\hat\beta.$
 :::  
 
-<!-- 
+
 ## Exercises 
 
-* [Exercises for Chapter 5](https://www.dropbox.com/scl/fi/t6l36vku6aiii3o518voi/Ch5_Exercises1.pdf?rlkey=jgg4e5l5uld4cfakkyy5cztk1&dl=0)
+* [Exercises for Chapter 5](https://www.dropbox.com/scl/fi/xxk62qh53yk11omgyengv/Ch5_Exercises1.pdf?rlkey=odrz6y0zpjel489trhf95pl7r&st=gyyhl96i&dl=0)
 
-
-* [Exercises of Chapter 5 with Solutions](https://www.dropbox.com/scl/fi/2arzabv6ydiap8tyh0c4p/Ch5_Exercises_with_Solutions1.pdf?rlkey=dqz2lewoqjxwkqxhvq7jxxf5l&dl=0) 
+<!-- 
+* [Exercises of Chapter 5 with Solutions](https://www.dropbox.com/scl/fi/8ndrotu3pwkiqapnm5mwg/Ch5_Exercises_with_Solutions1.pdf?rlkey=24j0xuhqoz830wj2xg3ut7qd2&st=0o597u2z&dl=0) 
 -->
 
 
