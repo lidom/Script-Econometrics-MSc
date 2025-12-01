@@ -1125,18 +1125,19 @@ Caution
 f(Y_1+Y_2)&amp;=f(Y_1)+f(Y_2)\\[2ex]
 f(aY)&amp;=af(Y).
 \end{align*}
-\]</span> This property applies to the OLS estimator <span class="math display">\[
+\]</span> These properties apply to the OLS estimator <span class="math display">\[
 \hat\beta=f(Y)=(X^{\top}X)^{-1}X^{\top}Y
-\]</span> since <span class="math display">\[
-\begin{align*}
-(X^{\top}X)^{-1}X^{\top}(Y_1+Y_2)
-&amp; = (X^{\top}X)^{-1}X^{\top}Y_1 + (X^{\top}X)^{-1}X^{\top}Y_2
-\end{align*}
-\]</span> and <span class="math display">\[
-\begin{align*}
-(X^{\top}X)^{-1}X^{\top}aY &amp; = a (X^{\top}X)^{-1}X^{\top}Y
-\end{align*}
-\]</span> for any <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any <span class="math inline">\(a\in\mathbb{R}.\)</span></p>
+\]</span> since <span class="math display">\[\begin{align*}
+f(Y_1+Y_2)
+&amp; = (X^{\top}X)^{-1}X^{\top}(Y_1+Y_2)\\
+&amp; = (X^{\top}X)^{-1}X^{\top}Y_1 + (X^{\top}X)^{-1}X^{\top}Y_2\\
+&amp; = f(Y_1) + f(Y_2)
+\end{align*}\]</span> and <span class="math display">\[\begin{align*}
+f(aY)
+&amp; = (X^{\top}X)^{-1}X^{\top}aY\\
+&amp; = a (X^{\top}X)^{-1}X^{\top}Y\\
+&amp; = a f(Y)
+\end{align*}\]</span> for any <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(Y_2\)</span> such that <span class="math inline">\(Y=Y_1+Y_2\)</span> and for any <span class="math inline">\(a\in\mathbb{R}.\)</span></p>
 <p><strong>Showing unbiasedness of <span class="math inline">\(\hat{\beta}\)</span>:</strong></p>
 <p>The OLS estimator is unbiased if <span class="math display">\[
 \operatorname{Bias}(\hat\beta) = E(\hat\beta) - \beta = 0

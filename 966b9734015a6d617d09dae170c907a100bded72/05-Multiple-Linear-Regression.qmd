@@ -979,23 +979,24 @@ f(Y_1+Y_2)&=f(Y_1)+f(Y_2)\\[2ex]
 f(aY)&=af(Y).
 \end{align*}
 $$
-This property applies to the OLS estimator 
+These properties apply to the OLS estimator 
 $$
 \hat\beta=f(Y)=(X^{\top}X)^{-1}X^{\top}Y
 $$ 
 since
-$$
 \begin{align*}
-(X^{\top}X)^{-1}X^{\top}(Y_1+Y_2)
-& = (X^{\top}X)^{-1}X^{\top}Y_1 + (X^{\top}X)^{-1}X^{\top}Y_2
+f(Y_1+Y_2) 
+& = (X^{\top}X)^{-1}X^{\top}(Y_1+Y_2)\\
+& = (X^{\top}X)^{-1}X^{\top}Y_1 + (X^{\top}X)^{-1}X^{\top}Y_2\\
+& = f(Y_1) + f(Y_2)
 \end{align*}
-$$
 and 
-$$
 \begin{align*}
-(X^{\top}X)^{-1}X^{\top}aY & = a (X^{\top}X)^{-1}X^{\top}Y
+f(aY) 
+& = (X^{\top}X)^{-1}X^{\top}aY\\
+& = a (X^{\top}X)^{-1}X^{\top}Y\\
+& = a f(Y)
 \end{align*}
-$$
 for any $Y_1$ and $Y_2$ such that $Y=Y_1+Y_2$ and for any $a\in\mathbb{R}.$
 
 **Showing unbiasedness of $\hat{\beta}$:** 
