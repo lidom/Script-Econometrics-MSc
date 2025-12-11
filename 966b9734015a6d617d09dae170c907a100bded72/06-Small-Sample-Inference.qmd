@@ -44,7 +44,7 @@ Assumption 4$^\boldsymbol{\ast}$ together with the random sample assumption of A
 $$
 \varepsilon|X\sim\mathcal{N}_n\left(0,\sigma^2I_n\right),
 $$
-where $\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)',$ and where $\mathcal{N}_n\left(0,\sigma^2I_n\right)$ denotes the $n$-dimensional normal distribution with $(n\times 1)$-dimensional mean zero vector $0$ and $(n\times n)$-dimensional covariance matrix $\sigma^2I_n.$ 
+where $\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)^{\top},$ and where $\mathcal{N}_n\left(0,\sigma^2I_n\right)$ denotes the $n$-dimensional normal distribution with $(n\times 1)$-dimensional mean zero vector $0$ and $(n\times n)$-dimensional covariance matrix $\sigma^2I_n.$ 
 
 <!-- I.e. the distribution of $\varepsilon$ is here independent of $X.$ -->
 
@@ -61,7 +61,7 @@ $$
 $${#eq-ssnorm}
 where 
 $$
-Var(\hat\beta_n|X)=\underset{(K\times K)}{\sigma^2(X'X)^{-1}}.
+Var(\hat\beta_n|X)=\underset{(K\times K)}{\sigma^2(X^{\top}X)^{-1}}.
 $$
 :::
 ::: 
@@ -71,11 +71,11 @@ This result follows from noting that
 $$
 \begin{align*}
 \hat\beta_n
-&=(X'X)^{-1}X'Y\\[2ex]
-&=\beta+(X'X)^{-1}X'\varepsilon
+&=(X^{\top}X)^{-1}X^{\top}Y\\[2ex]
+&=\beta+(X^{\top}X)^{-1}X^{\top}\varepsilon
 \end{align*} 
 $$
-and because $(X'X)^{-1}X'\varepsilon$ is just a linear combination of the normally distributed error terms $\varepsilon$ which, therefore, is again normally distributed, conditionally on $X$. Note that the specific normal distribution depends on the observed realization of $X$. 
+and because $(X^{\top}X)^{-1}X^{\top}\varepsilon$ is just a linear combination of the normally distributed error terms $\varepsilon$ which, therefore, is again normally distributed, conditionally on $X$. Note that the specific normal distribution depends on the observed realization of $X$. 
 :::
 
 **Remark:** The subscript $n$ in $\hat\beta_n$ is here only to emphasize that the distribution of $\hat\beta_n$ depends on $n$; we will, however, often simply write $\hat\beta$.
@@ -91,8 +91,8 @@ H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  = \underset{(q\time
 $$
 where 
 
-* the $(q \times K)$ matrix $R,$ which describes the considered linear combinations of the unknown $\beta=(\beta_1,\dots,\beta_K)'$ values, and 
-* the $(q\times 1)$ vector $r^{(0)}=(r^{(0)}_{1},\dots,r^{(0)}_{q})'$ of null hypothetical values
+* the $(q \times K)$ matrix $R,$ which describes the considered linear combinations of the unknown $\beta=(\beta_1,\dots,\beta_K)^{\top}$ values, and 
+* the $(q\times 1)$ vector $r^{(0)}=(r^{(0)}_{1},\dots,r^{(0)}_{q})^{\top}$ of null hypothetical values
 
 **are chosen by the statistician** to specify the null hypothesis about the unknown true parameter vector $\beta$. 
 
@@ -126,9 +126,9 @@ We come back to this in @sec-testingsinglep.
 Under our assumptions (Assumptions 1 to 4$^\ast$), we have that 
 $$
 \begin{align*}
-(R\hat\beta_n-r^{(0)})|X&\sim\mathcal{N}_q\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right)%\\[2ex]
-%\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&\sim\\[2ex]
-%\hspace{2cm}\sim\mathcal{N}_q\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\beta -r^{(0)}),I_q\right)
+(R\hat\beta_n-r^{(0)})|X&\sim\mathcal{N}_q\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R^{\top}\right)%\\[2ex]
+%\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&\sim\\[2ex]
+%\hspace{2cm}\sim\mathcal{N}_q\left(\left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\beta -r^{(0)}),I_q\right)
 \end{align*}
 $$ 
 
@@ -136,16 +136,16 @@ $$
 Thus, under the scenario that the null-hypothesis is true, we have that
 $$
 \begin{align*}
-(R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,RVar(\hat\beta_n|X)R'\right)\\[2ex]
-\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\highlight{|X}&\overset{{\color{red}{H_0}}}{\sim}\underbrace{\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
-\highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right),
+(R\hat\beta_n-r^{(0)})|X&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,RVar(\hat\beta_n|X)R^{\top}\right)\\[2ex]
+\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})\highlight{|X}&\overset{{\color{red}{H_0}}}{\sim}\underbrace{\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
+\highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})&\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right),
 \end{align*}
 $$ 
 where the last implication follows, since the standardized normal distribution does not depend on $X.$
 
 That is, if $H_0$ is correct (i.e., if $R\beta-r^{(0)}=0$), the realizations of 
 $$
-\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})
+\left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})
 $$ 
 will scatter around the $(q\times 1)$ vector $0$ in a Gaussian fashion.  
 
@@ -166,9 +166,9 @@ is a $q$-dimensional random variable makes it a little bothersome to use as a te
 $$
 \begin{align*}
 W 
-& = \overbrace{\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)'\;\;}^{(1\times q)}\\
-&\;\;\;\;\;\;\underbrace{\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)}_{(q \times 1)}\\[2ex]
-& =\underbrace{(R\hat\beta_n -r^{(0)})'}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R']^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r^{(0)})}_{(q\times 1)}
+& = \overbrace{\left(\left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)^{\top}\;\;}^{(1\times q)}\\
+&\;\;\;\;\;\;\underbrace{\left(\left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)}_{(q \times 1)}\\[2ex]
+& =\underbrace{(R\hat\beta_n -r^{(0)})^{\top}}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R^{\top}]^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r^{(0)})}_{(q\times 1)}
 \end{align*}
 $${#eq-TestStatW}
 
@@ -185,9 +185,9 @@ $$
 Note that the distribution of $W$ does not depend on $X.$ I.e. $W$ follows a $\chi^2_{(q)}$-distribution no matter the realization of $X.$ 
 
 
-Usually, however, we do not know $Var(\hat\beta_n|X)=\sigma^2 (X'X)^{-1},$ since we usually do not know the value of $\sigma^2.$ Thus, we need to substitute $\sigma^2$ by an estimator. 
+Usually, however, we do not know $Var(\hat\beta_n|X)=\sigma^2 (X^{\top}X)^{-1},$ since we usually do not know the value of $\sigma^2.$ Thus, we need to substitute $\sigma^2$ by an estimator. 
 
-For exact finite sample inference, we need a variance estimator of $\sigma^2$ for which we can derive its exact small sample distribution. Therefore, we require Assumption 4$^*$ of spherical errors, i.e. $Var(\varepsilon|X)=\sigma^2I_n,$ which implies that $Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}$, and where $\sigma^2$ can be estimated by the unbiased ($UB$) variance estimator  
+For exact finite sample inference, we need a variance estimator of $\sigma^2$ for which we can derive its exact small sample distribution. Therefore, we require Assumption 4$^*$ of spherical errors, i.e. $Var(\varepsilon|X)=\sigma^2I_n,$ which implies that $Var(\hat\beta_n|X)=\sigma^2(X^{\top}X)^{-1}$, and where $\sigma^2$ can be estimated by the unbiased ($UB$) variance estimator  
 $$
 s_{UB}^2=(n-K)^{-1}\sum_{i=1}^n\hat\varepsilon_i^2.
 $$  
@@ -198,15 +198,15 @@ $${#eq-distsquared}
 
 Substituting the unknown 
 $$
-Var(\hat\beta_n|X)=\sigma^2 (X'X)^{-1}
+Var(\hat\beta_n|X)=\sigma^2 (X^{\top}X)^{-1}
 $$ 
 in @eq-TestStatW by its estimator 
 $$
-\widehat{Var}(\hat\beta_n|X)=s_{UB}^2 (X'X)^{-1}
+\widehat{Var}(\hat\beta_n|X)=s_{UB}^2 (X^{\top}X)^{-1}
 $$ 
 leads to the $F$-test statistic
 $$
-F=(R\hat\beta_n -r^{(0)})'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r^{(0)})/q
+F=(R\hat\beta_n -r^{(0)})^{\top}[R(s_{UB}^2(X^{\top}X)^{-1})R^{\top}]^{-1}(R\hat\beta_n -r^{(0)})/q
 $$
 and takes into account the additional randomness (estimation errors) due to estimating $\sigma^2$ by $s_{UB}^2.$ 
 
@@ -399,9 +399,9 @@ F=\frac{\left(\hat{\beta}_k-\beta_k^{(0)}\right)^2}{\widehat{Var}(\hat{\beta}_k|
 $$
 where 
 $$
-\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{(k,k)},
+\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X^{\top}X)^{-1}]_{(k,k)},
 $$ 
-and where $[(X'X)^{-1}]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $(K\times K)$ matrix $(X'X)^{-1}.$
+and where $[(X^{\top}X)^{-1}]_{(k,k)}$ denotes the element in the $k$th row and $k$th column of the $(K\times K)$ matrix $(X^{\top}X)^{-1}.$
 
 
 ### The Test Statistic and its Null Distribution {#sec-tTestTestStat}
@@ -415,7 +415,7 @@ $$
 \begin{align*}
 \widehat{\operatorname{SE}}(\hat{\beta}_k|X)
 &=\sqrt{\widehat{Var}(\hat{\beta}_k|X)}\\[2ex]
-&=s_{UB}[(X'X)^{-1/2}]_{(k,k)},
+&=s_{UB}[(X^{\top}X)^{-1/2}]_{(k,k)},
 \end{align*}
 $$ 
 and where $t_{(n-K)}$ denotes the $t$-distribution with $n-K$ degrees of freedom. 
@@ -488,7 +488,7 @@ The rejection region is
 $$
 \mathcal{R}=\;]c_{1-\alpha}, \infty[,
 $$
-where $0<\alpha<1$ denotes the significance level and $c_{1-\alpha}$ denotes the $(1-\alpha)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom. 
+where $0<\alpha<1$ denotes the significance level and $c_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the $t$-distribution with $(n-K)$ degrees of freedom. 
 
 * We can reject $H_0$ if
 $$
@@ -552,7 +552,7 @@ c_oneSided
 ```
 
 
-### Test Decision using the Rejection Region  (One-Sided 2/2)
+### Test Decision using the Rejection Region (One-Sided 2/2)
 
 The left-sided version of the one-sided hypothesis is given by
 $$
@@ -568,7 +568,7 @@ The rejection region is
 $$
 \mathcal{R}=\;]-\infty,c_{\alpha}[,
 $$
-where $0<\alpha<1$ denotes the significance level and $c_{1-\alpha}$ denotes the $(1-\alpha)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom. 
+where $0<\alpha<1$ denotes the significance level and $c_{\alpha}$ denotes the $\alpha$-quantile of the $t$-distribution with $(n-K)$ degrees of freedom. 
 
 
 * We can reject $H_0$ if
@@ -653,7 +653,7 @@ The rejection region is
 $$
 \mathcal{R}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[,
 $$
-where $0<\alpha<1$ denotes the significance level and $c_{\alpha/2}$ and $c_{1-\alpha/2}$ denote the $\alpha/2$ and the $(1-\alpha/2)$ quantiles of the $t$-distribution with $(n-K)$ degrees of freedom. 
+where $0<\alpha<1$ denotes the significance level and $c_{\alpha/2}$ and $c_{1-\alpha/2}$ denote the $\alpha/2$- and the $(1-\alpha/2)$-quantiles of the $t$-distribution with $(n-K)$ degrees of freedom. 
 
 
 * We can reject $H_0$ if
@@ -857,7 +857,7 @@ $$
 P\left(-c_{n,1-\alpha/2}\leq\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)}\leq c_{n,1-\alpha/2}\right)=1-\alpha,
 \end{align*}
 $$
-where $c_{n,1-\alpha/2}$ denotes the $(1-\alpha/2)$ quantile of the $t$-distribution with $(n-K)$ degrees of freedom. 
+where $c_{n,1-\alpha/2}$ denotes the $(1-\alpha/2)$-quantile of the $t$-distribution with $(n-K)$ degrees of freedom. 
 
 Next, we can do the following equivalent transformations
 $$
@@ -1643,7 +1643,7 @@ $$
 & = P\Big(\;\underbrace{T_n > z_{1-\alpha}}_{T_n\in\mathcal{R}_{n,\alpha}}\;|\; \underbrace{\beta_k > \beta_k^{(0)}}_{H_1\text{ is true}}\;\Big),
 \end{align*}
 $$
-where $z_{1-\alpha}$ denotes the $(1-\alpha)$ quantile of the standard normal distribution $\mathcal{N}(0,1),$ and where 
+where $z_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the standard normal distribution $\mathcal{N}(0,1),$ and where 
 $$
 T_n\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).
 $$
@@ -1865,7 +1865,7 @@ First, we program a function `myDataGenerator()` which allows us to generate dat
 $$
 \begin{align*}
 Y_i &=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
-\beta &=(\beta_1,\beta_2,\beta_3)'=(2,3,4)'\\
+\beta &=(\beta_1,\beta_2,\beta_3)^{\top}=(2,3,4)^{\top}\\
 X_{i2}&\sim U[2,10]\\
 X_{i3}&\sim U[12,22]\\
 \varepsilon_i|X&\sim\mathcal{N}(0,3^2),
@@ -1880,7 +1880,7 @@ The below function `myDataGenerator()` allows to sample new realizations of the 
 $$
 ((X_1,Y_1),\dots,(X_n,Y_n))
 $$ 
-You can provide your own values for the sample size $n$ and for the parameter vector $\beta=(\beta_1,\beta_2,\beta_3)'$. 
+You can provide your own values for the sample size $n$ and for the parameter vector $\beta=(\beta_1,\beta_2,\beta_3)^{\top}$. 
 ```{r}
 ## Function to generate artificial data
 ## If the user provides 'X_cond' data, 

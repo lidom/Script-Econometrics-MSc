@@ -328,7 +328,7 @@ window.Quarto = {
 \]</span> for all <span class="math inline">\(i=1,\dots,n.\)</span></p>
 <p>Assumption 4<span class="math inline">\(^\boldsymbol{\ast}\)</span> together with the random sample assumption of Assumption 1, part (b), leads to Gaussian spherical errors, <span class="math display">\[
 \varepsilon|X\sim\mathcal{N}_n\left(0,\sigma^2I_n\right),
-\]</span> where <span class="math inline">\(\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)',\)</span> and where <span class="math inline">\(\mathcal{N}_n\left(0,\sigma^2I_n\right)\)</span> denotes the <span class="math inline">\(n\)</span>-dimensional normal distribution with <span class="math inline">\((n\times 1)\)</span>-dimensional mean zero vector <span class="math inline">\(0\)</span> and <span class="math inline">\((n\times n)\)</span>-dimensional covariance matrix <span class="math inline">\(\sigma^2I_n.\)</span></p>
+\]</span> where <span class="math inline">\(\varepsilon=(\varepsilon_1,\dots,\varepsilon_n)^{\top},\)</span> and where <span class="math inline">\(\mathcal{N}_n\left(0,\sigma^2I_n\right)\)</span> denotes the <span class="math inline">\(n\)</span>-dimensional normal distribution with <span class="math inline">\((n\times 1)\)</span>-dimensional mean zero vector <span class="math inline">\(0\)</span> and <span class="math inline">\((n\times n)\)</span>-dimensional covariance matrix <span class="math inline">\(\sigma^2I_n.\)</span></p>
 <!-- I.e. the distribution of $\varepsilon$ is here independent of $X.$ -->
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
@@ -340,7 +340,7 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>Theorem 6.1 (Normality of <span class="math inline">\(\hat\beta\)</span>)</strong></span> Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> we have that <span id="eq-ssnorm"><span class="math display">\[
 \hat\beta_n|X \sim \mathcal{N}_K\left(\beta,Var(\hat\beta_n|X)\right),
 \qquad(6.1)\]</span></span> where <span class="math display">\[
-Var(\hat\beta_n|X)=\underset{(K\times K)}{\sigma^2(X'X)^{-1}}.
+Var(\hat\beta_n|X)=\underset{(K\times K)}{\sigma^2(X^{\top}X)^{-1}}.
 \]</span></p>
 </div>
 </div>
@@ -350,10 +350,10 @@ Var(\hat\beta_n|X)=\underset{(K\times K)}{\sigma^2(X'X)^{-1}}.
 <p><span class="proof-title"><em>Proof</em>. </span>This result follows from noting that <span class="math display">\[
 \begin{align*}
 \hat\beta_n
-&amp;=(X'X)^{-1}X'Y\\[2ex]
-&amp;=\beta+(X'X)^{-1}X'\varepsilon
+&amp;=(X^{\top}X)^{-1}X^{\top}Y\\[2ex]
+&amp;=\beta+(X^{\top}X)^{-1}X^{\top}\varepsilon
 \end{align*}
-\]</span> and because <span class="math inline">\((X'X)^{-1}X'\varepsilon\)</span> is just a linear combination of the normally distributed error terms <span class="math inline">\(\varepsilon\)</span> which, therefore, is again normally distributed, conditionally on <span class="math inline">\(X\)</span>. Note that the specific normal distribution depends on the observed realization of <span class="math inline">\(X\)</span>.</p>
+\]</span> and because <span class="math inline">\((X^{\top}X)^{-1}X^{\top}\varepsilon\)</span> is just a linear combination of the normally distributed error terms <span class="math inline">\(\varepsilon\)</span> which, therefore, is again normally distributed, conditionally on <span class="math inline">\(X\)</span>. Note that the specific normal distribution depends on the observed realization of <span class="math inline">\(X\)</span>.</p>
 </div>
 <p><strong>Remark:</strong> The subscript <span class="math inline">\(n\)</span> in <span class="math inline">\(\hat\beta_n\)</span> is here only to emphasize that the distribution of <span class="math inline">\(\hat\beta_n\)</span> depends on <span class="math inline">\(n\)</span>; we will, however, often simply write <span class="math inline">\(\hat\beta\)</span>.</p>
 </section><section id="sec-testmultp" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="sec-testmultp">
@@ -364,8 +364,8 @@ H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  = \underset{(q\time
 \end{align*}
 \]</span> where</p>
 <ul>
-<li>the <span class="math inline">\((q \times K)\)</span> matrix <span class="math inline">\(R,\)</span> which describes the considered linear combinations of the unknown <span class="math inline">\(\beta=(\beta_1,\dots,\beta_K)'\)</span> values, and</li>
-<li>the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(r^{(0)}=(r^{(0)}_{1},\dots,r^{(0)}_{q})'\)</span> of null hypothetical values</li>
+<li>the <span class="math inline">\((q \times K)\)</span> matrix <span class="math inline">\(R,\)</span> which describes the considered linear combinations of the unknown <span class="math inline">\(\beta=(\beta_1,\dots,\beta_K)^{\top}\)</span> values, and</li>
+<li>the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(r^{(0)}=(r^{(0)}_{1},\dots,r^{(0)}_{q})^{\top}\)</span> of null hypothetical values</li>
 </ul>
 <p><strong>are chosen by the statistician</strong> to specify the null hypothesis about the unknown true parameter vector <span class="math inline">\(\beta\)</span>.</p>
 <p>To make sure that there are no redundant equations, it is required that <span class="math inline">\(\operatorname{rank}(R)=q\)</span>.</p>
@@ -402,20 +402,20 @@ Note
 </div>
 <p>Under our assumptions (Assumptions 1 to 4<span class="math inline">\(^\ast\)</span>), we have that <span class="math display">\[
 \begin{align*}
-(R\hat\beta_n-r^{(0)})|X&amp;\sim\mathcal{N}_q\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R'\right)%\\[2ex]
-%\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&amp;\sim\\[2ex]
-%\hspace{2cm}\sim\mathcal{N}_q\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\beta -r^{(0)}),I_q\right)
+(R\hat\beta_n-r^{(0)})|X&amp;\sim\mathcal{N}_q\left(R\beta -r^{(0)}, RVar(\hat\beta_n|X)R^{\top}\right)%\\[2ex]
+%\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})|X&amp;\sim\\[2ex]
+%\hspace{2cm}\sim\mathcal{N}_q\left(\left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\beta -r^{(0)}),I_q\right)
 \end{align*}
 \]</span></p>
 <p>Thus, under the scenario that the null-hypothesis is true, we have that <span class="math display">\[
 \begin{align*}
-(R\hat\beta_n-r^{(0)})|X&amp;\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,RVar(\hat\beta_n|X)R'\right)\\[2ex]
-\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\highlight{|X}&amp;\overset{{\color{red}{H_0}}}{\sim}\underbrace{\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
-\highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})&amp;\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right),
+(R\hat\beta_n-r^{(0)})|X&amp;\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,RVar(\hat\beta_n|X)R^{\top}\right)\\[2ex]
+\Leftrightarrow\quad \left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})\highlight{|X}&amp;\overset{{\color{red}{H_0}}}{\sim}\underbrace{\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right)}_{\highlight{\text{doesn't depend on $X$}}}\\[2ex]
+\highlight{\Rightarrow}\quad \left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})&amp;\overset{{\color{red}{H_0}}}{\sim}\mathcal{N}_q\left(\,{\color{red}0}\,,I_q\right),
 \end{align*}
 \]</span> where the last implication follows, since the standardized normal distribution does not depend on <span class="math inline">\(X.\)</span></p>
 <p>That is, if <span class="math inline">\(H_0\)</span> is correct (i.e., if <span class="math inline">\(R\beta-r^{(0)}=0\)</span>), the realizations of <span class="math display">\[
-\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})
+\left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})
 \]</span> will scatter around the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0\)</span> in a Gaussian fashion.</p>
 <p>We use a test statistic to detect a systematic location shift away from the <span class="math inline">\((q\times 1)\)</span> vector <span class="math inline">\(0.\)</span></p>
 <!-- * if the alternative hypothesis is correct (i.e., $(R\beta-r)=a\neq 0$), there will be a systematic location-shift in $(R\hat\beta_n-r)|X$ which we try to detect using statistical hypothesis testing.  -->
@@ -427,9 +427,9 @@ Note
 \]</span> is a <span class="math inline">\(q\)</span>-dimensional random variable makes it a little bothersome to use as a test-statistic. Fortunately, we can turn <span class="math inline">\((R\hat\beta_n-r^{(0)})\)</span> into a scalar-valued test statistic using the following quadratic form: <span id="eq-TestStatW"><span class="math display">\[
 \begin{align*}
 W
-&amp; = \overbrace{\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)'\;\;}^{(1\times q)}\\
-&amp;\;\;\;\;\;\;\underbrace{\left(\left(RVar(\hat\beta_n|X)R'\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)}_{(q \times 1)}\\[2ex]
-&amp; =\underbrace{(R\hat\beta_n -r^{(0)})'}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R']^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r^{(0)})}_{(q\times 1)}
+&amp; = \overbrace{\left(\left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)^{\top}\;\;}^{(1\times q)}\\
+&amp;\;\;\;\;\;\;\underbrace{\left(\left(RVar(\hat\beta_n|X)R^{\top}\right)^{-1/2}(R\hat\beta_n-r^{(0)})\right)}_{(q \times 1)}\\[2ex]
+&amp; =\underbrace{(R\hat\beta_n -r^{(0)})^{\top}}_{(1\times q)}\underbrace{[RVar(\hat\beta_n|X)R^{\top}]^{-1}}_{(q\times q)}\underbrace{(R\hat\beta_n -r^{(0)})}_{(q\times 1)}
 \end{align*}
 \qquad(6.2)\]</span></span></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -445,24 +445,24 @@ Note
 <p>Note that the test statistic <span class="math inline">\(W\)</span> is simply measuring the distance (it’s a weighted, squared Euclidean distance) between the <span class="math inline">\((q\times 1)\)</span> vectors <span class="math inline">\(R\hat\beta_n\)</span> and <span class="math inline">\(r^{(0)}.\)</span></p>
 </div>
 </div>
-<p>Under the null hypothesis (i.e., if <span class="math inline">\(H_0\)</span> is true), <span class="math inline">\(W\)</span> is a sum of <span class="math inline">\(q\)</span>-many independent, squared standard normal <span class="math inline">\(\mathcal{N}(0,1)\)</span> random variables. Therefore, under the null hypothesis, <span class="math inline">\(W\)</span> is chi-square distributed with <span class="math inline">\(q\)</span> degrees of freedom (see definition of the chi-square distribution in <a href="02-Probability.html#sec-chisqdist" class="quarto-xref"><span>Section 2.2.10.3</span></a>), <span class="math display">\[
+<p>Under the null hypothesis (i.e., if <span class="math inline">\(H_0\)</span> is true), <span class="math inline">\(W\)</span> is a sum of <span class="math inline">\(q\)</span>-many independent, squared standard normal <span class="math inline">\(\mathcal{N}(0,1)\)</span> random variables. Therefore, under the null hypothesis, <span class="math inline">\(W\)</span> is chi-square distributed with <span class="math inline">\(q\)</span> degrees of freedom (see definition of the chi-square distribution in <a href="02-Probability.html#sec-chisqdist" class="quarto-xref"><span>Section 2.2.7.3</span></a>), <span class="math display">\[
 \begin{align*}
 W&amp;\overset{H_0}{\sim} \chi^2_{(q)}
 \end{align*}
 \]</span> Note that the distribution of <span class="math inline">\(W\)</span> does not depend on <span class="math inline">\(X.\)</span> I.e. <span class="math inline">\(W\)</span> follows a <span class="math inline">\(\chi^2_{(q)}\)</span>-distribution no matter the realization of <span class="math inline">\(X.\)</span></p>
-<p>Usually, however, we do not know <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2 (X'X)^{-1},\)</span> since we usually do not know the value of <span class="math inline">\(\sigma^2.\)</span> Thus, we need to substitute <span class="math inline">\(\sigma^2\)</span> by an estimator.</p>
-<p>For exact finite sample inference, we need a variance estimator of <span class="math inline">\(\sigma^2\)</span> for which we can derive its exact small sample distribution. Therefore, we require Assumption 4<span class="math inline">\(^*\)</span> of spherical errors, i.e.&nbsp;<span class="math inline">\(Var(\varepsilon|X)=\sigma^2I_n,\)</span> which implies that <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2(X'X)^{-1}\)</span>, and where <span class="math inline">\(\sigma^2\)</span> can be estimated by the unbiased (<span class="math inline">\(UB\)</span>) variance estimator<br><span class="math display">\[
+<p>Usually, however, we do not know <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2 (X^{\top}X)^{-1},\)</span> since we usually do not know the value of <span class="math inline">\(\sigma^2.\)</span> Thus, we need to substitute <span class="math inline">\(\sigma^2\)</span> by an estimator.</p>
+<p>For exact finite sample inference, we need a variance estimator of <span class="math inline">\(\sigma^2\)</span> for which we can derive its exact small sample distribution. Therefore, we require Assumption 4<span class="math inline">\(^*\)</span> of spherical errors, i.e.&nbsp;<span class="math inline">\(Var(\varepsilon|X)=\sigma^2I_n,\)</span> which implies that <span class="math inline">\(Var(\hat\beta_n|X)=\sigma^2(X^{\top}X)^{-1}\)</span>, and where <span class="math inline">\(\sigma^2\)</span> can be estimated by the unbiased (<span class="math inline">\(UB\)</span>) variance estimator<br><span class="math display">\[
 s_{UB}^2=(n-K)^{-1}\sum_{i=1}^n\hat\varepsilon_i^2.
 \]</span><br>
 From the normality assumption in Assumption 4<span class="math inline">\(^*\)</span>, it follows then that <span id="eq-distsquared"><span class="math display">\[
 \frac{(n-K)}{\sigma^{2}}s_{UB}^2\sim\chi^2_{(n-K)}.
 \qquad(6.3)\]</span></span></p>
 <p>Substituting the unknown <span class="math display">\[
-Var(\hat\beta_n|X)=\sigma^2 (X'X)^{-1}
+Var(\hat\beta_n|X)=\sigma^2 (X^{\top}X)^{-1}
 \]</span> in <a href="#eq-TestStatW" class="quarto-xref">Equation&nbsp;<span>6.2</span></a> by its estimator <span class="math display">\[
-\widehat{Var}(\hat\beta_n|X)=s_{UB}^2 (X'X)^{-1}
+\widehat{Var}(\hat\beta_n|X)=s_{UB}^2 (X^{\top}X)^{-1}
 \]</span> leads to the <span class="math inline">\(F\)</span>-test statistic <span class="math display">\[
-F=(R\hat\beta_n -r^{(0)})'[R(s_{UB}^2(X'X)^{-1})R']^{-1}(R\hat\beta_n -r^{(0)})/q
+F=(R\hat\beta_n -r^{(0)})^{\top}[R(s_{UB}^2(X^{\top}X)^{-1})R^{\top}]^{-1}(R\hat\beta_n -r^{(0)})/q
 \]</span> and takes into account the additional randomness (estimation errors) due to estimating <span class="math inline">\(\sigma^2\)</span> by <span class="math inline">\(s_{UB}^2.\)</span></p>
 <p>Under the null-hypothesis, one can show that <span id="eq-Ftest"><span class="math display">\[
 F\overset{H_0}{\sim} F_{(q,n-K)},
@@ -473,7 +473,7 @@ F\overset{H_0}{\sim} F_{(q,n-K)},
 </blockquote>
 <p>By contrast to <span class="math inline">\(W,\)</span> <span class="math inline">\(F\)</span> is now a practically useful test statistic, and we can use the observed value <span class="math inline">\(F_{\text{obs}}\)</span> to measure the distance of our observed estimate <span class="math inline">\(R\hat\beta_n\)</span> from its null-hypothetical value <span class="math inline">\(r^{(0)}.\)</span></p>
 <p>Observed values, <span class="math inline">\(F_{\text{obs}}\)</span>, that are “unusually large” under the null hypothesis, lead to a rejection of the null hypothesis. The null distribution <span class="math inline">\(F_{(q,n-K)}\)</span> of <span class="math inline">\(F\)</span> is used to judge what’s “unusually large” under the null hypothesis.</p>
-<p><strong>The F distribution.</strong> The F distribution is a ratio of two <span class="math inline">\(\chi^2\)</span> distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution (<a href="#fig-FDistribution" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>). See <a href="02-Probability.html#sec-Fdist" class="quarto-xref"><span>Section 2.2.10.6</span></a> for more information on the <span class="math inline">\(F\)</span> distribution.</p>
+<p><strong>The F distribution.</strong> The F distribution is a ratio of two <span class="math inline">\(\chi^2\)</span> distributions. It has two parameters: the numerator degrees of freedom, and the denominator degrees of freedom. Each combination of the parameters yields a different F distribution (<a href="#fig-FDistribution" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>). See <a href="02-Probability.html#sec-Fdist" class="quarto-xref"><span>Section 2.2.7.6</span></a> for more information on the <span class="math inline">\(F\)</span> distribution.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-FDistribution" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -580,8 +580,8 @@ p_{\text{obs}} \geq \alpha,
 <p>Thus the <span class="math inline">\(F\)</span>-test statistic simplifies to <span class="math display">\[
 F=\frac{\left(\hat{\beta}_k-\beta_k^{(0)}\right)^2}{\widehat{Var}(\hat{\beta}_k|X)}\overset{H_0}{\sim}F_{(1,n-K)},
 \]</span> where <span class="math display">\[
-\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X'X)^{-1}]_{(k,k)},
-\]</span> and where <span class="math inline">\([(X'X)^{-1}]_{(k,k)}\)</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\((X'X)^{-1}.\)</span></p>
+\widehat{Var}(\hat{\beta}_k|X)=s^2_{UB}[(X^{\top}X)^{-1}]_{(k,k)},
+\]</span> and where <span class="math inline">\([(X^{\top}X)^{-1}]_{(k,k)}\)</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\((X^{\top}X)^{-1}.\)</span></p>
 <section id="sec-tTestTestStat" class="level3" data-number="6.3.1"><h3 data-number="6.3.1" class="anchored" data-anchor-id="sec-tTestTestStat">
 <span class="header-section-number">6.3.1</span> The Test Statistic and its Null Distribution</h3>
 <p>Taking square roots yields the <span class="math inline">\(t\)</span> test statistic <span class="math display">\[
@@ -590,7 +590,7 @@ T=\frac{\hat{\beta}_k-\beta_k^{(0)}}{\widehat{\operatorname{SE}}(\hat{\beta}_k|X
 \begin{align*}
 \widehat{\operatorname{SE}}(\hat{\beta}_k|X)
 &amp;=\sqrt{\widehat{Var}(\hat{\beta}_k|X)}\\[2ex]
-&amp;=s_{UB}[(X'X)^{-1/2}]_{(k,k)},
+&amp;=s_{UB}[(X^{\top}X)^{-1/2}]_{(k,k)},
 \end{align*}
 \]</span> and where <span class="math inline">\(t_{(n-K)}\)</span> denotes the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom.</p>
 <p>Thus the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-K\)</span> degrees of freedom is the appropriate distribution to judge whether an observed value <span class="math inline">\(T_{\text{obs}}\)</span> of the test statistic is “unusually large” under the null hypothesis.</p>
@@ -610,7 +610,7 @@ H_0:\beta_k=0
 <p>This means to test the null hypothesis that <span class="math inline">\(X_k\)</span> has on average no (linear) effect on the outcome variable <span class="math inline">\(Y.\)</span></p>
 </div>
 </div>
-<p><strong>The <span class="math inline">\(t\)</span> distribution.</strong> <a href="#fig-tDistribution" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> illustrates that as the degrees of freedom increase, the shape of the <span class="math inline">\(t\)</span> distribution comes closer to that of a standard normal bell curve. Already for <span class="math inline">\(25\)</span> degrees of freedom we find little difference to the standard normal density. In case of small degrees of freedom values, we find the distribution to have heavier tails than a standard normal. See <a href="02-Probability.html#sec-tdist" class="quarto-xref"><span>Section 2.2.10.4</span></a> for more information about the <span class="math inline">\(t\)</span>-distribution.</p>
+<p><strong>The <span class="math inline">\(t\)</span> distribution.</strong> <a href="#fig-tDistribution" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> illustrates that as the degrees of freedom increase, the shape of the <span class="math inline">\(t\)</span> distribution comes closer to that of a standard normal bell curve. Already for <span class="math inline">\(25\)</span> degrees of freedom we find little difference to the standard normal density. In case of small degrees of freedom values, we find the distribution to have heavier tails than a standard normal. See <a href="02-Probability.html#sec-tdist" class="quarto-xref"><span>Section 2.2.7.4</span></a> for more information about the <span class="math inline">\(t\)</span>-distribution.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-tDistribution" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -634,7 +634,7 @@ Figure&nbsp;6.3: Graphs of the density function of the <span class="math inline"
 \]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statistician (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
 <p>The rejection region is <span class="math display">\[
 \mathcal{R}=\;]c_{1-\alpha}, \infty[,
-\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the significance level and <span class="math inline">\(c_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
+\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the significance level and <span class="math inline">\(c_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span>-quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
 <ul>
 <li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
 \begin{align*}
@@ -687,7 +687,7 @@ Figure&nbsp;6.4: <span class="math inline">\(t\)</span>-distribution with <span 
 \]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statistician (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
 <p>The rejection region is <span class="math display">\[
 \mathcal{R}=\;]-\infty,c_{\alpha}[,
-\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the significance level and <span class="math inline">\(c_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
+\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the significance level and <span class="math inline">\(c_{\alpha}\)</span> denotes the <span class="math inline">\(\alpha\)</span>-quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
 <ul>
 <li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
 \begin{align*}
@@ -740,7 +740,7 @@ Figure&nbsp;6.5: <span class="math inline">\(t\)</span>-distribution with <span 
 \]</span> where <span class="math inline">\(\beta_k\)</span> denotes the true (unknown) parameter value and <span class="math inline">\(\beta_k^{(0)}\)</span> the null hypothetical value specified by the statistician (e.g.&nbsp;<span class="math inline">\(\beta_k^{(0)}=0\)</span>).</p>
 <p>The rejection region is <span class="math display">\[
 \mathcal{R}=\;]-\infty,c_{\alpha/2}[\;\;\cup\;\;]c_{1-\alpha/2}, \infty[,
-\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the significance level and <span class="math inline">\(c_{\alpha/2}\)</span> and <span class="math inline">\(c_{1-\alpha/2}\)</span> denote the <span class="math inline">\(\alpha/2\)</span> and the <span class="math inline">\((1-\alpha/2)\)</span> quantiles of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
+\]</span> where <span class="math inline">\(0&lt;\alpha&lt;1\)</span> denotes the significance level and <span class="math inline">\(c_{\alpha/2}\)</span> and <span class="math inline">\(c_{1-\alpha/2}\)</span> denote the <span class="math inline">\(\alpha/2\)</span>- and the <span class="math inline">\((1-\alpha/2)\)</span>-quantiles of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
 <ul>
 <li>We can reject <span class="math inline">\(H_0\)</span> if <span class="math display">\[
 \begin{align*}
@@ -886,7 +886,7 @@ P\Big(\beta_k\in\operatorname{CI}_{k,n,1-\alpha}\Big)\geq 1-\alpha.
 \begin{align*}
 P\left(-c_{n,1-\alpha/2}\leq\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)}\leq c_{n,1-\alpha/2}\right)=1-\alpha,
 \end{align*}
-\]</span> where <span class="math inline">\(c_{n,1-\alpha/2}\)</span> denotes the <span class="math inline">\((1-\alpha/2)\)</span> quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
+\]</span> where <span class="math inline">\(c_{n,1-\alpha/2}\)</span> denotes the <span class="math inline">\((1-\alpha/2)\)</span>-quantile of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\((n-K)\)</span> degrees of freedom.</p>
 <p>Next, we can do the following equivalent transformations <span class="math display">\[
 \begin{align*}
 P\left(-c_{n,1-\alpha/2}\leq\frac{\hat\beta_{n,k}-\beta_k}{\widehat{\operatorname{SE}}(\hat\beta_{n,k}|X)}\leq c_{n,1-\alpha/2}\right)&amp;=1-\alpha\\[2ex]
@@ -1543,7 +1543,7 @@ T_n&amp;=\frac{\hat\beta_{n,k}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}
 \text{Power}_{n,\theta,\alpha}
 &amp; = P\Big(\;\underbrace{T_n &gt; z_{1-\alpha}}_{T_n\in\mathcal{R}_{n,\alpha}}\;|\; \underbrace{\beta_k &gt; \beta_k^{(0)}}_{H_1\text{ is true}}\;\Big),
 \end{align*}
-\]</span> where <span class="math inline">\(z_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span> quantile of the standard normal distribution <span class="math inline">\(\mathcal{N}(0,1),\)</span> and where <span class="math display">\[
+\]</span> where <span class="math inline">\(z_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span>-quantile of the standard normal distribution <span class="math inline">\(\mathcal{N}(0,1),\)</span> and where <span class="math display">\[
 T_n\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).
 \]</span></p>
 <p>This allows us to compute the power as following: <span class="math display">\[
@@ -1676,7 +1676,7 @@ F_{H_0,p}(x)
 <p>First, we program a function <code>myDataGenerator()</code> which allows us to generate data from the following model, i.e., from the following fully specified data generating process: <span class="math display">\[
 \begin{align*}
 Y_i &amp;=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
-\beta &amp;=(\beta_1,\beta_2,\beta_3)'=(2,3,4)'\\
+\beta &amp;=(\beta_1,\beta_2,\beta_3)^{\top}=(2,3,4)^{\top}\\
 X_{i2}&amp;\sim U[2,10]\\
 X_{i3}&amp;\sim U[12,22]\\
 \varepsilon_i|X&amp;\sim\mathcal{N}(0,3^2),
@@ -1685,7 +1685,7 @@ X_{i3}&amp;\sim U[12,22]\\
 <p>Let us consider a small sample size of <span class="math inline">\(n=7\)</span>.</p>
 <p>The below function <code>myDataGenerator()</code> allows to sample new realizations of the random sample <span class="math display">\[
 ((X_1,Y_1),\dots,(X_n,Y_n))
-\]</span> You can provide your own values for the sample size <span class="math inline">\(n\)</span> and for the parameter vector <span class="math inline">\(\beta=(\beta_1,\beta_2,\beta_3)'\)</span>.</p>
+\]</span> You can provide your own values for the sample size <span class="math inline">\(n\)</span> and for the parameter vector <span class="math inline">\(\beta=(\beta_1,\beta_2,\beta_3)^{\top}\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Function to generate artificial data</span></span>
 <span><span class="co">## If the user provides 'X_cond' data, </span></span>

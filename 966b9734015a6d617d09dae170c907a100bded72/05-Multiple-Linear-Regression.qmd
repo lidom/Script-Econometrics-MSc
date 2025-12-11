@@ -1651,8 +1651,7 @@ autoplot(lm_obj_2, which = 1)
 Usually, we only observe *one* estimate $\hat{\beta}$ of $\beta$ computed based on *one* given dataset (one realization of the random sample). 
 
 
-However, in order to understand the statistical properties of the estimators $\hat{\beta}$ we need to view them as random variables which yield different realizations in repeated realizations of the random sample from Model (@eq-LinMod). 
-
+However, in order to understand the statistical properties of the estimator $\hat{\beta}$ we need to view it as a random variable which yields different realizations in repeated realizations of the random sample from the Model (@eq-LinMod). 
 
 This view allows us then to think about questions like: 
 
