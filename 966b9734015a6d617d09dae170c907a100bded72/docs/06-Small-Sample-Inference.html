@@ -1076,6 +1076,9 @@ Example: One-Sided Test with <span class="math inline">\(\theta\in\mathbb{R}\)</
 </section><section id="decisions-errors" class="level3" data-number="6.5.2"><h3 data-number="6.5.2" class="anchored" data-anchor-id="decisions-errors">
 <span class="header-section-number">6.5.2</span> Decisions Errors</h3>
 <p>Hypothesis testing is like a legal trial. We assume someone is innocent unless the evidence strongly suggests that he is guilty. Similarly, we retain <span class="math inline">\(H_0\)</span> unless there is strong evidence to reject <span class="math inline">\(H_0.\)</span></p>
+<!-- ::: {.callout-important}
+**Caution:** Retaining $H_0$ does not mean that we have evidence that $H_0$ is true. In fact, in real data, basically every $H_0$ is false. Retaining $H_0$ means that we do not have sufficient evidence against $H_0.$
+::: -->
 <p>We differentiate two decision errors events:</p>
 <ul>
 <li>
@@ -1093,27 +1096,21 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Not being able to reject <span class="math inline">\(H_0,\)</span> does not mean a validation/confirmation of <span class="math inline">\(H_0,\)</span> but only reflects that we do not have sufficient evidence against a possibly false <span class="math inline">\(H_0.\)</span></p>
-<p>Indeed, a given violation of <span class="math inline">\(H_0\)</span> may only be too small to stand out from the estimation errors; i.e.&nbsp;we may do a type-II-error. Problem is, we generally cannot control the probability of type-II-errors since we do not know the distribution of the test statistic under <span class="math inline">\(H_1.\)</span> We can only control the probability of type-I-errors since we know the distribution of the test statistic under <span class="math inline">\(H_0.\)</span></p>
-<p>Therefore, if you are not able to reject <span class="math inline">\(H_0,\)</span> <strong>never ever</strong> state something like: “I conclude <span class="math inline">\(H_0\)</span> is true.”</p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled" title="">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-For the special case of a “no-effect” null hypothesis <span class="math display">\[
+<p>Not being able to reject <span class="math inline">\(H_0,\)</span> does not mean a validation/confirmation of <span class="math inline">\(H_0,\)</span> but only reflects that we do not have sufficient evidence against a possibly false <span class="math inline">\(H_0.\)</span> Indeed, a given violation of <span class="math inline">\(H_0\)</span> may only be too small to stand out from the estimation errors; i.e.&nbsp;we may do a type-II-error.</p>
+<p>Problem is, we generally cannot control the probability of type-II-errors since we do not know the distribution of the test statistic under <span class="math inline">\(H_1.\)</span> We can only control the probability of type-I-errors since we know the distribution of the test statistic under <span class="math inline">\(H_0.\)</span></p>
+<p>Therefore, if you are not able to reject <span class="math inline">\(H_0,\)</span> <strong>never ever</strong> state something like: “I conclude <span class="math inline">\(H_0\)</span> is true.” (In fact, in real data, basically every <span class="math inline">\(H_0\)</span> is false.)</p>
+<!-- 
+::: {.callout-tip icon="false" title=""}
+For the special case of a "no-effect" null hypothesis 
+$$
 H_0:\beta_k=0,
-\]</span> there’s a famous sentence which goes back to <span class="citation" data-cites="Altman_Bland_1995">Altman and Bland (<a href="#ref-Altman_Bland_1995" role="doc-biblioref">1995</a>)</span> :
+$$ 
+there's a famous sentence which goes back to @Altman_Bland_1995 :</br> 
 <center>
-“Absence of evidence is not evidence of absence.”
+"Absence of evidence is not evidence of absence." 
 </center>
-</div>
-</div>
+::: 
+-->
 </div>
 </div>
 </section><section id="size" class="level3" data-number="6.5.3"><h3 data-number="6.5.3" class="anchored" data-anchor-id="size">
@@ -1136,7 +1133,7 @@ H_0:\beta_k=0,
 </div>
 </div>
 </div>
-<p>A statistical hypothesis test procedure is called <strong>valid test</strong> if its size can be bounded from above by the chosen <strong>significance level (nominal size)</strong> <span class="math inline">\(\alpha\)</span>, i.e.&nbsp;if<br><span class="math display">\[
+<p>A statistical hypothesis test procedure is called <strong>valid</strong> if its size can be bounded from above by the chosen <strong>significance level (nominal size)</strong> <span class="math inline">\(\alpha\)</span>, i.e.&nbsp;if<br><span class="math display">\[
 \begin{align*}
 \text{Size}_{n,\alpha}\; \leq\; \alpha = \text{Nominal Size}
 \end{align*}
@@ -1149,13 +1146,14 @@ H_0:\beta_k=0,
 <span class="math inline">\(\alpha=0.01\)</span>, or</li>
 <li><span class="math inline">\(\alpha=0.001.\)</span></li>
 </ul>
+<p>Generally, of course, the value of <span class="math inline">\(\alpha\)</span> is arbitrary and you can also choose <span class="math inline">\(\alpha=0.00231.\)</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exact vs conservative vs invalid
+Exact vs Conservative vs Invalid Testing
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1205,7 +1203,8 @@ Tip
 <p>Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> (see <a href="#sec-testmultp" class="quarto-xref"><span>Section 6.2</span></a>), we have that <span id="eq-FNullDistr"><span class="math display">\[
 F_n\overset{H_0}{\sim}F_{q,n-K}.
 \qquad(6.6)\]</span></span></p>
-<p><a href="#eq-FNullDistr" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> allows us to show that the <span class="math inline">\(F_n\)</span>-test is an exact test. Since the null hypothesis is a <strong>simple</strong> hypothesis we do not need to consider the supremum <span class="math inline">\((\sup_{\theta\in\Theta_0}),\)</span> but simply have <span class="math display">\[
+<p><a href="#eq-FNullDistr" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> allows us to show that the <span class="math inline">\(F_n\)</span>-test is an exact test.</p>
+<p>Since the null hypothesis is a <strong>simple</strong> hypothesis we do not need to consider the supremum <span class="math inline">\((\sup_{\theta\in\Theta_0}),\)</span> but simply have <span class="math display">\[
 \begin{align*}
 \text{Size}_{n,\alpha}
 = &amp; P(F_n \in \mathcal{R}_{n,\alpha} \;|\; R\beta = r^{(0)}).
@@ -1231,7 +1230,8 @@ F_n\overset{H_0}{\sim}F_{q,n-K}.
 <p>Under Assumptions 1-4<span class="math inline">\(^\ast\)</span> (see <a href="#sec-testingsinglep" class="quarto-xref"><span>Section 6.3</span></a>), we have that <span id="eq-T2SNullDistr"><span class="math display">\[
 T_n\overset{H_0}{\sim}t_{n-K}.
 \qquad(6.7)\]</span></span></p>
-<p><a href="#eq-T2SNullDistr" class="quarto-xref">Equation&nbsp;<span>6.7</span></a> allows us to show that the <span class="math inline">\(t\)</span>-test is an exact test. Since the null hypothesis is a <strong>simple</strong> hypothesis we do not need to consider the supremum <span class="math inline">\((\sup_{\theta\in\Theta_0}),\)</span> but simply have <span class="math display">\[
+<p><a href="#eq-T2SNullDistr" class="quarto-xref">Equation&nbsp;<span>6.7</span></a> allows us to show that the <span class="math inline">\(t\)</span>-test is an exact test.</p>
+<p>Since the null hypothesis is a <strong>simple</strong> hypothesis we do not need to consider the supremum <span class="math inline">\((\sup_{\theta\in\Theta_0}),\)</span> but simply have <span class="math display">\[
 \begin{align*}
 \text{Size}_{n,\alpha}
 =&amp;P(T_n \in \mathcal{R}_{n,\alpha} \;|\; \beta_k = \beta_k^{(0)}).
@@ -1424,7 +1424,7 @@ $$ -->
 </div>
 </div>
 </div>
-<p>Since we want to detect a given violations of <span class="math inline">\(H_0,\)</span> we want test statistics with a large power.</p>
+<p>Since we want to detect given violations of <span class="math inline">\(H_0,\)</span> we want test statistics with large power.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1474,7 +1474,7 @@ Power is a function of <span class="math inline">\(\alpha,\)</span> <span class=
 </div>
 </div>
 </div>
-<p><strong>Caution:</strong> Consistency of a statistical test is an important proporty, however, this property implies that even small, practically irrelevant violations of <span class="math inline">\(H_0\)</span> will be detected if the sample size is sufficiently large.</p>
+<p><strong>Caution:</strong> Consistency of a statistical test is an important property. However, this property implies that even small, practically irrelevant violations of <span class="math inline">\(H_0\)</span>, i.e., <span class="math inline">\(|\theta-\theta_0|\approx 0,\)</span> will be detected if the sample size is sufficiently large.</p>
 <section id="power-of-the-one-sided-t-test" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="power-of-the-one-sided-t-test"><strong>Power of the One-Sided <span class="math inline">\(t\)</span>-Test</strong></h4>
 <!-- A type-II-error is the mistake of not rejecting the null hypothesis when in fact it should have been rejected. The probability of making a type-II-error equals one minus the probability of correctly rejecting the null hypothesis ("Power").  -->
 <!-- For instance, in the case of using the $t$-test to test the null hypothesis $H_0: \beta_k=0$ versus the one-sided alternative hypothesis $H_1:\beta_k>0$) we have that 
@@ -1543,9 +1543,11 @@ T_n&amp;=\frac{\hat\beta_{n,k}-\beta_k^{(0)}}{\frac{1}{\sqrt{n}}4.5}
 \text{Power}_{n,\theta,\alpha}
 &amp; = P\Big(\;\underbrace{T_n &gt; z_{1-\alpha}}_{T_n\in\mathcal{R}_{n,\alpha}}\;|\; \underbrace{\beta_k &gt; \beta_k^{(0)}}_{H_1\text{ is true}}\;\Big),
 \end{align*}
-\]</span> where <span class="math inline">\(z_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span>-quantile of the standard normal distribution <span class="math inline">\(\mathcal{N}(0,1),\)</span> and where <span class="math display">\[
-T_n\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).
-\]</span></p>
+\]</span> where</p>
+<ul>
+<li><p><span class="math inline">\(z_{1-\alpha}\)</span> denotes the <span class="math inline">\((1-\alpha)\)</span>-quantile of the standard normal distribution <span class="math inline">\(\mathcal{N}(0,1),\)</span></p></li>
+<li><p><span class="math inline">\(T_n\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).\)</span></p></li>
+</ul>
 <p>This allows us to compute the power as following: <span class="math display">\[
 \begin{align*}
 &amp; \text{Power}_{n,\theta,\alpha}=\\[2ex]  
@@ -1613,7 +1615,7 @@ Marginal Significance Value
 <p>The <span class="math inline">\(p\)</span>-value equals the significance level <span class="math inline">\(\alpha\)</span> for which we just fail to reject the null. Therefore, the <span class="math inline">\(p\)</span>-value is sometimes also called “marginal significance value”.</p>
 </div>
 </div>
-<p>Since the <span class="math inline">\(p\)</span>-value is defined under the hypothetical <strong>scenario that the null-hypothesis is true</strong>, …</p>
+<p>Since the <span class="math inline">\(p\)</span>-value is defined under the <strong><em>hypothetical</em> scenario that the null-hypothesis is true</strong>, …</p>
 <center>
 ❗… the <span class="math inline">\(p\)</span>-value <strong>cannot</strong> be the probability that the null-hypothesis is true. (A common misinterpretation of the <span class="math inline">\(p\)</span>-value.)❗
 </center>
@@ -2286,9 +2288,6 @@ Consequently, the error term <span class="math inline">\(\varepsilon_i\)</span> 
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-Altman_Bland_1995" class="csl-entry" role="listitem">
-Altman, Douglas G, and J Martin Bland. 1995. <span>“Statistics Notes: Absence of Evidence Is Not Evidence of Absence.”</span> <em>British Medical Journal</em> 311 (7003): 485.
-</div>
 <div id="ref-Hayashi2000" class="csl-entry" role="listitem">
 Hayashi, Fumio. 2000. <em>Econometrics</em>. Princeton University Press.
 </div>

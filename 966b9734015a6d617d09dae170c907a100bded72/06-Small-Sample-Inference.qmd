@@ -1095,6 +1095,10 @@ $$
 Hypothesis testing is like a legal trial. We assume someone is innocent
 unless the evidence strongly suggests that he is guilty. Similarly, we retain $H_0$ unless there is strong evidence to reject $H_0.$ 
 
+<!-- ::: {.callout-important}
+**Caution:** Retaining $H_0$ does not mean that we have evidence that $H_0$ is true. In fact, in real data, basically every $H_0$ is false. Retaining $H_0$ means that we do not have sufficient evidence against $H_0.$
+::: -->
+
 
 We differentiate two decision errors events: 
 
@@ -1107,12 +1111,13 @@ Not rejecting $H_0$ even though $H_1$ is true.
 
 
 ::: {.callout-caution}
-Not being able to reject $H_0,$ does not mean a validation/confirmation of $H_0,$ but only reflects that we do not have sufficient evidence against a possibly false $H_0.$
+Not being able to reject $H_0,$ does not mean a validation/confirmation of $H_0,$ but only reflects that we do not have sufficient evidence against a possibly false $H_0.$ Indeed, a given violation of $H_0$ may only be too small to stand out from the estimation errors; i.e. we may do a type-II-error. 
 
-Indeed, a given violation of $H_0$ may only be too small to stand out from the estimation errors; i.e. we may do a type-II-error. Problem is, we generally cannot control the probability of type-II-errors since we do not know the distribution of the test statistic under $H_1.$ We can only control the probability of type-I-errors since we know the distribution of the test statistic under $H_0.$
+Problem is, we generally cannot control the probability of type-II-errors since we do not know the distribution of the test statistic under $H_1.$ We can only control the probability of type-I-errors since we know the distribution of the test statistic under $H_0.$
 
-Therefore, if you are not able to reject $H_0,$ **never ever** state something like: "I conclude $H_0$ is true."
+Therefore, if you are not able to reject $H_0,$ **never ever** state something like: "I conclude $H_0$ is true." (In fact, in real data, basically every $H_0$ is false.)
 
+<!-- 
 ::: {.callout-tip icon="false" title=""}
 For the special case of a "no-effect" null hypothesis 
 $$
@@ -1122,7 +1127,8 @@ there's a famous sentence which goes back to @Altman_Bland_1995 :</br>
 <center>
 "Absence of evidence is not evidence of absence." 
 </center>
-:::
+::: 
+-->
 ::: 
 
 
@@ -1146,7 +1152,7 @@ $$
 :::
 :::
 
-A statistical hypothesis test procedure is called **valid test** if its size can be bounded from above by the chosen **significance level (nominal size)** $\alpha$, i.e. if  
+A statistical hypothesis test procedure is called **valid** if its size can be bounded from above by the chosen **significance level (nominal size)** $\alpha$, i.e. if  
 $$
 \begin{align*}
 \text{Size}_{n,\alpha}\; \leq\; \alpha = \text{Nominal Size}
@@ -1159,10 +1165,10 @@ Since we want to keep the probability of falsely rejecting $H_0$ small, we choos
 * $\alpha=0.01$, or 
 * $\alpha=0.001.$
 
-
+Generally, of course, the value of $\alpha$ is arbitrary and you can also choose $\alpha=0.00231.$
 
 ::: {.callout-note}
-# Exact vs conservative vs invalid
+# Exact vs Conservative vs Invalid Testing
 
 A test statistic $T_n$ is called 
 
@@ -1203,6 +1209,8 @@ F_n\overset{H_0}{\sim}F_{q,n-K}.
 $${#eq-FNullDistr}
 
 @eq-FNullDistr allows us to show that the $F_n$-test is an exact test. 
+
+
 Since the null hypothesis is a **simple** hypothesis we do not need to consider the supremum $(\sup_{\theta\in\Theta_0}),$ but simply have
 $$
 \begin{align*}
@@ -1240,7 +1248,9 @@ T_n\overset{H_0}{\sim}t_{n-K}.
 $${#eq-T2SNullDistr}
 
 
-@eq-T2SNullDistr allows us to show that the $t$-test is an exact test. Since the null hypothesis is a **simple** hypothesis we do not need to consider the supremum $(\sup_{\theta\in\Theta_0}),$ but simply have
+@eq-T2SNullDistr allows us to show that the $t$-test is an exact test. 
+
+Since the null hypothesis is a **simple** hypothesis we do not need to consider the supremum $(\sup_{\theta\in\Theta_0}),$ but simply have
 $$
 \begin{align*}
 \text{Size}_{n,\alpha}
@@ -1502,7 +1512,7 @@ $$
 :::
 :::
 
-Since we want to detect a given violations of $H_0,$ we want test statistics with a large power.
+Since we want to detect given violations of $H_0,$ we want test statistics with large power.
 
 
 
@@ -1559,7 +1569,7 @@ for any fixed $0<\alpha<1$ and any fixed $|\theta - \theta^{(0)}|>0.$
 :::
 
 
-**Caution:** Consistency of a statistical test is an important proporty, however, this property implies that even small, practically irrelevant violations of $H_0$ will be detected if the sample size is sufficiently large. 
+**Caution:** Consistency of a statistical test is an important property. However, this property implies that even small, practically irrelevant violations of $H_0$, i.e., $|\theta-\theta_0|\approx 0,$ will be detected if the sample size is sufficiently large. 
 
 
 #### **Power of the One-Sided $t$-Test** {-}
@@ -1643,10 +1653,11 @@ $$
 & = P\Big(\;\underbrace{T_n > z_{1-\alpha}}_{T_n\in\mathcal{R}_{n,\alpha}}\;|\; \underbrace{\beta_k > \beta_k^{(0)}}_{H_1\text{ is true}}\;\Big),
 \end{align*}
 $$
-where $z_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the standard normal distribution $\mathcal{N}(0,1),$ and where 
-$$
-T_n\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).
-$$
+where 
+
+* $z_{1-\alpha}$ denotes the $(1-\alpha)$-quantile of the standard normal distribution $\mathcal{N}(0,1),$  
+
+* $T_n\sim \mathcal{N}\left(\frac{\sqrt{n}(\beta_k-\beta_k^{(0)})}{4.5},1\right).$
 
 This allows us to compute the power as following:
 $$
@@ -1769,7 +1780,7 @@ The $p$-value equals the significance level $\alpha$ for which we just fail to r
 
 
 
-Since the $p$-value is defined under the hypothetical **scenario that the null-hypothesis is true**, ... 
+Since the $p$-value is defined under the ***hypothetical* scenario that the null-hypothesis is true**, ... 
 
 <center>
 ❗... the $p$-value **cannot** be the probability that the null-hypothesis is true. (A common misinterpretation of the $p$-value.)❗
