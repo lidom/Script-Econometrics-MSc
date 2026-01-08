@@ -1028,12 +1028,12 @@ $$
 $$
  
 
-* If $\Theta_j,$ $j=1,2,$ contains only **one value** 
+* If $\Theta_j,$ $j=0,1,$ contains only **one value** 
 $$
 \Theta_j=\theta^{(j)},
 $$ 
 it is called a **simple hypothesis**. 
-* If $\Theta_j,$ $j=1,2,$ contains **multiple values**, it is called a **composite hypothesis**.
+* If $\Theta_j,$ $j=0,1,$ contains **multiple values**, it is called a **composite hypothesis**.
 
 
 
