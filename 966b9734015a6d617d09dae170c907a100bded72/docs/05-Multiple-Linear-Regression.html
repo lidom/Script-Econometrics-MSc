@@ -719,15 +719,15 @@ Correlations between the error term <span class="math inline">\(\epsilon_i\)</sp
 <div class="callout-body-container callout-body">
 <p>By <a href="#thm-c" class="quarto-xref">Theorem&nbsp;<span>5.3</span></a>, we have that</p>
 <p><span class="math display">\[
-\underbrace{E(\epsilon_i|X_i)=0}_{A} \Rightarrow \underbrace{\operatorname{Cov}(\epsilon_i,X_{ik})=0\quad \text{for all}\quad k=0,\dots,p}_{B}
+\underbrace{E(\epsilon_i|X_i)=0}_{A} \Rightarrow \underbrace{\operatorname{Cov}(\epsilon_i,X_{ik})=0\quad \text{for all}\quad k=1,\dots,K}_{B}
 \]</span></p>
 <p><strong>Remember:</strong> Any logical implication <span class="math display">\[
 A\Rightarrow B
 \]</span> has a logically equivalent <strong>contrapositive</strong>: <span class="math display">\[
 \neg B\Rightarrow \neg A
 \]</span> Therefore, we also have that <span class="math display">\[
-\underbrace{\operatorname{Cov}(\epsilon_i,X_{ik})\neq 0\;\text{for at least one}\; k=0,\dots,p}_{\neg B} \Rightarrow \underbrace{E(\epsilon_i|X_i)\neq 0}_{\neg A}
-\]</span> I.e., if any of the regressors <span class="math inline">\(X_{ik}\)</span>, <span class="math inline">\(k=0,\dots,p,\)</span> has a non-zero covariance with the error term <span class="math inline">\(\epsilon_i\)</span>, then the exogeneity assumption is violated.</p>
+\underbrace{\operatorname{Cov}(\epsilon_i,X_{ik})\neq 0\;\text{for at least one}\; k=1,\dots,K}_{\neg B} \Rightarrow \underbrace{E(\epsilon_i|X_i)\neq 0}_{\neg A}
+\]</span> I.e., if any of the regressors <span class="math inline">\(X_{ik}\)</span>, <span class="math inline">\(k=1,\dots,K,\)</span> has a non-zero covariance with the error term <span class="math inline">\(\epsilon_i,\)</span> then the exogeneity assumption is violated.</p>
 </div>
 </div>
 <!-- ## The Algebra of Least Squares -->

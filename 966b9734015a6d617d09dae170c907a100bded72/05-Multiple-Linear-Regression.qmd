@@ -497,7 +497,7 @@ E(\varepsilon_i|X_i)=0 \quad\Rightarrow\quad Cov(\varepsilon_i,X_{ik})&=&0\quad\
 By @thm-c, we have that
 
 $$
-\underbrace{E(\epsilon_i|X_i)=0}_{A} \Rightarrow \underbrace{\operatorname{Cov}(\epsilon_i,X_{ik})=0\quad \text{for all}\quad k=0,\dots,p}_{B}
+\underbrace{E(\epsilon_i|X_i)=0}_{A} \Rightarrow \underbrace{\operatorname{Cov}(\epsilon_i,X_{ik})=0\quad \text{for all}\quad k=1,\dots,K}_{B}
 $$
 
 **Remember:** Any logical implication 
@@ -510,9 +510,9 @@ $$
 $$ 
 Therefore, we also have that
 $$
-\underbrace{\operatorname{Cov}(\epsilon_i,X_{ik})\neq 0\;\text{for at least one}\; k=0,\dots,p}_{\neg B} \Rightarrow \underbrace{E(\epsilon_i|X_i)\neq 0}_{\neg A}
+\underbrace{\operatorname{Cov}(\epsilon_i,X_{ik})\neq 0\;\text{for at least one}\; k=1,\dots,K}_{\neg B} \Rightarrow \underbrace{E(\epsilon_i|X_i)\neq 0}_{\neg A}
 $$
-I.e., if any of the regressors $X_{ik}$, $k=0,\dots,p,$ has a non-zero covariance with the error term $\epsilon_i$, then the exogeneity assumption is violated. 
+I.e., if any of the regressors $X_{ik}$, $k=1,\dots,K,$ has a non-zero covariance with the error term $\epsilon_i,$ then the exogeneity assumption is violated. 
 :::
 
 <!-- ## The Algebra of Least Squares -->
