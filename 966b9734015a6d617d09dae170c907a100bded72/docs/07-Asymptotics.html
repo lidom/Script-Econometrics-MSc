@@ -444,7 +444,7 @@ F_\alpha(x)=\left\{
 <div id="thm-CramerWold" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 7.1 (Cramér-Wold)</strong></span> </p>
 <p>Let <span class="math inline">\(Z_n\in\mathbb{R}^K\)</span> and <span class="math inline">\(Z\in\mathbb{R}^K\)</span> be <span class="math inline">\((K\times 1)\)</span>-dimensional random vectors, then <span class="math display">\[
-Z_n\to_{d} Z\quad\text{if and only if}\quad\lambda'Z_n\to_{d}\lambda'Z
+Z_n\to_{d} Z\quad\text{if and only if}\quad\lambda^{\top}Z_n\to_{d}\lambda^{\top}Z
 \]</span> for any <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>.</p>
 </div>
 </div>
@@ -516,9 +516,9 @@ X_n\cdot Y_n\to_{p} \beta\cdot\gamma
 <li><p>If <span class="math inline">\(X_n\to_{p} \beta\)</span> and <span class="math inline">\(Y_n\to_{p} \gamma,\)</span> then <span class="math display">\[
 X_n/Y_n\to_{p} \beta/\gamma,
 \]</span> provided that <span class="math inline">\(\gamma\neq 0\)</span></p></li>
-<li><p>If <span class="math inline">\(\frac{1}{n}\sum_{i=1}^nX_iX_i'=\frac{1}{n}X_n'X_n\to_{p} \Sigma_{X'X},\)</span> then <span class="math display">\[
-\left(\frac{1}{n}X_n'X_n\right)^{-1}\to_{p} \Sigma_{X'X}^{-1},
-\]</span> provided <span class="math inline">\(\Sigma_{X'X}\)</span> is a nonsingular/invertible matrix.</p></li>
+<li><p>If <span class="math inline">\(\frac{1}{n}\sum_{i=1}^nX_iX_i^{\top}=\frac{1}{n}X_n^{\top}X_n\to_{p} \Sigma_{X^{\top}X},\)</span> then <span class="math display">\[
+\left(\frac{1}{n}X_n^{\top}X_n\right)^{-1}\to_{p} \Sigma_{X^{\top}X}^{-1},
+\]</span> provided <span class="math inline">\(\Sigma_{X^{\top}X}\)</span> is a nonsingular/invertible matrix.</p></li>
 </ul>
 <!-- 
 The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n, y_n\right)'$, $\boldsymbol\alpha=\left(\beta, \gamma\right)'$, and $\mathbf{a}(\boldsymbol\alpha)=(1,1)\boldsymbol\alpha$, similarly for all others.  
@@ -544,7 +544,7 @@ The first statement above is immediately seen by setting $\mathbf{z}_n=\left(x_n
 X_n+Y_n\to_{d} X + \alpha.
 \]</span></p></li>
 <li><p>If <span class="math inline">\(X_n\to_{d} X\quad\)</span> and <span class="math inline">\(\quad Y_n\to_{p} 0,\quad\)</span> then <span class="math display">\[
-X_n'Y_n\to_{p} 0.
+X_n^{\top}Y_n\to_{p} 0.
 \]</span></p></li>
 <li><p>If <span class="math inline">\(X_n\to_{d} X\quad\)</span> and <span class="math inline">\(\quad A_n\to_{p} A,\quad\)</span> then <span class="math display">\[
 A_n X_n\to_{d} AX.
@@ -561,7 +561,7 @@ A_n X_n\to_{d} AX.
 <p>Let <span class="math inline">\(\{X_n\}\)</span> and <span class="math inline">\(\{A_n\}\)</span> be two sequences of real valued <span class="math inline">\((K\times 1)\)</span>-dimensional random vectors. If <span class="math display">\[
 X_n\to_{d}\mathcal{N}_K(0,\Sigma)\quad\text{and}\quad A_n\to_{p} A
 \]</span> then <span class="math display">\[
-A_nX_n\to_{d}\mathcal{N}_K(0,A\Sigma A').
+A_nX_n\to_{d}\mathcal{N}_K(0,A\Sigma A^{\top}).
 \]</span></p>
 </section><section id="law-of-large-numbers-and-central-limit-theorems" class="level3" data-number="7.1.4"><h3 data-number="7.1.4" class="anchored" data-anchor-id="law-of-large-numbers-and-central-limit-theorems">
 <span class="header-section-number">7.1.4</span> Law of Large Numbers and Central Limit Theorems</h3>
@@ -666,11 +666,11 @@ A_nX_n\to_{d}\mathcal{N}_K(0,A\Sigma A').
 \sqrt{n}(\bar{Z}_n-\mu)\to_d\mathcal{N}_K(0,\Sigma)
 \]</span> converges to the <strong>multivariate</strong>, <span class="math inline">\(K\)</span>-dimensional, normal distribution <span class="math inline">\(\mathcal{N}_K(0,\Sigma)\)</span> as <span class="math inline">\(n\to\infty\)</span>, we need to check whether <strong>for any</strong> <span class="math inline">\(\lambda\in\mathbb{R}^K\)</span>:</p>
 <ul>
-<li>the <strong>uni</strong>variate stochastic sequence <span class="math inline">\(\{\lambda'Z_i\}\)</span> is i.i.d. with</li>
+<li>the <strong>uni</strong>variate stochastic sequence <span class="math inline">\(\{\lambda^{\top}Z_i\}\)</span> is i.i.d. with</li>
 <li>
-<span class="math inline">\(E(\lambda'Z_i)=\lambda'\mu\)</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> where <span class="math inline">\(E(Z_i)=\mu\in\mathbb{R}^K\)</span> denotes the <span class="math inline">\(K\)</span> dimensional mean vector, and</li>
+<span class="math inline">\(E(\lambda^{\top}Z_i)=\lambda^{\top}\mu\)</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> where <span class="math inline">\(E(Z_i)=\mu\in\mathbb{R}^K\)</span> denotes the <span class="math inline">\(K\)</span> dimensional mean vector, and</li>
 <li>
-<span class="math inline">\(Var(\lambda'Z_i)=\lambda'\Sigma\lambda\)</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> where <span class="math inline">\(Var(Z_i)=\Sigma\)</span> denotes the <span class="math inline">\((K\times K)\)</span> dimensional variance-covariance matrix.</li>
+<span class="math inline">\(Var(\lambda^{\top}Z_i)=\lambda^{\top}\Sigma\lambda\)</span> for all <span class="math inline">\(i=1,\dots,n,\)</span> where <span class="math inline">\(Var(Z_i)=\Sigma\)</span> denotes the <span class="math inline">\((K\times K)\)</span> dimensional variance-covariance matrix.</li>
 </ul>
 <p>These points are fulfilled if the multivariate stochastic sequence <span class="math inline">\(\{Z_i\}\)</span> is an i.i.d. sequence with <span class="math inline">\(E(Z_i)=\mu\)</span> and <span class="math inline">\(Var(Z_i)=\Sigma.\)</span></p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -833,7 +833,7 @@ Var(\hat\theta_n)\to 0,\quad n\to\infty.
 </ol></section></section><section id="asymptotics-under-the-classic-regression-model" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="asymptotics-under-the-classic-regression-model">
 <span class="header-section-number">7.2</span> Asymptotics under the Classic Regression Model</h2>
 <p>Given the above introduced machinery, we can now proof that the two OLS estimators <span class="math display">\[
-\hat\beta_n=(X'X)^{-1}X'Y
+\hat\beta_n=(X^{\top}X)^{-1}X^{\top}Y
 \]</span> and <span class="math display">\[
 s^2_{ub,n}=\frac{1}{n-K}\sum_{i=1}^n\hat\epsilon_i^2
 \]</span> are both consistent, and that <span class="math inline">\(\hat\beta_n\)</span> is asymptotically normal distributed.</p>
@@ -850,30 +850,30 @@ s^2_{ub,n}=\frac{1}{n-K}\sum_{i=1}^n\hat\epsilon_i^2
 <p>For the following, it will be useful to introduce some notation that allows us to consider the different parts of the OLS estimator <span class="math inline">\(\hat\beta_n\)</span> separately.<br><span class="math display">\[
 \begin{align*}
 \hat\beta_n
-&amp;=\left(X'X\right)^{-1}X'Y\\[2ex]
-&amp;=\left(\frac{1}{n}X'X\right)^{-1}\frac{1}{n} X'Y\\[2ex]
-&amp;=\;\;\;\;S_{X'X}^{-1}\;\;\;\;\frac{1}{n} X'Y,
+&amp;=\left(X^{\top}X\right)^{-1}X^{\top}Y\\[2ex]
+&amp;=\left(\frac{1}{n}X^{\top}X\right)^{-1}\frac{1}{n} X^{\top}Y\\[2ex]
+&amp;=\;\;\;\;S_{X^{\top}X}^{-1}\;\;\;\;\frac{1}{n} X^{\top}Y,
 \end{align*}
 \]</span> where <span class="math display">\[
 \begin{align*}
-\underset{(K\times K)}{S_{X'X}}
-&amp;=\frac{1}{n}X'X\\[2ex]
-&amp;=\frac{1}{n}\sum_{i=1}^nX_iX_i',
+\underset{(K\times K)}{S_{X^{\top}X}}
+&amp;=\frac{1}{n}X^{\top}X\\[2ex]
+&amp;=\frac{1}{n}\sum_{i=1}^nX_iX_i^{\top},
 \end{align*}
-\]</span> and where the mean of the <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\(S_{X'X}\)</span> will be denoted as <span class="math display">\[
+\]</span> and where the mean of the <span class="math inline">\((K\times K)\)</span> matrix <span class="math inline">\(S_{X^{\top}X}\)</span> will be denoted as <span class="math display">\[
 \begin{align*}
-\Sigma_{X'X}
-&amp;=E\left(S_{X'X}\right)\\[2ex]
-&amp;=E\left(\frac{1}{n}X'X\right)\\[2ex]
-&amp;=E\left(\frac{1}{n}\sum_{i=1}^nX_iX_i'\right)\\[2ex]
-&amp;=\frac{n}{n}E\left(X_iX_i'\right)\\[2ex]
-&amp;=E\left(X_iX_i'\right).
+\Sigma_{X^{\top}X}
+&amp;=E\left(S_{X^{\top}X}\right)\\[2ex]
+&amp;=E\left(\frac{1}{n}X^{\top}X\right)\\[2ex]
+&amp;=E\left(\frac{1}{n}\sum_{i=1}^nX_iX_i^{\top}\right)\\[2ex]
+&amp;=\frac{n}{n}E\left(X_iX_i^{\top}\right)\\[2ex]
+&amp;=E\left(X_iX_i^{\top}\right).
 \end{align*}
-\]</span> For the below results, we need to restate the full rank assumption (Assumption 3 of <a href="05-Multiple-Linear-Regression.html" class="quarto-xref"><span>Chapter 5</span></a>) with respect to <span class="math inline">\(\Sigma_{X'X}.\)</span></p>
+\]</span> For the below results, we need to restate the full rank assumption (Assumption 3 of <a href="05-Multiple-Linear-Regression.html" class="quarto-xref"><span>Chapter 5</span></a>) with respect to <span class="math inline">\(\Sigma_{X^{\top}X}.\)</span></p>
 <p><strong>Assumption 3<span class="math inline">\(^\ast\)</span>: (Population) Rank Condition</strong>  The <span class="math inline">\((K\times K)\)</span> matrix <span class="math display">\[
-\Sigma_{X'X}=E(S_{X'X})
-\]</span> <!-- $$ --> <!-- n^{-1}X'X=S_{X'X}\to_{p}\Sigma_{X'X}\quad\text{as}\quad n\to\infty --> <!-- $$ --> has full rank <span class="math inline">\(K\)</span>. I.e., <span class="math inline">\(\Sigma_{X'X}\)</span> is nonsingular and invertible. <!-- (Note, this assumption does not assume that $S_{X'X}\to_{p}\Sigma_{X'X}$, but if this convergence hold, it assumes that the limiting matrix is of full rank $K$.) --></p>
-<!-- **Note:**The crucial part of Assumption 3$^\ast$ is that the limit matrix has full rank $K$. The convergence in probability statement ($S_{X'X}\to_{p}\Sigma_{X'X}$) follows already from Assumption 1$^\ast$.   -->
+\Sigma_{X^{\top}X}=E(S_{X^{\top}X})
+\]</span> <!-- $$ --> <!-- n^{-1}X^{\top}X=S_{X^{\top}X}\to_{p}\Sigma_{X^{\top}X}\quad\text{as}\quad n\to\infty --> <!-- $$ --> has full rank <span class="math inline">\(K\)</span>. I.e., <span class="math inline">\(\Sigma_{X^{\top}X}\)</span> is nonsingular and invertible. <!-- (Note, this assumption does not assume that $S_{X^{\top}X}\to_{p}\Sigma_{X^{\top}X}$, but if this convergence hold, it assumes that the limiting matrix is of full rank $K$.) --></p>
+<!-- **Note:**The crucial part of Assumption 3$^\ast$ is that the limit matrix has full rank $K$. The convergence in probability statement ($S_{X^{\top}X}\to_{p}\Sigma_{X^{\top}X}$) follows already from Assumption 1$^\ast$.   -->
 <!-- **Note:** Assumption 3$^\ast$ implies the existence and finiteness of the first two moments of $X_i$ (even without Assumption 1$^\ast$). -->
 <!-- % Under the Assumptions 1$^\ast$, 2, 3$^\ast$, and 4, we can show the following results. -->
 <p><!-- 1$^\ast$ and 3$^\ast$  --></p>
@@ -884,8 +884,8 @@ s^2_{ub,n}=\frac{1}{n-K}\sum_{i=1}^n\hat\epsilon_i^2
 </div>
 <div class="callout-body-container">
 <div id="thm-Sxx1" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.7 (Consistency of <span class="math inline">\(S_{X'X}^{-1}\)</span>)</strong></span> Under Assumptions 1, 2, 3<span class="math inline">\(^\ast\)</span>, and 4, and under the assumption that <span class="math inline">\(X_i\)</span> has finite second moments, we have that <span class="math display">\[
-S_{X'X}^{-1} = \left(\frac{1}{n}X'X\right)^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1},\quad\text{as}\quad n\to\infty.
+<p><span class="theorem-title"><strong>Theorem 7.7 (Consistency of <span class="math inline">\(S_{X^{\top}X}^{-1}\)</span>)</strong></span> Under Assumptions 1, 2, 3<span class="math inline">\(^\ast\)</span>, and 4, and under the assumption that <span class="math inline">\(X_i\)</span> has finite second moments, we have that <span class="math display">\[
+S_{X^{\top}X}^{-1} = \left(\frac{1}{n}X^{\top}X\right)^{-1}\quad\to_{p}\quad\Sigma_{X^{\top}X}^{-1},\quad\text{as}\quad n\to\infty.
 \]</span></p>
 </div>
 </div>
@@ -920,10 +920,10 @@ S_{X'X}^{-1} = \left(\frac{1}{n}X'X\right)^{-1}\quad\to_{p}\quad\Sigma_{X'X}^{-1
 <p><span class="theorem-title"><strong>Theorem 7.9 (Asymptotic Normality of <span class="math inline">\(\hat{\beta}\)</span> (Homoskedastic Case))</strong></span> Under Assumption 1, 2, 3<span class="math inline">\(^\ast\)</span>, and 4, and under the assumption that <span class="math inline">\(X_i\)</span> and <span class="math inline">\(\varepsilon_i\)</span> have finite second moments, and under the simplifying assumption of spherical errors <span class="math display">\[
 Var(\varepsilon|X)=\sigma^2I_n,
 \]</span> we have that <span class="math display">\[
-\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right),\quad\text{as}\quad n\to\infty,
+\sqrt{n}(\hat\beta_n-\beta)\to_{d} \mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X^{\top}X}\right),\quad\text{as}\quad n\to\infty,
 \]</span> where <span class="math display">\[
 \begin{align*}
-\sigma^2 \Sigma^{-1}_{X'X}
+\sigma^2 \Sigma^{-1}_{X^{\top}X}
 &amp; = \lim_{n\to\infty} Var\left(\sqrt{n}(\hat\beta_n-\beta)\right)\\[2ex]
 &amp; = \lim_{n\to\infty} n Var\left(\hat\beta_n\right)\\[2ex]
 &amp; = \operatorname{AVar}(\hat\beta_n)
@@ -936,17 +936,17 @@ Var(\varepsilon|X)=\sigma^2I_n,
 <p>The proof of <a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a> is done in the lecture.</p>
 <p><a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a> implies that for spherical errors and for largish sample sizes <span class="math inline">\(n,\)</span> the OLS estimator <span class="math inline">\(\beta_n\)</span> is <strong>approximately</strong> normal distributed, i.e. <span class="math display">\[
 \begin{align*}
-\sqrt{n}(\hat\beta_n-\beta)&amp;\overset{a}{\sim}\mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X'X}\right)\\[2ex]
-\Rightarrow\qquad\hat\beta_n &amp;\overset{a}{\sim}\mathcal{N}_K\left(\beta, n^{-1}\sigma^2 \Sigma^{-1}_{X'X}\right),
+\sqrt{n}(\hat\beta_n-\beta)&amp;\overset{a}{\sim}\mathcal{N}_K\left(0,\sigma^2 \Sigma^{-1}_{X^{\top}X}\right)\\[2ex]
+\Rightarrow\qquad\hat\beta_n &amp;\overset{a}{\sim}\mathcal{N}_K\left(\beta, n^{-1}\sigma^2 \Sigma^{-1}_{X^{\top}X}\right),
 \end{align*}
 \]</span> where the approximation error becomes arbitrarily small as <span class="math inline">\(n\to\infty.\)</span></p>
 <p>Usually, we do not know the asymptotic variance <span class="math display">\[
-\operatorname{AVar}(\hat\beta_n) = \sigma^2\Sigma_{X'X}^{-1},
+\operatorname{AVar}(\hat\beta_n) = \sigma^2\Sigma_{X^{\top}X}^{-1},
 \]</span> and thus have to plug-in the (consistent) estimator<br><span class="math display">\[
-\widehat{\operatorname{AVar}}(\hat\beta_n) = s_{ub}^2 S_{X'X}^{-1}.
+\widehat{\operatorname{AVar}}(\hat\beta_n) = s_{ub}^2 S_{X^{\top}X}^{-1}.
 \]</span></p>
 <blockquote class="blockquote">
-<p><strong>Note:</strong> Consistency of <span class="math inline">\(S_{X'X}^{-1}\)</span> is provided by <a href="#thm-Sxx1" class="quarto-xref">Theorem&nbsp;<span>7.7</span></a> and consistency of <span class="math inline">\(s_{ub}^2\)</span> is provided by <a href="#thm-Consistency_s1" class="quarto-xref">Theorem&nbsp;<span>7.10</span></a>.</p>
+<p><strong>Note:</strong> Consistency of <span class="math inline">\(S_{X^{\top}X}^{-1}\)</span> is provided by <a href="#thm-Sxx1" class="quarto-xref">Theorem&nbsp;<span>7.7</span></a> and consistency of <span class="math inline">\(s_{ub}^2\)</span> is provided by <a href="#thm-Consistency_s1" class="quarto-xref">Theorem&nbsp;<span>7.10</span></a>.</p>
 </blockquote>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
@@ -967,22 +967,22 @@ s_{ub}^2\to_{p}\sigma^2,\quad\text{as}\quad n\to\infty.
 <span class="header-section-number">7.2.1</span> The Case of Heteroskedasticity</h3>
 <p><a href="#thm-OLSnormality1" class="quarto-xref">Theorem&nbsp;<span>7.9</span></a> can also be stated (and proofed) for conditionally heteroskedastic error terms. In this case, <span class="math inline">\(\beta_n\)</span> is for large sample sizes <span class="math inline">\(n\)</span> <strong>approximately</strong> normal distributed, <span id="eq-OLSnormality1Rob"><span class="math display">\[
 \begin{align*}
-\sqrt{n}(\hat\beta_n-\beta)\overset{a}{\sim}\mathcal{N}_K\left(0,\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right)\\[2ex]
-\Rightarrow\qquad\hat\beta_n\overset{a}{\sim}\mathcal{N}_K\left(\beta,n^{-1}\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right),
+\sqrt{n}(\hat\beta_n-\beta)\overset{a}{\sim}\mathcal{N}_K\left(0,\Sigma_{X^{\top}X}^{-1}E(\varepsilon^2_iX_iX_i^{\top})\Sigma_{X^{\top}X}^{-1}\right)\\[2ex]
+\Rightarrow\qquad\hat\beta_n\overset{a}{\sim}\mathcal{N}_K\left(\beta,n^{-1}\Sigma_{X^{\top}X}^{-1}E(\varepsilon^2_iX_iX_i^{\top})\Sigma_{X^{\top}X}^{-1}\right),
 \end{align*}
 \qquad(7.1)\]</span></span> where the approximation error becomes arbitrarily small as <span class="math inline">\(n\to\infty.\)</span></p>
 <p>The asymptotic variance (under heteroskedasticity) <span class="math display">\[
 \begin{align*}
 \operatorname{AVar}(\hat\beta_n)
 &amp; = \lim_{n\to\infty}Var(\sqrt{n}(\hat\beta_n-\beta))\\[2ex]
-&amp; =\underbrace{\Sigma_{X'X}^{-1}E(\varepsilon_i^2X_iX_i')\Sigma_{X'X}^{-1}}_{(K\times K)}
+&amp; =\underbrace{\Sigma_{X^{\top}X}^{-1}E(\varepsilon_i^2X_iX_i^{\top})\Sigma_{X^{\top}X}^{-1}}_{(K\times K)}
 \end{align*}
 \]</span> is, of course, usually unknown and needs to be estimated from the data by some consistent estimator such that <span class="math display">\[
-S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\to_{p} \Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}
+S_{X^{\top}X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i^{\top})S^{-1}_{X^{\top}X}\to_{p} \Sigma_{X^{\top}X}^{-1}E(\varepsilon^2_iX_iX_i^{\top})\Sigma_{X^{\top}X}^{-1}
 \]</span> as <span class="math inline">\(n\to\infty.\)</span></p>
 <p>The estimator <span class="math display">\[
-\widehat{E}(\varepsilon^2_iX_iX_i')
-\]</span> is here a placeholder for one of the existing <strong>Heteroskedasticity Consistent (HC)</strong> estimators of <span class="math inline">\(E(\varepsilon^2X_iX_i')\)</span>:</p>
+\widehat{E}(\varepsilon^2_iX_iX_i^{\top})
+\]</span> is here a placeholder for one of the existing <strong>Heteroskedasticity Consistent (HC)</strong> estimators of <span class="math inline">\(E(\varepsilon^2X_iX_i^{\top})\)</span>:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -995,23 +995,23 @@ S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\to_{p} \Sigma_{X'X}^
 <tbody>
 <tr class="odd">
 <td>HC0</td>
-<td><span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2X_iX_i'\)</span></td>
+<td><span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i^{\top})=\frac{1}{n}\sum_{i=1}^n\hat\varepsilon_i^2X_iX_i^{\top}\)</span></td>
 </tr>
 <tr class="even">
 <td>HC1</td>
-<td><span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{n}{n-K}\hat\varepsilon_i^2X_iX_i'\)</span></td>
+<td><span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i^{\top})=\frac{1}{n}\sum_{i=1}^n\frac{n}{n-K}\hat\varepsilon_i^2X_iX_i^{\top}\)</span></td>
 </tr>
 <tr class="odd">
 <td>HC2</td>
-<td><span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{1-h_{i}}X_iX_i'\)</span></td>
+<td><span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i^{\top})=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{1-h_{i}}X_iX_i^{\top}\)</span></td>
 </tr>
 <tr class="even">
 <td>HC3</td>
-<td><span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{2}}X_iX_i'\)</span></td>
+<td><span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i^{\top})=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{2}}X_iX_i^{\top}\)</span></td>
 </tr>
 <tr class="odd">
 <td>HC4</td>
-<td><span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i')=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{\delta_{i}}}X_iX_i'\)</span></td>
+<td><span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i^{\top})=\frac{1}{n}\sum_{i=1}^n\frac{\hat{\varepsilon}_{i}^{2}}{\left(1-h_{i}\right)^{\delta_{i}}}X_iX_i^{\top}\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -1035,7 +1035,7 @@ Tip
 </ul>
 <p>Observations <span class="math inline">\(X_i\)</span> with leverage statistics <span class="math inline">\(h_i\)</span> that greatly exceed the average leverage value <span class="math inline">\(K/n\)</span> are referred to as “high leverage” observations. High leverage observations <span class="math inline">\(X_i\)</span> are observations that are far away from all other observations <span class="math inline">\(X_j\)</span>, <span class="math inline">\(i\neq j=1,\dots,n.\)</span></p>
 <p>High leverage observations <span class="math inline">\(X_i\)</span> have the potential to distort the estimation results, <span class="math inline">\(\hat\beta_n\)</span>. Indeed, a high leverage observation <span class="math inline">\(X_i\)</span> will have an distorting effect on the estimation results if the absolute value of the corresponding residual <span class="math inline">\(|\hat{\varepsilon}_i|\)</span> is unusually large—such observations are called <strong>influential outliers</strong>. Such observations increase the estimation uncertainty.</p>
-<p>General idea of the HC2-HC4 estimators is to increase the estimated variance in order to account for the effects of influential outliers. The residuals <span class="math inline">\(\hat\varepsilon_i\)</span> belonging to <span class="math inline">\(X_i\)</span> values that have a large leverage <span class="math inline">\(h_i\)</span> receive a higher weight and thus increase the value of <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i').\)</span> This strategy takes into account increased estimation uncertainties due to single influential outliers. <!-- (Too small variance estimates lead to false inference, too large variance estimates lead to conservative inference.) --></p>
+<p>General idea of the HC2-HC4 estimators is to increase the estimated variance in order to account for the effects of influential outliers. The residuals <span class="math inline">\(\hat\varepsilon_i\)</span> belonging to <span class="math inline">\(X_i\)</span> values that have a large leverage <span class="math inline">\(h_i\)</span> receive a higher weight and thus increase the value of <span class="math inline">\(\widehat{E}(\varepsilon^2_iX_iX_i^{\top}).\)</span> This strategy takes into account increased estimation uncertainties due to single influential outliers. <!-- (Too small variance estimates lead to false inference, too large variance estimates lead to conservative inference.) --></p>
 </div>
 </div>
 <p>The estimator HC0 was suggested in the econometrics literature by <span class="citation" data-cites="White1980">White (<a href="#ref-White1980" role="doc-biblioref">1980</a>)</span> and is justified by asymptotic (<span class="math inline">\(n\to\infty\)</span>) arguments. The estimators HC1, HC2 and HC3 were suggested by <span class="citation" data-cites="MacKinnon_White_1985">MacKinnon and White (<a href="#ref-MacKinnon_White_1985" role="doc-biblioref">1985</a>)</span> to improve the finite sample performance of HC0. Using an extensive Monte Carlo simulation study comparing HC0-HC3, <span class="citation" data-cites="Long_Ervin_2000">Long and Ervin (<a href="#ref-Long_Ervin_2000" role="doc-biblioref">2000</a>)</span> concludes that HC3 provides the best overall performance in finite samples. <span class="citation" data-cites="Cribari_2004">Cribari-Neto (<a href="#ref-Cribari_2004" role="doc-biblioref">2004</a>)</span> suggested the estimator HC4 to further improve the performance in finite sample behavior, especially in the presence of influential observations (large <span class="math inline">\(h_i\)</span> values).</p>
@@ -1052,18 +1052,18 @@ Tip
 H_0: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  = \underset{(q\times 1)}{r^{(0)}}\\
 H_1: \underset{(q\times K)}{R}\underset{(K\times 1)}{\beta}  \neq \underset{(q\times 1)}{r^{(0)}}\\
 \end{align*}
-\]</span> where the <span class="math inline">\((q \times K)\)</span> matrix <span class="math inline">\(R\)</span> and the <span class="math inline">\(q\)</span>-vector <span class="math inline">\(r=(r_{1},\dots,r_{q})'\)</span> are chosen by the statistician to specify her/his null hypothesis about the unknown true parameter vector <span class="math inline">\(\beta\)</span>. To make sure that there are no redundant equations, it is required that <span class="math inline">\(\operatorname{rank}(R)=q\)</span>.</p>
+\]</span> where the <span class="math inline">\((q \times K)\)</span> matrix <span class="math inline">\(R\)</span> and the <span class="math inline">\(q\)</span>-vector <span class="math inline">\(r=(r_{1},\dots,r_{q})^{\top}\)</span> are chosen by the statistician to specify her/his null hypothesis about the unknown true parameter vector <span class="math inline">\(\beta\)</span>. To make sure that there are no redundant equations, it is required that <span class="math inline">\(\operatorname{rank}(R)=q\)</span>.</p>
 <p>By contrast to the multiple parameter tests for small samples (see <a href="06-Small-Sample-Inference.html#sec-testmultp" class="quarto-xref"><span>Section 6.2</span></a>), we can work here with a <strong>heteroskedasticity robust</strong> test statistic which is applicable for heteroskedastic error terms: <span id="eq-Ftestasymp"><span class="math display">\[
 \begin{align*}
-W&amp;=n(R\hat\beta_n - r^{(0)})'[R\,S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\,R']^{-1}(R\hat\beta_n-r^{(0)})\\[2ex]
+W&amp;=n(R\hat\beta_n - r^{(0)})^{\top}[R\,S_{X^{\top}X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i^{\top})S^{-1}_{X^{\top}X}\,R^{\top}]^{-1}(R\hat\beta_n-r^{(0)})\\[2ex]
 W&amp;\overset{H_0}{\to}_d\chi^2(q), \quad\text{as}\quad n\to\infty.
 \end{align*}
 \qquad(7.2)\]</span></span> The price to pay is that the distribution of the test statistic under the null hypothesis is only valid asymptotically; i.e.&nbsp;for large <span class="math inline">\(n\)</span>. That is, the critical values taken from the asymptotic distribution will be useful only for “largish” samples sizes.</p>
 <blockquote class="blockquote">
 <p>In case of <strong>homoskedastic error</strong> terms, one can substitute <span class="math display">\[
-S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}
+S_{X^{\top}X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i^{\top})S^{-1}_{X^{\top}X}
 \]</span> by <span class="math display">\[
-s_{ub}^2S_{X'X}^{-1}.
+s_{ub}^2S_{X^{\top}X}^{-1}.
 \]</span></p>
 </blockquote>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1077,7 +1077,7 @@ Finite-sample correction
 </div>
 <div class="callout-body-container callout-body">
 <p>In order to improve the finite-sample performance of this test, one usually uses the <span class="math inline">\(F_{q,n-K}\)</span> distribution with <span class="math inline">\(q\)</span> and <span class="math inline">\(n-K\)</span> degrees of freedoms instead of the <span class="math inline">\(\chi^2(q)\)</span> distribution.</p>
-<p>Asymptotically (<span class="math inline">\(n\to\infty\)</span>), <span class="math inline">\(F_{q,n-K}\)</span> is equivalent to <span class="math inline">\(\chi^2(q)\)</span>. However, for any finite sample size <span class="math inline">\(n\)</span> (i.e., the practically relevant case) <span class="math inline">\(F_{q,n-K}\)</span> leads to larger critical values which helps to account for the estimation errors in <span class="math inline">\(S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\)</span> (or in <span class="math inline">\(s_{ub}^2S_{X'X}^{-1}\)</span>) which are otherwise neglected by the pure asymptotic perspective.</p>
+<p>Asymptotically (<span class="math inline">\(n\to\infty\)</span>), <span class="math inline">\(F_{q,n-K}\)</span> is equivalent to <span class="math inline">\(\chi^2(q)\)</span>. However, for any finite sample size <span class="math inline">\(n\)</span> (i.e., the practically relevant case) <span class="math inline">\(F_{q,n-K}\)</span> leads to larger critical values which helps to account for the estimation errors in <span class="math inline">\(S_{X^{\top}X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i^{\top})S^{-1}_{X^{\top}X}\)</span> (or in <span class="math inline">\(s_{ub}^2S_{X^{\top}X}^{-1}\)</span>) which are otherwise neglected by the pure asymptotic perspective.</p>
 </div>
 </div>
 </section><section id="robust-hypothesis-testing-single-parameters" class="level4" data-number="7.2.2.2"><h4 data-number="7.2.2.2" class="anchored" data-anchor-id="robust-hypothesis-testing-single-parameters">
@@ -1091,21 +1091,21 @@ H_1: &amp; \beta_k\ne \beta_k^{(0)}\\
 \end{equation*}
 \]</span> Selecting the <span class="math inline">\(k\)</span>th diagonal element of the test-statistic in <a href="#eq-Ftestasymp" class="quarto-xref">Equation&nbsp;<span>7.2</span></a> and taking the square root yields <span class="math display">\[
 \begin{align*}
-T&amp;=\frac{\sqrt{n}\left(\hat{\beta}_k-\beta_k^{(0)}\right)}{\sqrt{\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}}}
+T&amp;=\frac{\sqrt{n}\left(\hat{\beta}_k-\beta_k^{(0)}\right)}{\sqrt{\left[S_{X^{\top}X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i^{\top})S^{-1}_{X^{\top}X}\right]_{(k,k)}}}
 \end{align*}
 \]</span> where <span class="math display">\[
 \begin{align*}
 T&amp;\overset{H_0}{\to}_d\mathcal{N}(0,1),\quad\text{as}\quad n\to\infty,
 \end{align*}
 \]</span> and where <span class="math display">\[
-\left[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}\right]_{(k,k)}
-\]</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\(S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}.\)</span> This <span class="math inline">\(t\)</span>-test statistic allows for <strong>heteroskedastic</strong> error terms.</p>
+\left[S_{X^{\top}X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i^{\top})S^{-1}_{X^{\top}X}\right]_{(k,k)}
+\]</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\(S_{X^{\top}X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i^{\top})S^{-1}_{X^{\top}X}.\)</span> This <span class="math inline">\(t\)</span>-test statistic allows for <strong>heteroskedastic</strong> error terms.</p>
 <blockquote class="blockquote">
 <p>In case of homoskedastic error terms, one can substitute <span class="math display">\[
-[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}
+[S_{X^{\top}X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i^{\top})S^{-1}_{X^{\top}X}]_{(k,k)}
 \]</span> by <span class="math display">\[
-s_{ub}^2[S_{X'X}^{-1}]_{(k,k)}
-\]</span> where <span class="math inline">\([S_{X'X}^{-1}]_{(k,k)}\)</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\(S_{X'X}^{-1}.\)</span></p>
+s_{ub}^2[S_{X^{\top}X}^{-1}]_{(k,k)}
+\]</span> where <span class="math inline">\([S_{X^{\top}X}^{-1}]_{(k,k)}\)</span> denotes the element in the <span class="math inline">\(k\)</span>th row and <span class="math inline">\(k\)</span>th column of the <span class="math inline">\(K\times K\)</span> matrix <span class="math inline">\(S_{X^{\top}X}^{-1}.\)</span></p>
 </blockquote>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1118,21 +1118,21 @@ Finite-sample correction
 </div>
 <div class="callout-body-container callout-body">
 <p>In order to improve the finite-sample performance of this <span class="math inline">\(t\)</span> test, one usually uses the <span class="math inline">\(t_{(n-K)}\)</span> distribution with <span class="math inline">\(n-K\)</span> degrees of freedoms instead of the <span class="math inline">\(\mathcal{N}(0,1)\)</span> distribution.</p>
-<p>Asymptotically (<span class="math inline">\(n\to\infty\)</span>), <span class="math inline">\(t_{(n-K)}\)</span> is equivalent to <span class="math inline">\(\mathcal{N}(0,1)\)</span>. However, for finite sample sizes <span class="math inline">\(n\)</span> (i.e., the practically relevant case) <span class="math inline">\(t_{n-K}\)</span> leads to larger critical values which helps to account for the estimation errors in <span class="math inline">\([S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}\)</span> (or in <span class="math inline">\(s_{ub}^2[S_{X'X}^{-1}]_{(k,k)}\)</span>) which are otherwise neglected by the pure asymptotic perspective.</p>
+<p>Asymptotically (<span class="math inline">\(n\to\infty\)</span>), <span class="math inline">\(t_{(n-K)}\)</span> is equivalent to <span class="math inline">\(\mathcal{N}(0,1)\)</span>. However, for finite sample sizes <span class="math inline">\(n\)</span> (i.e., the practically relevant case) <span class="math inline">\(t_{n-K}\)</span> leads to larger critical values which helps to account for the estimation errors in <span class="math inline">\([S_{X^{\top}X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i^{\top})S^{-1}_{X^{\top}X}]_{(k,k)}\)</span> (or in <span class="math inline">\(s_{ub}^2[S_{X^{\top}X}^{-1}]_{(k,k)}\)</span>) which are otherwise neglected by the pure asymptotic perspective.</p>
 </div>
 </div>
 </section><section id="robust-confidence-intervals" class="level4" data-number="7.2.2.3"><h4 data-number="7.2.2.3" class="anchored" data-anchor-id="robust-confidence-intervals">
 <span class="header-section-number">7.2.2.3</span> Robust Confidence Intervals</h4>
 <p>Following the derivations in Chapter <a href="06-Small-Sample-Inference.html#sec-CIsmallsample" class="quarto-xref"><span>Section 6.4</span></a>, but using the expression for the robust standard errors, we get the following heteroskedasticity robust (random) <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> confidence interval <span class="math display">\[
 \operatorname{CI}_{1-\alpha}=
-\left[\hat\beta_k\pm t_{1-\alpha/2,n-K}\sqrt{n^{-1}[S_{X'X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i')S^{-1}_{X'X}]_{(k,k)}}\right].
+\left[\hat\beta_k\pm t_{1-\alpha/2,n-K}\sqrt{n^{-1}[S_{X^{\top}X}^{-1}\widehat{E}(\varepsilon^2_iX_iX_i^{\top})S^{-1}_{X^{\top}X}]_{(k,k)}}\right].
 \]</span> Here, the coverage probability is an asymptotic coverage probability with <span class="math inline">\(P(\beta_k\in\operatorname{CI}_{1-\alpha})\to \gamma\)</span> as <span class="math inline">\(n\to\infty\)</span>, where <span class="math inline">\(\gamma\geq 1-\alpha.\)</span></p>
 </section></section></section><section id="sec-MCLS" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="sec-MCLS">
 <span class="header-section-number">7.3</span> Monte Carlo Simulations</h2>
 <p>Let’s apply the above asymptotic inference methods using <code>R</code>. As in Chapter <a href="06-Small-Sample-Inference.html#sec-PSSI" class="quarto-xref"><span>Section 6.6</span></a> we, first, program a function <code>myDataGenerator()</code> which allows us to generate data from the following model, i.e., from the following fully specified data generating process: <span class="math display">\[
 \begin{align*}
 Y_i &amp;=\beta_1+\beta_2X_{i2}+\beta_3X_{i3}+\varepsilon_i,\qquad i=1,\dots,n\\
-\beta &amp;=(\beta_1,\beta_2,\beta_3)'=(2,3,4)'\\
+\beta &amp;=(\beta_1,\beta_2,\beta_3)^{\top}=(2,3,4)^{\top}\\
 X_{i2}&amp;\sim U[-4,4]\\
 X_{i3}&amp;\sim U[-5,5]\\
 \varepsilon_i|X_i&amp;\sim U[-0.5 |X_{i2}|, 0.5 |X_{i2}|],
@@ -1175,30 +1175,30 @@ Var(\varepsilon_i)
 <span class="header-section-number">7.3.1</span> Check: Distribution of <span class="math inline">\(\hat\beta_n\)</span>
 </h3>
 <p>The above data generating process fulfills our regulatory assumptions of this chapter. So, by theory, the estimators <span class="math inline">\(\hat\beta_k\)</span> should be normal distributed for sufficiently large sample sizes <span class="math inline">\(n\)</span>. <span class="math display">\[
-\sqrt{n}\left(\hat\beta_{n,k}-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right)
+\sqrt{n}\left(\hat\beta_{n,k}-\beta_k\right)\to_d\mathcal{N}\left(0,\left[\Sigma_{X^{\top}X}^{-1}E(\varepsilon^2_iX_iX_i^{\top})\Sigma_{X^{\top}X}^{-1}\right]_{(k,k)}\right)
 \]</span> <span class="math display">\[
-\Rightarrow\qquad\hat\beta_{n,k}\overset{a}{\sim}\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X'X}^{-1}E(\varepsilon^2_iX_iX_i')\Sigma_{X'X}^{-1}\right]_{(k,k)}\right).
+\Rightarrow\qquad\hat\beta_{n,k}\overset{a}{\sim}\mathcal{N}\left(\beta_k, \;n^{-1}\;\left[\Sigma_{X^{\top}X}^{-1}E(\varepsilon^2_iX_iX_i^{\top})\Sigma_{X^{\top}X}^{-1}\right]_{(k,k)}\right).
 \]</span></p>
 <p>For our above specified data generating process, we can derive all (usually unknown) population quantities:</p>
 <ul>
 <li><p>From the assumed distributions of <span class="math inline">\(X_{i2}\)</span> and <span class="math inline">\(X_{i3}\)</span> we have that: <span class="math display">\[
 \begin{align*}
-\Sigma_{X'X}
-&amp;=E(S_{X'X})\\[2ex]
-&amp;=E(X_iX_i')\\[2ex]
+\Sigma_{X^{\top}X}
+&amp;=E(S_{X^{\top}X})\\[2ex]
+&amp;=E(X_iX_i^{\top})\\[2ex]
 &amp;=\left(\begin{matrix}1&amp;0&amp;0\\0&amp;E(X_{i2}^2)&amp;0\\0&amp;0&amp;E(X_{i3}^2)\end{matrix}\right)\\[2ex]
 &amp;=\left(\begin{matrix}1&amp;0&amp;0\\0&amp;\frac{16}{3}&amp;0\\0&amp;0&amp;\frac{25}{3}\end{matrix}\right)
 \end{align*}
 \]</span> The above result follows from observing that <span class="math inline">\(E(X^2)=Var(X)\)</span> if <span class="math inline">\(X\)</span> has mean zero, and that the variance of uniform <span class="math inline">\(U[a,b]\)</span> distributed random variables is given by <span class="math inline">\(\frac{1}{12}(b-a)^2\)</span>.</p></li>
 <li><p>Moreover, <span class="math display">\[
 \begin{align*}
-E(\varepsilon^2_iX_iX_i')
-&amp; =E(X_iX_i'E(\varepsilon^2_i|X_i))\\[2ex]
-&amp; =E\left(X_iX_i'\left(\frac{1}{12}X_{i2}^2\right)\right)
+E(\varepsilon^2_iX_iX_i^{\top})
+&amp; =E(X_iX_i^{\top}E(\varepsilon^2_i|X_i))\\[2ex]
+&amp; =E\left(X_iX_i^{\top}\left(\frac{1}{12}X_{i2}^2\right)\right)
 \end{align*}
 \]</span> such that <span class="math display">\[
 \begin{align*}
-E(\varepsilon^2_iX_iX_i')
+E(\varepsilon^2_iX_iX_i^{\top})
 &amp;=\left(\begin{matrix}E\left(\frac{1}{12}X_{i2}^2\right)&amp;0&amp;0\\[2ex]
                  0&amp;E\left(X_{i2}^2\cdot\frac{1}{12}X_{i2}^2\right)&amp;0\\0&amp;0&amp;E\left(X_{i3}^2\cdot\frac{1}{12}X_{i2}^2\right)
     \end{matrix}\right)\\[2ex]
@@ -1346,7 +1346,7 @@ E(\varepsilon^2_iX_iX_i')
 </div>
 </div>
 <p>Ouch! The theoretical variance <span class="math inline">\(Var(\hat\beta_2)=0.15/n=0.03\)</span> is about 50% smaller than the actual (small sample) variance of <span class="math inline">\(\hat\beta_2\)</span> approximated by the empirical variance of the <code>5000</code> simulated realizations of <span class="math inline">\(\hat\beta_2\)</span>. That is, <strong>we cannot simply use a large sample result in small samples</strong>.</p>
-<p>Reason: In small samples, the Law of Large Numbers has not kicked in yet; therefore, we cannot neglect the variability in the sample statistic <span class="math inline">\(S_{X'X}^{-1}.\)</span></p>
+<p>Reason: In small samples, the Law of Large Numbers has not kicked in yet; therefore, we cannot neglect the variability in the sample statistic <span class="math inline">\(S_{X^{\top}X}^{-1}.\)</span></p>
 <p>This issue can also seen when comparing the theoretical large sample distribution of <span class="math inline">\(\hat\beta_2\)</span> with an estimate of the actual finite-sample distribution of <span class="math inline">\(\hat\beta_2.\)</span></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## True normal distribution of beta_hat_2 versus </span></span>
