@@ -466,9 +466,9 @@ $$
 $$ 
 converges to the **multivariate**, $K$-dimensional, normal distribution $\mathcal{N}_K(0,\Sigma)$ as $n\to\infty$, we need to check whether **for any**  $\lambda\in\mathbb{R}^K$: 
 
-* the **uni**variate stochastic sequence $\{\lambda^{\top}Z_i\}$ is i.i.d. with
-* $E(\lambda^{\top}Z_i)=\lambda^{\top}\mu$ for all $i=1,\dots,n,$ where $E(Z_i)=\mu\in\mathbb{R}^K$ denotes the $K$ dimensional mean vector, and 
-* $Var(\lambda^{\top}Z_i)=\lambda^{\top}\Sigma\lambda$ for all $i=1,\dots,n,$ where $Var(Z_i)=\Sigma$ denotes the $(K\times K)$ dimensional variance-covariance matrix. 
+(a) **i.i.d.:** The **uni**variate stochastic sequence $\{\lambda^{\top}Z_i\}$ **is i.i.d.** with
+(b) **Mean:** $E(\lambda^{\top}Z_i)=\lambda^{\top}\mu$ for all $i=1,\dots,n,$ where $E(Z_i)=\mu\in\mathbb{R}^K$ denotes the $K$ dimensional mean vector, and 
+(c) **Variance:** $Var(\lambda^{\top}Z_i)=\lambda^{\top}\Sigma\lambda$ for all $i=1,\dots,n,$ where $Var(Z_i)=\Sigma$ denotes the $(K\times K)$ dimensional variance-covariance matrix. 
  
 
 These points are fulfilled if the multivariate stochastic sequence $\{Z_i\}$ is an i.i.d. sequence with $E(Z_i)=\mu$ and $Var(Z_i)=\Sigma.$
@@ -613,7 +613,7 @@ $$
 :::
 
 
-The MSE of $\hat\theta_n$ can be decomposed into the squared bias of $\hat\theta_n$ and the variance of $\hat\theta_n:$
+As already discussed in @sec-EstimTheory, the MSE of $\hat\theta_n$ can be decomposed into the squared bias of $\hat\theta_n$ and the variance of $\hat\theta_n:$
 $$
 \begin{align*}
 \operatorname{MSE}(\hat\theta_n)
@@ -631,9 +631,10 @@ $$
 Thus, to show that an estimator $\hat\theta_n$ converges in the mean square sense to $\theta,$ we need to show that: 
 
 1. The estimator is asymptotically unbiased  
-$$
-\operatorname{Bias}(\hat\theta_n)\to 0,\quad n\to\infty
-$$
+\begin{align*}
+\operatorname{Bias}(\hat\theta_n)&\to 0,\quad n\to\infty\\
+\Leftrightarrow\quad E(\hat\theta_n)&\to \theta,\quad n\to\infty
+\end{align*}
 2. The variance of the estimator converges to zero
 $$
 Var(\hat\theta_n)\to 0,\quad n\to\infty.

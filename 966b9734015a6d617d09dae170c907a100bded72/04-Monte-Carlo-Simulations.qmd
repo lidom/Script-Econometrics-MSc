@@ -1,5 +1,5 @@
 <!-- LTeX: language=en-US -->
-# Estimation Theory and Monte Carlo Simulations
+# Estimation Theory and Monte Carlo Simulations {#sec-EstimTheory}
 
 
 Learning outcomes of this chapter: 
