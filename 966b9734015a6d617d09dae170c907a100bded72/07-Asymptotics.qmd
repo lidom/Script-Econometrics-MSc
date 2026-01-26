@@ -339,7 +339,7 @@ Proofs of @thm-Slutsky can be found, e.g., in @Vaart2000 (see Theorem 2.8) or he
 **Remark:** Sometimes, only the first two points in @thm-Slutsky are called "Slutsky's theorem."
 
 
-Important special case of @thm-Slutsky: 
+**Most important special case of @thm-Slutsky:** 
 
 Let $\{X_n\}$ and $\{A_n\}$ be two sequences of real valued $(K\times 1)$-dimensional random vectors. If 
 $$
