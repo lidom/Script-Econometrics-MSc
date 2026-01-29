@@ -339,17 +339,28 @@ Proofs of @thm-Slutsky can be found, e.g., in @Vaart2000 (see Theorem 2.8) or he
 **Remark:** Sometimes, only the first two points in @thm-Slutsky are called "Slutsky's theorem."
 
 
-**Most important special case of @thm-Slutsky:** 
+::: {.callout icon=false}
+#
+::: {#exm-Slutsky}
+## Most important special case of @thm-Slutsky:
 
-Let $\{X_n\}$ and $\{A_n\}$ be two sequences of real valued $(K\times 1)$-dimensional random vectors. If 
+</br>
+
+
+Let $\{X_n\}$ be a sequence of real valued $(K\times 1)$-dimensional random vectors such that 
 $$
-X_n\to_{d}\mathcal{N}_K(0,\Sigma)\quad\text{and}\quad A_n\to_{p} A
+X_n\to_{d}\mathcal{N}_K(0,\Sigma)\quad\text{as}\quad n\to\infty,
 $$ 
-then
+and let $\{A_n\}$ be a sequence of real valued $(L\times K)$-dimensional random matrices (or vectors if $L=1$) such that 
 $$
-A_nX_n\to_{d}\mathcal{N}_K(0,A\Sigma A^{\top}).
+A_n\to_{p} A \quad\text{as}\quad n\to\infty,
 $$
-
+where $A$ is a $(L\times K)$-dimensional deterministic matrix. Then, by @thm-Slutsky, $\{A_nX_n\}$ converges in distribution to an $L$-dimensional normal distribution,
+$$
+A_nX_n\to_{d}\mathcal{N}_L(0,A\Sigma A^{\top}).
+$$
+:::
+:::
 
 ### Law of Large Numbers and Central Limit Theorems
 

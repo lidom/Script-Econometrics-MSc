@@ -557,12 +557,25 @@ A_n X_n\to_{d} AX.
 </div>
 <p>Proofs of <a href="#thm-Slutsky" class="quarto-xref">Theorem&nbsp;<span>7.3</span></a> can be found, e.g., in <span class="citation" data-cites="Vaart2000">Van der Vaart (<a href="#ref-Vaart2000" role="doc-biblioref">2000</a>)</span> (see Theorem 2.8) or here: <a href="https://www.statlect.com/asymptotic-theory/Slutsky-theorem">https://www.statlect.com/asymptotic-theory/Slutsky-theorem</a></p>
 <p><strong>Remark:</strong> Sometimes, only the first two points in <a href="#thm-Slutsky" class="quarto-xref">Theorem&nbsp;<span>7.3</span></a> are called “Slutsky’s theorem.”</p>
-<p><strong>Most important special case of <a href="#thm-Slutsky" class="quarto-xref">Theorem&nbsp;<span>7.3</span></a>:</strong></p>
-<p>Let <span class="math inline">\(\{X_n\}\)</span> and <span class="math inline">\(\{A_n\}\)</span> be two sequences of real valued <span class="math inline">\((K\times 1)\)</span>-dimensional random vectors. If <span class="math display">\[
-X_n\to_{d}\mathcal{N}_K(0,\Sigma)\quad\text{and}\quad A_n\to_{p} A
-\]</span> then <span class="math display">\[
-A_nX_n\to_{d}\mathcal{N}_K(0,A\Sigma A^{\top}).
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exm-Slutsky" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7.1 (Most important special case of <a href="#thm-Slutsky" class="quarto-xref">Theorem&nbsp;<span>7.3</span></a>:)</strong></span> </p>
+<p>Let <span class="math inline">\(\{X_n\}\)</span> be a sequence of real valued <span class="math inline">\((K\times 1)\)</span>-dimensional random vectors such that <span class="math display">\[
+X_n\to_{d}\mathcal{N}_K(0,\Sigma)\quad\text{as}\quad n\to\infty,
+\]</span> and let <span class="math inline">\(\{A_n\}\)</span> be a sequence of real valued <span class="math inline">\((L\times K)\)</span>-dimensional random matrices (or vectors if <span class="math inline">\(L=1\)</span>) such that <span class="math display">\[
+A_n\to_{p} A \quad\text{as}\quad n\to\infty,
+\]</span> where <span class="math inline">\(A\)</span> is a <span class="math inline">\((L\times K)\)</span>-dimensional deterministic matrix. Then, by <a href="#thm-Slutsky" class="quarto-xref">Theorem&nbsp;<span>7.3</span></a>, <span class="math inline">\(\{A_nX_n\}\)</span> converges in distribution to an <span class="math inline">\(L\)</span>-dimensional normal distribution, <span class="math display">\[
+A_nX_n\to_{d}\mathcal{N}_L(0,A\Sigma A^{\top}).
 \]</span></p>
+</div>
+</div>
+</div>
+</div>
 </section><section id="law-of-large-numbers-and-central-limit-theorems" class="level3" data-number="7.1.4"><h3 data-number="7.1.4" class="anchored" data-anchor-id="law-of-large-numbers-and-central-limit-theorems">
 <span class="header-section-number">7.1.4</span> Law of Large Numbers and Central Limit Theorems</h3>
 <p>So far, we discussed the definitions of the four most important convergence modes, their relations among each other, and basic theorems about functionals of stochastic sequences (CMT and Slutsky). Though, we still lack of tools that allow us to actually show that a stochastic sequence convergences (in some of the discussed modes) to some limit.</p>
