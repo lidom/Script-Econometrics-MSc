@@ -342,7 +342,7 @@ Proofs of @thm-Slutsky can be found, e.g., in @Vaart2000 (see Theorem 2.8) or he
 ::: {.callout icon=false}
 #
 ::: {#exm-Slutsky}
-## Most important special case of @thm-Slutsky:
+## Most important special case of @thm-Slutsky
 
 </br>
 
